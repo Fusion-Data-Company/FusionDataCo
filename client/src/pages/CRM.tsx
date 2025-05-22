@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
 import CTASection from "@/components/CTASection";
+import CRMContactsDemo from "@/components/CRMContactsDemo";
 import { Users, Database, Zap, PieChart, CheckCircle, Smartphone, Globe, Shield, ArrowRight } from "lucide-react";
 
 export default function CRM() {
@@ -157,6 +158,22 @@ export default function CRM() {
           <section className="py-16 bg-gradient-to-b from-[#0b0b0d] to-[#1a1a1f] relative overflow-hidden">
             <div className="absolute inset-0 opacity-5 bg-grid-pattern"></div>
             <div className="container mx-auto px-4 relative z-10">
+              <div className="text-center max-w-3xl mx-auto mb-12">
+                <h3 className="font-['Orbitron'] text-2xl md:text-3xl font-bold mb-4">
+                  <span className="text-white">Powerful</span>{" "}
+                  <span className="text-[#00ffff] [text-shadow:0_0_5px_#00ffff]">Contact Management</span>
+                </h3>
+                <p className="text-gray-400 mb-6">
+                  Build stronger relationships by tracking all customer interactions in one place.
+                  Our CRM helps you never miss a follow-up and close more deals.
+                </p>
+              </div>
+              
+              <div className="mb-16">
+                {/* Contacts Demo Component */}
+                <CRMContactsDemo />
+              </div>
+              
               <div className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-8 border border-gray-800 overflow-hidden">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div>

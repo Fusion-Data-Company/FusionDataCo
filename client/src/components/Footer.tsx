@@ -41,7 +41,7 @@ export default function Footer() {
           <div>
             <h4 className="font-['Orbitron'] text-lg font-semibold mb-4 text-white">Solutions</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><Link href="/"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">CRM</span></Link></li>
+              <li><Link href="/crm"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">CRM</span></Link></li>
               <li><Link href="/"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">Website Builder</span></Link></li>
               <li><Link href="/"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">Automation</span></Link></li>
               <li><Link href="/"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">AI Agents</span></Link></li>
