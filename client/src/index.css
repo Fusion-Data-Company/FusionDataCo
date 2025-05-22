@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+
+:root {
+  --background: 240 10% 3.9%; /* #0b0b0d */
+  --foreground: 0 0% 98%; /* #fafafa */
+  
+  --card: 240 9% 9%; /* #121218 */
+  --card-foreground: 0 0% 98%; /* #fafafa */
+  
+  --popover: 240 10% 3.9%; /* #0b0b0d */
+  --popover-foreground: 0 0% 98%; /* #fafafa */
+  
+  --primary: 180 100% 50%; /* #00ffff - neon blue */
+  --primary-foreground: 240 10% 3.9%; /* #0b0b0d */
+  
+  --secondary: 320 100% 50%; /* #ff0aff - neon magenta */
+  --secondary-foreground: 240 10% 3.9%; /* #0b0b0d */
+  
+  --accent: 162 100% 54%; /* #14ffc8 - neon teal */
+  --accent-foreground: 240 10% 3.9%; /* #0b0b0d */
+  
+  --destructive: 0 100% 50%; /* #ff0000 */
+  --destructive-foreground: 0 0% 98%; /* #fafafa */
+  
+  --muted: 240 3.7% 15.9%; /* #1a1a1f */
+  --muted-foreground: 240 5% 64.9%; /* #a0a0b3 */
+  
+  --border: 240 3.7% 15.9%; /* #1a1a1f */
+  --input: 240 3.7% 15.9%; /* #1a1a1f */
+  --ring: 274 100% 32.1%; /* #8f00ff - neon purple */
+  
+  --radius: 0.5rem;
+
+  /* Chart colors */
+  --chart-1: 180 100% 50%; /* #00ffff - neon blue */
+  --chart-2: 320 100% 50%; /* #ff0aff - neon magenta */
+  --chart-3: 162 100% 54%; /* #14ffc8 - neon teal */
+  --chart-4: 274 100% 32.1%; /* #8f00ff - neon purple */
+  --chart-5: 60 100% 50%; /* #ffff00 - yellow */
+
+  /* Sidebar colors */
+  --sidebar-background: 240 10% 3.9%; /* #0b0b0d */
+  --sidebar-foreground: 0 0% 98%; /* #fafafa */
+  --sidebar-primary: 180 100% 50%; /* #00ffff - neon blue */
+  --sidebar-primary-foreground: 240 10% 3.9%; /* #0b0b0d */
+  --sidebar-accent: 162 100% 54%; /* #14ffc8 - neon teal */
+  --sidebar-accent-foreground: 240 10% 3.9%; /* #0b0b0d */
+  --sidebar-border: 240 3.7% 15.9%; /* #1a1a1f */
+  --sidebar-ring: 274 100% 32.1%; /* #8f00ff - neon purple */
+}
+
+.dark {
+  --background: 240 10% 3.9%; /* #0b0b0d */
+  --foreground: 0 0% 98%; /* #fafafa */
+  
+  --card: 240 9% 9%; /* #121218 */
+  --card-foreground: 0 0% 98%; /* #fafafa */
+  
+  --popover: 240 10% 3.9%; /* #0b0b0d */
+  --popover-foreground: 0 0% 98%; /* #fafafa */
+  
+  --primary: 180 100% 50%; /* #00ffff - neon blue */
+  --primary-foreground: 240 10% 3.9%; /* #0b0b0d */
+  
+  --secondary: 320 100% 50%; /* #ff0aff - neon magenta */
+  --secondary-foreground: 240 10% 3.9%; /* #0b0b0d */
+  
+  --accent: 162 100% 54%; /* #14ffc8 - neon teal */
+  --accent-foreground: 240 10% 3.9%; /* #0b0b0d */
+  
+  --destructive: 0 100% 50%; /* #ff0000 */
+  --destructive-foreground: 0 0% 98%; /* #fafafa */
+  
+  --muted: 240 3.7% 15.9%; /* #1a1a1f */
+  --muted-foreground: 240 5% 64.9%; /* #a0a0b3 */
+  
+  --border: 240 3.7% 15.9%; /* #1a1a1f */
+  --input: 240 3.7% 15.9%; /* #1a1a1f */
+  --ring: 274 100% 32.1%; /* #8f00ff - neon purple */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-['Orbitron'] font-bold;
+  }
+}
+
+@layer utilities {
+  .text-shadow-blue {
+    text-shadow: 0 0 5px #00ffff;
+  }
+  .text-shadow-magenta {
+    text-shadow: 0 0 5px #ff0aff;
+  }
+  .text-shadow-purple {
+    text-shadow: 0 0 5px #8f00ff;
+  }
+  .text-shadow-teal {
+    text-shadow: 0 0 5px #14ffc8;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-md bg-card/70;
+  }
+  
+  .circuit-overlay {
+    @apply bg-background/85 bg-blend-overlay;
+  }
+
+  @keyframes pulse-glow {
+    0% { box-shadow: 0 0 5px currentColor; }
+    50% { box-shadow: 0 0 15px currentColor; }
+    100% { box-shadow: 0 0 5px currentColor; }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s infinite;
+  }
+}
