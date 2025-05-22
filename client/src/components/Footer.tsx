@@ -11,12 +11,12 @@ export default function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <Link href="/">
-              <a className="inline-block mb-4">
+              <span className="inline-block mb-4 cursor-pointer">
                 <span className="text-[#14ffc8] font-['Orbitron'] text-xl font-bold [text-shadow:0_0_5px_#14ffc8]">
                   FUSION<span className="text-white">DATA</span>
                   <span className="text-[#00ffff] [text-shadow:0_0_5px_#00ffff]">CO</span>
                 </span>
-              </a>
+              </span>
             </Link>
             <p className="text-gray-400 mb-4">
               Empowering small businesses with enterprise-grade marketing automation tools, AI, and data-driven strategies.
@@ -41,11 +41,11 @@ export default function Footer() {
           <div>
             <h4 className="font-['Orbitron'] text-lg font-semibold mb-4 text-white">Solutions</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><Link href="/"><a className="hover:text-[#14ffc8] transition-colors">CRM</a></Link></li>
-              <li><Link href="/"><a className="hover:text-[#14ffc8] transition-colors">Website Builder</a></Link></li>
-              <li><Link href="/"><a className="hover:text-[#14ffc8] transition-colors">Automation</a></Link></li>
-              <li><Link href="/"><a className="hover:text-[#14ffc8] transition-colors">AI Agents</a></Link></li>
-              <li><Link href="/social-media"><a className="hover:text-[#14ffc8] transition-colors">Social Media</a></Link></li>
+              <li><Link href="/"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">CRM</span></Link></li>
+              <li><Link href="/"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">Website Builder</span></Link></li>
+              <li><Link href="/"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">Automation</span></Link></li>
+              <li><Link href="/"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">AI Agents</span></Link></li>
+              <li><Link href="/social-media"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">Social Media</span></Link></li>
             </ul>
           </div>
           
@@ -53,10 +53,10 @@ export default function Footer() {
           <div>
             <h4 className="font-['Orbitron'] text-lg font-semibold mb-4 text-white">Industries</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><Link href="/small-business"><a className="hover:text-[#14ffc8] transition-colors">Small Business</a></Link></li>
-              <li><Link href="/real-estate"><a className="hover:text-[#14ffc8] transition-colors">Real Estate</a></Link></li>
-              <li><Link href="/medical"><a className="hover:text-[#14ffc8] transition-colors">Medical</a></Link></li>
-              <li><Link href="/home-services"><a className="hover:text-[#14ffc8] transition-colors">Home Services</a></Link></li>
+              <li><Link href="/small-business"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">Small Business</span></Link></li>
+              <li><Link href="/real-estate"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">Real Estate</span></Link></li>
+              <li><Link href="/medical"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">Medical</span></Link></li>
+              <li><Link href="/home-services"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">Home Services</span></Link></li>
               <li><a href="#" className="hover:text-[#14ffc8] transition-colors">Retail</a></li>
             </ul>
           </div>
@@ -69,7 +69,7 @@ export default function Footer() {
               <li><a href="#" className="hover:text-[#14ffc8] transition-colors">Blog</a></li>
               <li><a href="#" className="hover:text-[#14ffc8] transition-colors">Partners</a></li>
               <li><a href="#" className="hover:text-[#14ffc8] transition-colors">Careers</a></li>
-              <li><Link href="/#demo"><a className="hover:text-[#14ffc8] transition-colors">Contact</a></Link></li>
+              <li><Link href="/#demo"><span className="hover:text-[#14ffc8] transition-colors cursor-pointer">Contact</span></Link></li>
             </ul>
           </div>
         </div>
