@@ -1,80 +1,127 @@
 import { useState } from "react";
-import { Phone, Mail, Building, Tags, MoreHorizontal, Search, Plus, Filter, SortDesc } from "lucide-react";
-
-interface Contact {
-  id: number;
-  name: string;
-  company: string;
-  email: string;
-  phone: string;
-  tags: string[];
-  lastContact: string;
-  status: "New" | "In Progress" | "Qualified" | "Proposal" | "Negotiation" | "Won" | "Lost";
-}
+import { Phone, Mail, Building, Tags, MoreHorizontal, Search, Plus, Filter, SortDesc, Loader2, AlertCircle } from "lucide-react";
+import { useCrmContacts } from "@/hooks/use-crm-contacts";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import { CrmContact } from "@shared/schema";
+import { queryClient } from "@/lib/queryClient";
 
 export default function CRMContactsDemo() {
   const [searchTerm, setSearchTerm] = useState("");
+  const { toast } = useToast();
   
-  const demoContacts: Contact[] = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      company: "TechNova Solutions",
-      email: "sjohnson@technova.com",
-      phone: "(555) 123-4567",
-      tags: ["Enterprise", "SaaS", "Hot Lead"],
-      lastContact: "Today",
-      status: "Qualified"
-    },
-    {
-      id: 2,
-      name: "Michael Reynolds",
-      company: "Quantum Marketing",
-      email: "michael@quantummarketing.com",
-      phone: "(555) 987-6543",
-      tags: ["Agency", "Growth Plan"],
-      lastContact: "Yesterday",
-      status: "Proposal"
-    },
-    {
-      id: 3,
-      name: "Elena Ramirez",
-      company: "Pinnacle Realty",
-      email: "elena@pinnaclereal.com",
-      phone: "(555) 765-4321",
-      tags: ["Real Estate", "New"],
-      lastContact: "2 days ago",
-      status: "New"
-    },
-    {
-      id: 4,
-      name: "David Chen",
-      company: "Elevate Healthcare",
-      email: "dchen@elevatehc.com",
-      phone: "(555) 432-1098",
-      tags: ["Healthcare", "Enterprise"],
-      lastContact: "1 week ago",
-      status: "In Progress"
-    },
-    {
-      id: 5,
-      name: "Rebecca Wilson",
-      company: "Spectrum Builders",
-      email: "rebecca@spectrumbuilders.com",
-      phone: "(555) 876-5432",
-      tags: ["Construction", "Small Business"],
-      lastContact: "3 days ago",
-      status: "Negotiation"
+  // Fetch contacts from our API
+  const { data: contacts = [], isLoading, isError, error } = useCrmContacts();
+  
+  // If we don't have any contacts yet, let's create some sample data
+  const createSampleData = async () => {
+    try {
+      const sampleContacts = [
+        {
+          name: "Sarah Johnson",
+          company: "TechNova Solutions",
+          email: "sjohnson@technova.com",
+          phone: "(555) 123-4567",
+          position: "Marketing Director",
+          tags: ["Enterprise", "SaaS", "Hot Lead"],
+          status: "Qualified",
+          source: "Website"
+        },
+        {
+          name: "Michael Reynolds",
+          company: "Quantum Marketing",
+          email: "michael@quantummarketing.com",
+          phone: "(555) 987-6543",
+          position: "CEO",
+          tags: ["Agency", "Growth Plan"],
+          status: "Proposal",
+          source: "Referral"
+        },
+        {
+          name: "Elena Ramirez",
+          company: "Pinnacle Realty",
+          email: "elena@pinnaclereal.com",
+          phone: "(555) 765-4321",
+          position: "Agent",
+          tags: ["Real Estate", "New"],
+          status: "New",
+          source: "Social Media"
+        },
+        {
+          name: "David Chen",
+          company: "Elevate Healthcare",
+          email: "dchen@elevatehc.com",
+          phone: "(555) 432-1098",
+          position: "IT Director",
+          tags: ["Healthcare", "Enterprise"],
+          status: "In Progress",
+          source: "Trade Show"
+        },
+        {
+          name: "Rebecca Wilson",
+          company: "Spectrum Builders",
+          email: "rebecca@spectrumbuilders.com",
+          phone: "(555) 876-5432",
+          position: "Operations Manager",
+          tags: ["Construction", "Small Business"],
+          status: "Negotiation",
+          source: "Email Campaign"
+        }
+      ];
+      
+      // Create each contact through the API
+      for (const contact of sampleContacts) {
+        await apiRequest("/api/crm/contacts", {
+          method: "POST",
+          body: JSON.stringify(contact),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+      }
+      
+      toast({
+        title: "Sample contacts created",
+        description: "The database has been populated with sample contacts."
+      });
+      
+      // Refresh the data
+      queryClient.invalidateQueries({ queryKey: ['/api/crm/contacts'] });
+      
+    } catch (error) {
+      console.error("Error creating sample data:", error);
+      toast({
+        title: "Error",
+        description: "Failed to create sample contacts. Please try again.",
+        variant: "destructive"
+      });
     }
-  ];
+  };
   
-  const filteredContacts = demoContacts.filter(contact => 
+  // Format the date to a relative time (e.g., "today", "yesterday", "2 days ago")
+  const formatDate = (dateString: string | Date | null) => {
+    if (!dateString) return "N/A";
+    
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffInDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+    
+    if (diffInDays === 0) return "Today";
+    if (diffInDays === 1) return "Yesterday";
+    if (diffInDays < 7) return `${diffInDays} days ago`;
+    return date.toLocaleDateString();
+  };
+  
+  // Filter contacts based on search term
+  const filteredContacts = contacts.filter((contact: CrmContact) => 
     contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (contact.company && contact.company.toLowerCase().includes(searchTerm.toLowerCase())) ||
     contact.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
   
-  const getStatusColor = (status: Contact['status']) => {
+  const getStatusColor = (status: string | null) => {
+    if (!status) return "bg-gray-100 text-gray-800";
+    
     switch(status) {
       case "New": return "bg-blue-100 text-blue-800";
       case "In Progress": return "bg-purple-100 text-purple-800";
