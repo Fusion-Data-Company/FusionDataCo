@@ -142,9 +142,9 @@ export default function IndustrySolutions() {
                   </ul>
                 </div>
                 <Link href={solution.link}>
-                  <a className={`block w-full py-3 ${solution.linkColor} rounded-md font-medium text-center hover:shadow-[0_0_5px_currentColor] transition-all duration-300`}>
+                  <span className={`block w-full py-3 ${solution.linkColor} rounded-md font-medium text-center hover:shadow-[0_0_5px_currentColor] transition-all duration-300 cursor-pointer`}>
                     {solution.linkText}
-                  </a>
+                  </span>
                 </Link>
               </div>
             </div>

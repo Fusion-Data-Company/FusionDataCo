@@ -236,9 +236,9 @@ export default function Pricing() {
                   </div>
                   <div className="md:w-1/3 text-center">
                     <Link href="/#demo">
-                      <a className="px-6 py-3 bg-transparent border border-[#14ffc8] text-[#14ffc8] rounded-md font-medium hover:bg-[#14ffc8] hover:text-[#0b0b0d] transition-all duration-300 inline-block">
+                      <span className="px-6 py-3 bg-transparent border border-[#14ffc8] text-[#14ffc8] rounded-md font-medium hover:bg-[#14ffc8] hover:text-[#0b0b0d] transition-all duration-300 inline-block cursor-pointer">
                         Contact Sales
-                      </a>
+                      </span>
                     </Link>
                   </div>
                 </div>
