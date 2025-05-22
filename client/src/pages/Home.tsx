@@ -6,6 +6,7 @@ import ValueProposition from "@/components/ValueProposition";
 import Features from "@/components/Features";
 import IndustrySolutions from "@/components/IndustrySolutions";
 import SocialMedia from "@/components/SocialMedia";
+import CRMSection from "@/components/CRMSection";
 import Pricing from "@/components/Pricing";
 import CTASection from "@/components/CTASection";
 import ContactForm from "@/components/ContactForm";
@@ -33,6 +34,7 @@ export default function Home() {
           <ValueProposition />
           <Features />
           <IndustrySolutions />
+          <CRMSection />
           <SocialMedia />
           <Pricing />
           <CTASection />

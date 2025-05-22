@@ -13,6 +13,7 @@ import RealEstate from "@/pages/RealEstate";
 import Medical from "@/pages/Medical";
 import HomeServices from "@/pages/HomeServices";
 import SocialMediaServices from "@/pages/SocialMediaServices";
+import CRM from "@/pages/CRM";
 import Pricing from "@/pages/Pricing";
 import NotFound from "@/pages/not-found";
 
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/medical" component={Medical} />
       <Route path="/home-services" component={HomeServices} />
       <Route path="/social-media" component={SocialMediaServices} />
+      <Route path="/crm" component={CRM} />
       <Route path="/pricing" component={Pricing} />
       <Route component={NotFound} />
     </Switch>
