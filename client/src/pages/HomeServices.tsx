@@ -39,14 +39,14 @@ export default function HomeServices() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
                   <Link href="/pricing">
-                    <a className="px-6 py-3 bg-[#8f00ff] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#8f00ff,0_0_10px_#8f00ff] animate-[pulse-glow_3s_infinite] text-center">
+                    <span className="px-6 py-3 bg-[#8f00ff] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#8f00ff,0_0_10px_#8f00ff] animate-[pulse-glow_3s_infinite] text-center cursor-pointer inline-block">
                       Start Free 14-Day Trial
-                    </a>
+                    </span>
                   </Link>
                   <Link href="/#demo">
-                    <a className="px-6 py-3 bg-transparent border border-[#14ffc8] text-white rounded-md font-medium hover:bg-[#14ffc8] hover:text-[#0b0b0d] transition-all duration-300 text-center">
+                    <span className="px-6 py-3 bg-transparent border border-[#14ffc8] text-white rounded-md font-medium hover:bg-[#14ffc8] hover:text-[#0b0b0d] transition-all duration-300 text-center cursor-pointer inline-block">
                       Schedule Demo
-                    </a>
+                    </span>
                   </Link>
                 </div>
               </div>
@@ -238,9 +238,9 @@ export default function HomeServices() {
                 
                 <div className="text-center">
                   <Link href="/#demo">
-                    <a className="inline-flex items-center px-6 py-3 bg-[#8f00ff] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#8f00ff,0_0_10px_#8f00ff] transition-all duration-300">
+                    <span className="inline-flex items-center px-6 py-3 bg-[#8f00ff] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#8f00ff,0_0_10px_#8f00ff] transition-all duration-300 cursor-pointer">
                       See How It Works <ChevronRight size={16} className="ml-2" />
-                    </a>
+                    </span>
                   </Link>
                 </div>
               </div>

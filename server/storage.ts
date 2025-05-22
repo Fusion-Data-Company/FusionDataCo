@@ -46,12 +46,14 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.userIdCounter++;
-    const now = new Date();
     const user: User = { 
-      ...insertUser, 
-      id, 
-      role: "user", 
-      createdAt: now 
+      id,
+      username: insertUser.username,
+      password: insertUser.password,
+      email: insertUser.email,
+      fullName: insertUser.fullName || null,
+      role: "user",
+      createdAt: new Date()
     };
     this.users.set(id, user);
     return user;
@@ -59,11 +61,14 @@ export class MemStorage implements IStorage {
 
   async createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission> {
     const id = this.submissionIdCounter++;
-    const now = new Date();
     const contactSubmission: ContactSubmission = {
-      ...submission,
       id,
-      createdAt: now
+      name: submission.name,
+      email: submission.email,
+      company: submission.company,
+      industry: submission.industry,
+      message: submission.message || null,
+      createdAt: new Date()
     };
     this.contactSubmissions.set(id, contactSubmission);
     return contactSubmission;
