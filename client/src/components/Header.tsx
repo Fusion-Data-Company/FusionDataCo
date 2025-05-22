@@ -23,28 +23,26 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Link href="/">
-            <a className="flex items-center">
-              <span className="text-[#14ffc8] font-['Orbitron'] text-xl font-bold [text-shadow:0_0_5px_#14ffc8]">
-                FUSION<span className="text-white">DATA</span>
-                <span className="text-[#00ffff] [text-shadow:0_0_5px_#00ffff]">CO</span>
-              </span>
-            </a>
+            <span className="flex items-center text-[#14ffc8] font-['Orbitron'] text-xl font-bold [text-shadow:0_0_5px_#14ffc8]">
+              FUSION<span className="text-white">DATA</span>
+              <span className="text-[#00ffff] [text-shadow:0_0_5px_#00ffff]">CO</span>
+            </span>
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
               <Link key={link.path} href={link.path}>
-                <a className={cn(
-                  "text-white hover:text-[#14ffc8] transition-colors duration-300",
+                <span className={cn(
+                  "text-white hover:text-[#14ffc8] transition-colors duration-300 cursor-pointer",
                   location === link.path && "text-[#14ffc8]"
                 )}>
                   {link.name}
-                </a>
+                </span>
               </Link>
             ))}
             <Link href="/#demo">
-              <a className="ml-4 px-4 py-2 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8,0_0_10px_#14ffc8] transition-all duration-300">
+              <span className="ml-4 px-4 py-2 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8,0_0_10px_#14ffc8] transition-all duration-300 cursor-pointer">
                 Get Started
-              </a>
+              </span>
             </Link>
           </nav>
           <button 
@@ -60,24 +58,24 @@ export default function Header() {
         <div className={cn("md:hidden pt-4 pb-2 space-y-3", !isMenuOpen && "hidden")}>
           {navLinks.map((link) => (
             <Link key={link.path} href={link.path}>
-              <a 
+              <span 
                 className={cn(
-                  "block py-2 text-white hover:text-[#14ffc8]",
+                  "block py-2 text-white hover:text-[#14ffc8] cursor-pointer",
                   location === link.path && "text-[#14ffc8]"
                 )}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
-              </a>
+              </span>
             </Link>
           ))}
           <Link href="/#demo">
-            <a 
-              className="block py-2 px-4 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium w-full text-center"
+            <span 
+              className="block py-2 px-4 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium w-full text-center cursor-pointer"
               onClick={() => setIsMenuOpen(false)}
             >
               Get Started
-            </a>
+            </span>
           </Link>
         </div>
       </div>
