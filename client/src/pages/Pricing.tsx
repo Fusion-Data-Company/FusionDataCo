@@ -171,9 +171,9 @@ export default function Pricing() {
                         ))}
                       </ul>
                       <Link href="/#demo">
-                        <a className={`block w-full py-3 text-center ${plan.buttonClass} rounded-md font-medium transition-all duration-300`}>
+                        <span className={`block w-full py-3 text-center ${plan.buttonClass} rounded-md font-medium transition-all duration-300 cursor-pointer`}>
                           Start Free Trial
-                        </a>
+                        </span>
                       </Link>
                     </div>
                   </div>
@@ -216,9 +216,9 @@ export default function Pricing() {
                         ))}
                       </ul>
                       <Link href="/#demo">
-                        <a className={`block w-full py-3 text-center ${plan.buttonClass} rounded-md font-medium transition-all duration-300`}>
+                        <span className={`block w-full py-3 text-center ${plan.buttonClass} rounded-md font-medium transition-all duration-300 cursor-pointer`}>
                           Start Free Trial
-                        </a>
+                        </span>
                       </Link>
                     </div>
                   </div>

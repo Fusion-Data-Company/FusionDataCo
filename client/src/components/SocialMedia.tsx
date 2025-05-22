@@ -71,9 +71,9 @@ export default function SocialMedia() {
                 ))}
               </ul>
               <Link href="/pricing">
-                <a className="px-6 py-3 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8,0_0_10px_#14ffc8] transition-all duration-300 inline-block">
+                <span className="px-6 py-3 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8,0_0_10px_#14ffc8] transition-all duration-300 inline-block cursor-pointer">
                   View Social Media Plans
-                </a>
+                </span>
               </Link>
             </div>
             <div className="md:w-1/2">
