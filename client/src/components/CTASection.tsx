@@ -17,14 +17,14 @@ export default function CTASection() {
           </div>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link href="/pricing">
-              <a className="px-8 py-4 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8,0_0_10px_#14ffc8] animate-[pulse-glow_3s_infinite] text-center text-lg">
+              <span className="px-8 py-4 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8,0_0_10px_#14ffc8] animate-[pulse-glow_3s_infinite] text-center text-lg cursor-pointer inline-block">
                 Start Your Free Trial
-              </a>
+              </span>
             </Link>
             <Link href="/#demo">
-              <a className="px-8 py-4 bg-transparent border border-[#8f00ff] text-white rounded-md font-medium hover:bg-[#8f00ff] hover:text-[#0b0b0d] transition-all duration-300 text-center text-lg">
+              <span className="px-8 py-4 bg-transparent border border-[#8f00ff] text-white rounded-md font-medium hover:bg-[#8f00ff] hover:text-[#0b0b0d] transition-all duration-300 text-center text-lg cursor-pointer inline-block">
                 Schedule a Demo
-              </a>
+              </span>
             </Link>
           </div>
         </div>
