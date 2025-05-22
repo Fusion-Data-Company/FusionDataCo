@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, Mail, Building, Tags, MoreHorizontal, Search, Plus, Filter, SortDesc, Loader2, AlertCircle } from "lucide-react";
+import { Phone, Mail, Building, Tags, MoreHorizontal, Search, Plus, Filter, SortDesc, Loader2, AlertCircle, Users } from "lucide-react";
 import { useCrmContacts } from "@/hooks/use-crm-contacts";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -71,13 +71,7 @@ export default function CRMContactsDemo() {
       
       // Create each contact through the API
       for (const contact of sampleContacts) {
-        await apiRequest("/api/crm/contacts", {
-          method: "POST",
-          body: JSON.stringify(contact),
-          headers: {
-            "Content-Type": "application/json"
-          }
-        });
+        await apiRequest("/api/crm/contacts", "POST", contact);
       }
       
       toast({
@@ -157,90 +151,150 @@ export default function CRMContactsDemo() {
             <SortDesc size={16} />
             <span className="hidden sm:inline">Sort</span>
           </button>
-          <button className="px-3 py-2 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8] transition-all duration-300 flex items-center gap-1">
+          <button 
+            className="px-3 py-2 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8] transition-all duration-300 flex items-center gap-1"
+            onClick={() => createSampleData()}
+          >
             <Plus size={16} />
             <span className="hidden sm:inline">Add Contact</span>
           </button>
         </div>
       </div>
       
+      {/* Loading State */}
+      {isLoading && (
+        <div className="flex items-center justify-center py-32">
+          <div className="flex flex-col items-center">
+            <Loader2 className="w-12 h-12 text-[#14ffc8] animate-spin mb-4" />
+            <p className="text-white text-lg">Loading contacts...</p>
+          </div>
+        </div>
+      )}
+      
+      {/* Error State */}
+      {isError && (
+        <div className="flex items-center justify-center py-32">
+          <div className="flex flex-col items-center">
+            <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
+            <p className="text-white text-lg mb-2">Failed to load contacts</p>
+            <p className="text-gray-400 mb-6">{error?.toString() || "An unknown error occurred"}</p>
+            <button 
+              className="px-4 py-2 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8] transition-all duration-300"
+              onClick={() => queryClient.invalidateQueries({ queryKey: ['/api/crm/contacts'] })}
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      )}
+      
+      {/* Empty State */}
+      {!isLoading && !isError && filteredContacts.length === 0 && (
+        <div className="flex items-center justify-center py-32">
+          <div className="flex flex-col items-center">
+            <Users className="w-12 h-12 text-[#14ffc8] mb-4" />
+            <p className="text-white text-lg mb-2">No contacts found</p>
+            <p className="text-gray-400 mb-6">
+              {searchTerm ? "Try a different search term" : "Create some contacts to get started"}
+            </p>
+            {!searchTerm && (
+              <button 
+                className="px-4 py-2 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8] transition-all duration-300"
+                onClick={() => createSampleData()}
+              >
+                Create Sample Data
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+      
       {/* Table */}
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="bg-[#1a1a1f]">
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Name</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Company</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Contact</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Tags</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Last Contact</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-800">
-            {filteredContacts.map((contact) => (
-              <tr key={contact.id} className="hover:bg-[#1a1a1f]/50 transition-colors">
-                <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-white">{contact.name}</td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
-                  <div className="flex items-center">
-                    <Building className="mr-2" size={14} />
-                    {contact.company}
-                  </div>
-                </td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
-                  <div className="flex flex-col gap-1">
-                    <div className="flex items-center">
-                      <Mail className="mr-2" size={14} />
-                      {contact.email}
-                    </div>
-                    <div className="flex items-center">
-                      <Phone className="mr-2" size={14} />
-                      {contact.phone}
-                    </div>
-                  </div>
-                </td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
-                  <div className="flex flex-wrap gap-1">
-                    {contact.tags.map((tag, idx) => (
-                      <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#8f00ff]/20 text-[#8f00ff]">
-                        <Tags className="mr-1" size={10} />
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm">
-                  <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(contact.status)}`}>
-                    {contact.status}
-                  </span>
-                </td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">{contact.lastContact}</td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
-                  <button className="text-gray-400 hover:text-white">
-                    <MoreHorizontal size={16} />
-                  </button>
-                </td>
+      {!isLoading && !isError && filteredContacts.length > 0 && (
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-[#1a1a1f]">
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Name</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Company</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Contact</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Tags</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Last Contact</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody className="divide-y divide-gray-800">
+              {filteredContacts.map((contact: CrmContact) => (
+                <tr key={contact.id} className="hover:bg-[#1a1a1f]/50 transition-colors">
+                  <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-white">{contact.name}</td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
+                    <div className="flex items-center">
+                      <Building className="mr-2" size={14} />
+                      {contact.company || "N/A"}
+                    </div>
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center">
+                        <Mail className="mr-2" size={14} />
+                        {contact.email}
+                      </div>
+                      <div className="flex items-center">
+                        <Phone className="mr-2" size={14} />
+                        {contact.phone || "N/A"}
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
+                    <div className="flex flex-wrap gap-1">
+                      {contact.tags && contact.tags.map((tag: string, idx: number) => (
+                        <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#8f00ff]/20 text-[#8f00ff]">
+                          <Tags className="mr-1" size={10} />
+                          {tag}
+                        </span>
+                      ))}
+                      {(!contact.tags || contact.tags.length === 0) && (
+                        <span className="text-xs text-gray-500">No tags</span>
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm">
+                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(contact.status)}`}>
+                      {contact.status || "None"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
+                    {formatDate(contact.lastContactDate)}
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
+                    <button className="text-gray-400 hover:text-white">
+                      <MoreHorizontal size={16} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
       
       {/* Pagination */}
-      <div className="px-4 py-3 border-t border-gray-800 bg-[#1a1a1f]/50 flex items-center justify-between">
-        <div className="text-sm text-gray-400">
-          Showing <span className="font-medium">1</span> to <span className="font-medium">5</span> of <span className="font-medium">5</span> contacts
+      {!isLoading && !isError && filteredContacts.length > 0 && (
+        <div className="px-4 py-3 border-t border-gray-800 bg-[#1a1a1f]/50 flex items-center justify-between">
+          <div className="text-sm text-gray-400">
+            Showing <span className="font-medium">1</span> to <span className="font-medium">{filteredContacts.length}</span> of <span className="font-medium">{filteredContacts.length}</span> contacts
+          </div>
+          <div className="flex gap-2">
+            <button className="px-3 py-1 bg-[#1a1a1f] border border-gray-700 rounded-md text-white hover:bg-[#1e1e24] transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+              Previous
+            </button>
+            <button className="px-3 py-1 bg-[#1a1a1f] border border-gray-700 rounded-md text-white hover:bg-[#1e1e24] transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+              Next
+            </button>
+          </div>
         </div>
-        <div className="flex gap-2">
-          <button className="px-3 py-1 bg-[#1a1a1f] border border-gray-700 rounded-md text-white hover:bg-[#1e1e24] transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-            Previous
-          </button>
-          <button className="px-3 py-1 bg-[#1a1a1f] border border-gray-700 rounded-md text-white hover:bg-[#1e1e24] transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-            Next
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
