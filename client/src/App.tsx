@@ -16,6 +16,7 @@ import Trades from "@/pages/Trades";
 import CRM from "@/pages/CRM";
 import Pricing from "@/pages/Pricing";
 import NotFound from "@/pages/not-found";
+import EntropyDemo from "@/components/demos/EntropyDemo";
 
 // We'll implement these pages directly to avoid import issues
 function Login() {
@@ -106,6 +107,9 @@ function Router() {
       <Route path="/lead-magnet" component={LeadMagnet} />
       <Route path="/ai-marketing-suite" component={MarketingSuite} />
       <Route path="/automations" component={MarketingAutomations} />
+      
+      {/* Demo Components */}
+      <Route path="/demos/entropy" component={EntropyDemo} />
       
       <Route component={NotFound} />
     </Switch>
