@@ -141,10 +141,10 @@ export default function ChatBot() {
                 )}
                 
                 <div className={cn(
-                  "p-4 max-w-[75%] shadow-md",
+                  "p-4 max-w-[75%] shadow-sm",
                   message.sender === "bot" 
-                    ? "glass-panel rounded-xl rounded-tl-none border border-white/10" 
-                    : "bg-primary/10 border border-primary/20 rounded-xl rounded-tr-none"
+                    ? "chrome-panel rounded-xl rounded-tl-none border border-white/10" 
+                    : "glass-panel bg-primary/5 border border-primary/20 rounded-xl rounded-tr-none"
                 )}>
                   <p className={cn(
                     "text-sm leading-relaxed",
