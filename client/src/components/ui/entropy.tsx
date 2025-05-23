@@ -174,86 +174,24 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
             this.x += displaceX * 0.3
             this.y += displaceY * 0.3
           } else {
-            // Apply attraction to cluster center - different patterns for each cluster
-            let clusterX, clusterY;
+            // Just return to original position - no clustering, no attraction centers
+            // This ensures particles stay where they were created and only respond to mouse
             
-            // Different formations based on cluster number
-            switch(this.cluster % 8) {
-              case 0: // Circular formation
-                const angle = time * 0.05 + (this.originalX + this.originalY) * 0.05
-                clusterX = size/2 + 80 + Math.cos(angle) * 60
-                clusterY = size/2 + Math.sin(angle) * 60
-                break;
-              case 1: // Horizontal line formation
-                clusterX = size/2 + 120 + Math.sin(time * 0.1 + this.originalX * 0.1) * 20
-                clusterY = size/3 + Math.cos(time * 0.05) * 10
-                break;
-              case 2: // Vertical line formation
-                clusterX = size * 0.75 + Math.sin(time * 0.05) * 15
-                clusterY = size/2 + Math.sin(time * 0.1 + this.originalY * 0.1) * 80
-                break;
-              case 3: // Square formation
-                const side = Math.floor((time * 0.1 + this.originalX * 0.2) % 4)
-                if (side === 0) {
-                  clusterX = size * 0.65 + Math.sin(time * 0.05) * 10
-                  clusterY = size * 0.3 + Math.sin(time * 0.07) * 10
-                } else if (side === 1) {
-                  clusterX = size * 0.85 + Math.sin(time * 0.06) * 10
-                  clusterY = size * 0.3 + Math.sin(time * 0.08) * 10
-                } else if (side === 2) {
-                  clusterX = size * 0.85 + Math.sin(time * 0.07) * 10
-                  clusterY = size * 0.5 + Math.sin(time * 0.05) * 10
-                } else {
-                  clusterX = size * 0.65 + Math.sin(time * 0.08) * 10
-                  clusterY = size * 0.5 + Math.sin(time * 0.06) * 10
-                }
-                break;
-              case 4: // Small cluster at top right
-                clusterX = size * 0.8 + Math.sin(time * 0.1) * 15
-                clusterY = size * 0.2 + Math.cos(time * 0.1) * 15
-                break;
-              case 5: // Small cluster at bottom right
-                clusterX = size * 0.8 + Math.sin(time * 0.12) * 15
-                clusterY = size * 0.8 + Math.cos(time * 0.12) * 15
-                break;
-              case 6: // Diagonal line
-                const pos = (time * 0.1 + this.originalX * 0.2 + this.originalY * 0.2) % 1
-                clusterX = size * (0.6 + pos * 0.3)
-                clusterY = size * (0.2 + pos * 0.6)
-                break;
-              case 7: // Wave pattern
-                clusterX = size * 0.7 + Math.sin(time * 0.1) * 30
-                clusterY = size * (0.2 + this.originalY * 0.001) + Math.sin(time * 0.1 + this.originalX * 0.1) * 40
-                break;
-              default:
-                clusterX = size * 0.75
-                clusterY = size * 0.5
-            }
-            
-            // Store this particle's target position
-            this.attractionPoint = {x: clusterX, y: clusterY}
-            
-            // Calculate distance from pattern position
-            const clusterDist = Math.hypot(clusterX - this.x, clusterY - this.y)
-            
-            // Apply soft spring force - strong enough to maintain pattern but gentle enough 
-            // to allow temporary displacement from mouse
-            if (clusterDist > 5) {
-              // Very gentle spring force - no acceleration, just direct position adjustment
-              this.x += (clusterX - this.x) * 0.04
-              this.y += (clusterY - this.y) * 0.04
-            }
+            // Slow return to original position after being disturbed
+            this.x += (this.originalX - this.x) * 0.02
+            this.y += (this.originalY - this.y) * 0.02
             
             // Apply very mild random forces
             this.velocity.x += (Math.random() - 0.5) * 0.1
             this.velocity.y += (Math.random() - 0.5) * 0.1
           }
           
-          // Apply velocity with strong dampening
-          this.velocity.x *= 0.94
-          this.velocity.y *= 0.94
-          this.x += this.velocity.x
-          this.y += this.velocity.y
+          // Apply very minimal velocity - basically just for a slight random movement
+          // This avoids any "sucking" effect while still giving some life to the particles
+          this.velocity.x *= 0.85
+          this.velocity.y *= 0.85
+          this.x += this.velocity.x * 0.2  // Reduced effect of velocity 
+          this.y += this.velocity.y * 0.2
           
           // Strict boundary checks
           if (this.x < size/2) {
