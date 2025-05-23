@@ -491,7 +491,9 @@ export default function CRMContactsDemo() {
       {!isLoading && !isError && filteredContacts.length > 0 && viewMode === 'cards' && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 bg-card/30 backdrop-blur-sm">
           {filteredContacts.map((contact: CrmContact) => (
-            <div key={contact.id} className="glass-panel rounded-lg overflow-hidden group hover-edge-glow">
+            <div key={contact.id} className="enterprise-card group">
+              <div className="glow-wrapper"></div>
+              <div className="enterprise-card-content">
               <div className="flex items-center justify-between p-4 border-b border-border/30">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">

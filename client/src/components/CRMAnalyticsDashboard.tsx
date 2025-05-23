@@ -203,15 +203,15 @@ export default function CRMAnalyticsDashboard() {
           <div className="enterprise-card-content">
             <div className="flex items-center mb-4 border-b border-border/30 pb-2">
               <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mr-3">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary w-4 h-4">
-                <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
-                <path d="M22 12A10 10 0 0 0 12 2v10z" />
-              </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary w-4 h-4">
+                  <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+                  <path d="M22 12A10 10 0 0 0 12 2v10z" />
+                </svg>
               </div>
               <h4 className="text-foreground text-lg font-semibold">
                 Lead Acquisition Channels
               </h4>
-          </div>
+            </div>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
