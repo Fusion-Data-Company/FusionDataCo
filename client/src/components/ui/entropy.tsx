@@ -24,12 +24,12 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     canvas.style.height = `${size}px`
     ctx.scale(dpr, dpr)
 
-    // Right side colors - used only for converted particles
+    // Right side colors - bright blue and turquoise shades
     const rightSideColors = [
-      '#3b82f6', // blue
-      '#10b981', // green
-      '#f97316', // orange
-      '#06b6d4'  // cyan
+      '#2563eb', // bright blue
+      '#0ea5e9', // bright sky blue
+      '#0891b2', // bright cyan
+      '#14b8a6'  // turquoise
     ]
     
     // Left side is pure white
