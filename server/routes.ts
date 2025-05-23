@@ -6,7 +6,9 @@ import {
   chatMessageSchema, 
   insertCrmContactSchema,
   insertCrmDealSchema,
-  insertCrmActivitySchema
+  insertCrmActivitySchema,
+  insertLeadSchema,
+  insertSocialTrialSchema
 } from "@shared/schema";
 import { marketingRouter } from "./marketing";
 import { nanoid } from "nanoid";

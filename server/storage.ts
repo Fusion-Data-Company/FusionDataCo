@@ -1,11 +1,14 @@
 import { 
   users, chatMessages, contactSubmissions, crmContacts, crmDeals, crmActivities,
+  leads, socialTrials,
   type User, type InsertUser, 
   type ContactSubmission, type InsertContactSubmission,
   type ChatMessage, type InsertChatMessage,
   type CrmContact, type InsertCrmContact,
   type CrmDeal, type InsertCrmDeal,
-  type CrmActivity, type InsertCrmActivity
+  type CrmActivity, type InsertCrmActivity,
+  type Lead, type InsertLead,
+  type SocialTrial, type InsertSocialTrial
 } from "@shared/schema";
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq, and, desc } from 'drizzle-orm';
@@ -226,6 +229,74 @@ export class PostgresStorage implements IStorage {
       .where(eq(crmActivities.id, id))
       .returning({ id: crmActivities.id });
     return result.length > 0;
+  }
+
+  // Lead operations
+  async createLead(lead: InsertLead): Promise<Lead> {
+    const [newLead] = await db.insert(leads).values(lead).returning();
+    return newLead;
+  }
+
+  async getLead(id: number): Promise<Lead | undefined> {
+    const [lead] = await db.select().from(leads).where(eq(leads.id, id));
+    return lead;
+  }
+
+  async getAllLeads(): Promise<Lead[]> {
+    return await db.select().from(leads).orderBy(desc(leads.createdAt));
+  }
+
+  async updateLead(id: number, lead: Partial<InsertLead>): Promise<Lead | undefined> {
+    const [updatedLead] = await db
+      .update(leads)
+      .set({ ...lead, updatedAt: new Date() })
+      .where(eq(leads.id, id))
+      .returning();
+    return updatedLead;
+  }
+
+  async deleteLead(id: number): Promise<boolean> {
+    try {
+      const result = await db.delete(leads).where(eq(leads.id, id));
+      return result.rowCount > 0;
+    } catch (error) {
+      console.error("Error deleting lead:", error);
+      return false;
+    }
+  }
+
+  // Social trial operations
+  async createSocialTrial(trial: InsertSocialTrial): Promise<SocialTrial> {
+    const [newTrial] = await db.insert(socialTrials).values(trial).returning();
+    return newTrial;
+  }
+
+  async getSocialTrial(id: number): Promise<SocialTrial | undefined> {
+    const [trial] = await db.select().from(socialTrials).where(eq(socialTrials.id, id));
+    return trial;
+  }
+
+  async getAllSocialTrials(): Promise<SocialTrial[]> {
+    return await db.select().from(socialTrials).orderBy(desc(socialTrials.createdAt));
+  }
+
+  async updateSocialTrial(id: number, trial: Partial<InsertSocialTrial>): Promise<SocialTrial | undefined> {
+    const [updatedTrial] = await db
+      .update(socialTrials)
+      .set(trial)
+      .where(eq(socialTrials.id, id))
+      .returning();
+    return updatedTrial;
+  }
+
+  async deleteSocialTrial(id: number): Promise<boolean> {
+    try {
+      const result = await db.delete(socialTrials).where(eq(socialTrials.id, id));
+      return result.rowCount > 0;
+    } catch (error) {
+      console.error("Error deleting social trial:", error);
+      return false;
+    }
   }
 }
 
