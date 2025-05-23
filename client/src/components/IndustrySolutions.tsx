@@ -218,8 +218,9 @@ export default function IndustrySolutions() {
           {solutions.map((solution, index) => (
             <div 
               key={index} 
-              className="titanium-panel rounded-xl overflow-hidden shadow-lg transition-all duration-300 group"
+              className={`titanium-card glow-${solution.color} rounded-xl overflow-hidden transition-all duration-300 group`}
             >
+              <div className="ambient-glow"></div>
               <div className="relative h-52 overflow-hidden">
                 <div 
                   className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 group-hover:scale-110" 
