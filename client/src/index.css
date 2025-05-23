@@ -173,24 +173,26 @@
       );
   }
 
-  /* Elite Card Architecture (Z-Stack Layout) */
-  .enterprise-card {
-    @apply relative rounded-[18px] overflow-hidden;
+  /* Titanium Card with Ambient Glow - Z-Stack Architecture */
+  .titanium-card {
+    @apply relative rounded-[18px] overflow-hidden z-10;
     background: linear-gradient(135deg, #1d1f20, #2e2f31, #3c3e40);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 
       0 1px 0 rgba(255, 255, 255, 0.15),
       0 10px 30px rgba(0, 0, 0, 0.4);
     transition: all 0.3s ease-in-out;
   }
   
-  .enterprise-card::before {
+  /* Layer 2: Titanium Surface Texture */
+  .titanium-card::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0,76,255,0.2), rgba(100,100,255,0.1));
+    background: linear-gradient(135deg, rgba(0,76,255,0.1), rgba(100,100,255,0.05));
     background-image: repeating-linear-gradient(
       135deg,
       rgba(255,255,255,0.05),
@@ -200,35 +202,74 @@
     );
     mix-blend-mode: overlay;
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
   }
   
-  .enterprise-card .glow-wrapper {
+  /* Layer 1: Ambient Glow Background */
+  .ambient-glow {
     position: absolute;
     z-index: -1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 110%;
-    height: 110%;
+    width: 140%;
+    height: 140%;
     border-radius: inherit;
-    background: radial-gradient(ellipse at center, rgba(0,76,255,0.4), rgba(0,0,0,0));
-    filter: blur(40px);
+    filter: blur(30px);
     pointer-events: none;
+    opacity: 0.8;
   }
   
-  .enterprise-card-content {
+  /* Default blue glow */
+  .ambient-glow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,76,255,0.7), rgba(0,0,0,0) 70%);
+    mix-blend-mode: screen;
+  }
+  
+  /* Blue ambient glow */
+  .glow-blue .ambient-glow::before {
+    background: radial-gradient(ellipse at center, rgba(0,76,255,0.7), rgba(0,0,0,0) 70%);
+  }
+  
+  /* Purple ambient glow */
+  .glow-purple .ambient-glow::before {
+    background: radial-gradient(ellipse at center, rgba(128,0,255,0.7), rgba(0,0,0,0) 70%);
+  }
+  
+  /* Green ambient glow */
+  .glow-green .ambient-glow::before {
+    background: radial-gradient(ellipse at center, rgba(0,255,128,0.7), rgba(0,0,0,0) 70%);
+  }
+  
+  /* Amber ambient glow */
+  .glow-amber .ambient-glow::before {
+    background: radial-gradient(ellipse at center, rgba(255,191,0,0.7), rgba(0,0,0,0) 70%);
+  }
+  
+  /* Cyan ambient glow */
+  .glow-cyan .ambient-glow::before {
+    background: radial-gradient(ellipse at center, rgba(0,204,255,0.7), rgba(0,0,0,0) 70%);
+  }
+  
+  /* Layer 3: Content */
+  .titanium-content {
     @apply relative z-10;
   }
   
-  .enterprise-card:hover {
+  .titanium-card:hover {
     transform: scale(1.02);
+    box-shadow: 
+      0 1px 0 rgba(255, 255, 255, 0.2),
+      0 15px 40px rgba(0, 0, 0, 0.6);
   }
   
   @media (max-width: 768px) {
-    .enterprise-card .glow-wrapper {
-      width: 100%;
-      height: 100%;
+    .ambient-glow {
+      width: 120%;
+      height: 120%;
       filter: blur(20px);
     }
   }
