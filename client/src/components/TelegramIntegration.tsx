@@ -208,8 +208,9 @@ export default function TelegramIntegration({
         </TabsList>
         
         <TabsContent value="channel" className="mt-0">
-          <Card className="bg-[#121218] border-gray-800">
-            <CardHeader>
+          <Card className="enterprise-card">
+            <div className="glow-wrapper"></div>
+            <CardHeader className="enterprise-card-content">
               <CardTitle className="flex items-center gap-2">
                 <MessageSquare className="h-5 w-5 text-[#14ffc8]" />
                 Telegram Channel Updates
@@ -319,8 +320,9 @@ export default function TelegramIntegration({
         </TabsContent>
         
         <TabsContent value="dm" className="mt-0">
-          <Card className="bg-[#121218] border-gray-800">
-            <CardHeader>
+          <Card className="enterprise-card">
+            <div className="glow-wrapper"></div>
+            <CardHeader className="enterprise-card-content">
               <CardTitle className="flex items-center gap-2">
                 <User className="h-5 w-5 text-[#ff0aff]" />
                 Telegram Direct Messages

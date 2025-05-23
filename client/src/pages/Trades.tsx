@@ -299,8 +299,9 @@ export default function Trades() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Customer Follow-up Challenges
                     </h3>
