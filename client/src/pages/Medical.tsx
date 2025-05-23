@@ -6,7 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Check, ChevronRight, BarChart3, Shield, Clock } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Check, ChevronRight, BarChart3, Shield, Clock, Heart, XCircle, CheckCircle2, Users, Calendar, Stethoscope } from "lucide-react";
 import { trackEvent } from '@/components/AnalyticsTracker';
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
@@ -14,6 +15,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { apiRequest } from "@/lib/queryClient";
+import ROICalculator from "@/components/ROICalculator";
+import ComparisonTable from "@/components/ComparisonTable";
 
 // Define form schema
 const formSchema = z.object({
