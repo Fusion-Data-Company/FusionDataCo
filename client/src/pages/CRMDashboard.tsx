@@ -43,6 +43,7 @@ import {
   Calendar
 } from "lucide-react";
 import { trackEvent } from '@/components/AnalyticsTracker';
+import StripeIntegration from '@/components/StripeIntegration';
 
 // Mock data types
 interface CrmLead {
@@ -1226,7 +1227,7 @@ export default function CRMDashboard() {
               
               {/* Settings Tab */}
               <TabsContent value="settings">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="space-y-6">
                   <Card className="bg-[#121218]/90 border border-[#333340]">
                     <CardHeader>
                       <CardTitle>Chat System Settings</CardTitle>
@@ -1252,64 +1253,14 @@ export default function CRMDashboard() {
                     </CardContent>
                   </Card>
                   
-                  <Card className="bg-[#121218]/90 border border-[#333340]">
-                    <CardHeader>
-                      <CardTitle>Billing & Subscription</CardTitle>
-                      <CardDescription>Manage your payment methods and subscription</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <div className="bg-[#0a0a0d] p-5 rounded-lg border border-[#333340]">
-                        <div className="flex justify-between items-center mb-4">
-                          <div>
-                            <h3 className="font-semibold text-white">Professional Plan</h3>
-                            <p className="text-sm text-gray-400">$199/month</p>
-                          </div>
-                          <Badge className="bg-[#14ffc8]/10 text-[#14ffc8] border-[#14ffc8]/20" variant="outline">
-                            Active
-                          </Badge>
-                        </div>
-                        <div className="space-y-2 text-sm text-gray-300">
-                          <div className="flex items-center">
-                            <CheckCircle className="h-4 w-4 text-[#14ffc8] mr-2" />
-                            <span>Unlimited leads and contacts</span>
-                          </div>
-                          <div className="flex items-center">
-                            <CheckCircle className="h-4 w-4 text-[#14ffc8] mr-2" />
-                            <span>Social media management</span>
-                          </div>
-                          <div className="flex items-center">
-                            <CheckCircle className="h-4 w-4 text-[#14ffc8] mr-2" />
-                            <span>Website hosting and updates</span>
-                          </div>
-                        </div>
-                        <div className="mt-4 pt-4 border-t border-[#333340] flex justify-between items-center">
-                          <p className="text-xs text-gray-400">Next billing: June 23, 2023</p>
-                          <Button size="sm" variant="outline">
-                            Upgrade Plan
-                          </Button>
-                        </div>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-white mb-3">Payment Method</h3>
-                        <div className="bg-[#0a0a0d] p-4 rounded-lg border border-[#333340] flex items-center justify-between">
-                          <div className="flex items-center">
-                            <CreditCard className="h-5 w-5 text-gray-400 mr-3" />
-                            <div>
-                              <p className="text-white">•••• •••• •••• 4242</p>
-                              <p className="text-xs text-gray-400">Expires 12/24</p>
-                            </div>
-                          </div>
-                          <Button size="sm" variant="ghost">Edit</Button>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between pt-2">
-                        <Button variant="ghost" className="text-gray-400">Billing History</Button>
-                        <Button variant="ghost" className="text-gray-400">Cancel Subscription</Button>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  {/* Stripe Integration Component */}
+                  <StripeIntegration 
+                    currentPlan="professional"
+                    onPlanChange={(planId) => {
+                      console.log('Plan changed to:', planId);
+                      // Handle plan change logic here
+                    }}
+                  />
                 </div>
               </TabsContent>
             </Tabs>

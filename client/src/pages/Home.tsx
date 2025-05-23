@@ -11,6 +11,7 @@ import Pricing from "@/components/Pricing";
 import CTASection from "@/components/CTASection";
 import ContactForm from "@/components/ContactForm";
 import ChatBot from "@/components/ChatBot";
+import AIContentDemo from "@/components/AIContentDemo";
 
 export default function Home() {
   return (
@@ -34,6 +35,30 @@ export default function Home() {
           <ValueProposition />
           <Features />
           <IndustrySolutions />
+          
+          {/* AI Content Demo Section */}
+          <section className="py-16 px-4 bg-gradient-to-b from-[#0a0a0d] to-[#121218] relative overflow-hidden">
+            <div className="absolute inset-0 bg-[#8f00ff]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#8f00ff]/3 blur-3xl rounded-full opacity-10 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <div className="text-center max-w-3xl mx-auto mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  <span className="text-white">Experience</span>{" "}
+                  <span className="text-[#8f00ff] [text-shadow:0_0_5px_#8f00ff]">AI-Powered Content</span>
+                </h2>
+                <p className="text-gray-400 text-lg">
+                  See how our AI creates personalized marketing content for your specific business type. 
+                  Try the interactive demo below and discover content that actually converts.
+                </p>
+              </div>
+              
+              <div className="max-w-5xl mx-auto">
+                <AIContentDemo />
+              </div>
+            </div>
+          </section>
+          
           <CRMSection />
           <SocialMedia />
           <Pricing />
