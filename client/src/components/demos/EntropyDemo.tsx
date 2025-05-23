@@ -1,7 +1,9 @@
+'use client'
+
 import * as React from "react"
 import { Entropy } from "@/components/ui/entropy"
 
-export default function EntropyDemo() {
+export function EntropyDemo() {
   return (
     <div className="flex flex-col items-center justify-center bg-black text-white min-h-screen w-full p-8">
       <div className="flex flex-col items-center">

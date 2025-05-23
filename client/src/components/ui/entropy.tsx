@@ -24,7 +24,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     canvas.style.height = `${size}px`
     ctx.scale(dpr, dpr)
 
-    // Using black theme with white particles
+    // White particles on black background
     const particleColor = '#ffffff'
 
     class Particle {
@@ -55,14 +55,14 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
 
       update() {
         if (this.order) {
-          // Ordered particles movement influenced by chaos
+          // Ordered particles affected by chaos
           const dx = this.originalX - this.x
           const dy = this.originalY - this.y
 
           // Calculate influence from chaotic particles
           const chaosInfluence = { x: 0, y: 0 }
           this.neighbors.forEach(neighbor => {
-            if (!neighbor.order) {
+            if (neighbor && !neighbor.order) {
               const distance = Math.hypot(this.x - neighbor.x, this.y - neighbor.y)
               const strength = Math.max(0, 1 - distance / 100)
               chaosInfluence.x += (neighbor.velocity.x * strength)
@@ -86,7 +86,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           this.x += this.velocity.x
           this.y += this.velocity.y
 
-          // Boundary check
+          // Boundary checks
           if (this.x < size / 2 || this.x > size) this.velocity.x *= -1
           if (this.y < 0 || this.y > size) this.velocity.y *= -1
           this.x = Math.max(size / 2, Math.min(size, this.x))
@@ -131,9 +131,11 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     }
 
     let time = 0
-    let animationId: number
+    let animationId = 0
     
     function animate() {
+      if (!ctx) return
+      
       ctx.clearRect(0, 0, size, size)
 
       // Update neighbor relationships periodically
@@ -146,7 +148,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         particle.update()
         particle.draw(ctx)
 
-        // Draw connection lines
+        // Draw connecting lines
         particle.neighbors.forEach(neighbor => {
           const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
           if (distance < 50) {
@@ -160,7 +162,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         })
       })
 
-      // Add divider line and text
+      // Add vertical divider line
       ctx.strokeStyle = `${particleColor}4D`
       ctx.lineWidth = 0.5
       ctx.beginPath()
@@ -168,6 +170,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       ctx.lineTo(size / 2, size)
       ctx.stroke()
 
+      // Add text elements if needed
       ctx.font = '12px monospace'
       ctx.fillStyle = '#ffffff'
       ctx.textAlign = 'center'

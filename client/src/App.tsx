@@ -16,7 +16,7 @@ import Trades from "@/pages/Trades";
 import CRM from "@/pages/CRM";
 import Pricing from "@/pages/Pricing";
 import NotFound from "@/pages/not-found";
-import EntropyDemo from "@/components/demos/EntropyDemo";
+import { EntropyDemo } from "@/components/demos/EntropyDemo";
 
 // We'll implement these pages directly to avoid import issues
 function Login() {
