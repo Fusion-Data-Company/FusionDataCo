@@ -230,12 +230,18 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
                 clusterY = size * 0.5
             }
             
+            // Store this particle's target position
+            this.attractionPoint = {x: clusterX, y: clusterY}
+            
+            // Calculate distance from pattern position
             const clusterDist = Math.hypot(clusterX - this.x, clusterY - this.y)
-            if (clusterDist > 10) {
-              // Attraction force (stronger when further away but with maximum limit)
-              const attractForce = Math.min(0.025, clusterDist * 0.0015)
-              this.velocity.x += (clusterX - this.x) * attractForce
-              this.velocity.y += (clusterY - this.y) * attractForce
+            
+            // Apply soft spring force - strong enough to maintain pattern but gentle enough 
+            // to allow temporary displacement from mouse
+            if (clusterDist > 5) {
+              // Very gentle spring force - no acceleration, just direct position adjustment
+              this.x += (clusterX - this.x) * 0.04
+              this.y += (clusterY - this.y) * 0.04
             }
             
             // Apply very mild random forces
@@ -369,20 +375,26 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     const gridSize = 32 // More dots for higher density
     const gridWidth = size / gridSize
     
-    // LEFT SIDE - artistic grid patterns
+    // LEFT SIDE - perfect square grid patterns with artistic accents
     for (let i = 0; i < gridSize / 2; i++) {
       for (let j = 0; j < gridSize; j++) {
-        // Create artistic pattern on left side
-        const showDot = (
-          // Create circular pattern in center
-          Math.pow(i - gridSize/4, 2) + Math.pow(j - gridSize/2, 2) < Math.pow(gridSize/4, 2) ||
-          // Create grid lines
-          i % 4 === 0 || j % 4 === 0 ||
-          // Create diagonal lines
-          (i + j) % 6 === 0
+        // Always create the perfect grid structure first
+        const shouldShow = (
+          // Main grid structure - show every 4th point for a perfect grid
+          i % 3 === 0 || j % 3 === 0 ||
+          
+          // Add a central circular pattern 
+          Math.pow(i - gridSize/4, 2) + Math.pow(j - gridSize/2, 2) < Math.pow(gridSize/6, 2) ||
+          
+          // Create diagonal web-like structures
+          (i + j) % 6 === 0 ||
+          (i - j) % 6 === 0 ||
+          
+          // Add more detail along the edges
+          (i < 3 || j < 3 || j > gridSize - 4)
         );
         
-        if (showDot) {
+        if (shouldShow) {
           const x = gridWidth * i + gridWidth / 2
           const y = gridWidth * j + gridWidth / 2
           particles.push(new Particle(x, y, true))
