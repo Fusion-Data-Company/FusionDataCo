@@ -14,6 +14,7 @@ import RealEstate from "@/pages/RealEstate";
 import Medical from "@/pages/Medical";
 import Trades from "@/pages/Trades";
 import CRM from "@/pages/CRM";
+import CRMDashboard from "@/pages/CRMDashboard";
 import Pricing from "@/pages/Pricing";
 import NotFound from "@/pages/not-found";
 import { EntropyDemo } from "@/components/demos/EntropyDemo";
@@ -100,6 +101,7 @@ function Router() {
       
       {/* CRM Routes - Protected */}
       <Route path="/crm" component={CRM} />
+      <Route path="/crm/dashboard" component={CRMDashboard} />
       <Route path="/crm/campaigns" component={CrmCampaigns} />
       <Route path="/crm/email-center" component={EmailCenter} />
       <Route path="/crm/telegram" component={TelegramIntegrationPage} />
