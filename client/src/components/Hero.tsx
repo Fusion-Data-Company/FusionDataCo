@@ -73,15 +73,25 @@ export default function Hero() {
             <p className="text-sm text-muted-foreground">No credit card required. Enterprise-level security.</p>
           </div>
           
-          <div className="titanium-panel p-4 rounded-lg max-w-md mt-12 relative">
-            <p className="text-sm text-foreground font-medium">
-              "Fusion Data Co has transformed our marketing operations with enterprise-grade tools that were previously only available to Fortune 500 companies."
-            </p>
-            <div className="flex items-center gap-3 mt-3">
-              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold">JD</div>
-              <div>
-                <p className="text-xs font-medium text-foreground">James Donovan</p>
-                <p className="text-xs text-muted-foreground">CMO, Horizon Financial</p>
+          <div className="relative max-w-md mt-12">
+            {/* Separate ambient glow component behind the card */}
+            <div className="absolute -z-10 w-[120%] h-[120%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="w-full h-full rounded-lg bg-primary/5">
+                <div className="w-full h-full rounded-lg blur-[40px] bg-primary/30"></div>
+              </div>
+            </div>
+            
+            {/* Solid titanium card */}
+            <div className="titanium-panel p-4 rounded-lg relative">
+              <p className="text-sm text-foreground font-medium">
+                "Fusion Data Co has transformed our marketing operations with enterprise-grade tools that were previously only available to Fortune 500 companies."
+              </p>
+              <div className="flex items-center gap-3 mt-3">
+                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold">JD</div>
+                <div>
+                  <p className="text-xs font-medium text-foreground">James Donovan</p>
+                  <p className="text-xs text-muted-foreground">CMO, Horizon Financial</p>
+                </div>
               </div>
             </div>
           </div>
