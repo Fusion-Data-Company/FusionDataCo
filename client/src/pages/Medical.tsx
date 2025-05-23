@@ -190,17 +190,20 @@ export default function Medical() {
             </div>
           </section>
           
-          {/* Pain Points Section */}
-          <section className="py-16 px-4 bg-card">
-            <div className="container mx-auto">
-              <h2 className="text-3xl font-bold mb-12 text-center">
-                <span className="text-primary">Common Challenges</span> Medical Practices Face
+          {/* Pain Points Section with Red Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
+            {/* Red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                The <span className="text-white">Real Challenges</span> Healthcare Providers Face
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Card className="enterprise-card">
-                  <div className="glow-wrapper"></div>
-                  <CardContent className="p-6 enterprise-card-content">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <Card className="bg-[#121218]/70 border border-[#ff0000]/20 rounded-lg overflow-hidden">
+                  <CardContent className="p-6">
                     <h3 className="text-xl font-semibold mb-4">
                       Patient Acquisition Struggles
                     </h3>
@@ -341,8 +344,13 @@ export default function Medical() {
             </div>
           </section>
           
-          {/* Solution & ROI Section */}
-          <section className="py-16 px-4 bg-background">
+          {/* Solution Section with Green Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
+            {/* Green ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/3 blur-3xl rounded-full opacity-10 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
             <div className="container mx-auto">
               <h2 className="text-3xl font-bold mb-12 text-center">
                 <span className="text-primary">Specialized Solutions</span> for Healthcare Providers
