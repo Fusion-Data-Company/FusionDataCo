@@ -75,9 +75,9 @@ export default function Hero() {
           
           <div className="relative max-w-md mt-12">
             {/* Separate ambient glow component behind the card */}
-            <div className="absolute -z-10 w-[105%] h-[105%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="absolute -z-10 w-[102%] h-[102%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
               <div className="w-full h-full rounded-lg bg-primary/5">
-                <div className="w-full h-full rounded-lg blur-[25px] bg-primary/20"></div>
+                <div className="w-full h-full rounded-lg blur-[15px] bg-primary/15"></div>
               </div>
             </div>
             
