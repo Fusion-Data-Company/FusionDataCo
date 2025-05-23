@@ -31,18 +31,29 @@ export default function Header() {
   const navLinks = [
     { name: "Home", path: "/" },
     { 
-      name: "Solutions", 
-      path: "/#solutions",
+      name: "Industries", 
+      path: "/small-business-owners",
       hasDropdown: true,
       dropdownItems: [
-        { name: "Enterprise CRM", path: "/crm" },
-        { name: "Marketing Automation", path: "/marketing" },
-        { name: "Social Media Management", path: "/social-media" },
-        { name: "Analytics Platform", path: "/analytics" },
+        { name: "Small Business Owners", path: "/small-business-owners" },
+        { name: "Real Estate", path: "/real-estate" },
+        { name: "Medical", path: "/medical" },
+        { name: "Trades", path: "/trades" },
       ]
     },
-    { name: "Enterprise", path: "/enterprise" },
+    { 
+      name: "Solutions", 
+      path: "/social-media",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "Social Media", path: "/social-media" },
+        { name: "Campaign Builder", path: "/campaign-builder" },
+        { name: "Lead Magnet", path: "/lead-magnet" },
+        { name: "CRM Dashboard", path: "/crm" },
+      ]
+    },
     { name: "Pricing", path: "/pricing" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (

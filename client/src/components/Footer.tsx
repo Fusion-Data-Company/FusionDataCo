@@ -93,39 +93,39 @@ export default function Footer() {
             </div>
           </div>
           
-          {/* Enterprise Solutions */}
+          {/* Solutions */}
           <div>
             <h4 className="font-['Orbitron'] text-lg font-medium mb-5 text-foreground flex items-center gap-2">
               <Globe size={20} className="text-primary" />
-              Enterprise Solutions
+              Solutions
             </h4>
             <ul className="space-y-3 text-muted-foreground">
               <li>
-                <Link href="/crm">
+                <Link href="/social-media">
                   <span className="hover:text-primary transition-colors cursor-pointer inline-flex items-center">
                     <span className="absolute w-1 h-1 rounded-full bg-primary/70 opacity-0 -left-3 group-hover:opacity-100 transition-opacity"></span>
-                    Enterprise CRM
+                    Social Media
                   </span>
                 </Link>
               </li>
               <li>
-                <Link href="/analytics">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Analytics Platform</span>
+                <Link href="/campaign-builder">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Campaign Builder</span>
                 </Link>
               </li>
               <li>
-                <Link href="/automation">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Workflow Automation</span>
+                <Link href="/lead-magnet">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Lead Magnet</span>
                 </Link>
               </li>
               <li>
-                <Link href="/ai">
-                  <span className="hover:text-primary transition-colors cursor-pointer">AI Intelligence</span>
+                <Link href="/automations">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Marketing Automations</span>
                 </Link>
               </li>
               <li>
-                <Link href="/social-media">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Enterprise Social Media</span>
+                <Link href="/crm">
+                  <span className="hover:text-primary transition-colors cursor-pointer">CRM Dashboard</span>
                 </Link>
               </li>
             </ul>
@@ -139,28 +139,23 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-muted-foreground">
               <li>
-                <Link href="/enterprise">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Enterprise</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/finance">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Financial Services</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/healthcare">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Healthcare</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/manufacturing">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Manufacturing</span>
+                <Link href="/small-business-owners">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Small Business Owners</span>
                 </Link>
               </li>
               <li>
                 <Link href="/real-estate">
                   <span className="hover:text-primary transition-colors cursor-pointer">Real Estate</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/medical">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Medical</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/trades">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Trades</span>
                 </Link>
               </li>
             </ul>
@@ -173,15 +168,23 @@ export default function Footer() {
               Company
             </h4>
             <ul className="space-y-3 text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Enterprise Blog</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Partners</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
               <li>
-                <Link href="/#demo">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Contact Enterprise</span>
+                <Link href="/pricing">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Pricing</span>
                 </Link>
               </li>
+              <li>
+                <Link href="/contact">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Contact Us</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/login">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Login</span>
+                </Link>
+              </li>
+              <li><a href="#" className="hover:text-primary transition-colors">Partners</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
             </ul>
           </div>
         </div>
