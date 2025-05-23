@@ -242,7 +242,7 @@ export default function Hero() {
         </motion.div>
       </div>
       
-      {/* Add a floating element for extra premium feel */}
+      {/* Live counter at bottom */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 p-2 px-4 rounded-full text-xs bg-gradient-to-r from-slate-900/80 to-slate-800/80 border border-slate-700/30 text-slate-300 backdrop-blur-md hidden md:flex items-center gap-2 z-10">
         <div className="w-2 h-2 rounded-full bg-green-400"></div>
         <span>7,258 enterprises using this platform now</span>
