@@ -109,7 +109,7 @@ export default function Medical() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                    Grow Your <span className="text-primary">Medical</span> Practice With Ethical Patient Acquisition
+                    Grow Your <span className="text-[#14ffc8]">Medical</span> Practice With Ethical Patient Acquisition
                   </h1>
                   <p className="text-xl text-muted-foreground mb-8">
                     Healthcare professionals trust our HIPAA-compliant marketing system to 
@@ -143,7 +143,7 @@ export default function Medical() {
                       <div className="space-y-6">
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
-                            <BarChart3 className="h-6 w-6 text-primary" />
+                            <BarChart3 className="h-6 w-6 text-[#14ffc8]" />
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
@@ -157,7 +157,7 @@ export default function Medical() {
                         
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
-                            <Shield className="h-6 w-6 text-primary" />
+                            <Shield className="h-6 w-6 text-[#14ffc8]" />
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
@@ -171,7 +171,7 @@ export default function Medical() {
                         
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
-                            <Clock className="h-6 w-6 text-primary" />
+                            <Clock className="h-6 w-6 text-[#14ffc8]" />
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
@@ -210,7 +210,7 @@ export default function Medical() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Difficulty attracting new patients in competitive markets with large hospital networks
@@ -218,7 +218,7 @@ export default function Medical() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Unreliable referral systems that create unpredictable patient flow
@@ -226,7 +226,7 @@ export default function Medical() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Marketing agencies with no healthcare experience who don't understand regulations
@@ -245,7 +245,7 @@ export default function Medical() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Negative reviews damaging your practice's reputation even when providing excellent care
@@ -253,7 +253,7 @@ export default function Medical() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           No systematic approach to collecting and showcasing positive patient testimonials
@@ -261,7 +261,7 @@ export default function Medical() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Poor online visibility compared to larger healthcare institutions
@@ -280,7 +280,7 @@ export default function Medical() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           High rate of missed appointments and last-minute cancellations
@@ -288,7 +288,7 @@ export default function Medical() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Inefficient recall systems leading to gaps in preventative care
@@ -296,7 +296,7 @@ export default function Medical() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Limited patient education systems, reducing treatment compliance
@@ -315,7 +315,7 @@ export default function Medical() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Disjointed systems that don't communicate with each other, creating data silos
@@ -323,7 +323,7 @@ export default function Medical() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Staff spending too much time on administrative tasks instead of patient care
@@ -331,7 +331,7 @@ export default function Medical() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           No comprehensive analytics to make data-driven practice growth decisions
@@ -352,35 +352,36 @@ export default function Medical() {
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">
-                <span className="text-primary">Specialized Solutions</span> for Healthcare Providers
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">The Solution:</span> Complete Healthcare Marketing System
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 space-y-4 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <svg className="h-6 w-6 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
                     </div>
                     <h3 className="text-xl font-semibold text-center">Patient Acquisition System</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Specialty-specific content that educates and converts</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Targeted digital campaigns to your ideal patients</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Insurance-matched patient targeting</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
                       <p className="text-sm text-muted-foreground">Avg. New Patients:</p>
-                      <p className="text-xl font-bold text-primary">+43%</p>
+                      <p className="text-xl font-bold text-[#14ffc8]">+43%</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -388,28 +389,28 @@ export default function Medical() {
                 <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
                   <CardContent className="p-6 space-y-4">
                     <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <svg className="h-8 w-8 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                     </div>
                     <h3 className="text-xl font-semibold text-center">Patient Communication Hub</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Multi-channel appointment reminders</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Automated recall and preventative care outreach</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">HIPAA-compliant secure messaging</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
                       <p className="text-sm text-muted-foreground">No-show Reduction:</p>
-                      <p className="text-xl font-bold text-primary">68%</p>
+                      <p className="text-xl font-bold text-[#14ffc8]">68%</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -417,28 +418,28 @@ export default function Medical() {
                 <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
                   <CardContent className="p-6 space-y-4">
                     <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <svg className="h-8 w-8 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                       </svg>
                     </div>
                     <h3 className="text-xl font-semibold text-center">Reputation Management</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Proactive review collection and monitoring</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Rapid response system for negative feedback</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Testimonial showcasing and content creation</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
                       <p className="text-sm text-muted-foreground">Review Volume:</p>
-                      <p className="text-xl font-bold text-primary">5.2x</p>
+                      <p className="text-xl font-bold text-[#14ffc8]">5.2x</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -491,7 +492,7 @@ export default function Medical() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                    Ready to <span className="text-primary">Grow</span> Your Healthcare Practice?
+                    Ready to <span className="text-[#14ffc8]">Grow</span> Your Healthcare Practice?
                   </h2>
                   <p className="text-lg mb-8 text-muted-foreground">
                     Schedule a complimentary 30-minute Practice Growth Assessment with a healthcare marketing specialist.
@@ -500,7 +501,7 @@ export default function Medical() {
                   <div className="space-y-6">
                     <div className="flex gap-3">
                       <div className="flex-shrink-0">
-                        <Check className="h-6 w-6 text-primary" />
+                        <Check className="h-6 w-6 text-[#14ffc8]" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg">Practice-Specific Growth Plan</h3>
@@ -512,7 +513,7 @@ export default function Medical() {
                     
                     <div className="flex gap-3">
                       <div className="flex-shrink-0">
-                        <Check className="h-6 w-6 text-primary" />
+                        <Check className="h-6 w-6 text-[#14ffc8]" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg">Patient Acquisition Forecast</h3>
@@ -524,7 +525,7 @@ export default function Medical() {
                     
                     <div className="flex gap-3">
                       <div className="flex-shrink-0">
-                        <Check className="h-6 w-6 text-primary" />
+                        <Check className="h-6 w-6 text-[#14ffc8]" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg">Compliance Assessment</h3>
@@ -542,7 +543,7 @@ export default function Medical() {
                       {submitted ? (
                         <div className="text-center py-8">
                           <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                            <Check className="h-8 w-8 text-primary" />
+                            <Check className="h-8 w-8 text-[#14ffc8]" />
                           </div>
                           <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
                           <p className="text-muted-foreground mb-6">

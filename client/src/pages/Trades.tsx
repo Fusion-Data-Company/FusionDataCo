@@ -349,7 +349,7 @@ export default function Trades() {
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">
-                <span className="text-primary">Proven Solutions</span> for Service Business Growth
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">The Solution:</span> Complete Trades Business Growth System
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
