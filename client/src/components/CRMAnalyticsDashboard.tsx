@@ -126,11 +126,12 @@ export default function CRMAnalyticsDashboard() {
           {performanceMetrics.map((metric, index) => (
             <div 
               key={index} 
-              className="enterprise-card p-5 relative overflow-hidden animate-fade-in" 
+              className="enterprise-card p-5 animate-fade-in" 
               style={{ animationDelay: `${index * 0.1}s` }}
             >
+              <div className="glow-wrapper"></div>
               <div className="absolute top-0 right-0 w-24 h-24 opacity-5" style={{ backgroundColor: metric.color }}></div>
-              <div className="flex items-center mb-3">
+              <div className="flex items-center mb-3 enterprise-card-content">
                 <div className="w-8 h-8 rounded-lg bg-card/80 border border-white/5 flex items-center justify-center mr-3">
                   <div className="w-4 h-4" style={{ color: metric.color }}>
                     {metric.title === "Total Leads" && (
@@ -198,16 +199,18 @@ export default function CRMAnalyticsDashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
         {/* Leads by Source */}
         <div className="enterprise-card p-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          <div className="flex items-center mb-4 border-b border-border/30 pb-2">
-            <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mr-3">
+          <div className="glow-wrapper"></div>
+          <div className="enterprise-card-content">
+            <div className="flex items-center mb-4 border-b border-border/30 pb-2">
+              <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mr-3">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary w-4 h-4">
                 <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
                 <path d="M22 12A10 10 0 0 0 12 2v10z" />
               </svg>
-            </div>
-            <h4 className="text-foreground text-lg font-semibold">
-              Lead Acquisition Channels
-            </h4>
+              </div>
+              <h4 className="text-foreground text-lg font-semibold">
+                Lead Acquisition Channels
+              </h4>
           </div>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
@@ -270,7 +273,9 @@ export default function CRMAnalyticsDashboard() {
         
         {/* Deal Status */}
         <div className="enterprise-card p-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          <div className="flex items-center mb-4 border-b border-border/30 pb-2">
+          <div className="glow-wrapper"></div>
+          <div className="enterprise-card-content">
+            <div className="flex items-center mb-4 border-b border-border/30 pb-2">
             <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mr-3">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent w-4 h-4">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
