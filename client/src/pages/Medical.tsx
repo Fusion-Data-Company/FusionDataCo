@@ -195,8 +195,9 @@ export default function Medical() {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Patient Acquisition Struggles
                     </h3>
@@ -229,8 +230,9 @@ export default function Medical() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Online Reputation Management
                     </h3>
@@ -263,8 +265,9 @@ export default function Medical() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Patient Communication Gaps
                     </h3>
@@ -297,8 +300,9 @@ export default function Medical() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Practice Management Inefficiency
                     </h3>
