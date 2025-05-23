@@ -176,20 +176,25 @@ export default function Hero() {
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {/* Premium Start Trial Button - Titanium Effect */}
+            {/* Premium Start Trial Button - Titanium Effect with Shimmer */}
             <div className="relative group">
-              {/* The ambient glow effect */}
+              {/* The ambient glow effect - enhanced animation */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-lg opacity-70 group-hover:opacity-100 blur-md transition-all duration-500 group-hover:duration-200 animate-pulse-slow"></div>
               
               {/* Titanium/metallic surface with reflective highlights */}
               <Button 
                 size="lg" 
-                className="relative overflow-hidden h-14 px-8 z-10 border-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900"
+                className="relative overflow-hidden h-14 px-8 z-10 border-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 group-hover:scale-[1.02] transition-transform duration-300"
                 onMouseEnter={() => setHoverButton1(true)}
                 onMouseLeave={() => setHoverButton1(false)}
               >
                 {/* Metallic reflective surface effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-300/10 via-transparent to-blue-300/5"></div>
+                
+                {/* Shimmer effect layer */}
+                <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent bg-[length:200%_100%] animate-[buttonShimmer_2s_ease-in-out_infinite]"></div>
+                </div>
                 
                 {/* Horizontal light reflection sweep */}
                 <div className="absolute inset-0 overflow-hidden">
@@ -203,7 +208,7 @@ export default function Hero() {
                 
                 {/* Button text and icon */}
                 <span className="relative z-10 flex items-center gap-3 font-medium text-base text-white">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-white to-blue-200">Start Enterprise Trial</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-white to-blue-200 group-hover:opacity-90 transition-opacity">Start Enterprise Trial</span>
                   <AnimatePresence>
                     {hoverButton1 ? (
                       <motion.span
@@ -231,15 +236,15 @@ export default function Hero() {
               </Button>
             </div>
             
-            {/* Premium Schedule Demo Button - Digital Bowling Ball / Marble Effect */}
+            {/* Premium Schedule Demo Button - Digital Bowling Ball / Marble Effect with Shimmer */}
             <div className="relative group">
-              {/* Subtle ambient glow */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/30 via-indigo-500/30 to-blue-500/30 rounded-lg opacity-70 group-hover:opacity-100 blur-md transition-all duration-500"></div>
+              {/* Enhanced ambient glow with matching animation */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-600 rounded-lg opacity-70 group-hover:opacity-100 blur-md transition-all duration-500 group-hover:duration-200 animate-pulse-slow"></div>
               
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="relative h-14 px-8 border-0 z-10 overflow-hidden"
+                className="relative h-14 px-8 border-0 z-10 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300"
                 onMouseEnter={() => setHoverButton2(true)}
                 onMouseLeave={() => setHoverButton2(false)}
               >
@@ -252,6 +257,11 @@ export default function Hero() {
                       backgroundPosition: 'center'
                     }}
                   ></div>
+                </div>
+                
+                {/* Shimmer effect layer */}
+                <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-400/20 to-transparent bg-[length:200%_100%] animate-[buttonShimmer_2s_ease-in-out_infinite]"></div>
                 </div>
                 
                 {/* Swirl patterns - digital bowling ball effect */}
@@ -286,7 +296,7 @@ export default function Hero() {
                       </motion.span>
                     )}
                   </AnimatePresence>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 via-white to-blue-100">Schedule Enterprise Demo</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 via-white to-blue-100 group-hover:opacity-90 transition-opacity">Schedule Enterprise Demo</span>
                 </span>
               </Button>
             </div>

@@ -17,6 +17,27 @@
   }
 }
 
+@keyframes buttonShimmer {
+  0% {
+    background-position: -100% 0%;
+  }
+  50% {
+    background-position: 200% 0%;
+  }
+  100% {
+    background-position: -100% 0%;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 .text-shimmer {
   background: linear-gradient(90deg, #60a5fa, #818cf8, #3b82f6, #60a5fa);
   background-size: 300% 100%;
