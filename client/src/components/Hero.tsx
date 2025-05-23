@@ -101,8 +101,8 @@ export default function Hero() {
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            A comprehensive solution that combines advanced CRM, analytics, and{' '}  
-            <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">AI-powered workflows</span> to transform your business operations and accelerate growth.
+            A comprehensive <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">solution</span> that combines advanced <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">CRM</span>, analytics, and{' '}  
+            <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">AI-powered workflows</span> to transform your <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">business operations</span> and <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">accelerate growth</span>.
           </motion.p>
           
           <motion.div 
