@@ -345,24 +345,16 @@ export default function Hero() {
           </motion.div>
         </div>
         
-        {/* Right column: EntropyDemo component with premium effects */}
+        {/* Right column: EntropyDemo component - DO NOT MODIFY */}
         <motion.div 
           className="hidden md:flex items-center justify-center relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: isVisible ? 1 : 0 }}
           transition={{ duration: 1.0 }}
         >
-          {/* Ambient glow effects behind the entropy visualization */}
-          <div className="absolute top-1/4 left-1/3 w-60 h-60 rounded-full bg-blue-500/5 blur-[120px]" />
-          <div className="absolute bottom-1/3 right-1/3 w-80 h-80 rounded-full bg-cyan-400/5 blur-[100px]" />
-          
-          {/* Removed card frame to allow animation to fill the space */}
+          {/* Add premium frame around the entropy animation */}
+          <div className="absolute inset-0 m-auto w-[calc(100%-64px)] h-[calc(100%-64px)] rounded-2xl border border-slate-700/20 bg-gradient-to-b from-slate-900/20 to-transparent backdrop-blur-sm" />
           <EntropyDemo />
-          
-          {/* Blue glow highlights on divider line - positioned absolutely */}
-          <div className="absolute left-1/2 top-1/4 transform -translate-x-1/2 h-32 w-1 bg-gradient-to-b from-transparent via-blue-500/40 to-transparent blur-[2px]"></div>
-          <div className="absolute left-1/2 top-2/4 transform -translate-x-1/2 h-24 w-1 bg-gradient-to-b from-transparent via-blue-500/30 to-transparent blur-[2px]"></div>
-          <div className="absolute left-1/2 bottom-1/4 transform -translate-x-1/2 h-32 w-1 bg-gradient-to-b from-transparent via-blue-500/40 to-transparent blur-[2px]"></div>
         </motion.div>
         
         {/* Mobile version of EntropyDemo - only shown on small screens */}

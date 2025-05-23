@@ -24,359 +24,219 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     canvas.style.height = `${size}px`
     ctx.scale(dpr, dpr)
 
-    // Right side colors - Blue theme
-    const rightSideColors = [
-      '#2563eb', // bright blue
-      '#0ea5e9', // bright sky blue
-      '#0891b2', // bright cyan
-      '#14b8a6'  // turquoise
+    // Theme colors - ambient blue, green, burnt orange, and cyan
+    const themeColors = [
+      '#3b82f6', // ambient blue 
+      '#10b981', // green
+      '#f97316', // burnt orange
+      '#06b6d4'  // cyan
     ]
+    
+    // Create a radial gradient for the backdrop (subtle ambient effect)
+    const radialGradient = ctx.createRadialGradient(size/2, size/2, 10, size/2, size/2, size);
+    radialGradient.addColorStop(0, 'rgba(37, 99, 235, 0.05)');   // blue center
+    radialGradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.02)'); // cyan middle
+    radialGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');          // transparent edge
+
+    type Neighbor = {
+      x: number
+      y: number
+      velocity: { x: number; y: number }
+      order: boolean
+    }
 
     class Particle {
       x: number
       y: number
       size: number
       order: boolean
-      color: string
+      velocity: { x: number; y: number }
       originalX: number
       originalY: number
-      velocity: { x: number; y: number }
-      
+      influence: number
+      neighbors: Neighbor[]
+      color: string
+      colorIndex: number
+      colorTransition: number
+
       constructor(x: number, y: number, order: boolean) {
         this.x = x
         this.y = y
         this.originalX = x
         this.originalY = y
-        this.size = order ? 1.5 : 1.8 // Smaller particles on right side
+        this.size = 2
         this.order = order
-        
-        // Assign colors based on side
-        if (order) {
-          // Left side is white with very slight blue tint variations for visual interest
-          const blueVariation = Math.floor(Math.random() * 10) // Subtle blue tinting (0-10)
-          this.color = `rgb(255, 255, ${245 + blueVariation})` 
-        } else {
-          // Right side has random colors from the theme
-          const colorIndex = Math.floor(Math.random() * rightSideColors.length)
-          this.color = rightSideColors[colorIndex]
-        }
-        
-        // Starting velocity - gentle and smooth
-        const velocityFactor = Math.random() * 1.2 + 0.3 // Reduced for smoother movement
         this.velocity = {
-          x: (Math.random() - 0.5) * velocityFactor,
-          y: (Math.random() - 0.5) * velocityFactor
+          x: (Math.random() - 0.5) * 2,
+          y: (Math.random() - 0.5) * 2
         }
+        this.influence = 0
+        this.neighbors = []
+        
+        // Assign a color from our theme
+        this.colorIndex = Math.floor(Math.random() * themeColors.length)
+        this.color = themeColors[this.colorIndex]
+        this.colorTransition = Math.random() * 0.02 // Speed of color transition
       }
 
       update() {
-        // Allow particles to very frequently cross over - greatly increased probability
-        const nearCenter = Math.abs(this.x - size/2) < 35; // Even wider center area
-        const shouldCrossOver = Math.random() < 0.015 && nearCenter; // 15x more likely than original
-        
-        // Additional crossing chance for particles that were created on the divider
-        const isOnDivider = Math.abs(this.originalX - size/2) < 10;
-        const dividerCrossChance = isOnDivider && Math.random() < 0.08; // High chance to cross
-        
-        if (shouldCrossOver || dividerCrossChance) {
-          // Change state when crossing
-          this.order = !this.order;
-          
-          // Update color when crossing with transition effect
-          if (this.order) {
-            // Changed to ordered (left side) - white
-            this.color = '#ffffff';
-          } else {
-            // Changed to chaotic (right side) - random color from theme
-            const colorIndex = Math.floor(Math.random() * rightSideColors.length);
-            this.color = rightSideColors[colorIndex];
-          }
-          
-          // Give a much stronger push in the new direction
-          const crossingForce = 2 + Math.random() * 2; // Variable force between 2-4
-          this.velocity.x = this.order ? -crossingForce : crossingForce; // Strong momentum
-          this.velocity.y = (Math.random() - 0.5) * 6; // Add significant vertical movement when crossing
-        }
-        
         if (this.order) {
-          // Left side particles - clean grid movement with gentle breathing
-          const time = Date.now() * 0.001;
-          // Keep the breathing subtle
-          const breathingOffsetX = Math.sin(time + this.originalY * 0.1) * 2;
-          const breathingOffsetY = Math.sin(time + this.originalX * 0.1) * 2;
-          
-          // If near the divider, allow gentle drift toward divider
-          if (nearCenter && Math.random() < 0.02) {
-            this.x += 0.8; // Move toward divider
-          } else {
-            // Move toward original position plus breathing offset
-            this.x += ((this.originalX + breathingOffsetX) - this.x) * 0.1;
-            this.y += ((this.originalY + breathingOffsetY) - this.y) * 0.1;
-          }
+          // Ordered particles affected by chaos
+          const dx = this.originalX - this.x
+          const dy = this.originalY - this.y
+
+          // Calculate influence from chaotic particles
+          const chaosInfluence = { x: 0, y: 0 }
+          this.neighbors.forEach(neighbor => {
+            if (!neighbor.order) {
+              const distance = Math.hypot(this.x - neighbor.x, this.y - neighbor.y)
+              const strength = Math.max(0, 1 - distance / 100)
+              chaosInfluence.x += (neighbor.velocity.x * strength)
+              chaosInfluence.y += (neighbor.velocity.y * strength)
+              this.influence = Math.max(this.influence, strength)
+            }
+          })
+
+          // Mix ordered movement with chaotic influence
+          this.x += dx * 0.05 * (1 - this.influence) + chaosInfluence.x * this.influence
+          this.y += dy * 0.05 * (1 - this.influence) + chaosInfluence.y * this.influence
+
+          // Influence gradually weakens
+          this.influence *= 0.99
         } else {
-          // Right side particles - smoother, more controlled movement
-          // Add gentle random forces
-          this.velocity.x += (Math.random() - 0.5) * 0.2;
-          this.velocity.y += (Math.random() - 0.5) * 0.2;
-          
-          // Stronger dampening for smoother, more controlled movement
-          this.velocity.x *= 0.92;
-          this.velocity.y *= 0.92;
-          
-          // Update position at normal speed
-          this.x += this.velocity.x;
-          this.y += this.velocity.y;
-          
-          // Gentle attraction to center divider
-          if (Math.random() < 0.01 && this.x > size/2 + 30) {
-            this.velocity.x -= 0.1; // Very gentle pull toward divider
-          }
-          
-          // Boundary checks with gentler bouncing
-          if (this.x < 0) {
-            this.x = 1;
-            this.velocity.x = Math.abs(this.velocity.x) * 0.5;
-          } else if (this.x > size) {
-            this.x = size - 1;
-            this.velocity.x = -Math.abs(this.velocity.x) * 0.5;
-          }
-          
-          if (this.y < 0) {
-            this.y = 1;
-            this.velocity.y = Math.abs(this.velocity.y) * 0.5;
-          } else if (this.y > size) {
-            this.y = size - 1;
-            this.velocity.y = -Math.abs(this.velocity.y) * 0.5;
-          }
-          
-          // Occasional color changes - less frequent
-          if (Math.random() < 0.001) {
-            const colorIndex = Math.floor(Math.random() * rightSideColors.length);
-            this.color = rightSideColors[colorIndex];
-          }
+          // Chaotic movement
+          this.velocity.x += (Math.random() - 0.5) * 0.5
+          this.velocity.y += (Math.random() - 0.5) * 0.5
+          this.velocity.x *= 0.95
+          this.velocity.y *= 0.95
+          this.x += this.velocity.x
+          this.y += this.velocity.y
+
+          // Boundary checks
+          if (this.x < size / 2 || this.x > size) this.velocity.x *= -1
+          if (this.y < 0 || this.y > size) this.velocity.y *= -1
+          this.x = Math.max(size / 2, Math.min(size, this.x))
+          this.y = Math.max(0, Math.min(size, this.y))
+        }
+      }
+
+      // Gradually transition to a new color
+      updateColor() {
+        // Update color index for gentle color transitions
+        if (Math.random() < this.colorTransition) {
+          const nextColorIndex = (this.colorIndex + 1) % themeColors.length
+          this.colorIndex = nextColorIndex
+          this.color = themeColors[nextColorIndex]
         }
       }
 
       draw(ctx: CanvasRenderingContext2D) {
-        ctx.fillStyle = this.color
+        // Update color occasionally for subtle transitions
+        this.updateColor()
+        
+        // Set alpha based on particle state
+        const alpha = this.order ?
+          0.8 - this.influence * 0.5 :
+          0.8
+        
+        // Get RGB components from the hex color
+        const r = parseInt(this.color.substring(1, 3), 16)
+        const g = parseInt(this.color.substring(3, 5), 16)
+        const b = parseInt(this.color.substring(5, 7), 16)
+        
+        // Create RGBA color string
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fill()
       }
     }
 
-    // Create particles - with optimized density for better performance
+    // Create particle grid
     const particles: Particle[] = []
-    const gridSize = 30 // Reduced from 45 to prevent performance issues
+    const gridSize = 25
     const spacing = size / gridSize
-    
-    // Create grid of particles, left side ordered, right side chaotic
+
     for (let i = 0; i < gridSize; i++) {
       for (let j = 0; j < gridSize; j++) {
-        // Skip some particles for better performance (every other one in some areas)
-        if (i % 2 === 0 && j % 2 === 0 && i > gridSize/3 && j > gridSize/3) continue;
-        
         const x = spacing * i + spacing / 2
         const y = spacing * j + spacing / 2
         const order = x < size / 2
-        
-        // Add some randomness to right side position
-        const finalX = order ? x : x + (Math.random() - 0.5) * spacing * 1.5
-        const finalY = order ? y : y + (Math.random() - 0.5) * spacing * 1.5
-        
-        particles.push(new Particle(finalX, finalY, order))
+        particles.push(new Particle(x, y, order))
       }
     }
-    
-    // Add more particles to right side for chaotic movement - reduced count for performance
-    for (let i = 0; i < 200; i++) { // Reduced from 600 to improve performance
-      const x = size/2 + Math.random() * (size/2)
-      const y = Math.random() * size
-      particles.push(new Particle(x, y, false))
-    }
-    
-    // Add particles on divider line that will cross regularly
-    const dividerParticleCount = 20 // Reduced slightly for performance
-    for (let i = 0; i < dividerParticleCount; i++) {
-      const y = Math.random() * size
-      // Slightly offset from center to encourage crossing
-      const x = size/2 + (Math.random() < 0.5 ? -5 : 5)
-      // Randomly assign to either ordered or chaotic side
-      const order = Math.random() < 0.5
-      particles.push(new Particle(x, y, order))
+
+    // Update neighbor relationships
+    function updateNeighbors() {
+      particles.forEach(particle => {
+        particle.neighbors = particles
+          .filter(other => {
+            if (other === particle) return false
+            const distance = Math.hypot(particle.x - other.x, particle.y - other.y)
+            return distance < 100
+          })
+          .map(p => ({
+            x: p.x,
+            y: p.y,
+            velocity: p.velocity,
+            order: p.order
+          }))
+      })
     }
 
+    let time = 0
     let animationId = 0
     
     function animate() {
       ctx.clearRect(0, 0, size, size)
       
-      // Draw a blue glowing divider line
-      // Main line
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)'
-      ctx.lineWidth = 1
-      ctx.beginPath()
-      ctx.moveTo(size / 2, 0)
-      ctx.lineTo(size / 2, size)
-      ctx.stroke()
-      
-      // Blue glow for divider
-      ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)'
-      ctx.lineWidth = 3
-      ctx.beginPath()
-      ctx.moveTo(size / 2, 0)
-      ctx.lineTo(size / 2, size)
-      ctx.stroke()
-      
-      // Inner brighter line
-      ctx.strokeStyle = 'rgba(59, 130, 246, 0.4)'
+      // Draw the background gradient for ambient effect
+      ctx.fillStyle = radialGradient;
+      ctx.fillRect(0, 0, size, size);
+
+      // Update neighbor relationships periodically
+      if (time % 30 === 0) {
+        updateNeighbors()
+      }
+
+      // Update and draw all particles
+      particles.forEach(particle => {
+        particle.update()
+        particle.draw(ctx)
+
+        // Draw connecting lines with matching colors
+        particle.neighbors.forEach(neighbor => {
+          const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
+          if (distance < 50) {
+            // Get RGB components from the hex color
+            const r = parseInt(particle.color.substring(1, 3), 16)
+            const g = parseInt(particle.color.substring(3, 5), 16)
+            const b = parseInt(particle.color.substring(5, 7), 16)
+            
+            const alpha = 0.2 * (1 - distance / 50)
+            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`
+            ctx.beginPath()
+            ctx.moveTo(particle.x, particle.y)
+            ctx.lineTo(neighbor.x, neighbor.y)
+            ctx.stroke()
+          }
+        })
+      })
+
+      // Add vertical divider line with subtle blue color
+      ctx.strokeStyle = 'rgba(59, 130, 246, 0.3)'  // Ambient blue with low opacity
       ctx.lineWidth = 0.5
       ctx.beginPath()
       ctx.moveTo(size / 2, 0)
       ctx.lineTo(size / 2, size)
       ctx.stroke()
-      
-      // Update and draw particles
-      particles.forEach(particle => {
-        particle.update()
-        particle.draw(ctx)
-      })
-      
-      // Significantly optimized connections between particles for better performance
-      
-      // Only process every 3rd particle for connections to improve performance
-      for (let i = 0; i < particles.length; i += 3) {
-        const particle = particles[i]
-        
-        // Find a small number of close particles - optimized approach without filtering the entire array
-        const nearbyParticles = []
-        let foundCount = 0
-        
-        // Only sample a subset of particles to find neighbors (massive performance improvement)
-        for (let j = 0; j < particles.length; j += 6) {
-          if (i === j) continue
-          const other = particles[j]
-          const distance = Math.hypot(particle.x - other.x, particle.y - other.y)
-          
-          // Check if connection crosses the divider - prioritize these
-          const crossesDivider = (particle.x < size/2 && other.x >= size/2) || 
-                              (particle.x >= size/2 && other.x < size/2)
-                              
-          const maxCheckDistance = particle.order ? 35 : 50
-          if (distance < maxCheckDistance || (crossesDivider && distance < 70)) {
-            nearbyParticles.push({other, distance, crossesDivider})
-            foundCount++
-            if (foundCount >= 2) break // Limit to just 2 connections per particle
-          }
-        }
-        
-        // Draw connections to nearby particles - limited for performance
-        for (const {other, distance, crossesDivider} of nearbyParticles) {
-          // Simplified pulsing effect
-          const pulseTime = Date.now() * 0.0005 // Slower pulsing
-          const pulseFactor = Math.sin(pulseTime + i * 0.1) * 0.3 + 0.7
-          
-          // Determine alpha based on distance and side
-          const maxDistance = particle.order ? 35 : 50
-          
-          if (crossesDivider) {
-            // Draw special connections across divider - simplified for performance
-            ctx.strokeStyle = particle.order ? 
-                'rgba(255, 255, 255, 0.4)' : 
-                'rgba(56, 189, 248, 0.4)'
-            ctx.lineWidth = 0.8 * pulseFactor
-            
-            // No shadow effects for better performance
-            ctx.shadowBlur = 0
-          } else {
-            // Regular connections - much simpler for performance
-            const alpha = 0.15 * (1 - distance / maxDistance) * pulseFactor
-            ctx.strokeStyle = particle.order ? 
-                `rgba(255, 255, 255, ${alpha})` : 
-                'rgba(56, 189, 248, ' + alpha + ')'
-            ctx.lineWidth = 0.5
-            ctx.shadowBlur = 0
-          }
-          
-          // Draw the connection line
-          ctx.beginPath()
-          ctx.moveTo(particle.x, particle.y)
-          ctx.lineTo(other.x, other.y)
-          ctx.stroke()
-        }
-      }
-      
-      // Draw blue glowing dots along the divider - increased count and more dramatic effects
-      const dotCount = 6 // Doubled from 3
-      for (let i = 0; i < dotCount; i++) {
-        const y = size * ((i + 1) / (dotCount + 1)) // Spread evenly
-        
-        // More dramatic pulsing effect
-        const time = Date.now() * 0.001
-        const pulseSize = 2 + Math.sin(time * 0.8 + i * 0.5) * 1.2
-        
-        // Larger glow effect with brighter colors
-        const pulsePhase = Math.sin(time * 0.5 + i * 0.3) * 0.5 + 0.5 // 0 to 1 range
-        const gradientSize = 6 + pulsePhase * 8 // Larger, more dynamic glow
-        
-        // Create bright, pulsing gradient
-        const gradient = ctx.createRadialGradient(
-          size/2, y, 0,
-          size/2, y, gradientSize
-        )
-        
-        // Brighter center with more opacity variation
-        const centralOpacity = 0.7 + pulsePhase * 0.3
-        gradient.addColorStop(0, `rgba(56, 189, 248, ${centralOpacity})`)
-        gradient.addColorStop(0.3, `rgba(59, 130, 246, ${centralOpacity * 0.7})`)
-        gradient.addColorStop(1, 'rgba(56, 189, 248, 0)')
-        
-        // Draw the glow
-        ctx.fillStyle = gradient
-        ctx.beginPath()
-        ctx.arc(size/2, y, gradientSize, 0, Math.PI * 2)
-        ctx.fill()
-        
-        // Bright dot in center with a slight 3D effect
-        ctx.fillStyle = '#3b82f6'
-        ctx.beginPath()
-        ctx.arc(size/2, y, pulseSize, 0, Math.PI * 2)
-        ctx.fill()
-        
-        // Add a highlight for 3D effect
-        const highlightSize = pulseSize * 0.4
-        const offsetX = -highlightSize * 0.5
-        const offsetY = -highlightSize * 0.5
-        
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
-        ctx.beginPath()
-        ctx.arc(size/2 + offsetX, y + offsetY, highlightSize, 0, Math.PI * 2)
-        ctx.fill()
-      }
-      
-      // Add occasional energy burst from divider line
-      const burstTime = Date.now() * 0.001
-      if (Math.sin(burstTime * 0.2) > 0.95) {
-        // Position burst at random point along divider
-        const burstY = Math.random() * size
-        const burstSize = 10 + Math.random() * 30
-        
-        // Create burst gradient
-        const burstGradient = ctx.createRadialGradient(
-          size/2, burstY, 0,
-          size/2, burstY, burstSize
-        )
-        burstGradient.addColorStop(0, 'rgba(59, 130, 246, 0.7)')
-        burstGradient.addColorStop(0.7, 'rgba(56, 189, 248, 0.2)')
-        burstGradient.addColorStop(1, 'rgba(56, 189, 248, 0)')
-        
-        // Draw burst
-        ctx.fillStyle = burstGradient
-        ctx.beginPath()
-        ctx.arc(size/2, burstY, burstSize, 0, Math.PI * 2)
-        ctx.fill()
-      }
-      
+
+      // Add text elements if needed 
+      ctx.font = '12px monospace'
+      ctx.fillStyle = '#ffffff'
+      ctx.textAlign = 'center'
+
+      time++
       animationId = requestAnimationFrame(animate)
     }
 
