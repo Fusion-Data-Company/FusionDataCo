@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Check, Zap, ShieldCheck, Users, Gauge, BadgeCheck, Award, BarChart3, Workflow, Database, Lock, Bot, ArrowRight, Sparkles, CheckCircle2, Globe } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { TitaniumCard } from "@/components/ui/TitaniumCard";
 
 export default function Pricing() {
   const [isYearly, setIsYearly] = useState(true);
@@ -90,6 +91,16 @@ export default function Pricing() {
     }
   ];
 
+  // Helper function to map plan color to glow color
+  const getGlowColor = (color: string) => {
+    switch(color) {
+      case 'primary': return 'blue';
+      case 'secondary': return 'purple';
+      case 'accent': return 'green';
+      default: return 'blue';
+    }
+  };
+
   return (
     <section id="pricing" className="py-24 bg-background relative overflow-hidden">
       {/* Background elements */}
@@ -157,20 +168,16 @@ export default function Pricing() {
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-5 mb-20">
           {plans.map((plan, index) => (
-            <div 
-              key={index} 
+            <TitaniumCard
+              key={index}
+              glowColor={getGlowColor(plan.color)}
               className={cn(
-                `titanium-card glow-${plan.color} rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 relative animate-fade-in group`,
-                plan.isPopular 
-                  ? "lg:scale-105 z-10 border-white/10" 
-                  : "border-white/5",
+                "overflow-hidden transition-all duration-500 hover:-translate-y-2 animate-fade-in",
+                plan.isPopular ? "lg:scale-105 z-10" : "",
                 index === 0 ? "lg:translate-x-5" : "",
                 index === 2 ? "lg:-translate-x-5" : ""
               )}
-              style={{ animationDelay: `${index * 0.15}s` }}
             >
-              <div className="ambient-glow"></div>
-              
               {/* Recommended badge */}
               {plan.isPopular && (
                 <div className="absolute top-7 right-0 bg-accent text-accent-foreground py-1 pl-4 pr-5 text-xs font-semibold shadow-lg rounded-l-full z-20 animate-fade-in" style={{ animationDelay: '0.5s' }}>
@@ -257,6 +264,7 @@ export default function Pricing() {
                         {index === 1 ? "Schedule Demo" : "Get Started"}
                         <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                       </span>
+                      <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     </div>
                   </Link>
                 </div>
@@ -305,7 +313,7 @@ export default function Pricing() {
                   ))}
                 </ul>
               </div>
-            </div>
+            </TitaniumCard>
           ))}
         </div>
         
@@ -335,231 +343,62 @@ export default function Pricing() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {enterpriseFeatures.map((feature, index) => (
-                <div 
-                  key={index} 
-                  className="enterprise-card p-6 text-center relative group animate-fade-in hover:shadow-2xl transition-all duration-500"
-                  style={{ animationDelay: `${0.2 + (index * 0.15)}s` }}
+                <TitaniumCard 
+                  key={index}
+                  glowColor="blue"
+                  className="p-6 text-center animate-fade-in transition-all duration-500"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  <div className="relative z-10">
-                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 polished-chrome border border-white/10 shadow-lg mx-auto">
-                      <div className="text-primary">
+                  <div className="flex flex-col items-center">
+                    <div className="w-16 h-16 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 shadow-lg relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-xl"></div>
+                      <div className="text-primary relative z-10">
                         {feature.icon}
                       </div>
                     </div>
                     
-                    <h4 className="font-['Orbitron'] text-lg font-medium mb-3 text-foreground">{feature.title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-muted-foreground/80">{feature.description}</p>
+                    <h4 className="font-['Orbitron'] text-lg font-semibold mb-2 text-foreground">
+                      {feature.title}
+                    </h4>
                     
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
                   </div>
-                </div>
+                </TitaniumCard>
               ))}
             </div>
           </div>
         </div>
         
-        {/* Enterprise Custom Option */}
-        <div className="relative overflow-hidden mb-24">
-          <div className="absolute -right-20 -bottom-20 opacity-5 pointer-events-none">
-            <Database className="w-80 h-80 text-primary" />
-          </div>
-          
-          <div className="titanium-panel p-12 rounded-xl border border-white/10 shadow-xl relative z-10 animate-fade-in">
-            <div className="flex flex-col lg:flex-row items-stretch gap-12">
-              <div className="lg:w-2/3">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 rounded-lg border border-accent/30 bg-accent/10 flex items-center justify-center mr-4 shadow-md relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent"></div>
-                    <div className="absolute w-20 h-20 bg-accent/20 rounded-full blur-xl -top-10 -left-10"></div>
-                    <Zap className="text-accent relative z-10" size={22} />
-                  </div>
-                  <div>
-                    <h3 className="font-['Orbitron'] text-2xl font-semibold text-foreground">
-                      Global Enterprise <span className="text-gradient-silver">Custom Solution</span>
-                    </h3>
-                    <div className="flex items-center text-xs text-muted-foreground mt-1">
-                      <Lock size={10} className="mr-1.5" />
-                      <span>Invitation-only enterprise tier</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <p className="text-muted-foreground mb-8 leading-relaxed">
-                  For global Fortune 500 enterprises with complex requirements, our elite team provides a completely customized solution with dedicated infrastructure, custom development, and executive-level support. Our Titanium Elite program includes direct access to our core engineering team and customized AI model training.
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  <div className="glass-panel p-4 rounded-lg border border-white/10 hover:shadow-lg transition-all duration-300 group/item">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
-                        <Workflow size={18} className="text-accent" />
-                      </div>
-                      <h5 className="font-medium text-foreground">Custom API Development</h5>
-                    </div>
-                    <p className="text-sm text-muted-foreground">Bespoke integrations with your existing enterprise systems and proprietary technology.</p>
-                  </div>
-                  
-                  <div className="glass-panel p-4 rounded-lg border border-white/10 hover:shadow-lg transition-all duration-300 group/item">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
-                        <Database size={18} className="text-accent" />
-                      </div>
-                      <h5 className="font-medium text-foreground">Dedicated Infrastructure</h5>
-                    </div>
-                    <p className="text-sm text-muted-foreground">Private cloud deployment with dedicated resources for ultimate performance and security.</p>
-                  </div>
-                  
-                  <div className="glass-panel p-4 rounded-lg border border-white/10 hover:shadow-lg transition-all duration-300 group/item">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
-                        <Globe size={18} className="text-accent" />
-                      </div>
-                      <h5 className="font-medium text-foreground">Global Data Centers</h5>
-                    </div>
-                    <p className="text-sm text-muted-foreground">Multi-region deployment with data residency options for global compliance requirements.</p>
-                  </div>
-                  
-                  <div className="glass-panel p-4 rounded-lg border border-white/10 hover:shadow-lg transition-all duration-300 group/item">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
-                        <Bot size={18} className="text-accent" />
-                      </div>
-                      <h5 className="font-medium text-foreground">Custom AI Training</h5>
-                    </div>
-                    <p className="text-sm text-muted-foreground">Proprietary AI models trained on your organization's data for industry-specific insights.</p>
-                  </div>
-                </div>
-                
-                <div className="inline-flex items-center mb-3 gap-1.5 bg-secondary/10 px-3 py-1.5 rounded-full text-xs font-medium text-secondary border border-secondary/20">
-                  <Users size={12} />
-                  <span>Selected clients include Fortune 100 enterprises and government agencies</span>
-                </div>
+        {/* Enterprise Contact CTA */}
+        <div className="card-with-glow relative rounded-xl w-full max-w-4xl mx-auto p-10 md:p-16 text-center overflow-hidden">
+          <div className="card-ambient-glow card-ambient-glow-blue"></div>
+          <div className="titanium-panel rounded-xl p-10 md:p-16 text-center relative">
+            <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+            
+            <div className="w-20 h-20 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-8 shadow-lg">
+              <div className="text-primary">
+                <Globe size={40} />
               </div>
-              
-              <div className="lg:w-1/3 w-full">
-                <div className="chrome-panel p-8 rounded-xl border border-white/10 shadow-xl h-full flex flex-col">
-                  <h4 className="font-['Orbitron'] text-xl font-medium mb-6 text-foreground">
-                    Request Elite Access
-                  </h4>
-                  
-                  <p className="text-sm text-muted-foreground mb-6">Submit your information to schedule a consultation with our enterprise solutions architects.</p>
-                  
-                  <form className="space-y-4 flex-grow">
-                    <div>
-                      <label htmlFor="fullName" className="block text-sm font-medium text-muted-foreground mb-1">Full Name</label>
-                      <input 
-                        id="fullName"
-                        type="text" 
-                        placeholder="Jane Smith" 
-                        className="w-full px-4 py-3 bg-card/50 border border-white/10 rounded-lg text-foreground focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-colors placeholder:text-muted-foreground/50"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="workEmail" className="block text-sm font-medium text-muted-foreground mb-1">Work Email</label>
-                      <input 
-                        id="workEmail"
-                        type="email" 
-                        placeholder="jane.smith@enterprise.com" 
-                        className="w-full px-4 py-3 bg-card/50 border border-white/10 rounded-lg text-foreground focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-colors placeholder:text-muted-foreground/50"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="companyName" className="block text-sm font-medium text-muted-foreground mb-1">Company</label>
-                      <input 
-                        id="companyName"
-                        type="text" 
-                        placeholder="Enterprise Corp." 
-                        className="w-full px-4 py-3 bg-card/50 border border-white/10 rounded-lg text-foreground focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent transition-colors placeholder:text-muted-foreground/50"
-                      />
-                    </div>
-                    <div className="mt-auto pt-4">
-                      <button 
-                        type="button"
-                        className="btn-titanium w-full py-3.5 bg-accent/90 text-accent-foreground rounded-lg font-medium shadow-lg border border-accent/30 hover:shadow-xl flex items-center justify-center"
-                      >
-                        <span className="flex items-center">
-                          Request Elite Consultation
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </span>
-                      </button>
-                      
-                      <p className="text-xs text-center text-muted-foreground mt-4 flex items-center justify-center">
-                        <Lock size={10} className="mr-1.5" />
-                        <span>Your information is secure and confidential</span>
-                      </p>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* FAQs */}
-        <div className="max-w-4xl mx-auto mb-24 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center p-1 px-3 rounded-full bg-primary/10 mb-4 border border-primary/20">
-              <span className="text-xs font-medium text-primary">FREQUENTLY ASKED</span>
             </div>
             
-            <h3 className="font-['Orbitron'] text-2xl font-semibold mb-4 text-foreground">
-              Enterprise <span className="text-gradient-primary">FAQs</span>
+            <h3 className="font-['Orbitron'] text-3xl font-bold mb-4 text-foreground">
+              Enterprise Consultation
             </h3>
             
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-transparent rounded-full mb-6 mx-auto"></div>
-            
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Common questions about our enterprise solutions, pricing, and implementation process.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+              For custom enterprise requirements, global deployments, or specialized industry solutions, our enterprise team is ready to provide personalized guidance.
             </p>
-          </div>
-          
-          <div className="space-y-5">
-            <div className="chrome-panel p-6 rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="flex items-center mb-3">
-                <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mr-3">
-                  <Check className="text-primary w-4 h-4" />
-                </div>
-                <h4 className="font-['Orbitron'] font-medium text-foreground">Can I customize my enterprise plan?</h4>
-              </div>
-              <p className="text-muted-foreground pl-11 leading-relaxed">
-                Yes, enterprise plans can be fully customized to your specific business requirements. Our solutions architects will work with you to design the perfect solution.
-              </p>
-            </div>
-            <div className="chrome-panel p-6 rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="flex items-center mb-3">
-                <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mr-3">
-                  <Check className="text-accent w-4 h-4" />
-                </div>
-                <h4 className="font-['Orbitron'] font-medium text-foreground">Do you offer multi-year contracts?</h4>
-              </div>
-              <p className="text-muted-foreground pl-11 leading-relaxed">
-                Yes, we offer multi-year enterprise agreements with enhanced discounts and price protection guarantees. These agreements also include priority access to new features and dedicated strategic planning sessions.
-              </p>
-            </div>
-            <div className="chrome-panel p-6 rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="flex items-center mb-3">
-                <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mr-3">
-                  <Check className="text-primary w-4 h-4" />
-                </div>
-                <h4 className="font-['Orbitron'] font-medium text-foreground">What kind of support is included?</h4>
-              </div>
-              <p className="text-muted-foreground pl-11 leading-relaxed">
-                Enterprise plans include 24/7 priority support with a 15-minute response SLA, a dedicated Customer Success Manager, quarterly business reviews, and access to our enterprise support portal with advanced monitoring and diagnostic tools.
-              </p>
-            </div>
-            <div className="chrome-panel p-6 rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="flex items-center mb-3">
-                <div className="w-8 h-8 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center mr-3">
-                  <Check className="text-secondary w-4 h-4" />
-                </div>
-                <h4 className="font-['Orbitron'] font-medium text-foreground">How do you handle data security and compliance?</h4>
-              </div>
-              <p className="text-muted-foreground pl-11 leading-relaxed">
-                All enterprise plans include SOC 2 Type II compliance, ISO 27001 certification, end-to-end encryption, advanced authentication options (SAML, SSO, MFA), and comprehensive audit logging with real-time alerts. Our platform supports GDPR, HIPAA, CCPA, and other regional compliance frameworks.
-              </p>
-            </div>
+            
+            <Link href="/contact">
+              <span className="btn-titanium px-10 py-4 rounded-lg text-lg font-medium shadow-lg inline-flex items-center justify-center bg-primary text-primary-foreground border border-primary/40 cursor-pointer group relative overflow-hidden">
+                <span className="relative z-10 flex items-center">
+                  Contact Enterprise Team
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                </span>
+                <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </span>
+            </Link>
           </div>
         </div>
       </div>

@@ -20,6 +20,7 @@ import {
   Database
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { TitaniumCard } from "@/components/ui/TitaniumCard";
 
 interface IndustrySolution {
   title: string;
@@ -187,6 +188,16 @@ export default function IndustrySolutions() {
     }
   ];
 
+  // Helper function to map solution color to glow color
+  const getGlowColor = (color: string) => {
+    switch(color) {
+      case 'primary': return 'blue';
+      case 'secondary': return 'purple';
+      case 'accent': return 'green';
+      default: return 'amber';
+    }
+  };
+
   return (
     <section id="solutions" className="py-24 bg-background relative overflow-hidden">
       {/* Background elements */}
@@ -216,105 +227,95 @@ export default function IndustrySolutions() {
         {/* Solutions grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20">
           {solutions.map((solution, index) => (
-            <div 
-              key={index} 
-              className="card-with-glow relative rounded-xl overflow-hidden transition-all duration-300 group"
+            <TitaniumCard 
+              key={index}
+              glowColor={getGlowColor(solution.color)}
+              className="overflow-hidden transition-all duration-300 group"
             >
-              {/* Separate ambient glow behind card */}
-              <div className={`card-ambient-glow ${
-                solution.color === 'primary' ? 'card-ambient-glow-blue' : 
-                solution.color === 'secondary' ? 'card-ambient-glow-purple' : 
-                solution.color === 'accent' ? 'card-ambient-glow-green' :
-                'card-ambient-glow-amber'}`}>
+              <div className="relative h-52 overflow-hidden">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 group-hover:scale-110" 
+                  style={{ backgroundImage: `url('${solution.image}')` }}
+                >
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90"></div>
+                
+                <div className="absolute inset-0 flex flex-col justify-end p-6">
+                  <div className={`w-12 h-12 rounded-lg bg-${solution.color}/10 border border-${solution.color}/20 flex items-center justify-center mb-3`}>
+                    <div className={`text-${solution.color}`}>
+                      {solution.icon}
+                    </div>
+                  </div>
+                  
+                  <h3 className="font-['Orbitron'] text-2xl font-bold text-foreground mb-1">
+                    {solution.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    {solution.subtitle}
+                  </p>
+                </div>
               </div>
               
-              {/* Actual titanium card content */}
-              <div className="titanium-panel rounded-xl overflow-hidden">
-                <div className="relative h-52 overflow-hidden">
-                  <div 
-                    className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 group-hover:scale-110" 
-                    style={{ backgroundImage: `url('${solution.image}')` }}
-                  >
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-90"></div>
-                  
-                  <div className="absolute inset-0 flex flex-col justify-end p-6">
-                    <div className={`w-12 h-12 rounded-lg bg-${solution.color}/10 border border-${solution.color}/20 flex items-center justify-center mb-3`}>
-                      <div className={`text-${solution.color}`}>
-                        {solution.icon}
+              <div className="p-6">
+                <div className="flex mb-6">
+                  {solution.stats.map((stat, idx) => (
+                    <div key={idx} className="flex-1 text-center p-2">
+                      <div className={`text-2xl font-['Orbitron'] font-bold text-${solution.color}`}>
+                        {stat.value}
+                      </div>
+                      <div className="text-xs text-muted-foreground mt-1">
+                        {stat.label}
                       </div>
                     </div>
-                    
-                    <h3 className="font-['Orbitron'] text-2xl font-bold text-foreground mb-1">
-                      {solution.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      {solution.subtitle}
-                    </p>
-                  </div>
+                  ))}
                 </div>
                 
-                <div className="p-6">
-                  <div className="flex mb-6">
-                    {solution.stats.map((stat, idx) => (
-                      <div key={idx} className="flex-1 text-center p-2">
-                        <div className={`text-2xl font-['Orbitron'] font-bold text-${solution.color}`}>
-                          {stat.value}
+                <div className="mb-6">
+                  <h4 className="font-['Orbitron'] text-lg font-semibold mb-3 text-foreground flex items-center gap-2">
+                    <Activity size={18} className={`text-${solution.color}`} />
+                    Enterprise Challenges
+                  </h4>
+                  <ul className="space-y-2">
+                    {solution.challenges.map((challenge, i) => (
+                      <li key={i} className="flex items-start">
+                        <div className="w-5 h-5 rounded-full bg-destructive/10 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                          <div className="w-2 h-2 bg-destructive rounded-full"></div>
                         </div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          {stat.label}
-                        </div>
-                      </div>
+                        <span className="text-muted-foreground text-sm">{challenge}</span>
+                      </li>
                     ))}
-                  </div>
-                  
-                  <div className="mb-6">
-                    <h4 className="font-['Orbitron'] text-lg font-semibold mb-3 text-foreground flex items-center gap-2">
-                      <Activity size={18} className={`text-${solution.color}`} />
-                      Enterprise Challenges
-                    </h4>
-                    <ul className="space-y-2">
-                      {solution.challenges.map((challenge, i) => (
-                        <li key={i} className="flex items-start">
-                          <div className="w-5 h-5 rounded-full bg-destructive/10 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
-                            <div className="w-2 h-2 bg-destructive rounded-full"></div>
-                          </div>
-                          <span className="text-muted-foreground text-sm">{challenge}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div className="mb-6">
-                    <h4 className="font-['Orbitron'] text-lg font-semibold mb-3 text-foreground flex items-center gap-2">
-                      <Gem size={18} className={`text-${solution.color}`} />
-                      Our Enterprise Solution
-                    </h4>
-                    <ul className="space-y-2">
-                      {solution.solutions.map((item, i) => (
-                        <li key={i} className="flex items-start">
-                          <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-${solution.color}/10 flex items-center justify-center mr-3 mt-0.5`}>
-                            <Check className={`text-${solution.color} w-3 h-3`} />
-                          </div>
-                          <span className="text-muted-foreground text-sm">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <Link href={solution.link}>
-                    <span className={cn(
-                      `bg-${solution.color}/10 text-${solution.color} border border-${solution.color}/20`,
-                      "block w-full py-3 rounded-md font-medium text-center transition-all duration-300 hover:bg-card/50 cursor-pointer",
-                      "flex items-center justify-center gap-2"
-                    )}>
-                      <span>Explore {solution.title} Solutions</span>
-                      <ArrowRight size={16} />
-                    </span>
-                  </Link>
+                  </ul>
                 </div>
+                
+                <div className="mb-6">
+                  <h4 className="font-['Orbitron'] text-lg font-semibold mb-3 text-foreground flex items-center gap-2">
+                    <Gem size={18} className={`text-${solution.color}`} />
+                    Our Enterprise Solution
+                  </h4>
+                  <ul className="space-y-2">
+                    {solution.solutions.map((item, i) => (
+                      <li key={i} className="flex items-start">
+                        <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-${solution.color}/10 flex items-center justify-center mr-3 mt-0.5`}>
+                          <Check className={`text-${solution.color} w-3 h-3`} />
+                        </div>
+                        <span className="text-muted-foreground text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <Link href={solution.link}>
+                  <span className={cn(
+                    `bg-${solution.color}/10 text-${solution.color} border border-${solution.color}/20`,
+                    "block w-full py-3 rounded-md font-medium text-center transition-all duration-300 hover:bg-card/50 cursor-pointer",
+                    "flex items-center justify-center gap-2"
+                  )}>
+                    <span>Explore {solution.title} Solutions</span>
+                    <ArrowRight size={16} />
+                  </span>
+                </Link>
               </div>
-            </div>
+            </TitaniumCard>
           ))}
         </div>
         
@@ -331,20 +332,17 @@ export default function IndustrySolutions() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {enterpriseCapabilities.map((capability, index) => (
-              <div key={index} className="card-with-glow relative rounded-lg">
-                <div className="card-ambient-glow card-ambient-glow-blue"></div>
-                <div className="titanium-panel p-4 rounded-lg hover:bg-primary/5 transition-colors duration-300">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
-                      <div className="text-primary">
-                        {capability.icon}
-                      </div>
+              <TitaniumCard key={index} glowColor="blue" className="p-4 hover:bg-primary/5 transition-colors duration-300">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+                    <div className="text-primary">
+                      {capability.icon}
                     </div>
-                    <h4 className="font-medium text-foreground">{capability.title}</h4>
                   </div>
-                  <p className="text-sm text-muted-foreground">{capability.description}</p>
+                  <h4 className="font-medium text-foreground">{capability.title}</h4>
                 </div>
-              </div>
+                <p className="text-sm text-muted-foreground">{capability.description}</p>
+              </TitaniumCard>
             ))}
           </div>
         </div>
