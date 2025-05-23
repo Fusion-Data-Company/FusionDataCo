@@ -37,6 +37,8 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       influence: number
       neighbors: Particle[]
       visible: boolean
+      affectedByChaos: boolean
+      disturbance: number
 
       constructor(x: number, y: number, order: boolean) {
         this.x = x
@@ -52,19 +54,74 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         this.influence = 0
         this.neighbors = []
         this.visible = true
+        this.affectedByChaos = false
+        this.disturbance = 0
       }
 
       update() {
         if (this.order) {
-          // Ordered particles stay mostly in place with minimal movement
+          // Check if this ordered particle is close to the chaos boundary and should start becoming chaotic
+          const distanceToEdge = Math.abs(this.x - size/2)
+          
+          // Particles near the boundary have a higher chance of being affected
+          const edgeProximityFactor = Math.max(0, 1 - distanceToEdge / 50)
+          
+          // Increase the disturbance based on the edge proximity and influence from chaotic neighbors
+          if (edgeProximityFactor > 0 && Math.random() < 0.05 * edgeProximityFactor + this.influence * 0.5) {
+            this.disturbance = Math.min(1, this.disturbance + 0.01 + this.influence * 0.05)
+          }
+
+          // Gradually increase influence from chaotic neighbors
+          let chaosInfluence = { x: 0, y: 0 }
+          
+          this.neighbors.forEach(neighbor => {
+            if (!neighbor.order || neighbor.disturbance > 0.5) {
+              const distance = Math.hypot(this.x - neighbor.x, this.y - neighbor.y)
+              const strength = Math.max(0, 1 - distance / 100) * (neighbor.disturbance || 1)
+              chaosInfluence.x += (neighbor.velocity.x * strength * 1.2)
+              chaosInfluence.y += (neighbor.velocity.y * strength * 1.2)
+              this.influence = Math.max(this.influence, strength * 0.8)
+            }
+          })
+
+          // Blend ordered movement with chaos influence based on disturbance level
           const dx = this.originalX - this.x
           const dy = this.originalY - this.y
           
-          // Only add tiny movement for a subtle effect
-          this.x += dx * 0.1
-          this.y += dy * 0.1
+          // As disturbance increases, particle is less likely to return to original position
+          // and more likely to be influenced by chaos
+          this.x += dx * 0.1 * (1 - this.disturbance) + chaosInfluence.x * (0.5 + this.disturbance * 2)
+          this.y += dy * 0.1 * (1 - this.disturbance) + chaosInfluence.y * (0.5 + this.disturbance * 2)
+          
+          // Once significantly disturbed, add some random movement
+          if (this.disturbance > 0.3) {
+            this.velocity.x += (Math.random() - 0.5) * 0.1 * this.disturbance
+            this.velocity.y += (Math.random() - 0.5) * 0.1 * this.disturbance
+            this.velocity.x *= 0.95
+            this.velocity.y *= 0.95
+            this.x += this.velocity.x * this.disturbance
+            this.y += this.velocity.y * this.disturbance
+          }
+          
+          // After being heavily influenced, possibly transition to chaos
+          if (this.disturbance > 0.8 && Math.random() < 0.02) {
+            this.order = false
+            this.size = 2
+          }
+          
+          // Influence gradually fades if not continuously affected
+          this.influence *= 0.99
+          
+          // Boundary check - if an ordered particle crosses into chaos territory, it becomes chaotic
+          if (this.x > size/2 + 5) { 
+            this.disturbance = Math.min(1, this.disturbance + 0.1)
+            if (Math.random() < 0.1 * this.disturbance) {
+              this.order = false
+              this.size = 2
+            }
+          }
         } else {
-          // Chaos movement with more natural flow
+          // Full chaos movement with more natural flow
           this.velocity.x += (Math.random() - 0.5) * 0.4
           this.velocity.y += (Math.random() - 0.5) * 0.4
           this.velocity.x *= 0.97
@@ -88,8 +145,14 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       draw(ctx: CanvasRenderingContext2D) {
         if (!this.visible) return
         
-        // Calculate alpha based on particle type
-        const alpha = this.order ? 0.65 : 0.8
+        // Calculate alpha based on particle type and disturbance
+        let alpha = 0
+        if (this.order) {
+          // Ordered particles fade as they become more disturbed
+          alpha = Math.max(0.4, 0.8 - this.disturbance * 0.3)
+        } else {
+          alpha = 0.8
+        }
         
         ctx.fillStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
         ctx.beginPath()
@@ -113,7 +176,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     }
 
     // Create additional chaos particles for more connections on right side
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 40; i++) {
       const x = Math.random() * (size / 2) + size / 2 // Only on right side
       const y = Math.random() * size
       particles.push(new Particle(x, y, false))
@@ -126,7 +189,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           if (other === particle) return false
           
           // Different connection distances based on side
-          const connectionDistance = particle.order ? 30 : 70
+          const connectionDistance = particle.order ? 40 : 70
           
           const distance = Math.hypot(particle.x - other.x, particle.y - other.y)
           
@@ -137,11 +200,12 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           
           // Almost no connections between ordered particles
           if (particle.order && other.order) {
-            return false
+            return distance < 30 && Math.random() > 0.9
           }
           
-          // Few connections between ordered and chaotic
-          return distance < 40 && Math.random() > 0.7
+          // Important: Allow more connections between ordered and chaotic particles
+          // to enable the "pulling" effect we want
+          return distance < 60 && Math.random() > 0.6
         })
       })
     }
@@ -155,7 +219,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       ctx.clearRect(0, 0, size, size)
 
       // Update neighbor relationships periodically
-      if (time % 30 === 0) {
+      if (time % 20 === 0) {
         updateNeighbors()
       }
 
@@ -164,12 +228,33 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         particle.neighbors.forEach(neighbor => {
           const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
           
-          // Different line appearance based on side
-          if (particle.order) {
-            // Almost no connections on the ordered side
-            return
+          // Different line appearance based on particle types
+          if (particle.order && neighbor.order) {
+            // Very faint connections between ordered particles
+            if (Math.random() > 0.98) { // Only draw a tiny percentage
+              const alpha = 0.05
+              ctx.strokeStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+              ctx.lineWidth = 0.3
+              ctx.beginPath()
+              ctx.moveTo(particle.x, particle.y)
+              ctx.lineTo(neighbor.x, neighbor.y)
+              ctx.stroke()
+            }
+          } else if ((!particle.order && neighbor.order) || (particle.order && !neighbor.order)) {
+            // Connections between ordered and chaotic - the pull effect
+            const maxDist = 60
+            if (distance < maxDist) {
+              // Stronger lines for closer particles
+              const alpha = 0.2 * (1 - distance / maxDist)
+              ctx.strokeStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+              ctx.lineWidth = 0.5
+              ctx.beginPath()
+              ctx.moveTo(particle.x, particle.y)
+              ctx.lineTo(neighbor.x, neighbor.y)
+              ctx.stroke()
+            }
           } else {
-            // More visible connections on chaotic side
+            // Connections between chaotic particles
             const maxDist = 70
             if (distance < maxDist) {
               // Stronger lines for closer particles
