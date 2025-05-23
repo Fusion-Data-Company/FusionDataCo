@@ -104,15 +104,58 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h1 className="text-6xl md:text-7xl font-bold mb-6 tracking-tight">
-              <span className="text-white inline-block enterprise-text-shadow leading-tight">Enterprise-Grade</span><br/>
-              <div className="relative">
+              {/* Enterprise-Grade text with premium styling */}
+              <div className="relative group overflow-hidden">
+                {/* Background effects */}
+                <div className="absolute -inset-4 w-[120%] h-[120%] z-0">
+                  {/* Subtle grid pattern */}
+                  <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjAgNjBIMFYwaDYwdjYwem0tMjAgMEgwVjIwaDQwdjQwem0yMC00MEgxMFYxMGgzMHYxMHoiIGZpbGw9IiMxMTEyMjciIGZpbGwtb3BhY2l0eT0iMC4wNSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] rotate-45" />
+                  
+                  {/* Fading squares */}
+                  <div className="absolute -top-8 -left-4 w-20 h-20 bg-blue-600/5 rounded blur-md"></div>
+                  <div className="absolute top-4 right-0 w-16 h-16 bg-indigo-500/5 rounded-lg blur-md"></div>
+                  <div className="absolute bottom-0 left-20 w-12 h-12 bg-blue-400/5 rounded-md blur-sm"></div>
+                  
+                  {/* Subtle radial gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/0 via-slate-800/5 to-blue-900/5 rounded-lg"></div>
+                </div>
+                
+                {/* Text with neon highlight effect */}
+                <span className="relative z-10 text-white inline-block leading-tight enterprise-text-shadow">
+                  Enterprise-Grade
+                  <span className="absolute -inset-x-1 -inset-y-0.5 bg-blue-500/5 blur-sm rounded-lg z-[-1]"></span>
+                  <span className="absolute -inset-x-1 top-1/2 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"></span>
+                </span>
+              </div>
+              
+              <br/>
+              
+              {/* Marketing Platform with neon and gradient effects */}
+              <div className="relative mt-1 group">
+                {/* Animated gradient background for shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-indigo-500/10 to-blue-600/5 rounded-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                
+                {/* Subtle neon glow */}
+                <div className="absolute inset-0 bg-blue-500/5 rounded-lg blur-md -z-10"></div>
+                
+                {/* Main text with enhanced gradient */}
                 <motion.span 
                   ref={textRef}
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-400 inline-block enterprise-text" 
+                  className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 inline-block enterprise-text"
                 >
                   Marketing Platform
+                  
+                  {/* Neon highlight elements */}
+                  <div className="absolute h-[3px] w-12 -top-1 left-2 bg-blue-400/30 blur-sm"></div>
+                  <div className="absolute h-[2px] w-20 -bottom-1 right-8 bg-cyan-400/20 blur-sm"></div>
                 </motion.span>
+                
+                {/* Bottom border with enhanced gradient */}
                 <div className="absolute -bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+                
+                {/* Corner accent */}
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r border-b border-blue-400/20"></div>
+                <div className="absolute -top-1 -left-1 w-3 h-3 border-l border-t border-blue-400/20"></div>
               </div>
             </h1>
           </motion.div>
