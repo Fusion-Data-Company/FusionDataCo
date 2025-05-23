@@ -106,18 +106,22 @@ export default function Hero() {
             <h1 className="text-6xl md:text-7xl font-bold mb-6 tracking-tight">
               {/* Enterprise-Grade text with premium styling */}
               <div className="relative group overflow-hidden">
-                {/* Background effects */}
+                {/* Background effects with ambient green and orange */}
                 <div className="absolute -inset-4 w-[120%] h-[120%] z-0">
                   {/* Subtle grid pattern */}
                   <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjAgNjBIMFYwaDYwdjYwem0tMjAgMEgwVjIwaDQwdjQwem0yMC00MEgxMFYxMGgzMHYxMHoiIGZpbGw9IiMxMTEyMjciIGZpbGwtb3BhY2l0eT0iMC4wNSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] rotate-45" />
                   
-                  {/* Fading squares */}
-                  <div className="absolute -top-8 -left-4 w-20 h-20 bg-blue-600/5 rounded blur-md"></div>
-                  <div className="absolute top-4 right-0 w-16 h-16 bg-indigo-500/5 rounded-lg blur-md"></div>
+                  {/* Fading squares with orange and green ambient effects */}
+                  <div className="absolute -top-8 -left-4 w-20 h-20 bg-green-600/5 rounded blur-md"></div>
+                  <div className="absolute top-4 right-0 w-16 h-16 bg-orange-500/5 rounded-lg blur-md"></div>
                   <div className="absolute bottom-0 left-20 w-12 h-12 bg-blue-400/5 rounded-md blur-sm"></div>
                   
-                  {/* Subtle radial gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/0 via-slate-800/5 to-blue-900/5 rounded-lg"></div>
+                  {/* Ambient glow spots */}
+                  <div className="absolute top-1/3 -left-10 w-24 h-24 bg-green-500/5 rounded-full blur-xl"></div>
+                  <div className="absolute bottom-1/4 right-0 w-28 h-28 bg-orange-500/5 rounded-full blur-xl"></div>
+                  
+                  {/* Subtle radial gradient with green and orange hints */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-green-900/5 via-slate-800/5 to-orange-900/5 rounded-lg"></div>
                 </div>
                 
                 {/* Text with neon highlight effect */}
@@ -181,22 +185,22 @@ export default function Hero() {
               {/* The ambient glow effect - enhanced animation */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-lg opacity-70 group-hover:opacity-100 blur-md transition-all duration-500 group-hover:duration-200 animate-pulse-slow"></div>
               
-              {/* Titanium/metallic surface with reflective highlights */}
+              {/* Titanium/metallic surface with reflective highlights - solid, no transparency */}
               <Button 
                 size="lg" 
                 className="relative overflow-hidden h-14 px-8 z-10 border-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 group-hover:scale-[1.02] transition-transform duration-300"
                 onMouseEnter={() => setHoverButton1(true)}
                 onMouseLeave={() => setHoverButton1(false)}
               >
-                {/* Metallic reflective surface effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-300/10 via-transparent to-blue-300/5"></div>
+                {/* Metallic reflective surface effect - solid */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900"></div>
                 
-                {/* Shimmer effect layer */}
+                {/* Shimmer effect layer - on top of solid background */}
                 <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent bg-[length:200%_100%] animate-[buttonShimmer_2s_ease-in-out_infinite]"></div>
                 </div>
                 
-                {/* Horizontal light reflection sweep */}
+                {/* Horizontal light reflection sweep - on top of solid background */}
                 <div className="absolute inset-0 overflow-hidden">
                   <div className="w-[200%] h-full absolute top-0 -left-full bg-gradient-to-r from-transparent via-blue-400/20 to-transparent transform translate-x-[60%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out"></div>
                 </div>
@@ -248,25 +252,27 @@ export default function Hero() {
                 onMouseEnter={() => setHoverButton2(true)}
                 onMouseLeave={() => setHoverButton2(false)}
               >
-                {/* Marble/swirl effect background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
-                  <div className="absolute inset-0 opacity-30 mix-blend-overlay" 
-                    style={{ 
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                      backgroundSize: '150%',
-                      backgroundPosition: 'center'
-                    }}
-                  ></div>
-                </div>
+                {/* Solid background - no transparency */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800"></div>
                 
-                {/* Shimmer effect layer */}
+                {/* Marble/swirl effect texture overlay - opacity adjusted for solid appearance */}
+                <div className="absolute inset-0" 
+                  style={{ 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                    backgroundSize: '150%',
+                    backgroundPosition: 'center',
+                    opacity: 0.2
+                  }}
+                ></div>
+                
+                {/* Shimmer effect on top of solid background */}
                 <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-400/20 to-transparent bg-[length:200%_100%] animate-[buttonShimmer_2s_ease-in-out_infinite]"></div>
                 </div>
                 
-                {/* Swirl patterns - digital bowling ball effect */}
-                <div className="absolute top-0 left-0 w-32 h-32 rounded-full bg-gradient-to-br from-blue-600/20 to-transparent rotate-45 transform -translate-x-16 -translate-y-24 mix-blend-screen"></div>
-                <div className="absolute bottom-0 right-0 w-24 h-24 rounded-full bg-gradient-to-br from-indigo-600/20 to-transparent rotate-45 transform translate-x-12 translate-y-12 mix-blend-screen"></div>
+                {/* Swirl patterns with adjusted opacity for solid appearance */}
+                <div className="absolute top-0 left-0 w-32 h-32 rounded-full bg-gradient-to-br from-blue-600/10 to-slate-900/0 rotate-45 transform -translate-x-16 -translate-y-24"></div>
+                <div className="absolute bottom-0 right-0 w-24 h-24 rounded-full bg-gradient-to-br from-indigo-600/10 to-slate-900/0 rotate-45 transform translate-x-12 translate-y-12"></div>
                 
                 {/* Highlight reflections */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-300/40 to-transparent"></div>
