@@ -1,22 +1,40 @@
 import { Link } from "wouter";
 import { cn } from "@/lib/utils";
 import { Entropy } from "@/components/ui/entropy";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 1000,
+    height: typeof window !== 'undefined' ? window.innerHeight : 600
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <section 
-      className="relative overflow-hidden bg-background py-24 md:py-32"
+      className="relative overflow-hidden bg-black py-24 md:py-32"
     >
-      {/* Entropy animation background */}
-      <div className="absolute inset-0 w-full h-full bg-black">
+      {/* Entropy animation background with correct styling to match the reference image */}
+      <div className="absolute inset-0 w-full h-full flex items-center justify-center">
         <Entropy 
           className="w-full h-full" 
-          size={Math.max(window.innerWidth, window.innerHeight)}
+          size={Math.max(windowSize.width, 600)}
         />
       </div>
       
-      {/* Additional overlay for better text visibility */}
-      <div className="absolute inset-0 bg-black/30"></div>
+      {/* Subtle overlay for better text visibility */}
+      <div className="absolute inset-0 bg-black/10"></div>
       
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
