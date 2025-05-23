@@ -73,15 +73,18 @@ export default function Hero() {
             <p className="text-sm text-muted-foreground">No credit card required. Enterprise-level security.</p>
           </div>
           
-          <div className="glass-panel p-4 rounded-lg max-w-md mt-12 brushed-metal">
-            <p className="text-sm text-foreground/80 font-medium">
-              "Fusion Data Co has transformed our marketing operations with enterprise-grade tools that were previously only available to Fortune 500 companies."
-            </p>
-            <div className="flex items-center gap-3 mt-3">
-              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold">JD</div>
-              <div>
-                <p className="text-xs font-medium text-foreground">James Donovan</p>
-                <p className="text-xs text-muted-foreground">CMO, Horizon Financial</p>
+          <div className="titanium-card glow-blue p-4 rounded-lg max-w-md mt-12 relative">
+            <div className="ambient-glow"></div>
+            <div className="relative z-20">
+              <p className="text-sm text-white font-medium">
+                "Fusion Data Co has transformed our marketing operations with enterprise-grade tools that were previously only available to Fortune 500 companies."
+              </p>
+              <div className="flex items-center gap-3 mt-3">
+                <div className="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-white font-semibold">JD</div>
+                <div>
+                  <p className="text-xs font-medium text-white">James Donovan</p>
+                  <p className="text-xs text-white/80">CMO, Horizon Financial</p>
+                </div>
               </div>
             </div>
           </div>

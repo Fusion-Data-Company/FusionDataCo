@@ -176,8 +176,8 @@
   /* Titanium Card with Ambient Glow - Z-Stack Architecture */
   .titanium-card {
     @apply relative rounded-[18px] overflow-hidden;
-    background: linear-gradient(135deg, #1d1f20, #2e2f31, #3c3e40);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, #1a1c1e, #252729, #36383a);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 
       0 1px 0 rgba(255, 255, 255, 0.15),
       0 10px 30px rgba(0, 0, 0, 0.4);
@@ -208,16 +208,16 @@
   /* Layer 1: Ambient Glow Background */
   .ambient-glow {
     position: absolute;
-    z-index: 1;
+    z-index: -1;  /* Behind the card face */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 140%;
-    height: 140%;
+    width: 110%;
+    height: 110%;
     border-radius: inherit;
-    filter: blur(30px);
+    filter: blur(40px);
     pointer-events: none;
-    opacity: 0.8;
+    opacity: 1;
   }
   
   /* Default blue glow */
@@ -226,7 +226,7 @@
     position: absolute;
     inset: 0;
     background: radial-gradient(ellipse at center, rgba(0,76,255,0.7), rgba(0,0,0,0) 70%);
-    mix-blend-mode: screen;
+    mix-blend-mode: normal;
     z-index: 1;
   }
   
