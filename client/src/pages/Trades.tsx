@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Check, ChevronRight, BarChart3, Globe, Clock } from "lucide-react";
+import { Check, ChevronRight, BarChart3, Wrench, UserPlus } from "lucide-react";
 import { trackEvent } from '@/components/AnalyticsTracker';
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
@@ -20,14 +20,15 @@ const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
   phone: z.string().optional(),
-  company: z.string().min(2, { message: "Please enter your brokerage or agency name." }),
+  company: z.string().min(2, { message: "Please enter your company name." }),
+  tradetype: z.string().optional(),
   message: z.string().optional(),
-  source: z.string().default("RealEstateFunnel"),
+  source: z.string().default("TradesFunnel"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
-export default function RealEstate() {
+export default function Trades() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -40,8 +41,9 @@ export default function RealEstate() {
       email: "",
       phone: "",
       company: "",
+      tradetype: "",
       message: "",
-      source: "RealEstateFunnel",
+      source: "TradesFunnel",
     },
   });
 
@@ -54,7 +56,7 @@ export default function RealEstate() {
       trackEvent({
         category: 'lead_generation',
         action: 'submit',
-        label: 'real_estate_funnel',
+        label: 'trades_funnel',
       });
       
       // Submit to backend
@@ -87,10 +89,10 @@ export default function RealEstate() {
   return (
     <>
       <Helmet>
-        <title>Real Estate Marketing Solutions | Fusion Data Co</title>
+        <title>Trades & Service Business Marketing | Fusion Data Co</title>
         <meta 
           name="description" 
-          content="Specialized marketing automation for real estate professionals. Generate more listings, attract qualified buyers, and close more deals with Fusion Data Co."
+          content="Specialized marketing for plumbers, electricians, HVAC, and trades businesses. Generate more leads, book more jobs, and grow your service business with Fusion Data Co."
         />
       </Helmet>
       
@@ -104,11 +106,11 @@ export default function RealEstate() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gradient-primary leading-tight">
-                    Attract More Listings and Qualified Buyers
+                    Book More Jobs and Scale Your Service Business
                   </h1>
                   <p className="text-xl text-muted-foreground mb-8">
-                    Stop competing on price. Our AI-powered marketing system helps real estate 
-                    professionals become the obvious choice in their market.
+                    Stop worrying about where your next job will come from. Our proven marketing system 
+                    helps trades businesses generate a steady flow of qualified leads.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button 
@@ -125,7 +127,7 @@ export default function RealEstate() {
                         });
                       }}
                     >
-                      Get Your Market Domination Plan
+                      Get Your Lead Generation Plan
                       <ChevronRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
@@ -141,38 +143,38 @@ export default function RealEstate() {
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
-                              78% More Leads
+                              35+ Quality Leads Per Month
                             </h3>
                             <p className="text-muted-foreground text-sm">
-                              Our real estate clients see a 78% increase in qualified leads within 90 days.
+                              Our trades clients average 35+ qualified leads per month that convert to booked jobs.
                             </p>
                           </div>
                         </div>
                         
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
-                            <Globe className="h-6 w-6 text-primary" />
+                            <Wrench className="h-6 w-6 text-primary" />
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
-                              Digital Listing Dominance
+                              2.4x Average Ticket Value
                             </h3>
                             <p className="text-muted-foreground text-sm">
-                              Position yourself as the hyper-local expert with our AI-optimized content system.
+                              Our systems help you target higher-value jobs and upsell additional services.
                             </p>
                           </div>
                         </div>
                         
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
-                            <Clock className="h-6 w-6 text-primary" />
+                            <UserPlus className="h-6 w-6 text-primary" />
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
-                              Save 12+ Hours Per Week
+                              83% Customer Retention
                             </h3>
                             <p className="text-muted-foreground text-sm">
-                              Automated follow-up and lead nurturing frees you to focus on closing deals.
+                              Our automated follow-up system turns one-time customers into lifetime clients.
                             </p>
                           </div>
                         </div>
@@ -188,14 +190,14 @@ export default function RealEstate() {
           <section className="py-16 px-4 bg-card">
             <div className="container mx-auto">
               <h2 className="text-3xl font-bold mb-12 text-center">
-                <span className="text-primary">Real Challenges</span> Facing Today's Real Estate Professionals
+                <span className="text-primary">Common Challenges</span> Service Businesses Face
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Card className="bg-background border border-border/50">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold mb-4">
-                      Increasing Competition
+                      Feast or Famine Cycle
                     </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
@@ -203,7 +205,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          Tech-enabled discount brokers cutting into your territory and squeezing commissions
+                          Alternating between being too busy and struggling to find jobs
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -211,7 +213,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          Large brokerages with massive marketing budgets dominating your market
+                          Seasonal fluctuations making staffing and inventory planning difficult
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -219,7 +221,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          New agents entering the market fighting for the same listings
+                          Constant stress about where the next job will come from
                         </p>
                       </li>
                     </ul>
@@ -229,7 +231,7 @@ export default function RealEstate() {
                 <Card className="bg-background border border-border/50">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold mb-4">
-                      Inconsistent Lead Generation
+                      Lead Quality Issues
                     </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
@@ -237,7 +239,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          Overpaying for leads from portals that aren't exclusive and rarely convert
+                          Wasting time and money on leads that never convert to jobs
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -245,7 +247,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          Uncertainty about where your next listing is coming from
+                          Online directories and lead services charging high fees for shared leads
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -253,7 +255,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          Relying too heavily on referrals that can dry up in changing markets
+                          Low-budget customers haggling on price and causing payment problems
                         </p>
                       </li>
                     </ul>
@@ -263,7 +265,7 @@ export default function RealEstate() {
                 <Card className="bg-background border border-border/50">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold mb-4">
-                      Digital Marketing Overwhelm
+                      Marketing Complexity
                     </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
@@ -271,7 +273,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          Too many platforms to manage - social media, CRM, email, websites, IDX, MLS
+                          No time to manage multiple marketing channels while running your business
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -279,7 +281,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          Struggling to create fresh, engaging content that actually generates leads
+                          Agencies that don't understand the trades industry charging premium rates
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -287,7 +289,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          Not enough time to both market your business and actually serve clients
+                          Uncertainty about which marketing strategies actually work for service businesses
                         </p>
                       </li>
                     </ul>
@@ -297,7 +299,7 @@ export default function RealEstate() {
                 <Card className="bg-background border border-border/50">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold mb-4">
-                      Poor Lead Follow-up
+                      Customer Follow-up Challenges
                     </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
@@ -305,7 +307,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          Leads falling through the cracks because of inconsistent follow-up
+                          Losing potential repeat business because of poor follow-up systems
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -313,7 +315,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          No system for nurturing long-term prospects until they're ready to transact
+                          No systematic approach to getting reviews and referrals
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -321,7 +323,7 @@ export default function RealEstate() {
                           <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
                         <p className="text-muted-foreground">
-                          Precious time wasted on manual follow-up tasks instead of high-value activities
+                          Missing out on maintenance contracts and recurring revenue opportunities
                         </p>
                       </li>
                     </ul>
@@ -335,7 +337,7 @@ export default function RealEstate() {
           <section className="py-16 px-4 bg-background">
             <div className="container mx-auto">
               <h2 className="text-3xl font-bold mb-12 text-center">
-                <span className="text-primary">Proven Solutions</span> for Real Estate Success
+                <span className="text-primary">Proven Solutions</span> for Service Business Growth
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -343,27 +345,27 @@ export default function RealEstate() {
                   <CardContent className="p-6 space-y-4">
                     <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
                       <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-center">Hyper-Local Authority</h3>
+                    <h3 className="text-xl font-semibold text-center">Consistent Lead Generation</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">AI-generated neighborhood market reports</span>
+                        <span className="text-sm">Geo-targeted local SEO and PPC campaigns</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Automated property valuation landing pages</span>
+                        <span className="text-sm">Service-specific landing pages that convert</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Local content that positions you as the expert</span>
+                        <span className="text-sm">Emergency service promotion for premium jobs</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">Avg. Listing Increase:</p>
-                      <p className="text-xl font-bold text-primary">63%</p>
+                      <p className="text-sm text-muted-foreground">Monthly Leads:</p>
+                      <p className="text-xl font-bold text-primary">35+</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -372,27 +374,27 @@ export default function RealEstate() {
                   <CardContent className="p-6 space-y-4">
                     <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
                       <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-center">Listing Acquisition System</h3>
+                    <h3 className="text-xl font-semibold text-center">Business Automation</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Pre-listing nurture campaigns</span>
+                        <span className="text-sm">24/7 booking and estimate requests</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Automated FSBO and Expired outreach</span>
+                        <span className="text-sm">Automated follow-up and reminder system</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Seller lead magnet creation and distribution</span>
+                        <span className="text-sm">Customer database with service history</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">Commission Increase:</p>
-                      <p className="text-xl font-bold text-primary">2.6x</p>
+                      <p className="text-sm text-muted-foreground">Time Saved:</p>
+                      <p className="text-xl font-bold text-primary">23 hrs/week</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -401,27 +403,27 @@ export default function RealEstate() {
                   <CardContent className="p-6 space-y-4">
                     <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
                       <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-center">Buyer Conversion Engine</h3>
+                    <h3 className="text-xl font-semibold text-center">Reputation Management</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Personalized property alerts</span>
+                        <span className="text-sm">Automated review collection from customers</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Automated showing feedback collection</span>
+                        <span className="text-sm">Showcase testimonials to build trust</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Buyer journey tracking and optimization</span>
+                        <span className="text-sm">Proactive review monitoring and response</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">Lead Response Time:</p>
-                      <p className="text-xl font-bold text-primary">↓ 97%</p>
+                      <p className="text-sm text-muted-foreground">Positive Reviews:</p>
+                      <p className="text-xl font-bold text-primary">+187%</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -431,16 +433,17 @@ export default function RealEstate() {
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                   <div className="md:w-3/4">
                     <h3 className="text-2xl font-semibold mb-2">
-                      "I went from 4 to 18 listings in 5 months."
+                      "My schedule stays full now, even in the slow season."
                     </h3>
                     <p className="text-muted-foreground">
-                      "Fusion Data Co's automated marketing system completely transformed my business. 
-                      My digital presence makes me look like a team of 20 when it's just me and my 
-                      assistant. Best investment I've made in my business in 15 years."
+                      "Before working with Fusion, we'd spend thousands on advertising with uneven results. 
+                      Their system has completely transformed our business. We're booked solid 3 weeks out, 
+                      our average ticket value is up 72%, and I've got the peace of mind knowing new jobs are 
+                      coming in consistently."
                     </p>
                     <div className="mt-4">
-                      <p className="font-semibold">Jessica Martinez</p>
-                      <p className="text-sm text-muted-foreground">Broker, Coastal Premier Properties</p>
+                      <p className="font-semibold">Mike Rodriguez</p>
+                      <p className="text-sm text-muted-foreground">Owner, Rodriguez Plumbing & HVAC</p>
                     </div>
                   </div>
                   <div className="md:w-1/4 flex justify-center md:justify-end">
@@ -473,10 +476,10 @@ export default function RealEstate() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                    Ready to <span className="text-primary">Dominate</span> Your Local Market?
+                    Ready to <span className="text-primary">Fill Your Schedule</span> With Quality Jobs?
                   </h2>
                   <p className="text-lg mb-8 text-muted-foreground">
-                    Get your personalized Real Estate Market Domination Plan with a free 30-minute strategy session.
+                    Get your customized Lead Generation Plan with a free 30-minute strategy session.
                   </p>
                   
                   <div className="space-y-6">
@@ -487,7 +490,7 @@ export default function RealEstate() {
                       <div>
                         <h3 className="font-semibold text-lg">Custom Marketing Blueprint</h3>
                         <p className="text-muted-foreground">
-                          We'll analyze your market and create a tailored marketing strategy just for you.
+                          We'll analyze your service area and create a tailored marketing plan for your business.
                         </p>
                       </div>
                     </div>
@@ -499,7 +502,7 @@ export default function RealEstate() {
                       <div>
                         <h3 className="font-semibold text-lg">Competitor Analysis</h3>
                         <p className="text-muted-foreground">
-                          See what's working for top agents in your area and how to differentiate yourself.
+                          See what's working for top service providers in your area and how to stand out.
                         </p>
                       </div>
                     </div>
@@ -511,7 +514,7 @@ export default function RealEstate() {
                       <div>
                         <h3 className="font-semibold text-lg">Lead Generation Forecast</h3>
                         <p className="text-muted-foreground">
-                          Get a detailed projection of the listings and buyers you could generate.
+                          Get a detailed projection of leads and revenue potential for your business.
                         </p>
                       </div>
                     </div>
@@ -528,7 +531,7 @@ export default function RealEstate() {
                           </div>
                           <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
                           <p className="text-muted-foreground mb-6">
-                            Your information has been submitted successfully. One of our real estate
+                            Your information has been submitted successfully. One of our service business
                             marketing specialists will contact you within 1 business day.
                           </p>
                           <Button 
@@ -541,12 +544,12 @@ export default function RealEstate() {
                       ) : (
                         <>
                           <h3 className="text-xl font-semibold mb-6">
-                            Get Your Free Market Domination Plan
+                            Get Your Free Lead Generation Plan
                           </h3>
                           
                           <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                              <input type="hidden" name="source" value="RealEstateFunnel" />
+                              <input type="hidden" name="source" value="TradesFunnel" />
                               
                               <FormField
                                 control={form.control}
@@ -555,7 +558,7 @@ export default function RealEstate() {
                                   <FormItem>
                                     <FormLabel>Full Name</FormLabel>
                                     <FormControl>
-                                      <Input placeholder="Jessica Martinez" {...field} />
+                                      <Input placeholder="Mike Rodriguez" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                   </FormItem>
@@ -569,7 +572,7 @@ export default function RealEstate() {
                                   <FormItem>
                                     <FormLabel>Email Address</FormLabel>
                                     <FormControl>
-                                      <Input placeholder="jessica@yourbrokerage.com" {...field} />
+                                      <Input placeholder="mike@yourplumbing.com" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                   </FormItem>
@@ -595,9 +598,23 @@ export default function RealEstate() {
                                 name="company"
                                 render={({ field }) => (
                                   <FormItem>
-                                    <FormLabel>Brokerage/Agency</FormLabel>
+                                    <FormLabel>Company Name</FormLabel>
                                     <FormControl>
-                                      <Input placeholder="Your Brokerage" {...field} />
+                                      <Input placeholder="Your Company Name" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              
+                              <FormField
+                                control={form.control}
+                                name="tradetype"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Type of Trade (Optional)</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="e.g., Plumbing, HVAC, Electrical, etc." {...field} />
                                     </FormControl>
                                     <FormMessage />
                                   </FormItem>
@@ -612,7 +629,7 @@ export default function RealEstate() {
                                     <FormLabel>What are your biggest challenges? (Optional)</FormLabel>
                                     <FormControl>
                                       <Textarea 
-                                        placeholder="What specific challenges are you facing in your real estate business?" 
+                                        placeholder="What specific challenges are you facing in your business?" 
                                         className="min-h-[100px]"
                                         {...field} 
                                       />
@@ -628,7 +645,7 @@ export default function RealEstate() {
                                 size="lg"
                                 disabled={isSubmitting}
                               >
-                                {isSubmitting ? "Submitting..." : "Get My Market Domination Plan"}
+                                {isSubmitting ? "Submitting..." : "Get My Lead Generation Plan"}
                               </Button>
                               
                               <p className="text-xs text-center text-muted-foreground pt-2">

@@ -1,107 +1,468 @@
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ChatBot from "@/components/ChatBot";
-import CTASection from "@/components/CTASection";
-import { Check, X, ChevronRight } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Check, ChevronRight, BarChart3, Shield, Clock } from "lucide-react";
+import { trackEvent } from '@/components/AnalyticsTracker';
+import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { apiRequest } from "@/lib/queryClient";
+
+// Define form schema
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  phone: z.string().optional(),
+  practice: z.string().min(2, { message: "Please enter your practice name." }),
+  specialty: z.string().optional(),
+  message: z.string().optional(),
+  source: z.string().default("MedicalFunnel"),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export default function Medical() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  // Initialize form
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      practice: "",
+      specialty: "",
+      message: "",
+      source: "MedicalFunnel",
+    },
+  });
+
+  // Form submission handler
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Track form submission event
+      trackEvent({
+        category: 'lead_generation',
+        action: 'submit',
+        label: 'medical_funnel',
+      });
+      
+      // Submit to backend
+      await apiRequest('/api/leads', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+      
+      setSubmitted(true);
+      toast({
+        title: "Form submitted successfully",
+        description: "We'll be in touch with you shortly.",
+      });
+      
+      // Reset form
+      form.reset();
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Submission failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <Helmet>
-        <title>Medical Practice Marketing Automation | Fusion Data Co</title>
-        <meta name="description" content="Automated marketing solutions for medical practices. Reduce no-shows, streamline patient intake, and grow your practice with our all-in-one platform." />
-        <meta name="keywords" content="medical practice marketing, healthcare automation, patient acquisition, medical CRM, appointment reminder software" />
+        <title>Healthcare Marketing Solutions | Fusion Data Co</title>
+        <meta 
+          name="description" 
+          content="Specialized marketing automation for medical practices. Attract new patients, fill your schedule, and grow your practice with Fusion Data Co."
+        />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-[#0b0b0d] text-white">
+      <div className="min-h-screen flex flex-col bg-background text-foreground">
         <Header />
+        
         <main className="flex-grow">
           {/* Hero Section */}
-          <section 
-            className="relative overflow-hidden bg-[#0b0b0d] py-20 md:py-28" 
-            style={{ 
-              backgroundImage: "url('https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&fit=max')",
-              backgroundSize: "cover", 
-              backgroundPosition: "center" 
-            }}
-          >
-            <div className="absolute inset-0 bg-[#0b0b0d]/80 bg-blend-overlay"></div>
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="max-w-3xl">
-                <h1 className="font-['Orbitron'] text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-                  <span className="text-white">Marketing Automation For</span>{" "}
-                  <span className="text-[#00ffff] [text-shadow:0_0_5px_#00ffff]">Medical Practices</span>
-                </h1>
-                <p className="text-lg md:text-xl mb-8 text-gray-300">
-                  Reduce no-shows, streamline patient intake, and grow your practice with our HIPAA-compliant marketing automation platform designed specifically for healthcare providers.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                  <Link href="/pricing">
-                    <a className="px-6 py-3 bg-[#00ffff] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#00ffff,0_0_10px_#00ffff] animate-[pulse-glow_3s_infinite] text-center">
-                      Start Free 14-Day Trial
-                    </a>
-                  </Link>
-                  <Link href="/#demo">
-                    <a className="px-6 py-3 bg-transparent border border-[#8f00ff] text-white rounded-md font-medium hover:bg-[#8f00ff] hover:text-[#0b0b0d] transition-all duration-300 text-center">
-                      Schedule Demo
-                    </a>
-                  </Link>
+          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-background to-card">
+            <div className="container mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gradient-primary leading-tight">
+                    Grow Your Medical Practice With Ethical Patient Acquisition
+                  </h1>
+                  <p className="text-xl text-muted-foreground mb-8">
+                    Healthcare professionals trust our HIPAA-compliant marketing system to 
+                    attract qualified patients while maintaining the highest ethical standards.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button 
+                      size="lg" 
+                      className="btn-titanium"
+                      onClick={() => {
+                        const formSection = document.getElementById('lead-form');
+                        formSection?.scrollIntoView({ behavior: 'smooth' });
+                        
+                        trackEvent({
+                          category: 'engagement',
+                          action: 'click',
+                          label: 'scroll_to_form_button',
+                        });
+                      }}
+                    >
+                      Schedule Your Practice Growth Assessment
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <Card className="bg-card border border-border/50 overflow-hidden">
+                    <CardContent className="p-6">
+                      <div className="space-y-6">
+                        <div className="flex items-start gap-4">
+                          <div className="bg-primary/10 p-3 rounded-full">
+                            <BarChart3 className="h-6 w-6 text-primary" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1">
+                              Increase Patient Volume by 43%
+                            </h3>
+                            <p className="text-muted-foreground text-sm">
+                              Our medical clients see an average 43% increase in new patients within 90 days.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start gap-4">
+                          <div className="bg-primary/10 p-3 rounded-full">
+                            <Shield className="h-6 w-6 text-primary" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1">
+                              HIPAA-Compliant Marketing
+                            </h3>
+                            <p className="text-muted-foreground text-sm">
+                              Our systems are designed from the ground up to maintain patient privacy and regulatory compliance.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start gap-4">
+                          <div className="bg-primary/10 p-3 rounded-full">
+                            <Clock className="h-6 w-6 text-primary" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1">
+                              Reduce No-Shows by 68%
+                            </h3>
+                            <p className="text-muted-foreground text-sm">
+                              Our automated reminder system dramatically reduces appointment no-shows and cancellations.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </div>
           </section>
-
+          
           {/* Pain Points Section */}
-          <section className="py-16 bg-[#0b0b0d]">
-            <div className="container mx-auto px-4">
-              <div className="max-w-3xl mx-auto">
-                <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-8 text-center">
-                  <span className="text-white">Common Medical Practice</span>{" "}
-                  <span className="text-red-500">Challenges</span>
-                </h2>
+          <section className="py-16 px-4 bg-card">
+            <div className="container mx-auto">
+              <h2 className="text-3xl font-bold mb-12 text-center">
+                <span className="text-primary">Common Challenges</span> Medical Practices Face
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Card className="bg-background border border-border/50">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold mb-4">
+                      Patient Acquisition Struggles
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground">
+                          Difficulty attracting new patients in competitive markets with large hospital networks
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground">
+                          Unreliable referral systems that create unpredictable patient flow
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground">
+                          Marketing agencies with no healthcare experience who don't understand regulations
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
                 
-                <div className="space-y-6">
-                  <div className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800">
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 mr-4">
-                        <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
-                          <X className="text-red-500" size={20} />
+                <Card className="bg-background border border-border/50">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold mb-4">
+                      Online Reputation Management
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
                         </div>
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold mb-2">High No-Show Rate</h3>
-                        <p className="text-gray-400">Medical practices face an average no-show rate of 18-30%, costing thousands in lost revenue every month and disrupting schedules.</p>
-                      </div>
+                        <p className="text-muted-foreground">
+                          Negative reviews damaging your practice's reputation even when providing excellent care
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground">
+                          No systematic approach to collecting and showcasing positive patient testimonials
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground">
+                          Poor online visibility compared to larger healthcare institutions
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-background border border-border/50">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold mb-4">
+                      Patient Communication Gaps
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground">
+                          High rate of missed appointments and last-minute cancellations
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground">
+                          Inefficient recall systems leading to gaps in preventative care
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground">
+                          Limited patient education systems, reducing treatment compliance
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-background border border-border/50">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold mb-4">
+                      Practice Management Inefficiency
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground">
+                          Disjointed systems that don't communicate with each other, creating data silos
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground">
+                          Staff spending too much time on administrative tasks instead of patient care
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground">
+                          No comprehensive analytics to make data-driven practice growth decisions
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+          
+          {/* Solution & ROI Section */}
+          <section className="py-16 px-4 bg-background">
+            <div className="container mx-auto">
+              <h2 className="text-3xl font-bold mb-12 text-center">
+                <span className="text-primary">Specialized Solutions</span> for Healthcare Providers
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
+                  <CardContent className="p-6 space-y-4">
+                    <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-semibold text-center">Patient Acquisition System</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">Specialty-specific content that educates and converts</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">Targeted digital campaigns to your ideal patients</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">Insurance-matched patient targeting</span>
+                      </li>
+                    </ul>
+                    <div className="pt-4 text-center">
+                      <p className="text-sm text-muted-foreground">Avg. New Patients:</p>
+                      <p className="text-xl font-bold text-primary">+43%</p>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
+                  <CardContent className="p-6 space-y-4">
+                    <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-semibold text-center">Patient Communication Hub</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">Multi-channel appointment reminders</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">Automated recall and preventative care outreach</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">HIPAA-compliant secure messaging</span>
+                      </li>
+                    </ul>
+                    <div className="pt-4 text-center">
+                      <p className="text-sm text-muted-foreground">No-show Reduction:</p>
+                      <p className="text-xl font-bold text-primary">68%</p>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
+                  <CardContent className="p-6 space-y-4">
+                    <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-semibold text-center">Reputation Management</h3>
+                    <ul className="space-y-2">
+                      <li className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">Proactive review collection and monitoring</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">Rapid response system for negative feedback</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">Testimonial showcasing and content creation</span>
+                      </li>
+                    </ul>
+                    <div className="pt-4 text-center">
+                      <p className="text-sm text-muted-foreground">Review Volume:</p>
+                      <p className="text-xl font-bold text-primary">5.2x</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+              
+              <div className="bg-card border border-border rounded-lg p-6 md:p-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                  <div className="md:w-3/4">
+                    <h3 className="text-2xl font-semibold mb-2">
+                      "Fusion Data Co transformed our patient acquisition strategy."
+                    </h3>
+                    <p className="text-muted-foreground">
+                      "As a busy dermatology practice, we struggled with consistent new patient flow. 
+                      Since implementing Fusion's healthcare marketing system, we've seen a 52% increase in new patients 
+                      and our schedule is consistently booked 3 weeks out. The system is completely HIPAA-compliant 
+                      and has become an essential part of our practice."
+                    </p>
+                    <div className="mt-4">
+                      <p className="font-semibold">Dr. Amanda Chen, MD</p>
+                      <p className="text-sm text-muted-foreground">Founder, Premier Dermatology Associates</p>
                     </div>
                   </div>
-                  
-                  <div className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800">
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 mr-4">
-                        <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
-                          <X className="text-red-500" size={20} />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold mb-2">Inefficient Patient Intake</h3>
-                        <p className="text-gray-400">Staff spends 4-6 hours daily on manual intake processes, resulting in data entry errors and extended patient wait times.</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800">
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 mr-4">
-                        <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
-                          <X className="text-red-500" size={20} />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold mb-2">Limited Patient Education</h3>
-                        <p className="text-gray-400">Practices struggle to provide timely, personalized patient education, leading to lower treatment adherence and patient satisfaction.</p>
-                      </div>
+                  <div className="md:w-1/4 flex justify-center md:justify-end">
+                    <div className="flex items-center gap-1">
+                      <svg className="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg className="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg className="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg className="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <svg className="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
                     </div>
                   </div>
                 </div>
@@ -109,148 +470,201 @@ export default function Medical() {
             </div>
           </section>
           
-          {/* Solution Section */}
-          <section className="py-16 bg-gradient-to-b from-[#0b0b0d] to-[#1a1a1f] relative overflow-hidden">
-            <div className="absolute inset-0 opacity-5 bg-[url('https://images.unsplash.com/photo-1534270804882-6b5048b1c1fc?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ')]"></div>
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="max-w-3xl mx-auto mb-12 text-center">
-                <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4">
-                  <span className="text-white">The</span>{" "}
-                  <span className="text-[#00ffff] [text-shadow:0_0_5px_#00ffff]">Solution</span>
-                </h2>
-                <p className="text-gray-400 text-lg">Our HIPAA-compliant platform automates patient communications and streamlines workflows.</p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800 hover:border-[#00ffff] transition-all duration-300">
-                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-4 flex items-center">
-                    <div className="w-10 h-10 rounded-full bg-[#00ffff]/20 flex items-center justify-center mr-3">
-                      <span className="text-[#00ffff]">1</span>
+          {/* CTA - Lead Form Section */}
+          <section id="lead-form" className="py-16 md:py-24 px-4 bg-card">
+            <div className="container mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                    Ready to <span className="text-primary">Grow</span> Your Healthcare Practice?
+                  </h2>
+                  <p className="text-lg mb-8 text-muted-foreground">
+                    Schedule a complimentary 30-minute Practice Growth Assessment with a healthcare marketing specialist.
+                  </p>
+                  
+                  <div className="space-y-6">
+                    <div className="flex gap-3">
+                      <div className="flex-shrink-0">
+                        <Check className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg">Practice-Specific Growth Plan</h3>
+                        <p className="text-muted-foreground">
+                          Receive a custom marketing blueprint tailored to your specialty and practice goals.
+                        </p>
+                      </div>
                     </div>
-                    Appointment Management
-                  </h3>
-                  <ul className="space-y-3 text-gray-400">
-                    <li className="flex items-start">
-                      <Check className="text-[#00ffff] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>Multi-channel appointment reminders (SMS, email, voice)</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Check className="text-[#00ffff] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>Automated waitlist notifications for cancellations</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Check className="text-[#00ffff] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>Online scheduling with insurance verification</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800 hover:border-[#14ffc8] transition-all duration-300">
-                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-4 flex items-center">
-                    <div className="w-10 h-10 rounded-full bg-[#14ffc8]/20 flex items-center justify-center mr-3">
-                      <span className="text-[#14ffc8]">2</span>
+                    
+                    <div className="flex gap-3">
+                      <div className="flex-shrink-0">
+                        <Check className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg">Patient Acquisition Forecast</h3>
+                        <p className="text-muted-foreground">
+                          See projections for new patient growth based on real data from your specialty.
+                        </p>
+                      </div>
                     </div>
-                    Digital Patient Intake
-                  </h3>
-                  <ul className="space-y-3 text-gray-400">
-                    <li className="flex items-start">
-                      <Check className="text-[#14ffc8] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>HIPAA-compliant digital forms and e-signatures</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Check className="text-[#14ffc8] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>Automated insurance eligibility verification</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Check className="text-[#14ffc8] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>Secure document upload for medical records</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800 hover:border-[#ff0aff] transition-all duration-300">
-                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-4 flex items-center">
-                    <div className="w-10 h-10 rounded-full bg-[#ff0aff]/20 flex items-center justify-center mr-3">
-                      <span className="text-[#ff0aff]">3</span>
+                    
+                    <div className="flex gap-3">
+                      <div className="flex-shrink-0">
+                        <Check className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg">Compliance Assessment</h3>
+                        <p className="text-muted-foreground">
+                          Identify any HIPAA or regulatory risks in your current marketing approach.
+                        </p>
+                      </div>
                     </div>
-                    Patient Education
-                  </h3>
-                  <ul className="space-y-3 text-gray-400">
-                    <li className="flex items-start">
-                      <Check className="text-[#ff0aff] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>Condition-specific education sequences</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Check className="text-[#ff0aff] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>Procedure preparation instructions</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Check className="text-[#ff0aff] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>Post-treatment care reminders</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800 hover:border-[#8f00ff] transition-all duration-300">
-                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-4 flex items-center">
-                    <div className="w-10 h-10 rounded-full bg-[#8f00ff]/20 flex items-center justify-center mr-3">
-                      <span className="text-[#8f00ff]">4</span>
-                    </div>
-                    Practice Growth
-                  </h3>
-                  <ul className="space-y-3 text-gray-400">
-                    <li className="flex items-start">
-                      <Check className="text-[#8f00ff] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>Patient review automation and monitoring</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Check className="text-[#8f00ff] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>Referral management and tracking</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Check className="text-[#8f00ff] mt-1 mr-2 flex-shrink-0" size={16} />
-                      <span>Birthday and check-up reminders</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              {/* Results/ROI Section */}
-              <div className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-8 border border-gray-800 max-w-3xl mx-auto">
-                <h3 className="font-['Orbitron'] text-2xl font-semibold mb-6 text-center">
-                  <span className="text-[#00ffff] [text-shadow:0_0_5px_#00ffff]">Real Results</span> for Medical Practices
-                </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-white mb-2">68%</div>
-                    <p className="text-gray-400">Reduction in appointment no-shows</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-white mb-2">90%</div>
-                    <p className="text-gray-400">Decrease in paperwork and manual data entry</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-white mb-2">32%</div>
-                    <p className="text-gray-400">Increase in patient satisfaction scores</p>
                   </div>
                 </div>
                 
-                <div className="text-center">
-                  <Link href="/#demo">
-                    <a className="inline-flex items-center px-6 py-3 bg-[#00ffff] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#00ffff,0_0_10px_#00ffff] transition-all duration-300">
-                      See How It Works <ChevronRight size={16} className="ml-2" />
-                    </a>
-                  </Link>
+                <div>
+                  <Card className="bg-background border border-border/50">
+                    <CardContent className="p-6 md:p-8">
+                      {submitted ? (
+                        <div className="text-center py-8">
+                          <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <Check className="h-8 w-8 text-primary" />
+                          </div>
+                          <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
+                          <p className="text-muted-foreground mb-6">
+                            Your information has been submitted successfully. One of our healthcare marketing
+                            specialists will contact you within 1 business day to schedule your assessment.
+                          </p>
+                          <Button 
+                            className="btn-titanium" 
+                            onClick={() => setSubmitted(false)}
+                          >
+                            Submit Another Inquiry
+                          </Button>
+                        </div>
+                      ) : (
+                        <>
+                          <h3 className="text-xl font-semibold mb-6">
+                            Schedule Your Free Practice Growth Assessment
+                          </h3>
+                          
+                          <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                              <input type="hidden" name="source" value="MedicalFunnel" />
+                              
+                              <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Full Name</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="Dr. Amanda Chen" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              
+                              <FormField
+                                control={form.control}
+                                name="email"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Email Address</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="doctor@yourpractice.com" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              
+                              <FormField
+                                control={form.control}
+                                name="phone"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Phone Number (Optional)</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="(555) 123-4567" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              
+                              <FormField
+                                control={form.control}
+                                name="practice"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Practice Name</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="Your Practice Name" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              
+                              <FormField
+                                control={form.control}
+                                name="specialty"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Specialty (Optional)</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="e.g., Dermatology, Dentistry, etc." {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              
+                              <FormField
+                                control={form.control}
+                                name="message"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>What are your practice goals? (Optional)</FormLabel>
+                                    <FormControl>
+                                      <Textarea 
+                                        placeholder="What specific challenges are you facing in your practice?" 
+                                        className="min-h-[100px]"
+                                        {...field} 
+                                      />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              
+                              <Button 
+                                type="submit" 
+                                className="w-full btn-titanium" 
+                                size="lg"
+                                disabled={isSubmitting}
+                              >
+                                {isSubmitting ? "Submitting..." : "Schedule My Assessment"}
+                              </Button>
+                              
+                              <p className="text-xs text-center text-muted-foreground pt-2">
+                                By submitting, you agree to our Privacy Policy and Terms of Service.
+                                We'll never share your information.
+                              </p>
+                            </form>
+                          </Form>
+                        </>
+                      )}
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </div>
           </section>
-          
-          <CTASection />
         </main>
+        
         <Footer />
-        <ChatBot />
       </div>
     </>
   );

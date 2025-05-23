@@ -8,14 +8,15 @@ import { queryClient } from "./lib/queryClient";
 
 // Pages
 import Home from "@/pages/Home";
-import SmallBusiness from "@/pages/SmallBusiness";
+import SmallBusinessOwners from "@/pages/SmallBusinessOwners";
 import RealEstate from "@/pages/RealEstate";
 import Medical from "@/pages/Medical";
-import HomeServices from "@/pages/HomeServices";
-import SocialMediaServices from "@/pages/SocialMediaServices";
+import Trades from "@/pages/Trades";
 import CRM from "@/pages/CRM";
 import Pricing from "@/pages/Pricing";
+import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
+import Login from "@/pages/Login";
 
 // Marketing Automation Pages
 import Campaigns from "@/pages/Campaigns";
@@ -31,17 +32,17 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/small-business" component={SmallBusiness} />
+      <Route path="/small-business-owners" component={SmallBusinessOwners} />
       <Route path="/real-estate" component={RealEstate} />
       <Route path="/medical" component={Medical} />
-      <Route path="/home-services" component={HomeServices} />
-      <Route path="/social-media" component={SocialMediaServices} />
+      <Route path="/trades" component={Trades} />
+      <Route path="/social-media" component={Campaigns} />
       <Route path="/crm" component={CRM} />
       <Route path="/pricing" component={Pricing} />
+      <Route path="/contact" component={Contact} />
       
       {/* Marketing Automation Routes */}
-      <Route path="/campaigns" component={Campaigns} />
-      <Route path="/campaigns/new" component={CampaignBuilder} />
+      <Route path="/campaign-builder" component={CampaignBuilder} />
       <Route path="/crm/campaigns" component={CrmCampaigns} />
       <Route path="/lead-magnet" component={LeadMagnet} />
       <Route path="/ai-marketing-suite" component={MarketingSuite} />
