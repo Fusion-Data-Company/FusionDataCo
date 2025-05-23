@@ -4,15 +4,14 @@ import { Entropy } from "@/components/ui/entropy";
 import { useEffect, useState } from "react";
 
 export default function Hero() {
-  // Calculate the size based on viewport
-  const [size, setSize] = useState(600);
+  // Calculate the size based on viewport for proper fullscreen display
+  const [size, setSize] = useState(800);
   
   useEffect(() => {
-    // Set initial size
+    // Set initial size based on viewport
     const updateSize = () => {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
-      // Use a fixed aspect ratio for the animation
       setSize(Math.max(windowWidth, windowHeight));
     };
     
@@ -22,22 +21,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section 
-      className="relative overflow-hidden bg-black py-24 md:py-32"
-    >
-      {/* Entropy animation background with correct styling to match the reference image */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative w-full h-full overflow-hidden">
-          <Entropy size={size} className="absolute inset-0" />
-        </div>
+    <section className="relative overflow-hidden bg-black py-24 md:py-32">
+      {/* Entropy animation positioned as the hero background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <Entropy size={size} className="w-full h-full" />
       </div>
       
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-        <div className="absolute top-[15%] left-[5%] w-64 h-64 rounded-full bg-primary/20 blur-3xl"></div>
-        <div className="absolute bottom-[20%] right-[10%] w-72 h-72 rounded-full bg-accent/20 blur-3xl"></div>
-      </div>
-      
+      {/* Content overlay */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl relative">
           <div className="absolute -left-6 -top-6 w-12 h-12 border border-primary/40 rounded-lg"></div>
