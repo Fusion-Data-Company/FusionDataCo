@@ -94,14 +94,18 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
 
       update(time: number) {
         if (this.order) {
-          // LEFT SIDE PARTICLES - Stay in exact grid formation with no movement
+          // LEFT SIDE PARTICLES - Stay in exact grid formation with minimal movement
           
-          // Simply stay at original position (exact grid)
-          this.x = this.originalX
+          // Very slight breathing effect on left grid - subtle expand/contract
+          const breathingPhase = Math.sin(time * 0.1) * 0.5
+          const breathingX = (this.originalX - size/4) * (1.0 + breathingPhase * 0.01)
+          
+          // Apply the very subtle breathing motion
+          this.x = size/4 + breathingX
           this.y = this.originalY
           
           // Very rarely allow a particle to cross to the right (1/5000 chance)
-          if (Math.random() < 0.0002 && !this.transitioning && this.x > size * 0.4) {
+          if (Math.random() < 0.0004 && !this.transitioning && this.x > size * 0.4) {
             this.transitioning = true
             this.attractionPoint = {
               x: size/2 + 5 + Math.random() * 20,
@@ -220,9 +224,9 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           const g = parseInt(this.color.substring(3, 5), 16)
           const b = parseInt(this.color.substring(5, 7), 16)
           
-          // Very small glow for right side particles
-          const glowSize = this.size * 2
-          const glowAlpha = 0.05
+          // Very subtle inner glow
+          const glowSize = this.size * 1.5
+          const glowAlpha = 0.03 // Very faint
           
           const gradient = ctx.createRadialGradient(
             this.x, this.y, this.size * 0.5,
@@ -237,18 +241,23 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           ctx.arc(this.x, this.y, glowSize, 0, Math.PI * 2)
           ctx.fill()
           
-          // Main particle
-          ctx.fillStyle = this.color
+          // Main particle with subtle shimmer effect
+          const colorShift = Math.sin(Date.now() * 0.001 + this.x * 0.1) * 0.1
+          const rShifted = Math.min(255, Math.max(0, r * (1 + colorShift)))
+          const gShifted = Math.min(255, Math.max(0, g * (1 + colorShift)))
+          const bShifted = Math.min(255, Math.max(0, b * (1 + colorShift)))
+          
+          ctx.fillStyle = `rgb(${rShifted}, ${gShifted}, ${bShifted})`
           ctx.beginPath()
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
           ctx.fill()
           
-          // Tiny highlight dot for subtle 3D effect
+          // Tiny highlight for subtle 3D effect
           const highlightX = this.x - this.size * 0.25
           const highlightY = this.y - this.size * 0.25
-          const highlightSize = this.size * 0.2
+          const highlightSize = this.size * 0.15
           
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'
           ctx.beginPath()
           ctx.arc(highlightX, highlightY, highlightSize, 0, Math.PI * 2)
           ctx.fill()
@@ -295,7 +304,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       
       ctx.clearRect(0, 0, size, size)
       
-      // Draw divider line
+      // Draw elegant divider line with slight gradient
       ctx.strokeStyle = dividerGradient
       ctx.lineWidth = 1
       ctx.beginPath()
@@ -303,9 +312,43 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       ctx.lineTo(size / 2, size)
       ctx.stroke()
       
-      // Subtle pulsing effect on the boundary
-      const pulseTime = Date.now() * 0.001
+      // Add subtle pulsing dots along the divider to indicate conversion points
+      const pulseTime = Date.now() * 0.0005
       const pulseIntensity = (Math.sin(pulseTime) * 0.5 + 0.5) * 0.1
+      
+      // Add just 3 glowing dots along the divider - more subtle
+      for (let i = 0; i < 3; i++) {
+        const y = size * ((i + 1) / 4) + Math.sin(pulseTime * 2 + i) * 3
+        const dotSize = 0.8 + Math.sin(pulseTime * 3 + i * 0.7) * 0.3
+        const glow = 0.8 + Math.sin(pulseTime * 5 + i * 1.3) * 0.5
+        
+        // Draw a small glow point
+        const glowGradient = ctx.createRadialGradient(
+          size/2, y, 0,
+          size/2, y, 2 + glow
+        )
+        
+        // Use a color from the right side
+        const colorIndex = Math.floor(time * 0.01 + i) % rightSideColors.length
+        const color = rightSideColors[colorIndex]
+        const r = parseInt(color.substring(1, 3), 16)
+        const g = parseInt(color.substring(3, 5), 16)
+        const b = parseInt(color.substring(5, 7), 16)
+        
+        glowGradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.2)`)
+        glowGradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`)
+        
+        ctx.fillStyle = glowGradient
+        ctx.beginPath()
+        ctx.arc(size/2, y, 2 + glow, 0, Math.PI * 2)
+        ctx.fill()
+        
+        // Draw a small dot
+        ctx.fillStyle = color
+        ctx.beginPath()
+        ctx.arc(size/2, y, dotSize, 0, Math.PI * 2)
+        ctx.fill()
+      }
       
       // Draw connections between nearby points on same side
       particles.forEach(p1 => {
