@@ -1,0 +1,822 @@
+import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Check, ChevronRight, BarChart3, Wrench, Clock, XCircle, CheckCircle2, Users, Calendar, Hammer, Phone, Shield, DollarSign } from "lucide-react";
+import { trackEvent } from '@/components/AnalyticsTracker';
+import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { apiRequest } from "@/lib/queryClient";
+import ROICalculator from "@/components/ROICalculator";
+import ComparisonTable from "@/components/ComparisonTable";
+
+// Define form schema
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  phone: z.string().optional(),
+  business: z.string().min(2, { message: "Please enter your business name." }),
+  tradeType: z.string().min(1, { message: "Please select your trade type." }),
+  interestedService: z.string().min(1, { message: "Please select a service you're interested in." }),
+  message: z.string().optional(),
+  source: z.string().default("TradesFunnel"),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
+export default function Trades() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  // Initialize form
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      business: "",
+      tradeType: "",
+      interestedService: "",
+      message: "",
+      source: "TradesFunnel",
+    },
+  });
+
+  // Form submission handler
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Track form submission event
+      trackEvent({
+        category: 'lead_generation',
+        action: 'submit',
+        label: 'trades_funnel',
+      });
+      
+      // Submit to backend
+      await apiRequest('/api/leads', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+      
+      setSubmitted(true);
+      toast({
+        title: "Request submitted successfully",
+        description: "We'll be in touch within 24 hours to discuss how we can help grow your trade business.",
+      });
+      
+      // Reset form
+      form.reset();
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Submission failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>Trade Business Marketing Solutions | Fusion Data Co</title>
+        <meta 
+          name="description" 
+          content="Specialized marketing automation for trade businesses - plumbing, electrical, HVAC, roofing, and more. Get more service calls, better online reputation, and grow your trade business."
+        />
+      </Helmet>
+      
+      <div className="min-h-screen flex flex-col bg-[#0a0a0d] text-white">
+        <Header />
+        
+        <main className="flex-grow">
+          {/* Hero Section */}
+          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-[#0a0a0d] to-[#121218]">
+            <div className="container mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                    Stop Losing Jobs to <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Better Marketing</span>
+                  </h1>
+                  <p className="text-xl text-gray-300 mb-8">
+                    You're the best plumber, electrician, or contractor in your area. But customers can't tell 
+                    from your website. While you're fixing problems, competitors with better online presence 
+                    are booking the jobs you should be getting.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button 
+                      size="lg" 
+                      className="bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold rounded-md px-8 py-6 text-lg shadow-[0_0_15px_rgba(20,255,200,0.3)] hover:shadow-[0_0_20px_rgba(20,255,200,0.5)] transition-all duration-300"
+                      onClick={() => {
+                        const formSection = document.getElementById('lead-form');
+                        formSection?.scrollIntoView({ behavior: 'smooth' });
+                        
+                        trackEvent({
+                          category: 'engagement',
+                          action: 'click',
+                          label: 'scroll_to_form_button',
+                        });
+                      }}
+                    >
+                      Get More Service Calls
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <Card className="bg-[#121218] border border-gray-800 overflow-hidden rounded-lg shadow-xl">
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0d] to-[#121218] opacity-50"></div>
+                    <CardContent className="p-8 relative z-10">
+                      <div className="space-y-6">
+                        <div className="flex items-start gap-4">
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <Phone className="h-6 w-6 text-[#14ffc8]" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1 text-white">
+                              24/7 Lead Capture
+                            </h3>
+                            <p className="text-gray-400 text-sm">
+                              Never miss another emergency call or service request, even when you're on a job.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start gap-4">
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <Shield className="h-6 w-6 text-[#14ffc8]" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1 text-white">
+                              Professional Image
+                            </h3>
+                            <p className="text-gray-400 text-sm">
+                              Look like the established, trustworthy business you are with professional marketing.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start gap-4">
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <DollarSign className="h-6 w-6 text-[#14ffc8]" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1 text-white">
+                              Higher Value Jobs
+                            </h3>
+                            <p className="text-gray-400 text-sm">
+                              Professional marketing attracts customers who value quality and pay premium rates.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* Pain Points Section with Red Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
+            {/* Red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                The <span className="text-white">Frustrations</span> Every Trade Business Owner Knows
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      Your Website Looks Like 2005
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "Your nephew built it in high school. It doesn't work on phones and makes you look unprofessional."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "People judge your skill by your website. Yours says 'amateur' even though you're not."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "Customers can't figure out how to contact you. They call your competitor instead."
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      Customers Don't Trust You Online
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "You have 2 Google reviews. Your competitor has 50. Guess who gets the emergency calls?"
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "One bad review from 3 years ago is still the first thing people see about your business."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "People search for 'plumber near me' and you don't show up, even though you're 5 minutes away."
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      You're Always Chasing Work
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "Your phone only rings when something breaks. You want steady work, not just emergencies."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "You waste hours driving around giving estimates that never turn into jobs."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "You compete on price because customers can't see the difference in quality."
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      Marketing Makes No Sense
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "You're a tradesman, not a marketer. Social media, SEO, websites - it's all gibberish."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "You tried Facebook ads once. Spent $200, got 3 tire-kickers. Never again."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "Every 'marketing expert' wants $5,000 upfront and promises results they never deliver."
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+          
+          {/* Solution Section with Green Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
+            {/* Green ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/3 blur-3xl rounded-full opacity-10 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">The Solution:</span> Professional Trade Business Marketing
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <Phone className="h-6 w-6 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-white">
+                      Never Miss Another Call
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          24/7 lead capture even when you're on a job or sleeping
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Instant text responses to emergency service requests
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Automatic follow-up for estimates and maintenance reminders
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <Shield className="h-6 w-6 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-white">
+                      Look Like the Pro You Are
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Professional website that showcases your best work
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Google My Business optimization for local searches
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Systematic review collection from happy customers
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <DollarSign className="h-6 w-6 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-white">
+                      Higher Value Work
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Attract customers who value quality over lowest price
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Maintenance programs that provide steady monthly income
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Referral system that turns customers into salespeople
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+              
+              {/* ROI Calculator Section */}
+              <div className="max-w-5xl mx-auto mt-16">
+                <h3 className="text-2xl font-bold text-center mb-6 text-white">
+                  <span className="text-[#14ffc8]">ROI Calculator:</span> See What Professional Marketing Is Worth
+                </h3>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                  <div className="lg:col-span-3">
+                    <div className="bg-[#121218] border border-[#333340] rounded-lg p-6 mb-6">
+                      <h4 className="text-lg font-semibold mb-4 text-white">How Professional Marketing Impacts Your Trade Business</h4>
+                      <ul className="space-y-3">
+                        <li className="flex items-start gap-3">
+                          <div className="mt-1 flex-shrink-0">
+                            <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
+                          </div>
+                          <p className="text-gray-300">
+                            <span className="font-medium text-white">40% more service calls</span> from improved online visibility
+                          </p>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <div className="mt-1 flex-shrink-0">
+                            <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
+                          </div>
+                          <p className="text-gray-300">
+                            <span className="font-medium text-white">25% higher average job value</span> with professional image
+                          </p>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <div className="mt-1 flex-shrink-0">
+                            <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
+                          </div>
+                          <p className="text-gray-300">
+                            <span className="font-medium text-white">60% less time chasing leads</span> with automated systems
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-[#121218] border border-[#333340] rounded-lg p-6">
+                      <div className="flex items-center mb-4">
+                        <Hammer className="h-5 w-5 text-[#14ffc8] mr-2" />
+                        <h4 className="text-lg font-semibold text-white">Real Trade Business Results</h4>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div className="bg-[#0a0a0d] border border-[#333340] rounded-md p-4">
+                          <div className="text-2xl font-bold text-[#14ffc8] mb-1">156%</div>
+                          <div className="text-sm text-gray-400">Revenue increase in first year</div>
+                        </div>
+                        <div className="bg-[#0a0a0d] border border-[#333340] rounded-md p-4">
+                          <div className="text-2xl font-bold text-[#ff0aff] mb-1">$47k</div>
+                          <div className="text-sm text-gray-400">Average additional monthly revenue</div>
+                        </div>
+                        <div className="bg-[#0a0a0d] border border-[#333340] rounded-md p-4">
+                          <div className="text-2xl font-bold text-[#8f00ff] mb-1">4.7★</div>
+                          <div className="text-sm text-gray-400">Average review rating after 6 months</div>
+                        </div>
+                      </div>
+                      
+                      <div className="text-sm text-gray-400 italic">
+                        "I went from scrambling for work to having a 3-week backlog. My phone rings constantly 
+                        now, and customers actually call ME instead of shopping around."
+                        <div className="mt-1 text-white font-medium">— Mike D., Electrical Contractor</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="lg:col-span-2">
+                    <div className="sticky top-4">
+                      <ROICalculator className="h-full" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Comparison Table Section */}
+              <div className="max-w-5xl mx-auto mt-16">
+                <h3 className="text-2xl font-bold text-center mb-6 text-white">
+                  <span className="text-[#14ffc8]">Platform Comparison:</span> Why Trade Businesses Choose Us
+                </h3>
+                <ComparisonTable />
+              </div>
+            </div>
+          </section>
+          
+          {/* CTA and Lead Form Section */}
+          <section id="lead-form" className="py-16 px-4 bg-[#121218] relative overflow-hidden">
+            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/5 blur-3xl rounded-full opacity-10 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
+                  Ready to <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Build Your Trade Empire?</span>
+                </h2>
+                <p className="text-xl text-gray-300 mb-12 text-center">
+                  Let's build you a marketing system that brings in steady, high-value work.
+                </p>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                  {/* Lead form */}
+                  <div className="bg-[#0a0a0d] border border-[#333340] p-8 rounded-lg">
+                    <h3 className="text-2xl font-semibold mb-6 text-white">Get Your Trade Business Marketing Plan</h3>
+                    
+                    {submitted ? (
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-6 text-center">
+                        <div className="w-16 h-16 bg-[#14ffc8]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Check className="h-8 w-8 text-[#14ffc8]" />
+                        </div>
+                        <h4 className="text-xl font-semibold mb-2 text-white">Request Submitted!</h4>
+                        <p className="text-gray-300 mb-4">
+                          Thank you for reaching out. One of our trade business marketing specialists will contact you within 
+                          24 hours to discuss your custom strategy.
+                        </p>
+                        <Button 
+                          className="bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold"
+                          onClick={() => setSubmitted(false)}
+                        >
+                          Submit Another Request
+                        </Button>
+                      </div>
+                    ) : (
+                      <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <FormField
+                              control={form.control}
+                              name="name"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Your Name</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Mike Johnson" {...field} className="bg-[#121218] border-[#333340] text-white" />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="email"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Email Address</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="mike@mikesplumbing.com" {...field} className="bg-[#121218] border-[#333340] text-white" />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <FormField
+                              control={form.control}
+                              name="phone"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Phone Number</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="(555) 123-4567" {...field} className="bg-[#121218] border-[#333340] text-white" />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="business"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Business Name</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Mike's Plumbing" {...field} className="bg-[#121218] border-[#333340] text-white" />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <FormField
+                              control={form.control}
+                              name="tradeType"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Trade Type</FormLabel>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                  >
+                                    <FormControl>
+                                      <SelectTrigger className="bg-[#121218] border-[#333340] text-white">
+                                        <SelectValue placeholder="Select your trade" />
+                                      </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent className="bg-[#121218] border-[#333340] text-white">
+                                      <SelectItem value="plumbing">Plumbing</SelectItem>
+                                      <SelectItem value="electrical">Electrical</SelectItem>
+                                      <SelectItem value="hvac">HVAC</SelectItem>
+                                      <SelectItem value="roofing">Roofing</SelectItem>
+                                      <SelectItem value="carpentry">Carpentry</SelectItem>
+                                      <SelectItem value="painting">Painting</SelectItem>
+                                      <SelectItem value="flooring">Flooring</SelectItem>
+                                      <SelectItem value="landscaping">Landscaping</SelectItem>
+                                      <SelectItem value="general-contractor">General Contractor</SelectItem>
+                                      <SelectItem value="other-trade">Other Trade</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="interestedService"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Primary Interest</FormLabel>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                  >
+                                    <FormControl>
+                                      <SelectTrigger className="bg-[#121218] border-[#333340] text-white">
+                                        <SelectValue placeholder="Select service" />
+                                      </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent className="bg-[#121218] border-[#333340] text-white">
+                                      <SelectItem value="more-service-calls">More Service Calls</SelectItem>
+                                      <SelectItem value="professional-website">Professional Website</SelectItem>
+                                      <SelectItem value="online-reviews">Online Reputation</SelectItem>
+                                      <SelectItem value="lead-automation">Lead Automation</SelectItem>
+                                      <SelectItem value="google-visibility">Google Visibility</SelectItem>
+                                      <SelectItem value="full-marketing">Complete Marketing Package</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          
+                          <FormField
+                            control={form.control}
+                            name="message"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-white">Tell us about your business goals</FormLabel>
+                                <FormControl>
+                                  <Textarea 
+                                    placeholder="What challenges are you facing? What results are you looking for?"
+                                    {...field}
+                                    className="bg-[#121218] border-[#333340] text-white min-h-[120px]"
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          
+                          <Button 
+                            type="submit" 
+                            className="w-full bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold py-3"
+                            disabled={isSubmitting}
+                          >
+                            {isSubmitting ? (
+                              <>
+                                <span className="animate-pulse">Processing...</span>
+                              </>
+                            ) : (
+                              "Get My Trade Business Marketing Strategy"
+                            )}
+                          </Button>
+                          
+                          <p className="text-xs text-center text-gray-400">
+                            By submitting this form, you agree to our Privacy Policy and Terms of Service.
+                            We'll never share your information with third parties.
+                          </p>
+                        </form>
+                      </Form>
+                    )}
+                  </div>
+                  
+                  {/* Success stories */}
+                  <div className="bg-[#0a0a0d] border border-[#333340] p-8 rounded-lg space-y-8 flex flex-col justify-center">
+                    <h3 className="text-2xl font-semibold mb-2 text-white">What Trade Business Owners Are Saying</h3>
+                    
+                    <div className="space-y-6">
+                      <div className="relative">
+                        <div className="bg-[#121218] rounded-lg p-5 border border-[#333340] mb-4">
+                          <p className="text-gray-300 italic">
+                            "I used to spend Saturday mornings driving around giving free estimates. 
+                            Now qualified customers call me directly, and I book jobs over the phone."
+                          </p>
+                          <div className="absolute -bottom-3 left-5 w-6 h-6 bg-[#121218] border-b border-r border-[#333340] transform rotate-45"></div>
+                        </div>
+                        
+                        <div className="flex items-center ml-4">
+                          <div className="w-10 h-10 rounded-full bg-[#14ffc8]/20 flex items-center justify-center mr-3">
+                            <span className="text-[#14ffc8] font-semibold">MD</span>
+                          </div>
+                          <div>
+                            <div className="text-white font-medium">Mike Donovan</div>
+                            <div className="text-gray-400 text-sm">Elite Electrical Services</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="relative">
+                        <div className="bg-[#121218] rounded-lg p-5 border border-[#333340] mb-4">
+                          <p className="text-gray-300 italic">
+                            "My phone hasn't stopped ringing since they fixed my online presence. 
+                            I went from competing on price to charging premium rates for quality work."
+                          </p>
+                          <div className="absolute -bottom-3 left-5 w-6 h-6 bg-[#121218] border-b border-r border-[#333340] transform rotate-45"></div>
+                        </div>
+                        
+                        <div className="flex items-center ml-4">
+                          <div className="w-10 h-10 rounded-full bg-[#ff0aff]/20 flex items-center justify-center mr-3">
+                            <span className="text-[#ff0aff] font-semibold">JT</span>
+                          </div>
+                          <div>
+                            <div className="text-white font-medium">Jake Thompson</div>
+                            <div className="text-gray-400 text-sm">Superior Plumbing Solutions</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <Footer />
+      </div>
+    </>
+  );
+}

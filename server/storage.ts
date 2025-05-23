@@ -58,6 +58,20 @@ export interface IStorage {
   getActivitiesByDeal(dealId: number): Promise<CrmActivity[]>;
   updateActivity(id: number, activity: Partial<InsertCrmActivity>): Promise<CrmActivity | undefined>;
   deleteActivity(id: number): Promise<boolean>;
+  
+  // Lead operations
+  createLead(lead: InsertLead): Promise<Lead>;
+  getLead(id: number): Promise<Lead | undefined>;
+  getAllLeads(): Promise<Lead[]>;
+  updateLead(id: number, lead: Partial<InsertLead>): Promise<Lead | undefined>;
+  deleteLead(id: number): Promise<boolean>;
+  
+  // Social trial operations
+  createSocialTrial(trial: InsertSocialTrial): Promise<SocialTrial>;
+  getSocialTrial(id: number): Promise<SocialTrial | undefined>;
+  getAllSocialTrials(): Promise<SocialTrial[]>;
+  updateSocialTrial(id: number, trial: Partial<InsertSocialTrial>): Promise<SocialTrial | undefined>;
+  deleteSocialTrial(id: number): Promise<boolean>;
 }
 
 export class PostgresStorage implements IStorage {

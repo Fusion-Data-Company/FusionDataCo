@@ -1,0 +1,812 @@
+import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Check, ChevronRight, Heart, XCircle, CheckCircle2, Users, Calendar, Stethoscope, Shield, Clock } from "lucide-react";
+import { trackEvent } from '@/components/AnalyticsTracker';
+import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { apiRequest } from "@/lib/queryClient";
+import ROICalculator from "@/components/ROICalculator";
+
+// Define form schema
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  phone: z.string().optional(),
+  practice: z.string().min(2, { message: "Please enter your practice name." }),
+  specialty: z.string().min(1, { message: "Please select your specialty." }),
+  interestedService: z.string().min(1, { message: "Please select a service you're interested in." }),
+  message: z.string().optional(),
+  source: z.string().default("MedicalFunnel"),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
+export default function Medical() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  // Initialize form
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      practice: "",
+      specialty: "",
+      interestedService: "",
+      message: "",
+      source: "MedicalFunnel",
+    },
+  });
+
+  // Form submission handler
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Track form submission event
+      trackEvent({
+        category: 'lead_generation',
+        action: 'submit',
+        label: 'medical_funnel',
+      });
+      
+      // Submit to backend
+      await apiRequest('/api/leads', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+      
+      setSubmitted(true);
+      toast({
+        title: "Request submitted successfully",
+        description: "We'll be in touch within 24 hours to discuss how we can help grow your practice.",
+      });
+      
+      // Reset form
+      form.reset();
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Submission failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>Medical Practice Marketing Solutions | Fusion Data Co</title>
+        <meta 
+          name="description" 
+          content="Specialized marketing automation for medical practices and healthcare providers. Attract more patients, improve online reputation, and grow your practice with HIPAA-compliant solutions."
+        />
+      </Helmet>
+      
+      <div className="min-h-screen flex flex-col bg-[#0a0a0d] text-white">
+        <Header />
+        
+        <main className="flex-grow">
+          {/* Hero Section */}
+          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-[#0a0a0d] to-[#121218]">
+            <div className="container mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                    Stop Losing Patients to <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Better Online Presence</span>
+                  </h1>
+                  <p className="text-xl text-gray-300 mb-8">
+                    You save lives. You heal patients. But while you're focused on providing excellent care, 
+                    potential patients are choosing other practices based on professional websites, 
+                    online reviews, and digital presence that actually works.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button 
+                      size="lg" 
+                      className="bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold rounded-md px-8 py-6 text-lg shadow-[0_0_15px_rgba(20,255,200,0.3)] hover:shadow-[0_0_20px_rgba(20,255,200,0.5)] transition-all duration-300"
+                      onClick={() => {
+                        const formSection = document.getElementById('lead-form');
+                        formSection?.scrollIntoView({ behavior: 'smooth' });
+                        
+                        trackEvent({
+                          category: 'engagement',
+                          action: 'click',
+                          label: 'scroll_to_form_button',
+                        });
+                      }}
+                    >
+                      Grow My Practice Now
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <Card className="bg-[#121218] border border-gray-800 overflow-hidden rounded-lg shadow-xl">
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0d] to-[#121218] opacity-50"></div>
+                    <CardContent className="p-8 relative z-10">
+                      <div className="space-y-6">
+                        <div className="flex items-start gap-4">
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <Heart className="h-6 w-6 text-[#14ffc8]" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1 text-white">
+                              HIPAA-Compliant Patient Engagement
+                            </h3>
+                            <p className="text-gray-400 text-sm">
+                              Secure, professional systems that protect patient privacy while growing your practice.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start gap-4">
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <Calendar className="h-6 w-6 text-[#14ffc8]" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1 text-white">
+                              Automated Appointment Reminders
+                            </h3>
+                            <p className="text-gray-400 text-sm">
+                              Reduce no-shows and keep your schedule full with smart reminder systems.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start gap-4">
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <Stethoscope className="h-6 w-6 text-[#14ffc8]" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1 text-white">
+                              Professional Medical Marketing
+                            </h3>
+                            <p className="text-gray-400 text-sm">
+                              Build trust and authority with content that positions you as the expert patients seek.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* Pain Points Section with Red Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
+            {/* Red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                The <span className="text-white">Challenges</span> Medical Practices Face Today
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      Outdated Online Presence
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "Your website looks like it was built in 2005. Patients question your ability to provide modern care."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "Online appointment booking doesn't work. Patients call competitors who make it easy to schedule."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "Your Google listing has outdated hours and no patient reviews. You're invisible online."
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      Patient Communication Breakdown
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "30% no-show rate because patients forget appointments. Your schedule has gaps you can't fill."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "Staff spends hours calling to confirm appointments instead of supporting patient care."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "New patients get frustrated trying to reach you. They book with practices that respond faster."
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      Reputation Management Nightmares
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "One angry patient leaves a 1-star review. It stays up forever while happy patients never write reviews."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "You have no system to ask satisfied patients for reviews. Your competition has 50+ five-star reviews."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "Patients research doctors online before booking. Poor reviews mean lost revenue."
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      Technology That Doesn't Help
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "You didn't go to medical school to become a web developer. You need systems that just work."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "Your current 'solution' requires IT support every time you want to update practice information."
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <XCircle className="h-4 w-4 text-red-500" />
+                        </div>
+                        <p className="text-gray-300">
+                          "HIPAA compliance feels impossible with technology that wasn't built for healthcare."
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+          
+          {/* Solution Section with Green Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
+            {/* Green ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/3 blur-3xl rounded-full opacity-10 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">The Solution:</span> Healthcare Marketing That Actually Works
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <Shield className="h-6 w-6 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-white">
+                      HIPAA-Compliant Systems
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Secure patient communication and data handling built for healthcare
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Professional website that builds trust and authority in your field
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Online appointment booking that actually works on all devices
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <Calendar className="h-6 w-6 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-white">
+                      Automated Patient Engagement
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Smart appointment reminders that reduce no-shows by 60%
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Automated follow-up care instructions and health tips
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Patient portal integration for secure communication
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <Users className="h-6 w-6 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-white">
+                      Reputation Management
+                    </h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Automated review requests from satisfied patients
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Professional response management for all online reviews
+                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Local SEO optimization to appear in "doctor near me" searches
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+              
+              {/* ROI Calculator Section */}
+              <div className="max-w-5xl mx-auto mt-16">
+                <h3 className="text-2xl font-bold text-center mb-6 text-white">
+                  <span className="text-[#14ffc8]">ROI Calculator:</span> Calculate Your Practice Growth Potential
+                </h3>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                  <div className="lg:col-span-3">
+                    <div className="bg-[#121218] border border-[#333340] rounded-lg p-6 mb-6">
+                      <h4 className="text-lg font-semibold mb-4 text-white">How Professional Healthcare Marketing Impacts Your Practice</h4>
+                      <ul className="space-y-3">
+                        <li className="flex items-start gap-3">
+                          <div className="mt-1 flex-shrink-0">
+                            <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
+                          </div>
+                          <p className="text-gray-300">
+                            <span className="font-medium text-white">60% reduction in no-shows</span> with automated reminder systems
+                          </p>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <div className="mt-1 flex-shrink-0">
+                            <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
+                          </div>
+                          <p className="text-gray-300">
+                            <span className="font-medium text-white">35% more new patients</span> through improved online presence
+                          </p>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <div className="mt-1 flex-shrink-0">
+                            <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
+                          </div>
+                          <p className="text-gray-300">
+                            <span className="font-medium text-white">10+ hours saved weekly</span> through automation and efficiency
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-[#121218] border border-[#333340] rounded-lg p-6">
+                      <div className="flex items-center mb-4">
+                        <Heart className="h-5 w-5 text-[#14ffc8] mr-2" />
+                        <h4 className="text-lg font-semibold text-white">Real Healthcare Provider Results</h4>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div className="bg-[#0a0a0d] border border-[#333340] rounded-md p-4">
+                          <div className="text-2xl font-bold text-[#14ffc8] mb-1">89%</div>
+                          <div className="text-sm text-gray-400">Schedule utilization improvement in 90 days</div>
+                        </div>
+                        <div className="bg-[#0a0a0d] border border-[#333340] rounded-md p-4">
+                          <div className="text-2xl font-bold text-[#ff0aff] mb-1">$84k</div>
+                          <div className="text-sm text-gray-400">Average additional annual revenue</div>
+                        </div>
+                        <div className="bg-[#0a0a0d] border border-[#333340] rounded-md p-4">
+                          <div className="text-2xl font-bold text-[#8f00ff] mb-1">4.8★</div>
+                          <div className="text-sm text-gray-400">Average online rating after 6 months</div>
+                        </div>
+                      </div>
+                      
+                      <div className="text-sm text-gray-400 italic">
+                        "Our no-show rate dropped from 30% to 8% in the first month. The automated reminders 
+                        and professional online presence made a huge difference in patient engagement."
+                        <div className="mt-1 text-white font-medium">— Dr. Sarah Chen, Family Medicine</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="lg:col-span-2">
+                    <div className="sticky top-4">
+                      <ROICalculator className="h-full" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* CTA and Lead Form Section */}
+          <section id="lead-form" className="py-16 px-4 bg-[#121218] relative overflow-hidden">
+            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/5 blur-3xl rounded-full opacity-10 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
+                  Ready to <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Grow Your Practice?</span>
+                </h2>
+                <p className="text-xl text-gray-300 mb-12 text-center">
+                  Let's build you a healthcare marketing system that attracts more patients and saves you time.
+                </p>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                  {/* Lead form */}
+                  <div className="bg-[#0a0a0d] border border-[#333340] p-8 rounded-lg">
+                    <h3 className="text-2xl font-semibold mb-6 text-white">Get Your Healthcare Marketing Plan</h3>
+                    
+                    {submitted ? (
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-6 text-center">
+                        <div className="w-16 h-16 bg-[#14ffc8]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Check className="h-8 w-8 text-[#14ffc8]" />
+                        </div>
+                        <h4 className="text-xl font-semibold mb-2 text-white">Request Submitted!</h4>
+                        <p className="text-gray-300 mb-4">
+                          Thank you for reaching out. One of our healthcare marketing specialists will contact you within 
+                          24 hours to discuss your custom strategy.
+                        </p>
+                        <Button 
+                          className="bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold"
+                          onClick={() => setSubmitted(false)}
+                        >
+                          Submit Another Request
+                        </Button>
+                      </div>
+                    ) : (
+                      <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <FormField
+                              control={form.control}
+                              name="name"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Your Name</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Dr. John Smith" {...field} className="bg-[#121218] border-[#333340] text-white" />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="email"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Email Address</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="doctor@practice.com" {...field} className="bg-[#121218] border-[#333340] text-white" />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <FormField
+                              control={form.control}
+                              name="phone"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Phone Number</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="(555) 123-4567" {...field} className="bg-[#121218] border-[#333340] text-white" />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="practice"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Practice Name</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Your Practice Name" {...field} className="bg-[#121218] border-[#333340] text-white" />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <FormField
+                              control={form.control}
+                              name="specialty"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Medical Specialty</FormLabel>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                  >
+                                    <FormControl>
+                                      <SelectTrigger className="bg-[#121218] border-[#333340] text-white">
+                                        <SelectValue placeholder="Select specialty" />
+                                      </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent className="bg-[#121218] border-[#333340] text-white">
+                                      <SelectItem value="family-medicine">Family Medicine</SelectItem>
+                                      <SelectItem value="internal-medicine">Internal Medicine</SelectItem>
+                                      <SelectItem value="pediatrics">Pediatrics</SelectItem>
+                                      <SelectItem value="cardiology">Cardiology</SelectItem>
+                                      <SelectItem value="dermatology">Dermatology</SelectItem>
+                                      <SelectItem value="orthopedics">Orthopedics</SelectItem>
+                                      <SelectItem value="obstetrics-gynecology">OB/GYN</SelectItem>
+                                      <SelectItem value="psychiatry">Psychiatry</SelectItem>
+                                      <SelectItem value="dentistry">Dentistry</SelectItem>
+                                      <SelectItem value="other-specialty">Other Specialty</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="interestedService"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Primary Interest</FormLabel>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                  >
+                                    <FormControl>
+                                      <SelectTrigger className="bg-[#121218] border-[#333340] text-white">
+                                        <SelectValue placeholder="Select service" />
+                                      </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent className="bg-[#121218] border-[#333340] text-white">
+                                      <SelectItem value="website-redesign">Professional Website</SelectItem>
+                                      <SelectItem value="patient-acquisition">Patient Acquisition</SelectItem>
+                                      <SelectItem value="reputation-management">Reputation Management</SelectItem>
+                                      <SelectItem value="appointment-automation">Appointment Automation</SelectItem>
+                                      <SelectItem value="hipaa-compliance">HIPAA-Compliant Marketing</SelectItem>
+                                      <SelectItem value="full-marketing">Complete Marketing Package</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          
+                          <FormField
+                            control={form.control}
+                            name="message"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-white">Tell us about your practice goals</FormLabel>
+                                <FormControl>
+                                  <Textarea 
+                                    placeholder="What challenges are you facing? What results are you looking for?"
+                                    {...field}
+                                    className="bg-[#121218] border-[#333340] text-white min-h-[120px]"
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          
+                          <Button 
+                            type="submit" 
+                            className="w-full bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold py-3"
+                            disabled={isSubmitting}
+                          >
+                            {isSubmitting ? (
+                              <>
+                                <span className="animate-pulse">Processing...</span>
+                              </>
+                            ) : (
+                              "Get My Healthcare Marketing Strategy"
+                            )}
+                          </Button>
+                          
+                          <p className="text-xs text-center text-gray-400">
+                            HIPAA-compliant consultation. We'll never share your information with third parties.
+                          </p>
+                        </form>
+                      </Form>
+                    )}
+                  </div>
+                  
+                  {/* Success stories */}
+                  <div className="bg-[#0a0a0d] border border-[#333340] p-8 rounded-lg space-y-8 flex flex-col justify-center">
+                    <h3 className="text-2xl font-semibold mb-2 text-white">What Healthcare Providers Are Saying</h3>
+                    
+                    <div className="space-y-6">
+                      <div className="relative">
+                        <div className="bg-[#121218] rounded-lg p-5 border border-[#333340] mb-4">
+                          <p className="text-gray-300 italic">
+                            "We went from struggling to fill our schedule to being booked 3 weeks out. 
+                            The automated reminders alone saved us thousands in lost revenue from no-shows."
+                          </p>
+                          <div className="absolute -bottom-3 left-5 w-6 h-6 bg-[#121218] border-b border-r border-[#333340] transform rotate-45"></div>
+                        </div>
+                        
+                        <div className="flex items-center ml-4">
+                          <div className="w-10 h-10 rounded-full bg-[#14ffc8]/20 flex items-center justify-center mr-3">
+                            <span className="text-[#14ffc8] font-semibold">SC</span>
+                          </div>
+                          <div>
+                            <div className="text-white font-medium">Dr. Sarah Chen</div>
+                            <div className="text-gray-400 text-sm">Family Medicine Practice</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="relative">
+                        <div className="bg-[#121218] rounded-lg p-5 border border-[#333340] mb-4">
+                          <p className="text-gray-300 italic">
+                            "Our online reputation was terrible. Now we have 47 five-star reviews and 
+                            new patients specifically mention they chose us because of our professional image."
+                          </p>
+                          <div className="absolute -bottom-3 left-5 w-6 h-6 bg-[#121218] border-b border-r border-[#333340] transform rotate-45"></div>
+                        </div>
+                        
+                        <div className="flex items-center ml-4">
+                          <div className="w-10 h-10 rounded-full bg-[#ff0aff]/20 flex items-center justify-center mr-3">
+                            <span className="text-[#ff0aff] font-semibold">MR</span>
+                          </div>
+                          <div>
+                            <div className="text-white font-medium">Dr. Michael Rodriguez</div>
+                            <div className="text-gray-400 text-sm">Dental Practice - 2 Locations</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <Footer />
+      </div>
+    </>
+  );
+}

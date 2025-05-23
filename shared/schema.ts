@@ -357,3 +357,62 @@ export type InsertEmailTemplate = z.infer<typeof insertEmailTemplateSchema>;
 
 export type EmailCampaign = typeof emailCampaigns.$inferSelect;
 export type InsertEmailCampaign = z.infer<typeof insertEmailCampaignSchema>;
+
+// Leads table for form submissions
+export const leads = pgTable("leads", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  business: text("business"),
+  industry: text("industry"),
+  interestedService: text("interested_service"),
+  message: text("message"),
+  source: text("source").notNull().default("Website"),
+  status: text("status").notNull().default("new"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const insertLeadSchema = createInsertSchema(leads).pick({
+  name: true,
+  email: true,
+  phone: true,
+  business: true,
+  industry: true,
+  interestedService: true,
+  message: true,
+  source: true,
+});
+
+export type Lead = typeof leads.$inferSelect;
+export type InsertLead = z.infer<typeof insertLeadSchema>;
+
+// Social media trial signups
+export const socialTrials = pgTable("social_trials", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  businessName: text("business_name").notNull(),
+  businessType: text("business_type").notNull(),
+  currentFollowers: integer("current_followers").default(0),
+  goals: text("goals"),
+  status: text("status").notNull().default("pending"),
+  trialStartDate: timestamp("trial_start_date"),
+  trialEndDate: timestamp("trial_end_date"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertSocialTrialSchema = createInsertSchema(socialTrials).pick({
+  name: true,
+  email: true,
+  phone: true,
+  businessName: true,
+  businessType: true,
+  currentFollowers: true,
+  goals: true,
+});
+
+export type SocialTrial = typeof socialTrials.$inferSelect;
+export type InsertSocialTrial = z.infer<typeof insertSocialTrialSchema>;

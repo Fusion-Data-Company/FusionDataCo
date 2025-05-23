@@ -823,7 +823,7 @@ export default function RealEstate() {
       setSubmitted(true);
       toast({
         title: "Request submitted successfully",
-        description: "We'll be in touch with you shortly.",
+        description: "We'll be in touch within 24 hours to discuss how we can help grow your real estate business.",
       });
       
       // Reset form
