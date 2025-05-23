@@ -24,11 +24,10 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     canvas.style.height = `${size}px`
     ctx.scale(dpr, dpr)
 
-    // Theme colors - ambient blue, green, burnt orange, and cyan
+    // Theme colors - ambient blue, green, and cyan (no orange)
     const themeColors = [
       '#3b82f6', // ambient blue 
       '#10b981', // green
-      '#f97316', // burnt orange
       '#06b6d4'  // cyan
     ]
     
