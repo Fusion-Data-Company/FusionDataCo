@@ -124,11 +124,16 @@ export default function SocialMedia() {
         {/* Platform badges */}
         <div className="flex flex-wrap justify-center gap-4 mb-16">
           {platforms.map((platform, index) => (
-            <div key={index} className="glass-panel px-4 py-2 rounded-full flex items-center gap-2 border border-border/30">
-              <div className={`text-${platform.color}`}>
+            <div 
+              key={index} 
+              className="chrome-panel px-5 py-3 rounded-full flex items-center gap-3 border border-border/30 transition-all duration-300 hover:shadow-lg animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-card/80 text-${platform.color}`}>
                 {platform.icon}
               </div>
               <span className="text-foreground font-medium">{platform.name}</span>
+              <div className="w-2 h-2 rounded-full bg-primary/50 animate-pulse-glow ml-1"></div>
             </div>
           ))}
         </div>
@@ -138,36 +143,65 @@ export default function SocialMedia() {
           {enterpriseFeatures.map((feature, index) => (
             <div 
               key={index} 
-              className="titanium-panel rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="enterprise-card p-8 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group animate-fade-in"
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
-              <div className={`w-16 h-16 rounded-lg flex items-center justify-center mb-6 bg-${feature.color}/10 border border-${feature.color}/20`}>
-                <div className={`text-${feature.color}`}>
-                  {feature.icon}
+              <div className="absolute inset-0 bg-gradient-to-b from-card/0 via-card/0 to-card opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative z-10">
+                <div className={`w-16 h-16 rounded-lg flex items-center justify-center mb-6 bg-${feature.color}/10 border border-${feature.color}/20 group-hover:border-${feature.color}/40 transition-colors duration-300`}>
+                  <div className={`text-${feature.color}`}>
+                    {feature.icon}
+                  </div>
+                </div>
+                
+                <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-foreground">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground">{feature.description}</p>
+                
+                <div className="mt-6 pt-4 border-t border-border/20 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                  <a href="#" className="inline-flex items-center text-sm font-medium text-primary">
+                    Learn more about this feature
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
                 </div>
               </div>
-              
-              <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.description}</p>
             </div>
           ))}
         </div>
         
         {/* Enterprise Dashboard Preview */}
-        <div className="titanium-panel rounded-xl overflow-hidden mb-16 shadow-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="p-8 md:p-12 flex flex-col justify-center">
-              <h3 className="font-['Orbitron'] text-2xl font-semibold mb-6 text-foreground">
-                Enterprise-Grade <span className="text-primary text-shadow-titanium">Social Intelligence</span>
-              </h3>
+        <div className="chrome-panel rounded-xl overflow-hidden mb-16 shadow-xl relative animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          {/* Background pattern and glow */}
+          <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+          <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-primary/5 blur-[100px] rounded-full pointer-events-none"></div>
+          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-accent/5 blur-[100px] rounded-full pointer-events-none"></div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 relative z-10">
+            <div className="p-8 md:p-12 flex flex-col justify-center backdrop-blur-sm">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mr-4 shadow-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary w-6 h-6">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                  </svg>
+                </div>
+                <h3 className="font-['Orbitron'] text-2xl font-semibold text-foreground">
+                  Enterprise <span className="text-gradient-primary">Social Intelligence</span>
+                </h3>
+              </div>
               
-              <p className="text-muted-foreground mb-8">
+              <div className="w-20 h-1 bg-gradient-to-r from-primary to-transparent rounded-full mb-6"></div>
+              
+              <p className="text-muted-foreground mb-8 leading-relaxed">
                 Our enterprise social media platform empowers global teams with advanced governance, comprehensive analytics, and AI-powered insights to drive measurable business impact across all digital channels.
               </p>
               
               <ul className="space-y-4 mb-8">
                 {enterpriseBenefits.map((benefit, index) => (
-                  <li key={index} className="flex items-start">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                  <li key={index} className="flex items-start animate-fade-in" style={{ animationDelay: `${0.5 + (index * 0.1)}s` }}>
+                    <div className="flex-shrink-0 w-6 h-6 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center mr-3 shadow-sm">
                       <CheckCircle className="text-primary w-3 h-3" />
                     </div>
                     <span className="text-muted-foreground">{benefit}</span>
@@ -176,37 +210,74 @@ export default function SocialMedia() {
               </ul>
               
               <Link href="/pricing">
-                <span className={cn(
-                  "px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium shadow-md",
-                  "hover:shadow-lg transition-all duration-200 inline-flex items-center justify-center",
-                  "relative overflow-hidden group"
-                )}>
-                  <span className="relative z-10 flex items-center">
+                <span className="btn-titanium px-6 py-3 rounded-md font-medium shadow-md inline-flex items-center justify-center">
+                  <span className="flex items-center">
                     View Enterprise Plans
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
                   </span>
-                  <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 </span>
               </Link>
             </div>
             
-            <div className="bg-card/50 backdrop-blur-sm border-l border-border/30 p-8 md:p-12 relative overflow-hidden">
-              <div className="absolute -right-20 -bottom-20 w-80 h-80 opacity-5">
+            <div className="polished-chrome p-8 md:p-12 relative overflow-hidden border-l border-white/10">
+              <div className="absolute -right-20 -bottom-20 w-80 h-80 opacity-5 pointer-events-none">
                 <Laptop className="w-full h-full text-primary" />
               </div>
               
-              <div className="relative z-10">
-                <img 
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" 
-                  alt="Enterprise social media dashboard" 
-                  className="rounded-lg shadow-lg border border-border/40 w-full transition-all duration-500 hover:shadow-xl" 
-                />
+              <div className="relative z-10 perspective-1000">
+                {/* Terminal header */}
+                <div className="bg-black/70 rounded-t-lg p-2 border border-border/40 border-b-0 flex items-center">
+                  <div className="flex space-x-2 mr-4">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  </div>
+                  <div className="text-xs text-muted-foreground font-mono w-full text-center">
+                    Enterprise Social Intelligence Hub
+                  </div>
+                </div>
                 
-                <div className="mt-6 glass-panel p-4 rounded-lg">
-                  <h4 className="font-medium text-foreground mb-2">Executive KPI Dashboard</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Real-time analytics and performance metrics designed for C-suite executives and stakeholders.
-                  </p>
+                {/* Dashboard image */}
+                <div className="relative transform transition-transform duration-700 hover:rotate-y-5 hover:scale-105 shadow-2xl">
+                  <img 
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" 
+                    alt="Enterprise social media dashboard" 
+                    className="rounded-b-lg border border-border/40 w-full" 
+                  />
+                  
+                  {/* Dashboard overlay with metrics */}
+                  <div className="absolute top-4 right-4 glass-panel p-3 rounded-lg shadow-lg text-sm backdrop-blur-lg bg-card/50 border border-white/10 animate-fade-in" style={{ animationDelay: '0.9s' }}>
+                    <div className="flex items-center mb-1 text-accent">
+                      <TrendingUp className="w-3 h-3 mr-1" />
+                      <span className="font-mono font-medium">+147% Engagement</span>
+                    </div>
+                    <div className="h-1 w-full bg-black/20 rounded-full overflow-hidden">
+                      <div className="h-full bg-accent" style={{ width: '80%' }}></div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Info cards */}
+                <div className="grid grid-cols-2 gap-4 mt-6">
+                  <div className="glass-panel p-4 rounded-lg shadow-lg border border-white/10 hover-edge-glow transition-all duration-300 hover:-translate-y-1">
+                    <h4 className="font-medium text-foreground mb-2 flex items-center text-sm">
+                      <BarChart3 className="w-4 h-4 mr-2 text-primary" />
+                      Executive KPI Dashboard
+                    </h4>
+                    <p className="text-xs text-muted-foreground">
+                      Real-time analytics and performance metrics designed for C-suite executives and stakeholders.
+                    </p>
+                  </div>
+                  
+                  <div className="glass-panel p-4 rounded-lg shadow-lg border border-white/10 hover-edge-glow transition-all duration-300 hover:-translate-y-1">
+                    <h4 className="font-medium text-foreground mb-2 flex items-center text-sm">
+                      <Wand2 className="w-4 h-4 mr-2 text-accent" />
+                      AI-Powered Strategy
+                    </h4>
+                    <p className="text-xs text-muted-foreground">
+                      Predictive analytics and AI recommendations for optimal content performance.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

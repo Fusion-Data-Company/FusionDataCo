@@ -148,8 +148,9 @@ export default function CTASection() {
                     <select 
                       id="interest"
                       className="w-full px-4 py-3 bg-muted/30 border border-border rounded-md text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
+                      defaultValue=""
                     >
-                      <option value="" disabled selected>Select your primary interest</option>
+                      <option value="" disabled>Select your primary interest</option>
                       <option value="crm">Enterprise CRM</option>
                       <option value="automation">Marketing Automation</option>
                       <option value="analytics">Data Analytics & BI</option>

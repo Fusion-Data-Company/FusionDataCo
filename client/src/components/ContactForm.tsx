@@ -246,6 +246,7 @@ export default function ContactForm() {
                               "w-full px-4 py-3 bg-muted/30 border rounded-md text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors",
                               errors.companySize ? "border-destructive" : "border-border"
                             )}
+                            defaultValue=""
                           >
                             <option value="" disabled>Select company size</option>
                             <option value="50-100">50-100 employees</option>
@@ -266,6 +267,7 @@ export default function ContactForm() {
                               "w-full px-4 py-3 bg-muted/30 border rounded-md text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors",
                               errors.industry ? "border-destructive" : "border-border"
                             )}
+                            defaultValue=""
                           >
                             <option value="" disabled>Select your industry</option>
                             <option value="finance">Financial Services</option>
