@@ -25,6 +25,7 @@ import LeadMagnet from "@/pages/LeadMagnet";
 import MarketingSuite from "@/pages/MarketingSuite";
 import MarketingAutomations from "@/pages/MarketingAutomations";
 import EmailCenter from "@/pages/EmailCenter";
+import TelegramIntegrationPage from "@/pages/TelegramIntegrationPage";
 
 function Router() {
   return (
@@ -46,11 +47,16 @@ function Router() {
       <Route path="/ai-marketing-suite" component={MarketingSuite} />
       <Route path="/automations" component={MarketingAutomations} />
       <Route path="/crm/email-center" component={EmailCenter} />
+      <Route path="/crm/telegram" component={TelegramIntegrationPage} />
       
       <Route component={NotFound} />
     </Switch>
   );
 }
+
+// Import necessary authentication and analytics components
+import AuthProtection from "@/components/AuthProtection";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
 
 function App() {
   return (
@@ -62,9 +68,29 @@ function App() {
             <meta name="theme-color" content="#0b0b0d" />
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+            {/* JSON-LD structured data for SEO */}
+            <script type="application/ld+json">
+              {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Fusion Data Co",
+                "applicationCategory": "BusinessApplication",
+                "offers": {
+                  "@type": "Offer",
+                  "price": "49.00",
+                  "priceCurrency": "USD"
+                },
+                "operatingSystem": "Web Browser"
+              })}
+            </script>
           </Helmet>
           <Toaster />
-          <Router />
+          {/* Wrap Router with AuthProtection */}
+          <AuthProtection>
+            <Router />
+          </AuthProtection>
+          {/* Add analytics tracker component */}
+          <AnalyticsTracker />
         </TooltipProvider>
       </QueryClientProvider>
     </ThemeProvider>
