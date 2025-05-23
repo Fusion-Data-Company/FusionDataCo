@@ -8,6 +8,7 @@ import {
   insertCrmDealSchema,
   insertCrmActivitySchema
 } from "@shared/schema";
+import { marketingRouter } from "./marketing";
 import { nanoid } from "nanoid";
 
 export async function registerRoutes(app: Express): Promise<Server> {

@@ -33,7 +33,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { apiRequest } from "@/lib/queryClient";
-import { AVAILABLE_MODELS } from "../../server/openRouter";
+import { AVAILABLE_MODELS } from "@/lib/openRouter";
 
 interface CampaignFormData {
   goal: string;
