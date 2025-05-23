@@ -107,6 +107,7 @@
 }
 
 @layer utilities {
+  /* Text effects */
   .text-shadow-titanium {
     text-shadow: 0 0 5px #0078ff;
   }
@@ -116,7 +117,20 @@
   .text-shadow-accent {
     text-shadow: 0 0 5px #47a3ff;
   }
+  .text-gradient-primary {
+    background: linear-gradient(90deg, #0078ff, #47a3ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-silver {
+    background: linear-gradient(90deg, #7e7e8f, #b1b3bc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
+  /* Enterprise panels */
   .glass-panel {
     @apply backdrop-blur-md bg-card/80 border border-white/10 shadow-lg;
     background-image: linear-gradient(120deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
@@ -147,7 +161,30 @@
   .titanium-panel:hover::before {
     left: 100%;
   }
+
+  .chrome-panel {
+    @apply bg-card shadow-md border border-border/40 relative overflow-hidden;
+    background-image: 
+      linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 30%, 
+        rgba(255, 255, 255, 0) 60%, 
+        rgba(255, 255, 255, 0.03) 100%
+      );
+  }
+
+  .enterprise-card {
+    @apply bg-card shadow-lg rounded-xl border border-white/10 overflow-hidden;
+    background-image: linear-gradient(165deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 75%);
+    transition: all 0.3s ease;
+  }
   
+  .enterprise-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.3), 0 0 1px rgba(0, 120, 255, 0.1);
+  }
+  
+  /* Surface textures */
   .brushed-metal {
     background-image: 
       repeating-linear-gradient(
@@ -165,6 +202,37 @@
       );
   }
   
+  .polished-chrome {
+    background-image: 
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 25%,
+        rgba(255, 255, 255, 0.01) 50%,
+        rgba(255, 255, 255, 0.05) 75%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+  }
+  
+  .carbon-fiber {
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        rgba(30, 33, 40, 0.8) 0px,
+        rgba(30, 33, 40, 0.8) 1px,
+        rgba(10, 12, 16, 0.8) 1px,
+        rgba(10, 12, 16, 0.8) 4px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(30, 33, 40, 0.8) 0px,
+        rgba(30, 33, 40, 0.8) 1px,
+        rgba(10, 12, 16, 0.8) 1px,
+        rgba(10, 12, 16, 0.8) 4px
+      );
+  }
+  
+  /* Background patterns */
   .circuit-overlay {
     @apply bg-background/90 bg-blend-overlay;
     background-image: 
@@ -172,6 +240,26 @@
       radial-gradient(circle at 85% 30%, rgba(0, 120, 255, 0.08) 0%, transparent 25%);
   }
 
+  .bg-grid-pattern {
+    background-size: 30px 30px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 120, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 120, 255, 0.03) 1px, transparent 1px);
+  }
+  
+  .bg-titanium-gradient {
+    background: linear-gradient(135deg, #111318 0%, #1a1e27 100%);
+  }
+
+  .bg-enterprise-gradient {
+    background: linear-gradient(135deg, #0a0c10 0%, #131722 50%, #0e1018 100%);
+  }
+
+  .bg-dark-titanium {
+    background: radial-gradient(circle at center, #1a1e27 0%, #0a0c10 100%);
+  }
+
+  /* Animations */
   @keyframes pulse-glow {
     0% { box-shadow: 0 0 5px currentColor; }
     50% { box-shadow: 0 0 12px currentColor; }
@@ -191,15 +279,59 @@
   .hover-edge-glow:hover {
     animation: edge-glow 2s infinite;
   }
-  
-  .bg-grid-pattern {
-    background-size: 30px 30px;
-    background-image: 
-      linear-gradient(to right, rgba(0, 120, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 120, 255, 0.03) 1px, transparent 1px);
+
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-in-out;
+  }
+
+  /* Button styles */
+  .btn-titanium {
+    @apply bg-primary text-primary-foreground rounded-md font-medium transition-all duration-200 relative overflow-hidden;
   }
   
-  .premium-gradient {
-    background: linear-gradient(135deg, #121419 0%, #1e2128 100%);
+  .btn-titanium::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    transition: left 0.7s ease-out;
+  }
+  
+  .btn-titanium:hover::before {
+    left: 100%;
+  }
+
+  /* Social media brand colors */
+  .text-linkedin {
+    color: #0077B5;
+  }
+  
+  .text-twitter {
+    color: #1DA1F2;
+  }
+  
+  .text-instagram {
+    color: #E1306C;
+  }
+  
+  .text-facebook {
+    color: #1877F2;
+  }
+  
+  .text-youtube {
+    color: #FF0000;
   }
 }
