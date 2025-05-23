@@ -65,15 +65,37 @@ export default function Hero() {
         
         {/* Left column: Text content */}
         <div className="relative z-10 px-10 py-24 flex flex-col items-start justify-center text-left">
-          {/* Enterprise Badge */}
+          {/* Premium Enterprise Badge */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
             transition={{ duration: 0.5 }}
-            className="mb-6 inline-flex items-center px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-900/50 to-indigo-900/50 border border-blue-700/30 backdrop-blur-sm"
+            className="mb-6 group"
           >
-            <Star className="h-3.5 w-3.5 mr-2 text-blue-400" />
-            <span className="text-xs font-medium tracking-wider text-blue-300">ENTERPRISE SOLUTION</span>
+            <div className="relative inline-flex items-center">
+              {/* Subtle glow effect */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600/40 via-indigo-500/40 to-blue-700/40 rounded-xl opacity-75 blur-[6px] group-hover:opacity-100 transition duration-700"></div>
+              
+              {/* Badge container with premium styling */}
+              <div className="relative z-10 inline-flex items-center px-4 py-2 rounded-xl bg-gradient-to-br from-slate-900/90 via-slate-800/90 to-slate-950/90 border border-blue-600/30 backdrop-blur-md shadow-lg">
+                {/* Decorative corner elements */}
+                <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-blue-500/70"></div>
+                <div className="absolute top-0 right-0 w-1.5 h-1.5 border-t border-r border-blue-500/70"></div>
+                <div className="absolute bottom-0 left-0 w-1.5 h-1.5 border-b border-l border-blue-500/70"></div>
+                <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-blue-500/70"></div>
+                
+                {/* Icon with enhanced visual treatment */}
+                <div className="mr-2.5 w-5 h-5 rounded-full bg-gradient-to-br from-blue-500/30 to-indigo-600/30 flex items-center justify-center">
+                  <Star className="h-3 w-3 text-blue-400" fill="rgba(96, 165, 250, 0.6)" />
+                </div>
+                
+                {/* Premium typography */}
+                <div className="flex flex-col">
+                  <span className="text-xs font-semibold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-blue-200 to-blue-300">ENTERPRISE SOLUTION</span>
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"></div>
+                </div>
+              </div>
+            </div>
           </motion.div>
           
           <motion.div
@@ -242,10 +264,27 @@ export default function Hero() {
         </motion.div>
       </div>
       
-      {/* Live counter at bottom */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 p-2 px-4 rounded-full text-xs bg-gradient-to-r from-slate-900/80 to-slate-800/80 border border-slate-700/30 text-slate-300 backdrop-blur-md hidden md:flex items-center gap-2 z-10">
-        <div className="w-2 h-2 rounded-full bg-green-400"></div>
-        <span>7,258 enterprises using this platform now</span>
+      {/* Premium live counter at bottom */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="relative group">
+          {/* Subtle glow effect */}
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/30 via-indigo-600/30 to-blue-700/30 rounded-xl opacity-60 blur-[5px] group-hover:opacity-100 transition duration-700"></div>
+          
+          {/* Premium counter container */}
+          <div className="relative px-5 py-2 rounded-xl bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-md border border-blue-500/20 shadow-lg flex items-center gap-3">
+            {/* Pulse animation */}
+            <div className="relative">
+              <div className="absolute inset-0 rounded-full bg-green-400/30 animate-ping"></div>
+              <div className="relative z-10 w-2.5 h-2.5 rounded-full bg-green-400 shadow-inner shadow-green-900/10"></div>
+            </div>
+            
+            {/* Premium styled text */}
+            <div className="flex items-center">
+              <span className="text-lg font-bold mr-1.5 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-blue-300">7,258</span>
+              <span className="text-xs tracking-wide text-slate-300 font-medium">enterprises using this platform now</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
