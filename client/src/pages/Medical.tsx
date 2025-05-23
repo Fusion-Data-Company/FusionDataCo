@@ -134,8 +134,9 @@ export default function Medical() {
                 </div>
                 
                 <div className="relative">
-                  <Card className="bg-card border border-border/50 overflow-hidden">
-                    <CardContent className="p-6">
+                  <Card className="enterprise-card">
+                    <div className="glow-wrapper"></div>
+                    <CardContent className="p-6 enterprise-card-content">
                       <div className="space-y-6">
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">

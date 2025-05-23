@@ -132,8 +132,9 @@ export default function RealEstate() {
                 </div>
                 
                 <div className="relative">
-                  <Card className="bg-card border border-border/50 overflow-hidden">
-                    <CardContent className="p-6">
+                  <Card className="enterprise-card">
+                    <div className="glow-wrapper"></div>
+                    <CardContent className="p-6 enterprise-card-content">
                       <div className="space-y-6">
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
@@ -192,8 +193,9 @@ export default function RealEstate() {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Increasing Competition
                     </h3>
@@ -226,8 +228,9 @@ export default function RealEstate() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Inconsistent Lead Generation
                     </h3>
@@ -260,8 +263,9 @@ export default function RealEstate() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Digital Marketing Overwhelm
                     </h3>
@@ -294,8 +298,9 @@ export default function RealEstate() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Poor Lead Follow-up
                     </h3>
