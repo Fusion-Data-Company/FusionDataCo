@@ -42,7 +42,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         this.y = y
         this.originalX = x
         this.originalY = y
-        this.size = order ? 1.5 : 1.8
+        this.size = 1.5
         this.order = order
         this.velocity = {
           x: (Math.random() - 0.5) * (order ? 0.2 : 2),
@@ -54,57 +54,32 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
 
       update() {
         if (this.order) {
-          // Ordered particles on the grid
-          const dx = this.originalX - this.x
-          const dy = this.originalY - this.y
-
-          // Calculate influence from chaos particles
-          const chaosInfluence = { x: 0, y: 0 }
-          this.neighbors.forEach(neighbor => {
-            if (!neighbor.order) {
-              const distance = Math.hypot(this.x - neighbor.x, this.y - neighbor.y)
-              const strength = Math.max(0, 1 - distance / 120)
-              chaosInfluence.x += (neighbor.velocity.x * strength)
-              chaosInfluence.y += (neighbor.velocity.y * strength)
-              this.influence = Math.max(this.influence, strength * 0.5)
-            }
-          })
-
-          // Calculate boundary effect - particles near the boundary are more influenced
-          const distanceToBoundary = Math.abs(this.x - size / 2)
-          const boundaryEffect = Math.max(0, 1 - distanceToBoundary / 40)
-          this.influence = Math.max(this.influence, boundaryEffect * 0.3)
-
-          // Blend grid pull with chaos influence
-          this.x += dx * 0.08 * (1 - this.influence) + chaosInfluence.x * this.influence
-          this.y += dy * 0.08 * (1 - this.influence) + chaosInfluence.y * this.influence
-
-          // Influence gradually fades
-          this.influence *= 0.98
+          // Ordered particles stay at their grid positions
+          this.x = this.originalX
+          this.y = this.originalY
         } else {
           // Chaotic particles with more dynamic movement
           this.velocity.x += (Math.random() - 0.5) * 0.8
           this.velocity.y += (Math.random() - 0.5) * 0.8
-          this.velocity.x *= 0.94
-          this.velocity.y *= 0.94
+          this.velocity.x *= 0.95
+          this.velocity.y *= 0.95
           this.x += this.velocity.x
           this.y += this.velocity.y
 
           // Boundary checks - keep within right half
           if (this.x < size / 2 || this.x > size) {
-            this.velocity.x *= -0.8
+            this.velocity.x *= -1
             this.x = Math.max(size / 2, Math.min(size, this.x))
           }
           if (this.y < 0 || this.y > size) {
-            this.velocity.y *= -0.8
+            this.velocity.y *= -1
             this.y = Math.max(0, Math.min(size, this.y))
           }
         }
       }
 
       draw(ctx: CanvasRenderingContext2D) {
-        let alpha = this.order ? 1 : 0.85
-        ctx.fillStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+        ctx.fillStyle = particleColor
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fill()
@@ -164,6 +139,8 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     let animationId: number
     
     function animate() {
+      if (!ctx) return
+      
       ctx.clearRect(0, 0, size, size)
 
       // Update neighbor relationships periodically
@@ -171,7 +148,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         updateNeighbors()
       }
 
-      // Draw connections first - crucial for the visual effect
+      // Draw connections first - exactly like the demo
       particles.forEach(particle => {
         particle.neighbors.forEach(neighbor => {
           const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
@@ -179,14 +156,14 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           let maxDist = 80
           if (!particle.order && !neighbor.order) {
             maxDist = 100
-          } else if (particle.order && neighbor.order) {
+          } else if (particle.order && other.order) {
             maxDist = 40
           } else {
             maxDist = 70
           }
           
           if (distance < maxDist) {
-            // Calculate alpha based on distance
+            // Calculate alpha based on distance - matching the demo exactly
             const alpha = 0.3 * (1 - distance / maxDist)
             
             ctx.strokeStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
@@ -206,7 +183,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       })
 
       // Add dividing line - exactly matching demo visual
-      ctx.strokeStyle = `${particleColor}4D`
+      ctx.strokeStyle = `${particleColor}4D` // 30% opacity
       ctx.lineWidth = 0.5
       ctx.beginPath()
       ctx.moveTo(size / 2, 0)
@@ -215,7 +192,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
 
       // Add quote text - matching demo exactly
       ctx.font = "12px monospace"
-      ctx.fillStyle = "#ffffff99"
+      ctx.fillStyle = "#ffffff99" // 60% opacity
       ctx.textAlign = "center"
       ctx.fillText('"Order and chaos dance —digital poetry in motion."', size / 2, size - 20)
 
