@@ -3,7 +3,7 @@ import {
   Phone, Mail, Building, Tags, MoreHorizontal, Search, Plus, Filter, 
   SortDesc, Loader2, AlertCircle, Users, Star, Mail as MailIcon, 
   PhoneCall, Calendar, FileEdit, Eye, Trash2, UserPlus, ArrowUpDown, 
-  CheckCircle2, LayoutGrid as Grid
+  CheckCircle2, Table, SquareStack
 } from "lucide-react";
 import { useCrmContacts } from "@/hooks/use-crm-contacts";
 import { apiRequest } from "@/lib/queryClient";
@@ -277,7 +277,7 @@ export default function CRMContactsDemo() {
               onClick={() => setViewMode('cards')}
               title="Card view"
             >
-              <LayoutGrid size={16} />
+              <SquareStack size={16} />
             </button>
           </div>
           
