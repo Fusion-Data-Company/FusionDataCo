@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, jsonb, timestamp, date, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, jsonb, timestamp, date, varchar, primaryKey } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -166,3 +166,194 @@ export type InsertCrmDeal = z.infer<typeof insertCrmDealSchema>;
 
 export type CrmActivity = typeof crmActivities.$inferSelect;
 export type InsertCrmActivity = z.infer<typeof insertCrmActivitySchema>;
+
+// Marketing Campaign tables
+export const marketingCampaigns = pgTable("marketing_campaigns", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  goal: text("goal").notNull(), // Promote, Announce, Celebrate, Educate, Sell
+  businessType: text("business_type"), // Real Estate, Medical, Trades, Retail, Coaching, etc.
+  status: text("status").default("Draft"), // Draft, Scheduled, Active, Paused, Completed
+  startDate: timestamp("start_date"),
+  endDate: timestamp("end_date"),
+  budget: integer("budget"),
+  tags: text("tags").array(),
+  ownerId: integer("owner_id").references(() => users.id),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertMarketingCampaignSchema = createInsertSchema(marketingCampaigns).pick({
+  title: true,
+  goal: true,
+  businessType: true,
+  status: true,
+  startDate: true,
+  endDate: true,
+  budget: true,
+  tags: true,
+  ownerId: true,
+});
+
+// Social Posts table
+export const socialPosts = pgTable("social_posts", {
+  id: serial("id").primaryKey(),
+  campaignId: integer("campaign_id").references(() => marketingCampaigns.id),
+  platform: text("platform").notNull(), // Facebook, Instagram, LinkedIn, Twitter
+  content: text("content").notNull(),
+  mediaUrls: text("media_urls").array(),
+  tone: text("tone"), // Professional, Friendly, Funny, Minimalist, Aggressive
+  scheduledDate: timestamp("scheduled_date"),
+  publishedDate: timestamp("published_date"),
+  status: text("status").default("Draft"), // Draft, Scheduled, Published, Failed
+  metrics: jsonb("metrics").default({}), // likes, shares, comments, etc.
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertSocialPostSchema = createInsertSchema(socialPosts).pick({
+  campaignId: true,
+  platform: true,
+  content: true,
+  mediaUrls: true,
+  tone: true,
+  scheduledDate: true,
+  publishedDate: true,
+  status: true,
+  metrics: true,
+});
+
+// Lead Magnets table
+export const leadMagnets = pgTable("lead_magnets", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description"),
+  type: text("type").notNull(), // PDF, Ebook, Webinar, Template
+  fileUrl: text("file_url"),
+  thumbnailUrl: text("thumbnail_url"),
+  campaignId: integer("campaign_id").references(() => marketingCampaigns.id),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertLeadMagnetSchema = createInsertSchema(leadMagnets).pick({
+  title: true,
+  description: true,
+  type: true,
+  fileUrl: true,
+  thumbnailUrl: true,
+  campaignId: true,
+});
+
+// Lead Magnet Subscribers table
+export const leadMagnetSubscribers = pgTable("lead_magnet_subscribers", {
+  id: serial("id").primaryKey(),
+  leadMagnetId: integer("lead_magnet_id").references(() => leadMagnets.id),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  businessType: text("business_type"),
+  downloadDate: timestamp("download_date").defaultNow(),
+  contactId: integer("contact_id").references(() => crmContacts.id),
+  campaignDrip: boolean("campaign_drip").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertLeadMagnetSubscriberSchema = createInsertSchema(leadMagnetSubscribers).pick({
+  leadMagnetId: true,
+  name: true,
+  email: true,
+  businessType: true,
+  downloadDate: true,
+  contactId: true,
+  campaignDrip: true,
+});
+
+// Marketing Automations table
+export const marketingAutomations = pgTable("marketing_automations", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description"),
+  trigger: text("trigger").notNull(), // New lead, Form submission, Tag added
+  condition: jsonb("condition").default({}), // JSON containing conditions
+  actions: jsonb("actions").default([]), // Array of action objects
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertMarketingAutomationSchema = createInsertSchema(marketingAutomations).pick({
+  name: true,
+  description: true,
+  trigger: true,
+  condition: true,
+  actions: true,
+  isActive: true,
+});
+
+// Email Templates table
+export const emailTemplates = pgTable("email_templates", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  subject: text("subject").notNull(),
+  content: text("content").notNull(),
+  type: text("type").notNull(), // Welcome, Offer, Case Study, Newsletter
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertEmailTemplateSchema = createInsertSchema(emailTemplates).pick({
+  name: true,
+  subject: true,
+  content: true,
+  type: true,
+});
+
+// Email Campaigns table
+export const emailCampaigns = pgTable("email_campaigns", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  subject: text("subject").notNull(),
+  content: text("content").notNull(),
+  templateId: integer("template_id").references(() => emailTemplates.id),
+  segmentFilter: jsonb("segment_filter").default({}),
+  scheduledDate: timestamp("scheduled_date"),
+  sentDate: timestamp("sent_date"),
+  status: text("status").default("Draft"), // Draft, Scheduled, Sending, Sent
+  metrics: jsonb("metrics").default({}), // opens, clicks, bounces
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertEmailCampaignSchema = createInsertSchema(emailCampaigns).pick({
+  name: true,
+  subject: true,
+  content: true,
+  templateId: true,
+  segmentFilter: true,
+  scheduledDate: true,
+  sentDate: true,
+  status: true,
+  metrics: true,
+});
+
+// Type exports for marketing tables
+export type MarketingCampaign = typeof marketingCampaigns.$inferSelect;
+export type InsertMarketingCampaign = z.infer<typeof insertMarketingCampaignSchema>;
+
+export type SocialPost = typeof socialPosts.$inferSelect;
+export type InsertSocialPost = z.infer<typeof insertSocialPostSchema>;
+
+export type LeadMagnet = typeof leadMagnets.$inferSelect;
+export type InsertLeadMagnet = z.infer<typeof insertLeadMagnetSchema>;
+
+export type LeadMagnetSubscriber = typeof leadMagnetSubscribers.$inferSelect;
+export type InsertLeadMagnetSubscriber = z.infer<typeof insertLeadMagnetSubscriberSchema>;
+
+export type MarketingAutomation = typeof marketingAutomations.$inferSelect;
+export type InsertMarketingAutomation = z.infer<typeof insertMarketingAutomationSchema>;
+
+export type EmailTemplate = typeof emailTemplates.$inferSelect;
+export type InsertEmailTemplate = z.infer<typeof insertEmailTemplateSchema>;
+
+export type EmailCampaign = typeof emailCampaigns.$inferSelect;
+export type InsertEmailCampaign = z.infer<typeof insertEmailCampaignSchema>;
