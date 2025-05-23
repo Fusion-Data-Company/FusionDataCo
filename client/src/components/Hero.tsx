@@ -4,21 +4,21 @@ import { Entropy } from "@/components/ui/entropy";
 import { useEffect, useState } from "react";
 
 export default function Hero() {
-  const [windowSize, setWindowSize] = useState({
-    width: typeof window !== 'undefined' ? window.innerWidth : 1000,
-    height: typeof window !== 'undefined' ? window.innerHeight : 600
-  });
-
+  // Calculate the size based on viewport
+  const [size, setSize] = useState(600);
+  
   useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
+    // Set initial size
+    const updateSize = () => {
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      // Use a fixed aspect ratio for the animation
+      setSize(Math.max(windowWidth, windowHeight));
     };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
   }, []);
 
   return (
@@ -26,15 +26,11 @@ export default function Hero() {
       className="relative overflow-hidden bg-black py-24 md:py-32"
     >
       {/* Entropy animation background with correct styling to match the reference image */}
-      <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-        <Entropy 
-          className="w-full h-full" 
-          size={Math.max(windowSize.width, 600)}
-        />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative w-full h-full overflow-hidden">
+          <Entropy size={size} className="absolute inset-0" />
+        </div>
       </div>
-      
-      {/* Subtle overlay for better text visibility */}
-      <div className="absolute inset-0 bg-black/10"></div>
       
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
