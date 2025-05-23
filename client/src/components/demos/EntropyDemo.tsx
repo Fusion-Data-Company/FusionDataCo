@@ -5,10 +5,10 @@ import { Entropy } from "@/components/ui/entropy"
 
 export function EntropyDemo() {
   return (
-    <div className="flex flex-col items-center justify-center bg-black text-white h-full w-full">
+    <div className="flex flex-col items-center justify-center bg-transparent text-white h-full w-full">
       <div className="relative flex flex-col items-center w-full h-full">
-        {/* Entropy animation - Positioned at the edge without additional wrapper divs */}
-        <Entropy className="rounded-lg" size={650} />
+        {/* Entropy animation - Direct positioning for better performance */}
+        <Entropy className="rounded-lg shadow-2xl" size={700} />
       </div>
     </div>
   )
