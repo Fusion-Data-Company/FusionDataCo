@@ -167,7 +167,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Only include fields that are in the request body
       for (const field of allowedFields) {
         if (req.body[field] !== undefined) {
-          contactFields[field] = req.body[field];
+          (contactFields as Record<string, any>)[field] = req.body[field];
         }
       }
 
@@ -286,7 +286,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Only include fields that are in the request body
       for (const field of allowedFields) {
         if (req.body[field] !== undefined) {
-          dealFields[field] = req.body[field];
+          (dealFields as Record<string, any>)[field] = req.body[field];
         }
       }
 
@@ -407,7 +407,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Only include fields that are in the request body
       for (const field of allowedFields) {
         if (req.body[field] !== undefined) {
-          activityFields[field] = req.body[field];
+          (activityFields as Record<string, any>)[field] = req.body[field];
         }
       }
 
