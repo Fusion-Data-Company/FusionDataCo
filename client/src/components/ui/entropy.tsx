@@ -56,14 +56,16 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       wobbleSpeed: number
       transitionProgress: number
       transitioning: boolean
+      cluster: number
 
-      constructor(x: number, y: number, order: boolean) {
+      constructor(x: number, y: number, order: boolean, cluster = 0) {
         this.x = x
         this.y = y
         this.originalX = x
         this.originalY = y
         this.size = order ? 1.5 : 2
         this.order = order
+        this.cluster = cluster
         
         // Assign colors based on side
         if (order) {
@@ -92,9 +94,9 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         this.wobbleSpeed = 0.02 + Math.random() * 0.03
       }
 
-      update(time: number) {
+      update(time: number, mouseX: number, mouseY: number) {
         if (this.order) {
-          // LEFT SIDE PARTICLES - Stay in exact grid formation with minimal movement
+          // LEFT SIDE PARTICLES - Artistic patterns with subtle movement
           
           // Very slight breathing effect on left grid - subtle expand/contract
           const breathingPhase = Math.sin(time * 0.1) * 0.5
@@ -104,7 +106,21 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           this.x = size/4 + breathingX
           this.y = this.originalY
           
-          // Very rarely allow a particle to cross to the right (1/5000 chance)
+          // Mouse influence on left side - particles move away slightly when mouse is nearby
+          const mouseDistance = Math.hypot(mouseX - this.x, mouseY - this.y)
+          if (mouseDistance < 60) {
+            const repelX = (this.x - mouseX) / mouseDistance * 2
+            const repelY = (this.y - mouseY) / mouseDistance * 2
+            
+            this.x += repelX
+            this.y += repelY
+          } else {
+            // Otherwise slowly return to original position
+            this.x += (this.originalX - this.x) * 0.1
+            this.y += (this.originalY - this.y) * 0.1
+          }
+          
+          // Very rarely allow a particle to cross to the right (1/2500 chance)
           if (Math.random() < 0.0004 && !this.transitioning && this.x > size * 0.4) {
             this.transitioning = true
             this.attractionPoint = {
@@ -144,15 +160,92 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
             }
           }
         } else {
-          // RIGHT SIDE PARTICLES - Gentle movement
+          // RIGHT SIDE PARTICLES - Complex cluster formations
           
-          // Apply very mild random forces
-          this.velocity.x += (Math.random() - 0.5) * 0.1
-          this.velocity.y += (Math.random() - 0.5) * 0.1
+          // Mouse influence - particles respond to mouse but maintain their original position
+          const mouseDistance = Math.hypot(mouseX - this.x, mouseY - this.y)
+          if (mouseX > size/2 && mouseDistance < 80) {
+            // Temporary displacement from mouse - like a web vibrating
+            const factor = 1 - (mouseDistance / 80)
+            const displaceX = (this.x - mouseX) / mouseDistance * factor * 10
+            const displaceY = (this.y - mouseY) / mouseDistance * factor * 10
+            
+            // Just add to position, don't affect velocity (so they snap back)
+            this.x += displaceX * 0.3
+            this.y += displaceY * 0.3
+          } else {
+            // Apply attraction to cluster center - different patterns for each cluster
+            let clusterX, clusterY;
+            
+            // Different formations based on cluster number
+            switch(this.cluster % 8) {
+              case 0: // Circular formation
+                const angle = time * 0.05 + (this.originalX + this.originalY) * 0.05
+                clusterX = size/2 + 80 + Math.cos(angle) * 60
+                clusterY = size/2 + Math.sin(angle) * 60
+                break;
+              case 1: // Horizontal line formation
+                clusterX = size/2 + 120 + Math.sin(time * 0.1 + this.originalX * 0.1) * 20
+                clusterY = size/3 + Math.cos(time * 0.05) * 10
+                break;
+              case 2: // Vertical line formation
+                clusterX = size * 0.75 + Math.sin(time * 0.05) * 15
+                clusterY = size/2 + Math.sin(time * 0.1 + this.originalY * 0.1) * 80
+                break;
+              case 3: // Square formation
+                const side = Math.floor((time * 0.1 + this.originalX * 0.2) % 4)
+                if (side === 0) {
+                  clusterX = size * 0.65 + Math.sin(time * 0.05) * 10
+                  clusterY = size * 0.3 + Math.sin(time * 0.07) * 10
+                } else if (side === 1) {
+                  clusterX = size * 0.85 + Math.sin(time * 0.06) * 10
+                  clusterY = size * 0.3 + Math.sin(time * 0.08) * 10
+                } else if (side === 2) {
+                  clusterX = size * 0.85 + Math.sin(time * 0.07) * 10
+                  clusterY = size * 0.5 + Math.sin(time * 0.05) * 10
+                } else {
+                  clusterX = size * 0.65 + Math.sin(time * 0.08) * 10
+                  clusterY = size * 0.5 + Math.sin(time * 0.06) * 10
+                }
+                break;
+              case 4: // Small cluster at top right
+                clusterX = size * 0.8 + Math.sin(time * 0.1) * 15
+                clusterY = size * 0.2 + Math.cos(time * 0.1) * 15
+                break;
+              case 5: // Small cluster at bottom right
+                clusterX = size * 0.8 + Math.sin(time * 0.12) * 15
+                clusterY = size * 0.8 + Math.cos(time * 0.12) * 15
+                break;
+              case 6: // Diagonal line
+                const pos = (time * 0.1 + this.originalX * 0.2 + this.originalY * 0.2) % 1
+                clusterX = size * (0.6 + pos * 0.3)
+                clusterY = size * (0.2 + pos * 0.6)
+                break;
+              case 7: // Wave pattern
+                clusterX = size * 0.7 + Math.sin(time * 0.1) * 30
+                clusterY = size * (0.2 + this.originalY * 0.001) + Math.sin(time * 0.1 + this.originalX * 0.1) * 40
+                break;
+              default:
+                clusterX = size * 0.75
+                clusterY = size * 0.5
+            }
+            
+            const clusterDist = Math.hypot(clusterX - this.x, clusterY - this.y)
+            if (clusterDist > 10) {
+              // Attraction force (stronger when further away but with maximum limit)
+              const attractForce = Math.min(0.025, clusterDist * 0.0015)
+              this.velocity.x += (clusterX - this.x) * attractForce
+              this.velocity.y += (clusterY - this.y) * attractForce
+            }
+            
+            // Apply very mild random forces
+            this.velocity.x += (Math.random() - 0.5) * 0.1
+            this.velocity.y += (Math.random() - 0.5) * 0.1
+          }
           
           // Apply velocity with strong dampening
-          this.velocity.x *= 0.9
-          this.velocity.y *= 0.9
+          this.velocity.x *= 0.94
+          this.velocity.y *= 0.94
           this.x += this.velocity.x
           this.y += this.velocity.y
           
@@ -273,31 +366,66 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
 
     // Create particle grid
     const particles: Particle[] = []
-    const gridSize = 20 // Slightly larger dots with fewer total
+    const gridSize = 32 // More dots for higher density
     const gridWidth = size / gridSize
     
-    // Left side grid - perfectly aligned grid
+    // LEFT SIDE - artistic grid patterns
     for (let i = 0; i < gridSize / 2; i++) {
       for (let j = 0; j < gridSize; j++) {
-        const x = gridWidth * i + gridWidth / 2
-        const y = gridWidth * j + gridWidth / 2
-        particles.push(new Particle(x, y, true))
+        // Create artistic pattern on left side
+        const showDot = (
+          // Create circular pattern in center
+          Math.pow(i - gridSize/4, 2) + Math.pow(j - gridSize/2, 2) < Math.pow(gridSize/4, 2) ||
+          // Create grid lines
+          i % 4 === 0 || j % 4 === 0 ||
+          // Create diagonal lines
+          (i + j) % 6 === 0
+        );
+        
+        if (showDot) {
+          const x = gridWidth * i + gridWidth / 2
+          const y = gridWidth * j + gridWidth / 2
+          particles.push(new Particle(x, y, true))
+        }
       }
     }
     
-    // Right side particles - just a few colorful ones
-    for (let i = 0; i < gridSize / 2; i++) {
+    // RIGHT SIDE - complex cluster formations
+    // Create several clusters
+    const numClusters = 8
+    
+    // Generate many more particles for right side (over 2x the density)
+    for (let i = 0; i < gridSize * 2; i++) {
       for (let j = 0; j < gridSize; j++) {
-        if (Math.random() < 0.7) { // 30% fewer on right side
-          const x = size/2 + gridWidth * i + gridWidth / 2 + (Math.random() - 0.5) * 5
-          const y = gridWidth * j + gridWidth / 2 + (Math.random() - 0.5) * 5
-          particles.push(new Particle(x, y, false))
+        // Only create about 70% of possible dots for a bit of randomness
+        if (Math.random() < 0.7) {
+          // Assign to a cluster randomly
+          const clusterNum = Math.floor(Math.random() * numClusters)
+          
+          // Base position with jitter
+          const x = size/2 + Math.random() * (size/2)
+          const y = Math.random() * size
+          
+          particles.push(new Particle(x, y, false, clusterNum))
         }
       }
     }
 
     let time = 0
     let animationId = 0
+    let mouseX = -100, mouseY = -100
+    
+    // Track mouse position
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect()
+      mouseX = e.clientX - rect.left
+      mouseY = e.clientY - rect.top
+    })
+    
+    canvas.addEventListener('mouseleave', () => {
+      mouseX = -100
+      mouseY = -100
+    })
     
     function animate() {
       if (!ctx) return
@@ -355,12 +483,13 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         particles.forEach(p2 => {
           if (p1 !== p2 && p1.order === p2.order) {
             const distance = Math.hypot(p1.x - p2.x, p1.y - p2.y)
-            const maxDistance = p1.order ? 30 : 50 // Different connection distances for each side
+            const maxDistance = p1.order ? 30 : 40 // Different connection distances for each side
             
+            // Only draw connections for nearby particles
             if (distance < maxDistance) {
               const alpha = p1.order ? 
                   0.05 * (1 - distance / maxDistance) : // Less visible on left
-                  0.15 * (1 - distance / maxDistance)   // More visible on right
+                  0.1 * (1 - distance / maxDistance)   // More visible on right
               
               if (p1.order) {
                 // Left side white connections
@@ -373,7 +502,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
                 ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`
               }
               
-              ctx.lineWidth = p1.order ? 0.5 : 0.7
+              ctx.lineWidth = p1.order ? 0.3 : 0.4
               ctx.beginPath()
               ctx.moveTo(p1.x, p1.y)
               ctx.lineTo(p2.x, p2.y)
@@ -417,7 +546,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       
       // Update and draw all particles
       particles.forEach(particle => {
-        particle.update(time)
+        particle.update(time, mouseX, mouseY)
         particle.draw(ctx)
       })
 
