@@ -142,7 +142,7 @@ export default function SocialMediaCampaign() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  Your Business Looks <span className="text-[#ff0aff] [text-shadow:0_0_5px_#ff0aff]">Dead Online</span>
+                  Your Business Looks <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Dead Online</span>
                 </motion.h1>
                 
                 <motion.h2 
@@ -160,7 +160,7 @@ export default function SocialMediaCampaign() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
                 >
-                  Try our social media management service <span className="text-[#ff0aff] font-bold">free for 2 weeks</span>.
+                  Try our social media management service <span className="text-[#14ffc8] font-bold">free for 2 weeks</span>.
                   We'll post once per day with content tailored to your business.
                 </motion.p>
                 
@@ -171,7 +171,7 @@ export default function SocialMediaCampaign() {
                 >
                   <Button 
                     size="lg" 
-                    className="bg-[#ff0aff] hover:bg-[#ff0aff]/90 text-white font-semibold rounded-md px-8 py-6 text-lg shadow-[0_0_15px_rgba(255,10,255,0.5)] hover:shadow-[0_0_20px_rgba(255,10,255,0.7)] transition-all duration-300"
+                    className="bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold rounded-md px-8 py-6 text-lg shadow-[0_0_15px_rgba(20,255,200,0.3)] hover:shadow-[0_0_20px_rgba(20,255,200,0.5)] transition-all duration-300"
                     onClick={() => {
                       const formSection = document.getElementById('trial-form');
                       formSection?.scrollIntoView({ behavior: 'smooth' });
@@ -257,8 +257,8 @@ export default function SocialMediaCampaign() {
           {/* Solution Section */}
           <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
             {/* Green ambient glow behind the content */}
-            <div className="absolute inset-0 bg-[#ff0aff]/5 z-0"></div>
-            <div className="absolute -inset-1/2 bg-[#ff0aff]/5 blur-3xl rounded-full opacity-20 z-0"></div>
+            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/5 blur-3xl rounded-full opacity-20 z-0"></div>
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">

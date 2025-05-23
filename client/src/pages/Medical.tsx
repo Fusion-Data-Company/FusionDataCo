@@ -351,7 +351,6 @@ export default function Medical() {
             <div className="absolute -inset-1/2 bg-[#14ffc8]/3 blur-3xl rounded-full opacity-10 z-0"></div>
             
             <div className="container mx-auto relative z-10">
-            <div className="container mx-auto">
               <h2 className="text-3xl font-bold mb-12 text-center">
                 <span className="text-primary">Specialized Solutions</span> for Healthcare Providers
               </h2>
