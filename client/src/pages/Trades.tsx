@@ -106,7 +106,7 @@ export default function Trades() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                    Book More Jobs and Scale Your <span className="text-primary">Trades</span> Business
+                    Book More Jobs and Scale Your <span className="text-[#14ffc8]">Trades</span> Business
                   </h1>
                   <p className="text-xl text-muted-foreground mb-8">
                     Stop worrying about where your next job will come from. Our proven marketing system 
@@ -140,7 +140,7 @@ export default function Trades() {
                       <div className="space-y-6">
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
-                            <BarChart3 className="h-6 w-6 text-primary" />
+                            <BarChart3 className="h-6 w-6 text-[#14ffc8]" />
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
@@ -154,7 +154,7 @@ export default function Trades() {
                         
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
-                            <Wrench className="h-6 w-6 text-primary" />
+                            <Wrench className="h-6 w-6 text-[#14ffc8]" />
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
@@ -168,7 +168,7 @@ export default function Trades() {
                         
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
-                            <UserPlus className="h-6 w-6 text-primary" />
+                            <UserPlus className="h-6 w-6 text-[#14ffc8]" />
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
@@ -207,7 +207,7 @@ export default function Trades() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Alternating between being too busy and struggling to find jobs
@@ -215,7 +215,7 @@ export default function Trades() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Seasonal fluctuations making staffing and inventory planning difficult
@@ -223,7 +223,7 @@ export default function Trades() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Constant stress about where the next job will come from
@@ -242,7 +242,7 @@ export default function Trades() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Wasting time and money on leads that never convert to jobs
@@ -250,7 +250,7 @@ export default function Trades() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Online directories and lead services charging high fees for shared leads
@@ -258,7 +258,7 @@ export default function Trades() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Low-budget customers haggling on price and causing payment problems
@@ -277,7 +277,7 @@ export default function Trades() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           No time to manage multiple marketing channels while running your business
@@ -285,7 +285,7 @@ export default function Trades() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Agencies that don't understand the trades industry charging premium rates
@@ -293,7 +293,7 @@ export default function Trades() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Uncertainty about which marketing strategies actually work for service businesses
@@ -312,7 +312,7 @@ export default function Trades() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Losing potential repeat business because of poor follow-up systems
@@ -320,7 +320,7 @@ export default function Trades() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           No systematic approach to getting reviews and referrals
@@ -328,7 +328,7 @@ export default function Trades() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-muted-foreground">
                           Missing out on maintenance contracts and recurring revenue opportunities
@@ -356,28 +356,28 @@ export default function Trades() {
                 <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
                   <CardContent className="p-6 space-y-4">
                     <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <svg className="h-8 w-8 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
                     </div>
                     <h3 className="text-xl font-semibold text-center">Consistent Lead Generation</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Geo-targeted local SEO and PPC campaigns</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Service-specific landing pages that convert</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Emergency service promotion for premium jobs</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
                       <p className="text-sm text-muted-foreground">Monthly Leads:</p>
-                      <p className="text-xl font-bold text-primary">35+</p>
+                      <p className="text-xl font-bold text-[#14ffc8]">35+</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -385,28 +385,28 @@ export default function Trades() {
                 <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
                   <CardContent className="p-6 space-y-4">
                     <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <svg className="h-8 w-8 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <h3 className="text-xl font-semibold text-center">Business Automation</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">24/7 booking and estimate requests</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Automated follow-up and reminder system</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Customer database with service history</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
                       <p className="text-sm text-muted-foreground">Time Saved:</p>
-                      <p className="text-xl font-bold text-primary">23 hrs/week</p>
+                      <p className="text-xl font-bold text-[#14ffc8]">23 hrs/week</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -414,28 +414,28 @@ export default function Trades() {
                 <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
                   <CardContent className="p-6 space-y-4">
                     <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <svg className="h-8 w-8 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     </div>
                     <h3 className="text-xl font-semibold text-center">Reputation Management</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Automated review collection from customers</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Showcase testimonials to build trust</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                        <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
                         <span className="text-sm">Proactive review monitoring and response</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
                       <p className="text-sm text-muted-foreground">Positive Reviews:</p>
-                      <p className="text-xl font-bold text-primary">+187%</p>
+                      <p className="text-xl font-bold text-[#14ffc8]">+187%</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -488,7 +488,7 @@ export default function Trades() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                    Ready to <span className="text-primary">Fill Your Schedule</span> With Quality Jobs?
+                    Ready to <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Fill Your Schedule</span> With Quality Jobs?
                   </h2>
                   <p className="text-lg mb-8 text-muted-foreground">
                     Get your customized Lead Generation Plan with a free 30-minute strategy session.
@@ -497,7 +497,7 @@ export default function Trades() {
                   <div className="space-y-6">
                     <div className="flex gap-3">
                       <div className="flex-shrink-0">
-                        <Check className="h-6 w-6 text-primary" />
+                        <Check className="h-6 w-6 text-[#14ffc8]" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg">Custom Marketing Blueprint</h3>
@@ -509,7 +509,7 @@ export default function Trades() {
                     
                     <div className="flex gap-3">
                       <div className="flex-shrink-0">
-                        <Check className="h-6 w-6 text-primary" />
+                        <Check className="h-6 w-6 text-[#14ffc8]" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg">Competitor Analysis</h3>
@@ -521,7 +521,7 @@ export default function Trades() {
                     
                     <div className="flex gap-3">
                       <div className="flex-shrink-0">
-                        <Check className="h-6 w-6 text-primary" />
+                        <Check className="h-6 w-6 text-[#14ffc8]" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg">Lead Generation Forecast</h3>
@@ -539,7 +539,7 @@ export default function Trades() {
                       {submitted ? (
                         <div className="text-center py-8">
                           <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                            <Check className="h-8 w-8 text-primary" />
+                            <Check className="h-8 w-8 text-[#14ffc8]" />
                           </div>
                           <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
                           <p className="text-muted-foreground mb-6">
