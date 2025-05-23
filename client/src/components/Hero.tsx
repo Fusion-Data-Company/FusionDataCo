@@ -1,18 +1,22 @@
 import { Link } from "wouter";
 import { cn } from "@/lib/utils";
+import { Entropy } from "@/components/ui/entropy";
 
 export default function Hero() {
   return (
     <section 
-      className="relative overflow-hidden bg-background py-24 md:py-32" 
-      style={{ 
-        backgroundImage: "url('https://images.unsplash.com/photo-1581090700227-1e37b190418e?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&fit=max')",
-        backgroundSize: "cover", 
-        backgroundPosition: "center" 
-      }}
+      className="relative overflow-hidden bg-background py-24 md:py-32"
     >
-      <div className="absolute inset-0 circuit-overlay"></div>
-      <div className="absolute inset-0 backdrop-blur-sm"></div>
+      {/* Entropy animation background */}
+      <div className="absolute inset-0 w-full h-full bg-black">
+        <Entropy 
+          className="w-full h-full" 
+          size={Math.max(window.innerWidth, window.innerHeight)}
+        />
+      </div>
+      
+      {/* Additional overlay for better text visibility */}
+      <div className="absolute inset-0 bg-black/30"></div>
       
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
