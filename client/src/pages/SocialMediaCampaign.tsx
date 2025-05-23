@@ -262,21 +262,21 @@ export default function SocialMediaCampaign() {
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">
-                <span className="text-[#ff0aff] [text-shadow:0_0_5px_#ff0aff]">Our Solution:</span> We Run Your Pages
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Our Solution:</span> We Run Your Pages
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <Card className="bg-[#121218]/90 border border-[#ff0aff]/20 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ff0aff]/10 to-[#ff0aff]/5 blur-md z-0"></div>
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/20 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
-                    <div className="h-16 w-16 bg-[#ff0aff]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Calendar className="h-8 w-8 text-[#ff0aff]" />
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Calendar className="h-8 w-8 text-[#14ffc8]" />
                     </div>
                     <h3 className="text-xl font-semibold text-center mb-4 text-white">Daily Content</h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <CheckCircle2 className="h-4 w-4 text-[#ff0aff]" />
+                          <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
                           One fresh post every day to keep your audience engaged
@@ -284,7 +284,7 @@ export default function SocialMediaCampaign() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <CheckCircle2 className="h-4 w-4 text-[#ff0aff]" />
+                          <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
                           Consistent posting schedule optimized for your audience
@@ -292,7 +292,7 @@ export default function SocialMediaCampaign() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <CheckCircle2 className="h-4 w-4 text-[#ff0aff]" />
+                          <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
                           No more gaps or inconsistent activity on your profiles
@@ -302,17 +302,17 @@ export default function SocialMediaCampaign() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-[#121218]/90 border border-[#ff0aff]/20 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ff0aff]/10 to-[#ff0aff]/5 blur-md z-0"></div>
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/20 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
-                    <div className="h-16 w-16 bg-[#ff0aff]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Megaphone className="h-8 w-8 text-[#ff0aff]" />
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Megaphone className="h-8 w-8 text-[#14ffc8]" />
                     </div>
                     <h3 className="text-xl font-semibold text-center mb-4 text-white">Tailored Content</h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <CheckCircle2 className="h-4 w-4 text-[#ff0aff]" />
+                          <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
                           Custom content based on your industry, services, and brand voice
@@ -320,7 +320,7 @@ export default function SocialMediaCampaign() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <CheckCircle2 className="h-4 w-4 text-[#ff0aff]" />
+                          <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
                           No generic posts or obvious AI-generated content
@@ -328,7 +328,7 @@ export default function SocialMediaCampaign() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <CheckCircle2 className="h-4 w-4 text-[#ff0aff]" />
+                          <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
                           Real humans writing and curating content that sounds like you
@@ -338,17 +338,17 @@ export default function SocialMediaCampaign() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-[#121218]/90 border border-[#ff0aff]/20 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ff0aff]/10 to-[#ff0aff]/5 blur-md z-0"></div>
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/20 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
-                    <div className="h-16 w-16 bg-[#ff0aff]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <BarChart3 className="h-8 w-8 text-[#ff0aff]" />
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <BarChart3 className="h-8 w-8 text-[#14ffc8]" />
                     </div>
                     <h3 className="text-xl font-semibold text-center mb-4 text-white">Engagement & Results</h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <CheckCircle2 className="h-4 w-4 text-[#ff0aff]" />
+                          <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
                           Real engagement from actual customers and prospects
@@ -356,7 +356,7 @@ export default function SocialMediaCampaign() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <CheckCircle2 className="h-4 w-4 text-[#ff0aff]" />
+                          <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
                           Professional social presence that builds trust with new leads
@@ -364,7 +364,7 @@ export default function SocialMediaCampaign() {
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <CheckCircle2 className="h-4 w-4 text-[#ff0aff]" />
+                          <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
                           Weekly performance reports showing what's working
@@ -377,27 +377,27 @@ export default function SocialMediaCampaign() {
               
               {/* Value Proposition Box */}
               <div className="max-w-4xl mx-auto mt-12 mb-20">
-                <Card className="bg-[#121218] border border-[#ff0aff]/20 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ff0aff]/10 to-[#ff0aff]/5 blur-md z-0"></div>
+                <Card className="bg-[#121218] border border-[#14ffc8]/20 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
                   <CardContent className="p-8 relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                       <div>
                         <h3 className="text-2xl font-bold mb-4 text-white">After Your Free Trial</h3>
                         <p className="text-gray-300 mb-6">
-                          Continue with our Social Media Management service for just <span className="text-[#ff0aff] font-bold">$199/month</span>.
+                          Continue with our Social Media Management service for just <span className="text-[#14ffc8] font-bold">$199/month</span>.
                           That's less than $7 per day for daily, professional social media management.
                         </p>
                         <ul className="space-y-2 mb-6">
                           <li className="flex items-start gap-3">
-                            <CheckCircle2 className="h-5 w-5 text-[#ff0aff] mt-0.5 flex-shrink-0" />
+                            <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
                             <span className="text-gray-300">30 posts per month across your platforms</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <CheckCircle2 className="h-5 w-5 text-[#ff0aff] mt-0.5 flex-shrink-0" />
+                            <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
                             <span className="text-gray-300">Cancel anytime - no long-term contracts</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <CheckCircle2 className="h-5 w-5 text-[#ff0aff] mt-0.5 flex-shrink-0" />
+                            <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
                             <span className="text-gray-300">Social media that grows with your business</span>
                           </li>
                         </ul>
@@ -405,21 +405,21 @@ export default function SocialMediaCampaign() {
                       <div className="bg-[#0a0a0d] p-6 rounded-lg">
                         <div className="flex justify-between mb-4">
                           <div className="flex items-center">
-                            <div className="w-10 h-10 bg-[#ff0aff]/10 rounded-full flex items-center justify-center mr-3">
-                              <Facebook className="h-5 w-5 text-[#ff0aff]" />
+                            <div className="w-10 h-10 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mr-3">
+                              <Facebook className="h-5 w-5 text-[#14ffc8]" />
                             </div>
                             <span className="text-white">Facebook</span>
                           </div>
-                          <div className="text-[#ff0aff] font-semibold">30 posts</div>
+                          <div className="text-[#14ffc8] font-semibold">30 posts</div>
                         </div>
                         <div className="flex justify-between mb-8">
                           <div className="flex items-center">
-                            <div className="w-10 h-10 bg-[#ff0aff]/10 rounded-full flex items-center justify-center mr-3">
-                              <Instagram className="h-5 w-5 text-[#ff0aff]" />
+                            <div className="w-10 h-10 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mr-3">
+                              <Instagram className="h-5 w-5 text-[#14ffc8]" />
                             </div>
                             <span className="text-white">Instagram</span>
                           </div>
-                          <div className="text-[#ff0aff] font-semibold">30 posts</div>
+                          <div className="text-[#14ffc8] font-semibold">30 posts</div>
                         </div>
                         <div className="text-center bg-[#121218] p-4 rounded-md">
                           <div className="text-sm text-gray-400 mb-1">Monthly investment</div>
@@ -438,12 +438,12 @@ export default function SocialMediaCampaign() {
           <section className="py-16 px-4 bg-[#121218]">
             <div className="container mx-auto">
               <h2 className="text-3xl font-bold mb-16 text-center">
-                How Your <span className="text-[#ff0aff]">Free Trial</span> Works
+                How Your <span className="text-[#14ffc8]">Free Trial</span> Works
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <div className="relative">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[#ff0aff] flex items-center justify-center text-black font-bold text-lg">1</div>
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[#14ffc8] flex items-center justify-center text-black font-bold text-lg">1</div>
                   <Card className="pt-12 mt-5 h-full bg-[#0a0a0d] border border-[#333340]">
                     <CardContent className="text-center p-6">
                       <h3 className="text-xl font-bold mb-4 text-white">Sign Up Today</h3>
@@ -456,7 +456,7 @@ export default function SocialMediaCampaign() {
                 </div>
                 
                 <div className="relative">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[#ff0aff] flex items-center justify-center text-black font-bold text-lg">2</div>
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[#14ffc8] flex items-center justify-center text-black font-bold text-lg">2</div>
                   <Card className="pt-12 mt-5 h-full bg-[#0a0a0d] border border-[#333340]">
                     <CardContent className="text-center p-6">
                       <h3 className="text-xl font-bold mb-4 text-white">Content Approval</h3>
@@ -469,7 +469,7 @@ export default function SocialMediaCampaign() {
                 </div>
                 
                 <div className="relative">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[#ff0aff] flex items-center justify-center text-black font-bold text-lg">3</div>
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[#14ffc8] flex items-center justify-center text-black font-bold text-lg">3</div>
                   <Card className="pt-12 mt-5 h-full bg-[#0a0a0d] border border-[#333340]">
                     <CardContent className="text-center p-6">
                       <h3 className="text-xl font-bold mb-4 text-white">See Results & Decide</h3>
@@ -486,8 +486,8 @@ export default function SocialMediaCampaign() {
           
           {/* Trial Sign-up Form Section */}
           <section id="trial-form" className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
-            <div className="absolute inset-0 bg-[#ff0aff]/5 z-0"></div>
-            <div className="absolute -inset-1/2 bg-[#ff0aff]/3 blur-3xl rounded-full opacity-10 z-0"></div>
+            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/3 blur-3xl rounded-full opacity-10 z-0"></div>
             
             <div className="container mx-auto relative z-10">
               <div className="max-w-4xl mx-auto">
@@ -498,13 +498,13 @@ export default function SocialMediaCampaign() {
                   No credit card required. No obligation to continue.
                 </p>
                 
-                <Card className="bg-[#121218]/90 border border-[#ff0aff]/10 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ff0aff]/5 to-[#ff0aff]/2 blur-md z-0"></div>
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/10 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/5 to-[#14ffc8]/2 blur-md z-0"></div>
                   <CardContent className="p-8 relative z-10">
                     {submitted ? (
                       <div className="text-center py-8">
-                        <div className="h-16 w-16 bg-[#ff0aff]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                          <CheckCircle2 className="h-8 w-8 text-[#ff0aff]" />
+                        <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                          <CheckCircle2 className="h-8 w-8 text-[#14ffc8]" />
                         </div>
                         <h3 className="text-2xl font-bold mb-4 text-white">Thank You!</h3>
                         <p className="text-gray-300 text-lg mb-6">
@@ -513,7 +513,7 @@ export default function SocialMediaCampaign() {
                         </p>
                         <Button 
                           onClick={() => setSubmitted(false)}
-                          className="bg-[#ff0aff] hover:bg-[#ff0aff]/90 text-white font-semibold rounded-md px-6 py-3 shadow-[0_0_15px_rgba(255,10,255,0.3)] hover:shadow-[0_0_20px_rgba(255,10,255,0.5)] transition-all duration-300"
+                          className="bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-white font-semibold rounded-md px-6 py-3 shadow-[0_0_15px_rgba(255,10,255,0.3)] hover:shadow-[0_0_20px_rgba(255,10,255,0.5)] transition-all duration-300"
                         >
                           Submit Another Request
                         </Button>
@@ -630,7 +630,7 @@ export default function SocialMediaCampaign() {
                                 <FormItem>
                                   <FormLabel className="text-white">
                                     <div className="flex items-center gap-2">
-                                      <Facebook className="h-4 w-4 text-[#ff0aff]" />
+                                      <Facebook className="h-4 w-4 text-[#14ffc8]" />
                                       <span>Facebook Page URL</span>
                                     </div>
                                   </FormLabel>
@@ -653,7 +653,7 @@ export default function SocialMediaCampaign() {
                                 <FormItem>
                                   <FormLabel className="text-white">
                                     <div className="flex items-center gap-2">
-                                      <Instagram className="h-4 w-4 text-[#ff0aff]" />
+                                      <Instagram className="h-4 w-4 text-[#14ffc8]" />
                                       <span>Instagram Page URL</span>
                                     </div>
                                   </FormLabel>
@@ -691,7 +691,7 @@ export default function SocialMediaCampaign() {
                           <Button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full bg-[#ff0aff] hover:bg-[#ff0aff]/90 text-white font-semibold rounded-md py-6 text-lg shadow-[0_0_15px_rgba(255,10,255,0.3)] hover:shadow-[0_0_20px_rgba(255,10,255,0.5)] transition-all duration-300"
+                            className="w-full bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-white font-semibold rounded-md py-6 text-lg shadow-[0_0_15px_rgba(255,10,255,0.3)] hover:shadow-[0_0_20px_rgba(255,10,255,0.5)] transition-all duration-300"
                           >
                             {isSubmitting ? "Submitting..." : "Start My Free 2-Week Trial"}
                           </Button>

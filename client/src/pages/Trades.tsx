@@ -187,11 +187,15 @@ export default function Trades() {
             </div>
           </section>
           
-          {/* Pain Points Section */}
-          <section className="py-16 px-4 bg-card">
-            <div className="container mx-auto">
+          {/* Pain Points Section with Red Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
+            {/* Red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">
-                <span className="text-primary">Common Challenges</span> Service Businesses Face
+                The <span className="text-white">Real Challenges</span> Trades Businesses Face
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
