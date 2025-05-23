@@ -6,14 +6,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Check, ChevronRight, BarChart3, Shield, Clock } from "lucide-react";
+import { Check, ChevronRight, BarChart3, Shield, Clock, DollarSign, BadgePercent, XCircle, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { trackEvent } from '@/components/AnalyticsTracker';
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from "@/components/ui/form";
 import { apiRequest } from "@/lib/queryClient";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 // Define form schema
 const formSchema = z.object({
@@ -21,6 +23,8 @@ const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   phone: z.string().optional(),
   business: z.string().min(2, { message: "Please enter your business name." }),
+  businessType: z.string().min(1, { message: "Please select your business type." }),
+  interestedService: z.string().min(1, { message: "Please select a service you're interested in." }),
   message: z.string().optional(),
   source: z.string().default("SmallBusinessFunnel"),
 });
@@ -31,6 +35,25 @@ export default function SmallBusinessOwners() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [currentLeads, setCurrentLeads] = useState<string>('10');
+  const [ticketPrice, setTicketPrice] = useState<string>('250');
+  const [projectedGain, setProjectedGain] = useState<number>(0);
+
+  // Calculate ROI
+  const calculateROI = () => {
+    const leads = parseInt(currentLeads) || 0;
+    const price = parseFloat(ticketPrice) || 0;
+    const additionalLeads = Math.round(leads * 0.2); // 20% more leads
+    const newGain = additionalLeads * price;
+    setProjectedGain(newGain);
+    
+    trackEvent({
+      category: 'engagement',
+      action: 'click',
+      label: 'roi_calculator_used',
+      value: newGain
+    });
+  };
 
   // Initialize form
   const form = useForm<FormValues>({
@@ -40,6 +63,8 @@ export default function SmallBusinessOwners() {
       email: "",
       phone: "",
       business: "",
+      businessType: "",
+      interestedService: "",
       message: "",
       source: "SmallBusinessFunnel",
     },
@@ -65,8 +90,8 @@ export default function SmallBusinessOwners() {
       
       setSubmitted(true);
       toast({
-        title: "Form submitted successfully",
-        description: "We'll be in touch with you shortly.",
+        title: "Request submitted successfully",
+        description: "We'll be in touch with you shortly to discuss how we can help your business grow.",
       });
       
       // Reset form
@@ -94,26 +119,25 @@ export default function SmallBusinessOwners() {
         />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <div className="min-h-screen flex flex-col bg-[#0a0a0d] text-white">
         <Header />
         
         <main className="flex-grow">
           {/* Hero Section */}
-          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-background to-card">
+          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-[#0a0a0d] to-[#121218]">
             <div className="container mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                    Powering Growth for <span className="text-primary">Small Business</span> Owners
+                    Your Business Deserves <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Better Results</span>
                   </h1>
-                  <p className="text-xl text-muted-foreground mb-8">
-                    Running a business is hard enough. Let us handle your marketing 
-                    and customer acquisition while you focus on what you do best.
+                  <p className="text-xl text-gray-300 mb-8">
+                    You didn't start your business to become a web designer, a developer, or a tech wizard. You're great at what you do — but your website, funnels, and CRM? They're holding you back.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button 
                       size="lg" 
-                      className="btn-titanium"
+                      className="bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold rounded-md px-8 py-6 text-lg shadow-[0_0_15px_rgba(20,255,200,0.3)] hover:shadow-[0_0_20px_rgba(20,255,200,0.5)] transition-all duration-300"
                       onClick={() => {
                         const formSection = document.getElementById('lead-form');
                         formSection?.scrollIntoView({ behavior: 'smooth' });
@@ -132,19 +156,19 @@ export default function SmallBusinessOwners() {
                 </div>
                 
                 <div className="relative">
-                  <Card className="enterprise-card">
-                    <div className="glow-wrapper"></div>
-                    <CardContent className="p-6 enterprise-card-content">
+                  <Card className="bg-[#121218] border border-gray-800 overflow-hidden rounded-lg shadow-xl">
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0d] to-[#121218] opacity-50"></div>
+                    <CardContent className="p-8 relative z-10">
                       <div className="space-y-6">
                         <div className="flex items-start gap-4">
-                          <div className="bg-primary/10 p-3 rounded-full">
-                            <BarChart3 className="h-6 w-6 text-primary" />
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <BarChart3 className="h-6 w-6 text-[#14ffc8]" />
                           </div>
                           <div>
-                            <h3 className="text-lg font-semibold mb-1">
+                            <h3 className="text-lg font-semibold mb-1 text-white">
                               Growth without Complexity
                             </h3>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-gray-400 text-sm">
                               Our average small business client sees 38% increase in qualified leads
                               within the first 90 days.
                             </p>
@@ -152,14 +176,14 @@ export default function SmallBusinessOwners() {
                         </div>
                         
                         <div className="flex items-start gap-4">
-                          <div className="bg-primary/10 p-3 rounded-full">
-                            <Shield className="h-6 w-6 text-primary" />
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <Shield className="h-6 w-6 text-[#14ffc8]" />
                           </div>
                           <div>
-                            <h3 className="text-lg font-semibold mb-1">
+                            <h3 className="text-lg font-semibold mb-1 text-white">
                               Enterprise-grade, Small Business Price
                             </h3>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-gray-400 text-sm">
                               Access the same tools and strategies used by Fortune 500 companies,
                               but with pricing that makes sense for your business.
                             </p>
@@ -167,14 +191,14 @@ export default function SmallBusinessOwners() {
                         </div>
                         
                         <div className="flex items-start gap-4">
-                          <div className="bg-primary/10 p-3 rounded-full">
-                            <Clock className="h-6 w-6 text-primary" />
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <Clock className="h-6 w-6 text-[#14ffc8]" />
                           </div>
                           <div>
-                            <h3 className="text-lg font-semibold mb-1">
+                            <h3 className="text-lg font-semibold mb-1 text-white">
                               Time-saving Automation
                             </h3>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-gray-400 text-sm">
                               Save 15+ hours per week with automated lead generation,
                               follow-up, and customer engagement.
                             </p>
@@ -188,148 +212,152 @@ export default function SmallBusinessOwners() {
             </div>
           </section>
           
-          {/* Pain Points Section */}
-          <section className="py-16 px-4 bg-card">
-            <div className="container mx-auto">
-              <h2 className="text-3xl font-bold mb-12 text-center">
-                The <span className="text-primary">Real Challenges</span> Small Business Owners Face
+          {/* Pain Points Section with Red Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
+            {/* Red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                The <span className="text-white">Real Challenges</span> Small Business Owners Face
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Card className="titanium-card glow-blue">
-                  <div className="ambient-glow"></div>
-                  <CardContent className="p-6 titanium-content">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Inconsistent Customer Flow
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      Outdated Web Presence
                     </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          Feast or famine sales cycles that make staffing and inventory planning a nightmare
+                        <p className="text-gray-300">
+                          You've got a GoDaddy template from 2014 that never helped close a single deal.
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          Inability to predict busy periods, leading to lost sales or wasteful overstaffing
+                        <p className="text-gray-300">
+                          You have to call someone to update your website. They take a week. Or they ghost.
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          Constant worry about where your next customers will come from
+                        <p className="text-gray-300">
+                          You're losing leads because your contact form breaks on mobile — again.
                         </p>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
                 
-                <Card className="titanium-card glow-purple">
-                  <div className="ambient-glow"></div>
-                  <CardContent className="p-6 titanium-content">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Marketing That Drains Resources
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      Invisible Online Presence
                     </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          Wasting thousands on ineffective ads and campaigns with no measurable results
+                        <p className="text-gray-300">
+                          Your social media page hasn't been updated since last tax season. You're not even visible.
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          Marketing firms that charge high retainers but deliver minimal ROI
+                        <p className="text-gray-300">
+                          Customers forget you exist because there's no consistent online presence.
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          Too many tools and platforms with no integrated strategy
+                        <p className="text-gray-300">
+                          Your competitors show up in search results, but you're nowhere to be found.
                         </p>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
                 
-                <Card className="titanium-card glow-green">
-                  <div className="ambient-glow"></div>
-                  <CardContent className="p-6 titanium-content">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Not Enough Time
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      Tech Overwhelm
                     </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          Wearing too many hats, from operations to HR to marketing
+                        <p className="text-gray-300">
+                          You don't have time to become a tech expert. You're running a real business.
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          Struggling to stay on top of social media and customer engagement
+                        <p className="text-gray-300">
+                          Every time you try to update something yourself, it breaks something else.
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          No time to learn complex marketing systems or analyze data
+                        <p className="text-gray-300">
+                          You've tried multiple "easy-to-use" platforms but ended up with a mess.
                         </p>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
                 
-                <Card className="titanium-card glow-amber">
-                  <div className="ambient-glow"></div>
-                  <CardContent className="p-6 titanium-content">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Falling Behind Competitors
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">
+                      Missing Growth Opportunities
                     </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          Larger competitors with dedicated marketing teams capturing your market share
+                        <p className="text-gray-300">
+                          You've got no way to capture leads or follow up automatically with interested customers.
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          Customers choosing others because of better online presence and faster response
+                        <p className="text-gray-300">
+                          Perfect customers visit your site but leave without contacting you - and you never know.
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-primary" />
+                          <XCircle className="h-4 w-4 text-red-500" />
                         </div>
-                        <p className="text-muted-foreground">
-                          Unable to leverage new technologies that could give you an edge
+                        <p className="text-gray-300">
+                          You're paying for marketing but have no idea if it's actually working.
                         </p>
                       </li>
                     </ul>
@@ -339,133 +367,187 @@ export default function SmallBusinessOwners() {
             </div>
           </section>
           
-          {/* Solution & ROI Section */}
-          <section className="py-16 px-4 bg-background">
-            <div className="container mx-auto">
+          {/* Solution Section with Green Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
+            {/* Green ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/5 blur-3xl rounded-full opacity-20 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">
-                <span className="text-primary">Purpose-built Solutions</span> for Small Business Growth
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Complete Solution</span> for Small Business Growth
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <BarChart3 className="h-8 w-8 text-primary" />
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/20 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle2 className="h-8 w-8 text-[#14ffc8]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-center">Consistent Lead Generation</h3>
-                    <ul className="space-y-2">
-                      <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Predictable customer acquisition pipeline</span>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-white">Fully Built Website & Funnel</h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Professional, mobile-optimized website that actually converts visitors to leads
+                        </p>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Multi-channel lead generation strategy</span>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Lead capture forms that work perfectly on all devices
+                        </p>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Automated lead qualification and scoring</span>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Content that speaks directly to your ideal customers
+                        </p>
                       </li>
                     </ul>
-                    <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">Typical ROI:</p>
-                      <p className="text-xl font-bold text-primary">3.8x</p>
-                    </div>
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                      </svg>
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/20 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <BarChart3 className="h-8 w-8 text-[#14ffc8]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-center">Automated Marketing</h3>
-                    <ul className="space-y-2">
-                      <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">AI-powered content creation and scheduling</span>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-white">Your Own CRM + Lead Storage</h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          All leads stored in your own Postgres DB (you control it)
+                        </p>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">24/7 lead nurturing and follow-up</span>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Track and manage your customer relationships in one place
+                        </p>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Customer journey optimization</span>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          See exactly what's working and what's not in real-time
+                        </p>
                       </li>
                     </ul>
-                    <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">Time Saved:</p>
-                      <p className="text-xl font-bold text-primary">15+ hrs/week</p>
-                    </div>
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/20 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Clock className="h-8 w-8 text-[#14ffc8]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-center">Data-driven Decisions</h3>
-                    <ul className="space-y-2">
-                      <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Real-time performance dashboards</span>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-white">Ongoing Support & Updates</h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          24/7 live support — a real person, any time
+                        </p>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Customer behavior analytics</span>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Hosting, updates, content management — done for you
+                        </p>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="text-sm">Predictive trend analysis</span>
+                      <li className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0">
+                          <Check className="h-4 w-4 text-[#14ffc8]" />
+                        </div>
+                        <p className="text-gray-300">
+                          Everything evolves with your business - month-to-month, no contracts
+                        </p>
                       </li>
                     </ul>
-                    <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">Avg. Revenue Increase:</p>
-                      <p className="text-xl font-bold text-primary">27%</p>
-                    </div>
                   </CardContent>
                 </Card>
               </div>
               
-              <div className="bg-card border border-border rounded-lg p-6 md:p-8">
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                  <div className="md:w-3/4">
-                    <h3 className="text-2xl font-semibold mb-2">
-                      "Fusion Data has been a game-changer for our business."
-                    </h3>
-                    <p className="text-muted-foreground">
-                      "Before Fusion, we were spending 15 hours a week on social media with minimal results. 
-                      Now our campaigns run on autopilot, our lead pipeline is full, and we've increased 
-                      revenue by 32% in just 6 months."
-                    </p>
-                    <div className="mt-4">
-                      <p className="font-semibold">Michael Chen</p>
-                      <p className="text-sm text-muted-foreground">Owner, Pacific Coast Wellness</p>
+              {/* ROI Calculator Section */}
+              <div className="max-w-4xl mx-auto bg-[#121218] border border-[#14ffc8]/20 rounded-lg overflow-hidden relative p-8 mt-16">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-bold text-center mb-6 text-white">
+                    <span className="text-[#14ffc8]">ROI Calculator:</span> See Your Growth Potential
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-6">
+                      <div>
+                        <Label htmlFor="current-leads" className="text-white text-lg mb-2 block">
+                          How many leads do you get now per month?
+                        </Label>
+                        <Input 
+                          id="current-leads"
+                          type="number" 
+                          value={currentLeads}
+                          onChange={(e) => setCurrentLeads(e.target.value)}
+                          className="bg-[#0a0a0d] border-[#333340] text-white h-12"
+                        />
+                      </div>
+                      
+                      <div>
+                        <Label htmlFor="ticket-price" className="text-white text-lg mb-2 block">
+                          What's your average ticket price? ($)
+                        </Label>
+                        <Input 
+                          id="ticket-price"
+                          type="number" 
+                          value={ticketPrice}
+                          onChange={(e) => setTicketPrice(e.target.value)}
+                          className="bg-[#0a0a0d] border-[#333340] text-white h-12"
+                        />
+                      </div>
+                      
+                      <Button 
+                        onClick={calculateROI}
+                        className="w-full bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold rounded-md py-3 text-lg shadow-[0_0_15px_rgba(20,255,200,0.3)] hover:shadow-[0_0_20px_rgba(20,255,200,0.5)] transition-all duration-300"
+                      >
+                        Calculate Potential ROI
+                      </Button>
                     </div>
-                  </div>
-                  <div className="md:w-1/4 flex justify-center md:justify-end">
-                    <div className="flex items-center gap-1">
-                      <svg className="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg className="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg className="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg className="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <svg className="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
+                    
+                    <div className="bg-[#0a0a0d] p-6 rounded-lg flex flex-col justify-center items-center">
+                      <h4 className="text-xl font-medium text-gray-300 mb-3">With 20% more leads, you could gain:</h4>
+                      
+                      <div className="text-5xl font-bold text-[#14ffc8] mb-2">
+                        ${projectedGain.toLocaleString()}
+                      </div>
+                      
+                      <p className="text-gray-400 text-center">
+                        Additional revenue per month
+                      </p>
+                      
+                      <div className="mt-6 pt-6 border-t border-gray-800 w-full text-center">
+                        <p className="text-gray-300">
+                          That's <span className="text-[#14ffc8] font-bold">${(projectedGain * 12).toLocaleString()}</span> per year in untapped revenue
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -473,182 +555,203 @@ export default function SmallBusinessOwners() {
             </div>
           </section>
           
-          {/* CTA - Lead Form Section */}
-          <section id="lead-form" className="py-16 md:py-24 px-4 bg-card">
-            <div className="container mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                    Ready to Transform Your <span className="text-primary">Business Growth</span>?
-                  </h2>
-                  <p className="text-lg mb-8 text-muted-foreground">
-                    Schedule a free 30-minute consultation to discover how Fusion Data Co can help
-                    your small business thrive in the digital landscape.
-                  </p>
-                  
-                  <div className="space-y-6">
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0">
-                        <Check className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg">Custom Growth Strategy</h3>
-                        <p className="text-muted-foreground">
-                          We'll create a tailored plan based on your specific business goals and challenges.
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0">
-                        <Check className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg">Competitive Analysis</h3>
-                        <p className="text-muted-foreground">
-                          Get insights into what's working for competitors in your industry and location.
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <div className="flex-shrink-0">
-                        <Check className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg">ROI Projection</h3>
-                        <p className="text-muted-foreground">
-                          See the potential return on your marketing investment based on real data.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          {/* CTA and Lead Form Section */}
+          <section id="lead-form" className="py-16 px-4 bg-[#121218] relative overflow-hidden">
+            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/3 blur-3xl rounded-full opacity-10 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold mb-3 text-center text-white">
+                  Ready to Stop Losing Leads and Start Growing?
+                </h2>
+                <p className="text-xl text-gray-300 mb-12 text-center max-w-2xl mx-auto">
+                  Tell us about your business. We'll get back to you within 24 hours with a personalized plan.
+                </p>
                 
-                <div>
-                  <Card className="bg-background border border-border/50">
-                    <CardContent className="p-6 md:p-8">
-                      {submitted ? (
-                        <div className="text-center py-8">
-                          <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                            <Check className="h-8 w-8 text-primary" />
-                          </div>
-                          <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
-                          <p className="text-muted-foreground mb-6">
-                            Your information has been submitted successfully. One of our business growth
-                            experts will contact you within 1 business day.
-                          </p>
-                          <Button 
-                            className="btn-titanium" 
-                            onClick={() => setSubmitted(false)}
-                          >
-                            Submit Another Inquiry
-                          </Button>
+                <Card className="bg-[#0a0a0d]/90 border border-[#14ffc8]/10 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/5 to-[#14ffc8]/2 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    {submitted ? (
+                      <div className="text-center py-8">
+                        <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                          <CheckCircle2 className="h-8 w-8 text-[#14ffc8]" />
                         </div>
-                      ) : (
-                        <>
-                          <h3 className="text-xl font-semibold mb-6">
-                            Get Your Free Consultation
-                          </h3>
+                        <h3 className="text-2xl font-bold mb-4 text-white">Thank You!</h3>
+                        <p className="text-gray-300 text-lg mb-6">
+                          We've received your information and will be in touch shortly to discuss how we can help your business grow.
+                        </p>
+                        <Button 
+                          onClick={() => setSubmitted(false)}
+                          className="bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold rounded-md px-6 py-3 shadow-[0_0_15px_rgba(20,255,200,0.3)] hover:shadow-[0_0_20px_rgba(20,255,200,0.5)] transition-all duration-300"
+                        >
+                          Submit Another Request
+                        </Button>
+                      </div>
+                    ) : (
+                      <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <FormField
+                              control={form.control}
+                              name="name"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Full Name</FormLabel>
+                                  <FormControl>
+                                    <Input 
+                                      placeholder="John Smith" 
+                                      {...field} 
+                                      className="bg-[#121218] border-[#333340] text-white"
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="email"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Email Address</FormLabel>
+                                  <FormControl>
+                                    <Input 
+                                      placeholder="your@email.com" 
+                                      {...field} 
+                                      className="bg-[#121218] border-[#333340] text-white"
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="phone"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Phone Number</FormLabel>
+                                  <FormControl>
+                                    <Input 
+                                      placeholder="(555) 123-4567" 
+                                      {...field} 
+                                      className="bg-[#121218] border-[#333340] text-white"
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="business"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Business Name</FormLabel>
+                                  <FormControl>
+                                    <Input 
+                                      placeholder="Your Business LLC" 
+                                      {...field} 
+                                      className="bg-[#121218] border-[#333340] text-white"
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="businessType"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Business Type</FormLabel>
+                                  <Select 
+                                    onValueChange={field.onChange} 
+                                    defaultValue={field.value}
+                                  >
+                                    <FormControl>
+                                      <SelectTrigger className="bg-[#121218] border-[#333340] text-white">
+                                        <SelectValue placeholder="Select business type" />
+                                      </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent className="bg-[#121218] border-[#333340] text-white">
+                                      <SelectItem value="retail">Retail Store</SelectItem>
+                                      <SelectItem value="restaurant">Restaurant/Café</SelectItem>
+                                      <SelectItem value="service">Service Business</SelectItem>
+                                      <SelectItem value="trades">Trades & Construction</SelectItem>
+                                      <SelectItem value="professional">Professional Services</SelectItem>
+                                      <SelectItem value="other">Other</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            
+                            <FormField
+                              control={form.control}
+                              name="interestedService"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel className="text-white">Which service are you most interested in?</FormLabel>
+                                  <Select 
+                                    onValueChange={field.onChange} 
+                                    defaultValue={field.value}
+                                  >
+                                    <FormControl>
+                                      <SelectTrigger className="bg-[#121218] border-[#333340] text-white">
+                                        <SelectValue placeholder="Select service" />
+                                      </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent className="bg-[#121218] border-[#333340] text-white">
+                                      <SelectItem value="website">Website & Funnel Pages</SelectItem>
+                                      <SelectItem value="crm">CRM & Lead Management</SelectItem>
+                                      <SelectItem value="social">Social Media Management</SelectItem>
+                                      <SelectItem value="seo">SEO & Online Visibility</SelectItem>
+                                      <SelectItem value="complete">Complete Solution Package</SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
                           
-                          <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                              <input type="hidden" name="source" value="SmallBusinessFunnel" />
-                              
-                              <FormField
-                                control={form.control}
-                                name="name"
-                                render={({ field }) => (
-                                  <FormItem>
-                                    <FormLabel>Full Name</FormLabel>
-                                    <FormControl>
-                                      <Input placeholder="John Smith" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                  </FormItem>
-                                )}
-                              />
-                              
-                              <FormField
-                                control={form.control}
-                                name="email"
-                                render={({ field }) => (
-                                  <FormItem>
-                                    <FormLabel>Email Address</FormLabel>
-                                    <FormControl>
-                                      <Input placeholder="john@yourcompany.com" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                  </FormItem>
-                                )}
-                              />
-                              
-                              <FormField
-                                control={form.control}
-                                name="phone"
-                                render={({ field }) => (
-                                  <FormItem>
-                                    <FormLabel>Phone Number (Optional)</FormLabel>
-                                    <FormControl>
-                                      <Input placeholder="(555) 123-4567" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                  </FormItem>
-                                )}
-                              />
-                              
-                              <FormField
-                                control={form.control}
-                                name="business"
-                                render={({ field }) => (
-                                  <FormItem>
-                                    <FormLabel>Business Name</FormLabel>
-                                    <FormControl>
-                                      <Input placeholder="Your Business Name" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                  </FormItem>
-                                )}
-                              />
-                              
-                              <FormField
-                                control={form.control}
-                                name="message"
-                                render={({ field }) => (
-                                  <FormItem>
-                                    <FormLabel>Tell us about your goals (Optional)</FormLabel>
-                                    <FormControl>
-                                      <Textarea 
-                                        placeholder="What are your primary business challenges or goals?" 
-                                        className="min-h-[100px]"
-                                        {...field} 
-                                      />
-                                    </FormControl>
-                                    <FormMessage />
-                                  </FormItem>
-                                )}
-                              />
-                              
-                              <Button 
-                                type="submit" 
-                                className="w-full btn-titanium" 
-                                size="lg"
-                                disabled={isSubmitting}
-                              >
-                                {isSubmitting ? "Submitting..." : "Schedule My Consultation"}
-                              </Button>
-                              
-                              <p className="text-xs text-center text-muted-foreground pt-2">
-                                By submitting, you agree to our Privacy Policy and Terms of Service.
-                                We'll never share your information.
-                              </p>
-                            </form>
-                          </Form>
-                        </>
-                      )}
-                    </CardContent>
-                  </Card>
-                </div>
+                          <FormField
+                            control={form.control}
+                            name="message"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-white">Additional Information</FormLabel>
+                                <FormControl>
+                                  <Textarea 
+                                    placeholder="Tell us a bit more about your business challenges..."
+                                    className="min-h-[120px] bg-[#121218] border-[#333340] text-white"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          
+                          <Button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="w-full bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold rounded-md py-6 text-lg shadow-[0_0_15px_rgba(20,255,200,0.3)] hover:shadow-[0_0_20px_rgba(20,255,200,0.5)] transition-all duration-300"
+                          >
+                            {isSubmitting ? "Submitting..." : "Get My Growth Plan"}
+                          </Button>
+                        </form>
+                      </Form>
+                    )}
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </section>
