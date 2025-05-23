@@ -415,9 +415,10 @@ export default function Medical() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 space-y-4 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-2">
                       <svg className="h-8 w-8 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                       </svg>
@@ -445,11 +446,12 @@ export default function Medical() {
                 </Card>
               </div>
               
-              <div className="bg-card border border-border rounded-lg p-6 md:p-8">
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+              <div className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg p-6 md:p-8 relative overflow-hidden">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6 relative z-10">
                   <div className="md:w-3/4">
                     <h3 className="text-2xl font-semibold mb-2">
-                      "Fusion Data Co transformed our patient acquisition strategy."
+                      "Fusion Data Co <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">transformed</span> our patient acquisition strategy."
                     </h3>
                     <p className="text-muted-foreground">
                       "As a busy dermatology practice, we struggled with consistent new patient flow. 
