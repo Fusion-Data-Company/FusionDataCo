@@ -26,13 +26,16 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     // Using black theme with white particles
     const particleColor = '#ffffff'
     
-    // Create multiple attractor points spread around to draw particles all over the screen
+    // Create multiple attractor points MUCH more spread out across the right side
+    // These will have a wider influence range to create a true spread-out effect
     const attractors = [
-      { x: size * 0.65, y: size * 0.25, radius: 70, strength: 0.3, phase: 0 },
-      { x: size * 0.75, y: size * 0.75, radius: 70, strength: 0.25, phase: 2.1 },
-      { x: size * 0.85, y: size * 0.45, radius: 70, strength: 0.2, phase: 4.2 },
-      { x: size * 0.7, y: size * 0.6, radius: 60, strength: 0.15, phase: 1.3 },
-      { x: size * 0.8, y: size * 0.3, radius: 60, strength: 0.2, phase: 3.4 }
+      { x: size * 0.6, y: size * 0.2, radius: 180, strength: 0.15, phase: 0 },
+      { x: size * 0.9, y: size * 0.8, radius: 180, strength: 0.12, phase: 2.1 },
+      { x: size * 0.75, y: size * 0.5, radius: 200, strength: 0.1, phase: 4.2 },
+      { x: size * 0.65, y: size * 0.7, radius: 150, strength: 0.14, phase: 1.3 },
+      { x: size * 0.85, y: size * 0.3, radius: 160, strength: 0.13, phase: 3.4 },
+      { x: size * 0.55, y: size * 0.4, radius: 170, strength: 0.11, phase: 5.1 },
+      { x: size * 0.95, y: size * 0.6, radius: 190, strength: 0.09, phase: 2.7 }
     ]
     
     // For automatic movement
@@ -275,26 +278,30 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           this.x += this.velocity.x
           this.y += this.velocity.y
 
-          // Stricter boundary constraints - keep particles fully on screen
-          // Right side only - bouncy boundaries with stronger enforcement
+          // EXTREMELY strict boundary constraints - keep particles fully on screen
+          // Right side only - bouncy boundaries with very strong enforcement
           if (this.x < size / 2) {
-            // Strong bounce from center divider
-            this.velocity.x = Math.abs(this.velocity.x) * 1.5
-            this.x = size / 2 + 2
-          } else if (this.x > size - 5) {
-            // Strong bounce from right edge
-            this.velocity.x = -Math.abs(this.velocity.x) * 1.5
-            this.x = size - 5
+            // Hard bounce from center divider
+            this.velocity.x = Math.abs(this.velocity.x) * 2.0
+            this.x = size / 2 + 5
+          } else if (this.x > size - 10) {
+            // Hard bounce from right edge
+            this.velocity.x = -Math.abs(this.velocity.x) * 2.0
+            this.x = size - 10
           }
           
-          // Top and bottom bouncy boundaries
-          if (this.y < 5) {
-            this.velocity.y = Math.abs(this.velocity.y) * 1.5
-            this.y = 5
-          } else if (this.y > size - 5) {
-            this.velocity.y = -Math.abs(this.velocity.y) * 1.5
-            this.y = size - 5
+          // Top and bottom hard boundaries
+          if (this.y < 10) {
+            this.velocity.y = Math.abs(this.velocity.y) * 2.0
+            this.y = 10
+          } else if (this.y > size - 10) {
+            this.velocity.y = -Math.abs(this.velocity.y) * 2.0
+            this.y = size - 10
           }
+          
+          // Force particles to remain on screen in case they somehow escape
+          this.x = Math.max(size / 2 + 5, Math.min(size - 10, this.x))
+          this.y = Math.max(10, Math.min(size - 10, this.y))
         }
         
         // Reset connections for next frame
@@ -344,11 +351,11 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       }
     }
 
-    // Add chaotic particles on the right side - much more to match screenshot
-    for (let i = 0; i < 600; i++) {
+    // Add THOUSANDS of chaotic particles on the right side for a dense network
+    for (let i = 0; i < 4000; i++) {
       // Spread particles more evenly across the right side
-      const x = Math.random() * (size / 2) + size / 2
-      const y = Math.random() * size
+      const x = Math.random() * (size / 2 - 10) + size / 2 + 5
+      const y = Math.random() * (size - 10) + 5 // Keep away from edges
       particles.push(new Particle(x, y, false))
     }
 
@@ -402,33 +409,52 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     let animationId: number
     let frameCount = 0
     
-    // Update attractor positions
+    // Update attractor positions - with MUCH larger movement patterns
     function updateAttractors() {
       if (!autoMoveAttractors) return
       
-      autoMoveTime += 0.006
+      autoMoveTime += 0.004 // Slower movement for more gradual effect
       
       // Update each attractor with different movement patterns
       attractors.forEach((attractor, index) => {
         const t = autoMoveTime + attractor.phase
         
-        // Different movement pattern for each attractor
+        // Different movement pattern for each attractor - MUCH wider movement range
+        // These ranges are 3-4x larger than before to spread across the full width
         if (index === 0) {
-          // First attractor - figure 8 pattern
-          attractor.x = size * 0.75 + size * 0.15 * Math.sin(t * 0.7)
-          attractor.y = size * 0.4 + size * 0.25 * Math.sin(t * 1.3) * Math.cos(t * 0.7)
+          // Lissajous pattern
+          attractor.x = size * 0.7 + size * 0.25 * Math.sin(t * 0.4)
+          attractor.y = size * 0.3 + size * 0.25 * Math.sin(t * 0.7) * Math.cos(t * 0.3)
         } else if (index === 1) {
-          // Second attractor - bouncing pattern
-          attractor.x = size * 0.65 + size * 0.12 * Math.cos(t * 0.8)
-          attractor.y = size * 0.6 + size * 0.2 * Math.sin(t * 1.1)
+          // Figure-8 pattern
+          attractor.x = size * 0.75 + size * 0.2 * Math.sin(t * 0.6)
+          attractor.y = size * 0.75 + size * 0.2 * Math.sin(t * 0.3) * Math.cos(t * 0.6)
+        } else if (index === 2) {
+          // Large circular orbit
+          attractor.x = size * 0.75 + size * 0.23 * Math.cos(t * 0.3)
+          attractor.y = size * 0.5 + size * 0.4 * Math.sin(t * 0.3)
+        } else if (index === 3) {
+          // Wave pattern
+          attractor.x = size * 0.65 + size * 0.15 * Math.cos(t * 0.5)
+          attractor.y = size * 0.6 + size * 0.3 * Math.sin(t * 0.7)
+        } else if (index === 4) {
+          // Spiral effect
+          attractor.x = size * 0.8 + size * 0.15 * Math.cos(t * 0.4) * (1 + 0.3 * Math.sin(t * 0.2))
+          attractor.y = size * 0.4 + size * 0.35 * Math.sin(t * 0.4) * (1 + 0.3 * Math.cos(t * 0.2))
+        } else if (index === 5) {
+          // Wide arc
+          attractor.x = size * 0.6 + size * 0.3 * Math.sin(t * 0.25)
+          attractor.y = size * 0.3 + size * 0.2 * Math.cos(t * 0.45) 
         } else {
-          // Third attractor - circular motion
-          attractor.x = size * 0.8 + size * 0.15 * Math.cos(t * 0.5)
-          attractor.y = size * 0.5 + size * 0.3 * Math.sin(t * 0.5)
+          // Bouncing pattern
+          attractor.x = size * 0.8 + size * 0.18 * Math.sin(t * 0.35)
+          attractor.y = size * 0.7 + size * 0.25 * Math.abs(Math.sin(t * 0.3))
         }
         
-        // Ensure attractors stay on the right side
-        attractor.x = Math.max(size / 2 + 20, Math.min(size - 20, attractor.x))
+        // Ensure attractors stay fully on screen
+        const margin = 20
+        attractor.x = Math.max(size / 2 + margin, Math.min(size - margin, attractor.x))
+        attractor.y = Math.max(margin, Math.min(size - margin, attractor.y))
       })
     }
     
