@@ -285,54 +285,124 @@ export default function SocialMedia() {
         </div>
         
         {/* Additional Features */}
-        <div className="mb-16">
-          <div className="text-center mb-10">
-            <h3 className="font-['Orbitron'] text-2xl font-semibold mb-4 text-foreground">
-              Advanced Enterprise Capabilities
-            </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive tools designed specifically for enterprise social media management at scale.
-            </p>
-          </div>
+        <div className="mb-20 relative">
+          <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {advancedFeatures.map((feature, index) => (
-              <div key={index} className="glass-panel p-6 rounded-lg hover-edge-glow transition-all duration-300">
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-primary/10 border border-primary/20">
-                  <div className="text-primary">
-                    {feature.icon}
+          <div className="relative z-10">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center p-1 px-3 rounded-full bg-primary/10 mb-4 border border-primary/20">
+                <span className="text-xs font-medium text-primary">FANG-Level Tools</span>
+              </div>
+              <h3 className="font-['Orbitron'] text-2xl font-semibold mb-4 text-foreground">
+                Advanced Enterprise <span className="text-gradient-primary">Capabilities</span>
+              </h3>
+              <div className="w-20 h-1 bg-gradient-to-r from-primary to-transparent rounded-full mb-4 mx-auto"></div>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Sophisticated tools designed specifically for enterprise social media management at global scale with uncompromising security and compliance.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {advancedFeatures.map((feature, index) => (
+                <div 
+                  key={index} 
+                  className="enterprise-card p-6 rounded-lg transition-all duration-300 animate-fade-in"
+                  style={{ animationDelay: `${0.2 + (index * 0.1)}s` }}
+                >
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-card/70 border border-white/10 shadow-md">
+                        <div className="text-primary">
+                          {feature.icon}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="ml-4">
+                      <h4 className="font-['Orbitron'] text-lg font-medium mb-2 text-foreground">{feature.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4 pt-4 border-t border-border/10">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 rounded-full bg-primary mr-2"></div>
+                        <span className="text-xs text-muted-foreground">Enterprise-ready</span>
+                      </div>
+                      <a href="#" className="text-xs text-primary font-medium flex items-center hover:underline">
+                        Learn more
+                        <ArrowRight className="ml-1 w-3 h-3" />
+                      </a>
+                    </div>
                   </div>
                 </div>
-                <h4 className="font-['Orbitron'] text-lg font-medium mb-2 text-foreground">{feature.title}</h4>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
         
         {/* Enterprise testimonial/callout */}
-        <div className="max-w-5xl mx-auto">
-          <div className="glass-panel p-8 rounded-xl border border-border/30 relative overflow-hidden">
-            <div className="absolute -top-24 -right-24 w-64 h-64 opacity-5">
+        <div className="max-w-5xl mx-auto mb-16 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+          <div className="chrome-panel p-8 md:p-10 rounded-xl relative overflow-hidden">
+            {/* Background elements */}
+            <div className="absolute top-0 right-0 w-80 h-80 opacity-5 pointer-events-none">
               <Share2 className="w-full h-full text-primary" />
+            </div>
+            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-primary/5 to-transparent opacity-20 pointer-events-none"></div>
+            
+            {/* Quote mark */}
+            <div className="absolute top-6 left-6 text-primary/10 text-8xl font-serif pointer-events-none">
+              "
             </div>
             
             <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
-              <div className="flex-shrink-0 w-24 h-24 rounded-full border-4 border-background overflow-hidden">
-                <img 
-                  src="https://via.placeholder.com/150x150?text=CMO" 
-                  alt="Enterprise CMO" 
-                  className="w-full h-full object-cover" 
-                />
+              <div className="relative">
+                <div className="absolute inset-0 border-2 border-primary/20 rounded-full -m-1 animate-pulse-glow"></div>
+                <div className="flex-shrink-0 w-24 h-24 rounded-full border-2 border-white/10 overflow-hidden shadow-lg bg-card">
+                  <img 
+                    src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max" 
+                    alt="Enterprise CMO" 
+                    className="w-full h-full object-cover" 
+                  />
+                </div>
+                
+                {/* Company logo overlay */}
+                <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-card p-1 border border-white/10 shadow-lg">
+                  <div className="bg-gradient-to-tr from-blue-600 to-blue-800 w-full h-full rounded-full flex items-center justify-center">
+                    <span className="text-xs font-bold text-white">F500</span>
+                  </div>
+                </div>
               </div>
               
               <div>
-                <p className="text-muted-foreground italic mb-4">
-                  "Fusion Data Co's enterprise social media platform has transformed how our global team coordinates campaigns across 23 markets. The advanced analytics and AI-powered content suggestions have increased our engagement by 147% while reducing production time by 40%."
-                </p>
-                <div>
-                  <p className="font-medium text-foreground">Sarah Johnson</p>
-                  <p className="text-sm text-muted-foreground">Chief Marketing Officer, Fortune 500 Enterprise</p>
+                <div className="p-1 px-3 rounded-full bg-primary/10 inline-flex items-center mb-4 border border-primary/20">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary w-3 h-3 mr-2">
+                    <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                  </svg>
+                  <span className="text-xs font-medium text-primary">Enterprise Success Story</span>
+                </div>
+                
+                <div className="glass-panel p-6 rounded-lg shadow-lg mb-4 backdrop-blur-sm">
+                  <p className="text-foreground italic leading-relaxed">
+                    "Fusion Data Co's enterprise social media platform has transformed how our global team coordinates campaigns across 23 markets. The advanced analytics and AI-powered content suggestions have <span className="text-primary font-medium">increased our engagement by 147%</span> while reducing production time by 40%."
+                  </p>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-medium text-foreground flex items-center">
+                      Sarah Johnson
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-blue-500 ml-2">
+                        <path fillRule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+                      </svg>
+                    </p>
+                    <p className="text-sm text-muted-foreground">Chief Marketing Officer, Global Fortune 500</p>
+                  </div>
+                  
+                  <a href="#" className="text-primary text-sm font-medium flex items-center">
+                    Read case study
+                    <ArrowRight className="ml-1 w-4 h-4" />
+                  </a>
                 </div>
               </div>
             </div>
