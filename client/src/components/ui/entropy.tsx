@@ -26,20 +26,30 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     // Using black theme with white particles
     const particleColor = '#ffffff'
 
+    // Spotlight/gravity center - starts at center-right by default
+    let spotlightX = size * 0.75
+    let spotlightY = size / 2
+    let spotlightActive = true
+    let spotlightStrength = 0.7
+    let spotlightRadius = 120
+    
+    // Create automatic spotlight movement if no mouse input
+    let autoMoveSpotlight = true
+    let autoMoveTime = 0
+    
     // Mouse interaction for spotlight effect
-    let mouseX = size
-    let mouseY = size / 2
-    let spotlight = false
-
     canvas.addEventListener('mousemove', (e) => {
       const rect = canvas.getBoundingClientRect()
-      mouseX = (e.clientX - rect.left) * dpr
-      mouseY = (e.clientY - rect.top) * dpr
-      spotlight = true
+      spotlightX = (e.clientX - rect.left) * dpr / dpr
+      spotlightY = (e.clientY - rect.top) * dpr / dpr
+      spotlightActive = true
+      autoMoveSpotlight = false
+      spotlightStrength = 1.0
     })
 
     canvas.addEventListener('mouseleave', () => {
-      spotlight = false
+      autoMoveSpotlight = true
+      spotlightStrength = 0.7
     })
 
     class Particle {
@@ -54,124 +64,183 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       neighbors: Particle[]
       attracted: boolean
       brightness: number
+      connectionCount: number
+      connectionBrightness: number
 
       constructor(x: number, y: number, order: boolean) {
         this.x = x
         this.y = y
         this.originalX = x
         this.originalY = y
-        this.size = 1.5
+        this.size = order ? 1.5 : 2
         this.order = order
         this.velocity = {
-          x: (Math.random() - 0.5) * (order ? 0.1 : 1.5),
-          y: (Math.random() - 0.5) * (order ? 0.1 : 1.5)
+          x: (Math.random() - 0.5) * (order ? 0.05 : 2),
+          y: (Math.random() - 0.5) * (order ? 0.05 : 2)
         }
         this.influence = 0
         this.neighbors = []
         this.attracted = false
         this.brightness = Math.random() * 0.3 + 0.7
+        this.connectionCount = 0
+        this.connectionBrightness = 0
       }
 
       update() {
-        // Calculate distance to mouse for spotlight effect
-        const dx = mouseX / dpr - this.x
-        const dy = mouseY / dpr - this.y
-        const distToMouse = Math.hypot(dx, dy)
-        const attractionRange = 150
-        const attractionStrength = spotlight ? 0.08 : 0
-
+        // Calculate distance to spotlight for gravity effect
+        const dx = spotlightX - this.x
+        const dy = spotlightY - this.y
+        const distToSpotlight = Math.hypot(dx, dy)
+        const normDx = dx / (distToSpotlight || 1)
+        const normDy = dy / (distToSpotlight || 1)
+        
+        // Attraction strength depends on distance and type of particle
+        let attractionFactor = 0
+        
+        if (spotlightActive) {
+          // Only apply if spotlight is on right side (chaotic side)
+          if (spotlightX > size / 2) {
+            // For ordered particles - can be pulled from grid
+            if (this.order) {
+              // Attraction gets stronger the closer to the spotlight
+              if (distToSpotlight < spotlightRadius * 1.5) {
+                attractionFactor = Math.pow(1 - Math.min(1, distToSpotlight / (spotlightRadius * 1.5)), 2) * spotlightStrength
+                this.attracted = attractionFactor > 0.05
+                
+                if (this.attracted) {
+                  // Add jitter when attracted
+                  this.velocity.x += (Math.random() - 0.5) * 0.5
+                  this.velocity.y += (Math.random() - 0.5) * 0.5
+                }
+              }
+            } 
+            // For chaotic particles - stronger attraction
+            else {
+              if (distToSpotlight < spotlightRadius * 2) {
+                attractionFactor = Math.pow(1 - Math.min(1, distToSpotlight / (spotlightRadius * 2)), 1.5) * spotlightStrength * 1.5
+              }
+            }
+          }
+        }
+        
         if (this.order) {
-          // Ordered particles - can be influenced by chaos and spotlight
-          if (distToMouse < attractionRange && spotlight) {
-            // Pulled by the spotlight
-            this.velocity.x += (dx / distToMouse) * attractionStrength 
-            this.velocity.y += (dy / distToMouse) * attractionStrength
-            this.attracted = true
+          // Generate chaotic influence value
+          if (attractionFactor > 0) {
+            this.influence = Math.max(this.influence, attractionFactor * 1.2)
             
-            // Add some chaos when attracted
-            this.velocity.x += (Math.random() - 0.5) * 0.2
-            this.velocity.y += (Math.random() - 0.5) * 0.2
+            // Add spotlight attraction force
+            this.velocity.x += normDx * attractionFactor * 1.2
+            this.velocity.y += normDy * attractionFactor * 1.2
             
             // Update position with velocity
             this.x += this.velocity.x
             this.y += this.velocity.y
             
-            // Dampen velocity
-            this.velocity.x *= 0.95
-            this.velocity.y *= 0.95
+            // Add more jitter to make it look chaotic when influenced
+            if (this.influence > 0.3) {
+              this.velocity.x += (Math.random() - 0.5) * this.influence * 0.8
+              this.velocity.y += (Math.random() - 0.5) * this.influence * 0.8
+            }
             
-            // Calculate influence from pull strength
-            this.influence = Math.min(1, (attractionRange - distToMouse) / attractionRange)
+            // Dampen velocity
+            this.velocity.x *= 0.94
+            this.velocity.y *= 0.94
           } else {
-            // Gradually return to original position if not attracted
-            const returnSpeed = this.attracted ? 0.03 : 0.1
+            // If not attracted, gradually return to original position
+            const returnSpeed = this.attracted ? 0.02 : 0.1
             this.x += (this.originalX - this.x) * returnSpeed
             this.y += (this.originalY - this.y) * returnSpeed
-            this.influence *= 0.98
+            this.velocity.x *= 0.9
+            this.velocity.y *= 0.9
             this.attracted = false
+            this.influence *= 0.97
           }
           
           // Apply cross-boundary influence from chaotic particles
-          this.neighbors.forEach(neighbor => {
-            if (!neighbor.order && Math.random() < 0.02) {
-              const distance = Math.hypot(this.x - neighbor.x, this.y - neighbor.y)
-              if (distance < 70) {
-                const pullStrength = 0.05 * (1 - distance / 70)
-                this.velocity.x += (neighbor.x - this.x) * pullStrength
-                this.velocity.y += (neighbor.y - this.y) * pullStrength
-                this.influence = Math.max(this.influence, pullStrength * 3)
+          if (this.neighbors.length > 0) {
+            let chaoticInfluence = 0
+            this.neighbors.forEach(neighbor => {
+              if (!neighbor.order && Math.random() < 0.03) {
+                const distance = Math.hypot(this.x - neighbor.x, this.y - neighbor.y)
+                if (distance < 80) {
+                  // Pull towards chaotic particle at boundary
+                  const pullStrength = 0.1 * Math.pow(1 - distance / 80, 2)
+                  this.velocity.x += (neighbor.x - this.x) * pullStrength
+                  this.velocity.y += (neighbor.y - this.y) * pullStrength
+                  chaoticInfluence = Math.max(chaoticInfluence, pullStrength * 2)
+                }
               }
-            }
-          })
+            })
+            
+            this.influence = Math.max(this.influence, chaoticInfluence)
+          }
         } else {
           // Chaotic particles - more dynamic movement
-          // Random movement
-          this.velocity.x += (Math.random() - 0.5) * 0.5
-          this.velocity.y += (Math.random() - 0.5) * 0.5
           
-          // Spotlight attraction
-          if (distToMouse < attractionRange * 1.5 && spotlight) {
-            this.velocity.x += (dx / distToMouse) * attractionStrength * 2
-            this.velocity.y += (dy / distToMouse) * attractionStrength * 2
+          // Random movement - stronger for more chaos
+          this.velocity.x += (Math.random() - 0.5) * 0.8
+          this.velocity.y += (Math.random() - 0.5) * 0.8
+          
+          // Spotlight gravity attraction
+          if (attractionFactor > 0) {
+            // Stronger pull to create concentration areas
+            this.velocity.x += normDx * attractionFactor * 1.5
+            this.velocity.y += normDy * attractionFactor * 1.5
+            
+            // Concentrate chaotic particles around spotlight
+            if (distToSpotlight < spotlightRadius * 0.5) {
+              // Orbital effect - perpendicular force
+              this.velocity.x += -normDy * attractionFactor * 0.8
+              this.velocity.y += normDx * attractionFactor * 0.8
+            }
           }
           
-          // Dampen velocity
-          this.velocity.x *= 0.94
-          this.velocity.y *= 0.94
+          // Dampen velocity - but not too much to keep chaotic movement
+          this.velocity.x *= 0.92
+          this.velocity.y *= 0.92
           
           // Update position
           this.x += this.velocity.x
           this.y += this.velocity.y
 
-          // Boundary checks - keep within right half with some elasticity
+          // Boundary checks - keep within right half with elastic bouncing
           if (this.x < size / 2) {
-            this.velocity.x = Math.abs(this.velocity.x) * 1.1
+            this.velocity.x = Math.abs(this.velocity.x) * 1.2
             this.x = size / 2 + 1
           } else if (this.x > size) {
-            this.velocity.x = -Math.abs(this.velocity.x) * 1.1
+            this.velocity.x = -Math.abs(this.velocity.x) * 1.2
             this.x = size - 1
           }
           
           if (this.y < 0) {
-            this.velocity.y = Math.abs(this.velocity.y) * 1.1
+            this.velocity.y = Math.abs(this.velocity.y) * 1.2
             this.y = 1
           } else if (this.y > size) {
-            this.velocity.y = -Math.abs(this.velocity.y) * 1.1
+            this.velocity.y = -Math.abs(this.velocity.y) * 1.2
             this.y = size - 1
           }
         }
+        
+        // Update connection brightness for glow effect
+        this.connectionBrightness *= 0.95
+        this.connectionCount = 0
       }
 
       draw(ctx: CanvasRenderingContext2D) {
-        // Adjust size based on influence and type
-        const drawSize = this.order 
-          ? this.size * (1 + this.influence * 1.5)
-          : this.size * 1.2
+        // Adjust size based on influence, connection count, and particle type
+        const influenceFactor = this.order ? (1 + this.influence * 2) : 1
+        const sizeFactor = 1 + Math.min(0.5, this.connectionCount / 20)
+        const drawSize = this.size * influenceFactor * sizeFactor
           
-        // Adjust color based on influence for ordered particles
-        const alpha = this.order 
-          ? 0.7 + this.influence * 0.3 
-          : 0.8
+        // Adjust color based on influence and connection count
+        let alpha = this.order 
+          ? 0.8 + this.influence * 0.2 
+          : 0.9
+          
+        // Brighter if lots of connections
+        if (this.connectionBrightness > 0) {
+          alpha = Math.min(1, alpha + this.connectionBrightness * 0.3)
+        }
           
         ctx.fillStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
         ctx.beginPath()
@@ -194,34 +263,41 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       }
     }
 
-    // Add chaotic particles on the right side - more to match demo
-    for (let i = 0; i < 200; i++) {
+    // Add chaotic particles on the right side - much more to match screenshot
+    for (let i = 0; i < 350; i++) {
       const x = Math.random() * (size / 2) + size / 2
       const y = Math.random() * size
       particles.push(new Particle(x, y, false))
     }
 
-    // Update neighbor relationships
+    // Update neighbor relationships - critical for connection density
     function updateNeighbors() {
       particles.forEach(particle => {
         particle.neighbors = particles.filter(other => {
           if (other === particle) return false
           
           // Different connection distances based on particle types
-          let maxDistance = 80
+          let maxDistance = 60
+          
           if (!particle.order && !other.order) {
-            // Chaos to chaos - higher density of connections
-            maxDistance = 100
+            // Chaos to chaos - very high density of connections
+            // This is key for matching the screenshot
+            maxDistance = particle.influence > 0.2 || other.influence > 0.2 ? 110 : 90
           } else if (particle.order && other.order) {
             // Order to order - grid-like connections
             const dx = Math.abs(particle.originalX - other.originalX)
             const dy = Math.abs(particle.originalY - other.originalY)
             // Only connect to immediate neighbors in grid
-            return (dx <= spacing * 1.5 && dy < spacing * 0.5) || 
-                   (dy <= spacing * 1.5 && dx < spacing * 0.5)
+            return (dx <= spacing * 1.1 && dy < spacing * 0.5) || 
+                   (dy <= spacing * 1.1 && dx < spacing * 0.5)
           } else {
             // Order to chaos - boundary connections
-            maxDistance = 70
+            // More connections at the boundary to match screenshot
+            if (Math.abs(particle.x - size / 2) < 20 || Math.abs(other.x - size / 2) < 20) {
+              maxDistance = 100
+            } else {
+              maxDistance = 80
+            }
           }
           
           const distance = Math.hypot(particle.x - other.x, particle.y - other.y)
@@ -233,49 +309,112 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     let animationId: number
     let frameCount = 0
     
+    // Auto-move spotlight in an interesting pattern
+    function updateSpotlight() {
+      if (!autoMoveSpotlight) return
+      
+      autoMoveTime += 0.01
+      
+      // Create a complex movement pattern
+      const t = autoMoveTime
+      const radiusX = size * 0.2
+      const radiusY = size * 0.3
+      const centerX = size * 0.75
+      const centerY = size * 0.5
+      
+      // Lissajous curve for natural-looking motion
+      spotlightX = centerX + radiusX * Math.sin(t * 0.8) * Math.cos(t * 0.2)
+      spotlightY = centerY + radiusY * Math.sin(t * 0.7) * Math.sin(t * 0.3)
+      
+      // Ensure it stays mostly on the right side
+      spotlightX = Math.max(size / 2, Math.min(size, spotlightX))
+    }
+    
     function animate() {
       if (!ctx) return
       
       ctx.clearRect(0, 0, size, size)
       frameCount++
+      
+      // Update spotlight position
+      updateSpotlight()
 
-      // Update neighbor relationships periodically
-      if (frameCount % 60 === 0) {
+      // Update neighbor relationships periodically to keep network dynamic
+      if (frameCount % 30 === 0) {
         updateNeighbors()
       }
 
-      // Draw connections first
+      // Draw connections first - creates the network effect
       particles.forEach(particle => {
         particle.neighbors.forEach(neighbor => {
           const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
           
-          let maxDist = 80
+          // Connection distance varies by particle types
+          let maxDist = 60
+          
           if (!particle.order && !neighbor.order) {
-            maxDist = 100
+            // Chaos to chaos - dense network with longer connections
+            maxDist = 90
+            
+            // Extra long connections near spotlight to create the focal point
+            const distToSpotlight1 = Math.hypot(particle.x - spotlightX, particle.y - spotlightY)
+            const distToSpotlight2 = Math.hypot(neighbor.x - spotlightX, neighbor.y - spotlightY)
+            
+            if (distToSpotlight1 < spotlightRadius || distToSpotlight2 < spotlightRadius) {
+              maxDist = 110
+            }
           } else if (particle.order && neighbor.order) {
+            // Order to order - tight grid connections
             maxDist = 40
           } else {
-            // Cross-boundary connections (order to chaos)
-            maxDist = 70
-            // Increase connection probability at the boundary
+            // Order to chaos - boundary connections
+            maxDist = 80
+            
+            // Increase boundary connection probability
             if (Math.abs(particle.x - size / 2) < 20 || Math.abs(neighbor.x - size / 2) < 20) {
-              maxDist = 90
+              maxDist = 100
             }
           }
           
           if (distance < maxDist) {
-            // Higher alpha for cross-boundary connections
-            let alpha = 0.3 * (1 - distance / maxDist)
+            // Calculate alpha based on distance
+            let alpha = 0.35 * Math.pow(1 - distance / maxDist, 1.2)
+            
+            // Cross-boundary connections brighter
             if ((particle.order && !neighbor.order) || (!particle.order && neighbor.order)) {
+              alpha *= 1.4
+            }
+            
+            // Brighter connections for attracted/influenced particles
+            if (particle.influence > 0.2 || neighbor.influence > 0.2) {
               alpha *= 1.5
+              
+              // Register connection for particle glow effect
+              particle.connectionBrightness = Math.max(particle.connectionBrightness, 
+                                                     particle.influence * 0.5)
+              neighbor.connectionBrightness = Math.max(neighbor.connectionBrightness, 
+                                                      neighbor.influence * 0.5)
             }
             
-            // Brighter connections for influenced particles
-            if (particle.influence > 0.1 || neighbor.influence > 0.1) {
-              alpha *= 1.3
+            // Count connections for sizing effect
+            particle.connectionCount++
+            neighbor.connectionCount++
+            
+            // Extra bright connections near spotlight
+            const distToSpotlight1 = Math.hypot(particle.x - spotlightX, particle.y - spotlightY)
+            const distToSpotlight2 = Math.hypot(neighbor.x - spotlightX, neighbor.y - spotlightY)
+            
+            if ((distToSpotlight1 < spotlightRadius * 0.7) || 
+                (distToSpotlight2 < spotlightRadius * 0.7)) {
+              alpha *= 1.6
             }
             
-            ctx.strokeStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+            // Draw the connection line
+            const alphaHex = Math.min(255, Math.round(alpha * 255))
+                .toString(16)
+                .padStart(2, '0')
+            
+            ctx.strokeStyle = `${particleColor}${alphaHex}`
             ctx.lineWidth = 0.5
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
@@ -299,12 +438,6 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       ctx.lineTo(size / 2, size)
       ctx.stroke()
 
-      // Add quote text
-      ctx.font = "12px monospace"
-      ctx.fillStyle = "#ffffff99" // 60% opacity
-      ctx.textAlign = "center"
-      ctx.fillText('"Order and chaos dance —digital poetry in motion."', size / 2, size - 20)
-
       animationId = requestAnimationFrame(animate)
     }
 
@@ -323,7 +456,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     <div className={`relative bg-black ${className}`} style={{ width: size, height: size }}>
       <canvas
         ref={canvasRef}
-        className="absolute top-0 left-0 w-full h-full"
+        className="absolute top-0 left-0 w-full h-full cursor-none"
       />
     </div>
   )
