@@ -175,8 +175,8 @@
 
   /* Titanium Card with Ambient Glow - Z-Stack Architecture */
   .titanium-card {
-    @apply relative rounded-[18px] overflow-hidden z-10;
-    background: linear-gradient(135deg, #1d1f20, #2e2f31, #3c3e40);
+    @apply relative rounded-[18px] overflow-visible z-10;
+    background: linear-gradient(135deg, #232427, #333438, #44464a);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 
       0 1px 0 rgba(255, 255, 255, 0.15),
@@ -192,7 +192,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0,76,255,0.1), rgba(100,100,255,0.05));
     background-image: repeating-linear-gradient(
       135deg,
       rgba(255,255,255,0.05),
@@ -200,6 +199,7 @@
       transparent 1px,
       transparent 4px
     );
+    border-radius: inherit;
     mix-blend-mode: overlay;
     pointer-events: none;
     z-index: 2;
@@ -214,10 +214,10 @@
     transform: translate(-50%, -50%);
     width: 140%;
     height: 140%;
-    border-radius: inherit;
+    border-radius: 30px;
     filter: blur(30px);
     pointer-events: none;
-    opacity: 0.8;
+    opacity: 0.7;
   }
   
   /* Default blue glow */
@@ -225,33 +225,48 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, rgba(0,76,255,0.7), rgba(0,0,0,0) 70%);
-    mix-blend-mode: screen;
+    background: radial-gradient(ellipse at center, rgba(0,76,255,0.8), rgba(0,0,0,0) 70%);
+    mix-blend-mode: normal;
   }
   
   /* Blue ambient glow */
   .glow-blue .ambient-glow::before {
-    background: radial-gradient(ellipse at center, rgba(0,76,255,0.7), rgba(0,0,0,0) 70%);
+    background: radial-gradient(ellipse at center, rgba(0,76,255,0.8), rgba(0,0,0,0) 70%);
   }
   
   /* Purple ambient glow */
   .glow-purple .ambient-glow::before {
-    background: radial-gradient(ellipse at center, rgba(128,0,255,0.7), rgba(0,0,0,0) 70%);
+    background: radial-gradient(ellipse at center, rgba(128,0,255,0.8), rgba(0,0,0,0) 70%);
   }
   
   /* Green ambient glow */
   .glow-green .ambient-glow::before {
-    background: radial-gradient(ellipse at center, rgba(0,255,128,0.7), rgba(0,0,0,0) 70%);
+    background: radial-gradient(ellipse at center, rgba(0,255,128,0.8), rgba(0,0,0,0) 70%);
   }
   
   /* Amber ambient glow */
   .glow-amber .ambient-glow::before {
-    background: radial-gradient(ellipse at center, rgba(255,191,0,0.7), rgba(0,0,0,0) 70%);
+    background: radial-gradient(ellipse at center, rgba(255,191,0,0.8), rgba(0,0,0,0) 70%);
   }
   
   /* Cyan ambient glow */
   .glow-cyan .ambient-glow::before {
-    background: radial-gradient(ellipse at center, rgba(0,204,255,0.7), rgba(0,0,0,0) 70%);
+    background: radial-gradient(ellipse at center, rgba(0,204,255,0.8), rgba(0,0,0,0) 70%);
+  }
+  
+  /* Primary ambient glow */
+  .glow-primary .ambient-glow::before {
+    background: radial-gradient(ellipse at center, rgba(0,76,255,0.8), rgba(0,0,0,0) 70%);
+  }
+  
+  /* Secondary ambient glow */
+  .glow-secondary .ambient-glow::before {
+    background: radial-gradient(ellipse at center, rgba(126,126,143,0.8), rgba(0,0,0,0) 70%);
+  }
+  
+  /* Accent ambient glow */
+  .glow-accent .ambient-glow::before {
+    background: radial-gradient(ellipse at center, rgba(77,133,255,0.8), rgba(0,0,0,0) 70%);
   }
   
   /* Layer 3: Content */
