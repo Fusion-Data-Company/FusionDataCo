@@ -4,48 +4,87 @@ import { cn } from "@/lib/utils";
 export default function Hero() {
   return (
     <section 
-      className="relative overflow-hidden bg-[#0b0b0d] py-16 md:py-24" 
+      className="relative overflow-hidden bg-background py-24 md:py-32" 
       style={{ 
         backgroundImage: "url('https://images.unsplash.com/photo-1581090700227-1e37b190418e?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&fit=max')",
         backgroundSize: "cover", 
         backgroundPosition: "center" 
       }}
     >
-      <div className="absolute inset-0 bg-[#0b0b0d]/85 bg-blend-overlay"></div>
+      <div className="absolute inset-0 circuit-overlay"></div>
+      <div className="absolute inset-0 backdrop-blur-sm"></div>
+      
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+        <div className="absolute top-[15%] left-[5%] w-64 h-64 rounded-full bg-primary/20 blur-3xl"></div>
+        <div className="absolute bottom-[20%] right-[10%] w-72 h-72 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl">
-          <h1 className="font-['Orbitron'] text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-            <span className="text-white">Next-Gen</span>{" "}
-            <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Marketing Automation</span>{" "}
-            <span className="text-white">For Small Business</span>
+        <div className="max-w-3xl relative">
+          <div className="absolute -left-6 -top-6 w-12 h-12 border border-primary/40 rounded-lg"></div>
+          <div className="absolute -right-10 -bottom-10 w-20 h-20 border border-accent/30 rounded-lg"></div>
+          
+          <h1 className="font-['Orbitron'] text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <span className="text-foreground">Enterprise-Grade</span>{" "}
+            <span className="text-primary text-shadow-titanium relative">
+              Marketing Platform
+              <span className="absolute -bottom-3 left-0 w-full h-0.5 bg-gradient-to-r from-primary/70 to-transparent"></span>
+            </span>
           </h1>
-          <p className="text-lg md:text-xl mb-8 text-gray-300">
-            An <span className="text-[#ff0aff] font-semibold [text-shadow:0_0_5px_#ff0aff]">all-in-one platform</span> that combines CRM, website building, and <span className="text-[#00ffff] font-semibold [text-shadow:0_0_5px_#00ffff]">AI-powered workflows</span> to help you generate leads and grow your business.
+          
+          <p className="text-lg md:text-xl mb-10 text-muted-foreground">
+            A <span className="text-accent font-semibold">comprehensive solution</span> that combines advanced CRM, analytics, and <span className="text-primary font-semibold">AI-powered workflows</span> to transform your business operations and accelerate growth.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          
+          <div className="flex flex-col sm:flex-row gap-6 mb-8">
             <Link href="/pricing">
               <span className={cn(
-                "px-6 py-3 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium",
-                "hover:shadow-[0_0_5px_#14ffc8,0_0_10px_#14ffc8]",
-                "animate-[pulse-glow_3s_infinite]",
-                "text-center cursor-pointer inline-block",
+                "px-8 py-4 bg-primary text-primary-foreground rounded-md font-medium",
+                "shadow-lg hover:shadow-xl transition-shadow duration-300",
+                "hover-edge-glow",
+                "text-center cursor-pointer inline-block relative group overflow-hidden",
               )}>
-                Start Free 14-Day Trial
+                <span className="relative z-10">Start Enterprise Trial</span>
+                <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </span>
             </Link>
             <Link href="/#demo">
               <span className={cn(
-                "px-6 py-3 bg-transparent border border-[#8f00ff] text-white",
+                "px-8 py-4 bg-transparent border border-border text-foreground",
                 "rounded-md font-medium",
-                "hover:bg-[#8f00ff] hover:text-[#0b0b0d]",
+                "hover:bg-muted/20 hover:border-primary/50",
                 "transition-all duration-300",
                 "text-center cursor-pointer inline-block",
               )}>
-                Schedule Demo
+                Schedule Enterprise Demo
               </span>
             </Link>
           </div>
-          <p className="text-sm text-gray-400">No credit card required. Cancel anytime.</p>
+          
+          <div className="flex items-center gap-3 mb-8">
+            <div className="titanium-panel p-1.5 rounded-md bg-card/40">
+              <div className="flex gap-1">
+                <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                <div className="w-2 h-2 rounded-full bg-amber-500"></div>
+                <div className="w-2 h-2 rounded-full bg-rose-500"></div>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground">No credit card required. Enterprise-level security.</p>
+          </div>
+          
+          <div className="glass-panel p-4 rounded-lg max-w-md mt-12 brushed-metal">
+            <p className="text-sm text-foreground/80 font-medium">
+              "Fusion Data Co has transformed our marketing operations with enterprise-grade tools that were previously only available to Fortune 500 companies."
+            </p>
+            <div className="flex items-center gap-3 mt-3">
+              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold">JD</div>
+              <div>
+                <p className="text-xs font-medium text-foreground">James Donovan</p>
+                <p className="text-xs text-muted-foreground">CMO, Horizon Financial</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

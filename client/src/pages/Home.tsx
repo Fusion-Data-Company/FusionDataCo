@@ -27,7 +27,7 @@ export default function Home() {
         <meta property="og:url" content="https://fusiondataco.com" />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-[#0b0b0d] text-white">
+      <div className="min-h-screen flex flex-col bg-background text-foreground">
         <Header />
         <main className="flex-grow">
           <Hero />
