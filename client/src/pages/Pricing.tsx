@@ -145,8 +145,8 @@ export default function Pricing() {
           <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-background to-card">
             <div className="container mx-auto">
               <div className="text-center max-w-3xl mx-auto">
-                <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gradient-primary">
-                  Simple, Transparent Pricing
+                <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                  <span className="text-primary">Simple, Transparent</span> Pricing
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8">
                   Choose the plan that fits your business needs with our straightforward pricing options. 
