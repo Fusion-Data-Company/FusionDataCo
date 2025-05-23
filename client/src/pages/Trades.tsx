@@ -341,9 +341,13 @@ export default function Trades() {
             </div>
           </section>
           
-          {/* Solution & ROI Section */}
-          <section className="py-16 px-4 bg-background">
-            <div className="container mx-auto">
+          {/* Solution Section with Green Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
+            {/* Green ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/3 blur-3xl rounded-full opacity-10 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">
                 <span className="text-primary">Proven Solutions</span> for Service Business Growth
               </h2>
