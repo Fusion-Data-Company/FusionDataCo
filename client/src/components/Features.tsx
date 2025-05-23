@@ -105,38 +105,47 @@ export default function Features() {
           {features.map((feature, index) => (
             <div 
               key={index} 
-              className={`titanium-card glow-${feature.color} rounded-xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
+              className="card-with-glow relative rounded-xl"
             >
-              <div className="ambient-glow"></div>
-              <div className={`w-16 h-16 rounded-lg flex items-center justify-center mb-6 bg-${feature.color}/10 border border-${feature.color}/20`}>
-                <div className={`text-${feature.color}`}>
-                  {feature.icon}
-                </div>
+              {/* Separate ambient glow behind card */}
+              <div className={`card-ambient-glow ${
+                feature.color === 'primary' ? 'card-ambient-glow-blue' : 
+                feature.color === 'secondary' ? 'card-ambient-glow-purple' : 
+                'card-ambient-glow-green'}`}>
               </div>
               
-              <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-foreground">
-                {feature.title}
-              </h3>
-              
-              <p className="text-muted-foreground mb-6">
-                {feature.description}
-              </p>
-              
-              <ul className="space-y-3">
-                {feature.benefits.map((benefit, i) => (
-                  <li key={i} className="flex items-start">
-                    <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-${feature.color}/10 flex items-center justify-center mr-3`}>
-                      <Check className={`text-${feature.color} w-3 h-3`} />
-                    </div>
-                    <span className="text-muted-foreground">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <div className="mt-6 pt-4 border-t border-border/30">
-                <a href="#" className="text-sm flex items-center text-primary hover:underline">
-                  Learn more <ExternalLink className="ml-1 w-3 h-3" />
-                </a>
+              {/* Actual card with solid titanium panel */}
+              <div className="titanium-panel p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <div className={`w-16 h-16 rounded-lg flex items-center justify-center mb-6 bg-${feature.color}/10 border border-${feature.color}/20`}>
+                  <div className={`text-${feature.color}`}>
+                    {feature.icon}
+                  </div>
+                </div>
+                
+                <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-foreground">
+                  {feature.title}
+                </h3>
+                
+                <p className="text-muted-foreground mb-6">
+                  {feature.description}
+                </p>
+                
+                <ul className="space-y-3">
+                  {feature.benefits.map((benefit, i) => (
+                    <li key={i} className="flex items-start">
+                      <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-${feature.color}/10 flex items-center justify-center mr-3`}>
+                        <Check className={`text-${feature.color} w-3 h-3`} />
+                      </div>
+                      <span className="text-muted-foreground">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="mt-6 pt-4 border-t border-border/30">
+                  <a href="#" className="text-sm flex items-center text-primary hover:underline">
+                    Learn more <ExternalLink className="ml-1 w-3 h-3" />
+                  </a>
+                </div>
               </div>
             </div>
           ))}

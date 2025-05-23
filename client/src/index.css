@@ -220,6 +220,42 @@
     opacity: 1;
   }
   
+  /* Correct ambient glow implementation (separate from card) */
+  .card-with-glow {
+    position: relative;
+  }
+  
+  .card-ambient-glow {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 102%;
+    height: 102%;
+    pointer-events: none;
+  }
+  
+  .card-ambient-glow-blue {
+    background: radial-gradient(ellipse at center, rgba(0,76,255,0.3), rgba(0,0,0,0) 70%);
+    filter: blur(15px);
+  }
+  
+  .card-ambient-glow-purple {
+    background: radial-gradient(ellipse at center, rgba(128,0,255,0.3), rgba(0,0,0,0) 70%);
+    filter: blur(15px);
+  }
+  
+  .card-ambient-glow-green {
+    background: radial-gradient(ellipse at center, rgba(0,255,128,0.3), rgba(0,0,0,0) 70%);
+    filter: blur(15px);
+  }
+  
+  .card-ambient-glow-amber {
+    background: radial-gradient(ellipse at center, rgba(255,191,0,0.3), rgba(0,0,0,0) 70%);
+    filter: blur(15px);
+  }
+  
   /* Default blue glow */
   .ambient-glow::before {
     content: "";
