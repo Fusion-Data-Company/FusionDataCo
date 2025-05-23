@@ -106,7 +106,7 @@ export default function Trades() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                    <span className="text-primary">Book More Jobs</span> and Scale Your Service Business
+                    Book More Jobs and Scale Your <span className="text-primary">Trades</span> Business
                   </h1>
                   <p className="text-xl text-muted-foreground mb-8">
                     Stop worrying about where your next job will come from. Our proven marketing system 

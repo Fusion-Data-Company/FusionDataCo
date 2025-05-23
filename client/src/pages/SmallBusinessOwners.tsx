@@ -104,7 +104,7 @@ export default function SmallBusinessOwners() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                    <span className="text-primary">Powering Growth</span> for Small Business Owners
+                    Powering Growth for <span className="text-primary">Small Business</span> Owners
                   </h1>
                   <p className="text-xl text-muted-foreground mb-8">
                     Running a business is hard enough. Let us handle your marketing 

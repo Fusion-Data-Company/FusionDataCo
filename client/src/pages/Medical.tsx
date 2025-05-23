@@ -106,7 +106,7 @@ export default function Medical() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                    <span className="text-primary">Grow Your Medical Practice</span> With Ethical Patient Acquisition
+                    Grow Your <span className="text-primary">Medical</span> Practice With Ethical Patient Acquisition
                   </h1>
                   <p className="text-xl text-muted-foreground mb-8">
                     Healthcare professionals trust our HIPAA-compliant marketing system to 
