@@ -351,8 +351,8 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       }
     }
 
-    // Add THOUSANDS of chaotic particles on the right side for a dense network
-    for (let i = 0; i < 4000; i++) {
+    // Add THOUSANDS of chaotic particles on the right side for an extremely dense network
+    for (let i = 0; i < 6500; i++) {
       // Spread particles more evenly across the right side
       const x = Math.random() * (size / 2 - 10) + size / 2 + 5
       const y = Math.random() * (size - 10) + 5 // Keep away from edges
