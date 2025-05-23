@@ -16,6 +16,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDes
 import { apiRequest } from "@/lib/queryClient";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import ROICalculator from "@/components/ROICalculator";
 
 // Define form schema
 const formSchema = z.object({

@@ -17,6 +17,7 @@ export type EventAction =
   | 'delete'
   | 'update'
   | 'login'
+  | 'login_failed'
   | 'logout'
   | 'open'
   | 'close';
