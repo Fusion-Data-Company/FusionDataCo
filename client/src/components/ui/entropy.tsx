@@ -26,11 +26,13 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     // Using black theme with white particles
     const particleColor = '#ffffff'
     
-    // Create multiple attractor points that move independently
+    // Create multiple attractor points spread around to draw particles all over the screen
     const attractors = [
-      { x: size * 0.75, y: size * 0.3, radius: 80, strength: 0.4, phase: 0 },
-      { x: size * 0.65, y: size * 0.7, radius: 70, strength: 0.3, phase: 2.1 },
-      { x: size * 0.85, y: size * 0.5, radius: 90, strength: 0.35, phase: 4.2 }
+      { x: size * 0.65, y: size * 0.25, radius: 70, strength: 0.3, phase: 0 },
+      { x: size * 0.75, y: size * 0.75, radius: 70, strength: 0.25, phase: 2.1 },
+      { x: size * 0.85, y: size * 0.45, radius: 70, strength: 0.2, phase: 4.2 },
+      { x: size * 0.7, y: size * 0.6, radius: 60, strength: 0.15, phase: 1.3 },
+      { x: size * 0.8, y: size * 0.3, radius: 60, strength: 0.2, phase: 3.4 }
     ]
     
     // For automatic movement
@@ -273,21 +275,25 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           this.x += this.velocity.x
           this.y += this.velocity.y
 
-          // Boundary constraints
+          // Stricter boundary constraints - keep particles fully on screen
+          // Right side only - bouncy boundaries with stronger enforcement
           if (this.x < size / 2) {
-            this.velocity.x = Math.abs(this.velocity.x) * 1.1
-            this.x = size / 2 + 1
-          } else if (this.x > size) {
-            this.velocity.x = -Math.abs(this.velocity.x) * 1.1
-            this.x = size - 1
+            // Strong bounce from center divider
+            this.velocity.x = Math.abs(this.velocity.x) * 1.5
+            this.x = size / 2 + 2
+          } else if (this.x > size - 5) {
+            // Strong bounce from right edge
+            this.velocity.x = -Math.abs(this.velocity.x) * 1.5
+            this.x = size - 5
           }
           
-          if (this.y < 0) {
-            this.velocity.y = Math.abs(this.velocity.y) * 1.1
-            this.y = 1
-          } else if (this.y > size) {
-            this.velocity.y = -Math.abs(this.velocity.y) * 1.1
-            this.y = size - 1
+          // Top and bottom bouncy boundaries
+          if (this.y < 5) {
+            this.velocity.y = Math.abs(this.velocity.y) * 1.5
+            this.y = 5
+          } else if (this.y > size - 5) {
+            this.velocity.y = -Math.abs(this.velocity.y) * 1.5
+            this.y = size - 5
           }
         }
         
@@ -338,8 +344,9 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       }
     }
 
-    // Add chaotic particles on the right side - more to match screenshot
-    for (let i = 0; i < 380; i++) {
+    // Add chaotic particles on the right side - much more to match screenshot
+    for (let i = 0; i < 600; i++) {
+      // Spread particles more evenly across the right side
       const x = Math.random() * (size / 2) + size / 2
       const y = Math.random() * size
       particles.push(new Particle(x, y, false))
@@ -348,20 +355,19 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     // Update neighbor relationships - critical for connection density
     function updateNeighbors() {
       particles.forEach(particle => {
-        particle.neighbors = particles.filter(other => {
+        // Limit number of connections to improve performance with so many particles
+        // But ensure well-distributed connections
+        const potentialNeighbors = particles.filter(other => {
           if (other === particle) return false
           
-          // Connection distance thresholds based on particle types
-          let maxDistance = 60
+          // Get distance for filtering
+          const distance = Math.hypot(particle.x - other.x, particle.y - other.y)
           
+          // Different distance thresholds based on particle types
           if (!particle.order && !other.order) {
-            // Chaos to chaos - higher density of connections
-            maxDistance = 80
-            
-            // Higher connection density in areas with high influence
-            if (particle.attractorInfluence > 0.2 || other.attractorInfluence > 0.2) {
-              maxDistance = 100
-            }
+            // Chaos to chaos - much more spread out connections
+            // Lower distance threshold to create more spread-out network
+            return distance < 60 && Math.random() < 0.6  // Probabilistic connection to spread out
           } else if (particle.order && other.order) {
             // Order to order - grid-like connections
             const dx = Math.abs(particle.originalX - other.originalX)
@@ -371,17 +377,25 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
                    (dy <= spacing * 1.1 && dx < spacing * 0.5)
           } else {
             // Order to chaos - boundary connections
-            // More connections at the boundary
-            if (Math.abs(particle.x - size / 2) < 25 || Math.abs(other.x - size / 2) < 25) {
-              maxDistance = 85
+            // Higher probability at the boundary
+            if (Math.abs(particle.x - size / 2) < 30 || Math.abs(other.x - size / 2) < 30) {
+              return distance < 70 && Math.random() < 0.7
             } else {
-              maxDistance = 70
+              return distance < 50 && Math.random() < 0.3
             }
           }
-          
-          const distance = Math.hypot(particle.x - other.x, particle.y - other.y)
-          return distance < maxDistance
         })
+        
+        // Select a limited set of neighbors for better performance
+        // This creates a more interesting network topology
+        if (!particle.order) {
+          // For chaotic particles - limit connections to avoid dense clumps
+          particle.neighbors = potentialNeighbors.slice(0, 
+            Math.min(potentialNeighbors.length, Math.floor(Math.random() * 5) + 3))
+        } else {
+          // For ordered particles - we want the grid to be more stable
+          particle.neighbors = potentialNeighbors
+        }
       })
     }
 
