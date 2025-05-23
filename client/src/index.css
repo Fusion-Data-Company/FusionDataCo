@@ -175,7 +175,7 @@
 
   /* Titanium Card with Ambient Glow - Z-Stack Architecture */
   .titanium-card {
-    @apply relative rounded-[18px] overflow-hidden z-10;
+    @apply relative rounded-[18px] overflow-hidden;
     background: linear-gradient(135deg, #1d1f20, #2e2f31, #3c3e40);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 
@@ -208,7 +208,7 @@
   /* Layer 1: Ambient Glow Background */
   .ambient-glow {
     position: absolute;
-    z-index: -1;
+    z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -227,6 +227,7 @@
     inset: 0;
     background: radial-gradient(ellipse at center, rgba(0,76,255,0.7), rgba(0,0,0,0) 70%);
     mix-blend-mode: screen;
+    z-index: 1;
   }
   
   /* Blue ambient glow */
@@ -257,6 +258,23 @@
   /* Layer 3: Content */
   .titanium-content {
     @apply relative z-10;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Make card headings more readable */
+  .titanium-card h3,
+  .titanium-card h4 {
+    @apply text-white font-semibold;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Make general text in cards more readable */
+  .titanium-card p,
+  .titanium-card span,
+  .titanium-card li {
+    @apply text-white/90;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
   
   .titanium-card:hover {
