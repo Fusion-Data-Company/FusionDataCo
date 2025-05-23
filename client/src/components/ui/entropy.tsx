@@ -150,16 +150,27 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
                                   attractor.strength * 
                                   (0.8 + Math.random() * 0.4)
               
-              // Special behavior: some particles orbit rather than directly attract
-              if (distToAttractor < attractor.radius * 0.4 && Math.random() < 0.3) {
-                // Orbital force - perpendicular to attraction direction
-                netForceX += -normDy * attractionStrength * 0.8
-                netForceY += normDx * attractionStrength * 0.8
+              // SPIDER WEB EFFECT: Strong repulsion to prevent getting sucked in
+              // When particles get too close to an attractor, they strongly push back
+              if (distToAttractor < attractor.radius * 0.5) {
+                // Add STRONG repulsion force to push particles away from attractor center
+                // This creates the spider web vibration effect
+                const repelStrength = (1 - distToAttractor / (attractor.radius * 0.5)) * 0.5
+                netForceX -= normDx * repelStrength  // Push AWAY from attractor
+                netForceY -= normDy * repelStrength
               }
               
-              // Particles near attractors repel each other slightly
+              // Some orbital movement to create interesting patterns
+              if (distToAttractor < attractor.radius * 0.7 && Math.random() < 0.2) {
+                // Gentle orbital force - perpendicular to attraction direction
+                // This keeps particles dancing around rather than getting sucked in
+                netForceX += -normDy * attractionStrength * 0.4
+                netForceY += normDx * attractionStrength * 0.4
+              }
+              
+              // Particles near attractors repel each other more strongly
               if (distToAttractor < attractor.radius * 0.5) {
-                this.repelForce = Math.min(1.5, this.repelForce + 0.02)
+                this.repelForce = Math.min(2.0, this.repelForce + 0.05)
               }
             }
           }
@@ -179,9 +190,9 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
             // When influenced by attractors
             this.influence = Math.max(this.influence, totalInfluence)
             
-            // Apply net force from attractors
-            this.velocity.x += netForceX * 0.8
-            this.velocity.y += netForceY * 0.8
+            // Apply VERY GENTLE force from attractors - just enough to vibrate
+            this.velocity.x += netForceX * 0.2
+            this.velocity.y += netForceY * 0.2
             
             // Add randomness when influenced
             this.velocity.x += (Math.random() - 0.5) * this.influence * 0.4
@@ -231,11 +242,12 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           this.velocity.x += (Math.random() - 0.5) * 0.7
           this.velocity.y += (Math.random() - 0.5) * 0.7
           
-          // Apply net force from attractors
+          // Apply very gentle forces to create spider-web like vibration pattern
           if (totalInfluence > 0) {
-            // Attractor influence
-            this.velocity.x += netForceX * 1.2
-            this.velocity.y += netForceY * 1.2
+            // DRASTICALLY REDUCED attractor influence - just enough to create vibration
+            // Reduce by 90% to prevent particles getting sucked in
+            this.velocity.x += netForceX * 0.12  // Reduced from 1.2 to 0.12 (90% reduction)
+            this.velocity.y += netForceY * 0.12
             
             // Save for connection effects
             this.attractorInfluence = totalInfluence
