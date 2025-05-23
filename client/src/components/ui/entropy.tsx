@@ -174,12 +174,58 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
             this.x += displaceX * 0.3
             this.y += displaceY * 0.3
           } else {
-            // Just return to original position - no clustering, no attraction centers
-            // This ensures particles stay where they were created and only respond to mouse
+            // Create interesting motion patterns but without "black hole" effect
+            // Each particle moves in its own pattern based on its original position
             
-            // Slow return to original position after being disturbed
-            this.x += (this.originalX - this.x) * 0.02
-            this.y += (this.originalY - this.y) * 0.02
+            // Create diverse movement patterns based on particle's position
+            const patternId = Math.floor(this.originalX * 7.3 + this.originalY * 3.7) % 6
+            
+            let targetX = this.originalX
+            let targetY = this.originalY
+            
+            // Calculate different motion patterns
+            switch(patternId) {
+              case 0: // Circular motion
+                const circleRadius = 20 + (this.originalX * 0.1)
+                const circleSpeed = 0.2 + (this.originalY * 0.001)
+                targetX = this.originalX + Math.cos(time * circleSpeed) * circleRadius
+                targetY = this.originalY + Math.sin(time * circleSpeed) * circleRadius
+                break
+                
+              case 1: // Horizontal wave
+                targetX = this.originalX + Math.sin(time * 0.3 + this.originalY * 0.05) * 15
+                targetY = this.originalY
+                break
+                
+              case 2: // Vertical wave
+                targetX = this.originalX
+                targetY = this.originalY + Math.sin(time * 0.2 + this.originalX * 0.05) * 15
+                break
+                
+              case 3: // Figure-8 pattern
+                const figure8Size = 15
+                targetX = this.originalX + Math.sin(time * 0.4) * figure8Size
+                targetY = this.originalY + Math.sin(time * 0.8) * figure8Size * 0.5
+                break
+                
+              case 4: // Spiral in/out
+                const spiralPhase = (Math.sin(time * 0.2) + 1) * 0.5
+                const spiralRadius = 5 + spiralPhase * 20
+                const spiralAngle = time * 0.5 + this.originalX * 0.01
+                targetX = this.originalX + Math.cos(spiralAngle) * spiralRadius
+                targetY = this.originalY + Math.sin(spiralAngle) * spiralRadius
+                break
+                
+              case 5: // Diagonal shift
+                targetX = this.originalX + Math.sin(time * 0.25) * 20
+                targetY = this.originalY + Math.sin(time * 0.25) * 20
+                break
+            }
+            
+            // Gentle movement toward the calculated pattern position
+            // This ensures particles follow their pattern but can be disturbed by mouse
+            this.x += (targetX - this.x) * 0.03
+            this.y += (targetY - this.y) * 0.03
             
             // Apply very mild random forces
             this.velocity.x += (Math.random() - 0.5) * 0.1
