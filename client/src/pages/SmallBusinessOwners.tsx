@@ -132,8 +132,9 @@ export default function SmallBusinessOwners() {
                 </div>
                 
                 <div className="relative">
-                  <Card className="bg-card border border-border/50 overflow-hidden">
-                    <CardContent className="p-6">
+                  <Card className="enterprise-card">
+                    <div className="glow-wrapper"></div>
+                    <CardContent className="p-6 enterprise-card-content">
                       <div className="space-y-6">
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
@@ -195,8 +196,9 @@ export default function SmallBusinessOwners() {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Inconsistent Customer Flow
                     </h3>
@@ -229,8 +231,9 @@ export default function SmallBusinessOwners() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Marketing That Drains Resources
                     </h3>
@@ -263,8 +266,9 @@ export default function SmallBusinessOwners() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Not Enough Time
                     </h3>
@@ -297,8 +301,9 @@ export default function SmallBusinessOwners() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
+                <Card className="enterprise-card">
+                  <div className="glow-wrapper"></div>
+                  <CardContent className="p-6 enterprise-card-content">
                     <h3 className="text-xl font-semibold mb-4">
                       Falling Behind Competitors
                     </h3>
