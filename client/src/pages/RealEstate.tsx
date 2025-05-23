@@ -198,6 +198,137 @@ export default function RealEstate() {
               </div>
             </div>
           </section>
+          
+          {/* Pain Points Section with Red Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
+            {/* Red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                The <span className="text-white">Real Challenges</span> Real Estate Agents Face
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <Card className="bg-[#121218]/70 border border-[#ff0000]/20 rounded-lg overflow-hidden">
+                  <CardContent className="p-6">
+                    <ul className="space-y-6">
+                      <li className="flex gap-4 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-[#ff3333]" />
+                        </div>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Inconsistent Lead Flow:</span> You're spending thousands on lead generation, but the quality is poor and follow-up is inconsistent.
+                        </p>
+                      </li>
+                      <li className="flex gap-4 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-[#ff3333]" />
+                        </div>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Website Underperformance:</span> Your current website isn't capturing leads or positioning you as the go-to expert in your market.
+                        </p>
+                      </li>
+                      <li className="flex gap-4 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-[#ff3333]" />
+                        </div>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Manual Follow-up:</span> You're missing opportunities because you can't personally follow up with every lead at the right time.
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/70 border border-[#ff0000]/20 rounded-lg overflow-hidden">
+                  <CardContent className="p-6">
+                    <ul className="space-y-6">
+                      <li className="flex gap-4 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-[#ff3333]" />
+                        </div>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Marketing Time Drain:</span> Creating social posts, email campaigns, and follow-up sequences takes time away from your clients.
+                        </p>
+                      </li>
+                      <li className="flex gap-4 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-[#ff3333]" />
+                        </div>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Tech Frustration:</span> You've tried multiple tools but none work together and you end up juggling too many platforms.
+                        </p>
+                      </li>
+                      <li className="flex gap-4 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-[#ff3333]" />
+                        </div>
+                        <p className="text-gray-300">
+                          <span className="font-semibold text-white">Inconsistent Branding:</span> Your marketing lacks a cohesive look and message that makes you memorable to potential clients.
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+          
+          {/* Solution Section with Green Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
+            {/* Green ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/3 blur-3xl rounded-full opacity-10 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">The Solution:</span> Complete Real Estate Marketing System
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <BarChart3 className="h-6 w-6 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 text-white">Lead Generation</h3>
+                    <p className="text-gray-300 text-sm">
+                      Targeted IDX website, property valuation tools, and buyer lead magnets that convert visitors into qualified leads.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <Calendar className="h-6 w-6 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 text-white">Nurture Automation</h3>
+                    <p className="text-gray-300 text-sm">
+                      Automated follow-up sequences that nurture leads and stay top-of-mind through your entire sales cycle.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <TrendingUp className="h-6 w-6 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 text-white">Reputation Builder</h3>
+                    <p className="text-gray-300 text-sm">
+                      Professional content marketing that positions you as the trusted expert in your local market.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
 
           {/* CTA and Lead Form Section */}
           <section id="lead-form" className="py-16 px-4 bg-[#121218] relative overflow-hidden">
