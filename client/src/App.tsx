@@ -17,6 +17,13 @@ import CRM from "@/pages/CRM";
 import Pricing from "@/pages/Pricing";
 import NotFound from "@/pages/not-found";
 
+// Marketing Automation Pages
+import Campaigns from "@/pages/Campaigns";
+import CampaignBuilder from "@/pages/CampaignBuilder";
+import CrmCampaigns from "@/pages/CrmCampaigns";
+import LeadMagnet from "@/pages/LeadMagnet";
+import MarketingSuite from "@/pages/MarketingSuite";
+
 function Router() {
   return (
     <Switch>
@@ -28,6 +35,14 @@ function Router() {
       <Route path="/social-media" component={SocialMediaServices} />
       <Route path="/crm" component={CRM} />
       <Route path="/pricing" component={Pricing} />
+      
+      {/* Marketing Automation Routes */}
+      <Route path="/campaigns" component={Campaigns} />
+      <Route path="/campaigns/new" component={CampaignBuilder} />
+      <Route path="/crm/campaigns" component={CrmCampaigns} />
+      <Route path="/lead-magnet" component={LeadMagnet} />
+      <Route path="/ai-marketing-suite" component={MarketingSuite} />
+      
       <Route component={NotFound} />
     </Switch>
   );

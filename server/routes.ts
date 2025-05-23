@@ -12,6 +12,9 @@ import { marketingRouter } from "./marketing";
 import { nanoid } from "nanoid";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Register marketing routes
+  app.use("/api/marketing", marketingRouter);
+  
   // Contact form submission endpoint
   app.post("/api/contact", async (req, res) => {
     try {
@@ -442,6 +445,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Marketing routes
+  app.use("/api/marketing", marketingRouter);
+  
   // Create HTTP server
   const httpServer = createServer(app);
 
