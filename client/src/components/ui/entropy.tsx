@@ -24,243 +24,208 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     canvas.style.height = `${size}px`
     ctx.scale(dpr, dpr)
 
-    // FANG premium colors - focused on purple spectrum with accents
-    const themeColors = [
-      '#8b5cf6', // purple (primary)
-      '#c084fc', // light purple
-      '#4f46e5', // indigo
-      '#a855f7', // violet
-      '#ec4899', // pink (for conversion highlight)
-      '#0ea5e9', // sky blue (accent)
+    // Right side colors - used only for converted particles
+    const rightSideColors = [
+      '#3b82f6', // blue
+      '#10b981', // green
+      '#f97316', // orange
+      '#06b6d4'  // cyan
     ]
     
-    // Conversion zone color (right side)
-    const conversionColor = '#10b981' // emerald green for converted leads
+    // Left side is pure white
+    const leftSideColor = '#ffffff'
     
-    // Premium backdrop with sophisticated gradient
-    const radialGradient = ctx.createRadialGradient(size/2, size/2, 10, size/2, size/2, size);
-    radialGradient.addColorStop(0, 'rgba(139, 92, 246, 0.08)');   // purple glow at center
-    radialGradient.addColorStop(0.4, 'rgba(79, 70, 229, 0.05)');  // indigo middle
-    radialGradient.addColorStop(0.6, 'rgba(16, 185, 129, 0.03)'); // emerald hint
-    radialGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');           // transparent edge
-    
-    // Create a linear gradient for the divider (represents conversion boundary)
+    // Create a subtle divider line
     const dividerGradient = ctx.createLinearGradient(size/2, 0, size/2, size);
-    dividerGradient.addColorStop(0, 'rgba(139, 92, 246, 0.1)');   // purple top
-    dividerGradient.addColorStop(0.5, 'rgba(236, 72, 153, 0.3)'); // pink middle (conversion highlight)
-    dividerGradient.addColorStop(1, 'rgba(16, 185, 129, 0.1)');   // emerald bottom
-
-    type Neighbor = {
-      x: number
-      y: number
-      velocity: { x: number; y: number }
-      order: boolean
-    }
+    dividerGradient.addColorStop(0, 'rgba(255, 255, 255, 0.05)');   // white top
+    dividerGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.15)'); // brighter middle
+    dividerGradient.addColorStop(1, 'rgba(255, 255, 255, 0.05)');   // white bottom
 
     class Particle {
       x: number
       y: number
       size: number
-      effectiveSize: number
       order: boolean
-      velocity: { x: number; y: number }
+      colorIndex: number
+      color: string
       originalX: number
       originalY: number
-      influence: number
-      neighbors: Neighbor[]
-      color: string
-      colorIndex: number
-      colorTransition: number
+      velocity: { x: number; y: number }
+      attractionPoint: { x: number; y: number } | null
+      wobble: number
+      wobbleSpeed: number
+      transitionProgress: number
+      transitioning: boolean
 
       constructor(x: number, y: number, order: boolean) {
         this.x = x
         this.y = y
         this.originalX = x
         this.originalY = y
-        this.size = order ? 1.5 + Math.random() * 1 : 2 + Math.random() * 2 // Varied sizes
-        this.effectiveSize = this.size
+        this.size = order ? 1.5 : 2
         this.order = order
-        this.velocity = {
-          x: (Math.random() - 0.5) * (order ? 1 : 3), // Faster movement on right side (converted)
-          y: (Math.random() - 0.5) * (order ? 1 : 3)
-        }
-        this.influence = 0
-        this.neighbors = []
         
-        // Assign colors based on side (prospect vs converted)
+        // Assign colors based on side
         if (order) {
-          // Left side (prospects) - purple spectrum
-          this.colorIndex = Math.floor(Math.random() * 4) // First 4 colors (purples/indigo)
+          // Left side is white
+          this.color = leftSideColor
+          this.colorIndex = -1
         } else {
-          // Right side (converted) - mix of conversion colors and accent
-          const rightSideIndex = Math.random() < 0.7 ? 
-            4 + Math.floor(Math.random() * 2) : // Pink or sky blue
-            Math.floor(Math.random() * 2); // Occasionally use purple
-        
-          this.colorIndex = rightSideIndex
+          // Right side has colors
+          this.colorIndex = Math.floor(Math.random() * rightSideColors.length)
+          this.color = rightSideColors[this.colorIndex]
         }
         
-        this.color = themeColors[this.colorIndex]
-        this.colorTransition = Math.random() * 0.01 // Slower, more subtle transitions
+        // Very minimal velocity for precise control
+        this.velocity = {
+          x: 0,
+          y: 0
+        }
+        
+        // For particles being pulled across
+        this.attractionPoint = null
+        this.transitionProgress = 0
+        this.transitioning = false
+        
+        // Add subtle movement
+        this.wobble = Math.random() * Math.PI * 2
+        this.wobbleSpeed = 0.02 + Math.random() * 0.03
       }
 
-      update() {
-        // Create time-based pulsing effect
-        const pulseScale = 1 + Math.sin(Date.now() * 0.003) * 0.1;
-        
+      update(time: number) {
         if (this.order) {
-          // Left side (prospects) - Form clusters that slowly approach the boundary
-          const dx = this.originalX - this.x
-          const dy = this.originalY - this.y
+          // LEFT SIDE PARTICLES - Stay in exact grid formation with no movement
           
-          // Create cluster behavior - particles attracted to nearby particles
-          let clusterInfluence = { x: 0, y: 0 }
-          let clusterCount = 0
+          // Simply stay at original position (exact grid)
+          this.x = this.originalX
+          this.y = this.originalY
           
-          // Calculate cluster forces from neighbors
-          this.neighbors.forEach(neighbor => {
-            if (neighbor.order) { // Only cluster with same-side particles
-              const distance = Math.hypot(this.x - neighbor.x, this.y - neighbor.y)
-              if (distance > 0 && distance < 40) {
-                // Short-range attraction for clustering
-                const strength = Math.pow(1 - distance / 40, 2) * 0.03
-                clusterInfluence.x += (neighbor.x - this.x) * strength
-                clusterInfluence.y += (neighbor.y - this.y) * strength
-                clusterCount++
+          // Very rarely allow a particle to cross to the right (1/5000 chance)
+          if (Math.random() < 0.0002 && !this.transitioning && this.x > size * 0.4) {
+            this.transitioning = true
+            this.attractionPoint = {
+              x: size/2 + 5 + Math.random() * 20,
+              y: this.y + (Math.random() - 0.5) * 10
+            }
+          }
+          
+          // Handle particles being pulled to right side (very rarely)
+          if (this.transitioning && this.attractionPoint) {
+            const targetX = this.attractionPoint.x
+            const targetY = this.attractionPoint.y
+            
+            // Move directly toward the target
+            this.x += (targetX - this.x) * 0.05
+            this.y += (targetY - this.y) * 0.05
+            
+            // Transition progress
+            this.transitionProgress += 0.01
+            
+            // Change color as it crosses
+            if (this.x > size/2 - 5 && this.colorIndex === -1) {
+              // Pick a color from the right side
+              this.colorIndex = Math.floor(Math.random() * rightSideColors.length)
+              this.color = rightSideColors[this.colorIndex]
+              
+              // Now it's on the right
+              this.order = false
+              
+              // Reset for right side behavior
+              this.transitioning = false
+              this.attractionPoint = null
+              this.velocity = {
+                x: (Math.random() - 0.5) * 0.8,
+                y: (Math.random() - 0.5) * 0.8
               }
             }
-          })
-          
-          // Attraction toward conversion boundary (particles want to convert)
-          const boundaryDistance = Math.abs(this.x - (size / 2))
-          const boundaryAttraction = Math.min(0.1, 5 / boundaryDistance) * 0.02
-          
-          // Calculate influence from converted particles (right side)
-          const conversionInfluence = { x: 0, y: 0 }
-          this.neighbors.forEach(neighbor => {
-            if (!neighbor.order) { // Only influenced by converted particles
-              const distance = Math.hypot(this.x - neighbor.x, this.y - neighbor.y)
-              // Stronger influence from nearby converted particles
-              const strength = Math.max(0, 1 - distance / 120) * 0.2
-              conversionInfluence.x += (neighbor.x - this.x) * strength
-              conversionInfluence.y += (neighbor.velocity.y * strength)
-              this.influence = Math.max(this.influence, strength)
-            }
-          })
-          
-          // Combined movement formula
-          let moveX = dx * 0.01 // Return to original position (weak)
-          let moveY = dy * 0.02
-          
-          // Add conversion pull (stronger near boundary)
-          moveX += (size/2 - this.x) * boundaryAttraction
-          
-          // Add cluster forces
-          if (clusterCount > 0) {
-            moveX += clusterInfluence.x
-            moveY += clusterInfluence.y
           }
-          
-          // Add conversion influences
-          moveX += conversionInfluence.x * this.influence * 2
-          moveY += conversionInfluence.y * this.influence
-          
-          // Apply movement
-          this.x += moveX
-          this.y += moveY
-          
-          // Influence gradually weakens but never completely disappears
-          this.influence = Math.max(0.01, this.influence * 0.98)
-          
         } else {
-          // Right side (converted leads) - More dynamic, celebratory movement
+          // RIGHT SIDE PARTICLES - Gentle movement
           
-          // Slight attraction to center of right side
-          const centerX = size * 0.75
-          const centerY = size * 0.5
-          const distanceToCenter = Math.hypot(this.x - centerX, this.y - centerY)
+          // Apply very mild random forces
+          this.velocity.x += (Math.random() - 0.5) * 0.1
+          this.velocity.y += (Math.random() - 0.5) * 0.1
           
-          // Create swirling, more dynamic movement
-          const angle = Math.atan2(this.y - centerY, this.x - centerX)
-          const swirl = 0.2 * Math.sin(angle + Date.now() * 0.001)
-          
-          // Chaotic but controlled movement
-          this.velocity.x += (Math.random() - 0.5) * 0.6
-          this.velocity.y += (Math.random() - 0.5) * 0.6
-          
-          // Add swirl effect
-          this.velocity.x += Math.cos(angle + Math.PI/2) * swirl
-          this.velocity.y += Math.sin(angle + Math.PI/2) * swirl
-          
-          // Add slight center attraction
-          if (distanceToCenter > 50) {
-            this.velocity.x += (centerX - this.x) * 0.0005
-            this.velocity.y += (centerY - this.y) * 0.0005
-          }
-          
-          // Apply friction
-          this.velocity.x *= 0.95
-          this.velocity.y *= 0.95
-          
-          // Apply velocity
+          // Apply velocity with strong dampening
+          this.velocity.x *= 0.9
+          this.velocity.y *= 0.9
           this.x += this.velocity.x
           this.y += this.velocity.y
           
-          // Boundary checks - keep in right half and bounce
-          if (this.x < size / 2) {
-            this.x = size / 2 + 5
-            this.velocity.x *= -0.8 // Bounce with energy loss
+          // Strict boundary checks
+          if (this.x < size/2) {
+            this.x = size/2 + 1
+            this.velocity.x = Math.abs(this.velocity.x) * 0.3
+          } else if (this.x > size) {
+            this.x = size - 1
+            this.velocity.x = -Math.abs(this.velocity.x) * 0.3
           }
-          if (this.x > size) {
-            this.x = size - 5
-            this.velocity.x *= -0.8
-          }
+          
           if (this.y < 0) {
-            this.y = 5
-            this.velocity.y *= -0.8
+            this.y = 1
+            this.velocity.y = Math.abs(this.velocity.y) * 0.3
+          } else if (this.y > size) {
+            this.y = size - 1
+            this.velocity.y = -Math.abs(this.velocity.y) * 0.3
           }
-          if (this.y > size) {
-            this.y = size - 5
-            this.velocity.y *= -0.8
+          
+          // Occasionally change color
+          if (Math.random() < 0.001) {
+            const newColorIndex = Math.floor(Math.random() * rightSideColors.length)
+            this.colorIndex = newColorIndex
+            this.color = rightSideColors[newColorIndex]
           }
-        }
-        
-        // Apply pulsing effect to particle size
-        this.effectiveSize = this.size * pulseScale
-      }
-
-      // Gradually transition to a new color
-      updateColor() {
-        // Update color index for gentle color transitions
-        if (Math.random() < this.colorTransition) {
-          const nextColorIndex = (this.colorIndex + 1) % themeColors.length
-          this.colorIndex = nextColorIndex
-          this.color = themeColors[nextColorIndex]
         }
       }
 
       draw(ctx: CanvasRenderingContext2D) {
-        // Update color occasionally for subtle transitions
-        this.updateColor()
+        if (!ctx) return
+
+        // Draw the main particle
+        let alpha = this.order ? 0.7 : 0.9
         
-        // Set alpha and size based on particle state and position
-        let alpha = this.order ? 0.8 - this.influence * 0.3 : 0.9
-        const size = this.effectiveSize || this.size
-        
-        // Get RGB components from the hex color
-        const r = parseInt(this.color.substring(1, 3), 16)
-        const g = parseInt(this.color.substring(3, 5), 16)
-        const b = parseInt(this.color.substring(5, 7), 16)
-        
-        // Add glow effects for converted particles (right side)
-        if (!this.order) {
-          // Create glow effect for converted particles
-          const glowSize = size * 3
-          const glowAlpha = 0.15
+        // Transitioning particles (moving from left to right)
+        if (this.transitioning) {
+          const progress = Math.min(1, this.transitionProgress)
           
-          // Inner glow
+          // Very subtle glow for transitioning particles
+          const glowSize = this.size * 2
+          const glowAlpha = 0.05 + progress * 0.1
+          
+          // Use right side color for glow
+          const targetColorIndex = Math.floor(Math.random() * rightSideColors.length)
+          const targetColor = rightSideColors[targetColorIndex]
+          const tr = parseInt(targetColor.substring(1, 3), 16)
+          const tg = parseInt(targetColor.substring(3, 5), 16)
+          const tb = parseInt(targetColor.substring(5, 7), 16)
+          
           const gradient = ctx.createRadialGradient(
-            this.x, this.y, size * 0.5,
+            this.x, this.y, this.size * 0.5,
+            this.x, this.y, glowSize
+          )
+          
+          gradient.addColorStop(0, `rgba(${tr}, ${tg}, ${tb}, ${glowAlpha})`)
+          gradient.addColorStop(1, `rgba(${tr}, ${tg}, ${tb}, 0)`)
+          
+          ctx.fillStyle = gradient
+          ctx.beginPath()
+          ctx.arc(this.x, this.y, glowSize, 0, Math.PI * 2)
+          ctx.fill()
+        }
+        
+        // Right side particles (colored)
+        if (!this.order) {
+          // Get RGB from color
+          const r = parseInt(this.color.substring(1, 3), 16)
+          const g = parseInt(this.color.substring(3, 5), 16)
+          const b = parseInt(this.color.substring(5, 7), 16)
+          
+          // Very small glow for right side particles
+          const glowSize = this.size * 2
+          const glowAlpha = 0.05
+          
+          const gradient = ctx.createRadialGradient(
+            this.x, this.y, this.size * 0.5,
             this.x, this.y, glowSize
           )
           
@@ -272,209 +237,148 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           ctx.arc(this.x, this.y, glowSize, 0, Math.PI * 2)
           ctx.fill()
           
-          // Make converted particles brighter
-          alpha = 0.95
-        }
-        else if (this.x > size/2 - 30) {
-          // Particles near the conversion boundary get a subtle highlight
-          const distanceToBoundary = Math.abs(this.x - size/2)
-          const highlightStrength = Math.max(0, 1 - distanceToBoundary / 30)
-          
-          // Add subtle glow for particles approaching conversion
-          const glowSize = size * 2 * highlightStrength
-          const glowAlpha = 0.1 * highlightStrength
-          
-          const gradient = ctx.createRadialGradient(
-            this.x, this.y, size * 0.5,
-            this.x, this.y, glowSize
-          )
-          
-          // Use pink/conversion color for the highlight
-          gradient.addColorStop(0, `rgba(236, 72, 153, ${glowAlpha})`)
-          gradient.addColorStop(1, `rgba(236, 72, 153, 0)`)
-          
-          ctx.fillStyle = gradient
+          // Main particle
+          ctx.fillStyle = this.color
           ctx.beginPath()
-          ctx.arc(this.x, this.y, glowSize, 0, Math.PI * 2)
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+          ctx.fill()
+          
+          // Tiny highlight dot for subtle 3D effect
+          const highlightX = this.x - this.size * 0.25
+          const highlightY = this.y - this.size * 0.25
+          const highlightSize = this.size * 0.2
+          
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'
+          ctx.beginPath()
+          ctx.arc(highlightX, highlightY, highlightSize, 0, Math.PI * 2)
+          ctx.fill()
+        } else {
+          // Left side - simple white particle with no glow
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`
+          ctx.beginPath()
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
           ctx.fill()
         }
-        
-        // Draw the main particle
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, size, 0, Math.PI * 2)
-        ctx.fill()
-        
-        // Add highlight dot for a premium 3D effect
-        const highlightX = this.x - size * 0.3
-        const highlightY = this.y - size * 0.3
-        const highlightSize = size * 0.25
-        
-        ctx.fillStyle = `rgba(255, 255, 255, 0.6)`
-        ctx.beginPath()
-        ctx.arc(highlightX, highlightY, highlightSize, 0, Math.PI * 2)
-        ctx.fill()
       }
     }
 
     // Create particle grid
     const particles: Particle[] = []
-    const gridSize = 25
-    const spacing = size / gridSize
-
-    for (let i = 0; i < gridSize; i++) {
+    const gridSize = 20 // Slightly larger dots with fewer total
+    const gridWidth = size / gridSize
+    
+    // Left side grid - perfectly aligned grid
+    for (let i = 0; i < gridSize / 2; i++) {
       for (let j = 0; j < gridSize; j++) {
-        const x = spacing * i + spacing / 2
-        const y = spacing * j + spacing / 2
-        const order = x < size / 2
-        particles.push(new Particle(x, y, order))
+        const x = gridWidth * i + gridWidth / 2
+        const y = gridWidth * j + gridWidth / 2
+        particles.push(new Particle(x, y, true))
       }
     }
-
-    // Update neighbor relationships
-    function updateNeighbors() {
-      particles.forEach(particle => {
-        particle.neighbors = particles
-          .filter(other => {
-            if (other === particle) return false
-            const distance = Math.hypot(particle.x - other.x, particle.y - other.y)
-            return distance < 100
-          })
-          .map(p => ({
-            x: p.x,
-            y: p.y,
-            velocity: p.velocity,
-            order: p.order
-          }))
-      })
+    
+    // Right side particles - just a few colorful ones
+    for (let i = 0; i < gridSize / 2; i++) {
+      for (let j = 0; j < gridSize; j++) {
+        if (Math.random() < 0.7) { // 30% fewer on right side
+          const x = size/2 + gridWidth * i + gridWidth / 2 + (Math.random() - 0.5) * 5
+          const y = gridWidth * j + gridWidth / 2 + (Math.random() - 0.5) * 5
+          particles.push(new Particle(x, y, false))
+        }
+      }
     }
 
     let time = 0
     let animationId = 0
     
     function animate() {
-      // Safety check for context
       if (!ctx) return
       
       ctx.clearRect(0, 0, size, size)
       
-      // Draw the background gradient for ambient effect
-      ctx.fillStyle = radialGradient;
-      ctx.fillRect(0, 0, size, size);
-
-      // Update neighbor relationships periodically
-      if (time % 30 === 0) {
-        updateNeighbors()
-      }
-      
-      // Draw conversion boundary (vertical divider line) with gradient
-      ctx.strokeStyle = dividerGradient;
-      ctx.lineWidth = 2
+      // Draw divider line
+      ctx.strokeStyle = dividerGradient
+      ctx.lineWidth = 1
       ctx.beginPath()
       ctx.moveTo(size / 2, 0)
       ctx.lineTo(size / 2, size)
       ctx.stroke()
       
-      // Draw subtle pulse effect at the divider line (conversion point)
+      // Subtle pulsing effect on the boundary
       const pulseTime = Date.now() * 0.001
-      const pulseIntensity = (Math.sin(pulseTime * 2) * 0.5 + 0.5) * 0.2
+      const pulseIntensity = (Math.sin(pulseTime) * 0.5 + 0.5) * 0.1
       
-      // Conversion zone highlight effect
-      const highlightGradient = ctx.createLinearGradient(size/2, 0, size/2 + 30, 0)
-      highlightGradient.addColorStop(0, `rgba(236, 72, 153, ${0.1 + pulseIntensity})`)
-      highlightGradient.addColorStop(1, 'rgba(236, 72, 153, 0)')
-      
-      ctx.fillStyle = highlightGradient
-      ctx.fillRect(size/2, 0, 30, size)
-
-      // Update and draw all particles
-      particles.forEach(particle => {
-        particle.update()
-        
-        // Draw connecting lines with matching colors
-        particle.neighbors.forEach(neighbor => {
-          const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
-          
-          // First determine if we should draw a line (different logic for each side)
-          let shouldConnect = false
-          let connectionType = ""
-          
-          if (particle.order && neighbor.order) {
-            // Left side cluster connections (purple leads)
-            shouldConnect = distance < 40
-            connectionType = "cluster"
-          } else if (!particle.order && !neighbor.order) {
-            // Right side celebrations (converted leads)
-            shouldConnect = distance < 60
-            connectionType = "converted"
-          } else if ((particle.order && !neighbor.order) || (!particle.order && neighbor.order)) {
-            // Cross-boundary connections (conversion attempt)
-            const boundaryDistance = Math.min(
-              Math.abs(particle.x - size/2),
-              Math.abs(neighbor.x - size/2)
-            )
-            shouldConnect = distance < 70 && boundaryDistance < 30
-            connectionType = "conversion"
-          }
-          
-          if (shouldConnect) {
-            // Get RGB components from the particle color
-            const r = parseInt(particle.color.substring(1, 3), 16)
-            const g = parseInt(particle.color.substring(3, 5), 16)
-            const b = parseInt(particle.color.substring(5, 7), 16)
+      // Draw connections between nearby points on same side
+      particles.forEach(p1 => {
+        particles.forEach(p2 => {
+          if (p1 !== p2 && p1.order === p2.order) {
+            const distance = Math.hypot(p1.x - p2.x, p1.y - p2.y)
+            const maxDistance = p1.order ? 30 : 50 // Different connection distances for each side
             
-            let alpha = 0
-            let lineWidth = 0
-            
-            if (connectionType === "cluster") {
-              // Purple cluster connections
-              alpha = 0.15 * (1 - distance / 40)
-              lineWidth = 0.5
-            } else if (connectionType === "converted") {
-              // Converted side connections (brighter)
-              alpha = 0.25 * (1 - distance / 60)
-              lineWidth = 0.7
-            } else if (connectionType === "conversion") {
-              // Cross-boundary conversion connections (highlight)
-              alpha = 0.3 * (1 - distance / 70)
-              lineWidth = 1
+            if (distance < maxDistance) {
+              const alpha = p1.order ? 
+                  0.05 * (1 - distance / maxDistance) : // Less visible on left
+                  0.15 * (1 - distance / maxDistance)   // More visible on right
               
-              // Use pink highlight for conversion paths
-              const pinkR = 236
-              const pinkG = 72
-              const pinkB = 153
+              if (p1.order) {
+                // Left side white connections
+                ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`
+              } else {
+                // Right side colored connections
+                const r = parseInt(p1.color.substring(1, 3), 16)
+                const g = parseInt(p1.color.substring(3, 5), 16)
+                const b = parseInt(p1.color.substring(5, 7), 16)
+                ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`
+              }
               
-              // Blend with original color
-              const blend = 0.7
-              const blendedR = Math.round(r * (1-blend) + pinkR * blend)
-              const blendedG = Math.round(g * (1-blend) + pinkG * blend)
-              const blendedB = Math.round(b * (1-blend) + pinkB * blend)
-              
-              ctx.strokeStyle = `rgba(${blendedR}, ${blendedG}, ${blendedB}, ${alpha})`
-              ctx.lineWidth = lineWidth
+              ctx.lineWidth = p1.order ? 0.5 : 0.7
               ctx.beginPath()
-              ctx.moveTo(particle.x, particle.y)
-              ctx.lineTo(neighbor.x, neighbor.y)
+              ctx.moveTo(p1.x, p1.y)
+              ctx.lineTo(p2.x, p2.y)
               ctx.stroke()
-              
-              // Skip regular drawing to use the special color
-              return
             }
-            
-            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`
-            ctx.lineWidth = lineWidth
-            ctx.beginPath()
-            ctx.moveTo(particle.x, particle.y)
-            ctx.lineTo(neighbor.x, neighbor.y)
-            ctx.stroke()
           }
         })
-        
-        // Draw the particle after connections
+      })
+      
+      // Special connections for transitioning particles
+      particles.forEach(p => {
+        if (p.transitioning) {
+          // Find nearest particles on the right side
+          const rightParticles = particles.filter(rp => !rp.order)
+          
+          // Connect to closest right particles
+          rightParticles.sort((a, b) => {
+            const distA = Math.hypot(p.x - a.x, p.y - a.y)
+            const distB = Math.hypot(p.x - b.x, p.y - b.y)
+            return distA - distB
+          }).slice(0, 3).forEach(target => {
+            const distance = Math.hypot(p.x - target.x, p.y - target.y)
+            if (distance < 100) {
+              const alpha = 0.3 * (1 - distance / 100) + pulseIntensity
+              
+              // Use the right side color
+              const r = parseInt(target.color.substring(1, 3), 16)
+              const g = parseInt(target.color.substring(3, 5), 16)
+              const b = parseInt(target.color.substring(5, 7), 16)
+              
+              ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`
+              ctx.lineWidth = 0.7
+              ctx.beginPath()
+              ctx.moveTo(p.x, p.y)
+              ctx.lineTo(target.x, target.y)
+              ctx.stroke()
+            }
+          })
+        }
+      })
+      
+      // Update and draw all particles
+      particles.forEach(particle => {
+        particle.update(time)
         particle.draw(ctx)
       })
 
-      time++
+      time += 0.01
       animationId = requestAnimationFrame(animate)
     }
 
