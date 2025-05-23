@@ -63,8 +63,8 @@ export default function Hero() {
       {/* Two-column layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
         
-        {/* Left column: Text content - positioned higher */}
-        <div className="relative z-10 px-10 pt-12 pb-16 flex flex-col items-start justify-start text-left">
+        {/* Left column: Text content - positioned even higher */}
+        <div className="relative z-10 px-10 pt-6 pb-16 flex flex-col items-start justify-start text-left">
           {/* Premium Enterprise Badge */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
