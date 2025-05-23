@@ -1,17 +1,17 @@
-import { Entropy } from "./ui/entropy";
+import { EntropyDemo } from "./demos/EntropyDemo";
 import { Button } from "@/components/ui/button";
 import { Lightbulb } from "lucide-react";
 
 export default function Hero() {
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen w-full bg-black text-white overflow-hidden">
-      {/* Entropy animation as background */}
+    <div className="relative bg-black text-white overflow-hidden">
+      {/* Original EntropyDemo component - DO NOT MODIFY */}
       <div className="absolute inset-0 w-full h-full">
-        <Entropy className="w-full h-full" size={1600} />
+        <EntropyDemo />
       </div>
       
       {/* Content overlay */}
-      <div className="relative z-10 container mx-auto px-4 flex flex-col items-center text-center">
+      <div className="relative z-10 container mx-auto px-4 py-24 flex flex-col items-center text-center min-h-screen">
         <h1 className="text-5xl md:text-7xl font-bold mb-4 mt-12">
           <span className="text-white">Enterprise-Grade</span><br/>
           <span className="text-blue-500">Marketing Platform</span>
