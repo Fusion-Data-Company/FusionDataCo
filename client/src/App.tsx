@@ -23,6 +23,8 @@ import CampaignBuilder from "@/pages/CampaignBuilder";
 import CrmCampaigns from "@/pages/CrmCampaigns";
 import LeadMagnet from "@/pages/LeadMagnet";
 import MarketingSuite from "@/pages/MarketingSuite";
+import MarketingAutomations from "@/pages/MarketingAutomations";
+import EmailCenter from "@/pages/EmailCenter";
 
 function Router() {
   return (
@@ -42,6 +44,8 @@ function Router() {
       <Route path="/crm/campaigns" component={CrmCampaigns} />
       <Route path="/lead-magnet" component={LeadMagnet} />
       <Route path="/ai-marketing-suite" component={MarketingSuite} />
+      <Route path="/automations" component={MarketingAutomations} />
+      <Route path="/crm/email-center" component={EmailCenter} />
       
       <Route component={NotFound} />
     </Switch>
