@@ -27,6 +27,13 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     // White particles on black background
     const particleColor = '#ffffff'
 
+    type Neighbor = {
+      x: number
+      y: number
+      velocity: { x: number; y: number }
+      order: boolean
+    }
+
     class Particle {
       x: number
       y: number
@@ -36,7 +43,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       originalX: number
       originalY: number
       influence: number
-      neighbors: Particle[]
+      neighbors: Neighbor[]
 
       constructor(x: number, y: number, order: boolean) {
         this.x = x
@@ -62,7 +69,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           // Calculate influence from chaotic particles
           const chaosInfluence = { x: 0, y: 0 }
           this.neighbors.forEach(neighbor => {
-            if (neighbor && !neighbor.order) {
+            if (!neighbor.order) {
               const distance = Math.hypot(this.x - neighbor.x, this.y - neighbor.y)
               const strength = Math.max(0, 1 - distance / 100)
               chaosInfluence.x += (neighbor.velocity.x * strength)
@@ -122,11 +129,18 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     // Update neighbor relationships
     function updateNeighbors() {
       particles.forEach(particle => {
-        particle.neighbors = particles.filter(other => {
-          if (other === particle) return false
-          const distance = Math.hypot(particle.x - other.x, particle.y - other.y)
-          return distance < 100
-        })
+        particle.neighbors = particles
+          .filter(other => {
+            if (other === particle) return false
+            const distance = Math.hypot(particle.x - other.x, particle.y - other.y)
+            return distance < 100
+          })
+          .map(p => ({
+            x: p.x,
+            y: p.y,
+            velocity: p.velocity,
+            order: p.order
+          }))
       })
     }
 
@@ -134,8 +148,6 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     let animationId = 0
     
     function animate() {
-      if (!ctx) return
-      
       ctx.clearRect(0, 0, size, size)
 
       // Update neighbor relationships periodically
