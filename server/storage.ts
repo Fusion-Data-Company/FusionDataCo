@@ -292,7 +292,7 @@ export class PostgresStorage implements IStorage {
   async deleteSocialTrial(id: number): Promise<boolean> {
     try {
       const result = await db.delete(socialTrials).where(eq(socialTrials.id, id));
-      return result.rowCount > 0;
+      return (result.rowCount || 0) > 0;
     } catch (error) {
       console.error("Error deleting social trial:", error);
       return false;

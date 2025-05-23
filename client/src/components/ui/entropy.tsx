@@ -6,7 +6,7 @@ interface EntropyProps {
   className?: string
 }
 
-export default function Entropy({ className }: EntropyProps) {
+export function Entropy({ className }: EntropyProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -115,3 +115,5 @@ export default function Entropy({ className }: EntropyProps) {
     />
   )
 }
+
+export default Entropy
