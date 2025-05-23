@@ -451,10 +451,16 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           attractor.y = size * 0.7 + size * 0.25 * Math.abs(Math.sin(t * 0.3))
         }
         
-        // Ensure attractors stay fully on screen
-        const margin = 20
-        attractor.x = Math.max(size / 2 + margin, Math.min(size - margin, attractor.x))
-        attractor.y = Math.max(margin, Math.min(size - margin, attractor.y))
+        // Ensure attractors stay fully on screen with MUCH larger margins
+        // Keep away from all edges as requested
+        const horizontalMargin = Math.floor(size * 0.15) // 15% of size from edges
+        const verticalMargin = Math.floor(size * 0.15) // 15% of size from top/bottom
+        
+        // Restrict to a safer inner area
+        attractor.x = Math.max(size / 2 + horizontalMargin, 
+                             Math.min(size - horizontalMargin, attractor.x))
+        attractor.y = Math.max(verticalMargin, 
+                             Math.min(size - verticalMargin, attractor.y))
       })
     }
     
