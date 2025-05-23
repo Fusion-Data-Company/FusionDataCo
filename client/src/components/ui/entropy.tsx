@@ -24,8 +24,19 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     canvas.style.height = `${size}px`
     ctx.scale(dpr, dpr)
 
-    // White particles on black background
-    const particleColor = '#ffffff'
+    // Theme colors - ambient blue, green, burnt orange, and cyan
+    const themeColors = [
+      '#3b82f6', // ambient blue 
+      '#10b981', // green
+      '#f97316', // burnt orange
+      '#06b6d4'  // cyan
+    ]
+    
+    // Create a radial gradient for the backdrop (subtle ambient effect)
+    const radialGradient = ctx.createRadialGradient(size/2, size/2, 10, size/2, size/2, size);
+    radialGradient.addColorStop(0, 'rgba(37, 99, 235, 0.05)');   // blue center
+    radialGradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.02)'); // cyan middle
+    radialGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');          // transparent edge
 
     type Neighbor = {
       x: number
@@ -44,6 +55,9 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       originalY: number
       influence: number
       neighbors: Neighbor[]
+      color: string
+      colorIndex: number
+      colorTransition: number
 
       constructor(x: number, y: number, order: boolean) {
         this.x = x
@@ -58,6 +72,11 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         }
         this.influence = 0
         this.neighbors = []
+        
+        // Assign a color from our theme
+        this.colorIndex = Math.floor(Math.random() * themeColors.length)
+        this.color = themeColors[this.colorIndex]
+        this.colorTransition = Math.random() * 0.02 // Speed of color transition
       }
 
       update() {
@@ -101,11 +120,32 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         }
       }
 
+      // Gradually transition to a new color
+      updateColor() {
+        // Update color index for gentle color transitions
+        if (Math.random() < this.colorTransition) {
+          const nextColorIndex = (this.colorIndex + 1) % themeColors.length
+          this.colorIndex = nextColorIndex
+          this.color = themeColors[nextColorIndex]
+        }
+      }
+
       draw(ctx: CanvasRenderingContext2D) {
+        // Update color occasionally for subtle transitions
+        this.updateColor()
+        
+        // Set alpha based on particle state
         const alpha = this.order ?
           0.8 - this.influence * 0.5 :
           0.8
-        ctx.fillStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+        
+        // Get RGB components from the hex color
+        const r = parseInt(this.color.substring(1, 3), 16)
+        const g = parseInt(this.color.substring(3, 5), 16)
+        const b = parseInt(this.color.substring(5, 7), 16)
+        
+        // Create RGBA color string
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fill()
@@ -149,6 +189,10 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     
     function animate() {
       ctx.clearRect(0, 0, size, size)
+      
+      // Draw the background gradient for ambient effect
+      ctx.fillStyle = radialGradient;
+      ctx.fillRect(0, 0, size, size);
 
       // Update neighbor relationships periodically
       if (time % 30 === 0) {
@@ -160,12 +204,17 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         particle.update()
         particle.draw(ctx)
 
-        // Draw connecting lines
+        // Draw connecting lines with matching colors
         particle.neighbors.forEach(neighbor => {
           const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
           if (distance < 50) {
+            // Get RGB components from the hex color
+            const r = parseInt(particle.color.substring(1, 3), 16)
+            const g = parseInt(particle.color.substring(3, 5), 16)
+            const b = parseInt(particle.color.substring(5, 7), 16)
+            
             const alpha = 0.2 * (1 - distance / 50)
-            ctx.strokeStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(neighbor.x, neighbor.y)
@@ -174,15 +223,15 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         })
       })
 
-      // Add vertical divider line
-      ctx.strokeStyle = `${particleColor}4D`
+      // Add vertical divider line with subtle blue color
+      ctx.strokeStyle = 'rgba(59, 130, 246, 0.3)'  // Ambient blue with low opacity
       ctx.lineWidth = 0.5
       ctx.beginPath()
       ctx.moveTo(size / 2, 0)
       ctx.lineTo(size / 2, size)
       ctx.stroke()
 
-      // Add text elements if needed
+      // Add text elements if needed 
       ctx.font = '12px monospace'
       ctx.fillStyle = '#ffffff'
       ctx.textAlign = 'center'
