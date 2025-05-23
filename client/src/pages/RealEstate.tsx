@@ -52,7 +52,7 @@ export default function RealEstate() {
   });
 
   // Form submission handler
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (formData: FormValues) => {
     setIsSubmitting(true);
     
     try {
@@ -66,7 +66,7 @@ export default function RealEstate() {
       // Submit to backend
       await apiRequest('/api/leads', {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
       
       setSubmitted(true);
@@ -817,7 +817,7 @@ export default function RealEstate() {
       // Submit to backend
       await apiRequest('/api/leads', {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
       
       setSubmitted(true);
