@@ -7,7 +7,7 @@ export function EntropyDemo() {
   return (
     <div className="flex flex-col items-center justify-center bg-black text-white h-full w-full">
       <div className="flex flex-col items-center w-full h-full">
-        <Entropy className="rounded-lg" size={800} />
+        <Entropy className="rounded-lg" size={650} />
         <div className="mt-3 text-center">
           <div className="font-mono text-[12px] leading-relaxed">
             <p className="italic text-gray-400/60 tracking-wide">
