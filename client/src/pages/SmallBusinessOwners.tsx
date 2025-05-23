@@ -334,7 +334,7 @@ export default function SmallBusinessOwners() {
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
                     <h3 className="text-xl font-semibold mb-4 text-white">
-                      Missing Growth Opportunities
+                      No Follow-up System
                     </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
@@ -342,7 +342,7 @@ export default function SmallBusinessOwners() {
                           <XCircle className="h-4 w-4 text-red-500" />
                         </div>
                         <p className="text-gray-300">
-                          You've got no way to capture leads or follow up automatically with interested customers.
+                          You're tracking leads on post-it notes, spreadsheets, or worse — your memory.
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -350,7 +350,7 @@ export default function SmallBusinessOwners() {
                           <XCircle className="h-4 w-4 text-red-500" />
                         </div>
                         <p className="text-gray-300">
-                          Perfect customers visit your site but leave without contacting you - and you never know.
+                          Your leads go cold because you don't have an automatic follow-up process.
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -358,7 +358,7 @@ export default function SmallBusinessOwners() {
                           <XCircle className="h-4 w-4 text-red-500" />
                         </div>
                         <p className="text-gray-300">
-                          You're paying for marketing but have no idea if it's actually working.
+                          You know you're leaking money from missed opportunities, but you don't know how to fix it.
                         </p>
                       </li>
                     </ul>
@@ -372,28 +372,30 @@ export default function SmallBusinessOwners() {
           <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
             {/* Green ambient glow behind the content */}
             <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
-            <div className="absolute -inset-1/2 bg-[#14ffc8]/5 blur-3xl rounded-full opacity-20 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/3 blur-3xl rounded-full opacity-10 z-0"></div>
             
             <div className="container mx-auto relative z-10">
-              <h2 className="text-3xl font-bold mb-12 text-center">
-                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Complete Solution</span> for Small Business Growth
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">The Solution:</span> Complete Small Business Growth System
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <Card className="bg-[#121218]/90 border border-[#14ffc8]/20 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
-                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle2 className="h-8 w-8 text-[#14ffc8]" />
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <BadgePercent className="h-6 w-6 text-[#14ffc8]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-center mb-4 text-white">Fully Built Website & Funnel</h3>
+                    <h3 className="text-xl font-semibold mb-3 text-white">
+                      Done-for-You Marketing
+                    </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
                           <Check className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
-                          Professional, mobile-optimized website that actually converts visitors to leads
+                          Professional website that converts visitors into paying customers
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -401,7 +403,7 @@ export default function SmallBusinessOwners() {
                           <Check className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
-                          Lead capture forms that work perfectly on all devices
+                          Daily social media content created and posted automatically
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -409,27 +411,29 @@ export default function SmallBusinessOwners() {
                           <Check className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
-                          Content that speaks directly to your ideal customers
+                          SEO optimization so you appear in local search results
                         </p>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-[#121218]/90 border border-[#14ffc8]/20 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
-                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <BarChart3 className="h-8 w-8 text-[#14ffc8]" />
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <BarChart3 className="h-6 w-6 text-[#14ffc8]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-center mb-4 text-white">Your Own CRM + Lead Storage</h3>
+                    <h3 className="text-xl font-semibold mb-3 text-white">
+                      Automated Lead System
+                    </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
                           <Check className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
-                          All leads stored in your own Postgres DB (you control it)
+                          Capture and organize leads without lifting a finger
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -437,7 +441,7 @@ export default function SmallBusinessOwners() {
                           <Check className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
-                          Track and manage your customer relationships in one place
+                          Automatic follow-up sequences that nurture prospects
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -445,27 +449,29 @@ export default function SmallBusinessOwners() {
                           <Check className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
-                          See exactly what's working and what's not in real-time
+                          Simple CRM that tells you exactly who to call and when
                         </p>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-[#121218]/90 border border-[#14ffc8]/20 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
-                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Clock className="h-8 w-8 text-[#14ffc8]" />
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
+                      <Shield className="h-6 w-6 text-[#14ffc8]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-center mb-4 text-white">Ongoing Support & Updates</h3>
+                    <h3 className="text-xl font-semibold mb-3 text-white">
+                      Ongoing Support
+                    </h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
                           <Check className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
-                          24/7 live support — a real person, any time
+                          Unlimited updates to your website and marketing materials
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -473,7 +479,7 @@ export default function SmallBusinessOwners() {
                           <Check className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
-                          Hosting, updates, content management — done for you
+                          Monthly strategy call with a dedicated success manager
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -481,7 +487,7 @@ export default function SmallBusinessOwners() {
                           <Check className="h-4 w-4 text-[#14ffc8]" />
                         </div>
                         <p className="text-gray-300">
-                          Everything evolves with your business - month-to-month, no contracts
+                          24/7 tech support and marketing advisory
                         </p>
                       </li>
                     </ul>
@@ -489,66 +495,81 @@ export default function SmallBusinessOwners() {
                 </Card>
               </div>
               
-              {/* ROI Calculator Section */}
-              <div className="max-w-4xl mx-auto bg-[#121218] border border-[#14ffc8]/20 rounded-lg overflow-hidden relative p-8 mt-16">
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-bold text-center mb-6 text-white">
-                    <span className="text-[#14ffc8]">ROI Calculator:</span> See Your Growth Potential
-                  </h3>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-6">
-                      <div>
-                        <Label htmlFor="current-leads" className="text-white text-lg mb-2 block">
-                          How many leads do you get now per month?
-                        </Label>
-                        <Input 
-                          id="current-leads"
-                          type="number" 
-                          value={currentLeads}
-                          onChange={(e) => setCurrentLeads(e.target.value)}
-                          className="bg-[#0a0a0d] border-[#333340] text-white h-12"
-                        />
-                      </div>
-                      
-                      <div>
-                        <Label htmlFor="ticket-price" className="text-white text-lg mb-2 block">
-                          What's your average ticket price? ($)
-                        </Label>
-                        <Input 
-                          id="ticket-price"
-                          type="number" 
-                          value={ticketPrice}
-                          onChange={(e) => setTicketPrice(e.target.value)}
-                          className="bg-[#0a0a0d] border-[#333340] text-white h-12"
-                        />
-                      </div>
-                      
-                      <Button 
-                        onClick={calculateROI}
-                        className="w-full bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold rounded-md py-3 text-lg shadow-[0_0_15px_rgba(20,255,200,0.3)] hover:shadow-[0_0_20px_rgba(20,255,200,0.5)] transition-all duration-300"
-                      >
-                        Calculate Potential ROI
-                      </Button>
+              {/* Advanced ROI Calculator Section */}
+              <div className="max-w-5xl mx-auto mt-16">
+                <h3 className="text-2xl font-bold text-center mb-6 text-white">
+                  <span className="text-[#14ffc8]">ROI Calculator:</span> See Your Growth Potential
+                </h3>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                  <div className="lg:col-span-3">
+                    {/* Description and benefits */}
+                    <div className="bg-[#121218] border border-[#333340] rounded-lg p-6 mb-6">
+                      <h4 className="text-lg font-semibold mb-4 text-white">How Our Platform Delivers ROI</h4>
+                      <ul className="space-y-3">
+                        <li className="flex items-start gap-3">
+                          <div className="mt-1 flex-shrink-0">
+                            <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
+                          </div>
+                          <p className="text-gray-300">
+                            <span className="font-medium text-white">50% higher conversion rates</span> with professional, 
+                            responsive designs that build trust
+                          </p>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <div className="mt-1 flex-shrink-0">
+                            <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
+                          </div>
+                          <p className="text-gray-300">
+                            <span className="font-medium text-white">10-15 hours saved weekly</span> through 
+                            automated lead capture, follow-up, and customer management
+                          </p>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <div className="mt-1 flex-shrink-0">
+                            <CheckCircle2 className="h-4 w-4 text-[#14ffc8]" />
+                          </div>
+                          <p className="text-gray-300">
+                            <span className="font-medium text-white">20-30% higher customer value</span> through 
+                            improved targeting and personalized follow-up sequences
+                          </p>
+                        </li>
+                      </ul>
                     </div>
                     
-                    <div className="bg-[#0a0a0d] p-6 rounded-lg flex flex-col justify-center items-center">
-                      <h4 className="text-xl font-medium text-gray-300 mb-3">With 20% more leads, you could gain:</h4>
-                      
-                      <div className="text-5xl font-bold text-[#14ffc8] mb-2">
-                        ${projectedGain.toLocaleString()}
+                    <div className="bg-[#121218] border border-[#333340] rounded-lg p-6">
+                      <div className="flex items-center mb-4">
+                        <DollarSign className="h-5 w-5 text-[#14ffc8] mr-2" />
+                        <h4 className="text-lg font-semibold text-white">Real Client Results</h4>
                       </div>
                       
-                      <p className="text-gray-400 text-center">
-                        Additional revenue per month
-                      </p>
-                      
-                      <div className="mt-6 pt-6 border-t border-gray-800 w-full text-center">
-                        <p className="text-gray-300">
-                          That's <span className="text-[#14ffc8] font-bold">${(projectedGain * 12).toLocaleString()}</span> per year in untapped revenue
-                        </p>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div className="bg-[#0a0a0d] border border-[#333340] rounded-md p-4">
+                          <div className="text-2xl font-bold text-[#14ffc8] mb-1">38%</div>
+                          <div className="text-sm text-gray-400">Increase in qualified leads within 90 days</div>
+                        </div>
+                        <div className="bg-[#0a0a0d] border border-[#333340] rounded-md p-4">
+                          <div className="text-2xl font-bold text-[#ff0aff] mb-1">4.2x</div>
+                          <div className="text-sm text-gray-400">Average return on platform investment</div>
+                        </div>
+                        <div className="bg-[#0a0a0d] border border-[#333340] rounded-md p-4">
+                          <div className="text-2xl font-bold text-[#8f00ff] mb-1">62%</div>
+                          <div className="text-sm text-gray-400">Reduction in time spent on marketing tasks</div>
+                        </div>
                       </div>
+                      
+                      <div className="text-sm text-gray-400 italic">
+                        "We saw a 43% increase in our lead conversion rate in just the first month after 
+                        implementing Fusion Data Co's platform. The ROI has been incredible."
+                        <div className="mt-1 text-white font-medium">— Sarah K., Small Business Owner</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="lg:col-span-2">
+                    {/* Use the new ROI Calculator component */}
+                    <div className="sticky top-4">
+                      <ROICalculator className="h-full" />
                     </div>
                   </div>
                 </div>
@@ -559,52 +580,51 @@ export default function SmallBusinessOwners() {
           {/* CTA and Lead Form Section */}
           <section id="lead-form" className="py-16 px-4 bg-[#121218] relative overflow-hidden">
             <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
-            <div className="absolute -inset-1/2 bg-[#14ffc8]/3 blur-3xl rounded-full opacity-10 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#14ffc8]/5 blur-3xl rounded-full opacity-10 z-0"></div>
             
             <div className="container mx-auto relative z-10">
               <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold mb-3 text-center text-white">
-                  Ready to Stop Losing Leads and Start Growing?
+                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
+                  Ready to <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Grow Your Business?</span>
                 </h2>
-                <p className="text-xl text-gray-300 mb-12 text-center max-w-2xl mx-auto">
-                  Tell us about your business. We'll get back to you within 24 hours with a personalized plan.
+                <p className="text-xl text-gray-300 mb-12 text-center">
+                  Fill out the form below and we'll show you exactly how our system can be tailored to your specific business.
                 </p>
                 
-                <Card className="bg-[#0a0a0d]/90 border border-[#14ffc8]/10 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/5 to-[#14ffc8]/2 blur-md z-0"></div>
-                  <CardContent className="p-8 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                  {/* Lead form */}
+                  <div className="bg-[#0a0a0d] border border-[#333340] p-8 rounded-lg">
+                    <h3 className="text-2xl font-semibold mb-6 text-white">Get Your Custom Growth Plan</h3>
+                    
                     {submitted ? (
-                      <div className="text-center py-8">
-                        <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                          <CheckCircle2 className="h-8 w-8 text-[#14ffc8]" />
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-6 text-center">
+                        <div className="w-16 h-16 bg-[#14ffc8]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Check className="h-8 w-8 text-[#14ffc8]" />
                         </div>
-                        <h3 className="text-2xl font-bold mb-4 text-white">Thank You!</h3>
-                        <p className="text-gray-300 text-lg mb-6">
-                          We've received your information and will be in touch shortly to discuss how we can help your business grow.
+                        <h4 className="text-xl font-semibold mb-2 text-white">Request Submitted!</h4>
+                        <p className="text-gray-300 mb-4">
+                          Thank you for reaching out. One of our growth experts will contact you within 
+                          24 hours to discuss how we can help your business grow.
                         </p>
                         <Button 
+                          className="bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold"
                           onClick={() => setSubmitted(false)}
-                          className="bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold rounded-md px-6 py-3 shadow-[0_0_15px_rgba(20,255,200,0.3)] hover:shadow-[0_0_20px_rgba(20,255,200,0.5)] transition-all duration-300"
                         >
                           Submit Another Request
                         </Button>
                       </div>
                     ) : (
                       <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <FormField
                               control={form.control}
                               name="name"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel className="text-white">Full Name</FormLabel>
+                                  <FormLabel className="text-white">Your Name</FormLabel>
                                   <FormControl>
-                                    <Input 
-                                      placeholder="John Smith" 
-                                      {...field} 
-                                      className="bg-[#121218] border-[#333340] text-white"
-                                    />
+                                    <Input placeholder="John Smith" {...field} className="bg-[#121218] border-[#333340] text-white" />
                                   </FormControl>
                                   <FormMessage />
                                 </FormItem>
@@ -618,17 +638,15 @@ export default function SmallBusinessOwners() {
                                 <FormItem>
                                   <FormLabel className="text-white">Email Address</FormLabel>
                                   <FormControl>
-                                    <Input 
-                                      placeholder="your@email.com" 
-                                      {...field} 
-                                      className="bg-[#121218] border-[#333340] text-white"
-                                    />
+                                    <Input placeholder="john@example.com" {...field} className="bg-[#121218] border-[#333340] text-white" />
                                   </FormControl>
                                   <FormMessage />
                                 </FormItem>
                               )}
                             />
-                            
+                          </div>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <FormField
                               control={form.control}
                               name="phone"
@@ -636,11 +654,7 @@ export default function SmallBusinessOwners() {
                                 <FormItem>
                                   <FormLabel className="text-white">Phone Number</FormLabel>
                                   <FormControl>
-                                    <Input 
-                                      placeholder="(555) 123-4567" 
-                                      {...field} 
-                                      className="bg-[#121218] border-[#333340] text-white"
-                                    />
+                                    <Input placeholder="(555) 123-4567" {...field} className="bg-[#121218] border-[#333340] text-white" />
                                   </FormControl>
                                   <FormMessage />
                                 </FormItem>
@@ -654,38 +668,38 @@ export default function SmallBusinessOwners() {
                                 <FormItem>
                                   <FormLabel className="text-white">Business Name</FormLabel>
                                   <FormControl>
-                                    <Input 
-                                      placeholder="Your Business LLC" 
-                                      {...field} 
-                                      className="bg-[#121218] border-[#333340] text-white"
-                                    />
+                                    <Input placeholder="Your Business Name" {...field} className="bg-[#121218] border-[#333340] text-white" />
                                   </FormControl>
                                   <FormMessage />
                                 </FormItem>
                               )}
                             />
-                            
+                          </div>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <FormField
                               control={form.control}
                               name="businessType"
                               render={({ field }) => (
                                 <FormItem>
                                   <FormLabel className="text-white">Business Type</FormLabel>
-                                  <Select 
-                                    onValueChange={field.onChange} 
+                                  <Select
+                                    onValueChange={field.onChange}
                                     defaultValue={field.value}
                                   >
                                     <FormControl>
                                       <SelectTrigger className="bg-[#121218] border-[#333340] text-white">
-                                        <SelectValue placeholder="Select business type" />
+                                        <SelectValue placeholder="Select your industry" />
                                       </SelectTrigger>
                                     </FormControl>
                                     <SelectContent className="bg-[#121218] border-[#333340] text-white">
-                                      <SelectItem value="retail">Retail Store</SelectItem>
-                                      <SelectItem value="restaurant">Restaurant/Café</SelectItem>
-                                      <SelectItem value="service">Service Business</SelectItem>
-                                      <SelectItem value="trades">Trades & Construction</SelectItem>
-                                      <SelectItem value="professional">Professional Services</SelectItem>
+                                      <SelectItem value="retail">Retail</SelectItem>
+                                      <SelectItem value="service">Service-based</SelectItem>
+                                      <SelectItem value="restaurant">Restaurant/Food</SelectItem>
+                                      <SelectItem value="professional">Professional (Legal, Accounting, etc.)</SelectItem>
+                                      <SelectItem value="healthcare">Healthcare</SelectItem>
+                                      <SelectItem value="trades">Trades (Plumbing, Electrical, etc.)</SelectItem>
+                                      <SelectItem value="real-estate">Real Estate</SelectItem>
                                       <SelectItem value="other">Other</SelectItem>
                                     </SelectContent>
                                   </Select>
@@ -699,9 +713,9 @@ export default function SmallBusinessOwners() {
                               name="interestedService"
                               render={({ field }) => (
                                 <FormItem>
-                                  <FormLabel className="text-white">Which service are you most interested in?</FormLabel>
-                                  <Select 
-                                    onValueChange={field.onChange} 
+                                  <FormLabel className="text-white">I'm Interested In</FormLabel>
+                                  <Select
+                                    onValueChange={field.onChange}
                                     defaultValue={field.value}
                                   >
                                     <FormControl>
@@ -710,11 +724,11 @@ export default function SmallBusinessOwners() {
                                       </SelectTrigger>
                                     </FormControl>
                                     <SelectContent className="bg-[#121218] border-[#333340] text-white">
-                                      <SelectItem value="website">Website & Funnel Pages</SelectItem>
-                                      <SelectItem value="crm">CRM & Lead Management</SelectItem>
-                                      <SelectItem value="social">Social Media Management</SelectItem>
-                                      <SelectItem value="seo">SEO & Online Visibility</SelectItem>
-                                      <SelectItem value="complete">Complete Solution Package</SelectItem>
+                                      <SelectItem value="website">Professional Website</SelectItem>
+                                      <SelectItem value="social-media">Social Media Management</SelectItem>
+                                      <SelectItem value="crm">Lead Management/CRM</SelectItem>
+                                      <SelectItem value="marketing-automation">Marketing Automation</SelectItem>
+                                      <SelectItem value="full-suite">Full Growth Suite</SelectItem>
                                     </SelectContent>
                                   </Select>
                                   <FormMessage />
@@ -728,12 +742,12 @@ export default function SmallBusinessOwners() {
                             name="message"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel className="text-white">Additional Information</FormLabel>
+                                <FormLabel className="text-white">Tell us about your business goals</FormLabel>
                                 <FormControl>
                                   <Textarea 
-                                    placeholder="Tell us a bit more about your business challenges..."
-                                    className="min-h-[120px] bg-[#121218] border-[#333340] text-white"
+                                    placeholder="What challenges are you facing? What are you hoping to achieve?"
                                     {...field}
+                                    className="bg-[#121218] border-[#333340] text-white min-h-[120px]"
                                   />
                                 </FormControl>
                                 <FormMessage />
@@ -741,23 +755,100 @@ export default function SmallBusinessOwners() {
                             )}
                           />
                           
-                          <Button
-                            type="submit"
+                          <Button 
+                            type="submit" 
+                            className="w-full bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold py-3"
                             disabled={isSubmitting}
-                            className="w-full bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold rounded-md py-6 text-lg shadow-[0_0_15px_rgba(20,255,200,0.3)] hover:shadow-[0_0_20px_rgba(20,255,200,0.5)] transition-all duration-300"
                           >
-                            {isSubmitting ? "Submitting..." : "Get My Growth Plan"}
+                            {isSubmitting ? (
+                              <>
+                                <span className="animate-pulse">Processing...</span>
+                              </>
+                            ) : (
+                              "Get My Free Growth Plan"
+                            )}
                           </Button>
+                          
+                          <p className="text-xs text-center text-gray-400">
+                            By submitting this form, you agree to our Privacy Policy and Terms of Service.
+                            We'll never share your information with third parties.
+                          </p>
                         </form>
                       </Form>
                     )}
-                  </CardContent>
-                </Card>
+                  </div>
+                  
+                  {/* Testimonials */}
+                  <div className="bg-[#0a0a0d] border border-[#333340] p-8 rounded-lg space-y-8 flex flex-col justify-center">
+                    <h3 className="text-2xl font-semibold mb-2 text-white">What Our Clients Say</h3>
+                    
+                    <div className="space-y-6">
+                      <div className="relative">
+                        <div className="bg-[#121218] rounded-lg p-5 border border-[#333340] mb-4">
+                          <p className="text-gray-300 italic">
+                            "After struggling with DIY marketing for years, it's such a relief to have professionals 
+                            handling everything. My leads have doubled, and I don't have to think about it."
+                          </p>
+                          <div className="absolute -bottom-3 left-5 w-6 h-6 bg-[#121218] border-b border-r border-[#333340] transform rotate-45"></div>
+                        </div>
+                        
+                        <div className="flex items-center ml-4">
+                          <div className="w-10 h-10 rounded-full bg-[#14ffc8]/20 flex items-center justify-center mr-3">
+                            <span className="text-[#14ffc8] font-semibold">JD</span>
+                          </div>
+                          <div>
+                            <div className="text-white font-medium">John Donovan</div>
+                            <div className="text-gray-400 text-sm">Donovan Plumbing</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="relative">
+                        <div className="bg-[#121218] rounded-lg p-5 border border-[#333340] mb-4">
+                          <p className="text-gray-300 italic">
+                            "Worth every penny. I was skeptical about another 'marketing solution', but 
+                            the ROI was measurable from month one. My online bookings are up 76%."
+                          </p>
+                          <div className="absolute -bottom-3 left-5 w-6 h-6 bg-[#121218] border-b border-r border-[#333340] transform rotate-45"></div>
+                        </div>
+                        
+                        <div className="flex items-center ml-4">
+                          <div className="w-10 h-10 rounded-full bg-[#ff0aff]/20 flex items-center justify-center mr-3">
+                            <span className="text-[#ff0aff] font-semibold">LM</span>
+                          </div>
+                          <div>
+                            <div className="text-white font-medium">Lisa Martinez</div>
+                            <div className="text-gray-400 text-sm">Wellness Spa Owner</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="relative">
+                        <div className="bg-[#121218] rounded-lg p-5 border border-[#333340] mb-4">
+                          <p className="text-gray-300 italic">
+                            "I was wasting 15+ hours a week trying to handle my own marketing. Now I 
+                            focus on serving clients while my online presence keeps growing."
+                          </p>
+                          <div className="absolute -bottom-3 left-5 w-6 h-6 bg-[#121218] border-b border-r border-[#333340] transform rotate-45"></div>
+                        </div>
+                        
+                        <div className="flex items-center ml-4">
+                          <div className="w-10 h-10 rounded-full bg-[#8f00ff]/20 flex items-center justify-center mr-3">
+                            <span className="text-[#8f00ff] font-semibold">RC</span>
+                          </div>
+                          <div>
+                            <div className="text-white font-medium">Robert Chen</div>
+                            <div className="text-gray-400 text-sm">Chen's Electronics</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
         </main>
-        
         <Footer />
       </div>
     </>
