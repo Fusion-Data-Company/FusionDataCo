@@ -52,7 +52,7 @@ export default function RealEstate() {
   });
 
   // Form submission handler
-  const onSubmit = async (formData: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     
     try {

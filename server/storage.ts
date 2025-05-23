@@ -258,7 +258,7 @@ export class PostgresStorage implements IStorage {
   async deleteLead(id: number): Promise<boolean> {
     try {
       const result = await db.delete(leads).where(eq(leads.id, id));
-      return result.rowCount > 0;
+      return (result.rowCount || 0) > 0;
     } catch (error) {
       console.error("Error deleting lead:", error);
       return false;
