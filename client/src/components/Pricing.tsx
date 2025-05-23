@@ -160,19 +160,16 @@ export default function Pricing() {
             <div 
               key={index} 
               className={cn(
-                "chrome-panel rounded-xl overflow-hidden shadow-xl transition-all duration-500 hover:-translate-y-2 relative animate-fade-in group",
+                `titanium-card glow-${plan.color} rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 relative animate-fade-in group`,
                 plan.isPopular 
-                  ? "border-accent/40 lg:scale-105 z-10" 
-                  : "border-white/10 hover:border-white/20",
+                  ? "lg:scale-105 z-10 border-white/10" 
+                  : "border-white/5",
                 index === 0 ? "lg:translate-x-5" : "",
                 index === 2 ? "lg:-translate-x-5" : ""
               )}
               style={{ animationDelay: `${index * 0.15}s` }}
             >
-              {/* Glow effect on popular plan */}
-              {plan.isPopular && (
-                <div className="absolute inset-0 bg-accent/5 blur-lg rounded-xl -m-1 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-              )}
+              <div className="ambient-glow"></div>
               
               {/* Recommended badge */}
               {plan.isPopular && (

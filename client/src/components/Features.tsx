@@ -105,8 +105,9 @@ export default function Features() {
           {features.map((feature, index) => (
             <div 
               key={index} 
-              className="titanium-panel rounded-xl p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className={`titanium-card glow-${feature.color} rounded-xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
             >
+              <div className="ambient-glow"></div>
               <div className={`w-16 h-16 rounded-lg flex items-center justify-center mb-6 bg-${feature.color}/10 border border-${feature.color}/20`}>
                 <div className={`text-${feature.color}`}>
                   {feature.icon}
