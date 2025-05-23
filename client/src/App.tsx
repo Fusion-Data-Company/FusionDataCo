@@ -17,6 +17,7 @@ import CRM from "@/pages/CRM";
 import Pricing from "@/pages/Pricing";
 import NotFound from "@/pages/not-found";
 import { EntropyDemo } from "@/components/demos/EntropyDemo";
+import SocialMediaCampaign from "@/pages/SocialMediaCampaign";
 
 // We'll implement these pages directly to avoid import issues
 function Login() {
@@ -91,7 +92,8 @@ function Router() {
       <Route path="/real-estate" component={RealEstate} />
       <Route path="/medical" component={Medical} />
       <Route path="/trades" component={Trades} />
-      <Route path="/social-media" component={Campaigns} />
+      <Route path="/social-media" component={SocialMediaCampaign} />
+      <Route path="/campaigns" component={Campaigns} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/contact" component={Contact} />
       <Route path="/login" component={Login} />
