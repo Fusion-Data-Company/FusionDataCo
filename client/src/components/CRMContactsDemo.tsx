@@ -270,7 +270,7 @@ export default function CRMContactsDemo() {
               onClick={() => setViewMode('table')}
               title="Table view"
             >
-              <Users size={16} />
+              <Table size={16} />
             </button>
             <button 
               className={`p-2 ${viewMode === 'cards' ? 'bg-primary text-primary-foreground' : 'bg-muted/30 text-muted-foreground hover:bg-muted/70'} transition-colors flex items-center`}
