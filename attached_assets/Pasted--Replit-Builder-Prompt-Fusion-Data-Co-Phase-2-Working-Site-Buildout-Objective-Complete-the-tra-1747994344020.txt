@@ -1,0 +1,162 @@
+💻 Replit Builder Prompt: Fusion Data Co – Phase 2 Working Site Buildout
+Objective: Complete the transformation of the Fusion Data Co concept site into a fully functional SaaS platform front-end with correct content routing, styling, registration forms, and CRM connections.
+
+🧼 1. VISUAL CORRECTIONS AND COLOR CONSISTENCY
+Eliminate all green-tinted neon or pastel glow styles
+
+Replace green hues with deep electric cobalt blue (HEX: #004CFF or similar)
+
+All headers using FUSIONDATACO blue — keep this color consistent across H1s and CTA elements
+
+Remove pink and pastel hues completely
+
+Reduce glow/blur on all text:
+
+Cap text-shadow to 0 0 2px rgba(0,0,0,0.3)
+
+No outer glow or blur-heavy gradients
+
+For buttons:
+
+Background: flat cobalt blue
+
+On hover: subtle glow (same blue, opacity 0.2), no shimmer trails unless elegant
+
+Use subtle edge gradient or 1px border in a lighter cobalt if needed
+
+🗂 2. PAGE STRUCTURE AND CONTENT SEPARATION
+Migrate all homepage content into proper pages defined in NAV bar
+
+Each page must have its own route, layout, and properly scoped content
+
+NAV Bar Links → These must be real working pages:
+
+/ – Homepage
+
+/small-business-owners – Primary sales funnel
+
+/real-estate, /medical, /trades – Industry-specific Sandler funnels
+
+/social-media – Automation service plans and campaign builder
+
+/pricing – SaaS tier structure + Stripe (or placeholder)
+
+/contact – Contact form
+
+/crm – Login-protected CRM dashboard
+
+🔁 3. SANDLER-STYLE FUNNEL CONTENT FOR EACH INDUSTRY PAGE
+Apply this structure to all funnel pages:
+
+Introduction: Empathetic headline for the industry
+
+Pain Points: Bullet list or short paragraphs specific to the vertical
+
+Solution & ROI: Features Fusion solves + data-driven ROI examples
+
+Call to Action: Embedded lead form (not linked) with full width
+
+Route Assignments:
+
+/small-business-owners → General business owners funnel
+
+/real-estate → Realtors and brokers
+
+/medical → Doctors, clinics, dentists
+
+/trades → Plumbers, HVAC, electricians
+
+Each form should:
+
+Submit to backend
+
+Write to CRM DB table leads
+
+Include hidden input tag for funnel source (e.g. RealEstateFunnel)
+
+🧾 4. PRICING PAGE BUILD
+Route: /pricing
+
+Include 3 Plans:
+
+Starter – $49/mo
+
+Growth – $149/mo
+
+Elite – $399/mo
+
+Plan cards: titanium UI, minimal styling
+
+Feature grid beneath cards
+
+Each card: “Start Free Trial” button → dummy link or Stripe placeholder
+
+🛠 5. FORM CONNECTIONS
+All forms on the site must:
+
+POST to backend
+
+Save entry in CRM table leads or contact_requests
+
+Include name, email, phone (if applicable), source page, message
+
+Add success message or redirect to /thank-you
+
+🧠 6. CRM & AUTH GATE
+Route: /crm
+
+Add login form + gate using basic auth or placeholder
+
+After login: show dummy dashboard with cards for:
+
+Total Leads
+
+Scheduled Posts
+
+Recent Signups
+
+Protect all routes /crm/* behind auth
+
+🧭 7. ROUTING, NAVIGATION & FOOTER
+NAV bar should:
+
+Work on all screen sizes
+
+Highlight active page
+
+Link to live pages only (no placeholders or 404s)
+
+Footer:
+
+Include links to every page
+
+Add Fusion copyright
+
+📱 8. MOBILE RESPONSIVENESS
+All pages must scale cleanly on:
+
+iPhone 12+, Galaxy S22+, iPad
+
+Test layout collapse for headers, forms, cards
+
+Button spacing: at least 44px height
+
+Inputs: fill full width on mobile
+
+🧪 9. QA AND TESTING REQUIREMENTS
+After build, verify:
+
+All NAV links work
+
+All forms submit and store entries
+
+CRM access is restricted
+
+Pages have correct content, not duplicated
+
+Color styling is clean and consistent (no green/pink glow)
+
+DO NOT ask for additional input during the build. Work through all routes, components, and content until the site is complete. Remove all placeholder content. Replace it with real copy per industry page. This is a working website, not a design prototype.
+
+Proceed immediately. Run continuously. If timed out, resume without prompt. This is a full Phase 2 rollout.
+Fusion Data Co is going enterprise live — get it done.

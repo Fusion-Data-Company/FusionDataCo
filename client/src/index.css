@@ -8,8 +8,8 @@
   .bg-grid-pattern {
     background-size: 50px 50px;
     background-image: 
-      linear-gradient(to right, rgba(20, 255, 200, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(20, 255, 200, 0.05) 1px, transparent 1px);
+      linear-gradient(to right, rgba(0, 76, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 76, 255, 0.05) 1px, transparent 1px);
   }
 }
 
@@ -23,13 +23,13 @@
   --popover: 220 13% 9%; /* #121419 */
   --popover-foreground: 0 0% 98%; /* #fafafa */
   
-  --primary: 210 100% 52%; /* #0078ff - titanium blue */
+  --primary: 222 100% 50%; /* #004CFF - deep electric cobalt blue */
   --primary-foreground: 220 13% 9%; /* #121419 */
   
   --secondary: 240 6% 50%; /* #7e7e8f - brushed silver */
   --secondary-foreground: 220 13% 9%; /* #121419 */
   
-  --accent: 210 100% 63%; /* #47a3ff - light titanium blue */
+  --accent: 222 100% 70%; /* #4d85ff - light cobalt blue */
   --accent-foreground: 220 13% 9%; /* #121419 */
   
   --destructive: 0 100% 50%; /* #ff0000 */
@@ -40,26 +40,26 @@
   
   --border: 222 14% 18%; /* #23262f - dark silver */
   --input: 222 14% 18%; /* #23262f - dark silver */
-  --ring: 210 100% 52%; /* #0078ff - titanium blue */
+  --ring: 222 100% 50%; /* #004CFF - deep electric cobalt blue */
   
   --radius: 0.5rem;
 
   /* Chart colors */
-  --chart-1: 210 100% 52%; /* #0078ff - titanium blue */
+  --chart-1: 222 100% 50%; /* #004CFF - deep electric cobalt blue */
   --chart-2: 240 6% 60%; /* #9797a3 - silver */
-  --chart-3: 210 100% 63%; /* #47a3ff - light titanium blue */
+  --chart-3: 222 100% 70%; /* #4d85ff - light cobalt blue */
   --chart-4: 220 13% 30%; /* #3a3e49 - dark titanium */
   --chart-5: 0 0% 90%; /* #e6e6e6 - light silver */
 
   /* Sidebar colors */
   --sidebar-background: 222 14% 10%; /* #13151b - dark charcoal */
   --sidebar-foreground: 0 0% 98%; /* #fafafa */
-  --sidebar-primary: 210 100% 52%; /* #0078ff - titanium blue */
+  --sidebar-primary: 222 100% 50%; /* #004CFF - deep electric cobalt blue */
   --sidebar-primary-foreground: 220 13% 9%; /* #121419 */
-  --sidebar-accent: 210 100% 63%; /* #47a3ff - light titanium blue */
+  --sidebar-accent: 222 100% 70%; /* #4d85ff - light cobalt blue */
   --sidebar-accent-foreground: 220 13% 9%; /* #121419 */
   --sidebar-border: 222 14% 18%; /* #23262f - dark silver */
-  --sidebar-ring: 210 100% 52%; /* #0078ff - titanium blue */
+  --sidebar-ring: 222 100% 50%; /* #004CFF - deep electric cobalt blue */
 }
 
 .dark {
@@ -72,13 +72,13 @@
   --popover: 222 18% 5%; /* #0a0c10 - near black */
   --popover-foreground: 0 0% 98%; /* #fafafa */
   
-  --primary: 210 100% 52%; /* #0078ff - titanium blue */
+  --primary: 222 100% 50%; /* #004CFF - deep electric cobalt blue */
   --primary-foreground: 222 18% 5%; /* #0a0c10 */
   
   --secondary: 220 13% 35%; /* #474c59 - dark silver */
   --secondary-foreground: 0 0% 98%; /* #fafafa */
   
-  --accent: 210 100% 63%; /* #47a3ff - light titanium blue */
+  --accent: 222 100% 70%; /* #4d85ff - light cobalt blue */
   --accent-foreground: 0 0% 98%; /* #fafafa */
   
   --destructive: 0 100% 50%; /* #ff0000 */
@@ -89,7 +89,7 @@
   
   --border: 223 18% 13%; /* #191c27 - darker silver */
   --input: 223 18% 13%; /* #191c27 - darker silver */
-  --ring: 210 100% 40%; /* #0061cf - darker titanium blue */
+  --ring: 222 100% 40%; /* #003ecc - darker cobalt blue */
 }
 
 @layer base {
@@ -109,16 +109,16 @@
 @layer utilities {
   /* Text effects */
   .text-shadow-titanium {
-    text-shadow: 0 0 5px #0078ff;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   }
   .text-shadow-silver {
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.7);
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   }
   .text-shadow-accent {
-    text-shadow: 0 0 5px #47a3ff;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   }
   .text-gradient-primary {
-    background: linear-gradient(90deg, #0078ff, #47a3ff);
+    background: linear-gradient(90deg, #004CFF, #4d85ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -236,15 +236,15 @@
   .circuit-overlay {
     @apply bg-background/90 bg-blend-overlay;
     background-image: 
-      radial-gradient(circle at 15% 50%, rgba(0, 120, 255, 0.08) 0%, transparent 25%),
-      radial-gradient(circle at 85% 30%, rgba(0, 120, 255, 0.08) 0%, transparent 25%);
+      radial-gradient(circle at 15% 50%, rgba(0, 76, 255, 0.08) 0%, transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(0, 76, 255, 0.08) 0%, transparent 25%);
   }
 
   .bg-grid-pattern {
     background-size: 30px 30px;
     background-image: 
-      linear-gradient(to right, rgba(0, 120, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 120, 255, 0.03) 1px, transparent 1px);
+      linear-gradient(to right, rgba(0, 76, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 76, 255, 0.03) 1px, transparent 1px);
   }
   
   .bg-titanium-gradient {
@@ -261,9 +261,9 @@
 
   /* Animations */
   @keyframes pulse-glow {
-    0% { box-shadow: 0 0 5px currentColor; }
-    50% { box-shadow: 0 0 12px currentColor; }
-    100% { box-shadow: 0 0 5px currentColor; }
+    0% { box-shadow: 0 0 3px currentColor; }
+    50% { box-shadow: 0 0 8px currentColor; }
+    100% { box-shadow: 0 0 3px currentColor; }
   }
 
   .animate-pulse-glow {
@@ -271,9 +271,9 @@
   }
   
   @keyframes edge-glow {
-    0% { box-shadow: 0 0 0 0 rgba(0, 120, 255, 0); }
-    50% { box-shadow: 0 0 10px 1px rgba(0, 120, 255, 0.3); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 120, 255, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(0, 76, 255, 0); }
+    50% { box-shadow: 0 0 6px 1px rgba(0, 76, 255, 0.2); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 76, 255, 0); }
   }
   
   .hover-edge-glow:hover {
@@ -291,7 +291,7 @@
 
   /* Button styles */
   .btn-titanium {
-    @apply bg-primary text-primary-foreground rounded-md font-medium transition-all duration-200 relative overflow-hidden;
+    @apply bg-primary text-primary-foreground rounded-md font-medium transition-all duration-200 relative overflow-hidden border border-primary/30;
   }
   
   .btn-titanium::before {
@@ -307,7 +307,11 @@
       rgba(255, 255, 255, 0.1) 50%,
       transparent 100%
     );
-    transition: left 0.7s ease-out;
+    transition: left 0.5s ease-out;
+  }
+  
+  .btn-titanium:hover {
+    box-shadow: 0 0 6px rgba(0, 76, 255, 0.2);
   }
   
   .btn-titanium:hover::before {
