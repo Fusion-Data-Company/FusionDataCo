@@ -86,11 +86,11 @@ export default function SocialMedia() {
   ];
 
   const platforms = [
-    { name: "LinkedIn", icon: <Linkedin size={24} />, color: "linkedin" },
-    { name: "Twitter", icon: <Twitter size={24} />, color: "twitter" },
-    { name: "Instagram", icon: <Instagram size={24} />, color: "instagram" },
-    { name: "Facebook", icon: <Facebook size={24} />, color: "facebook" },
-    { name: "YouTube", icon: <Youtube size={24} />, color: "youtube" }
+    { name: "LinkedIn", icon: <Linkedin size={24} />, color: "primary" },
+    { name: "Twitter", icon: <Twitter size={24} />, color: "primary" },
+    { name: "Instagram", icon: <Instagram size={24} />, color: "primary" },
+    { name: "Facebook", icon: <Facebook size={24} />, color: "primary" },
+    { name: "YouTube", icon: <Youtube size={24} />, color: "primary" }
   ];
 
   return (
@@ -133,7 +133,7 @@ export default function SocialMedia() {
                 {platform.icon}
               </div>
               <span className="text-foreground font-medium">{platform.name}</span>
-              <div className="w-2 h-2 rounded-full bg-primary/50 animate-pulse-glow ml-1"></div>
+              <div className="w-2 h-2 rounded-full bg-primary/30 ml-1"></div>
             </div>
           ))}
         </div>

@@ -530,22 +530,37 @@ export default function Pricing() {
                 Yes, enterprise plans can be fully customized to your specific business requirements. Our solutions architects will work with you to design the perfect solution.
               </p>
             </div>
-            <div className="glass-panel p-6 rounded-xl">
-              <h4 className="font-medium text-foreground mb-2">Do you offer multi-year contracts?</h4>
-              <p className="text-muted-foreground">
-                Yes, we offer multi-year enterprise agreements with additional discounts and price protection. Contact our enterprise sales team for details.
+            <div className="chrome-panel p-6 rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="flex items-center mb-3">
+                <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mr-3">
+                  <Check className="text-accent w-4 h-4" />
+                </div>
+                <h4 className="font-['Orbitron'] font-medium text-foreground">Do you offer multi-year contracts?</h4>
+              </div>
+              <p className="text-muted-foreground pl-11 leading-relaxed">
+                Yes, we offer multi-year enterprise agreements with enhanced discounts and price protection guarantees. These agreements also include priority access to new features and dedicated strategic planning sessions.
               </p>
             </div>
-            <div className="glass-panel p-6 rounded-xl">
-              <h4 className="font-medium text-foreground mb-2">What kind of support is included?</h4>
-              <p className="text-muted-foreground">
-                Enterprise plans include 24/7 priority support, a dedicated customer success manager, regular business reviews, and access to our enterprise support portal.
+            <div className="chrome-panel p-6 rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="flex items-center mb-3">
+                <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mr-3">
+                  <Check className="text-primary w-4 h-4" />
+                </div>
+                <h4 className="font-['Orbitron'] font-medium text-foreground">What kind of support is included?</h4>
+              </div>
+              <p className="text-muted-foreground pl-11 leading-relaxed">
+                Enterprise plans include 24/7 priority support with a 15-minute response SLA, a dedicated Customer Success Manager, quarterly business reviews, and access to our enterprise support portal with advanced monitoring and diagnostic tools.
               </p>
             </div>
-            <div className="glass-panel p-6 rounded-xl">
-              <h4 className="font-medium text-foreground mb-2">How do you handle data security and compliance?</h4>
-              <p className="text-muted-foreground">
-                All enterprise plans include SOC 2 Type II compliance, end-to-end encryption, advanced authentication options, and comprehensive audit logging. We support GDPR, HIPAA, and CCPA compliance.
+            <div className="chrome-panel p-6 rounded-xl border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="flex items-center mb-3">
+                <div className="w-8 h-8 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center mr-3">
+                  <Check className="text-secondary w-4 h-4" />
+                </div>
+                <h4 className="font-['Orbitron'] font-medium text-foreground">How do you handle data security and compliance?</h4>
+              </div>
+              <p className="text-muted-foreground pl-11 leading-relaxed">
+                All enterprise plans include SOC 2 Type II compliance, ISO 27001 certification, end-to-end encryption, advanced authentication options (SAML, SSO, MFA), and comprehensive audit logging with real-time alerts. Our platform supports GDPR, HIPAA, CCPA, and other regional compliance frameworks.
               </p>
             </div>
           </div>

@@ -101,7 +101,7 @@ export default function ChatBot() {
             <div className="flex items-center relative z-10">
               <div className="w-12 h-12 rounded-lg bg-primary/10 backdrop-blur-sm border border-primary/30 flex items-center justify-center mr-3 shadow-md relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
-                <div className="absolute w-20 h-20 bg-primary/20 rounded-full blur-xl -top-10 -left-10"></div>
+                <div className="absolute w-20 h-20 bg-primary/10 rounded-full blur-lg -top-10 -left-10"></div>
                 <Sparkles className="text-primary relative z-10" size={20} />
               </div>
               <div>
