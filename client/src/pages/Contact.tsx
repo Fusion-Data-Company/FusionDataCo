@@ -14,7 +14,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { apiRequest } from "@/lib/queryClient";
-import matPhoto from "@assets/unnamed.jpg";
+// Using direct URL path for the image
+const matPhoto = "/attached_assets/unnamed.jpg";
 
 // Define form schema
 const formSchema = z.object({
@@ -192,8 +193,8 @@ export default function Contact() {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold">Location</h3>
-                        <p className="text-muted-foreground">350 Innovation Drive, Suite 200</p>
-                        <p className="text-muted-foreground">San Francisco, CA 94105</p>
+                        <p className="text-muted-foreground">Available by appointment</p>
+                        <p className="text-muted-foreground">Remote consultations nationwide</p>
                       </div>
                     </div>
                     
@@ -203,8 +204,8 @@ export default function Contact() {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold">Phone</h3>
-                        <p className="text-muted-foreground">(415) 555-0123</p>
-                        <p className="text-muted-foreground">Monday-Friday, 9am-6pm PST</p>
+                        <p className="text-muted-foreground">+1 (615) 788-2808</p>
+                        <p className="text-muted-foreground">Monday-Friday, 9am-6pm CST</p>
                       </div>
                     </div>
                     
@@ -214,8 +215,8 @@ export default function Contact() {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold">Email</h3>
-                        <p className="text-muted-foreground">info@fusiondataco.com</p>
-                        <p className="text-muted-foreground">support@fusiondataco.com</p>
+                        <p className="text-muted-foreground">rob@fusiondataco.com</p>
+                        <p className="text-muted-foreground">Direct response within 24 hours</p>
                       </div>
                     </div>
                   </div>

@@ -407,17 +407,17 @@ export default function ContactForm() {
                     </h4>
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <a href="tel:+18005551234" className="flex items-center gap-3 rounded-lg p-3 bg-muted/30 hover:bg-primary/10 transition-colors border border-border group">
+                      <a href="tel:+16157882808" className="flex items-center gap-3 rounded-lg p-3 bg-muted/30 hover:bg-primary/10 transition-colors border border-border group">
                         <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                           <Phone className="text-primary" size={14} />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">Enterprise Sales</p>
-                          <p className="text-xs text-muted-foreground">1-800-555-1234</p>
+                          <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">Direct Line</p>
+                          <p className="text-xs text-muted-foreground">+1 (615) 788-2808</p>
                         </div>
                       </a>
                       
-                      <a href="mailto:enterprise@fusiondataco.com" className="flex items-center gap-3 rounded-lg p-3 bg-muted/30 hover:bg-primary/10 transition-colors border border-border group">
+                      <a href="mailto:rob@fusiondataco.com" className="flex items-center gap-3 rounded-lg p-3 bg-muted/30 hover:bg-primary/10 transition-colors border border-border group">
                         <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                           <Headset className="text-primary" size={14} />
                         </div>
