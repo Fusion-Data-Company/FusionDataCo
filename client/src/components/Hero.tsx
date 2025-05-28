@@ -127,9 +127,14 @@ export default function Hero() {
                 {/* Text with matching gradient and textured white Data highlight effect */}
                 <span className="relative z-10 inline-block text-5xl md:text-6xl lg:text-7xl xl:text-8xl enterprise-text-shadow whitespace-nowrap">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500">Fusion </span>
-                  <span className="relative text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-50 to-gray-100 drop-shadow-lg">
+                  <span className="relative text-white drop-shadow-lg" style={{
+                    textShadow: '0 0 20px rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1)',
+                    background: 'linear-gradient(180deg, #ffffff 0%, #ffffff 70%, #f8f9fa 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    filter: 'brightness(1.1)'
+                  }}>
                     Data
-                    <span className="absolute inset-0 text-white opacity-95 mix-blend-overlay"></span>
                   </span>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500"> Co.</span>
                   <span className="absolute -inset-x-1 -inset-y-0.5 bg-blue-500/5 blur-sm rounded-lg z-[-1]"></span>
