@@ -92,10 +92,18 @@ export default {
         },
         "pulse-slow": {
           "0%, 100%": {
-            opacity: "0.6",
+            opacity: "0.4",
           },
           "50%": {
-            opacity: "1",
+            opacity: "0.8",
+          },
+        },
+        "glow-fade": {
+          "0%, 100%": {
+            opacity: "0.3",
+          },
+          "50%": {
+            opacity: "0.7",
           },
         },
         "textShimmer": {
@@ -114,7 +122,8 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "buttonShimmer": "buttonShimmer 2s ease-in-out infinite",
-        "pulse-slow": "pulse-slow 2s ease-in-out infinite",
+        "pulse-slow": "pulse-slow 4s ease-in-out infinite",
+        "glow-fade": "glow-fade 6s ease-in-out infinite",
         "textShimmer": "textShimmer 2s ease-in-out",
       },
     },

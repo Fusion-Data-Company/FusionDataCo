@@ -183,7 +183,7 @@ export default function Hero() {
             {/* Premium Start Trial Button - Titanium Effect with Shimmer */}
             <div className="relative group">
               {/* The ambient glow effect - enhanced animation */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-lg opacity-70 group-hover:opacity-100 blur-md transition-all duration-500 group-hover:duration-200 animate-pulse-slow"></div>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-lg opacity-70 group-hover:opacity-100 blur-md transition-all duration-500 group-hover:duration-200 animate-glow-fade"></div>
               
               {/* Titanium/metallic surface with reflective highlights - solid, no transparency */}
               <Button 
@@ -243,7 +243,7 @@ export default function Hero() {
             {/* Premium Schedule Demo Button - Digital Bowling Ball / Marble Effect with Shimmer */}
             <div className="relative group">
               {/* Enhanced ambient glow with matching animation */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-600 rounded-lg opacity-70 group-hover:opacity-100 blur-md transition-all duration-500 group-hover:duration-200 animate-pulse-slow"></div>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-600 rounded-lg opacity-70 group-hover:opacity-100 blur-md transition-all duration-500 group-hover:duration-200 animate-glow-fade"></div>
               
               <Button 
                 variant="outline" 

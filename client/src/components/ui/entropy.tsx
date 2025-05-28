@@ -24,8 +24,9 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     canvas.style.height = `${size}px`
     ctx.scale(dpr, dpr)
 
-    // 使用黑色主题
-    const particleColor = '#ffffff'
+    // 使用配色方案
+    const orderedParticleColor = '#ffffff'
+    const chaosParticleColor = '#14ffc8'
 
     class Particle {
       x: number
@@ -98,7 +99,8 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         const alpha = this.order ?
           0.8 - this.influence * 0.5 :
           0.8
-        ctx.fillStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+        const color = this.order ? orderedParticleColor : chaosParticleColor
+        ctx.fillStyle = `${color}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fill()
@@ -151,7 +153,8 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
           if (distance < 50) {
             const alpha = 0.2 * (1 - distance / 50)
-            ctx.strokeStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+            const lineColor = particle.order ? orderedParticleColor : chaosParticleColor
+            ctx.strokeStyle = `${lineColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(neighbor.x, neighbor.y)
@@ -161,7 +164,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       })
 
       // 添加分隔线和文字
-      ctx.strokeStyle = `${particleColor}4D`
+      ctx.strokeStyle = `${orderedParticleColor}4D`
       ctx.lineWidth = 0.5
       ctx.beginPath()
       ctx.moveTo(size / 2, 0)
