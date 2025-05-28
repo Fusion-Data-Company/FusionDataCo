@@ -17,14 +17,14 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Fusion Data Co - All-in-One Marketing Automation Platform</title>
-        <meta name="description" content="Fusion Data Co provides an all-in-one marketing automation platform combining CRM, website building, and AI-powered workflows to help small businesses generate leads and grow." />
+        <title>Fusion Data Co - Complete Business Automation Platform</title>
+        <meta name="description" content="Fusion Data Co provides a comprehensive white-label business platform with integrated CRM, custom websites, AI-powered email marketing, and social media automation. Streamline your entire business operation." />
         <meta name="keywords" content="marketing automation, N8N automations, AI lead generation, small business marketing automation, social content workflows, white-label CRM" />
         
         {/* Open Graph / Social Media */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Fusion Data Co - All-in-One Marketing Automation Platform" />
-        <meta property="og:description" content="Next-gen marketing automation platform for small businesses. Combine CRM, website building, and AI-powered workflows." />
+        <meta property="og:title" content="Fusion Data Co - Complete Business Automation Platform" />
+        <meta property="og:description" content="White-label business platform combining custom websites, integrated CRM, AI email marketing, and social media automation. One platform for complete business operations." />
         <meta property="og:url" content="https://fusiondataco.com" />
       </Helmet>
       

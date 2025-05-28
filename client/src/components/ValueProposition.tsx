@@ -4,26 +4,26 @@ export default function ValueProposition() {
   const stats = [
     {
       icon: <TrendingUp size={28} />,
-      title: "189% ROI",
-      description: "Enterprise clients achieve 189% ROI within 12 months of implementation",
+      title: "4.2x ROI",
+      description: "Small businesses achieve 4x ROI through complete business automation",
       color: "primary"
     },
     {
       icon: <BarChart4 size={28} />,
-      title: "47% Increase",
-      description: "Average growth in qualified lead generation for enterprise clients",
+      title: "62% Time Saved",
+      description: "Average reduction in manual business tasks and operational overhead",
       color: "accent"
     },
     {
       icon: <Briefcase size={28} />,
-      title: "Enterprise Ready",
-      description: "SOC 2 Type II compliant with dedicated enterprise support team",
+      title: "All-in-One Platform",
+      description: "Complete business operations - CRM, websites, email, and social media",
       color: "secondary"
     },
     {
       icon: <ShieldCheck size={28} />,
-      title: "99.99% Uptime",
-      description: "Industry-leading SLA with guaranteed enterprise-grade reliability",
+      title: "Free Social Trial",
+      description: "2 weeks of FREE AI-powered social media posting to get started",
       color: "muted-foreground"
     }
   ];
@@ -36,12 +36,12 @@ export default function ValueProposition() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center mb-16">
           <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4 text-center">
-            <span className="text-foreground">Enterprise-Grade</span>{" "}
-            <span className="text-primary text-shadow-titanium">Results</span>
+            <span className="text-foreground">Complete Business</span>{" "}
+            <span className="text-primary text-shadow-titanium">Automation</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-transparent rounded-full mb-6"></div>
           <p className="text-lg text-muted-foreground text-center max-w-2xl">
-            Fortune 500 companies trust Fusion Data Co to deliver measurable business outcomes with our enterprise marketing platform
+            Small businesses trust Fusion Data Co to streamline their entire operation with our white-label business platform
           </p>
         </div>
         
@@ -61,22 +61,15 @@ export default function ValueProposition() {
           </div>
         </div>
         
-        {/* Enterprise client logos */}
+        {/* Industries we serve */}
         <div className="mt-16">
-          <p className="text-sm text-muted-foreground text-center mb-8">TRUSTED BY INDUSTRY LEADERS</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            <div className="h-8 opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <img src="https://via.placeholder.com/120x30?text=Enterprise" alt="Enterprise Client" className="h-full" />
-            </div>
-            <div className="h-8 opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <img src="https://via.placeholder.com/120x30?text=Fortune500" alt="Fortune 500 Client" className="h-full" />
-            </div>
-            <div className="h-8 opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <img src="https://via.placeholder.com/120x30?text=GlobalCorp" alt="Global Corp" className="h-full" />
-            </div>
-            <div className="h-8 opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <img src="https://via.placeholder.com/120x30?text=TechLeader" alt="Tech Leader" className="h-full" />
-            </div>
+          <p className="text-sm text-muted-foreground text-center mb-8">SERVING SMALL BUSINESSES ACROSS INDUSTRIES</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-sm text-muted-foreground">
+            <div className="hover:text-primary transition-colors">Real Estate</div>
+            <div className="hover:text-primary transition-colors">Medical Practices</div>
+            <div className="hover:text-primary transition-colors">Trade Services</div>
+            <div className="hover:text-primary transition-colors">Professional Services</div>
+            <div className="hover:text-primary transition-colors">E-commerce</div>
           </div>
         </div>
       </div>

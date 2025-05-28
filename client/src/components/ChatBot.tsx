@@ -18,7 +18,7 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: "bot",
-      text: "Welcome to Fusion Enterprise Support. I'm your AI assistant specialized in enterprise marketing solutions. How can I assist you today?"
+      text: "Welcome to Fusion Data Co! I'm here to help you streamline your business operations. What type of business do you run?"
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -80,7 +80,7 @@ export default function ChatBot() {
       // If API fails, add a fallback response
       const fallbackResponse: Message = { 
         sender: "bot", 
-        text: "I'd love to help you explore how Fusion Data Co's enterprise-level marketing automation can transform your business. What specific challenges are you facing with lead generation or customer management right now?" 
+        text: "I'd love to help you discover how Fusion Data Co's complete business automation platform can streamline your operations. What's your biggest operational challenge right now?" 
       };
       setMessages((prev) => [...prev, fallbackResponse]);
       console.error("Chatbot API error:", error);
@@ -91,10 +91,10 @@ export default function ChatBot() {
 
   // Quick response suggestions
   const suggestions = [
-    "Tell me about enterprise CRM features",
-    "What security certifications do you have?",
-    "How does the workflow automation work?",
-    "Enterprise pricing information"
+    "What's your biggest operational bottleneck?",
+    "How much time does social media content take weekly?",
+    "What are you spending on separate business tools?",
+    "Show me your complete business platform"
   ];
 
   const handleSuggestionClick = (suggestion: string) => {
@@ -232,7 +232,7 @@ export default function ChatBot() {
               <input 
                 ref={inputRef}
                 type="text" 
-                placeholder="Type your enterprise question..." 
+                placeholder="Tell me about your business..." 
                 className="flex-grow bg-card/50 px-4 py-3.5 text-foreground focus:outline-none placeholder:text-muted-foreground"
                 value={inputValue}
                 onChange={handleInputChange}
