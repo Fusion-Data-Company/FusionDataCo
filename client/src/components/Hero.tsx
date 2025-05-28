@@ -103,9 +103,9 @@ export default function Hero() {
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h1 className="text-6xl md:text-7xl font-bold mb-6 tracking-tight">
-              {/* Fusion Data Co. text with premium styling */}
-              <div className="relative group overflow-hidden">
+            <h1 className="font-bold mb-4 tracking-tight leading-none">
+              {/* Fusion Data Co. text with premium styling - bigger */}
+              <div className="relative group overflow-hidden mb-2">
                 {/* Background effects with ambient blue and green */}
                 <div className="absolute -inset-4 w-[120%] h-[120%] z-0">
                   {/* Subtle grid pattern */}
@@ -124,28 +124,26 @@ export default function Hero() {
                   <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/5 via-slate-800/5 to-green-900/5 rounded-lg"></div>
                 </div>
                 
-                {/* Text with neon highlight effect */}
-                <span className="relative z-10 text-white inline-block leading-tight enterprise-text-shadow">
+                {/* Text with matching gradient and neon highlight effect */}
+                <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 inline-block text-7xl md:text-8xl enterprise-text-shadow">
                   Fusion Data Co.
                   <span className="absolute -inset-x-1 -inset-y-0.5 bg-blue-500/5 blur-sm rounded-lg z-[-1]"></span>
                   <span className="absolute -inset-x-1 top-1/2 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"></span>
                 </span>
               </div>
               
-              <br/>
-              
-              {/* Custom Business Solutions with neon and gradient effects */}
-              <div className="relative mt-1 group">
+              {/* Custom Business Solutions with smaller size and tighter spacing */}
+              <div className="relative group -mt-1">
                 {/* Animated gradient background for shimmer effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-indigo-500/10 to-blue-600/5 rounded-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 
                 {/* Subtle neon glow */}
                 <div className="absolute inset-0 bg-blue-500/5 rounded-lg blur-md -z-10"></div>
                 
-                {/* Main text with enhanced gradient */}
+                {/* Main text with enhanced gradient - smaller size */}
                 <motion.span 
                   ref={textRef}
-                  className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 inline-block enterprise-text"
+                  className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 inline-block enterprise-text text-4xl md:text-5xl"
                 >
                   Custom Business Solutions
                   
