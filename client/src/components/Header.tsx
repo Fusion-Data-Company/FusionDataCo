@@ -145,11 +145,10 @@ export default function Header() {
             {/* Admin CRM Access */}
             <Link href="/login">
               <span className={cn(
-                "ml-2 px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-md font-medium shadow-md",
-                "hover:shadow-lg hover:from-red-700 hover:to-red-800 transition-all duration-200 cursor-pointer relative group overflow-hidden"
+                "ml-2 px-3 py-1.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded text-xs font-medium shadow-sm",
+                "hover:shadow-md hover:from-blue-600 hover:to-blue-700 transition-all duration-200 cursor-pointer border border-blue-400/20"
               )}>
-                <span className="relative z-10">ADMIN</span>
-                <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                ADMIN
               </span>
             </Link>
             

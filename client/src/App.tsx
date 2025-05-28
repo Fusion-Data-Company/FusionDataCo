@@ -208,8 +208,10 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/login" component={Login} />
       
-      {/* CRM Routes - Protected */}
+      {/* Public CRM Marketing Page */}
       <Route path="/crm" component={CRM} />
+      
+      {/* Admin CRM Routes - Protected */}
       <Route path="/crm/dashboard" component={CRMDashboard} />
       <Route path="/crm/campaigns" component={CrmCampaigns} />
       <Route path="/crm/email-center" component={EmailCenter} />
