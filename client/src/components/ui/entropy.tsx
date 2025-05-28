@@ -26,7 +26,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
 
     // 使用黑色主题
     const particleColor = '#ffffff' // White for order particles
-    const orderLineColor = '#ea580c' // Orange lines for order particles
+    const orderLineColor = '#10b981' // Emerald green lines for order particles
     const chaosParticleColor = '#06b6d4' // Cyan for chaos particles
     const chaosLineColor = '#3b82f6' // Blue lines for chaos lines
 
