@@ -25,8 +25,8 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     ctx.scale(dpr, dpr)
 
     // 使用黑色主题
-    const particleColor = '#22c55e' // Green for order particles
-    const orderLineColor = '#ffffff' // White lines for order particles
+    const particleColor = '#ffffff' // White for order particles
+    const orderLineColor = '#ea580c' // Orange lines for order particles
     const chaosParticleColor = '#06b6d4' // Cyan for chaos particles
     const chaosLineColor = '#3b82f6' // Blue lines for chaos lines
 
@@ -109,7 +109,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         // Outer glow effect
         const glowSize = baseSize * 2.5
         const glowGradient = ctx.createRadialGradient(this.x, this.y, baseSize, this.x, this.y, glowSize)
-        const glowColor = this.order ? '34, 197, 94' : '6, 182, 212'
+        const glowColor = this.order ? '255, 255, 255' : '6, 182, 212'
         glowGradient.addColorStop(0, `rgba(${glowColor}, ${alpha * 0.4})`)
         glowGradient.addColorStop(0.7, `rgba(${glowColor}, ${alpha * 0.1})`)
         glowGradient.addColorStop(1, `rgba(${glowColor}, 0)`)
@@ -126,9 +126,9 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         )
         
         if (this.order) {
-          mainGradient.addColorStop(0, `rgba(134, 239, 172, ${alpha})`)
-          mainGradient.addColorStop(0.6, `rgba(34, 197, 94, ${alpha})`)
-          mainGradient.addColorStop(1, `rgba(21, 128, 61, ${alpha * 0.7})`)
+          mainGradient.addColorStop(0, `rgba(255, 255, 255, ${alpha})`)
+          mainGradient.addColorStop(0.6, `rgba(255, 255, 255, ${alpha * 0.9})`)
+          mainGradient.addColorStop(1, `rgba(200, 200, 200, ${alpha * 0.7})`)
         } else {
           mainGradient.addColorStop(0, `rgba(165, 243, 252, ${alpha})`)
           mainGradient.addColorStop(0.6, `rgba(6, 182, 212, ${alpha})`)
