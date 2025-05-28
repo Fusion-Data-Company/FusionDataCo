@@ -16,6 +16,7 @@ import Trades from "@/pages/Trades";
 import CRM from "@/pages/CRM";
 import CRMDashboard from "@/pages/CRMDashboard";
 import Pricing from "@/pages/Pricing";
+import ContactPage from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 import { EntropyDemo } from "@/components/demos/EntropyDemo";
 import SocialMediaCampaign from "@/pages/SocialMediaCampaign";
@@ -154,35 +155,7 @@ function Login() {
   );
 }
 
-function Contact() {
-  return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-3xl font-bold mb-8 text-center">Contact Us</h1>
-        <div className="max-w-2xl mx-auto bg-card border border-border/50 p-8 rounded-lg">
-          <p className="text-center mb-6 text-muted-foreground">
-            Have questions about our platform? Our team is here to help.
-          </p>
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">Name</label>
-              <input type="text" className="w-full p-2 border border-border rounded-md bg-background" placeholder="Your name" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Email</label>
-              <input type="email" className="w-full p-2 border border-border rounded-md bg-background" placeholder="your@email.com" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Message</label>
-              <textarea className="w-full p-2 border border-border rounded-md bg-background h-32" placeholder="How can we help you?"></textarea>
-            </div>
-            <button className="w-full py-2 bg-primary text-primary-foreground rounded-md font-medium">Send Message</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+
 
 // Marketing Automation Pages
 import Campaigns from "@/pages/Campaigns";
@@ -205,7 +178,7 @@ function Router() {
       <Route path="/social-media" component={SocialMediaCampaign} />
       <Route path="/campaigns" component={Campaigns} />
       <Route path="/pricing" component={Pricing} />
-      <Route path="/contact" component={Contact} />
+      <Route path="/contact" component={ContactPage} />
       <Route path="/login" component={Login} />
       
       {/* Public CRM Marketing Page */}
