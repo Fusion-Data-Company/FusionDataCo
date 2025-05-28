@@ -271,26 +271,27 @@ export default function ChatBot() {
           </form>
         </div>
       ) : (
-        <div className="space-y-3 flex flex-col items-end">
-          {/* Feature badges that appear before opening chat */}
-          <div className="glass-panel px-4 py-2 rounded-lg border border-white/10 shadow-lg flex items-center gap-2 text-xs text-foreground animate-fade-in transition-opacity duration-500 backdrop-blur-sm">
-            <div className="w-6 h-6 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center shadow-sm">
-              <BarChart3 size={12} className="text-primary" />
-            </div>
-            <span>Enterprise Assistant Available</span>
-          </div>
-          
+        <div className="flex flex-col items-end">
           <button 
             onClick={toggleChat} 
-            className="chrome-panel rounded-full w-16 h-16 flex items-center justify-center shadow-xl hover:shadow-primary/20 transition-all duration-300 relative group border border-white/10"
+            className="relative w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 hover:from-blue-400 hover:to-blue-600 shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 group border-2 border-blue-400/50 hover:border-blue-300/70"
             aria-label="Open chat"
           >
-            <div className="absolute inset-0 bg-primary/20 rounded-full blur-lg opacity-30 group-hover:opacity-60 transition-opacity"></div>
-            <div className="absolute inset-2 rounded-full bg-gradient-to-br from-primary/20 to-transparent"></div>
-            <div className="relative z-10 bg-gradient-to-br from-primary to-primary/80 rounded-full w-10 h-10 flex items-center justify-center">
-              <MessageSquare size={18} className="text-white" />
+            {/* Outer glow ring */}
+            <div className="absolute -inset-2 bg-gradient-to-br from-blue-400/40 to-blue-600/40 rounded-full blur-lg opacity-60 group-hover:opacity-80 transition-opacity"></div>
+            
+            {/* Inner chrome highlight */}
+            <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/20 to-transparent border border-white/30"></div>
+            
+            {/* Icon container */}
+            <div className="relative z-10 w-full h-full flex items-center justify-center">
+              <MessageSquare size={20} className="text-white drop-shadow-sm" />
             </div>
-            <span className="absolute top-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-background animate-pulse-glow"></span>
+            
+            {/* Status indicator */}
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-green-400 to-green-500 rounded-full border-2 border-white shadow-lg">
+              <span className="absolute inset-0.5 bg-green-400 rounded-full animate-pulse"></span>
+            </span>
           </button>
         </div>
       )}
