@@ -67,17 +67,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
         content: msg.message
       }));
 
-      // Generate intelligent response using Perplexity Sonar
+      // Direct OpenRouter API call with Sandler methodology
       let botResponse = "";
       try {
-        console.log("Attempting to call OpenRouter with Perplexity...");
-        botResponse = await generateSalesResponse(userMessage, formattedHistory);
-        console.log("Successfully received AI response:", botResponse.substring(0, 100) + "...");
+        const axios = require('axios');
+        
+        const response = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
+          model: "perplexity/llama-3.1-sonar-large-128k-online",
+          messages: [
+            {
+              role: "system",
+              content: `You are an enterprise sales assistant for Fusion Data Co. Use Sandler Sales methodology:
+
+1. COLLECT PAIN POINTS: Ask probing questions to uncover business challenges
+2. QUALIFY: Understand their current situation, decision-making process, and budget  
+3. OFFER SOLUTIONS: Present specific Fusion Data Co. solutions that address their pain
+4. CONNECT WITH TEAM: If issues aren't resolved, connect them with Robert Yeager (CEO) or Mat Mercado (Operations)
+
+COMPANY OVERVIEW:
+- White-label CRM platform with lead generation, automated social media, newsletters, e-commerce ready
+- Proprietary spider web deployment that captures all leads into native PostgreSQL database  
+- Led by Robert Yeager (CEO) - expert in lead generation with $100M+ in real estate results
+- Mat Mercado (Operations Administrator) - logistics expert, cornerstone of daily operations
+
+RESPONSE STYLE: Engaging, empathetic, high-impact questions, professional but conversational, focus on business outcomes and ROI
+
+When someone needs to speak with the team, provide:
+- Robert Yeager (CEO): rob@fusiondataco.com, +1(615)788-2808
+- Mat Mercado (Operations): mat@fusiondataco.com`
+            },
+            {
+              role: "user", 
+              content: userMessage
+            }
+          ],
+          temperature: 0.8,
+          max_tokens: 800
+        }, {
+          headers: {
+            'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+            'HTTP-Referer': 'https://fusiondataco.com',
+            'X-Title': 'Fusion Data Co Enterprise Assistant',
+            'Content-Type': 'application/json'
+          }
+        });
+
+        botResponse = response.data.choices[0].message.content;
+        
       } catch (error) {
-        console.error("Error generating AI response:", error);
-        console.error("Full error details:", JSON.stringify(error, null, 2));
-        // Fallback to basic response if AI fails
-        botResponse = "Thanks for reaching out! I'd love to help you explore how Fusion Data Co's enterprise-level marketing automation can transform your business. What specific challenges are you facing with lead generation or customer management right now?";
+        console.error("OpenRouter API Error:", error.response?.data || error.message);
+        botResponse = "I'd love to help you explore how Fusion Data Co's enterprise-level marketing automation can transform your business. What specific challenges are you facing with lead generation or customer management right now?";
       }
 
       // Store bot response
