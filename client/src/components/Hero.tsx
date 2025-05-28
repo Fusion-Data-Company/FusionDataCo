@@ -124,10 +124,10 @@ export default function Hero() {
                   <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/5 via-slate-800/5 to-green-900/5 rounded-lg"></div>
                 </div>
                 
-                {/* Text with matching gradient and white DATA highlight effect */}
+                {/* Text with matching gradient and white Data highlight effect */}
                 <span className="relative z-10 inline-block text-5xl md:text-6xl lg:text-7xl xl:text-8xl enterprise-text-shadow whitespace-nowrap">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500">Fusion </span>
-                  <span className="text-white">DATA</span>
+                  <span className="text-white">Data</span>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500"> Co.</span>
                   <span className="absolute -inset-x-1 -inset-y-0.5 bg-blue-500/5 blur-sm rounded-lg z-[-1]"></span>
                   <span className="absolute -inset-x-1 top-1/2 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"></span>
