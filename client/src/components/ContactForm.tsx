@@ -422,8 +422,8 @@ export default function ContactForm() {
                           <Headset className="text-primary" size={14} />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">Executive Support</p>
-                          <p className="text-xs text-muted-foreground">enterprise@fusiondataco.com</p>
+                          <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">Direct Email</p>
+                          <p className="text-xs text-muted-foreground">rob@fusiondataco.com</p>
                         </div>
                       </a>
                     </div>
