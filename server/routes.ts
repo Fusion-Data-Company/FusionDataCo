@@ -11,6 +11,7 @@ import {
   insertSocialTrialSchema
 } from "@shared/schema";
 import { marketingRouter } from "./marketing";
+import { generateSalesResponse } from "./openRouter";
 import { nanoid } from "nanoid";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -59,23 +60,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
         sender: "user"
       });
 
-      // Generate bot response based on user message
+      // Get conversation history for context
+      const conversationHistory = await storage.getChatMessagesBySession(sessionId);
+      const formattedHistory = conversationHistory.map(msg => ({
+        role: msg.sender === "user" ? "user" : "assistant",
+        content: msg.message
+      }));
+
+      // Generate intelligent response using Perplexity Sonar
       let botResponse = "";
-      
-      if (userMessage.toLowerCase().includes("pricing") || userMessage.toLowerCase().includes("cost")) {
-        botResponse = "Our plans start at $49/month for the Starter plan. We also offer Professional ($99/month) and Enterprise ($199/month) plans. Would you like to know more about what's included in each plan?";
-      } 
-      else if (userMessage.toLowerCase().includes("trial")) {
-        botResponse = "Yes, we offer a 14-day free trial on all our plans. You can try out all the features without any commitment. Would you like me to help you get started?";
-      }
-      else if (userMessage.toLowerCase().includes("demo")) {
-        botResponse = "I'd be happy to schedule a personalized demo for you. Our team can show you how Fusion Data Co can specifically help your business. What industry are you in?";
-      }
-      else if (userMessage.toLowerCase().includes("crm") || userMessage.toLowerCase().includes("hubspot")) {
-        botResponse = "Great question! While HubSpot is excellent, our CRM is specifically designed for small businesses with more affordable pricing and simpler workflows. We offer white-labeling capabilities, which HubSpot doesn't provide at lower tiers. Would you like to see a quick demo of our CRM?";
-      }
-      else {
-        botResponse = "Thanks for reaching out! Our platform combines a white-label CRM, website builder, automation workflows, and AI agents to help businesses like yours generate more leads. How can I help you specifically today?";
+      try {
+        botResponse = await generateSalesResponse(userMessage, formattedHistory);
+      } catch (error) {
+        console.error("Error generating AI response:", error);
+        // Fallback to basic response if AI fails
+        botResponse = "Thanks for reaching out! I'd love to help you explore how Fusion Data Co's enterprise-level marketing automation can transform your business. What specific challenges are you facing with lead generation or customer management right now?";
       }
 
       // Store bot response
