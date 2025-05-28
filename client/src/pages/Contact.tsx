@@ -14,8 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { apiRequest } from "@/lib/queryClient";
-// Using direct URL path for the image
-const matPhoto = "/attached_assets/unnamed.jpg";
+const matPhoto = "/mat-photo.jpg";
 
 // Define form schema
 const formSchema = z.object({

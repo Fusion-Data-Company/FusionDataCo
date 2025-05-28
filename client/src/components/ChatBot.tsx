@@ -281,7 +281,7 @@ export default function ChatBot() {
           
           <button 
             onClick={toggleChat} 
-            className="relative w-20 h-20 rounded-full transition-all duration-700 group overflow-hidden hover:scale-110 transform-gpu pointer-events-none z-10"
+            className="relative w-20 h-20 rounded-full transition-all duration-700 group overflow-hidden hover:scale-110 transform-gpu z-10"
             aria-label="Open chat"
           >
             
