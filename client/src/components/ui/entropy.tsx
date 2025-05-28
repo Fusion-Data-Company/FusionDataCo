@@ -126,9 +126,19 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         )
         
         if (this.order) {
-          mainGradient.addColorStop(0, `rgba(255, 255, 255, ${alpha})`)
-          mainGradient.addColorStop(0.6, `rgba(255, 255, 255, ${alpha * 0.9})`)
-          mainGradient.addColorStop(1, `rgba(200, 200, 200, ${alpha * 0.7})`)
+          // Color gradient based on position and time for left side
+          const time = Date.now() * 0.001
+          const positionFactor = (this.x / (size * 0.5)) // 0 to 1 across left side
+          const timeFactor = (Math.sin(time + this.x * 0.01) + 1) * 0.5 // 0 to 1 over time
+          
+          // Gradient from white to emerald to cyan
+          const r = Math.floor(255 - (positionFactor * timeFactor * 100))
+          const g = Math.floor(255 - (positionFactor * 20) + (timeFactor * 50))
+          const b = Math.floor(255 - (positionFactor * 100) + (timeFactor * 100))
+          
+          mainGradient.addColorStop(0, `rgba(${r + 50}, ${g + 50}, ${b + 50}, ${alpha})`)
+          mainGradient.addColorStop(0.6, `rgba(${r}, ${g}, ${b}, ${alpha * 0.9})`)
+          mainGradient.addColorStop(1, `rgba(${r - 50}, ${g - 30}, ${b - 30}, ${alpha * 0.7})`)
         } else {
           mainGradient.addColorStop(0, `rgba(165, 243, 252, ${alpha})`)
           mainGradient.addColorStop(0.6, `rgba(6, 182, 212, ${alpha})`)
