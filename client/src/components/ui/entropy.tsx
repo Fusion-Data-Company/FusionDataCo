@@ -26,7 +26,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
 
     // 使用配色方案
     const orderedParticleColor = '#ffffff'
-    const chaosParticleColor = '#14ffc8'
+    const chaosParticleColor = '#60a5fa'
 
     class Particle {
       x: number
@@ -189,7 +189,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
   }, [size])
 
   return (
-    <div className={`relative bg-black ${className}`} style={{ width: size, height: size }}>
+    <div className={`relative ${className}`} style={{ width: size, height: size }}>
       <canvas
         ref={canvasRef}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
