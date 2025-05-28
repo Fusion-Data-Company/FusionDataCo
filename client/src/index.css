@@ -38,6 +38,19 @@
   }
 }
 
+@keyframes glow-fade {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-glow-fade {
+  animation: glow-fade 2s ease-in-out infinite;
+}
+
 .text-shimmer {
   background: linear-gradient(90deg, #60a5fa, #818cf8, #3b82f6, #60a5fa);
   background-size: 300% 100%;
