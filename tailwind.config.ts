@@ -79,10 +79,43 @@ export default {
             height: "0",
           },
         },
+        "buttonShimmer": {
+          "0%": {
+            "background-position": "-100% 0%",
+          },
+          "50%": {
+            "background-position": "200% 0%",
+          },
+          "100%": {
+            "background-position": "-100% 0%",
+          },
+        },
+        "pulse-slow": {
+          "0%, 100%": {
+            opacity: "0.6",
+          },
+          "50%": {
+            opacity: "1",
+          },
+        },
+        "textShimmer": {
+          "0%": {
+            "background-position": "0% 50%",
+          },
+          "50%": {
+            "background-position": "100% 50%",
+          },
+          "100%": {
+            "background-position": "0% 50%",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "buttonShimmer": "buttonShimmer 2s ease-in-out infinite",
+        "pulse-slow": "pulse-slow 2s ease-in-out infinite",
+        "textShimmer": "textShimmer 2s ease-in-out",
       },
     },
   },
