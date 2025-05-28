@@ -70,9 +70,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Generate intelligent response using Perplexity Sonar
       let botResponse = "";
       try {
+        console.log("Attempting to call OpenRouter with Perplexity...");
         botResponse = await generateSalesResponse(userMessage, formattedHistory);
+        console.log("Successfully received AI response:", botResponse.substring(0, 100) + "...");
       } catch (error) {
         console.error("Error generating AI response:", error);
+        console.error("Full error details:", JSON.stringify(error, null, 2));
         // Fallback to basic response if AI fails
         botResponse = "Thanks for reaching out! I'd love to help you explore how Fusion Data Co's enterprise-level marketing automation can transform your business. What specific challenges are you facing with lead generation or customer management right now?";
       }
