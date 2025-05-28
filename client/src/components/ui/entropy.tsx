@@ -39,14 +39,14 @@ export function Entropy({ className }: EntropyProps) {
     const colors = ["#14ffc8", "#ff0aff", "#8f00ff", "#ffffff"]
 
     // Initialize particles
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 80; i++) {
       particles.push({
         x: Math.random() * canvas.offsetWidth,
         y: Math.random() * canvas.offsetHeight,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 0.5,
-        alpha: Math.random() * 0.3 + 0.1,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2,
+        size: Math.random() * 3 + 1,
+        alpha: Math.random() * 0.6 + 0.2,
         color: colors[Math.floor(Math.random() * colors.length)]
       })
     }
@@ -82,11 +82,11 @@ export function Entropy({ className }: EntropyProps) {
           const dy = particle.y - otherParticle.y
           const distance = Math.sqrt(dx * dx + dy * dy)
 
-          if (distance < 80) {
+          if (distance < 120) {
             ctx.save()
-            ctx.globalAlpha = (1 - distance / 80) * 0.1
+            ctx.globalAlpha = (1 - distance / 120) * 0.3
             ctx.strokeStyle = particle.color
-            ctx.lineWidth = 0.5
+            ctx.lineWidth = 1
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(otherParticle.x, otherParticle.y)
