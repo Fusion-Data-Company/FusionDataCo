@@ -274,7 +274,7 @@ export default function ChatBot() {
         <div className="flex flex-col items-end">
           <button 
             onClick={toggleChat} 
-            className="relative w-16 h-16 rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800 border-2 border-blue-500 shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 group overflow-hidden animate-pulse hover:animate-none"
+            className="relative w-16 h-16 rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800 border-2 border-blue-500 shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 group overflow-hidden animate-pulse hover:animate-none pointer-events-none"
             aria-label="Open chat"
           >
             {/* Massive ambient glow */}

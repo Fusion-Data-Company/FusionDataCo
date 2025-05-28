@@ -25,10 +25,10 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     ctx.scale(dpr, dpr)
 
     // 使用黑色主题
-    const particleColor = '#06b6d4' // Cyan for order particles
-    const orderLineColor = '#3b82f6' // Blue lines for order particles
+    const particleColor = '#22c55e' // Green for order particles
+    const orderLineColor = '#ffffff' // White lines for order particles
     const chaosParticleColor = '#06b6d4' // Cyan for chaos particles
-    const chaosLineColor = '#ea580c' // Burnt orange lines for chaos lines
+    const chaosLineColor = '#3b82f6' // Blue lines for chaos lines
 
     class Particle {
       x: number
