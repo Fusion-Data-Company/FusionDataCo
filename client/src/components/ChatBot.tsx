@@ -272,13 +272,18 @@ export default function ChatBot() {
         </div>
       ) : (
         <div className="flex flex-col items-end">
+          {/* Dedicated ambient glow component - separate layer */}
+          <div className="absolute w-20 h-20 rounded-full pointer-events-none">
+            <div className="absolute -inset-16 bg-gradient-radial from-emerald-400/40 via-green-500/25 to-emerald-600/10 rounded-full blur-3xl opacity-90 animate-pulse"></div>
+            <div className="absolute -inset-12 bg-gradient-radial from-green-300/30 via-emerald-400/20 to-transparent rounded-full blur-2xl opacity-70 animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute -inset-8 bg-gradient-radial from-emerald-500/20 via-green-400/15 to-transparent rounded-full blur-xl opacity-60 animate-pulse" style={{ animationDelay: '2s' }}></div>
+          </div>
+          
           <button 
             onClick={toggleChat} 
-            className="relative w-20 h-20 rounded-full transition-all duration-700 group overflow-hidden hover:scale-110 transform-gpu pointer-events-none"
+            className="relative w-20 h-20 rounded-full transition-all duration-700 group overflow-hidden hover:scale-110 transform-gpu pointer-events-none z-10"
             aria-label="Open chat"
           >
-            {/* Massive hidden glow behind obsidian face */}
-            <div className="absolute -inset-12 bg-gradient-radial from-green-400/30 via-emerald-500/20 to-transparent rounded-full blur-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-1000"></div>
             
             {/* Neon edge rings */}
             <div className="absolute -inset-1 border-2 border-emerald-400/80 rounded-full shadow-[0_0_30px_rgba(16,185,129,0.6)]"></div>
