@@ -8,7 +8,7 @@ export function EntropyDemo() {
     <div className="flex flex-col items-center justify-center bg-black text-white h-full w-full">
       <div className="relative flex flex-col items-center w-full h-full">
         {/* Entropy animation - Positioned at the edge without additional wrapper divs */}
-        <Entropy className="rounded-lg" />
+        <Entropy className="rounded-lg" size={650} />
       </div>
     </div>
   )
