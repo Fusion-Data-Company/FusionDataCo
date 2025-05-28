@@ -26,7 +26,7 @@ export function EntropyDemo() {
                 Every potential lead is being pulled at from <span className="text-orange-300 font-semibold">all directions</span>. 🎯
               </p>
               <p className="text-gray-100">
-                At <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-green-300 font-bold">Fusion</span>, we focus on more than lead generation.
+                At <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-green-300 font-bold">Fusion Data Co.</span>, we focus on more than lead generation.
               </p>
               <p className="text-green-200 font-semibold">
                 We focus on lead <em className="text-green-100">conversion</em> and <em className="text-green-100">continuation</em> of services. ✨
