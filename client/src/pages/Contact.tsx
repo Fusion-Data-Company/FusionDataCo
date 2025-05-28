@@ -152,7 +152,7 @@ export default function Contact() {
                     <div className="flex flex-col sm:flex-row gap-6 p-6 bg-background/50 rounded-lg border border-border/30">
                       <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
                         <img 
-                          src="@assets/unnamed.jpg" 
+                          src={matPhoto} 
                           alt="Mat Mercado" 
                           className="w-full h-full object-cover"
                         />
