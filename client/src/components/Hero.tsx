@@ -4,6 +4,26 @@ import { Lightbulb, ArrowRight, Shield, ChevronRight, Star, Lock } from "lucide-
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 
+// Live Counter Component
+function LiveCounter() {
+  const [count, setCount] = useState(1000);
+
+  useEffect(() => {
+    // Update every 2.4 hours (approximately 10 per day)
+    const interval = setInterval(() => {
+      setCount(prev => prev + 1);
+    }, 2.4 * 60 * 60 * 1000); // 2.4 hours in milliseconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <span className="text-lg font-bold mr-1.5 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-blue-300">
+      {count.toLocaleString()}
+    </span>
+  );
+}
+
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [hoverButton1, setHoverButton1] = useState(false);
@@ -178,7 +198,7 @@ export default function Hero() {
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            We <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">architect intelligent systems</span>, <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">automate complex workflows</span>, and unleash <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">AI-powered insights</span> that revolutionize how you operate and <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">accelerate exponential growth</span>.
+            We <span className="text-slate-200 font-medium">architect</span> <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">intelligent systems</span>, <span className="text-slate-200 font-medium">automate</span> <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">complex workflows</span>, and unleash <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">AI-powered insights</span> that revolutionize how you operate and <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">accelerate exponential growth</span>.
           </motion.p>
           
           <motion.div 
@@ -391,8 +411,8 @@ export default function Hero() {
             
             {/* Premium styled text */}
             <div className="flex items-center">
-              <span className="text-lg font-bold mr-1.5 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-blue-300">7,258</span>
-              <span className="text-xs tracking-wide text-slate-300 font-medium">enterprises using this platform now</span>
+              <LiveCounter />
+              <span className="text-xs tracking-wide text-slate-300 font-medium">consultations requested</span>
             </div>
           </div>
         </div>
