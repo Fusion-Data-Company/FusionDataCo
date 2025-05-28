@@ -99,60 +99,51 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
 
       draw(ctx: CanvasRenderingContext2D) {
         const alpha = this.order ?
-          0.9 - this.influence * 0.3 :
-          0.9
+          0.8 - this.influence * 0.5 :
+          0.8
+        const color = this.order ? particleColor : chaosParticleColor
         
-        // Create metallic gradient effect
-        const gradient = ctx.createRadialGradient(
-          this.x - this.size * 0.3, this.y - this.size * 0.3, 0,
-          this.x, this.y, this.size * 1.5
-        )
+        // Enterprise upgrade: Neon glow + size variation + subtle shimmer
+        const baseSize = this.size + Math.sin(Date.now() * 0.003 + this.x * 0.01) * 0.3
         
-        if (this.order) {
-          // Green metallic for order particles
-          gradient.addColorStop(0, `rgba(134, 239, 172, ${alpha})`) // Light green highlight
-          gradient.addColorStop(0.3, `rgba(34, 197, 94, ${alpha})`) // Main green
-          gradient.addColorStop(0.7, `rgba(21, 128, 61, ${alpha * 0.8})`) // Darker green
-          gradient.addColorStop(1, `rgba(20, 83, 45, ${alpha * 0.6})`) // Deep shadow
-        } else {
-          // Cyan metallic for chaos particles
-          gradient.addColorStop(0, `rgba(165, 243, 252, ${alpha})`) // Light cyan highlight
-          gradient.addColorStop(0.3, `rgba(6, 182, 212, ${alpha})`) // Main cyan
-          gradient.addColorStop(0.7, `rgba(8, 145, 178, ${alpha * 0.8})`) // Darker cyan
-          gradient.addColorStop(1, `rgba(21, 94, 117, ${alpha * 0.6})`) // Deep shadow
-        }
-        
-        // Draw main particle with metallic gradient
-        ctx.fillStyle = gradient
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-        ctx.fill()
-        
-        // Add chrome highlight
-        const highlightGradient = ctx.createRadialGradient(
-          this.x - this.size * 0.4, this.y - this.size * 0.4, 0,
-          this.x - this.size * 0.4, this.y - this.size * 0.4, this.size * 0.6
-        )
-        highlightGradient.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.8})`)
-        highlightGradient.addColorStop(1, `rgba(255, 255, 255, 0)`)
-        
-        ctx.fillStyle = highlightGradient
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-        ctx.fill()
-        
-        // Add subtle outer glow
-        const glowGradient = ctx.createRadialGradient(
-          this.x, this.y, this.size,
-          this.x, this.y, this.size * 2
-        )
+        // Outer glow effect
+        const glowSize = baseSize * 2.5
+        const glowGradient = ctx.createRadialGradient(this.x, this.y, baseSize, this.x, this.y, glowSize)
         const glowColor = this.order ? '34, 197, 94' : '6, 182, 212'
-        glowGradient.addColorStop(0, `rgba(${glowColor}, ${alpha * 0.3})`)
+        glowGradient.addColorStop(0, `rgba(${glowColor}, ${alpha * 0.4})`)
+        glowGradient.addColorStop(0.7, `rgba(${glowColor}, ${alpha * 0.1})`)
         glowGradient.addColorStop(1, `rgba(${glowColor}, 0)`)
         
         ctx.fillStyle = glowGradient
         ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2)
+        ctx.arc(this.x, this.y, glowSize, 0, Math.PI * 2)
+        ctx.fill()
+        
+        // Main particle with gradient
+        const mainGradient = ctx.createRadialGradient(
+          this.x - baseSize * 0.3, this.y - baseSize * 0.3, 0,
+          this.x, this.y, baseSize
+        )
+        
+        if (this.order) {
+          mainGradient.addColorStop(0, `rgba(134, 239, 172, ${alpha})`)
+          mainGradient.addColorStop(0.6, `rgba(34, 197, 94, ${alpha})`)
+          mainGradient.addColorStop(1, `rgba(21, 128, 61, ${alpha * 0.7})`)
+        } else {
+          mainGradient.addColorStop(0, `rgba(165, 243, 252, ${alpha})`)
+          mainGradient.addColorStop(0.6, `rgba(6, 182, 212, ${alpha})`)
+          mainGradient.addColorStop(1, `rgba(8, 145, 178, ${alpha * 0.7})`)
+        }
+        
+        ctx.fillStyle = mainGradient
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, baseSize, 0, Math.PI * 2)
+        ctx.fill()
+        
+        // Core highlight
+        ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.6})`
+        ctx.beginPath()
+        ctx.arc(this.x - baseSize * 0.2, this.y - baseSize * 0.2, baseSize * 0.3, 0, Math.PI * 2)
         ctx.fill()
       }
     }
