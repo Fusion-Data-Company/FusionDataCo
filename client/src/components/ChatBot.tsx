@@ -274,59 +274,73 @@ export default function ChatBot() {
         <div className="flex flex-col items-end">
           <button 
             onClick={toggleChat} 
-            className="relative w-16 h-16 rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800 border-2 border-blue-500 shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 group overflow-hidden animate-pulse hover:animate-none pointer-events-none"
+            className="relative w-20 h-20 rounded-full transition-all duration-700 group overflow-hidden hover:scale-110 transform-gpu pointer-events-none"
             aria-label="Open chat"
           >
-            {/* Massive ambient glow */}
-            <div className="absolute -inset-8 bg-gradient-radial from-blue-400/20 via-blue-500/10 to-transparent rounded-full blur-2xl opacity-60 group-hover:opacity-90 transition-opacity duration-700 animate-pulse"></div>
+            {/* Massive hidden glow behind obsidian face */}
+            <div className="absolute -inset-12 bg-gradient-radial from-green-400/30 via-emerald-500/20 to-transparent rounded-full blur-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-1000"></div>
             
-            {/* Animated outer rings */}
-            <div className="absolute -inset-3 border border-blue-400/30 rounded-full animate-spin-slow"></div>
-            <div className="absolute -inset-2 border border-blue-300/20 rounded-full animate-reverse-spin"></div>
+            {/* Neon edge rings */}
+            <div className="absolute -inset-1 border-2 border-emerald-400/80 rounded-full shadow-[0_0_30px_rgba(16,185,129,0.6)]"></div>
+            <div className="absolute -inset-0.5 border border-green-300/60 rounded-full"></div>
             
-            {/* Shimmer effect overlay */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-blue-300/30 to-transparent animate-shimmer"></div>
-            
-            {/* Neon border layers */}
-            <div className="absolute inset-0 rounded-full border-2 border-blue-400/60 group-hover:border-blue-300/80 transition-colors shadow-[0_0_20px_rgba(59,130,246,0.5)]"></div>
-            <div className="absolute inset-1 rounded-full border border-blue-300/40 group-hover:border-blue-200/60 transition-colors"></div>
-            
-            {/* Inner glow ring */}
-            <div className="absolute inset-2 rounded-full bg-gradient-to-br from-blue-400/20 via-transparent to-blue-600/20 border border-blue-200/30"></div>
-            
-            {/* Scanning wave effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-conic from-transparent via-blue-400/30 to-transparent animate-spin"></div>
-            
-            {/* Energy pulse rings */}
-            <div className="absolute inset-0 rounded-full border border-blue-400/50 animate-ping opacity-60"></div>
-            <div className="absolute inset-1 rounded-full border border-blue-300/40 animate-ping opacity-40" style={{ animationDelay: '0.5s' }}></div>
-            
-            {/* Icon container with enhanced glow */}
-            <div className="relative z-10 w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900/90 via-black to-gray-800/90 rounded-full backdrop-blur-sm">
-              <MessageSquare 
-                size={20} 
-                className="text-blue-300 drop-shadow-lg filter drop-shadow-[0_0_12px_rgba(59,130,246,0.9)] group-hover:drop-shadow-[0_0_16px_rgba(59,130,246,1)] transition-all duration-300" 
-              />
+            {/* Obsidian face - black polished glass */}
+            <div className="relative w-full h-full rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800 shadow-inner border border-gray-700/50 overflow-hidden">
+              
+              {/* Glass surface with shimmer */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/5 via-transparent to-black/20"></div>
+              
+              {/* Animated glass shimmer sweeps */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-transparent via-emerald-300/5 to-transparent animate-shimmer" style={{ animationDelay: '1s', animationDuration: '3s' }}></div>
+              
+              {/* Reflective highlights */}
+              <div className="absolute top-2 left-3 w-4 h-2 bg-gradient-to-r from-white/40 to-transparent rounded-full blur-sm"></div>
+              <div className="absolute top-4 right-2 w-2 h-3 bg-gradient-to-b from-white/30 to-transparent rounded-full blur-sm"></div>
+              
+              {/* Dollar sign icon - premium styling */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative">
+                  {/* Glow behind dollar sign */}
+                  <div className="absolute inset-0 text-4xl font-bold text-transparent bg-gradient-to-br from-emerald-400 to-green-500 bg-clip-text blur-md opacity-80">
+                    $
+                  </div>
+                  {/* Main dollar sign */}
+                  <div className="relative text-4xl font-bold bg-gradient-to-br from-emerald-300 via-green-400 to-emerald-500 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(16,185,129,0.8)] filter">
+                    $
+                  </div>
+                  {/* Metallic highlight on dollar */}
+                  <div className="absolute inset-0 text-4xl font-bold bg-gradient-to-br from-white/60 via-transparent to-transparent bg-clip-text text-transparent">
+                    $
+                  </div>
+                </div>
+              </div>
+              
+              {/* Glass fractal patterns */}
+              <div className="absolute inset-0 rounded-full opacity-20">
+                <div className="absolute top-1/4 left-1/4 w-1 h-6 bg-gradient-to-b from-white/30 to-transparent transform rotate-45 blur-sm"></div>
+                <div className="absolute bottom-1/4 right-1/4 w-1 h-4 bg-gradient-to-t from-white/20 to-transparent transform -rotate-45 blur-sm"></div>
+              </div>
             </div>
             
             {/* Enhanced status indicator */}
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full border-2 border-white shadow-xl">
-              <span className="absolute inset-0.5 bg-green-400 rounded-full animate-pulse"></span>
-              <span className="absolute inset-0 bg-green-300/60 rounded-full animate-ping"></span>
-              <span className="absolute -inset-1 bg-green-400/30 rounded-full animate-ping opacity-50" style={{ animationDelay: '1s' }}></span>
+            <span className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full border-2 border-black shadow-2xl">
+              <span className="absolute inset-1 bg-gradient-to-br from-green-300 to-emerald-500 rounded-full"></span>
+              <span className="absolute inset-0 bg-green-400/50 rounded-full animate-ping opacity-60"></span>
             </span>
             
-            {/* Corner holographic accents */}
-            <div className="absolute top-0.5 left-0.5 w-3 h-3 border-l-2 border-t-2 border-blue-400/70 rounded-tl animate-pulse"></div>
-            <div className="absolute top-0.5 right-0.5 w-3 h-3 border-r-2 border-t-2 border-blue-400/70 rounded-tr animate-pulse" style={{ animationDelay: '0.25s' }}></div>
-            <div className="absolute bottom-0.5 left-0.5 w-3 h-3 border-l-2 border-b-2 border-blue-400/70 rounded-bl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-            <div className="absolute bottom-0.5 right-0.5 w-3 h-3 border-r-2 border-b-2 border-blue-400/70 rounded-br animate-pulse" style={{ animationDelay: '0.75s' }}></div>
+            {/* Holographic corner accents */}
+            <div className="absolute top-1 left-1 w-4 h-4 border-l-2 border-t-2 border-emerald-400/70 rounded-tl"></div>
+            <div className="absolute top-1 right-1 w-4 h-4 border-r-2 border-t-2 border-emerald-400/70 rounded-tr"></div>
+            <div className="absolute bottom-1 left-1 w-4 h-4 border-l-2 border-b-2 border-emerald-400/70 rounded-bl"></div>
+            <div className="absolute bottom-1 right-1 w-4 h-4 border-r-2 border-b-2 border-emerald-400/70 rounded-br"></div>
             
-            {/* Floating particles effect */}
-            <div className="absolute inset-0 rounded-full">
-              <div className="absolute top-2 left-3 w-0.5 h-0.5 bg-blue-400 rounded-full animate-bounce opacity-60"></div>
-              <div className="absolute top-4 right-2 w-0.5 h-0.5 bg-blue-300 rounded-full animate-bounce opacity-40" style={{ animationDelay: '0.3s' }}></div>
-              <div className="absolute bottom-3 left-2 w-0.5 h-0.5 bg-blue-500 rounded-full animate-bounce opacity-50" style={{ animationDelay: '0.6s' }}></div>
+            {/* Floating light particles around button */}
+            <div className="absolute inset-0">
+              <div className="absolute -top-2 left-4 w-1 h-1 bg-emerald-400 rounded-full animate-bounce opacity-70" style={{ animationDelay: '0s', animationDuration: '2s' }}></div>
+              <div className="absolute top-6 -right-2 w-1 h-1 bg-green-300 rounded-full animate-bounce opacity-60" style={{ animationDelay: '0.7s', animationDuration: '2.5s' }}></div>
+              <div className="absolute -bottom-1 left-2 w-1 h-1 bg-emerald-500 rounded-full animate-bounce opacity-50" style={{ animationDelay: '1.2s', animationDuration: '3s' }}></div>
+              <div className="absolute bottom-4 -left-1 w-1 h-1 bg-green-400 rounded-full animate-bounce opacity-80" style={{ animationDelay: '1.8s', animationDuration: '2.2s' }}></div>
             </div>
           </button>
         </div>
