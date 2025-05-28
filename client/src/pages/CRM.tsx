@@ -4,75 +4,65 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
 import CTASection from "@/components/CTASection";
-import CRMContactsDemo from "@/components/CRMContactsDemo";
-import { Users, Database, Zap, PieChart, CheckCircle, Smartphone, Globe, Shield, ArrowRight } from "lucide-react";
+import { Users, Database, Zap, PieChart, Globe, Smartphone, Shield, ArrowRight, CheckCircle, Star, TrendingUp } from "lucide-react";
 
 export default function CRM() {
   const features = [
     {
       icon: <Users className="text-[#14ffc8]" size={28} />,
-      title: "360° Contact View",
-      description: "See complete customer data including communication history, purchases, website activity, and social interactions in one unified profile."
+      title: "Visitor Tracking",
+      description: "Automatically capture every website visitor's journey, interactions, and engagement patterns in real-time."
     },
     {
       icon: <Database className="text-[#ff0aff]" size={28} />,
-      title: "Custom Fields & Tags",
-      description: "Create unlimited custom fields and tags to track industry-specific data points and segment your contacts effectively."
+      title: "Lead Intelligence",
+      description: "Enrich visitor data with contact information, company details, and behavioral insights for smarter targeting."
     },
     {
       icon: <Zap className="text-[#8f00ff]" size={28} />,
       title: "Automated Workflows",
-      description: "Design custom workflows that automatically assign tasks, send follow-ups, and update contact records based on triggers and conditions."
+      description: "Set up intelligent sequences that nurture leads based on their actions and engagement level automatically."
     },
     {
       icon: <PieChart className="text-[#00ffff]" size={28} />,
-      title: "Advanced Analytics",
-      description: "Gain insights with customizable dashboards showing deal flow, conversion rates, team performance, and revenue forecasts."
-    }
-  ];
-
-  const integrations = [
-    {
-      title: "Email",
-      description: "Sync with Gmail, Outlook, and other email providers. Track opens, clicks, and responses automatically."
-    },
-    {
-      title: "Calendar",
-      description: "Two-way sync with Google Calendar, Outlook, and other calendar apps for seamless appointment scheduling."
-    },
-    {
-      title: "Social Media",
-      description: "Connect LinkedIn, Twitter, and Facebook to track interactions and import contact information."
-    },
-    {
-      title: "Marketing Tools",
-      description: "Integrate with email marketing, SMS, and advertising platforms for unified campaign tracking."
-    },
-    {
-      title: "Documents",
-      description: "Create and share quotes, contracts, and proposals directly from the CRM with e-signature support."
-    },
-    {
-      title: "Payment Processing",
-      description: "Process payments through Stripe, PayPal, and other payment gateways without leaving the platform."
+      title: "Conversion Analytics",
+      description: "Track conversion paths, identify high-value visitors, and optimize your funnel for maximum ROI."
     }
   ];
 
   const whitelabelFeatures = [
     {
       icon: <Globe />,
-      title: "Custom Domain",
-      description: "Host the CRM on your own domain for a seamless brand experience."
+      title: "Your Brand, Your Domain",
+      description: "Complete white-labeling with custom domains, logos, and branding throughout the entire platform."
     },
     {
       icon: <Smartphone />,
-      title: "Branded Mobile App",
-      description: "Provide clients with a mobile app featuring your branding for on-the-go access."
+      title: "Mobile-First Design",
+      description: "Responsive CRM that works perfectly on all devices with native mobile app capabilities."
     },
     {
       icon: <Shield />,
-      title: "Admin Controls",
-      description: "Manage client accounts, permissions, and billing from a central dashboard."
+      title: "Enterprise Security",
+      description: "Bank-level security with SSO, role-based permissions, and compliance-ready data protection."
+    }
+  ];
+
+  const benefits = [
+    {
+      icon: <TrendingUp className="text-[#14ffc8]" size={24} />,
+      title: "3x Higher Conversion",
+      description: "Our clients see average conversion rate increases of 300% within 90 days of implementation."
+    },
+    {
+      icon: <Star className="text-[#ff0aff]" size={24} />,
+      title: "Zero Development Time",
+      description: "Launch your white-label CRM in under 24 hours with full customization and branding."
+    },
+    {
+      icon: <CheckCircle className="text-[#8f00ff]" size={24} />,
+      title: "Revenue Sharing",
+      description: "Earn recurring revenue from every client subscription with our generous partner program."
     }
   ];
 
@@ -80,41 +70,202 @@ export default function CRM() {
     <>
       <Helmet>
         <title>White-Label CRM Platform | Fusion Data Co</title>
-        <meta name="description" content="A powerful, customizable CRM that adapts to your business workflows with complete white-labeling options for agencies and consultants." />
-        <meta name="keywords" content="white-label CRM, custom CRM, marketing automation CRM, sales CRM, customer relationship management" />
+        <meta name="description" content="Revolutionary white-label CRM that automatically captures website visitors, tracks behavior, and converts leads into customers. Complete branding customization available." />
+        <meta name="keywords" content="white-label CRM, visitor tracking, lead generation, website analytics, customer relationship management, automated workflows" />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#0b0b0d] text-white">
         <Header />
         <main className="flex-grow">
           {/* Hero Section */}
-          <section 
-            className="relative overflow-hidden bg-[#0b0b0d] py-20 md:py-28" 
-            style={{ 
-              backgroundImage: "url('https://images.unsplash.com/photo-1642790106346-8caeba6ec76a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80')",
-              backgroundSize: "cover", 
-              backgroundPosition: "center",
-              backgroundBlendMode: "soft-light" 
-            }}
-          >
-            <div className="absolute inset-0 bg-[#0b0b0d]/80"></div>
+          <section className="relative overflow-hidden bg-gradient-to-br from-[#0b0b0d] via-[#121218] to-[#1a1a2e] py-20 md:py-28">
+            {/* Background effects */}
+            <div className="absolute inset-0 opacity-40">
+              <div className="absolute inset-0 bg-grid-pattern"></div>
+            </div>
+            <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 right-20 w-96 h-96 bg-green-500/10 rounded-full blur-3xl"></div>
+            
             <div className="container mx-auto px-4 relative z-10">
-              <div className="max-w-3xl">
-                <h1 className="font-['Orbitron'] text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-                  <span className="text-white">Powerful CRM</span>{" "}
-                  <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">That Works For You</span>
+              <div className="max-w-4xl mx-auto text-center">
+                {/* Badge */}
+                <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500/20 to-green-500/20 rounded-full border border-blue-500/30 mb-8">
+                  <span className="text-sm font-medium text-blue-300">ENTERPRISE SOLUTION</span>
+                </div>
+                
+                {/* Main heading */}
+                <h1 className="font-['Orbitron'] text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                  <span className="text-white">Enterprise-Grade</span>
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-400 to-blue-500">
+                    Marketing Platform
+                  </span>
                 </h1>
-                <p className="text-lg md:text-xl mb-8 text-gray-300">
-                  Our fully customizable CRM adapts to your unique business processes and can be white-labeled for your brand. Stop forcing your team to adapt to rigid CRM systems.
+                
+                {/* Subtitle */}
+                <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+                  A comprehensive solution that combines advanced CRM, analytics, and AI-powered workflows to transform your business operations and accelerate growth.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                   <Link href="/pricing">
-                    <span className="px-6 py-3 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8,0_0_10px_#14ffc8] animate-[pulse-glow_3s_infinite] text-center cursor-pointer inline-block">
-                      Start Your Free Trial
+                    <span className="px-8 py-4 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 cursor-pointer">
+                      Start Free Trial
                     </span>
                   </Link>
-                  <Link href="/#demo">
-                    <span className="px-6 py-3 bg-transparent border border-[#8f00ff] text-white rounded-md font-medium hover:bg-[#8f00ff] hover:text-[#0b0b0d] transition-all duration-300 text-center cursor-pointer inline-block">
+                  <Link href="#demo">
+                    <span className="px-8 py-4 border border-gray-600 text-white font-semibold rounded-lg hover:bg-gray-800/50 transition-all duration-300 cursor-pointer">
+                      Watch Demo
+                    </span>
+                  </Link>
+                </div>
+                
+                {/* Key metrics */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
+                  <div className="text-center">
+                    <div className="text-2xl md:text-3xl font-bold text-green-400 mb-1">99.9%</div>
+                    <div className="text-sm text-gray-400">Uptime</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-1">10K+</div>
+                    <div className="text-sm text-gray-400">Active Users</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl md:text-3xl font-bold text-green-400 mb-1">500+</div>
+                    <div className="text-sm text-gray-400">Integrations</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-1">24/7</div>
+                    <div className="text-sm text-gray-400">Support</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* How It Works Section */}
+          <section className="py-16 bg-gradient-to-b from-[#121218] to-[#0b0b0d] relative overflow-hidden">
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4">
+                  <span className="text-white">Turn Your Website Into a</span>{" "}
+                  <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Lead Generation Machine</span>
+                </h2>
+                <p className="text-gray-400 text-lg">
+                  Our white-label CRM automatically captures every visitor, tracks their behavior, and converts them into qualified leads—all under your brand.
+                </p>
+              </div>
+              
+              {/* Features Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                {features.map((feature, index) => (
+                  <div key={index} className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800 hover:border-[#14ffc8] transition-all duration-300">
+                    <div className="w-12 h-12 rounded-full bg-[#14ffc8]/20 flex items-center justify-center mb-4">
+                      {feature.icon}
+                    </div>
+                    <h3 className="font-['Orbitron'] text-xl font-semibold mb-3">{feature.title}</h3>
+                    <p className="text-gray-400">{feature.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Spider Web Analogy */}
+              <div className="backdrop-blur-md bg-[#121218]/70 rounded-2xl p-8 border border-gray-800 max-w-4xl mx-auto">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold mb-4 text-[#14ffc8]">
+                    Like a Spider Web for Your Business
+                  </h3>
+                  <p className="text-gray-300 text-lg mb-6">
+                    Just as a spider web captures everything that touches it, our CRM captures every visitor interaction, 
+                    building a complete picture of your potential customers before they even make contact.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-[#14ffc8]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span className="text-2xl">🕸️</span>
+                      </div>
+                      <h4 className="font-semibold mb-2">Capture</h4>
+                      <p className="text-gray-400 text-sm">Every visitor leaves digital footprints</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-[#ff0aff]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span className="text-2xl">🎯</span>
+                      </div>
+                      <h4 className="font-semibold mb-2">Analyze</h4>
+                      <p className="text-gray-400 text-sm">AI identifies intent and interest level</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-[#8f00ff]/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span className="text-2xl">💰</span>
+                      </div>
+                      <h4 className="font-semibold mb-2">Convert</h4>
+                      <p className="text-gray-400 text-sm">Automated workflows nurture into sales</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* White-Label Features */}
+          <section className="py-16 bg-[#0b0b0d]">
+            <div className="container mx-auto px-4">
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4">
+                  <span className="text-white">Complete White-Label</span>{" "}
+                  <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Customization</span>
+                </h2>
+                <p className="text-gray-400 text-lg">
+                  Make it yours with complete branding control and custom domain hosting
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                {whitelabelFeatures.map((feature, index) => (
+                  <div key={index} className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-8 border border-gray-800 hover:border-[#14ffc8] transition-all duration-300">
+                    <div className="w-16 h-16 rounded-full bg-[#14ffc8]/20 flex items-center justify-center mb-6 text-[#14ffc8]">
+                      {feature.icon}
+                    </div>
+                    <h3 className="font-['Orbitron'] text-xl font-semibold mb-4">{feature.title}</h3>
+                    <p className="text-gray-400">{feature.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Benefits */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {benefits.map((benefit, index) => (
+                  <div key={index} className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800">
+                    <div className="flex items-center mb-4">
+                      {benefit.icon}
+                      <h3 className="font-semibold ml-3">{benefit.title}</h3>
+                    </div>
+                    <p className="text-gray-400">{benefit.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* CTA Section */}
+          <section className="py-16 bg-gradient-to-b from-[#0b0b0d] to-[#121218]">
+            <div className="container mx-auto px-4">
+              <div className="backdrop-blur-md bg-[#121218]/70 rounded-2xl p-12 border border-gray-800 max-w-4xl mx-auto text-center">
+                <h2 className="font-['Orbitron'] text-3xl font-bold mb-4">
+                  Ready to Launch Your Own CRM Platform?
+                </h2>
+                <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+                  Join hundreds of agencies and consultants who are building recurring revenue streams with our white-label CRM solution.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link href="/pricing">
+                    <span className="px-8 py-4 bg-[#14ffc8] text-[#0b0b0d] rounded-lg font-semibold hover:shadow-lg hover:shadow-[#14ffc8]/25 transition-all duration-300 cursor-pointer">
+                      Start Free Trial
+                    </span>
+                  </Link>
+                  <Link href="/contact">
+                    <span className="px-8 py-4 border border-[#14ffc8] text-[#14ffc8] rounded-lg font-semibold hover:bg-[#14ffc8] hover:text-[#0b0b0d] transition-all duration-300 cursor-pointer">
                       Schedule Demo
                     </span>
                   </Link>
@@ -123,175 +274,6 @@ export default function CRM() {
             </div>
           </section>
 
-          {/* CRM Features */}
-          <section className="py-16 bg-[#0b0b0d]">
-            <div className="container mx-auto px-4">
-              <div className="text-center max-w-3xl mx-auto mb-12">
-                <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4">
-                  <span className="text-white">Features Built For</span>{" "}
-                  <span className="text-[#ff0aff] [text-shadow:0_0_5px_#ff0aff]">Results</span>
-                </h2>
-                <p className="text-gray-400 text-lg">
-                  Our CRM combines powerful features with intuitive design to help your team close more deals.
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                {features.map((feature, index) => (
-                  <div key={index} className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800 hover:border-[#14ffc8] transition-all duration-300">
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0 mr-4">
-                        {feature.icon}
-                      </div>
-                      <div>
-                        <h3 className="font-['Orbitron'] text-xl font-semibold mb-2">{feature.title}</h3>
-                        <p className="text-gray-400">{feature.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-          
-          {/* Dashboard Preview */}
-          <section className="py-16 bg-gradient-to-b from-[#0b0b0d] to-[#1a1a1f] relative overflow-hidden">
-            <div className="absolute inset-0 opacity-5 bg-grid-pattern"></div>
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="text-center max-w-3xl mx-auto mb-12">
-                <h3 className="font-['Orbitron'] text-2xl md:text-3xl font-bold mb-4">
-                  <span className="text-white">Powerful</span>{" "}
-                  <span className="text-[#00ffff] [text-shadow:0_0_5px_#00ffff]">Contact Management</span>
-                </h3>
-                <p className="text-gray-400 mb-6">
-                  Build stronger relationships by tracking all customer interactions in one place.
-                  Our CRM helps you never miss a follow-up and close more deals.
-                </p>
-              </div>
-              
-              <div className="mb-16">
-                {/* Contacts Demo Component */}
-                <CRMContactsDemo />
-              </div>
-              
-              <div className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-8 border border-gray-800 overflow-hidden">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                  <div>
-                    <h3 className="font-['Orbitron'] text-2xl md:text-3xl font-bold mb-6">
-                      <span className="text-white">Visualize Your</span>{" "}
-                      <span className="text-[#00ffff] [text-shadow:0_0_5px_#00ffff]">Sales Pipeline</span>
-                    </h3>
-                    <p className="text-gray-400 mb-6">
-                      Track deals through customizable stages with our intuitive drag-and-drop interface. 
-                      See probability-weighted forecasts and identify bottlenecks instantly.
-                    </p>
-                    
-                    <div className="space-y-4">
-                      <div className="flex items-start">
-                        <CheckCircle className="text-[#14ffc8] mt-1 mr-3" size={18} />
-                        <p className="text-gray-300">Customizable pipeline stages to match your sales process</p>
-                      </div>
-                      <div className="flex items-start">
-                        <CheckCircle className="text-[#14ffc8] mt-1 mr-3" size={18} />
-                        <p className="text-gray-300">Visual deal progress with time-in-stage tracking</p>
-                      </div>
-                      <div className="flex items-start">
-                        <CheckCircle className="text-[#14ffc8] mt-1 mr-3" size={18} />
-                        <p className="text-gray-300">Detailed win/loss reporting with reason tracking</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <img 
-                      src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" 
-                      alt="CRM Pipeline View" 
-                      className="rounded-lg shadow-lg border border-gray-700" 
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          
-          {/* Integrations */}
-          <section className="py-16 bg-[#0b0b0d]">
-            <div className="container mx-auto px-4">
-              <div className="text-center max-w-3xl mx-auto mb-12">
-                <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4">
-                  <span className="text-white">Seamless</span>{" "}
-                  <span className="text-[#8f00ff] [text-shadow:0_0_5px_#8f00ff]">Integrations</span>
-                </h2>
-                <p className="text-gray-400 text-lg">
-                  Connect your favorite tools and services for a unified workflow and single source of truth.
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                {integrations.map((integration, index) => (
-                  <div key={index} className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800">
-                    <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-white">{integration.title}</h3>
-                    <p className="text-gray-400">{integration.description}</p>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="text-center">
-                <Link href="/#demo">
-                  <span className="inline-flex items-center px-6 py-3 bg-transparent border border-[#00ffff] text-[#00ffff] rounded-md font-medium hover:bg-[#00ffff] hover:text-[#0b0b0d] transition-all duration-300 cursor-pointer">
-                    See All Integrations <ArrowRight size={16} className="ml-2" />
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </section>
-          
-          {/* White Label Section */}
-          <section className="py-16 bg-gradient-to-b from-[#1a1a1f] to-[#0b0b0d] relative overflow-hidden">
-            <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1534270804882-6b5048b1c1fc?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ')]"></div>
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="max-w-3xl mx-auto text-center mb-12">
-                <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4">
-                  <span className="text-white">White-Label</span>{" "}
-                  <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Solutions</span>
-                </h2>
-                <p className="text-gray-400 text-lg">
-                  Agencies and consultants can rebrand our CRM platform as their own, creating new revenue streams while delivering exceptional value to clients.
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                {whitelabelFeatures.map((feature, index) => (
-                  <div key={index} className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800 hover:border-[#14ffc8] transition-all duration-300">
-                    <div className="w-12 h-12 rounded-full bg-[#14ffc8]/20 flex items-center justify-center mb-4 text-[#14ffc8]">
-                      {feature.icon}
-                    </div>
-                    <h3 className="font-['Orbitron'] text-xl font-semibold mb-3">{feature.title}</h3>
-                    <p className="text-gray-400">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-8 border border-gray-800 max-w-4xl mx-auto">
-                <div className="flex flex-col md:flex-row items-center">
-                  <div className="md:w-2/3 mb-6 md:mb-0 md:pr-8">
-                    <h3 className="font-['Orbitron'] text-2xl font-semibold mb-4">Ready to offer CRM services?</h3>
-                    <p className="text-gray-400">
-                      Add CRM to your service offerings with zero development costs. We handle the technology while you focus on delivering value to clients.
-                    </p>
-                  </div>
-                  <div className="md:w-1/3 text-center">
-                    <Link href="/pricing">
-                      <span className="px-6 py-3 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8,0_0_10px_#14ffc8] inline-block cursor-pointer">
-                        Partner With Us
-                      </span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          
           <CTASection />
         </main>
         <Footer />

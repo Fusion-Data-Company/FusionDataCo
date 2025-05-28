@@ -49,9 +49,9 @@ export default function Header() {
         { name: "Social Media", path: "/social-media" },
         { name: "Campaign Builder", path: "/campaign-builder" },
         { name: "Lead Magnet", path: "/lead-magnet" },
-        { name: "CRM Dashboard", path: "/crm" },
       ]
     },
+    { name: "CRM", path: "/crm" },
     { name: "Pricing", path: "/pricing" },
     { name: "Contact", path: "/contact" },
   ];
@@ -138,6 +138,17 @@ export default function Header() {
                 "hover:shadow-lg transition-all duration-200 cursor-pointer relative group overflow-hidden"
               )}>
                 <span className="relative z-10">Get Enterprise Demo</span>
+                <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </span>
+            </Link>
+            
+            {/* Admin CRM Access */}
+            <Link href="/login">
+              <span className={cn(
+                "ml-2 px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-md font-medium shadow-md",
+                "hover:shadow-lg hover:from-red-700 hover:to-red-800 transition-all duration-200 cursor-pointer relative group overflow-hidden"
+              )}>
+                <span className="relative z-10">ADMIN</span>
                 <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </span>
             </Link>
