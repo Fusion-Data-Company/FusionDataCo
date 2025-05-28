@@ -167,17 +167,21 @@ export default function Features() {
               </p>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center">
-                  <img src="https://via.placeholder.com/80x30?text=GDPR" alt="GDPR Compliant" />
+                <div className="p-4 bg-card/50 rounded-lg border border-border/30 flex flex-col items-center justify-center hover:bg-card/70 transition-colors">
+                  <ShieldCheck className="w-8 h-8 text-primary mb-2" />
+                  <span className="text-xs font-medium text-foreground">GDPR</span>
                 </div>
-                <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center">
-                  <img src="https://via.placeholder.com/80x30?text=HIPAA" alt="HIPAA Compliant" />
+                <div className="p-4 bg-card/50 rounded-lg border border-border/30 flex flex-col items-center justify-center hover:bg-card/70 transition-colors">
+                  <Lock className="w-8 h-8 text-primary mb-2" />
+                  <span className="text-xs font-medium text-foreground">HIPAA</span>
                 </div>
-                <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center">
-                  <img src="https://via.placeholder.com/80x30?text=SOC2" alt="SOC 2 Type II" />
+                <div className="p-4 bg-card/50 rounded-lg border border-border/30 flex flex-col items-center justify-center hover:bg-card/70 transition-colors">
+                  <Award className="w-8 h-8 text-primary mb-2" />
+                  <span className="text-xs font-medium text-foreground">SOC 2</span>
                 </div>
-                <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center">
-                  <img src="https://via.placeholder.com/80x30?text=CCPA" alt="CCPA Compliant" />
+                <div className="p-4 bg-card/50 rounded-lg border border-border/30 flex flex-col items-center justify-center hover:bg-card/70 transition-colors">
+                  <FileCheck className="w-8 h-8 text-primary mb-2" />
+                  <span className="text-xs font-medium text-foreground">CCPA</span>
                 </div>
               </div>
             </div>
