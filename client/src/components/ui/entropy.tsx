@@ -26,6 +26,7 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
 
     // 使用黑色主题
     const particleColor = '#ffffff'
+    const chaosParticleColor = '#3b82f6' // Blue for chaos particles
 
     class Particle {
       x: number
@@ -98,7 +99,8 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         const alpha = this.order ?
           0.8 - this.influence * 0.5 :
           0.8
-        ctx.fillStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+        const color = this.order ? particleColor : chaosParticleColor
+        ctx.fillStyle = `${color}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fill()
@@ -151,7 +153,8 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
           if (distance < 50) {
             const alpha = 0.6 * (1 - distance / 50)
-            ctx.strokeStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+            const lineColor = particle.order ? particleColor : chaosParticleColor
+            ctx.strokeStyle = `${lineColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
             ctx.lineWidth = 0.8
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
