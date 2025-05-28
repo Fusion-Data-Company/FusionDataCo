@@ -81,7 +81,7 @@ export default function Footer() {
               <a href="#" className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border/50">
                 <Twitter size={18} />
               </a>
-              <a href="#" className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border/50">
+              <a href="https://www.facebook.com/profile.php?id=61569531779877" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border/50">
                 <Facebook size={18} />
               </a>
               <a href="#" className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border/50">
