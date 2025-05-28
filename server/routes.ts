@@ -67,56 +67,82 @@ export async function registerRoutes(app: Express): Promise<Server> {
         content: msg.message
       }));
 
-      // Direct OpenRouter API call with Sandler methodology
+      // Working OpenRouter API call with Sandler methodology
       let botResponse = "";
       try {
+        // Build conversation history for context
+        const conversationHistory = [
+          {
+            role: "system",
+            content: `You are an enterprise sales assistant for Fusion Data Co, following the Sandler Sales methodology. 
 
-        
-        const response = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
+COMPANY BACKGROUND:
+- Fusion Data Co: $100M+ lead generation and workflow automation company
+- Leadership: Robert Yeager (CEO) and Mat (Partner) 
+- Specialties: AI-powered lead generation, sales automation, CRM optimization
+
+SANDLER METHODOLOGY - FOLLOW THIS EXACTLY:
+1. PAIN FUNNEL: Ask probing questions to uncover business pain points
+2. BUDGET QUALIFICATION: Determine financial capacity (minimum $5K/month marketing spend)
+3. DECISION MAKER: Identify who makes technology decisions
+4. TIMELINE: Understand urgency and implementation timeline
+5. PRESENT SOLUTIONS: Only after qualifying pain, budget, decision authority
+
+CONVERSATION FLOW:
+- Start by understanding their current lead generation challenges
+- Ask about monthly lead volume, conversion rates, biggest bottlenecks
+- Qualify budget range before presenting solutions
+- Connect qualified prospects to Robert/Mat for strategy calls
+
+Keep responses conversational, consultative, and value-focused.`
+          }
+        ];
+
+        // Add conversation history from database
+        if (formattedHistory && formattedHistory.length > 0) {
+          formattedHistory.forEach((msg) => {
+            conversationHistory.push({
+              role: msg.role,
+              content: msg.content
+            });
+          });
+        }
+
+        // Add current user message
+        conversationHistory.push({
+          role: "user",
+          content: userMessage
+        });
+
+        // Make OpenRouter API call
+        const aiResponse = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
           model: "perplexity/llama-3.1-sonar-large-128k-online",
-          messages: [
-            {
-              role: "system",
-              content: `You are an enterprise sales assistant for Fusion Data Co. Use Sandler Sales methodology:
-
-1. COLLECT PAIN POINTS: Ask probing questions to uncover business challenges
-2. QUALIFY: Understand their current situation, decision-making process, and budget  
-3. OFFER SOLUTIONS: Present specific Fusion Data Co. solutions that address their pain
-4. CONNECT WITH TEAM: If issues aren't resolved, connect them with Robert Yeager (CEO) or Mat Mercado (Operations)
-
-COMPANY OVERVIEW:
-- White-label CRM platform with lead generation, automated social media, newsletters, e-commerce ready
-- Proprietary spider web deployment that captures all leads into native PostgreSQL database  
-- Led by Robert Yeager (CEO) - expert in lead generation with $100M+ in real estate results
-- Mat Mercado (Operations Administrator) - logistics expert, cornerstone of daily operations
-
-RESPONSE STYLE: Engaging, empathetic, high-impact questions, professional but conversational, focus on business outcomes and ROI
-
-When someone needs to speak with the team, provide:
-- Robert Yeager (CEO): rob@fusiondataco.com, +1(615)788-2808
-- Mat Mercado (Operations): mat@fusiondataco.com`
-            },
-            {
-              role: "user", 
-              content: userMessage
-            }
-          ],
+          messages: conversationHistory,
           temperature: 0.8,
-          max_tokens: 800
+          max_tokens: 1000,
+          top_p: 1,
+          frequency_penalty: 0,
+          presence_penalty: 0
         }, {
           headers: {
             'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+            'Content-Type': 'application/json',
             'HTTP-Referer': 'https://fusiondataco.com',
-            'X-Title': 'Fusion Data Co Enterprise Assistant',
-            'Content-Type': 'application/json'
+            'X-Title': 'Fusion Data Co Enterprise Assistant'
           }
         });
 
-        botResponse = response.data.choices[0].message.content;
-        
+        // Extract AI response
+        if (aiResponse.data && aiResponse.data.choices && aiResponse.data.choices[0]) {
+          botResponse = aiResponse.data.choices[0].message.content;
+        } else {
+          throw new Error('Invalid API response format');
+        }
+
       } catch (error) {
-        console.error("OpenRouter API Error:", error.response?.data || error.message);
-        botResponse = "I'd love to help you explore how Fusion Data Co's enterprise-level marketing automation can transform your business. What specific challenges are you facing with lead generation or customer management right now?";
+        console.error('OpenRouter API Error:', error.response?.data || error.message);
+        // Only fallback if API completely fails
+        botResponse = "I'm experiencing a temporary connection issue. Let me connect you directly with our team. What's the best way to reach you for a quick strategy call about your lead generation goals?";
       }
 
       // Store bot response
