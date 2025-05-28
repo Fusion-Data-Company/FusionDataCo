@@ -272,11 +272,11 @@ export default function ChatBot() {
         </div>
       ) : (
         <div className="flex flex-col items-end">
-          {/* Dedicated ambient glow component - separate layer */}
-          <div className="absolute w-20 h-20 rounded-full pointer-events-none">
-            <div className="absolute -inset-16 bg-gradient-radial from-emerald-400/40 via-green-500/25 to-emerald-600/10 rounded-full blur-3xl opacity-90 animate-pulse"></div>
-            <div className="absolute -inset-12 bg-gradient-radial from-green-300/30 via-emerald-400/20 to-transparent rounded-full blur-2xl opacity-70 animate-pulse" style={{ animationDelay: '1s' }}></div>
-            <div className="absolute -inset-8 bg-gradient-radial from-emerald-500/20 via-green-400/15 to-transparent rounded-full blur-xl opacity-60 animate-pulse" style={{ animationDelay: '2s' }}></div>
+          {/* Dedicated ambient glow component - separate layer behind button */}
+          <div className="absolute w-20 h-20 rounded-full pointer-events-none -z-10">
+            <div className="absolute -inset-20 bg-gradient-radial from-emerald-400/60 via-green-500/40 to-emerald-600/20 rounded-full blur-3xl opacity-100 animate-pulse"></div>
+            <div className="absolute -inset-16 bg-gradient-radial from-green-300/50 via-emerald-400/30 to-transparent rounded-full blur-2xl opacity-90 animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute -inset-12 bg-gradient-radial from-emerald-500/40 via-green-400/25 to-transparent rounded-full blur-xl opacity-80 animate-pulse" style={{ animationDelay: '2s' }}></div>
           </div>
           
           <button 

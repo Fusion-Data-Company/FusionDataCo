@@ -126,8 +126,12 @@ export default function Contact() {
                   <div className="space-y-8 mb-8">
                     {/* Robert Yeager - CEO */}
                     <div className="flex flex-col sm:flex-row gap-6 p-6 bg-background/50 rounded-lg border border-border/30">
-                      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-2xl font-bold text-white flex-shrink-0">
-                        RY
+                      <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
+                        <img 
+                          src="/rob-photo.jpg" 
+                          alt="Robert Yeager" 
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-primary mb-2">Robert Yeager</h3>
