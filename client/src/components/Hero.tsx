@@ -63,8 +63,8 @@ export default function Hero() {
       {/* Two-column layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
         
-        {/* Left column: Text content - positioned even higher */}
-        <div className="relative z-10 px-10 pt-6 pb-16 flex flex-col items-start justify-start text-left">
+        {/* Left column: Text content - positioned even higher with bigger container */}
+        <div className="relative z-10 px-8 pt-6 pb-16 flex flex-col items-start justify-start text-left w-full">
           {/* Premium Enterprise Badge */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -125,7 +125,7 @@ export default function Hero() {
                 </div>
                 
                 {/* Text with matching gradient and neon highlight effect */}
-                <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 inline-block text-7xl md:text-8xl enterprise-text-shadow">
+                <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 inline-block text-6xl md:text-7xl lg:text-8xl xl:text-9xl enterprise-text-shadow whitespace-nowrap">
                   Fusion Data Co.
                   <span className="absolute -inset-x-1 -inset-y-0.5 bg-blue-500/5 blur-sm rounded-lg z-[-1]"></span>
                   <span className="absolute -inset-x-1 top-1/2 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"></span>
