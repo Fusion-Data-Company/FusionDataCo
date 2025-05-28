@@ -274,38 +274,60 @@ export default function ChatBot() {
         <div className="flex flex-col items-end">
           <button 
             onClick={toggleChat} 
-            className="relative w-16 h-16 rounded-full bg-black border-2 border-blue-500 shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 group overflow-hidden"
+            className="relative w-16 h-16 rounded-full bg-gradient-to-br from-gray-900 via-black to-gray-800 border-2 border-blue-500 shadow-2xl hover:shadow-blue-500/50 transition-all duration-500 group overflow-hidden animate-pulse hover:animate-none"
             aria-label="Open chat"
           >
-            {/* Cyberpunk outer glow */}
-            <div className="absolute -inset-4 bg-gradient-to-br from-blue-400/30 via-blue-500/20 to-blue-600/30 rounded-full blur-xl opacity-70 group-hover:opacity-90 transition-opacity animate-pulse"></div>
+            {/* Massive ambient glow */}
+            <div className="absolute -inset-8 bg-gradient-radial from-blue-400/20 via-blue-500/10 to-transparent rounded-full blur-2xl opacity-60 group-hover:opacity-90 transition-opacity duration-700 animate-pulse"></div>
             
-            {/* Neon border effect */}
-            <div className="absolute inset-0 rounded-full border-2 border-blue-400/50 group-hover:border-blue-300/70 transition-colors"></div>
-            <div className="absolute inset-1 rounded-full border border-blue-400/30 group-hover:border-blue-300/50 transition-colors"></div>
+            {/* Animated outer rings */}
+            <div className="absolute -inset-3 border border-blue-400/30 rounded-full animate-spin-slow"></div>
+            <div className="absolute -inset-2 border border-blue-300/20 rounded-full animate-reverse-spin"></div>
             
-            {/* Grid pattern overlay */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/10 via-transparent to-blue-500/10"></div>
+            {/* Shimmer effect overlay */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-blue-300/30 to-transparent animate-shimmer"></div>
             
-            {/* Scanning line effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-blue-400/20 to-transparent animate-pulse group-hover:animate-ping"></div>
+            {/* Neon border layers */}
+            <div className="absolute inset-0 rounded-full border-2 border-blue-400/60 group-hover:border-blue-300/80 transition-colors shadow-[0_0_20px_rgba(59,130,246,0.5)]"></div>
+            <div className="absolute inset-1 rounded-full border border-blue-300/40 group-hover:border-blue-200/60 transition-colors"></div>
             
-            {/* Icon container */}
-            <div className="relative z-10 w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 to-black rounded-full">
-              <MessageSquare size={20} className="text-blue-300 drop-shadow-lg filter drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+            {/* Inner glow ring */}
+            <div className="absolute inset-2 rounded-full bg-gradient-to-br from-blue-400/20 via-transparent to-blue-600/20 border border-blue-200/30"></div>
+            
+            {/* Scanning wave effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-conic from-transparent via-blue-400/30 to-transparent animate-spin"></div>
+            
+            {/* Energy pulse rings */}
+            <div className="absolute inset-0 rounded-full border border-blue-400/50 animate-ping opacity-60"></div>
+            <div className="absolute inset-1 rounded-full border border-blue-300/40 animate-ping opacity-40" style={{ animationDelay: '0.5s' }}></div>
+            
+            {/* Icon container with enhanced glow */}
+            <div className="relative z-10 w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900/90 via-black to-gray-800/90 rounded-full backdrop-blur-sm">
+              <MessageSquare 
+                size={20} 
+                className="text-blue-300 drop-shadow-lg filter drop-shadow-[0_0_12px_rgba(59,130,246,0.9)] group-hover:drop-shadow-[0_0_16px_rgba(59,130,246,1)] transition-all duration-300" 
+              />
             </div>
             
-            {/* Cyberpunk status indicator */}
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full border border-white shadow-lg">
+            {/* Enhanced status indicator */}
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full border-2 border-white shadow-xl">
               <span className="absolute inset-0.5 bg-green-400 rounded-full animate-pulse"></span>
-              <span className="absolute inset-0 bg-green-300/50 rounded-full animate-ping"></span>
+              <span className="absolute inset-0 bg-green-300/60 rounded-full animate-ping"></span>
+              <span className="absolute -inset-1 bg-green-400/30 rounded-full animate-ping opacity-50" style={{ animationDelay: '1s' }}></span>
             </span>
             
-            {/* Corner accents */}
-            <div className="absolute top-1 left-1 w-2 h-2 border-l border-t border-blue-400/60 rounded-tl"></div>
-            <div className="absolute top-1 right-1 w-2 h-2 border-r border-t border-blue-400/60 rounded-tr"></div>
-            <div className="absolute bottom-1 left-1 w-2 h-2 border-l border-b border-blue-400/60 rounded-bl"></div>
-            <div className="absolute bottom-1 right-1 w-2 h-2 border-r border-b border-blue-400/60 rounded-br"></div>
+            {/* Corner holographic accents */}
+            <div className="absolute top-0.5 left-0.5 w-3 h-3 border-l-2 border-t-2 border-blue-400/70 rounded-tl animate-pulse"></div>
+            <div className="absolute top-0.5 right-0.5 w-3 h-3 border-r-2 border-t-2 border-blue-400/70 rounded-tr animate-pulse" style={{ animationDelay: '0.25s' }}></div>
+            <div className="absolute bottom-0.5 left-0.5 w-3 h-3 border-l-2 border-b-2 border-blue-400/70 rounded-bl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+            <div className="absolute bottom-0.5 right-0.5 w-3 h-3 border-r-2 border-b-2 border-blue-400/70 rounded-br animate-pulse" style={{ animationDelay: '0.75s' }}></div>
+            
+            {/* Floating particles effect */}
+            <div className="absolute inset-0 rounded-full">
+              <div className="absolute top-2 left-3 w-0.5 h-0.5 bg-blue-400 rounded-full animate-bounce opacity-60"></div>
+              <div className="absolute top-4 right-2 w-0.5 h-0.5 bg-blue-300 rounded-full animate-bounce opacity-40" style={{ animationDelay: '0.3s' }}></div>
+              <div className="absolute bottom-3 left-2 w-0.5 h-0.5 bg-blue-500 rounded-full animate-bounce opacity-50" style={{ animationDelay: '0.6s' }}></div>
+            </div>
           </button>
         </div>
       )}

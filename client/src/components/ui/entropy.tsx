@@ -155,7 +155,8 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
           const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
           if (distance < 50) {
             const alpha = 0.6 * (1 - distance / 50)
-            const lineColor = particle.order ? orderLineColor : chaosLineColor // White lines for order, burnt orange for chaos
+            // Use blue lines for left side (order), burnt orange for right side (chaos)
+            const lineColor = particle.order && neighbor.order ? orderLineColor : chaosLineColor
             ctx.strokeStyle = `${lineColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
             ctx.lineWidth = 0.8
             ctx.beginPath()

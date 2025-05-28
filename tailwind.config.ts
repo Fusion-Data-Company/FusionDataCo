@@ -117,6 +117,30 @@ export default {
             "background-position": "0% 50%",
           },
         },
+        "shimmer": {
+          "0%": {
+            transform: "translateX(-100%)",
+          },
+          "100%": {
+            transform: "translateX(100%)",
+          },
+        },
+        "spin-slow": {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg)",
+          },
+        },
+        "reverse-spin": {
+          "0%": {
+            transform: "rotate(360deg)",
+          },
+          "100%": {
+            transform: "rotate(0deg)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -125,6 +149,9 @@ export default {
         "pulse-slow": "pulse-slow 4s ease-in-out infinite",
         "glow-fade": "glow-fade 6s ease-in-out infinite",
         "textShimmer": "textShimmer 2s ease-in-out",
+        "shimmer": "shimmer 2s ease-in-out infinite",
+        "spin-slow": "spin-slow 8s linear infinite",
+        "reverse-spin": "reverse-spin 6s linear infinite",
       },
     },
   },
