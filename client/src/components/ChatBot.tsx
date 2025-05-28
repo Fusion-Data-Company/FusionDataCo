@@ -139,7 +139,7 @@ export default function ChatBot() {
           </div>
           
           {/* Chat Messages */}
-          <div className="h-[400px] overflow-y-auto p-5 space-y-4 bg-card/30 carbon-fiber">
+          <div className="h-[500px] overflow-y-auto p-5 space-y-4 bg-card/30 carbon-fiber">
             {messages.map((message, index) => (
               <div 
                 key={index} 
@@ -274,24 +274,38 @@ export default function ChatBot() {
         <div className="flex flex-col items-end">
           <button 
             onClick={toggleChat} 
-            className="relative w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 hover:from-blue-400 hover:to-blue-600 shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 group border-2 border-blue-400/50 hover:border-blue-300/70"
+            className="relative w-16 h-16 rounded-full bg-black border-2 border-cyan-400 shadow-2xl hover:shadow-cyan-400/50 transition-all duration-300 group overflow-hidden"
             aria-label="Open chat"
           >
-            {/* Outer glow ring */}
-            <div className="absolute -inset-2 bg-gradient-to-br from-blue-400/40 to-blue-600/40 rounded-full blur-lg opacity-60 group-hover:opacity-80 transition-opacity"></div>
+            {/* Cyberpunk outer glow */}
+            <div className="absolute -inset-4 bg-gradient-to-br from-cyan-400/30 via-blue-500/20 to-purple-500/30 rounded-full blur-xl opacity-70 group-hover:opacity-90 transition-opacity animate-pulse"></div>
             
-            {/* Inner chrome highlight */}
-            <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/20 to-transparent border border-white/30"></div>
+            {/* Neon border effect */}
+            <div className="absolute inset-0 rounded-full border-2 border-cyan-300/50 group-hover:border-cyan-200/70 transition-colors"></div>
+            <div className="absolute inset-1 rounded-full border border-blue-400/30 group-hover:border-blue-300/50 transition-colors"></div>
+            
+            {/* Grid pattern overlay */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400/10 via-transparent to-blue-500/10"></div>
+            
+            {/* Scanning line effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent animate-pulse group-hover:animate-ping"></div>
             
             {/* Icon container */}
-            <div className="relative z-10 w-full h-full flex items-center justify-center">
-              <MessageSquare size={20} className="text-white drop-shadow-sm" />
+            <div className="relative z-10 w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 to-black rounded-full">
+              <MessageSquare size={20} className="text-cyan-300 drop-shadow-lg filter drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
             </div>
             
-            {/* Status indicator */}
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-green-400 to-green-500 rounded-full border-2 border-white shadow-lg">
+            {/* Cyberpunk status indicator */}
+            <span className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full border border-white shadow-lg">
               <span className="absolute inset-0.5 bg-green-400 rounded-full animate-pulse"></span>
+              <span className="absolute inset-0 bg-green-300/50 rounded-full animate-ping"></span>
             </span>
+            
+            {/* Corner accents */}
+            <div className="absolute top-1 left-1 w-2 h-2 border-l border-t border-cyan-400/60 rounded-tl"></div>
+            <div className="absolute top-1 right-1 w-2 h-2 border-r border-t border-cyan-400/60 rounded-tr"></div>
+            <div className="absolute bottom-1 left-1 w-2 h-2 border-l border-b border-cyan-400/60 rounded-bl"></div>
+            <div className="absolute bottom-1 right-1 w-2 h-2 border-r border-b border-cyan-400/60 rounded-br"></div>
           </button>
         </div>
       )}
