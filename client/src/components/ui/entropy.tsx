@@ -150,8 +150,9 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         particle.neighbors.forEach(neighbor => {
           const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y)
           if (distance < 50) {
-            const alpha = 0.2 * (1 - distance / 50)
+            const alpha = 0.6 * (1 - distance / 50)
             ctx.strokeStyle = `${particleColor}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`
+            ctx.lineWidth = 0.8
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(neighbor.x, neighbor.y)
