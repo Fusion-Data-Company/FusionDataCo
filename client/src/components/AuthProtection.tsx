@@ -30,7 +30,7 @@ export default function AuthProtection({
   const [, automationsParams] = useRoute('/automations/*');
   
   // Determine if the current route requires auth
-  const isProtectedRoute = Boolean(params || campaignsParams || automationsParams || window.location.pathname.startsWith('/crm'));
+  const isProtectedRoute = Boolean(params || campaignsParams || automationsParams || (window.location.pathname.startsWith('/crm/') && window.location.pathname !== '/crm'));
   
   useEffect(() => {
     // Check authentication status (this would use a real auth system in production)
