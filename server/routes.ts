@@ -11,8 +11,8 @@ import {
   insertSocialTrialSchema
 } from "@shared/schema";
 import { marketingRouter } from "./marketing";
-import { generateSalesResponse } from "./openRouter";
 import { nanoid } from "nanoid";
+import axios from "axios";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Register marketing routes
@@ -70,7 +70,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Direct OpenRouter API call with Sandler methodology
       let botResponse = "";
       try {
-        const axios = require('axios');
+
         
         const response = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
           model: "perplexity/llama-3.1-sonar-large-128k-online",

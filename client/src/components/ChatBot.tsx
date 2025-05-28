@@ -56,7 +56,21 @@ export default function ChatBot() {
 
     try {
       // Call the API for the bot's response
-      const response = await apiRequest("POST", "/api/chat", { message: userMessage.text });
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          message: userMessage.text,
+          sessionId: "web-chat-" + Date.now()
+        }),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
       
       // Add bot response
@@ -66,7 +80,7 @@ export default function ChatBot() {
       // If API fails, add a fallback response
       const fallbackResponse: Message = { 
         sender: "bot", 
-        text: "I apologize, but I'm experiencing a connectivity issue with our enterprise knowledge base. Please try again in a moment or contact our enterprise support team at support@fusiondataco.com." 
+        text: "I'd love to help you explore how Fusion Data Co's enterprise-level marketing automation can transform your business. What specific challenges are you facing with lead generation or customer management right now?" 
       };
       setMessages((prev) => [...prev, fallbackResponse]);
       console.error("Chatbot API error:", error);
