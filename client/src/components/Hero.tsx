@@ -104,29 +104,29 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h1 className="text-6xl md:text-7xl font-bold mb-6 tracking-tight">
-              {/* Enterprise-Grade text with premium styling */}
+              {/* Fusion Data Co. text with premium styling */}
               <div className="relative group overflow-hidden">
-                {/* Background effects with ambient green and orange */}
+                {/* Background effects with ambient blue and green */}
                 <div className="absolute -inset-4 w-[120%] h-[120%] z-0">
                   {/* Subtle grid pattern */}
                   <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjAgNjBIMFYwaDYwdjYwem0tMjAgMEgwVjIwaDQwdjQwem0yMC00MEgxMFYxMGgzMHYxMHoiIGZpbGw9IiMxMTEyMjciIGZpbGwtb3BhY2l0eT0iMC4wNSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] rotate-45" />
                   
-                  {/* Fading squares with orange and green ambient effects */}
-                  <div className="absolute -top-8 -left-4 w-20 h-20 bg-green-600/5 rounded blur-md"></div>
-                  <div className="absolute top-4 right-0 w-16 h-16 bg-orange-500/5 rounded-lg blur-md"></div>
+                  {/* Fading squares with blue and green ambient effects */}
+                  <div className="absolute -top-8 -left-4 w-20 h-20 bg-blue-600/5 rounded blur-md"></div>
+                  <div className="absolute top-4 right-0 w-16 h-16 bg-green-500/5 rounded-lg blur-md"></div>
                   <div className="absolute bottom-0 left-20 w-12 h-12 bg-blue-400/5 rounded-md blur-sm"></div>
                   
                   {/* Ambient glow spots */}
-                  <div className="absolute top-1/3 -left-10 w-24 h-24 bg-green-500/5 rounded-full blur-xl"></div>
-                  <div className="absolute bottom-1/4 right-0 w-28 h-28 bg-orange-500/5 rounded-full blur-xl"></div>
+                  <div className="absolute top-1/3 -left-10 w-24 h-24 bg-blue-500/5 rounded-full blur-xl"></div>
+                  <div className="absolute bottom-1/4 right-0 w-28 h-28 bg-green-500/5 rounded-full blur-xl"></div>
                   
-                  {/* Subtle radial gradient with green and orange hints */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-green-900/5 via-slate-800/5 to-orange-900/5 rounded-lg"></div>
+                  {/* Subtle radial gradient with blue and green hints */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/5 via-slate-800/5 to-green-900/5 rounded-lg"></div>
                 </div>
                 
                 {/* Text with neon highlight effect */}
                 <span className="relative z-10 text-white inline-block leading-tight enterprise-text-shadow">
-                  Enterprise-Grade
+                  Fusion Data Co.
                   <span className="absolute -inset-x-1 -inset-y-0.5 bg-blue-500/5 blur-sm rounded-lg z-[-1]"></span>
                   <span className="absolute -inset-x-1 top-1/2 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"></span>
                 </span>
@@ -134,7 +134,7 @@ export default function Hero() {
               
               <br/>
               
-              {/* Marketing Platform with neon and gradient effects */}
+              {/* Custom Business Solutions with neon and gradient effects */}
               <div className="relative mt-1 group">
                 {/* Animated gradient background for shimmer effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-indigo-500/10 to-blue-600/5 rounded-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -147,7 +147,7 @@ export default function Hero() {
                   ref={textRef}
                   className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 inline-block enterprise-text"
                 >
-                  Marketing Platform
+                  Custom Business Solutions
                   
                   {/* Neon highlight elements */}
                   <div className="absolute h-[3px] w-12 -top-1 left-2 bg-blue-400/30 blur-sm"></div>
@@ -170,8 +170,7 @@ export default function Hero() {
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            A comprehensive <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">solution</span> that combines advanced <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">CRM</span>, analytics, and{' '}  
-            <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">AI-powered workflows</span> to transform your <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">business operations</span> and <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">accelerate growth</span>.
+            We <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">architect intelligent systems</span>, <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">automate complex workflows</span>, and unleash <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">AI-powered insights</span> that revolutionize how you operate and <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">accelerate exponential growth</span>.
           </motion.p>
           
           <motion.div 

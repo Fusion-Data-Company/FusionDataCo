@@ -104,7 +104,7 @@ export default function CRM() {
                 
                 {/* Subtitle */}
                 <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-                  A comprehensive solution that combines advanced CRM, analytics, and AI-powered workflows to transform your business operations and accelerate growth.
+                  A comprehensive solution that combines <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400">advanced CRM</span>, <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400">analytics</span>, and <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400">AI-powered workflows</span> to transform your <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400">business operations</span> and <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400">accelerate growth</span>.
                 </p>
                 
                 {/* CTA Buttons */}
