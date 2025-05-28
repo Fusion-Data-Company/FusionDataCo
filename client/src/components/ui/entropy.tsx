@@ -121,6 +121,92 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
       }
     }
 
+    // 创建重力吸引子（弹跳球）
+    class Attractor {
+      x: number
+      y: number
+      vx: number
+      vy: number
+      radius: number
+      mass: number
+
+      constructor() {
+        this.x = size * 0.75 // 在右侧（混沌区域）
+        this.y = size * 0.5
+        this.vx = (Math.random() - 0.5) * 3
+        this.vy = (Math.random() - 0.5) * 3
+        this.radius = 15
+        this.mass = 100
+      }
+
+      update() {
+        this.x += this.vx
+        this.y += this.vy
+
+        // 边界反弹
+        if (this.x - this.radius < size / 2 || this.x + this.radius > size) {
+          this.vx *= -0.8
+          this.x = Math.max(size / 2 + this.radius, Math.min(size - this.radius, this.x))
+        }
+        if (this.y - this.radius < 0 || this.y + this.radius > size) {
+          this.vy *= -0.8
+          this.y = Math.max(this.radius, Math.min(size - this.radius, this.y))
+        }
+
+        // 添加一些随机性
+        this.vx += (Math.random() - 0.5) * 0.1
+        this.vy += (Math.random() - 0.5) * 0.1
+
+        // 阻尼
+        this.vx *= 0.98
+        this.vy *= 0.98
+      }
+
+      draw(ctx: CanvasRenderingContext2D) {
+        // 绘制重力场效果
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 3)
+        gradient.addColorStop(0, `${chaosParticleColor}20`)
+        gradient.addColorStop(1, 'transparent')
+        ctx.fillStyle = gradient
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.radius * 3, 0, Math.PI * 2)
+        ctx.fill()
+
+        // 绘制吸引子核心
+        ctx.fillStyle = chaosParticleColor
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+        ctx.fill()
+
+        // 绘制内部光晕
+        const innerGradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius)
+        innerGradient.addColorStop(0, '#ffffff')
+        innerGradient.addColorStop(1, chaosParticleColor)
+        ctx.fillStyle = innerGradient
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.radius * 0.6, 0, Math.PI * 2)
+        ctx.fill()
+      }
+
+      attractParticle(particle: Particle) {
+        const dx = this.x - particle.x
+        const dy = this.y - particle.y
+        const distance = Math.hypot(dx, dy)
+        
+        if (distance < 200 && distance > 0) {
+          const force = (this.mass / (distance * distance)) * 0.1
+          const fx = (dx / distance) * force
+          const fy = (dy / distance) * force
+          
+          particle.velocity.x += fx
+          particle.velocity.y += fy
+          particle.influence = Math.max(particle.influence, force * 10)
+        }
+      }
+    }
+
+    const attractor = new Attractor()
+
     // 更新邻居关系
     function updateNeighbors() {
       particles.forEach(particle => {
@@ -138,6 +224,9 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
     function animate() {
       ctx.clearRect(0, 0, size, size)
 
+      // 更新吸引子
+      attractor.update()
+
       // 更新邻居关系
       if (time % 30 === 0) {
         updateNeighbors()
@@ -145,6 +234,9 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
 
       // 更新和绘制所有粒子
       particles.forEach(particle => {
+        // 让吸引子影响所有粒子
+        attractor.attractParticle(particle)
+        
         particle.update()
         particle.draw(ctx)
 
@@ -163,17 +255,16 @@ export function Entropy({ className = "", size = 400 }: EntropyProps) {
         })
       })
 
-      // 添加分隔线和文字
+      // 绘制吸引子（在粒子之后，所以在顶层）
+      attractor.draw(ctx)
+
+      // 添加分隔线
       ctx.strokeStyle = `${orderedParticleColor}4D`
       ctx.lineWidth = 0.5
       ctx.beginPath()
       ctx.moveTo(size / 2, 0)
       ctx.lineTo(size / 2, size)
       ctx.stroke()
-
-      ctx.font = '12px monospace'
-      ctx.fillStyle = '#ffffff'
-      ctx.textAlign = 'center'
 
       time++
       animationId = requestAnimationFrame(animate)
