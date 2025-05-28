@@ -28,6 +28,8 @@ import { Loader2 } from "lucide-react";
 import { trackEvent } from "@/components/AnalyticsTracker";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MobileHeader from "@/components/MobileHeader";
+import MobileFooter from "@/components/MobileFooter";
 
 function Login() {
   const [, setLocation] = useLocation();
@@ -235,10 +237,14 @@ function App() {
             </script>
           </Helmet>
           <Toaster />
+          {/* Mobile Header - only shows on mobile/tablet */}
+          <MobileHeader />
           {/* Wrap Router with AuthProtection */}
           <AuthProtection>
             <Router />
           </AuthProtection>
+          {/* Mobile Footer - only shows on mobile/tablet */}
+          <MobileFooter />
           {/* Add analytics tracker component */}
           <AnalyticsTracker />
         </TooltipProvider>

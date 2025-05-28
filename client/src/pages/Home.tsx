@@ -12,6 +12,9 @@ import CTASection from "@/components/CTASection";
 import ContactForm from "@/components/ContactForm";
 import ChatBot from "@/components/ChatBot";
 import AIContentDemo from "@/components/AIContentDemo";
+import MobileHero from "@/components/MobileHero";
+import MobileFeatures from "@/components/MobileFeatures";
+import MobilePricing from "@/components/MobilePricing";
 
 export default function Home() {
   return (
@@ -32,8 +35,10 @@ export default function Home() {
         <Header />
         <main className="flex-grow">
           <Hero />
+          <MobileHero />
           <ValueProposition />
           <Features />
+          <MobileFeatures />
           <IndustrySolutions />
           
           {/* AI Content Demo Section */}
@@ -62,6 +67,7 @@ export default function Home() {
 
           <SocialMedia />
           <Pricing />
+          <MobilePricing />
           <CTASection />
           <ContactForm />
         </main>
