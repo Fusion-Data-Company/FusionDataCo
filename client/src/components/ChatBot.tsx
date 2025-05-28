@@ -274,25 +274,25 @@ export default function ChatBot() {
         <div className="flex flex-col items-end">
           <button 
             onClick={toggleChat} 
-            className="relative w-16 h-16 rounded-full bg-black border-2 border-cyan-400 shadow-2xl hover:shadow-cyan-400/50 transition-all duration-300 group overflow-hidden"
+            className="relative w-16 h-16 rounded-full bg-black border-2 border-blue-500 shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 group overflow-hidden"
             aria-label="Open chat"
           >
             {/* Cyberpunk outer glow */}
-            <div className="absolute -inset-4 bg-gradient-to-br from-cyan-400/30 via-blue-500/20 to-purple-500/30 rounded-full blur-xl opacity-70 group-hover:opacity-90 transition-opacity animate-pulse"></div>
+            <div className="absolute -inset-4 bg-gradient-to-br from-blue-400/30 via-blue-500/20 to-blue-600/30 rounded-full blur-xl opacity-70 group-hover:opacity-90 transition-opacity animate-pulse"></div>
             
             {/* Neon border effect */}
-            <div className="absolute inset-0 rounded-full border-2 border-cyan-300/50 group-hover:border-cyan-200/70 transition-colors"></div>
+            <div className="absolute inset-0 rounded-full border-2 border-blue-400/50 group-hover:border-blue-300/70 transition-colors"></div>
             <div className="absolute inset-1 rounded-full border border-blue-400/30 group-hover:border-blue-300/50 transition-colors"></div>
             
             {/* Grid pattern overlay */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400/10 via-transparent to-blue-500/10"></div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/10 via-transparent to-blue-500/10"></div>
             
             {/* Scanning line effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent animate-pulse group-hover:animate-ping"></div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-blue-400/20 to-transparent animate-pulse group-hover:animate-ping"></div>
             
             {/* Icon container */}
             <div className="relative z-10 w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 to-black rounded-full">
-              <MessageSquare size={20} className="text-cyan-300 drop-shadow-lg filter drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+              <MessageSquare size={20} className="text-blue-300 drop-shadow-lg filter drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
             </div>
             
             {/* Cyberpunk status indicator */}
@@ -302,10 +302,10 @@ export default function ChatBot() {
             </span>
             
             {/* Corner accents */}
-            <div className="absolute top-1 left-1 w-2 h-2 border-l border-t border-cyan-400/60 rounded-tl"></div>
-            <div className="absolute top-1 right-1 w-2 h-2 border-r border-t border-cyan-400/60 rounded-tr"></div>
-            <div className="absolute bottom-1 left-1 w-2 h-2 border-l border-b border-cyan-400/60 rounded-bl"></div>
-            <div className="absolute bottom-1 right-1 w-2 h-2 border-r border-b border-cyan-400/60 rounded-br"></div>
+            <div className="absolute top-1 left-1 w-2 h-2 border-l border-t border-blue-400/60 rounded-tl"></div>
+            <div className="absolute top-1 right-1 w-2 h-2 border-r border-t border-blue-400/60 rounded-tr"></div>
+            <div className="absolute bottom-1 left-1 w-2 h-2 border-l border-b border-blue-400/60 rounded-bl"></div>
+            <div className="absolute bottom-1 right-1 w-2 h-2 border-r border-b border-blue-400/60 rounded-br"></div>
           </button>
         </div>
       )}
