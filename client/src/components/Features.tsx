@@ -1,7 +1,7 @@
 import { 
   Server, Database, BarChart3, Bot, Workflow, 
   MessageSquare, Lock, ShieldCheck, Globe, 
-  ExternalLink, Check, Fingerprint 
+  ExternalLink, Check, Fingerprint, Award, FileCheck 
 } from "lucide-react";
 
 export default function Features() {
