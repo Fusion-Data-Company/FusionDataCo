@@ -87,8 +87,8 @@ export default function Features() {
         "Claude 3.7 Sonnet integration with complete workspace access", 
         "Unified business data and function control from one interface"
       ],
-      color: "violet",
-      glowColor: "violet-500"
+      color: "yellow",
+      glowColor: "yellow-500"
     },
     {
       icon: <Users size={30} />,
@@ -153,6 +153,7 @@ export default function Features() {
               orange: { bg: 'bg-orange-500/10', border: 'border-orange-500/30', text: 'text-orange-400', shadow: 'shadow-orange-500/20', glow: 'bg-orange-500/5' },
               pink: { bg: 'bg-pink-500/10', border: 'border-pink-500/30', text: 'text-pink-400', shadow: 'shadow-pink-500/20', glow: 'bg-pink-500/5' },
               violet: { bg: 'bg-violet-500/10', border: 'border-violet-500/30', text: 'text-violet-400', shadow: 'shadow-violet-500/20', glow: 'bg-violet-500/5' },
+              yellow: { bg: 'bg-yellow-500/10', border: 'border-yellow-500/30', text: 'text-yellow-400', shadow: 'shadow-yellow-500/20', glow: 'bg-yellow-500/5' },
               indigo: { bg: 'bg-indigo-500/10', border: 'border-indigo-500/30', text: 'text-indigo-400', shadow: 'shadow-indigo-500/20', glow: 'bg-indigo-500/5' },
               teal: { bg: 'bg-teal-500/10', border: 'border-teal-500/30', text: 'text-teal-400', shadow: 'shadow-teal-500/20', glow: 'bg-teal-500/5' }
             };
