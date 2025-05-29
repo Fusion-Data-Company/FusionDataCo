@@ -187,11 +187,13 @@ export default function Trades() {
             </div>
           </section>
           
-          {/* Pain Points Section with Red Ambient Glow */}
+          {/* Pain Points Section with Enhanced Red Ambient Glow */}
           <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
-            {/* Red ambient glow behind the content */}
-            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
-            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            {/* Enhanced red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-transparent to-orange-600/10 z-0"></div>
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/15 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl z-0"></div>
+            <div className="absolute inset-0 bg-red-500/5 blur-2xl z-0"></div>
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">
@@ -199,11 +201,17 @@ export default function Trades() {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Card className="bg-background border border-border/50">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Feast or Famine Cycle
-                    </h3>
+                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <BarChart3 className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">
+                        Feast or Famine Cycle
+                      </h3>
+                    </div>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
@@ -233,12 +241,17 @@ export default function Trades() {
                   </CardContent>
                 </Card>
                 
-                <Card className="enterprise-card">
-                  <div className="glow-wrapper"></div>
-                  <CardContent className="p-6 enterprise-card-content">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Lead Quality Issues
-                    </h3>
+                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <UserPlus className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">
+                        Lead Quality Issues
+                      </h3>
+                    </div>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">

@@ -190,11 +190,13 @@ export default function Medical() {
             </div>
           </section>
           
-          {/* Pain Points Section with Red Ambient Glow */}
+          {/* Pain Points Section with Enhanced Red Ambient Glow */}
           <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
-            {/* Red ambient glow behind the content */}
-            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
-            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            {/* Enhanced red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-transparent to-orange-600/10 z-0"></div>
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/15 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl z-0"></div>
+            <div className="absolute inset-0 bg-red-500/5 blur-2xl z-0"></div>
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-8 text-center">
@@ -202,11 +204,17 @@ export default function Medical() {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <Card className="bg-[#121218]/70 border border-[#ff0000]/20 rounded-lg overflow-hidden">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Patient Acquisition Struggles
-                    </h3>
+                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <XCircle className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">
+                        Patient Acquisition Struggles
+                      </h3>
+                    </div>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
