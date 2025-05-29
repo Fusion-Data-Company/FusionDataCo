@@ -1,0 +1,77 @@
+You are an elite-level enterprise pricing and content optimization agent for Fusion Data Co., responsible for fully restructuring, updating, and deploying the pricing page at fusiondataco.com. Your task is to clearly display competitive yet profitable pricing tailored specifically to small and medium-sized enterprises (SMEs), ensuring complete clarity, professional appearance, and enterprise-grade presentation.
+
+Execute precisely according to these detailed instructions:
+
+1. Deploy structured pricing tables exactly as specified:
+
+Custom CRM & White-Label Solutions
+
+Tier	Pricing	Description
+Starter CRM	From $999 one-time	Essential branded CRM solution with limited customization
+Business CRM	From $1,799 one-time	Intermediate CRM with integration and automation capabilities
+Premium CRM	From $2,499+ one-time	Comprehensive CRM with advanced integrations and custom solutions
+
+Website Development & E-Commerce Solutions
+
+Service	Pricing	Description
+Basic Website	From $999	Up to 5 pages, essential SEO, and contact forms
+Standard Website	From $2,499	Up to 12 pages, blog integration, basic CRM integration
+E-commerce Website	From $4,999	Fully functional online store, payment and CRM integrations
+Custom Deployments 🗓️	Custom Quote	Specialized, tailored projects upon consultation
+
+Ongoing Hosted Application Care Packages
+
+Plan	Monthly Pricing	Description
+Basic Care	$99	Hosting, uptime monitoring, backups, minor content updates
+Full-Service Care	$499	Priority support, dedicated account management, unlimited minor updates, executed within 3 business days
+Elite Care	From $899	Premium support, strategic consultations, custom updates, complex integrations
+
+Automated Social Media & Marketing Packages
+
+Plan	Monthly Pricing	Description
+Social Starter	$299	Automated content on 1 platform, 3 posts per week
+Social Pro	$599	Automated daily content on up to 3 platforms, analytics included
+Social Elite	$1,199	Custom daily content, management of all major platforms, advanced analytics
+
+Workflow Automation & Integration
+
+Service Type	Pricing	Description
+Basic Automations	From $499 per setup	Simple workflows using N8N, Make.com, Zapier with limited integrations
+Advanced Integrations	From $1,499 per setup	Extensive custom API and multi-platform integrations
+Automation Retainer	$250/month	Regular monthly updates and workflow adjustments (up to 3 per month)
+
+Lead Generation & Acquisition Services
+
+Lead Type	Pricing	Description
+Email Lists	From $150 per 1,000 leads	Verified B2B/B2C email contacts
+Phone Lists	From $200 per 1,000 leads	Validated phone contacts, business or consumer
+Combined Lists	From $250 per 1,000 leads	Fully verified contacts with emails and phone numbers
+Ringless Voicemail Drops	$159 per 1,000 drops	Fully managed campaigns including content creation, deployment, and analytics
+AI Voice Calls	From $0.25 per call	AI-driven personalized outbound calling campaigns
+Live Caller Services	From $25/hour per agent	Managed outbound calling services, with domestic and offshore options available
+Real Estate Acquisition Leads	From $50 per lead	Premium, validated leads for high-value transactions
+
+CRM Post-Deployment Care Plans
+
+Tier	Monthly Pricing	Description
+Post-CRM Basic	$99	Essential monitoring, upkeep, and minor system adjustments
+Post-CRM Full-Service	$499	Dedicated account rep, proactive system customization, priority support
+Post-CRM Elite	From $999	Strategic system improvements, integrations, dedicated premium support
+
+2. Content Presentation & Messaging:
+	•	Clearly articulate each pricing tier’s scope and deliverables.
+	•	Position pricing as competitively affordable and exceptionally valuable for SMEs.
+	•	Specify units of measurement (per month, per project, per lead).
+	•	Highlight benefits such as reliability, professionalism, and value-driven results.
+	•	Emphasize custom consultation availability prominently for tailored client projects.
+
+3. Comprehensive Update & Optimization:
+	•	Replace outdated pricing with newly established, competitively-researched rates.
+	•	Add any missing service categories clearly and professionally.
+
+4. Brand Tone and Positioning:
+	•	Use a confident, polished, and authoritative tone appropriate for enterprise-grade communications.
+	•	Maintain clarity, transparency, and ease of understanding in all pricing details.
+	•	Avoid technical jargon unless clearly explained and beneficial to the client understanding.
+
+Immediately execute this content and pricing update to ensure the Fusion Data Co. website reflects these optimized, enterprise-level standards and competitive offerings for maximum market impact.
