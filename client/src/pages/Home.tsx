@@ -21,8 +21,8 @@ export default function Home() {
     <>
       <Helmet>
         <title>Fusion Data Co - Complete Business Automation Platform</title>
-        <meta name="description" content="Fusion Data Co delivers N8N workflow automation, Go High Level CRM implementation, ElevenLabs AI voice technology, custom application development, Claude Desktop MCP server setups, and enterprise-level solutions. Complete automation with Python scripting, API integrations, and 24/7 lead generation." />
-        <meta name="keywords" content="N8N workflow automation, Go High Level CRM, ElevenLabs voice synthesis, custom application development, Claude Desktop MCP servers, Claude 3.7 Sonnet assistants, Make.com automations, API integrations, Python scripting, AI agents" />
+        <meta name="description" content="Fusion Data Co delivers custom CRM MCP servers enabling seamless business data interaction through Claude 3.7 Sonnet, N8N workflow automation, Go High Level CRM implementation, ElevenLabs AI voice technology, and enterprise-level solutions with complete workspace integration." />
+        <meta name="keywords" content="custom CRM MCP servers, Claude 3.7 Sonnet business integration, seamless data interaction, workspace automation, N8N workflow automation, Go High Level CRM, ElevenLabs voice synthesis, Claude Desktop MCP servers, API integrations" />
         
         {/* Open Graph / Social Media */}
         <meta property="og:type" content="website" />

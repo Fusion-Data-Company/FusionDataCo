@@ -74,12 +74,12 @@ export default function Features() {
     },
     {
       icon: <Bot size={30} />,
-      title: "Custom Applications & AI Assistants",
-      description: "Bespoke application development and complex personal assistants using Claude Desktop with custom MCP server setups for complete data and asset control.",
+      title: "Custom CRM MCP Servers & AI Assistants",
+      description: "Custom CRM MCP servers that allow businesses to interact seamlessly with their data and workspace functions through Claude 3.7 Sonnet integration.",
       benefits: [
-        "Custom application development tailored to your needs", 
-        "Claude 3.7 Sonnet personal assistants with full data access", 
-        "Custom MCP server setups for unified control from one interface"
+        "Custom CRM MCP servers for seamless data interaction", 
+        "Claude 3.7 Sonnet integration with complete workspace access", 
+        "Unified business data and function control from one interface"
       ],
       color: "primary"
     }

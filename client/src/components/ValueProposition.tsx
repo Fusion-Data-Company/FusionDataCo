@@ -22,8 +22,8 @@ export default function ValueProposition() {
     },
     {
       icon: <ShieldCheck size={28} />,
-      title: "Custom Applications & AI Assistants",
-      description: "Bespoke applications and Claude 3.7 Sonnet personal assistants with custom MCP servers for unified data control",
+      title: "Custom CRM MCP Servers",
+      description: "Custom CRM MCP servers enabling seamless business data and workspace interaction through Claude 3.7 Sonnet",
       color: "muted-foreground"
     }
   ];
