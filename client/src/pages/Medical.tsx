@@ -201,42 +201,39 @@ export default function Medical() {
                 The <span className="text-white">Real Challenges</span> Healthcare Providers Face
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-red-400/25 to-red-500/25 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
-                        <XCircle className="h-6 w-6 text-red-400" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-red-100">
-                        Patient Acquisition Struggles
-                      </h3>
-                    </div>
-                    <ul className="space-y-3">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <h3 className="text-2xl font-semibold mb-6 text-white">Patient Acquisition & Revenue Challenges</h3>
+                    <ul className="space-y-4">
                       <li className="flex items-start gap-3">
-                        <div className="mt-1 flex-shrink-0">
-                          <XCircle className="h-4 w-4 text-red-400" />
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Unpredictable Patient Flow</p>
+                          <p className="text-gray-300 text-sm">Your schedule swings between overwhelming busy periods and concerning gaps, making financial planning impossible and staff scheduling a nightmare.</p>
                         </div>
-                        <p className="text-white">
-                          Difficulty attracting new patients in competitive markets with large hospital networks
-                        </p>
                       </li>
                       <li className="flex items-start gap-3">
-                        <div className="mt-1 flex-shrink-0">
-                          <XCircle className="h-6 w-6 text-red-400" />
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Declining Referral Networks</p>
+                          <p className="text-gray-300 text-sm">Traditional referral sources are drying up as physicians retire, practices consolidate, and patients increasingly research and choose providers independently online.</p>
                         </div>
-                        <p className="text-white">
-                          Unreliable referral systems that create unpredictable patient flow
-                        </p>
                       </li>
                       <li className="flex items-start gap-3">
-                        <div className="mt-1 flex-shrink-0">
-                          <XCircle className="h-6 w-6 text-red-400" />
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Insurance Reimbursement Pressures</p>
+                          <p className="text-gray-300 text-sm">With reimbursement rates declining, you need more patients to maintain revenue, but your current marketing isn't bringing in enough qualified prospects.</p>
                         </div>
-                        <p className="text-white">
-                          Marketing agencies with no healthcare experience who don't understand regulations
-                        </p>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Competition from Large Health Systems</p>
+                          <p className="text-gray-300 text-sm">Hospital networks with massive marketing budgets are capturing patients you should be treating, while you struggle to compete with their visibility and resources.</p>
+                        </div>
                       </li>
                     </ul>
                   </CardContent>
