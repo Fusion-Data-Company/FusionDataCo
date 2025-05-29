@@ -191,20 +191,35 @@ export default function Footer() {
         
         {/* Certifications */}
         <div className="flex flex-wrap justify-center gap-6 mb-12">
-          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center">
-            <img src="https://via.placeholder.com/90x40?text=ISO27001" alt="ISO 27001 Certified" />
+          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center min-w-[90px] h-[40px]">
+            <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
+              <Shield size={16} />
+              <span>ISO 27001</span>
+            </div>
           </div>
-          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center">
-            <img src="https://via.placeholder.com/90x40?text=SOC2" alt="SOC 2 Type II Certified" />
+          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center min-w-[90px] h-[40px]">
+            <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
+              <Shield size={16} />
+              <span>SOC 2 Type II</span>
+            </div>
           </div>
-          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center">
-            <img src="https://via.placeholder.com/90x40?text=GDPR" alt="GDPR Compliant" />
+          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center min-w-[90px] h-[40px]">
+            <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
+              <Shield size={16} />
+              <span>GDPR</span>
+            </div>
           </div>
-          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center">
-            <img src="https://via.placeholder.com/90x40?text=HIPAA" alt="HIPAA Compliant" />
+          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center min-w-[90px] h-[40px]">
+            <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
+              <Shield size={16} />
+              <span>HIPAA</span>
+            </div>
           </div>
-          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center">
-            <img src="https://via.placeholder.com/90x40?text=AWS" alt="AWS Partner" />
+          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center min-w-[90px] h-[40px]">
+            <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
+              <Globe size={16} />
+              <span>AWS Partner</span>
+            </div>
           </div>
         </div>
         

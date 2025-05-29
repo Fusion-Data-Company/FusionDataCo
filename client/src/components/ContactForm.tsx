@@ -105,10 +105,10 @@ export default function ContactForm() {
   ];
 
   const enterpriseClientsLogos = [
-    "https://via.placeholder.com/120x40?text=Enterprise1",
-    "https://via.placeholder.com/120x40?text=Enterprise2",
-    "https://via.placeholder.com/120x40?text=Enterprise3",
-    "https://via.placeholder.com/120x40?text=Enterprise4"
+    "ENTERPRISE 1",
+    "ENTERPRISE 2", 
+    "ENTERPRISE 3",
+    "ENTERPRISE 4"
   ];
   
   const securityBadges = [
@@ -381,8 +381,10 @@ export default function ContactForm() {
                       <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">Trusted by enterprise organizations</p>
                       <div className="flex flex-wrap gap-4">
                         {enterpriseClientsLogos.map((logo, idx) => (
-                          <div key={idx} className="h-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img src={logo} alt={`Enterprise Client ${idx + 1}`} className="h-full" />
+                          <div key={idx} className="h-8 opacity-60 hover:opacity-100 transition-all duration-300 flex items-center">
+                            <div className="bg-card/50 rounded px-3 py-1 border border-border/30">
+                              <span className="text-xs font-semibold text-muted-foreground">{logo}</span>
+                            </div>
                           </div>
                         ))}
                       </div>

@@ -180,20 +180,30 @@ export default function CTASection() {
         <div className="mt-16 max-w-5xl mx-auto">
           <p className="text-sm text-muted-foreground text-center mb-8">TRUSTED BY LEADING ENTERPRISES WORLDWIDE</p>
           <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16">
-            <div className="h-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <img src="https://via.placeholder.com/130x35?text=Enterprise" alt="Enterprise Client" className="h-full" />
+            <div className="h-8 opacity-60 hover:opacity-100 transition-all duration-300 flex items-center">
+              <div className="bg-card/50 rounded px-3 py-1 border border-border/30">
+                <span className="text-xs font-semibold text-muted-foreground">ENTERPRISE CLIENT</span>
+              </div>
             </div>
-            <div className="h-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <img src="https://via.placeholder.com/130x35?text=Fortune500" alt="Fortune 500 Client" className="h-full" />
+            <div className="h-8 opacity-60 hover:opacity-100 transition-all duration-300 flex items-center">
+              <div className="bg-card/50 rounded px-3 py-1 border border-border/30">
+                <span className="text-xs font-semibold text-muted-foreground">FORTUNE 500</span>
+              </div>
             </div>
-            <div className="h-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <img src="https://via.placeholder.com/130x35?text=GlobalCorp" alt="Global Corp" className="h-full" />
+            <div className="h-8 opacity-60 hover:opacity-100 transition-all duration-300 flex items-center">
+              <div className="bg-card/50 rounded px-3 py-1 border border-border/30">
+                <span className="text-xs font-semibold text-muted-foreground">GLOBAL CORP</span>
+              </div>
             </div>
-            <div className="h-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <img src="https://via.placeholder.com/130x35?text=TechGiant" alt="Tech Giant" className="h-full" />
+            <div className="h-8 opacity-60 hover:opacity-100 transition-all duration-300 flex items-center">
+              <div className="bg-card/50 rounded px-3 py-1 border border-border/30">
+                <span className="text-xs font-semibold text-muted-foreground">TECH GIANT</span>
+              </div>
             </div>
-            <div className="h-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <img src="https://via.placeholder.com/130x35?text=IndustryLeader" alt="Industry Leader" className="h-full" />
+            <div className="h-8 opacity-60 hover:opacity-100 transition-all duration-300 flex items-center">
+              <div className="bg-card/50 rounded px-3 py-1 border border-border/30">
+                <span className="text-xs font-semibold text-muted-foreground">INDUSTRY LEADER</span>
+              </div>
             </div>
           </div>
         </div>
