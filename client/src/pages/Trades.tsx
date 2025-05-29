@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Check, ChevronRight, BarChart3, Wrench, UserPlus, Users, Shield, CheckCircle2 } from "lucide-react";
+import { Check, ChevronRight, BarChart3, Wrench, UserPlus, Users, Shield, CheckCircle2, XCircle } from "lucide-react";
 import { trackEvent } from '@/components/AnalyticsTracker';
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
@@ -281,34 +281,39 @@ export default function Trades() {
                   </CardContent>
                 </Card>
                 
-                <Card className="enterprise-card">
-                  <div className="glow-wrapper"></div>
-                  <CardContent className="p-6 enterprise-card-content">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Marketing Complexity
-                    </h3>
+                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <Wrench className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">
+                        Marketing Complexity
+                      </h3>
+                    </div>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-red-100/80">
                           No time to manage multiple marketing channels while running your business
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-red-100/80">
                           Agencies that don't understand the trades industry charging premium rates
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-red-100/80">
                           Uncertainty about which marketing strategies actually work for service businesses
                         </p>
                       </li>
@@ -316,34 +321,39 @@ export default function Trades() {
                   </CardContent>
                 </Card>
                 
-                <Card className="enterprise-card">
-                  <div className="glow-wrapper"></div>
-                  <CardContent className="p-6 enterprise-card-content">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Customer Follow-up Challenges
-                    </h3>
+                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <Users className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">
+                        Customer Follow-up Challenges
+                      </h3>
+                    </div>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-red-100/80">
                           Losing potential repeat business because of poor follow-up systems
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-red-100/80">
                           No systematic approach to getting reviews and referrals
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-red-100/80">
                           Missing out on maintenance contracts and recurring revenue opportunities
                         </p>
                       </li>
