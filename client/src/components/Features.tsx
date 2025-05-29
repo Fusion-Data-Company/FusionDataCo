@@ -7,68 +7,68 @@ import {
 export default function Features() {
   const features = [
     {
-      icon: <Database size={30} />,
-      title: "Enterprise CRM",
-      description: "Comprehensive customer relationship management with advanced segmentation and enterprise-grade governance.",
+      icon: <Workflow size={30} />,
+      title: "N8N Workflow Automation",
+      description: "Professional N8N workflow development and implementation with multi-platform system integrations and custom automation solutions.",
       benefits: [
-        "Role-based access controls", 
-        "Custom workflow automation", 
-        "Enterprise data governance"
+        "Custom automation solutions for lead generation", 
+        "API connections and webhook configurations", 
+        "Make.com (Integromat) automations when specified"
       ],
       color: "primary"
     },
     {
-      icon: <BarChart3 size={30} />,
-      title: "Advanced Analytics",
-      description: "Make data-driven decisions with our enterprise business intelligence platform and predictive modeling.",
+      icon: <Database size={30} />,
+      title: "Go High Level CRM Implementation",
+      description: "Complete CRM system setup and optimization with lead generation pipeline development and sales team efficiency optimization.",
       benefits: [
-        "Customizable executive dashboards", 
-        "Predictive lead scoring", 
-        "ROI attribution modeling"
+        "Go High Level funnel implementation", 
+        "Customer relationship management automation", 
+        "Data enrichment and acquisition funnel creation"
       ],
       color: "accent"
     },
     {
       icon: <Bot size={30} />,
-      title: "AI-Powered Intelligence",
-      description: "Leverage cutting-edge AI for personalized customer engagement and operational efficiency.",
+      title: "AI & Voice Technology Solutions",
+      description: "ElevenLabs voice synthesis, multi-step AI agent creation, and LLM integration with Claude, GPT, and OpenRouter.io.",
       benefits: [
-        "Natural language processing", 
-        "Predictive customer behavior", 
-        "Automated content optimization"
+        "ElevenLabs voice synthesis and agent development", 
+        "Ollama local model deployment", 
+        "Voice-enabled customer interaction systems"
       ],
       color: "secondary"
     },
     {
-      icon: <Workflow size={30} />,
-      title: "Workflow Orchestration",
-      description: "Design complex enterprise workflows that connect all departments for seamless operations.",
+      icon: <Globe size={30} />,
+      title: "Professional Web Development",
+      description: "Conversion-optimized website development with browser automation via Puppeteer and human-like interaction patterns.",
       benefits: [
-        "Enterprise process automation", 
-        "Cross-department coordination", 
-        "Integration with enterprise systems"
+        "Conversion-optimized professional websites", 
+        "Web scraping for credential-restricted data", 
+        "Form automation and data extraction"
       ],
       color: "accent"
     },
     {
-      icon: <Lock size={30} />,
-      title: "Enterprise Security",
-      description: "Bank-grade security protocols with comprehensive audit logging and compliance controls.",
+      icon: <BarChart3 size={30} />,
+      title: "Marketing & Social Media Management",
+      description: "ROI-focused social media advertising management, marketing automation systems, and conversion funnel optimization with analytics tracking.",
       benefits: [
-        "SOC 2 Type II compliance", 
-        "End-to-end encryption", 
-        "Advanced threat protection"
+        "Social media advertising management and optimization", 
+        "Lead nurture sequences and conversion funnel optimization", 
+        "Analytics and performance tracking with ROI focus"
       ],
       color: "primary"
     },
     {
-      icon: <Globe size={30} />,
-      title: "Global Infrastructure",
-      description: "Distributed cloud architecture with regional data compliance and enterprise-grade reliability.",
+      icon: <Database size={30} />,
+      title: "Data Management & Analytics",
+      description: "Comprehensive data solutions with Airtable automation, Supabase backend implementation, and Google Workspace integration for seamless operations.",
       benefits: [
-        "99.99% uptime SLA", 
-        "Global CDN integration", 
-        "Regional data residency"
+        "Airtable database automation and Supabase implementation", 
+        "Google Workspace integration (Docs, Sheets, Drive, Gmail)", 
+        "Real-time analytics dashboard creation and data transfer"
       ],
       color: "secondary"
     }

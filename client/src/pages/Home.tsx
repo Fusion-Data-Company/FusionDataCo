@@ -21,8 +21,8 @@ export default function Home() {
     <>
       <Helmet>
         <title>Fusion Data Co - Complete Business Automation Platform</title>
-        <meta name="description" content="Fusion Data Co provides a comprehensive white-label business platform with integrated CRM, custom websites, AI-powered email marketing, and social media automation. Streamline your entire business operation." />
-        <meta name="keywords" content="marketing automation, N8N automations, AI lead generation, small business marketing automation, social content workflows, white-label CRM" />
+        <meta name="description" content="Fusion Data Co delivers N8N workflow automation, Go High Level CRM implementation, ElevenLabs AI voice technology, professional web development, and enterprise-level solutions for small businesses. Complete automation with Python scripting, API integrations, and 24/7 lead generation." />
+        <meta name="keywords" content="N8N workflow automation, Go High Level CRM, ElevenLabs voice synthesis, Make.com automations, API integrations, Python scripting, web development, AI agents, marketing automation, lead generation pipelines" />
         
         {/* Open Graph / Social Media */}
         <meta property="og:type" content="website" />

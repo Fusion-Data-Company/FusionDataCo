@@ -10,23 +10,23 @@ export default function CRM() {
   const features = [
     {
       icon: <Users className="text-[#14ffc8]" size={28} />,
-      title: "Visitor Tracking",
-      description: "Automatically capture every website visitor's journey, interactions, and engagement patterns in real-time."
+      title: "Go High Level Funnel Implementation",
+      description: "Complete CRM system setup and optimization with professional funnel development for maximum lead conversion."
     },
     {
       icon: <Database className="text-[#ff0aff]" size={28} />,
-      title: "Lead Intelligence",
-      description: "Enrich visitor data with contact information, company details, and behavioral insights for smarter targeting."
+      title: "Lead Generation Pipeline Development",
+      description: "Custom lead generation pipelines with data enrichment processes and acquisition funnel creation for optimal results."
     },
     {
       icon: <Zap className="text-[#8f00ff]" size={28} />,
-      title: "Automated Workflows",
-      description: "Set up intelligent sequences that nurture leads based on their actions and engagement level automatically."
+      title: "Customer Relationship Management Automation",
+      description: "Automated customer relationship management with sales team efficiency optimization and intelligent lead nurturing."
     },
     {
       icon: <PieChart className="text-[#00ffff]" size={28} />,
-      title: "Conversion Analytics",
-      description: "Track conversion paths, identify high-value visitors, and optimize your funnel for maximum ROI."
+      title: "Sales Team Efficiency Optimization",
+      description: "Streamline your sales processes with automated workflows, performance tracking, and conversion optimization strategies."
     }
   ];
 

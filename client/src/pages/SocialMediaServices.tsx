@@ -11,8 +11,8 @@ export default function SocialMediaServices() {
     <>
       <Helmet>
         <title>Social Media Automation | Fusion Data Co</title>
-        <meta name="description" content="Automate your social media marketing with AI-powered content creation, scheduling, and analytics. Save time and improve results across all platforms." />
-        <meta name="keywords" content="social media automation, content scheduling, AI content creation, social media analytics, marketing automation" />
+        <meta name="description" content="Professional social media advertising management and optimization with marketing automation systems, lead nurture sequences, and ROI-focused campaign management. Complete analytics and performance tracking." />
+        <meta name="keywords" content="social media advertising management, marketing automation systems, lead nurture sequences, conversion funnel optimization, ROI campaign management, performance tracking analytics" />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#0b0b0d] text-white">
@@ -36,7 +36,7 @@ export default function SocialMediaServices() {
                   <span className="text-white">Marketing</span>
                 </h1>
                 <p className="text-lg md:text-xl mb-8 text-gray-300">
-                  Schedule, publish, and analyze your social media content across all platforms with our AI-powered automation platform. Save time, maintain a consistent presence, and drive better results.
+                  Professional social media advertising management and optimization with marketing automation systems, lead nurture sequences, and ROI-focused campaign management. Complete analytics and performance tracking for maximum results.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
                   <Link href="/pricing">

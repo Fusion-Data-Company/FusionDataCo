@@ -4,26 +4,26 @@ export default function ValueProposition() {
   const stats = [
     {
       icon: <TrendingUp size={28} />,
-      title: "4.2x ROI",
-      description: "Small businesses achieve 4x ROI through complete business automation",
+      title: "N8N & Make.com Automation",
+      description: "Professional workflow development with multi-platform integrations and custom lead generation pipelines",
       color: "primary"
     },
     {
       icon: <BarChart4 size={28} />,
-      title: "62% Time Saved",
-      description: "Average reduction in manual business tasks and operational overhead",
+      title: "Go High Level CRM",
+      description: "Complete funnel implementation, lead generation pipelines, and sales team efficiency optimization",
       color: "accent"
     },
     {
-      icon: <Briefcase size={28} />,
-      title: "All-in-One Platform",
-      description: "Complete business operations - CRM, websites, email, and social media",
+      icon: <Bot size={28} />,
+      title: "AI & Voice Technology",
+      description: "ElevenLabs voice synthesis, multi-step AI agents, and LLM integration with Claude, GPT, OpenRouter.io",
       color: "secondary"
     },
     {
       icon: <ShieldCheck size={28} />,
-      title: "Free Social Trial",
-      description: "2 weeks of FREE AI-powered social media posting to get started",
+      title: "Enterprise-Level Solutions",
+      description: "Fortune 500-style automation at small business scale with 24/7 automated lead generation",
       color: "muted-foreground"
     }
   ];
