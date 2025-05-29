@@ -368,6 +368,139 @@ export default function SmallBusinessOwners() {
             </div>
           </section>
           
+          {/* Yellow Industry Info Section */}
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-950 via-yellow-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-900/20 via-amber-800/10 to-orange-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-yellow-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-yellow-500/8 via-transparent to-amber-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                Understanding the <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">Small Business Landscape</span>
+              </h2>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-12">
+                <div>
+                  <h3 className="text-2xl font-semibold mb-6 text-[#ffa500]">Why 80% of Small Businesses Fail Within 5 Years</h3>
+                  <div className="space-y-4">
+                    <div className="bg-[#121218]/60 border border-[#ffa500]/20 rounded-lg p-6">
+                      <h4 className="text-lg font-semibold mb-3 text-white">Marketing Neglect</h4>
+                      <p className="text-gray-300 text-sm mb-3">
+                        Most small business owners are experts in their craft but struggle with marketing. They rely on word-of-mouth and hope for the best, missing 73% of potential customers.
+                      </p>
+                      <div className="text-[#ffa500] font-semibold text-sm">Impact: 60% revenue loss compared to competitors with proper marketing</div>
+                    </div>
+                    
+                    <div className="bg-[#121218]/60 border border-[#ffa500]/20 rounded-lg p-6">
+                      <h4 className="text-lg font-semibold mb-3 text-white">Cash Flow Management</h4>
+                      <p className="text-gray-300 text-sm mb-3">
+                        Without predictable lead generation, businesses experience feast-or-famine cycles that make it impossible to plan, invest, or grow consistently.
+                      </p>
+                      <div className="text-[#ffa500] font-semibold text-sm">Impact: 82% of failed businesses cite cash flow as primary reason</div>
+                    </div>
+                    
+                    <div className="bg-[#121218]/60 border border-[#ffa500]/20 rounded-lg p-6">
+                      <h4 className="text-lg font-semibold mb-3 text-white">Digital Transformation Gap</h4>
+                      <p className="text-gray-300 text-sm mb-3">
+                        While consumers moved online, many small businesses stayed stuck with outdated methods, losing market share to digitally-savvy competitors.
+                      </p>
+                      <div className="text-[#ffa500] font-semibold text-sm">Impact: 67% of customers research online before buying locally</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-2xl font-semibold mb-6 text-[#ffa500]">The Small Business Success Formula</h3>
+                  <div className="space-y-6">
+                    <div className="border border-[#ffa500]/30 rounded-lg p-6 bg-gradient-to-r from-[#ffa500]/10 to-transparent">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-12 h-12 bg-[#ffa500]/20 rounded-full flex items-center justify-center">
+                          <span className="text-[#ffa500] font-bold text-lg">1</span>
+                        </div>
+                        <h4 className="text-xl font-semibold text-white">Consistent Lead Generation</h4>
+                      </div>
+                      <p className="text-gray-300 text-sm">
+                        Build systems that bring in qualified prospects every day, not just when you remember to post on social media.
+                      </p>
+                    </div>
+                    
+                    <div className="border border-[#ffa500]/30 rounded-lg p-6 bg-gradient-to-r from-[#ffa500]/10 to-transparent">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-12 h-12 bg-[#ffa500]/20 rounded-full flex items-center justify-center">
+                          <span className="text-[#ffa500] font-bold text-lg">2</span>
+                        </div>
+                        <h4 className="text-xl font-semibold text-white">Automated Follow-Up</h4>
+                      </div>
+                      <p className="text-gray-300 text-sm">
+                        Never lose a lead because you forgot to follow up. Automated systems nurture prospects until they're ready to buy.
+                      </p>
+                    </div>
+                    
+                    <div className="border border-[#ffa500]/30 rounded-lg p-6 bg-gradient-to-r from-[#ffa500]/10 to-transparent">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-12 h-12 bg-[#ffa500]/20 rounded-full flex items-center justify-center">
+                          <span className="text-[#ffa500] font-bold text-lg">3</span>
+                        </div>
+                        <h4 className="text-xl font-semibold text-white">Professional Online Presence</h4>
+                      </div>
+                      <p className="text-gray-300 text-sm">
+                        Your website is your 24/7 salesperson. Make sure it's working to convert visitors into customers, not driving them away.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Industry Statistics */}
+              <div className="bg-gradient-to-br from-[#ffa500]/10 to-[#ff8c00]/5 border border-[#ffa500]/30 rounded-xl p-8 mb-12">
+                <h3 className="text-2xl font-bold text-center mb-6 text-[#ffa500]">Small Business Marketing Reality Check</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">61%</div>
+                    <div className="text-sm text-white">Of small businesses have no marketing strategy</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">47%</div>
+                    <div className="text-sm text-white">Don't track their marketing ROI at all</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">73%</div>
+                    <div className="text-sm text-white">Rely solely on word-of-mouth marketing</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">$312K</div>
+                    <div className="text-sm text-white">Average revenue lost per year due to poor marketing</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Success Stories Preview */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-[#ffa500]">What Success Looks Like</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-6">
+                    <div className="text-2xl font-bold text-[#ffa500] mb-2">Thompson's Plumbing</div>
+                    <div className="text-sm text-white mb-3">From $180K to $520K annual revenue in 18 months</div>
+                    <div className="text-xs text-gray-400">"Finally have more work than I can handle, and I'm booked 3 months out"</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-6">
+                    <div className="text-2xl font-bold text-[#ffa500] mb-2">Elite Fitness Studio</div>
+                    <div className="text-sm text-white mb-3">420% increase in new member signups</div>
+                    <div className="text-xs text-gray-400">"Our automated system brings in 15+ qualified leads per week"</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-6">
+                    <div className="text-2xl font-bold text-[#ffa500] mb-2">Rodriguez Law Firm</div>
+                    <div className="text-sm text-white mb-3">$2.3M in new case value within 12 months</div>
+                    <div className="text-xs text-gray-400">"We've become the go-to firm in our area for personal injury"</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
           {/* Solution Section with Green Ambient Glow */}
           <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
             {/* Green ambient glow behind the content */}
