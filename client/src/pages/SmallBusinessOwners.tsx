@@ -227,7 +227,7 @@ export default function SmallBusinessOwners() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                  <CardContent className="p-8 relative z-10">
                     <h3 className="text-xl font-semibold mb-4 text-white">
                       Outdated Web Presence
                     </h3>
@@ -262,7 +262,7 @@ export default function SmallBusinessOwners() {
                 
                 <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                  <CardContent className="p-8 relative z-10">
                     <h3 className="text-xl font-semibold mb-4 text-white">
                       Invisible Online Presence
                     </h3>
@@ -297,7 +297,7 @@ export default function SmallBusinessOwners() {
                 
                 <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                  <CardContent className="p-8 relative z-10">
                     <h3 className="text-xl font-semibold mb-4 text-white">
                       Tech Overwhelm
                     </h3>
@@ -332,7 +332,7 @@ export default function SmallBusinessOwners() {
                 
                 <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                  <CardContent className="p-8 relative z-10">
                     <h3 className="text-xl font-semibold mb-4 text-white">
                       No Follow-up System
                     </h3>
@@ -515,7 +515,7 @@ export default function SmallBusinessOwners() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
                 <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                  <CardContent className="p-8 relative z-10">
                     <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
                       <BadgePercent className="h-6 w-6 text-[#14ffc8]" />
                     </div>
@@ -553,7 +553,7 @@ export default function SmallBusinessOwners() {
                 
                 <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                  <CardContent className="p-8 relative z-10">
                     <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
                       <BarChart3 className="h-6 w-6 text-[#14ffc8]" />
                     </div>
@@ -591,7 +591,7 @@ export default function SmallBusinessOwners() {
                 
                 <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                  <CardContent className="p-8 relative z-10">
                     <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-4">
                       <Shield className="h-6 w-6 text-[#14ffc8]" />
                     </div>

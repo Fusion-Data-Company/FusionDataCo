@@ -239,9 +239,9 @@ export default function Medical() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-red-400/25 to-red-500/25 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
                         <Shield className="h-6 w-6 text-red-400" />
@@ -279,9 +279,9 @@ export default function Medical() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-red-400/25 to-red-500/25 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
                         <Calendar className="h-6 w-6 text-red-400" />
@@ -319,9 +319,9 @@ export default function Medical() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-red-400/25 to-red-500/25 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
                         <Clock className="h-6 w-6 text-red-400" />
@@ -383,7 +383,7 @@ export default function Medical() {
                 {/* High-Value Lead Types */}
                 <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                  <CardContent className="p-8 relative z-10">
                     <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Users className="h-6 w-6 text-[#ffa500]" />
                     </div>
@@ -412,7 +412,7 @@ export default function Medical() {
                 {/* Regulatory Compliance Expertise */}
                 <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                  <CardContent className="p-8 relative z-10">
                     <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Shield className="h-6 w-6 text-[#ffa500]" />
                     </div>
@@ -441,7 +441,7 @@ export default function Medical() {
                 {/* Patient Journey Understanding */}
                 <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
+                  <CardContent className="p-8 relative z-10">
                     <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Stethoscope className="h-6 w-6 text-[#ffa500]" />
                     </div>
