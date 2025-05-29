@@ -210,7 +210,7 @@ export default function RealEstate() {
                 The <span className="text-white">Real Challenges</span> Real Estate Agents Face
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
                   <CardContent className="p-8 relative z-10">
@@ -282,6 +282,43 @@ export default function RealEstate() {
                         <p className="text-white">
                           <span className="font-semibold text-red-100">Inconsistent Branding:</span> Your marketing lacks a cohesive look and message that makes you memorable to potential clients.
                         </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <h3 className="text-2xl font-semibold mb-6 text-white">Market Competition & Professional Challenges</h3>
+                    <ul className="space-y-4">
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Market Oversaturation</p>
+                          <p className="text-gray-300 text-sm">Too many agents competing for the same clients, forcing you to reduce commission rates and accept difficult deals just to stay competitive in your market.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Feast-or-Famine Income Cycles</p>
+                          <p className="text-gray-300 text-sm">Your income is unpredictable, swinging from great months to months where you struggle to pay bills, making financial planning and business growth nearly impossible.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Team and Brokerage Limitations</p>
+                          <p className="text-gray-300 text-sm">Your brokerage provides minimal marketing support, and building your own team seems impossible when you can barely generate consistent leads for yourself.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Time Management Crisis</p>
+                          <p className="text-gray-300 text-sm">You're working 7 days a week between prospecting, showings, paperwork, and marketing, but still not generating enough quality leads to build a sustainable business.</p>
+                        </div>
                       </li>
                     </ul>
                   </CardContent>
