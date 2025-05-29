@@ -23,7 +23,7 @@ export default function ValueProposition() {
     {
       icon: <ShieldCheck size={28} />,
       title: "Custom Applications & AI Assistants",
-      description: "Bespoke applications and Claude 3.5 Sonnet personal assistants with custom MCP servers for unified data control",
+      description: "Bespoke applications and Claude 3.7 Sonnet personal assistants with custom MCP servers for unified data control",
       color: "muted-foreground"
     }
   ];

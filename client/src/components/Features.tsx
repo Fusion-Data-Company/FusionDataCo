@@ -78,7 +78,7 @@ export default function Features() {
       description: "Bespoke application development and complex personal assistants using Claude Desktop with custom MCP server setups for complete data and asset control.",
       benefits: [
         "Custom application development tailored to your needs", 
-        "Claude 3.5 Sonnet personal assistants with full data access", 
+        "Claude 3.7 Sonnet personal assistants with full data access", 
         "Custom MCP server setups for unified control from one interface"
       ],
       color: "primary"
