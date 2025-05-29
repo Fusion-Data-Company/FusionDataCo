@@ -218,9 +218,9 @@ export default function Medical() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-red-100/80">
                           Difficulty attracting new patients in competitive markets with large hospital networks
                         </p>
                       </li>
@@ -244,12 +244,17 @@ export default function Medical() {
                   </CardContent>
                 </Card>
                 
-                <Card className="enterprise-card">
-                  <div className="glow-wrapper"></div>
-                  <CardContent className="p-6 enterprise-card-content">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Online Reputation Management
-                    </h3>
+                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <Shield className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">
+                        Online Reputation Management
+                      </h3>
+                    </div>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
@@ -279,12 +284,17 @@ export default function Medical() {
                   </CardContent>
                 </Card>
                 
-                <Card className="enterprise-card">
-                  <div className="glow-wrapper"></div>
-                  <CardContent className="p-6 enterprise-card-content">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Patient Communication Gaps
-                    </h3>
+                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <Calendar className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">
+                        Patient Communication Gaps
+                      </h3>
+                    </div>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
@@ -314,12 +324,17 @@ export default function Medical() {
                   </CardContent>
                 </Card>
                 
-                <Card className="enterprise-card">
-                  <div className="glow-wrapper"></div>
-                  <CardContent className="p-6 enterprise-card-content">
-                    <h3 className="text-xl font-semibold mb-4">
-                      Practice Management Inefficiency
-                    </h3>
+                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <Clock className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">
+                        Practice Management Inefficiency
+                      </h3>
+                    </div>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
