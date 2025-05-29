@@ -24,14 +24,84 @@ interface BusinessType {
 }
 
 const businessTypes: BusinessType[] = [
-  { id: 'restaurant', name: 'Restaurant', icon: '🍽️', color: 'bg-orange-500/10 text-orange-500 border-orange-500/20' },
-  { id: 'salon', name: 'Hair Salon', icon: '💇', color: 'bg-pink-500/10 text-pink-500 border-pink-500/20' },
-  { id: 'plumbing', name: 'Plumbing', icon: '🔧', color: 'bg-blue-500/10 text-blue-500 border-blue-500/20' },
-  { id: 'dental', name: 'Dental Office', icon: '🦷', color: 'bg-cyan-500/10 text-cyan-500 border-cyan-500/20' },
-  { id: 'fitness', name: 'Fitness Studio', icon: '💪', color: 'bg-red-500/10 text-red-500 border-red-500/20' },
-  { id: 'legal', name: 'Law Firm', icon: '⚖️', color: 'bg-indigo-500/10 text-indigo-500 border-indigo-500/20' },
-  { id: 'realestate', name: 'Real Estate', icon: '🏠', color: 'bg-green-500/10 text-green-500 border-green-500/20' },
-  { id: 'automotive', name: 'Auto Repair', icon: '🚗', color: 'bg-gray-500/10 text-gray-500 border-gray-500/20' },
+  // Food & Hospitality
+  { id: 'restaurant', name: 'Restaurant', icon: '🍽️', color: 'bg-orange-500/10 text-orange-400 border-orange-500/20' },
+  { id: 'cafe', name: 'Coffee Shop', icon: '☕', color: 'bg-amber-500/10 text-amber-400 border-amber-500/20' },
+  { id: 'bakery', name: 'Bakery', icon: '🥐', color: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' },
+  { id: 'hotel', name: 'Hotel', icon: '🏨', color: 'bg-blue-500/10 text-blue-400 border-blue-500/20' },
+  { id: 'catering', name: 'Catering', icon: '🍾', color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
+  
+  // Health & Wellness
+  { id: 'fitness', name: 'Fitness Studio', icon: '💪', color: 'bg-red-500/10 text-red-400 border-red-500/20' },
+  { id: 'yoga', name: 'Yoga Studio', icon: '🧘', color: 'bg-green-500/10 text-green-400 border-green-500/20' },
+  { id: 'spa', name: 'Spa & Wellness', icon: '🌿', color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
+  { id: 'dental', name: 'Dental Practice', icon: '🦷', color: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20' },
+  { id: 'chiropractor', name: 'Chiropractor', icon: '🏥', color: 'bg-teal-500/10 text-teal-400 border-teal-500/20' },
+  { id: 'nutrition', name: 'Nutrition Coach', icon: '🥗', color: 'bg-lime-500/10 text-lime-400 border-lime-500/20' },
+  
+  // Beauty & Personal Care
+  { id: 'salon', name: 'Beauty Salon', icon: '💄', color: 'bg-pink-500/10 text-pink-400 border-pink-500/20' },
+  { id: 'barbershop', name: 'Barbershop', icon: '✂️', color: 'bg-slate-500/10 text-slate-400 border-slate-500/20' },
+  { id: 'nails', name: 'Nail Salon', icon: '💅', color: 'bg-rose-500/10 text-rose-400 border-rose-500/20' },
+  { id: 'massage', name: 'Massage Therapy', icon: '🤲', color: 'bg-violet-500/10 text-violet-400 border-violet-500/20' },
+  
+  // Professional Services
+  { id: 'consulting', name: 'Business Consulting', icon: '📊', color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
+  { id: 'accounting', name: 'Accounting Firm', icon: '📈', color: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20' },
+  { id: 'legal', name: 'Law Firm', icon: '⚖️', color: 'bg-gray-500/10 text-gray-400 border-gray-500/20' },
+  { id: 'marketing', name: 'Marketing Agency', icon: '📢', color: 'bg-orange-500/10 text-orange-400 border-orange-500/20' },
+  { id: 'insurance', name: 'Insurance Agency', icon: '🛡️', color: 'bg-blue-500/10 text-blue-400 border-blue-500/20' },
+  { id: 'architect', name: 'Architecture Firm', icon: '🏗️', color: 'bg-stone-500/10 text-stone-400 border-stone-500/20' },
+  
+  // Technology & Digital
+  { id: 'tech', name: 'Tech Company', icon: '💻', color: 'bg-blue-500/10 text-blue-400 border-blue-500/20' },
+  { id: 'software', name: 'Software Development', icon: '⌨️', color: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20' },
+  { id: 'webdesign', name: 'Web Design', icon: '🎨', color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
+  { id: 'itservices', name: 'IT Services', icon: '🔧', color: 'bg-slate-500/10 text-slate-400 border-slate-500/20' },
+  { id: 'cybersecurity', name: 'Cybersecurity', icon: '🔒', color: 'bg-red-500/10 text-red-400 border-red-500/20' },
+  
+  // Retail & E-commerce
+  { id: 'retail', name: 'Retail Store', icon: '🛍️', color: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' },
+  { id: 'clothing', name: 'Clothing Store', icon: '👗', color: 'bg-pink-500/10 text-pink-400 border-pink-500/20' },
+  { id: 'jewelry', name: 'Jewelry Store', icon: '💎', color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
+  { id: 'electronics', name: 'Electronics Store', icon: '📱', color: 'bg-blue-500/10 text-blue-400 border-blue-500/20' },
+  { id: 'bookstore', name: 'Bookstore', icon: '📚', color: 'bg-amber-500/10 text-amber-400 border-amber-500/20' },
+  { id: 'ecommerce', name: 'E-commerce', icon: '🛒', color: 'bg-green-500/10 text-green-400 border-green-500/20' },
+  
+  // Real Estate & Construction
+  { id: 'realestate', name: 'Real Estate', icon: '🏠', color: 'bg-green-500/10 text-green-400 border-green-500/20' },
+  { id: 'construction', name: 'Construction', icon: '🏗️', color: 'bg-orange-500/10 text-orange-400 border-orange-500/20' },
+  { id: 'interior', name: 'Interior Design', icon: '🛋️', color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
+  { id: 'landscaping', name: 'Landscaping', icon: '🌳', color: 'bg-green-500/10 text-green-400 border-green-500/20' },
+  { id: 'plumbing', name: 'Plumbing', icon: '🔧', color: 'bg-blue-500/10 text-blue-400 border-blue-500/20' },
+  
+  // Automotive & Transportation
+  { id: 'automotive', name: 'Auto Service', icon: '🚗', color: 'bg-gray-500/10 text-gray-400 border-gray-500/20' },
+  { id: 'cardealer', name: 'Car Dealership', icon: '🚙', color: 'bg-blue-500/10 text-blue-400 border-blue-500/20' },
+  { id: 'rideshare', name: 'Transportation', icon: '🚕', color: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' },
+  { id: 'logistics', name: 'Logistics', icon: '📦', color: 'bg-brown-500/10 text-brown-400 border-brown-500/20' },
+  
+  // Education & Training
+  { id: 'education', name: 'Training Center', icon: '🎓', color: 'bg-blue-500/10 text-blue-400 border-blue-500/20' },
+  { id: 'language', name: 'Language School', icon: '🗣️', color: 'bg-green-500/10 text-green-400 border-green-500/20' },
+  { id: 'music', name: 'Music School', icon: '🎵', color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
+  { id: 'tutoring', name: 'Tutoring Service', icon: '📝', color: 'bg-orange-500/10 text-orange-400 border-orange-500/20' },
+  
+  // Entertainment & Events
+  { id: 'photography', name: 'Photography', icon: '📸', color: 'bg-pink-500/10 text-pink-400 border-pink-500/20' },
+  { id: 'events', name: 'Event Planning', icon: '🎉', color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
+  { id: 'wedding', name: 'Wedding Services', icon: '💒', color: 'bg-rose-500/10 text-rose-400 border-rose-500/20' },
+  { id: 'entertainment', name: 'Entertainment', icon: '🎭', color: 'bg-amber-500/10 text-amber-400 border-amber-500/20' },
+  
+  // Financial Services
+  { id: 'financial', name: 'Financial Planning', icon: '💰', color: 'bg-green-500/10 text-green-400 border-green-500/20' },
+  { id: 'banking', name: 'Banking', icon: '🏦', color: 'bg-blue-500/10 text-blue-400 border-blue-500/20' },
+  { id: 'investment', name: 'Investment Firm', icon: '📊', color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
+  
+  // Pet & Animal Services
+  { id: 'veterinary', name: 'Veterinary Clinic', icon: '🐾', color: 'bg-green-500/10 text-green-400 border-green-500/20' },
+  { id: 'petgrooming', name: 'Pet Grooming', icon: '🐕', color: 'bg-blue-500/10 text-blue-400 border-blue-500/20' },
+  { id: 'petstore', name: 'Pet Store', icon: '🐱', color: 'bg-orange-500/10 text-orange-400 border-orange-500/20' }
 ];
 
 const contentExamples: Record<string, ContentExample> = {
@@ -343,10 +413,22 @@ export default function AIContentDemo() {
                     )}
                   </Button>
                 </div>
-                <div className={`p-4 rounded-md border transition-all duration-500 ${
+                <div className={`p-6 rounded-md border transition-all duration-500 min-h-[200px] ${
                   isGenerating ? 'animate-pulse bg-[#8f00ff]/5 border-[#8f00ff]/20' : 'bg-[#121218] border-[#333340]'
                 }`}>
-                  <p className="text-gray-300 whitespace-pre-line">{currentContent.socialPost}</p>
+                  <div className="text-gray-300 whitespace-pre-line leading-relaxed text-sm space-y-3">
+                    {currentContent.socialPost.split('\n').map((line, index) => (
+                      <p key={index} className={line.trim() === '' ? 'h-2' : ''}>{line}</p>
+                    ))}
+                  </div>
+                  {aiContent && (
+                    <div className="mt-4 pt-4 border-t border-[#333340]">
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <Brain className="h-3 w-3" />
+                        <span>Generated using APEX2.0 psychological framework with neurochemical targeting</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </TabsContent>
@@ -372,10 +454,10 @@ export default function AIContentDemo() {
                       )}
                     </Button>
                   </div>
-                  <div className={`p-4 rounded-md border transition-all duration-500 ${
+                  <div className={`p-4 rounded-md border transition-all duration-500 min-h-[80px] ${
                     isGenerating ? 'animate-pulse bg-[#8f00ff]/5 border-[#8f00ff]/20' : 'bg-[#121218] border-[#333340]'
                   }`}>
-                    <p className="text-gray-300 font-medium">{currentContent.emailSubject}</p>
+                    <p className="text-gray-300 font-medium text-sm leading-relaxed">{currentContent.emailSubject}</p>
                   </div>
                 </div>
                 
@@ -395,10 +477,14 @@ export default function AIContentDemo() {
                       )}
                     </Button>
                   </div>
-                  <div className={`p-4 rounded-md border transition-all duration-500 ${
+                  <div className={`p-5 rounded-md border transition-all duration-500 min-h-[180px] ${
                     isGenerating ? 'animate-pulse bg-[#8f00ff]/5 border-[#8f00ff]/20' : 'bg-[#121218] border-[#333340]'
                   }`}>
-                    <p className="text-gray-300 whitespace-pre-line">{currentContent.emailContent}</p>
+                    <div className="text-gray-300 whitespace-pre-line text-sm leading-relaxed space-y-2">
+                      {currentContent.emailContent.split('\n').map((line, index) => (
+                        <p key={index} className={line.trim() === '' ? 'h-2' : ''}>{line}</p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
