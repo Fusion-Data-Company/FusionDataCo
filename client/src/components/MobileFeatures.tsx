@@ -17,42 +17,42 @@ export default function MobileFeatures() {
       title: "Enterprise CRM",
       description: "Comprehensive customer management with advanced segmentation and automation.",
       benefits: ["Role-based access", "Custom workflows", "Data governance"],
-      color: "primary"
+      color: "blue"
     },
     {
       icon: <BarChart3 size={24} />,
       title: "Advanced Analytics",
       description: "Data-driven insights with predictive modeling and executive dashboards.",
       benefits: ["Custom dashboards", "Predictive scoring", "ROI attribution"],
-      color: "accent"
+      color: "emerald"
     },
     {
       icon: <Bot size={24} />,
       title: "AI Intelligence",
       description: "Cutting-edge AI for personalized engagement and optimization.",
       benefits: ["Natural language processing", "Behavior prediction", "Content optimization"],
-      color: "secondary"
+      color: "purple"
     },
     {
       icon: <Workflow size={24} />,
       title: "Workflow Automation",
       description: "Design complex workflows that connect all departments seamlessly.",
       benefits: ["Process automation", "Department coordination", "System integration"],
-      color: "accent"
+      color: "cyan"
     },
     {
       icon: <Lock size={24} />,
       title: "Enterprise Security",
       description: "Bank-grade security with comprehensive audit logging and compliance.",
       benefits: ["SOC 2 Type II", "End-to-end encryption", "Threat protection"],
-      color: "primary"
+      color: "orange"
     },
     {
       icon: <Globe size={24} />,
       title: "Global Infrastructure",
       description: "Distributed architecture with regional compliance and reliability.",
       benefits: ["99.99% uptime SLA", "Global CDN", "Regional data residency"],
-      color: "secondary"
+      color: "pink"
     }
   ];
 
@@ -99,44 +99,56 @@ export default function MobileFeatures() {
               viewport={{ once: true }}
               className="relative"
             >
-              {/* Card Glow Effect */}
-              <div className={`absolute inset-0 rounded-xl blur-xl opacity-20 ${
-                feature.color === 'primary' ? 'bg-primary' : 
-                feature.color === 'secondary' ? 'bg-secondary' : 
-                'bg-accent'
-              }`}></div>
-              
-              {/* Card Content */}
-              <div className="relative bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-border transition-all duration-300">
-                {/* Icon and Title */}
-                <div className="flex items-start space-x-4 mb-4">
-                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center bg-${feature.color}/10 border border-${feature.color}/20`}>
-                    <div className={`text-${feature.color}`}>
-                      {feature.icon}
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-['Orbitron'] text-lg font-semibold text-foreground mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Benefits */}
-                <ul className="space-y-2">
-                  {feature.benefits.map((benefit, i) => (
-                    <li key={i} className="flex items-center text-sm">
-                      <div className={`flex-shrink-0 w-4 h-4 rounded-full bg-${feature.color}/10 flex items-center justify-center mr-3`}>
-                        <Check className={`text-${feature.color} w-2.5 h-2.5`} />
+              {(() => {
+                const colorMap = {
+                  blue: { bg: 'bg-blue-500/10', border: 'border-blue-500/30', text: 'text-blue-400', glow: 'bg-blue-500/5' },
+                  emerald: { bg: 'bg-emerald-500/10', border: 'border-emerald-500/30', text: 'text-emerald-400', glow: 'bg-emerald-500/5' },
+                  purple: { bg: 'bg-purple-500/10', border: 'border-purple-500/30', text: 'text-purple-400', glow: 'bg-purple-500/5' },
+                  cyan: { bg: 'bg-cyan-500/10', border: 'border-cyan-500/30', text: 'text-cyan-400', glow: 'bg-cyan-500/5' },
+                  orange: { bg: 'bg-orange-500/10', border: 'border-orange-500/30', text: 'text-orange-400', glow: 'bg-orange-500/5' },
+                  pink: { bg: 'bg-pink-500/10', border: 'border-pink-500/30', text: 'text-pink-400', glow: 'bg-pink-500/5' }
+                };
+                const colors = colorMap[feature.color as keyof typeof colorMap];
+                
+                return (
+                  <>
+                    {/* Ambient glow effect */}
+                    <div className={`absolute -inset-2 ${colors.glow} rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300`}></div>
+                    
+                    {/* Card Content */}
+                    <div className={`relative bg-[#121218]/90 backdrop-blur-md border ${colors.border} rounded-xl p-6 hover:-translate-y-1 transition-all duration-300`}>
+                      {/* Icon and Title */}
+                      <div className="flex items-start space-x-4 mb-4">
+                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${colors.bg} border ${colors.border}`}>
+                          <div className={colors.text}>
+                            {feature.icon}
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-['Orbitron'] text-lg font-semibold text-white mb-2">
+                            {feature.title}
+                          </h3>
+                          <p className="text-gray-300 text-sm leading-relaxed">
+                            {feature.description}
+                          </p>
+                        </div>
                       </div>
-                      <span className="text-muted-foreground">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+
+                      {/* Benefits */}
+                      <ul className="space-y-2">
+                        {feature.benefits.map((benefit, i) => (
+                          <li key={i} className="flex items-center text-sm">
+                            <div className={`flex-shrink-0 w-4 h-4 rounded-full ${colors.bg} border ${colors.border} flex items-center justify-center mr-3`}>
+                              <Check className={`${colors.text} w-2.5 h-2.5`} />
+                            </div>
+                            <span className="text-gray-400">{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </>
+                );
+              })()}
             </motion.div>
           ))}
         </div>
