@@ -563,50 +563,70 @@ export default function Pricing() {
                 High-quality verified leads with advanced outreach technologies for maximum conversion.
               </p>
               
-              <div className="overflow-x-auto">
+              {/* Mobile-friendly card layout for small screens */}
+              <div className="block md:hidden space-y-4">
+                {[
+                  { type: "Email Lists", price: "From $150 per 1,000 leads", desc: "Verified B2B/B2C email contacts" },
+                  { type: "Phone Lists", price: "From $200 per 1,000 leads", desc: "Validated phone contacts, business or consumer" },
+                  { type: "Combined Lists", price: "From $250 per 1,000 leads", desc: "Fully verified contacts with emails and phone numbers" },
+                  { type: "Ringless Voicemail Drops", price: "$159 per 1,000 drops", desc: "Fully managed campaigns including content creation, deployment, and analytics" },
+                  { type: "AI Voice Calls", price: "From $0.25 per call", desc: "AI-driven personalized outbound calling campaigns" },
+                  { type: "Live Caller Services", price: "From $25/hour per agent", desc: "Managed outbound calling services, with domestic and offshore options available" },
+                  { type: "Real Estate Acquisition Leads", price: "From $50 per lead", desc: "Premium, validated leads for high-value transactions" }
+                ].map((item, index) => (
+                  <div key={index} className="bg-gradient-to-br from-slate-900/50 to-slate-800/30 border border-slate-700/50 rounded-xl p-4">
+                    <h3 className="text-foreground font-bold text-lg mb-2">{item.type}</h3>
+                    <p className="text-primary font-bold text-lg mb-2">{item.price}</p>
+                    <p className="text-muted-foreground text-sm">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop table layout */}
+              <div className="hidden md:block overflow-x-auto">
                 <table className="w-full bg-gradient-to-br from-slate-900/50 to-slate-800/30 border border-slate-700/50 rounded-xl overflow-hidden">
                   <thead className="bg-gradient-to-r from-blue-900/50 to-purple-900/50">
                     <tr>
-                      <th className="px-6 py-4 text-left text-foreground font-bold">Lead Type</th>
-                      <th className="px-6 py-4 text-left text-foreground font-bold">Pricing</th>
-                      <th className="px-6 py-4 text-left text-foreground font-bold">Description</th>
+                      <th className="px-4 lg:px-6 py-4 text-left text-foreground font-bold text-sm lg:text-base">Lead Type</th>
+                      <th className="px-4 lg:px-6 py-4 text-left text-foreground font-bold text-sm lg:text-base">Pricing</th>
+                      <th className="px-4 lg:px-6 py-4 text-left text-foreground font-bold text-sm lg:text-base">Description</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-700/50">
                     <tr className="hover:bg-slate-800/30 transition-colors">
-                      <td className="px-6 py-4 text-foreground font-medium">Email Lists</td>
-                      <td className="px-6 py-4 text-primary font-bold">From $150 per 1,000 leads</td>
-                      <td className="px-6 py-4 text-muted-foreground">Verified B2B/B2C email contacts</td>
+                      <td className="px-4 lg:px-6 py-4 text-foreground font-medium text-sm lg:text-base">Email Lists</td>
+                      <td className="px-4 lg:px-6 py-4 text-primary font-bold text-sm lg:text-base">From $150 per 1,000 leads</td>
+                      <td className="px-4 lg:px-6 py-4 text-muted-foreground text-sm lg:text-base">Verified B2B/B2C email contacts</td>
                     </tr>
                     <tr className="hover:bg-slate-800/30 transition-colors">
-                      <td className="px-6 py-4 text-foreground font-medium">Phone Lists</td>
-                      <td className="px-6 py-4 text-primary font-bold">From $200 per 1,000 leads</td>
-                      <td className="px-6 py-4 text-muted-foreground">Validated phone contacts, business or consumer</td>
+                      <td className="px-4 lg:px-6 py-4 text-foreground font-medium text-sm lg:text-base">Phone Lists</td>
+                      <td className="px-4 lg:px-6 py-4 text-primary font-bold text-sm lg:text-base">From $200 per 1,000 leads</td>
+                      <td className="px-4 lg:px-6 py-4 text-muted-foreground text-sm lg:text-base">Validated phone contacts, business or consumer</td>
                     </tr>
                     <tr className="hover:bg-slate-800/30 transition-colors">
-                      <td className="px-6 py-4 text-foreground font-medium">Combined Lists</td>
-                      <td className="px-6 py-4 text-primary font-bold">From $250 per 1,000 leads</td>
-                      <td className="px-6 py-4 text-muted-foreground">Fully verified contacts with emails and phone numbers</td>
+                      <td className="px-4 lg:px-6 py-4 text-foreground font-medium text-sm lg:text-base">Combined Lists</td>
+                      <td className="px-4 lg:px-6 py-4 text-primary font-bold text-sm lg:text-base">From $250 per 1,000 leads</td>
+                      <td className="px-4 lg:px-6 py-4 text-muted-foreground text-sm lg:text-base">Fully verified contacts with emails and phone numbers</td>
                     </tr>
                     <tr className="hover:bg-slate-800/30 transition-colors">
-                      <td className="px-6 py-4 text-foreground font-medium">Ringless Voicemail Drops</td>
-                      <td className="px-6 py-4 text-primary font-bold">$159 per 1,000 drops</td>
-                      <td className="px-6 py-4 text-muted-foreground">Fully managed campaigns including content creation, deployment, and analytics</td>
+                      <td className="px-4 lg:px-6 py-4 text-foreground font-medium text-sm lg:text-base">Ringless Voicemail Drops</td>
+                      <td className="px-4 lg:px-6 py-4 text-primary font-bold text-sm lg:text-base">$159 per 1,000 drops</td>
+                      <td className="px-4 lg:px-6 py-4 text-muted-foreground text-sm lg:text-base">Fully managed campaigns including content creation, deployment, and analytics</td>
                     </tr>
                     <tr className="hover:bg-slate-800/30 transition-colors">
-                      <td className="px-6 py-4 text-foreground font-medium">AI Voice Calls</td>
-                      <td className="px-6 py-4 text-primary font-bold">From $0.25 per call</td>
-                      <td className="px-6 py-4 text-muted-foreground">AI-driven personalized outbound calling campaigns</td>
+                      <td className="px-4 lg:px-6 py-4 text-foreground font-medium text-sm lg:text-base">AI Voice Calls</td>
+                      <td className="px-4 lg:px-6 py-4 text-primary font-bold text-sm lg:text-base">From $0.25 per call</td>
+                      <td className="px-4 lg:px-6 py-4 text-muted-foreground text-sm lg:text-base">AI-driven personalized outbound calling campaigns</td>
                     </tr>
                     <tr className="hover:bg-slate-800/30 transition-colors">
-                      <td className="px-6 py-4 text-foreground font-medium">Live Caller Services</td>
-                      <td className="px-6 py-4 text-primary font-bold">From $25/hour per agent</td>
-                      <td className="px-6 py-4 text-muted-foreground">Managed outbound calling services, with domestic and offshore options available</td>
+                      <td className="px-4 lg:px-6 py-4 text-foreground font-medium text-sm lg:text-base">Live Caller Services</td>
+                      <td className="px-4 lg:px-6 py-4 text-primary font-bold text-sm lg:text-base">From $25/hour per agent</td>
+                      <td className="px-4 lg:px-6 py-4 text-muted-foreground text-sm lg:text-base">Managed outbound calling services, with domestic and offshore options available</td>
                     </tr>
                     <tr className="hover:bg-slate-800/30 transition-colors">
-                      <td className="px-6 py-4 text-foreground font-medium">Real Estate Acquisition Leads</td>
-                      <td className="px-6 py-4 text-primary font-bold">From $50 per lead</td>
-                      <td className="px-6 py-4 text-muted-foreground">Premium, validated leads for high-value transactions</td>
+                      <td className="px-4 lg:px-6 py-4 text-foreground font-medium text-sm lg:text-base">Real Estate Acquisition Leads</td>
+                      <td className="px-4 lg:px-6 py-4 text-primary font-bold text-sm lg:text-base">From $50 per lead</td>
+                      <td className="px-4 lg:px-6 py-4 text-muted-foreground text-sm lg:text-base">Premium, validated leads for high-value transactions</td>
                     </tr>
                   </tbody>
                 </table>

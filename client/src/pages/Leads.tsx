@@ -47,9 +47,14 @@ export default function Leads() {
       <div className="min-h-screen bg-background text-foreground">
         <Header />
         
-        {/* Hero Section */}
-        <section className="pt-20 pb-16 bg-gradient-to-b from-background via-background/95 to-background">
-          <div className="container mx-auto px-4">
+        {/* Hero Section - Introduction */}
+        <section className="pt-20 pb-16 bg-gradient-to-b from-background via-background/95 to-background relative overflow-hidden">
+          {/* Ambient background effects */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <motion.h1
                 initial={{ y: 30, opacity: 0 }}
@@ -58,25 +63,53 @@ export default function Leads() {
                 className="text-4xl md:text-6xl font-['Orbitron'] font-bold mb-6"
               >
                 <span className="text-foreground">Elite Lead</span>{" "}
-                <span className="text-primary">Generation</span>
+                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Generation</span>
               </motion.h1>
               
               <motion.p
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto"
+                className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed"
               >
                 Transform prospects into customers with precision-targeted lead generation. 
                 Advanced technology meets proven strategies for maximum conversion.
               </motion.p>
+
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12"
+              >
+                <div className="bg-gradient-to-br from-blue-900/30 to-blue-800/20 border border-blue-500/30 rounded-xl p-6 backdrop-blur-sm">
+                  <Target className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-foreground mb-2">Precision Targeting</h3>
+                  <p className="text-muted-foreground text-sm">Advanced algorithms identify your ideal prospects with laser accuracy</p>
+                </div>
+                <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 border border-purple-500/30 rounded-xl p-6 backdrop-blur-sm">
+                  <Zap className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-foreground mb-2">Scalable Technology</h3>
+                  <p className="text-muted-foreground text-sm">AI-powered systems that grow with your business needs</p>
+                </div>
+                <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/20 border border-cyan-500/30 rounded-xl p-6 backdrop-blur-sm">
+                  <Award className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-bold text-foreground mb-2">Proven Results</h3>
+                  <p className="text-muted-foreground text-sm">Track record of delivering measurable ROI for our clients</p>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
         {/* Pain Points Section */}
-        <section className="py-16 bg-gradient-to-b from-red-950/20 to-background">
-          <div className="container mx-auto px-4">
+        <section className="py-16 bg-gradient-to-b from-red-950/20 to-background relative overflow-hidden">
+          {/* Ambient background effects */}
+          <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 via-transparent to-orange-600/5"></div>
+          <div className="absolute top-1/3 left-1/3 w-80 h-80 bg-red-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto">
               <motion.div
                 initial={{ y: 30, opacity: 0 }}
@@ -85,44 +118,50 @@ export default function Leads() {
                 className="text-center mb-12"
               >
                 <h2 className="text-3xl md:text-4xl font-['Orbitron'] font-bold mb-6 text-foreground">
-                  Lead Generation <span className="text-red-400">Challenges</span>
+                  Lead Generation <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">Challenges</span>
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                  Most businesses struggle with these critical lead generation problems
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                  Most businesses struggle with these critical lead generation problems that prevent growth
                 </p>
               </motion.div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
                   {
                     icon: <AlertTriangle className="text-red-400" size={40} />,
                     title: "Low-Quality Leads",
-                    description: "Wasting time and money on unverified contacts that never convert"
+                    description: "Wasting time and money on unverified contacts that never convert",
+                    color: "from-red-950/40 to-red-900/30 border-red-500/40"
                   },
                   {
-                    icon: <Target className="text-red-400" size={40} />,
+                    icon: <Target className="text-orange-400" size={40} />,
                     title: "Poor Targeting",
-                    description: "Reaching the wrong audience with generic messaging that gets ignored"
+                    description: "Reaching the wrong audience with generic messaging that gets ignored",
+                    color: "from-orange-950/40 to-orange-900/30 border-orange-500/40"
                   },
                   {
                     icon: <TrendingUp className="text-red-400" size={40} />,
                     title: "Inconsistent Results",
-                    description: "Unpredictable lead flow making it impossible to scale your business"
+                    description: "Unpredictable lead flow making it impossible to scale your business",
+                    color: "from-red-950/40 to-red-900/30 border-red-500/40"
                   },
                   {
-                    icon: <Phone className="text-red-400" size={40} />,
+                    icon: <Phone className="text-orange-400" size={40} />,
                     title: "Manual Outreach",
-                    description: "Spending countless hours on manual calling and emailing with poor results"
+                    description: "Spending countless hours on manual calling and emailing with poor results",
+                    color: "from-orange-950/40 to-orange-900/30 border-orange-500/40"
                   },
                   {
                     icon: <BarChart3 className="text-red-400" size={40} />,
                     title: "No Analytics",
-                    description: "Flying blind without data to optimize your lead generation campaigns"
+                    description: "Flying blind without data to optimize your lead generation campaigns",
+                    color: "from-red-950/40 to-red-900/30 border-red-500/40"
                   },
                   {
-                    icon: <Users className="text-red-400" size={40} />,
+                    icon: <Users className="text-orange-400" size={40} />,
                     title: "Limited Scale",
-                    description: "Unable to reach enough prospects to grow your business effectively"
+                    description: "Unable to reach enough prospects to grow your business effectively",
+                    color: "from-orange-950/40 to-orange-900/30 border-orange-500/40"
                   }
                 ].map((pain, index) => (
                   <motion.div
@@ -130,11 +169,11 @@ export default function Leads() {
                     initial={{ y: 30, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-red-950/30 to-red-900/20 border border-red-500/30 rounded-xl p-6 hover:border-red-400/50 transition-all duration-300"
+                    className={`bg-gradient-to-br ${pain.color} rounded-xl p-6 hover:scale-105 transition-all duration-300 backdrop-blur-sm`}
                   >
                     <div className="mb-4">{pain.icon}</div>
                     <h3 className="text-xl font-bold mb-3 text-foreground">{pain.title}</h3>
-                    <p className="text-muted-foreground">{pain.description}</p>
+                    <p className="text-muted-foreground leading-relaxed">{pain.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -143,8 +182,13 @@ export default function Leads() {
         </section>
 
         {/* Information Section */}
-        <section className="py-16 bg-gradient-to-b from-background to-blue-950/20">
-          <div className="container mx-auto px-4">
+        <section className="py-16 bg-gradient-to-b from-background to-blue-950/20 relative overflow-hidden">
+          {/* Ambient background effects */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-cyan-600/5"></div>
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/8 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-cyan-500/8 rounded-full blur-3xl"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto">
               <motion.div
                 initial={{ y: 30, opacity: 0 }}
@@ -153,50 +197,56 @@ export default function Leads() {
                 className="text-center mb-12"
               >
                 <h2 className="text-3xl md:text-4xl font-['Orbitron'] font-bold mb-6 text-foreground">
-                  Our <span className="text-primary">Lead Generation</span> Methods
+                  Our <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Lead Generation</span> Methods
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                   Comprehensive lead generation solutions using cutting-edge technology and proven strategies
                 </p>
               </motion.div>
 
-              <div className="grid md:grid-cols-2 gap-8 mb-16">
+              <div className="grid md:grid-cols-2 gap-6 mb-16">
                 {[
                   {
                     icon: <Mail className="text-blue-400" size={40} />,
                     title: "Verified Email Lists",
                     description: "Rigorously verified email databases with high deliverability rates",
-                    details: "Multiple verification sources ensure accuracy and engagement"
+                    details: "Multiple verification sources ensure accuracy and engagement",
+                    color: "from-blue-950/40 to-blue-900/30 border-blue-500/40"
                   },
                   {
                     icon: <Phone className="text-green-400" size={40} />,
                     title: "Validated Phone Lists", 
                     description: "Accurate phone numbers collected through advanced skip-tracing",
-                    details: "Direct communication channels for immediate engagement"
+                    details: "Direct communication channels for immediate engagement",
+                    color: "from-green-950/40 to-green-900/30 border-green-500/40"
                   },
                   {
                     icon: <MessageSquare className="text-purple-400" size={40} />,
                     title: "Ringless Voicemail Drops",
                     description: "Non-intrusive voicemail delivery with professional content creation",
-                    details: "High response rates without disrupting prospects"
+                    details: "High response rates without disrupting prospects",
+                    color: "from-purple-950/40 to-purple-900/30 border-purple-500/40"
                   },
                   {
                     icon: <Bot className="text-cyan-400" size={40} />,
                     title: "AI Voice Calls",
                     description: "Personalized AI-driven conversations at scale using advanced voice synthesis",
-                    details: "Natural human-like interactions for effective lead qualification"
+                    details: "Natural human-like interactions for effective lead qualification",
+                    color: "from-cyan-950/40 to-cyan-900/30 border-cyan-500/40"
                   },
                   {
                     icon: <Headphones className="text-orange-400" size={40} />,
                     title: "Live Caller Services",
                     description: "Professional human callers with extensive training and real-time monitoring",
-                    details: "Human touch for nuanced engagement and high-level qualification"
+                    details: "Human touch for nuanced engagement and high-level qualification",
+                    color: "from-orange-950/40 to-orange-900/30 border-orange-500/40"
                   },
                   {
-                    icon: <Globe className="text-red-400" size={40} />,
+                    icon: <Globe className="text-emerald-400" size={40} />,
                     title: "Real Estate Acquisition Leads",
                     description: "Premium validated leads for high-value real estate transactions",
-                    details: "Motivated sellers and qualified buyers through extensive research"
+                    details: "Motivated sellers and qualified buyers through extensive research",
+                    color: "from-emerald-950/40 to-emerald-900/30 border-emerald-500/40"
                   }
                 ].map((method, index) => (
                   <motion.div
@@ -204,12 +254,12 @@ export default function Leads() {
                     initial={{ y: 30, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: index * 0.1 }}
-                    className="bg-gradient-to-br from-slate-900/50 to-slate-800/30 border border-slate-700/50 rounded-xl p-6 hover:border-blue-400/50 transition-all duration-300"
+                    className={`bg-gradient-to-br ${method.color} rounded-xl p-6 hover:scale-105 transition-all duration-300 backdrop-blur-sm`}
                   >
                     <div className="mb-4">{method.icon}</div>
                     <h3 className="text-xl font-bold mb-3 text-foreground">{method.title}</h3>
-                    <p className="text-muted-foreground mb-3">{method.description}</p>
-                    <p className="text-sm text-blue-400">{method.details}</p>
+                    <p className="text-muted-foreground mb-3 leading-relaxed">{method.description}</p>
+                    <p className="text-sm font-medium" style={{ color: method.icon.props.className.split(' ')[0].replace('text-', '') + '400' }}>{method.details}</p>
                   </motion.div>
                 ))}
               </div>
