@@ -166,6 +166,22 @@
   filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.3));
 }
 
+.cyberpunk-text-animate-nav {
+  background: linear-gradient(90deg, 
+    #e2e8f0 0%, 
+    #ffffff 30%, 
+    #dbeafe 60%, 
+    #ffffff 90%, 
+    #e2e8f0 100%);
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-slide 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.2));
+  font-weight: 500;
+}
+
 /* Cyberpunk button specific classes */
 .cyberpunk-button {
   animation: cyberpunk-pulse 3s ease-in-out infinite;

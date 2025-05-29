@@ -7,7 +7,7 @@ import { useTheme } from "@/lib/ThemeProvider";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const [location] = useLocation();
   const { theme, setTheme } = useTheme();
 
@@ -24,8 +24,8 @@ export default function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
+  const toggleDropdown = (linkName: string) => {
+    setDropdownOpen(dropdownOpen === linkName ? null : linkName);
   };
 
   const navLinks = [
@@ -87,23 +87,33 @@ export default function Header() {
                   <div>
                     <button 
                       className={cn(
-                        "flex items-center text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer group",
-                        (location.startsWith(link.path) || dropdownOpen) && "text-foreground"
+                        "flex items-center relative group px-3 py-2 rounded-lg transition-all duration-300 cursor-pointer",
+                        "hover:bg-slate-800/50 hover:border hover:border-blue-400/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]",
+                        (location.startsWith(link.path) || dropdownOpen === link.name) && "bg-slate-800/30 border border-blue-400/20"
                       )}
-                      onClick={toggleDropdown}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleDropdown(link.name);
+                      }}
                     >
-                      {link.name}
+                      <span className="cyberpunk-text-animate-nav">
+                        {link.name}
+                      </span>
                       <ChevronDown className={cn(
-                        "ml-1 h-4 w-4 transition-transform duration-200",
-                        dropdownOpen && "transform rotate-180"
+                        "ml-2 h-4 w-4 transition-transform duration-300 text-blue-400",
+                        dropdownOpen === link.name && "transform rotate-180"
                       )} />
+                      
+                      {/* Corner highlights */}
+                      <div className="absolute top-0.5 left-0.5 w-1 h-1 border-l border-t border-blue-300 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      <div className="absolute top-0.5 right-0.5 w-1 h-1 border-r border-t border-blue-300 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     </button>
                     
                     {/* Dropdown menu */}
                     <div className={cn(
-                      "absolute left-0 mt-2 w-64 origin-top-left",
+                      "absolute left-0 mt-2 w-64 origin-top-left z-50",
                       "transition-all duration-200 transform",
-                      dropdownOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none" 
+                      dropdownOpen === link.name ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none" 
                     )}>
                       <div className="glass-panel border border-border/40 shadow-lg rounded-lg overflow-hidden p-1">
                         {link.dropdownItems.map((item) => (
@@ -121,13 +131,19 @@ export default function Header() {
                   </div>
                 ) : (
                   <Link href={link.path}>
-                    <span className={cn(
-                      "text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer relative group-hover:after:w-full",
-                      location === link.path && "text-foreground after:w-full",
-                      "after:absolute after:bottom-[-5px] after:left-0 after:h-[2px] after:bg-primary after:w-0 after:transition-all after:duration-300"
+                    <div className={cn(
+                      "relative group px-3 py-2 rounded-lg transition-all duration-300 cursor-pointer",
+                      "hover:bg-slate-800/50 hover:border hover:border-blue-400/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]",
+                      location === link.path && "bg-slate-800/30 border border-blue-400/20"
                     )}>
-                      {link.name}
-                    </span>
+                      <span className="cyberpunk-text-animate-nav">
+                        {link.name}
+                      </span>
+                      
+                      {/* Corner highlights */}
+                      <div className="absolute top-0.5 left-0.5 w-1 h-1 border-l border-t border-blue-300 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      <div className="absolute top-0.5 right-0.5 w-1 h-1 border-r border-t border-blue-300 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
                   </Link>
                 )}
               </div>
@@ -263,7 +279,7 @@ export default function Header() {
                       "flex items-center justify-between w-full py-3 text-muted-foreground transition-colors duration-200",
                       location.startsWith(link.path) && "text-foreground"
                     )}
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    onClick={() => setDropdownOpen(dropdownOpen === link.name ? null : link.name)}
                   >
                     <span>{link.name}</span>
                     <ChevronDown className={cn(
