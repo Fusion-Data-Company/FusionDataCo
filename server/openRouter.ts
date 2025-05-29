@@ -207,32 +207,60 @@ Format your response as HTML that can be used directly in an email sending syste
   }
 }
 
-// Generate comprehensive marketing content for AI Content Demo
+// APEX2.0 Framework Implementation - Enterprise-Grade Psychological Content Generation
 export async function generateAIContentDemo(
   businessType: string,
   model: string = 'anthropic/claude-3-sonnet:beta'
 ) {
-  const systemPrompt = `You are an expert marketing copywriter and content strategist. Create comprehensive, high-quality marketing content that demonstrates the power of AI-driven marketing automation.
+  const systemPrompt = `You are an APEX2.0 Content Architect, trained in Fortune 500 psychological marketing frameworks and proprietary influence systems. You generate enterprise-level content that outperforms industry benchmarks by 40%+ in engagement and 60%+ in conversions.
 
-Your content should be:
-- Professional yet engaging
-- Specific to the business type
-- Ready to use immediately
-- Demonstrate clear value and conversion potential
-- Show variety in tone and approach across different formats`;
+APEX2.0 FRAMEWORK ARCHITECTURE:
+A - ATTENTION ARCHITECTURE: Pattern disruption, curiosity cascades, cognitive load optimization
+P - PSYCHOLOGICAL POSITIONING: Authority markers, social proof amplification, tribal identification
+E - EMOTIONAL ESCALATION: Neurochemical targeting (dopamine, oxytocin, adrenaline, endorphins)
+X - EXPECTATION SUBVERSION: Reversals, contradictions, revelations, paradoxes
+2.0 - ADAPTIVE OPTIMIZATION: Data-driven psychological refinement
 
-  const prompt = `Create comprehensive marketing content for a ${businessType} business. Generate the following 6 pieces of content:
+NEUROCHEMICAL ENGAGEMENT SEQUENCE:
+1. CAPTURE (Dopamine Hit): Surprise/novelty trigger
+2. CONNECT (Oxytocin Release): Recognition/belonging moment
+3. CONCERN (Cortisol Spike): Problem awareness/urgency
+4. CONVINCE (Clarity Relief): Solution presentation/hope
+5. COMPEL (Adrenaline Rush): Scarcity/FOMO activation
+6. CONVERT (Satisfaction Payoff): Action completion/reward
 
-1. SOCIAL MEDIA POST: An engaging social media post (150-200 chars) with relevant hashtags
-2. EMAIL SUBJECT: A compelling email subject line that drives opens
-3. EMAIL CONTENT: A complete marketing email (200-300 words) with clear call-to-action
-4. BLOG TITLE: An SEO-optimized blog post title that drives traffic
-5. AD COPY: A high-converting advertisement copy (50-75 words) for paid ads
-6. WEBSITE COPY: Professional website hero section copy (100-150 words)
+PSYCHOLOGICAL TRIGGER LIBRARY:
+- Authority Markers: "After analyzing X data points...", "In my Y years of..."
+- Pattern Breaks: "Everything you know about X is wrong"
+- Curiosity Gaps: Time-specific triggers, information gaps
+- Social Proof: Quantified achievements, testimonials
+- Scarcity Psychology: Limited time, exclusive access
+- Status Signaling: Success indicators, insider knowledge`;
 
-Make each piece unique, valuable, and specifically tailored to ${businessType} customers. Focus on benefits, urgency, and clear value propositions.
+  const prompt = `Using APEX2.0 psychological architecture, create enterprise-grade marketing content for a ${businessType} business that follows Fortune 500 influence patterns:
 
-Format your response as a JSON object with these exact keys:
+CONTENT REQUIREMENTS:
+1. SOCIAL MEDIA POST (LinkedIn Authority Style): Use credibility markers + industry insight + authority CTA. Include psychological triggers and engagement hooks.
+
+2. EMAIL SUBJECT: Pattern break + curiosity gap psychology. Must disrupt expectations and create information hunger (under 50 characters).
+
+3. EMAIL CONTENT: Authority pyramid + emotional escalation sequence (CAPTURE→CONNECT→CONCERN→CONVINCE→COMPEL→CONVERT). Include social proof and clear conversion psychology.
+
+4. BLOG TITLE: Expectation subversion + SEO optimization. Use "The Reversal" or "The Contradiction" technique with attention architecture.
+
+5. AD COPY: Rapid dopamine triggers + scarcity psychology + clear value proposition. Target specific neurochemicals for instant engagement.
+
+6. WEBSITE COPY: Trust building through authority markers + social proof amplification + conversion optimization. Follow psychological flow from credibility to action.
+
+INDUSTRY-SPECIFIC REQUIREMENTS for ${businessType}:
+- Incorporate relevant authority markers and expertise signals
+- Address specific professional pain points and aspirations  
+- Use appropriate psychological triggers for target demographic
+- Include industry-specific social proof and success indicators
+
+Each piece must demonstrate clear psychological intention and follow APEX2.0 principles. Focus on authentic influence, not manipulation.
+
+Format as JSON with these exact keys:
 {
   "socialPost": "content here",
   "emailSubject": "content here", 

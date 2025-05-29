@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Sparkles, Wand2, Calendar, MessageSquare, Mail, Globe, RefreshCw, Copy, Check } from "lucide-react";
+import { Sparkles, Wand2, Calendar, MessageSquare, Mail, Globe, RefreshCw, Copy, Check, Brain } from "lucide-react";
 import { trackEvent } from './AnalyticsTracker';
 
 interface ContentExample {
@@ -175,9 +175,9 @@ export default function AIContentDemo() {
           <div className="flex items-center">
             <Sparkles className="mr-2 h-6 w-6 text-[#8f00ff]" />
             <div>
-              <CardTitle className="text-xl font-bold text-white">AI Content Personalization Demo</CardTitle>
+              <CardTitle className="text-xl font-bold text-white">APEX2.0 AI Content Architecture</CardTitle>
               <CardDescription className="text-gray-400 mt-1">
-                See how our AI creates tailored content for your specific business
+                Enterprise-grade psychological content generation using Fortune 500 influence frameworks
               </CardDescription>
             </div>
           </div>
@@ -241,6 +241,39 @@ export default function AIContentDemo() {
                 ))}
               </SelectContent>
             </Select>
+            
+            {/* APEX2.0 Framework Info */}
+            <div className="bg-gradient-to-r from-[#8f00ff]/5 to-transparent p-4 rounded-lg border border-[#8f00ff]/20">
+              <h4 className="text-white font-medium mb-2 flex items-center gap-2">
+                <Brain className="h-4 w-4 text-[#8f00ff]" />
+                APEX2.0 Psychological Framework
+              </h4>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
+                <div className="text-center">
+                  <div className="text-[#8f00ff] font-medium">A</div>
+                  <div className="text-gray-400 text-xs">Attention Architecture</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-[#8f00ff] font-medium">P</div>
+                  <div className="text-gray-400 text-xs">Psychological Positioning</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-[#8f00ff] font-medium">E</div>
+                  <div className="text-gray-400 text-xs">Emotional Escalation</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-[#8f00ff] font-medium">X</div>
+                  <div className="text-gray-400 text-xs">Expectation Subversion</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-[#8f00ff] font-medium">2.0</div>
+                  <div className="text-gray-400 text-xs">Adaptive Optimization</div>
+                </div>
+              </div>
+              <p className="text-gray-400 text-xs mt-2">
+                Proprietary framework targeting neurochemical engagement: Dopamine → Oxytocin → Adrenaline → Endorphins
+              </p>
+            </div>
           </div>
 
           {/* Selected Business Display */}
@@ -250,13 +283,18 @@ export default function AIContentDemo() {
               <div>
                 <h4 className="text-white font-medium">Content for {currentBusiness.name}</h4>
                 <p className="text-gray-400 text-sm">
-                  {aiContent ? 'Real AI-generated content from OpenRouter' : 'Example content - click Generate to create fresh AI content'}
+                  {aiContent ? 'APEX2.0 psychological architecture - enterprise-grade content generation' : 'Sample content - generate with APEX2.0 framework for Fortune 500 level influence'}
                 </p>
               </div>
               {aiContent && (
-                <Badge className="bg-green-500/10 text-green-400 border-green-500/20" variant="outline">
-                  ✨ AI Generated
-                </Badge>
+                <div className="flex gap-2">
+                  <Badge className="bg-green-500/10 text-green-400 border-green-500/20" variant="outline">
+                    ✨ APEX2.0 Generated
+                  </Badge>
+                  <Badge className="bg-purple-500/10 text-purple-400 border-purple-500/20" variant="outline">
+                    Enterprise Grade
+                  </Badge>
+                </div>
               )}
               <Badge className={currentBusiness.color} variant="outline">
                 {currentBusiness.name}
