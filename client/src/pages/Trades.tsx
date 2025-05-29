@@ -341,6 +341,183 @@ export default function Trades() {
             </div>
           </section>
           
+          {/* Trades Industry Expertise Section with Yellow Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
+            {/* Yellow/amber ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ffa500]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ffa500]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                Our <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">Trades Industry Expertise</span>
+              </h2>
+              <p className="text-xl text-center text-muted-foreground mb-12 max-w-4xl mx-auto">
+                We understand trades businesses because we've mastered the unique challenges of seasonal demand, emergency calls, and high-value project acquisition that drive sustainable growth.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {/* High-Value Lead Types */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Users className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Premium Customer Demographics</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Homeowners with $100K+ household income seeking quality workmanship</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Commercial property managers with recurring maintenance contracts</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Emergency service customers willing to pay premium rates</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Construction companies needing specialized subcontractor services</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Service Demand Patterns */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <BarChart3 className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Seasonal & Emergency Patterns</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Peak HVAC demand during extreme weather (300% rate increase)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Plumbing emergencies with 24-hour premium service opportunities</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Roofing projects timed with insurance claim settlements</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Electrical upgrades driven by home renovation projects</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Customer Decision Psychology */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Shield className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Trust & Urgency Drivers</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Licensed, bonded, insured credentials drive initial trust</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Local Google reviews and BBB ratings influence 89% of decisions</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Response time under 2 hours wins emergency service contracts</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Upfront pricing and warranty terms close high-value projects</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Advanced Lead Qualification for Trades */}
+              <div className="bg-gradient-to-br from-[#ffa500]/10 to-[#ff8c00]/5 border border-[#ffa500]/30 rounded-xl p-8 mb-12">
+                <h3 className="text-2xl font-bold text-center mb-6 text-[#ffa500]">Advanced Trades Lead Qualification Methods</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-lg font-semibold mb-4 text-white">Project Value & Urgency Assessment</h4>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Emergency vs. planned work classification (premium pricing opportunities)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Project scope estimation: repair, replacement, or full system install</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Insurance claim involvement and coverage verification</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Budget range pre-qualification ($500+ minimum project values)</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold mb-4 text-white">Customer Profile & Payment Verification</h4>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Property ownership verification and decision-maker identification</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Payment method assessment: cash, financing, or payment plans</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Previous contractor experience and satisfaction levels</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Timeline flexibility and scheduling compatibility</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Competitive Advantage */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-[#ffa500]">Why Our Trades Expertise Beats the Competition</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">92%</div>
+                    <div className="text-sm text-muted-foreground">Higher job conversion rates vs. generic marketing</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">$2,850</div>
+                    <div className="text-sm text-muted-foreground">Average project value increase</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">45min</div>
+                    <div className="text-sm text-muted-foreground">Average response time to emergency calls</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">78%</div>
+                    <div className="text-sm text-muted-foreground">Customer retention for recurring services</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
           {/* Solution Section with Green Ambient Glow */}
           <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
             {/* Green ambient glow behind the content */}

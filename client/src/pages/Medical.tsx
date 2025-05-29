@@ -344,6 +344,183 @@ export default function Medical() {
             </div>
           </section>
           
+          {/* Healthcare Industry Expertise Section with Yellow Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
+            {/* Yellow/amber ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ffa500]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ffa500]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                Our <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">Healthcare Industry Expertise</span>
+              </h2>
+              <p className="text-xl text-center text-muted-foreground mb-12 max-w-4xl mx-auto">
+                We understand healthcare marketing because we've mastered the unique challenges, regulations, and patient acquisition strategies that drive practice growth.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {/* High-Value Lead Types */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Users className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Premium Patient Demographics</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Insurance-verified patients with $75K+ household income</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Patients actively seeking elective procedures (cosmetic, dental, specialist care)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Chronic condition patients requiring ongoing care management</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Health-conscious demographics aged 35-65 with disposable income</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Regulatory Compliance Expertise */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Shield className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">HIPAA-Compliant Marketing</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Complete HIPAA compliance in all patient communications and data handling</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>FDA-compliant advertising for medical devices and treatments</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>State medical board advertising regulation adherence</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Ethical marketing practices that maintain professional credibility</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Patient Journey Understanding */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Stethoscope className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Patient Decision Psychology</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Trust-building through educational content and social proof</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Addressing healthcare anxiety and decision paralysis</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Insurance navigation and payment option communication</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Emergency vs. preventive care messaging strategies</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Advanced Healthcare Lead Qualification */}
+              <div className="bg-gradient-to-br from-[#ffa500]/10 to-[#ff8c00]/5 border border-[#ffa500]/30 rounded-xl p-8 mb-12">
+                <h3 className="text-2xl font-bold text-center mb-6 text-[#ffa500]">Advanced Healthcare Lead Qualification Methods</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-lg font-semibold mb-4 text-white">Insurance & Financial Qualification</h4>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Real-time insurance verification and coverage assessment</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Out-of-pocket cost estimation and payment plan qualification</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>HSA/FSA eligible procedure identification and guidance</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Premium insurance plan holders prioritization</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold mb-4 text-white">Clinical & Urgency Assessment</h4>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Symptom severity and treatment urgency evaluation</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Previous treatment history and referral pattern analysis</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Specialist referral readiness and appointment commitment level</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Chronic condition management program suitability</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Competitive Advantage */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-[#ffa500]">Why Our Healthcare Expertise Beats the Competition</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">87%</div>
+                    <div className="text-sm text-muted-foreground">Higher patient conversion rates vs. generic marketing</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">$340</div>
+                    <div className="text-sm text-muted-foreground">Average patient lifetime value increase</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">24hrs</div>
+                    <div className="text-sm text-muted-foreground">Average time to qualified appointment booking</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">100%</div>
+                    <div className="text-sm text-muted-foreground">HIPAA compliance with zero violations</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
           {/* Solution Section with Green Ambient Glow */}
           <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
             {/* Green ambient glow behind the content */}
