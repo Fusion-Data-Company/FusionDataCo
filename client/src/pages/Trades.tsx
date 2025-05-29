@@ -188,13 +188,10 @@ export default function Trades() {
           </section>
           
           {/* Pain Points Section with Enhanced Red Ambient Glow */}
-          <section className="py-16 px-4 bg-gradient-to-br from-slate-900 via-red-950/40 to-slate-950 relative overflow-hidden">
-            {/* Balanced red background effects */}
-            <div className="absolute inset-0 bg-gradient-to-r from-red-900/25 via-red-800/15 to-red-900/25 z-0"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-600/8 to-transparent z-0"></div>
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-red-500/12 via-transparent to-red-400/12 z-0"></div>
-            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-red-500/15 rounded-full blur-3xl z-0"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-red-400/15 rounded-full blur-3xl z-0"></div>
+          <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
+            {/* Red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">
