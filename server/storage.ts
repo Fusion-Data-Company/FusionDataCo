@@ -30,8 +30,10 @@ export interface IStorage {
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   
-  // Contact form operations
+  // Contact form operations - Enhanced for all form types
   createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
+  getAllContactSubmissions(): Promise<ContactSubmission[]>;
+  getContactSubmissionsByType(formType: string): Promise<ContactSubmission[]>;
   
   // Chat operations
   createChatMessage(message: InsertChatMessage): Promise<ChatMessage>;

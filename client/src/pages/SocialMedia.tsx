@@ -20,6 +20,150 @@ import {
   Linkedin,
   Youtube
 } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { trackEvent } from "@/components/AnalyticsTracker";
+import { apiRequest } from "@/lib/queryClient";
+
+function SocialMediaForm() {
+  const [formData, setFormData] = useState({
+    businessName: '',
+    industry: '',
+    name: '',
+    email: '',
+    phone: '',
+    challenges: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      trackEvent({
+        category: 'lead_generation',
+        action: 'submit',
+        label: 'social_media_form',
+      });
+      
+      await apiRequest('/api/contact', {
+        method: 'POST',
+        body: JSON.stringify({
+          ...formData,
+          formType: 'social_media',
+          company: formData.businessName,
+          message: formData.challenges
+        }),
+      });
+      
+      setSubmitted(true);
+      toast({
+        title: "Form submitted successfully",
+        description: "We'll be in touch within 24 hours to discuss your social media audit.",
+      });
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Submission failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30 text-center">
+        <h3 className="text-2xl font-bold text-purple-400 mb-4">Thank You!</h3>
+        <p className="text-white mb-4">Your social media audit request has been submitted successfully.</p>
+        <p className="text-gray-300">Our social media experts will contact you within 24 hours to schedule your free consultation.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label className="block text-sm font-medium mb-2">Business Name</label>
+          <input 
+            type="text" 
+            value={formData.businessName}
+            onChange={(e) => setFormData({...formData, businessName: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Industry</label>
+          <input 
+            type="text" 
+            value={formData.industry}
+            onChange={(e) => setFormData({...formData, industry: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label className="block text-sm font-medium mb-2">Your Name</label>
+          <input 
+            type="text" 
+            value={formData.name}
+            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Email Address</label>
+          <input 
+            type="email" 
+            value={formData.email}
+            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+      </div>
+      <div className="mb-6">
+        <label className="block text-sm font-medium mb-2">Phone Number</label>
+        <input 
+          type="tel" 
+          value={formData.phone}
+          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+          className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+        />
+      </div>
+      <div className="mb-6">
+        <label className="block text-sm font-medium mb-2">Current Social Media Challenges</label>
+        <textarea 
+          value={formData.challenges}
+          onChange={(e) => setFormData({...formData, challenges: e.target.value})}
+          className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none h-24" 
+          placeholder="Tell us about your biggest social media challenges..."
+        />
+      </div>
+      <button 
+        type="submit" 
+        disabled={isSubmitting}
+        className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-800 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 [box-shadow:0_0_20px_#a855f740]"
+      >
+        {isSubmitting ? 'Submitting...' : 'Get My Free Social Media Audit'}
+      </button>
+      <p className="text-xs text-gray-400 mt-4 text-center">
+        No spam, ever. Your information is 100% secure and will only be used to contact you about your social media consultation.
+      </p>
+    </form>
+  );
+}
 
 export default function SocialMedia() {
   return (
@@ -630,38 +774,7 @@ export default function SocialMedia() {
                   </div>
                 </div>
 
-                <form className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Business Name</label>
-                      <input type="text" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Industry</label>
-                      <input type="text" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Email Address</label>
-                      <input type="email" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Phone Number</label>
-                      <input type="tel" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
-                    </div>
-                  </div>
-                  <div className="mb-6">
-                    <label className="block text-sm font-medium mb-2">Current Social Media Challenges</label>
-                    <textarea className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none h-24" placeholder="Tell us about your biggest social media challenges..."></textarea>
-                  </div>
-                  <button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 [box-shadow:0_0_20px_#a855f740]">
-                    Get My Free Social Media Audit
-                  </button>
-                  <p className="text-xs text-gray-400 mt-4 text-center">
-                    No spam, ever. Your information is 100% secure and will only be used to contact you about your social media consultation.
-                  </p>
-                </form>
+                <SocialMediaForm />
               </div>
             </div>
           </section>

@@ -20,14 +20,22 @@ export const insertUserSchema = createInsertSchema(users).pick({
   fullName: true,
 });
 
-// Contact form submissions
+// Contact form submissions - Enhanced for all form types
 export const contactSubmissions = pgTable("contact_submissions", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull(),
-  company: text("company").notNull(),
-  industry: text("industry").notNull(),
+  company: text("company"),
+  industry: text("industry"),
+  phone: text("phone"),
   message: text("message"),
+  formType: text("form_type").notNull(), // 'contact', 'social_media', 'real_estate', 'medical', 'trades', 'small_business'
+  challenges: text("challenges"),
+  businessName: text("business_name"),
+  brokerage: text("brokerage"),
+  agentName: text("agent_name"),
+  source: text("source").default("website"),
+  status: text("status").default("new"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -36,7 +44,14 @@ export const contactSubmissionSchema = createInsertSchema(contactSubmissions).pi
   email: true,
   company: true,
   industry: true,
+  phone: true,
   message: true,
+  formType: true,
+  challenges: true,
+  businessName: true,
+  brokerage: true,
+  agentName: true,
+  source: true,
 });
 
 // Chat messages
