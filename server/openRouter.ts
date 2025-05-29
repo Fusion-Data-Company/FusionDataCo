@@ -207,6 +207,70 @@ Format your response as HTML that can be used directly in an email sending syste
   }
 }
 
+// Generate comprehensive marketing content for AI Content Demo
+export async function generateAIContentDemo(
+  businessType: string,
+  model: string = 'anthropic/claude-3-sonnet:beta'
+) {
+  const systemPrompt = `You are an expert marketing copywriter and content strategist. Create comprehensive, high-quality marketing content that demonstrates the power of AI-driven marketing automation.
+
+Your content should be:
+- Professional yet engaging
+- Specific to the business type
+- Ready to use immediately
+- Demonstrate clear value and conversion potential
+- Show variety in tone and approach across different formats`;
+
+  const prompt = `Create comprehensive marketing content for a ${businessType} business. Generate the following 6 pieces of content:
+
+1. SOCIAL MEDIA POST: An engaging social media post (150-200 chars) with relevant hashtags
+2. EMAIL SUBJECT: A compelling email subject line that drives opens
+3. EMAIL CONTENT: A complete marketing email (200-300 words) with clear call-to-action
+4. BLOG TITLE: An SEO-optimized blog post title that drives traffic
+5. AD COPY: A high-converting advertisement copy (50-75 words) for paid ads
+6. WEBSITE COPY: Professional website hero section copy (100-150 words)
+
+Make each piece unique, valuable, and specifically tailored to ${businessType} customers. Focus on benefits, urgency, and clear value propositions.
+
+Format your response as a JSON object with these exact keys:
+{
+  "socialPost": "content here",
+  "emailSubject": "content here", 
+  "emailContent": "content here",
+  "blogTitle": "content here",
+  "adCopy": "content here",
+  "websiteCopy": "content here"
+}`;
+
+  try {
+    const content = await generateContent(prompt, model, {
+      temperature: 0.8,
+      max_tokens: 1500,
+      system_prompt: systemPrompt
+    });
+
+    // Parse the JSON response
+    try {
+      const parsedContent = JSON.parse(content);
+      return parsedContent;
+    } catch (parseError) {
+      console.error('Error parsing AI response as JSON:', parseError);
+      // Fallback: return the raw content in a structured format
+      return {
+        socialPost: content.substring(0, 200),
+        emailSubject: "AI-Generated Content Ready",
+        emailContent: content,
+        blogTitle: `${businessType} Marketing Insights`,
+        adCopy: content.substring(0, 100),
+        websiteCopy: content.substring(0, 200)
+      };
+    }
+  } catch (error) {
+    console.error('Error generating AI content demo:', error);
+    throw error;
+  }
+}
+
 export const AVAILABLE_MODELS = [
   { id: "anthropic/claude-3-opus:beta", name: "Claude 3 Opus", provider: "Anthropic" },
   { id: "anthropic/claude-3-sonnet:beta", name: "Claude 3 Sonnet", provider: "Anthropic" },

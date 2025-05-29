@@ -17,6 +17,33 @@ import axios from "axios";
 export async function registerRoutes(app: Express): Promise<Server> {
   // Register marketing routes
   app.use("/api/marketing", marketingRouter);
+
+  // AI Content Demo endpoint
+  app.post("/api/ai-content-demo", async (req, res) => {
+    try {
+      const { businessType, model } = req.body;
+      
+      if (!businessType) {
+        return res.status(400).json({ error: "Business type is required" });
+      }
+
+      // Import the function dynamically to avoid circular imports
+      const { generateAIContentDemo } = await import("./openRouter");
+      
+      const content = await generateAIContentDemo(
+        businessType, 
+        model || 'anthropic/claude-3-sonnet:beta'
+      );
+      
+      res.json({ success: true, content });
+    } catch (error) {
+      console.error("Error generating AI content demo:", error);
+      res.status(500).json({ 
+        error: "Failed to generate content", 
+        details: error instanceof Error ? error.message : "Unknown error" 
+      });
+    }
+  });
   
   // Contact form submission endpoint
   app.post("/api/contact", async (req, res) => {

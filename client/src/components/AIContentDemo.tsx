@@ -106,8 +106,10 @@ export default function AIContentDemo() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
   const [generationCount, setGenerationCount] = useState(0);
+  const [aiContent, setAiContent] = useState<ContentExample | null>(null);
+  const [selectedModel, setSelectedModel] = useState<string>('anthropic/claude-3-sonnet:beta');
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     setIsGenerating(true);
     setGenerationCount(prev => prev + 1);
     
@@ -119,10 +121,32 @@ export default function AIContentDemo() {
       value: generationCount + 1
     });
     
-    // Simulate AI generation time
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/ai-content-demo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          businessType: businessTypes.find(b => b.id === selectedBusiness)?.name || selectedBusiness,
+          model: selectedModel
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate content');
+      }
+
+      const data = await response.json();
+      if (data.success && data.content) {
+        setAiContent(data.content);
+      }
+    } catch (error) {
+      console.error('Error generating AI content:', error);
+      // Keep the example content as fallback
+    } finally {
       setIsGenerating(false);
-    }, 2000);
+    }
   };
 
   const copyToClipboard = async (text: string, itemType: string) => {
@@ -141,7 +165,7 @@ export default function AIContentDemo() {
     }
   };
 
-  const currentContent = contentExamples[selectedBusiness];
+  const currentContent = aiContent || contentExamples[selectedBusiness];
   const currentBusiness = businessTypes.find(b => b.id === selectedBusiness);
 
   return (
