@@ -102,6 +102,16 @@ export class PostgresStorage implements IStorage {
     return result[0];
   }
 
+  async getAllContactSubmissions(): Promise<ContactSubmission[]> {
+    return await db.select().from(contactSubmissions).orderBy(desc(contactSubmissions.createdAt));
+  }
+
+  async getContactSubmissionsByType(formType: string): Promise<ContactSubmission[]> {
+    return await db.select().from(contactSubmissions)
+      .where(eq(contactSubmissions.formType, formType))
+      .orderBy(desc(contactSubmissions.createdAt));
+  }
+
   // Chat operations
   async createChatMessage(message: InsertChatMessage): Promise<ChatMessage> {
     const result = await db.insert(chatMessages).values(message).returning();
