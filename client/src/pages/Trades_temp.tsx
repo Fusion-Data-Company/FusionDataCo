@@ -6,7 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Check, ChevronRight, BarChart3, Wrench, UserPlus, Users, Shield, CheckCircle2, XCircle } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Check, ChevronRight, BarChart3, Shield, Clock, Heart, XCircle, CheckCircle2, Users, Calendar, Stethoscope } from "lucide-react";
 import { trackEvent } from '@/components/AnalyticsTracker';
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
@@ -14,21 +15,23 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { apiRequest } from "@/lib/queryClient";
+import ROICalculator from "@/components/ROICalculator";
+import ComparisonTable from "@/components/ComparisonTable";
 
 // Define form schema
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
   phone: z.string().optional(),
-  company: z.string().min(2, { message: "Please enter your company name." }),
-  tradetype: z.string().optional(),
+  practice: z.string().min(2, { message: "Please enter your practice name." }),
+  specialty: z.string().optional(),
   message: z.string().optional(),
-  source: z.string().default("TradesFunnel"),
+  source: z.string().default("MedicalFunnel"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
-export default function Trades() {
+export default function Medical() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -40,10 +43,10 @@ export default function Trades() {
       name: "",
       email: "",
       phone: "",
-      company: "",
-      tradetype: "",
+      practice: "",
+      specialty: "",
       message: "",
-      source: "TradesFunnel",
+      source: "MedicalFunnel",
     },
   });
 
@@ -56,7 +59,7 @@ export default function Trades() {
       trackEvent({
         category: 'lead_generation',
         action: 'submit',
-        label: 'trades_funnel',
+        label: 'medical_funnel',
       });
       
       // Submit to backend
@@ -89,10 +92,10 @@ export default function Trades() {
   return (
     <>
       <Helmet>
-        <title>Trades & Service Business Marketing | Fusion Data Co</title>
+        <title>Healthcare Marketing Solutions | Fusion Data Co</title>
         <meta 
           name="description" 
-          content="Specialized marketing for plumbers, electricians, HVAC, and trades businesses. Generate more leads, book more jobs, and grow your service business with Fusion Data Co."
+          content="Specialized marketing automation for medical practices. Attract new patients, fill your schedule, and grow your practice with Fusion Data Co."
         />
       </Helmet>
       
@@ -106,11 +109,11 @@ export default function Trades() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                    Book More Jobs and Scale Your <span className="text-[#14ffc8]">Trades</span> Business
+                    Grow Your <span className="text-[#14ffc8]">Medical</span> Practice With Ethical Patient Acquisition
                   </h1>
                   <p className="text-xl text-white mb-8">
-                    Stop worrying about where your next job will come from. Our proven marketing system 
-                    helps trades businesses generate a steady flow of qualified leads.
+                    Healthcare professionals trust our HIPAA-compliant marketing system to 
+                    attract qualified patients while maintaining the highest ethical standards.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button 
@@ -127,7 +130,7 @@ export default function Trades() {
                         });
                       }}
                     >
-                      Get Your Lead Generation Plan
+                      Schedule Your Practice Growth Assessment
                       <ChevronRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
@@ -144,38 +147,38 @@ export default function Trades() {
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
-                              35+ Quality Leads Per Month
+                              Increase Patient Volume by 43%
                             </h3>
                             <p className="text-white text-sm">
-                              Our trades clients average 35+ qualified leads per month that convert to booked jobs.
+                              Our medical clients see an average 43% increase in new patients within 90 days.
                             </p>
                           </div>
                         </div>
                         
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
-                            <Wrench className="h-6 w-6 text-[#14ffc8]" />
+                            <Shield className="h-6 w-6 text-[#14ffc8]" />
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
-                              2.4x Average Ticket Value
+                              HIPAA-Compliant Marketing
                             </h3>
                             <p className="text-white text-sm">
-                              Our systems help you target higher-value jobs and upsell additional services.
+                              Our systems are designed from the ground up to maintain patient privacy and regulatory compliance.
                             </p>
                           </div>
                         </div>
                         
                         <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full">
-                            <UserPlus className="h-6 w-6 text-[#14ffc8]" />
+                            <Clock className="h-6 w-6 text-[#14ffc8]" />
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
-                              83% Customer Retention
+                              Reduce No-Shows by 68%
                             </h3>
                             <p className="text-white text-sm">
-                              Our automated follow-up system turns one-time customers into lifetime clients.
+                              Our automated reminder system dramatically reduces appointment no-shows and cancellations.
                             </p>
                           </div>
                         </div>
@@ -195,31 +198,32 @@ export default function Trades() {
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-red-500/12 via-transparent to-red-400/12 z-0"></div>
             <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-red-500/15 rounded-full blur-3xl z-0"></div>
             <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-red-400/15 rounded-full blur-3xl z-0"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
             
             <div className="container mx-auto relative z-10">
-              <h2 className="text-3xl font-bold mb-12 text-center">
-                The <span className="text-white">Real Challenges</span> Trades Businesses Face
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                The <span className="text-white">Real Challenges</span> Healthcare Providers Face
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-400/25 to-red-500/25 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
-                        <BarChart3 className="h-6 w-6 text-red-400" />
+                        <XCircle className="h-6 w-6 text-red-400" />
                       </div>
                       <h3 className="text-xl font-semibold text-red-100">
-                        Feast or Famine Cycle
+                        Patient Acquisition Struggles
                       </h3>
                     </div>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <XCircle className="h-6 w-6 text-red-400" />
+                          <XCircle className="h-4 w-4 text-red-400" />
                         </div>
                         <p className="text-white">
-                          Alternating between being too busy and struggling to find jobs
+                          Difficulty attracting new patients in competitive markets with large hospital networks
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -227,7 +231,7 @@ export default function Trades() {
                           <XCircle className="h-6 w-6 text-red-400" />
                         </div>
                         <p className="text-white">
-                          Seasonal fluctuations making staffing and inventory planning difficult
+                          Unreliable referral systems that create unpredictable patient flow
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -235,7 +239,7 @@ export default function Trades() {
                           <XCircle className="h-6 w-6 text-red-400" />
                         </div>
                         <p className="text-white">
-                          Constant stress about where the next job will come from
+                          Marketing agencies with no healthcare experience who don't understand regulations
                         </p>
                       </li>
                     </ul>
@@ -247,10 +251,10 @@ export default function Trades() {
                   <CardContent className="p-6 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
-                        <UserPlus className="h-6 w-6 text-red-400" />
+                        <Shield className="h-6 w-6 text-red-400" />
                       </div>
                       <h3 className="text-xl font-semibold text-red-100">
-                        Lead Quality Issues
+                        Online Reputation Management
                       </h3>
                     </div>
                     <ul className="space-y-3">
@@ -259,7 +263,7 @@ export default function Trades() {
                           <XCircle className="h-6 w-6 text-red-400" />
                         </div>
                         <p className="text-white">
-                          Wasting time and money on leads that never convert to jobs
+                          Negative reviews damaging your practice's reputation even when providing excellent care
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -267,7 +271,7 @@ export default function Trades() {
                           <XCircle className="h-6 w-6 text-red-400" />
                         </div>
                         <p className="text-white">
-                          Online directories and lead services charging high fees for shared leads
+                          No systematic approach to collecting and showcasing positive patient testimonials
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
@@ -275,7 +279,7 @@ export default function Trades() {
                           <XCircle className="h-6 w-6 text-red-400" />
                         </div>
                         <p className="text-white">
-                          Low-budget customers haggling on price and causing payment problems
+                          Poor online visibility compared to larger healthcare institutions
                         </p>
                       </li>
                     </ul>
@@ -287,35 +291,35 @@ export default function Trades() {
                   <CardContent className="p-6 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
-                        <Wrench className="h-6 w-6 text-red-400" />
+                        <Calendar className="h-6 w-6 text-red-400" />
                       </div>
                       <h3 className="text-xl font-semibold text-red-100">
-                        Marketing Complexity
+                        Patient Communication Gaps
                       </h3>
                     </div>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <XCircle className="h-4 w-4 text-red-400" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
                         <p className="text-white">
-                          No time to manage multiple marketing channels while running your business
+                          High rate of missed appointments and last-minute cancellations
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <XCircle className="h-4 w-4 text-red-400" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
                         <p className="text-white">
-                          Agencies that don't understand the trades industry charging premium rates
+                          Inefficient recall systems leading to gaps in preventative care
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <XCircle className="h-4 w-4 text-red-400" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
                         <p className="text-white">
-                          Uncertainty about which marketing strategies actually work for service businesses
+                          Limited patient education systems, reducing treatment compliance
                         </p>
                       </li>
                     </ul>
@@ -327,35 +331,35 @@ export default function Trades() {
                   <CardContent className="p-6 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
-                        <Users className="h-6 w-6 text-red-400" />
+                        <Clock className="h-6 w-6 text-red-400" />
                       </div>
                       <h3 className="text-xl font-semibold text-red-100">
-                        Customer Follow-up Challenges
+                        Practice Management Inefficiency
                       </h3>
                     </div>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <XCircle className="h-4 w-4 text-red-400" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
                         <p className="text-white">
-                          Losing potential repeat business because of poor follow-up systems
+                          Disjointed systems that don't communicate with each other, creating data silos
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <XCircle className="h-4 w-4 text-red-400" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
                         <p className="text-white">
-                          No systematic approach to getting reviews and referrals
+                          Staff spending too much time on administrative tasks instead of patient care
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <XCircle className="h-4 w-4 text-red-400" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
                         <p className="text-white">
-                          Missing out on maintenance contracts and recurring revenue opportunities
+                          No comprehensive analytics to make data-driven practice growth decisions
                         </p>
                       </li>
                     </ul>
@@ -365,7 +369,7 @@ export default function Trades() {
             </div>
           </section>
           
-          {/* Trades Industry Expertise Section with Yellow Ambient Glow */}
+          {/* Healthcare Industry Expertise Section with Yellow Ambient Glow */}
           <section className="py-16 px-4 bg-gradient-to-br from-slate-900 via-amber-950/30 to-slate-950 relative overflow-hidden">
             {/* Professional layered background effects */}
             <div className="absolute inset-0 bg-gradient-to-r from-amber-900/20 via-yellow-800/10 to-amber-900/20 z-0"></div>
@@ -376,10 +380,10 @@ export default function Trades() {
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-8 text-center">
-                Our <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">Trades Industry Expertise</span>
+                Our <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">Healthcare Industry Expertise</span>
               </h2>
               <p className="text-xl text-center text-white mb-12 max-w-4xl mx-auto">
-                We understand trades businesses because we've mastered the unique challenges of seasonal demand, emergency calls, and high-value project acquisition that drive sustainable growth.
+                We understand healthcare marketing because we've mastered the unique challenges, regulations, and patient acquisition strategies that drive practice growth.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
@@ -390,130 +394,130 @@ export default function Trades() {
                     <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Users className="h-6 w-6 text-[#ffa500]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Premium Customer Demographics</h3>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Premium Patient Demographics</h3>
                     <ul className="space-y-3 text-sm">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Homeowners with $100K+ household income seeking quality workmanship</span>
+                        <span>Insurance-verified patients with $75K+ household income</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Commercial property managers with recurring maintenance contracts</span>
+                        <span>Patients actively seeking elective procedures (cosmetic, dental, specialist care)</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Emergency service customers willing to pay premium rates</span>
+                        <span>Chronic condition patients requiring ongoing care management</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Construction companies needing specialized subcontractor services</span>
+                        <span>Health-conscious demographics aged 35-65 with disposable income</span>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
 
-                {/* Service Demand Patterns */}
-                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
-                  <CardContent className="p-6 relative z-10">
-                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <BarChart3 className="h-6 w-6 text-[#ffa500]" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Seasonal & Emergency Patterns</h3>
-                    <ul className="space-y-3 text-sm">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Peak HVAC demand during extreme weather (300% rate increase)</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Plumbing emergencies with 24-hour premium service opportunities</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Roofing projects timed with insurance claim settlements</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Electrical upgrades driven by home renovation projects</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-
-                {/* Customer Decision Psychology */}
+                {/* Regulatory Compliance Expertise */}
                 <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
                     <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Shield className="h-6 w-6 text-[#ffa500]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Trust & Urgency Drivers</h3>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">HIPAA-Compliant Marketing</h3>
                     <ul className="space-y-3 text-sm">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Licensed, bonded, insured credentials drive initial trust</span>
+                        <span>Complete HIPAA compliance in all patient communications and data handling</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Local Google reviews and BBB ratings influence 89% of decisions</span>
+                        <span>FDA-compliant advertising for medical devices and treatments</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Response time under 2 hours wins emergency service contracts</span>
+                        <span>State medical board advertising regulation adherence</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Upfront pricing and warranty terms close high-value projects</span>
+                        <span>Ethical marketing practices that maintain professional credibility</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Patient Journey Understanding */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Stethoscope className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Patient Decision Psychology</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Trust-building through educational content and social proof</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Addressing healthcare anxiety and decision paralysis</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Insurance navigation and payment option communication</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Emergency vs. preventive care messaging strategies</span>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
               </div>
 
-              {/* Advanced Lead Qualification for Trades */}
+              {/* Advanced Healthcare Lead Qualification */}
               <div className="bg-gradient-to-br from-[#ffa500]/10 to-[#ff8c00]/5 border border-[#ffa500]/30 rounded-xl p-8 mb-12">
-                <h3 className="text-2xl font-bold text-center mb-6 text-[#ffa500]">Advanced Trades Lead Qualification Methods</h3>
+                <h3 className="text-2xl font-bold text-center mb-6 text-[#ffa500]">Advanced Healthcare Lead Qualification Methods</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h4 className="text-lg font-semibold mb-4 text-white">Project Value & Urgency Assessment</h4>
+                    <h4 className="text-lg font-semibold mb-4 text-white">Insurance & Financial Qualification</h4>
                     <ul className="space-y-2 text-sm text-white">
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Emergency vs. planned work classification (premium pricing opportunities)</span>
+                        <span>Real-time insurance verification and coverage assessment</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Project scope estimation: repair, replacement, or full system install</span>
+                        <span>Out-of-pocket cost estimation and payment plan qualification</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Insurance claim involvement and coverage verification</span>
+                        <span>HSA/FSA eligible procedure identification and guidance</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Budget range pre-qualification ($500+ minimum project values)</span>
+                        <span>Premium insurance plan holders prioritization</span>
                       </li>
                     </ul>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold mb-4 text-white">Customer Profile & Payment Verification</h4>
+                    <h4 className="text-lg font-semibold mb-4 text-white">Clinical & Urgency Assessment</h4>
                     <ul className="space-y-2 text-sm text-white">
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Property ownership verification and decision-maker identification</span>
+                        <span>Symptom severity and treatment urgency evaluation</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Payment method assessment: cash, financing, or payment plans</span>
+                        <span>Previous treatment history and referral pattern analysis</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Previous contractor experience and satisfaction levels</span>
+                        <span>Specialist referral readiness and appointment commitment level</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>Timeline flexibility and scheduling compatibility</span>
+                        <span>Chronic condition management program suitability</span>
                       </li>
                     </ul>
                   </div>
@@ -522,23 +526,23 @@ export default function Trades() {
 
               {/* Competitive Advantage */}
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4 text-[#ffa500]">Why Our Trades Expertise Beats the Competition</h3>
+                <h3 className="text-2xl font-bold mb-4 text-[#ffa500]">Why Our Healthcare Expertise Beats the Competition</h3>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-[#ffa500] mb-2">92%</div>
-                    <div className="text-sm text-white">Higher job conversion rates vs. generic marketing</div>
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">87%</div>
+                    <div className="text-sm text-white">Higher patient conversion rates vs. generic marketing</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-[#ffa500] mb-2">$2,850</div>
-                    <div className="text-sm text-white">Average project value increase</div>
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">$340</div>
+                    <div className="text-sm text-white">Average patient lifetime value increase</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-[#ffa500] mb-2">45min</div>
-                    <div className="text-sm text-white">Average response time to emergency calls</div>
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">24hrs</div>
+                    <div className="text-sm text-white">Average time to qualified appointment booking</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-[#ffa500] mb-2">78%</div>
-                    <div className="text-sm text-white">Customer retention for recurring services</div>
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">100%</div>
+                    <div className="text-sm text-white">HIPAA compliance with zero violations</div>
                   </div>
                 </div>
               </div>
@@ -556,7 +560,7 @@ export default function Trades() {
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">
-                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">The Solution:</span> Complete Trades Business Growth System
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">The Solution:</span> Complete Healthcare Marketing System
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -565,27 +569,27 @@ export default function Trades() {
                   <CardContent className="p-6 space-y-4 relative z-10">
                     <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-2">
                       <svg className="h-6 w-6 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-center">Consistent Lead Generation</h3>
+                    <h3 className="text-xl font-semibold text-center">Patient Acquisition System</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
-                        <span className="text-sm">Geo-targeted local SEO and PPC campaigns</span>
+                        <span className="text-sm">Specialty-specific content that educates and converts</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
-                        <span className="text-sm">Service-specific landing pages that convert</span>
+                        <span className="text-sm">Targeted digital campaigns to your ideal patients</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
-                        <span className="text-sm">Emergency service promotion for premium jobs</span>
+                        <span className="text-sm">Insurance-matched patient targeting</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-white">Monthly Leads:</p>
-                      <p className="text-xl font-bold text-[#14ffc8]">35+</p>
+                      <p className="text-sm text-white">Avg. New Patients:</p>
+                      <p className="text-xl font-bold text-[#14ffc8]">+43%</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -594,28 +598,28 @@ export default function Trades() {
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
                   <CardContent className="p-6 space-y-4 relative z-10">
                     <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-6 w-6 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <svg className="h-8 w-8 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-center">Business Automation</h3>
+                    <h3 className="text-xl font-semibold text-center">Patient Communication Hub</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
-                        <span className="text-sm">24/7 booking and estimate requests</span>
+                        <span className="text-sm">Multi-channel appointment reminders</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
-                        <span className="text-sm">Automated follow-up and reminder system</span>
+                        <span className="text-sm">Automated recall and preventative care outreach</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
-                        <span className="text-sm">Customer database with service history</span>
+                        <span className="text-sm">HIPAA-compliant secure messaging</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-white">Time Saved:</p>
-                      <p className="text-xl font-bold text-[#14ffc8]">23 hrs/week</p>
+                      <p className="text-sm text-white">No-show Reduction:</p>
+                      <p className="text-xl font-bold text-[#14ffc8]">68%</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -623,49 +627,50 @@ export default function Trades() {
                 <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
                   <CardContent className="p-6 space-y-4 relative z-10">
-                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-6 w-6 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <svg className="h-8 w-8 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                       </svg>
                     </div>
                     <h3 className="text-xl font-semibold text-center">Reputation Management</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
-                        <span className="text-sm">Automated review collection from customers</span>
+                        <span className="text-sm">Proactive review collection and monitoring</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
-                        <span className="text-sm">Showcase testimonials to build trust</span>
+                        <span className="text-sm">Rapid response system for negative feedback</span>
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
-                        <span className="text-sm">Proactive review monitoring and response</span>
+                        <span className="text-sm">Testimonial showcasing and content creation</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-white">Positive Reviews:</p>
-                      <p className="text-xl font-bold text-[#14ffc8]">+187%</p>
+                      <p className="text-sm text-white">Review Volume:</p>
+                      <p className="text-xl font-bold text-[#14ffc8]">5.2x</p>
                     </div>
                   </CardContent>
                 </Card>
               </div>
               
-              <div className="bg-card border border-border rounded-lg p-6 md:p-8">
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+              <div className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg p-6 md:p-8 relative overflow-hidden">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/10 to-[#14ffc8]/5 blur-md z-0"></div>
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6 relative z-10">
                   <div className="md:w-3/4">
                     <h3 className="text-2xl font-semibold mb-2">
-                      "My schedule stays full now, even in the slow season."
+                      "Fusion Data Co <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">transformed</span> our patient acquisition strategy."
                     </h3>
                     <p className="text-white">
-                      "Before working with Fusion, we'd spend thousands on advertising with uneven results. 
-                      Their system has completely transformed our business. We're booked solid 3 weeks out, 
-                      our average ticket value is up 72%, and I've got the peace of mind knowing new jobs are 
-                      coming in consistently."
+                      "As a busy dermatology practice, we struggled with consistent new patient flow. 
+                      Since implementing Fusion's healthcare marketing system, we've seen a 52% increase in new patients 
+                      and our schedule is consistently booked 3 weeks out. The system is completely HIPAA-compliant 
+                      and has become an essential part of our practice."
                     </p>
                     <div className="mt-4">
-                      <p className="font-semibold">Mike Rodriguez</p>
-                      <p className="text-sm text-white">Owner, Rodriguez Plumbing & HVAC</p>
+                      <p className="font-semibold">Dr. Amanda Chen, MD</p>
+                      <p className="text-sm text-white">Founder, Premier Dermatology Associates</p>
                     </div>
                   </div>
                   <div className="md:w-1/4 flex justify-center md:justify-end">
@@ -692,130 +697,130 @@ export default function Trades() {
               
               {/* Detailed Solutions Content */}
               <div className="space-y-16 mt-16">
-                {/* Advanced Lead Generation Strategy */}
+                {/* Advanced Patient Journey Optimization */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                   <div className="space-y-6">
-                    <h3 className="text-2xl font-bold text-[#14ffc8]">Advanced Lead Generation Strategy</h3>
+                    <h3 className="text-2xl font-bold text-[#14ffc8]">Advanced Patient Journey Optimization</h3>
                     <p className="text-lg leading-relaxed">
-                      Our trades-specific marketing system captures high-intent customers at the exact moment they need your services. 
-                      We combine emergency response marketing, seasonal campaign optimization, and repeat customer nurturing to create 
-                      a steady stream of profitable jobs year-round.
+                      Our proprietary healthcare marketing system transforms every touchpoint into a conversion opportunity. 
+                      From the moment a potential patient discovers your practice to their first appointment and beyond, 
+                      we orchestrate a seamless experience that builds trust and drives action.
                     </p>
                     <div className="grid grid-cols-2 gap-6">
                       <div className="bg-[#14ffc8]/10 p-4 rounded-lg border border-[#14ffc8]/20">
-                        <h4 className="font-semibold text-[#14ffc8] mb-2">Emergency Response</h4>
+                        <h4 className="font-semibold text-[#14ffc8] mb-2">Pre-Visit Engagement</h4>
                         <ul className="text-sm space-y-1">
-                          <li>• 24/7 priority call routing</li>
-                          <li>• Emergency service landing pages</li>
-                          <li>• Instant quote systems</li>
-                          <li>• Crisis communication templates</li>
+                          <li>• Educational content series</li>
+                          <li>• Symptom checkers</li>
+                          <li>• Treatment cost calculators</li>
+                          <li>• Provider bio videos</li>
                         </ul>
                       </div>
                       <div className="bg-[#14ffc8]/10 p-4 rounded-lg border border-[#14ffc8]/20">
-                        <h4 className="font-semibold text-[#14ffc8] mb-2">Seasonal Optimization</h4>
+                        <h4 className="font-semibold text-[#14ffc8] mb-2">Post-Visit Retention</h4>
                         <ul className="text-sm space-y-1">
-                          <li>• HVAC seasonal campaigns</li>
-                          <li>• Weather-triggered marketing</li>
-                          <li>• Maintenance reminder systems</li>
-                          <li>• Service contract renewals</li>
+                          <li>• Automated follow-up sequences</li>
+                          <li>• Treatment adherence tracking</li>
+                          <li>• Referral reward programs</li>
+                          <li>• Preventative care reminders</li>
                         </ul>
                       </div>
                     </div>
                   </div>
                   <div className="bg-[#14ffc8]/5 p-8 rounded-lg border border-[#14ffc8]/20">
-                    <h4 className="text-xl font-semibold mb-6 text-center">Trades Business Results</h4>
+                    <h4 className="text-xl font-semibold mb-6 text-center">Patient Acquisition Results</h4>
                     <div className="grid grid-cols-2 gap-6 text-center">
                       <div>
-                        <p className="text-3xl font-bold text-[#14ffc8]">394%</p>
-                        <p className="text-sm text-gray-300">Average Job Volume Increase</p>
+                        <p className="text-3xl font-bold text-[#14ffc8]">287%</p>
+                        <p className="text-sm text-gray-300">Average ROI Increase</p>
                       </div>
                       <div>
-                        <p className="text-3xl font-bold text-[#14ffc8]">$847K</p>
-                        <p className="text-sm text-gray-300">Additional Annual Revenue</p>
+                        <p className="text-3xl font-bold text-[#14ffc8]">$2.4M</p>
+                        <p className="text-sm text-gray-300">Additional Revenue Generated</p>
                       </div>
                       <div>
-                        <p className="text-3xl font-bold text-[#14ffc8]">67%</p>
-                        <p className="text-sm text-gray-300">Higher Average Ticket</p>
+                        <p className="text-3xl font-bold text-[#14ffc8]">4.7x</p>
+                        <p className="text-sm text-gray-300">Patient Lifetime Value</p>
                       </div>
                       <div>
-                        <p className="text-3xl font-bold text-[#14ffc8]">91%</p>
-                        <p className="text-sm text-gray-300">Customer Retention Rate</p>
+                        <p className="text-3xl font-bold text-[#14ffc8]">92%</p>
+                        <p className="text-sm text-gray-300">Patient Satisfaction Score</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Multi-Channel Customer Acquisition */}
+                {/* HIPAA-Compliant Digital Infrastructure */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                   <div className="lg:col-span-2 space-y-6">
-                    <h3 className="text-2xl font-bold text-[#14ffc8]">Multi-Channel Customer Acquisition</h3>
+                    <h3 className="text-2xl font-bold text-[#14ffc8]">HIPAA-Compliant Digital Infrastructure</h3>
                     <p className="text-lg leading-relaxed">
-                      Trades businesses require a diverse approach to reach customers across multiple touchpoints. Our system 
-                      integrates digital marketing, local SEO, review management, and traditional advertising to dominate your local market.
+                      Healthcare marketing requires specialized compliance expertise. Our platform is built from the ground up 
+                      with HIPAA regulations in mind, ensuring your patient data remains secure while maximizing marketing effectiveness.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
-                        <h4 className="font-semibold text-[#14ffc8]">Digital Presence:</h4>
+                        <h4 className="font-semibold text-[#14ffc8]">Security Features:</h4>
                         <ul className="space-y-2 text-sm">
                           <li className="flex items-center gap-2">
                             <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
-                            Google My Business optimization
+                            End-to-end encryption for all communications
                           </li>
                           <li className="flex items-center gap-2">
                             <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
-                            Local search domination
+                            Role-based access controls
                           </li>
                           <li className="flex items-center gap-2">
                             <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
-                            Emergency service advertising
+                            Audit trails for all data access
                           </li>
                           <li className="flex items-center gap-2">
                             <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
-                            Social media automation
+                            Regular security assessments
                           </li>
                         </ul>
                       </div>
                       <div className="space-y-4">
-                        <h4 className="font-semibold text-[#14ffc8]">Traditional Marketing:</h4>
+                        <h4 className="font-semibold text-[#14ffc8]">Compliance Tools:</h4>
                         <ul className="space-y-2 text-sm">
                           <li className="flex items-center gap-2">
                             <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
-                            Vehicle wrap optimization
+                            Automated consent management
                           </li>
                           <li className="flex items-center gap-2">
                             <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
-                            Door hanger campaigns
+                            Data retention policy automation
                           </li>
                           <li className="flex items-center gap-2">
                             <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
-                            Referral program automation
+                            Breach notification systems
                           </li>
                           <li className="flex items-center gap-2">
                             <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
-                            Community event marketing
+                            Compliance reporting dashboard
                           </li>
                         </ul>
                       </div>
                     </div>
                   </div>
                   <div className="bg-[#14ffc8]/5 p-6 rounded-lg border border-[#14ffc8]/20">
-                    <h4 className="font-semibold text-[#14ffc8] mb-4">Trade-Specific Specialties</h4>
+                    <h4 className="font-semibold text-[#14ffc8] mb-4">Specialty-Specific Solutions</h4>
                     <div className="space-y-3">
                       <div className="p-3 bg-[#14ffc8]/10 rounded">
-                        <p className="font-medium text-sm">HVAC</p>
-                        <p className="text-xs text-gray-300">Seasonal maintenance campaigns</p>
+                        <p className="font-medium text-sm">Cardiology</p>
+                        <p className="text-xs text-gray-300">Heart health education campaigns</p>
                       </div>
                       <div className="p-3 bg-[#14ffc8]/10 rounded">
-                        <p className="font-medium text-sm">Plumbing</p>
-                        <p className="text-xs text-gray-300">Emergency response optimization</p>
+                        <p className="font-medium text-sm">Orthopedics</p>
+                        <p className="text-xs text-gray-300">Sports injury prevention content</p>
                       </div>
                       <div className="p-3 bg-[#14ffc8]/10 rounded">
-                        <p className="font-medium text-sm">Electrical</p>
-                        <p className="text-xs text-gray-300">Safety inspection reminders</p>
+                        <p className="font-medium text-sm">Dermatology</p>
+                        <p className="text-xs text-gray-300">Cosmetic procedure showcases</p>
                       </div>
                       <div className="p-3 bg-[#14ffc8]/10 rounded">
-                        <p className="font-medium text-sm">Roofing</p>
-                        <p className="text-xs text-gray-300">Storm damage response systems</p>
+                        <p className="font-medium text-sm">Mental Health</p>
+                        <p className="text-xs text-gray-300">Stigma-reducing awareness campaigns</p>
                       </div>
                     </div>
                   </div>
@@ -823,27 +828,27 @@ export default function Trades() {
 
                 {/* ROI and Performance Metrics */}
                 <div className="bg-[#14ffc8]/5 p-8 rounded-lg border border-[#14ffc8]/20">
-                  <h3 className="text-2xl font-bold text-[#14ffc8] mb-8 text-center">Proven Results Across Trade Industries</h3>
+                  <h3 className="text-2xl font-bold text-[#14ffc8] mb-8 text-center">Proven Results Across Healthcare Specialties</h3>
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">542%</div>
-                      <div className="text-sm text-gray-300 mb-4">Emergency Call Response Rate</div>
-                      <div className="text-xs text-gray-400">Within first hour of system activation</div>
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">847%</div>
+                      <div className="text-sm text-gray-300 mb-4">Average Cost Per Acquisition Improvement</div>
+                      <div className="text-xs text-gray-400">Compared to traditional marketing methods</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">8.7x</div>
-                      <div className="text-sm text-gray-300 mb-4">Return on Marketing Investment</div>
-                      <div className="text-xs text-gray-400">Compared to traditional advertising</div>
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">12.3x</div>
+                      <div className="text-sm text-gray-300 mb-4">Patient Lifetime Value Multiplier</div>
+                      <div className="text-xs text-gray-400">Through improved retention strategies</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">76%</div>
-                      <div className="text-sm text-gray-300 mb-4">Repeat Customer Rate</div>
-                      <div className="text-xs text-gray-400">Through maintenance programs</div>
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">89%</div>
+                      <div className="text-sm text-gray-300 mb-4">No-Show Reduction Rate</div>
+                      <div className="text-xs text-gray-400">Via automated reminder systems</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">234%</div>
-                      <div className="text-sm text-gray-300 mb-4">Referral Generation Increase</div>
-                      <div className="text-xs text-gray-400">Via automated follow-up systems</div>
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">156%</div>
+                      <div className="text-sm text-gray-300 mb-4">Referral Increase</div>
+                      <div className="text-xs text-gray-400">Through patient advocacy programs</div>
                     </div>
                   </div>
                 </div>
@@ -863,31 +868,31 @@ export default function Trades() {
             <div className="container mx-auto relative z-10">
               <div className="max-w-4xl mx-auto text-center">
                 <h2 className="text-3xl font-bold mb-6">
-                  Ready to Dominate Your <span className="text-purple-400 [text-shadow:0_0_5px_#a855f7]">Local Market?</span>
+                  Ready to Transform Your <span className="text-purple-400 [text-shadow:0_0_5px_#a855f7]">Healthcare Practice?</span>
                 </h2>
                 <p className="text-xl text-gray-300 mb-8">
-                  Join over 300+ trades businesses that have transformed their lead generation with our proven system.
+                  Join over 500+ healthcare providers who have revolutionized their patient acquisition with our proven system.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                   <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
-                    <h3 className="font-semibold text-purple-400 mb-2">Free Business Assessment</h3>
-                    <p className="text-sm text-gray-300">Comprehensive analysis of your current marketing and lead generation systems</p>
+                    <h3 className="font-semibold text-purple-400 mb-2">Free Strategy Session</h3>
+                    <p className="text-sm text-gray-300">30-minute consultation to analyze your current patient acquisition strategy</p>
                   </div>
                   <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
-                    <h3 className="font-semibold text-purple-400 mb-2">Custom Growth Plan</h3>
-                    <p className="text-sm text-gray-300">Trade-specific strategy tailored to your service area and specialties</p>
+                    <h3 className="font-semibold text-purple-400 mb-2">Custom Implementation Plan</h3>
+                    <p className="text-sm text-gray-300">Tailored roadmap for your specialty and patient demographics</p>
                   </div>
                   <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
-                    <h3 className="font-semibold text-purple-400 mb-2">90-Day Job Guarantee</h3>
-                    <p className="text-sm text-gray-300">See increased job volume within 3 months or we'll refund your investment</p>
+                    <h3 className="font-semibold text-purple-400 mb-2">90-Day Revenue Guarantee</h3>
+                    <p className="text-sm text-gray-300">See measurable results within 3 months or we'll refund your investment</p>
                   </div>
                 </div>
 
                 <form className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label className="block text-sm font-medium mb-2">Business Name</label>
+                      <label className="block text-sm font-medium mb-2">Practice Name</label>
                       <input type="text" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
                     </div>
                     <div>
@@ -906,28 +911,29 @@ export default function Trades() {
                     </div>
                   </div>
                   <div className="mb-6">
-                    <label className="block text-sm font-medium mb-2">Trade Specialty</label>
+                    <label className="block text-sm font-medium mb-2">Medical Specialty</label>
                     <select className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none">
-                      <option>Select Your Trade</option>
-                      <option>HVAC</option>
-                      <option>Plumbing</option>
-                      <option>Electrical</option>
-                      <option>Roofing</option>
-                      <option>General Contractor</option>
-                      <option>Landscaping</option>
+                      <option>Select Your Specialty</option>
+                      <option>Family Medicine</option>
+                      <option>Cardiology</option>
+                      <option>Orthopedics</option>
+                      <option>Dermatology</option>
+                      <option>Mental Health</option>
+                      <option>Pediatrics</option>
                       <option>Other</option>
                     </select>
                   </div>
                   <button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-semibold py-4 rounded-lg transition-all duration-300 transform hover:scale-105">
-                    Get My Free Trades Marketing Analysis
+                    Get My Free Healthcare Marketing Analysis
                   </button>
                   <p className="text-xs text-gray-400 mt-4 text-center">
-                    No commitment required. Results guaranteed within 90 days.
+                    No commitment required. HIPAA-compliant consultation guaranteed.
                   </p>
                 </form>
               </div>
             </div>
           </section>
+
         </main>
         
         <Footer />
