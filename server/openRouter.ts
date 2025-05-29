@@ -303,7 +303,7 @@ Format as JSON with these exact keys:
       console.log('Raw content:', content);
       
       // Fallback: create structured content from raw response
-      const lines = content.split('\n').filter(line => line.trim());
+      const lines = content.split('\n').filter((line: string) => line.trim());
       return {
         socialPost: `🚀 After analyzing 10,000+ ${businessType} campaigns, here's what drives results:\n\n✅ Authentic storytelling that connects\n✅ Value-first approach to engagement\n✅ Strategic psychology in every post\n\nReady to transform your ${businessType} marketing? Let's create content that converts! 💪\n\n#${businessType.replace(/\s+/g, '')}Marketing #APEX2Marketing #Results`,
         emailSubject: `The ${businessType} Secret That's Changing Everything`,

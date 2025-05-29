@@ -218,8 +218,8 @@ Remember: We solve COMPLETE business operations, not just lead generation. Quali
           throw new Error('Invalid API response format');
         }
 
-      } catch (error) {
-        console.error('OpenRouter API Error:', error.response?.data || error.message);
+      } catch (error: unknown) {
+        console.error('OpenRouter API Error:', error instanceof Error ? error.message : 'Unknown error');
         // Only fallback if API completely fails
         botResponse = "I'm experiencing a temporary connection issue. Let me connect you directly with our team. What's the best way to reach you for a quick strategy call about your lead generation goals?";
       }
