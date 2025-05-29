@@ -22,8 +22,8 @@ export default function ValueProposition() {
     },
     {
       icon: <ShieldCheck size={28} />,
-      title: "Enterprise-Level Solutions",
-      description: "Fortune 500-style automation at small business scale with 24/7 automated lead generation",
+      title: "Custom Applications & AI Assistants",
+      description: "Bespoke applications and Claude 3.5 Sonnet personal assistants with custom MCP servers for unified data control",
       color: "muted-foreground"
     }
   ];
