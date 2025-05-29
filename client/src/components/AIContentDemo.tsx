@@ -448,7 +448,7 @@ export default function AIContentDemo() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => copyToClipboard(currentContent.emailSubject, 'emailSubject')}
+                      onClick={() => copyToClipboard(currentContent?.emailSubject || '', 'emailSubject')}
                       className="text-gray-400 hover:text-white"
                     >
                       {copiedItem === 'emailSubject' ? (
@@ -461,7 +461,7 @@ export default function AIContentDemo() {
                   <div className={`p-4 rounded-md border transition-all duration-500 min-h-[80px] ${
                     isGenerating ? 'animate-pulse bg-[#8f00ff]/5 border-[#8f00ff]/20' : 'bg-[#121218] border-[#333340]'
                   }`}>
-                    <p className="text-gray-300 font-medium text-sm leading-relaxed">{currentContent.emailSubject}</p>
+                    <p className="text-gray-300 font-medium text-sm leading-relaxed">{currentContent?.emailSubject || "Select a business type to see content examples"}</p>
                   </div>
                 </div>
                 
@@ -471,7 +471,7 @@ export default function AIContentDemo() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => copyToClipboard(currentContent.emailContent, 'emailContent')}
+                      onClick={() => copyToClipboard(currentContent?.emailContent || '', 'emailContent')}
                       className="text-gray-400 hover:text-white"
                     >
                       {copiedItem === 'emailContent' ? (
@@ -485,9 +485,13 @@ export default function AIContentDemo() {
                     isGenerating ? 'animate-pulse bg-[#8f00ff]/5 border-[#8f00ff]/20' : 'bg-[#121218] border-[#333340]'
                   }`}>
                     <div className="text-gray-300 whitespace-pre-line text-sm leading-relaxed space-y-2">
-                      {currentContent.emailContent.split('\n').map((line, index) => (
-                        <p key={index} className={line.trim() === '' ? 'h-2' : ''}>{line}</p>
-                      ))}
+                      {currentContent?.emailContent ? (
+                        currentContent.emailContent.split('\n').map((line, index) => (
+                          <p key={index} className={line.trim() === '' ? 'h-2' : ''}>{line}</p>
+                        ))
+                      ) : (
+                        <p>Select a business type to see content examples</p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -505,7 +509,7 @@ export default function AIContentDemo() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => copyToClipboard(currentContent.blogTitle, 'blogTitle')}
+                      onClick={() => copyToClipboard(currentContent?.blogTitle || '', 'blogTitle')}
                       className="text-gray-400 hover:text-white"
                     >
                       {copiedItem === 'blogTitle' ? (
@@ -518,7 +522,7 @@ export default function AIContentDemo() {
                   <div className={`p-4 rounded-md border transition-all duration-500 ${
                     isGenerating ? 'animate-pulse bg-[#8f00ff]/5 border-[#8f00ff]/20' : 'bg-[#121218] border-[#333340]'
                   }`}>
-                    <p className="text-gray-300 font-medium">{currentContent.blogTitle}</p>
+                    <p className="text-gray-300 font-medium">{currentContent?.blogTitle || "Select a business type to see content examples"}</p>
                   </div>
                 </div>
                 
@@ -528,7 +532,7 @@ export default function AIContentDemo() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => copyToClipboard(currentContent.websiteCopy, 'websiteCopy')}
+                      onClick={() => copyToClipboard(currentContent?.websiteCopy || '', 'websiteCopy')}
                       className="text-gray-400 hover:text-white"
                     >
                       {copiedItem === 'websiteCopy' ? (
@@ -541,7 +545,7 @@ export default function AIContentDemo() {
                   <div className={`p-4 rounded-md border transition-all duration-500 ${
                     isGenerating ? 'animate-pulse bg-[#8f00ff]/5 border-[#8f00ff]/20' : 'bg-[#121218] border-[#333340]'
                   }`}>
-                    <p className="text-gray-300">{currentContent.websiteCopy}</p>
+                    <p className="text-gray-300">{currentContent?.websiteCopy || "Select a business type to see content examples"}</p>
                   </div>
                 </div>
               </div>
@@ -557,7 +561,7 @@ export default function AIContentDemo() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => copyToClipboard(currentContent.adCopy, 'adCopy')}
+                    onClick={() => copyToClipboard(currentContent?.adCopy || '', 'adCopy')}
                     className="text-gray-400 hover:text-white"
                   >
                     {copiedItem === 'adCopy' ? (
@@ -570,7 +574,7 @@ export default function AIContentDemo() {
                 <div className={`p-4 rounded-md border transition-all duration-500 ${
                   isGenerating ? 'animate-pulse bg-[#8f00ff]/5 border-[#8f00ff]/20' : 'bg-[#121218] border-[#333340]'
                 }`}>
-                  <p className="text-gray-300">{currentContent.adCopy}</p>
+                  <p className="text-gray-300">{currentContent?.adCopy || "Select a business type to see content examples"}</p>
                 </div>
               </div>
             </TabsContent>
