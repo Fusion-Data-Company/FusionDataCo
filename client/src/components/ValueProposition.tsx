@@ -6,25 +6,29 @@ export default function ValueProposition() {
       icon: <TrendingUp size={28} />,
       title: "N8N & Make.com Automation",
       description: "Professional workflow development with multi-platform integrations and custom lead generation pipelines",
-      color: "primary"
+      color: "blue",
+      glowColor: "blue-500"
     },
     {
       icon: <BarChart4 size={28} />,
       title: "Go High Level CRM",
       description: "Complete funnel implementation, lead generation pipelines, and sales team efficiency optimization",
-      color: "accent"
+      color: "emerald",
+      glowColor: "emerald-500"
     },
     {
       icon: <Bot size={28} />,
       title: "AI & Voice Technology",
       description: "ElevenLabs voice synthesis, multi-step AI agents, and LLM integration with Claude, GPT, OpenRouter.io",
-      color: "secondary"
+      color: "purple",
+      glowColor: "purple-500"
     },
     {
       icon: <ShieldCheck size={28} />,
       title: "Custom CRM MCP Servers",
       description: "Custom CRM MCP servers enabling seamless business data and workspace interaction through Claude 3.7 Sonnet",
-      color: "muted-foreground"
+      color: "violet",
+      glowColor: "violet-500"
     }
   ];
 
@@ -45,19 +49,35 @@ export default function ValueProposition() {
           </p>
         </div>
         
-        <div className="titanium-panel rounded-xl p-8 shadow-xl">
+        <div className="bg-[#121218]/90 backdrop-blur-md rounded-xl p-8 border border-gray-800/50 shadow-xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="glass-panel p-6 rounded-lg hover-edge-glow transition-all duration-300 transform hover:-translate-y-1">
-                <div className={`w-14 h-14 rounded-lg flex items-center justify-center mb-5 bg-${stat.color}/10 border border-${stat.color}/20`}>
-                  <div className={`text-${stat.color}`}>
-                    {stat.icon}
+            {stats.map((stat, index) => {
+              const colorMap = {
+                blue: { bg: 'bg-blue-500/10', border: 'border-blue-500/30', text: 'text-blue-400', glow: 'bg-blue-500/5' },
+                emerald: { bg: 'bg-emerald-500/10', border: 'border-emerald-500/30', text: 'text-emerald-400', glow: 'bg-emerald-500/5' },
+                purple: { bg: 'bg-purple-500/10', border: 'border-purple-500/30', text: 'text-purple-400', glow: 'bg-purple-500/5' },
+                violet: { bg: 'bg-violet-500/10', border: 'border-violet-500/30', text: 'text-violet-400', glow: 'bg-violet-500/5' }
+              };
+              const colors = colorMap[stat.color as keyof typeof colorMap];
+              
+              return (
+                <div key={index} className="relative group">
+                  {/* Ambient glow effect */}
+                  <div className={`absolute -inset-2 ${colors.glow} rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300`}></div>
+                  
+                  {/* Card content */}
+                  <div className={`relative bg-[#0a0a0d]/80 backdrop-blur-sm border ${colors.border} p-6 rounded-lg transition-all duration-300 hover:-translate-y-1`}>
+                    <div className={`w-14 h-14 rounded-lg flex items-center justify-center mb-5 ${colors.bg} border ${colors.border}`}>
+                      <div className={colors.text}>
+                        {stat.icon}
+                      </div>
+                    </div>
+                    <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-white">{stat.title}</h3>
+                    <p className="text-gray-300 leading-relaxed">{stat.description}</p>
                   </div>
                 </div>
-                <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-foreground">{stat.title}</h3>
-                <p className="text-muted-foreground">{stat.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
         
