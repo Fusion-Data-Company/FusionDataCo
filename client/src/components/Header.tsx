@@ -49,9 +49,10 @@ export default function Header() {
         { name: "Social Media", path: "/social-media" },
         { name: "Campaign Builder", path: "/campaign-builder" },
         { name: "Lead Magnet", path: "/lead-magnet" },
+        { name: "CRM", path: "/crm" },
       ]
     },
-    { name: "CRM", path: "/crm" },
+    { name: "Leads", path: "/leads" },
     { name: "Pricing", path: "/pricing" },
     { name: "Contact", path: "/contact" },
   ];

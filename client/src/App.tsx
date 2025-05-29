@@ -169,6 +169,7 @@ import MarketingAutomations from "@/pages/MarketingAutomations";
 import EmailCenter from "@/pages/EmailCenter";
 import TelegramIntegrationPage from "@/pages/TelegramIntegrationPage";
 import SmallBusinessUpgrade from "@/pages/SmallBusinessUpgrade";
+import Leads from "@/pages/Leads";
 
 function Router() {
   return (
@@ -181,6 +182,7 @@ function Router() {
       <Route path="/trades" component={Trades} />
       <Route path="/social-media" component={SocialMediaCampaign} />
       <Route path="/campaigns" component={Campaigns} />
+      <Route path="/leads" component={Leads} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/login" component={Login} />
