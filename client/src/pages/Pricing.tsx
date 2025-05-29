@@ -316,7 +316,7 @@ export default function Pricing() {
                     size="lg" 
                     className="btn-titanium"
                     onClick={() => {
-                      const pricingSection = document.getElementById('pricing-cards');
+                      const pricingSection = document.getElementById('social-media-pricing');
                       pricingSection?.scrollIntoView({ behavior: 'smooth' });
                       
                       trackEvent({
@@ -559,118 +559,79 @@ export default function Pricing() {
             </div>
           </section>
           
-          {/* Feature Grid Section */}
+          {/* Lead Generation Pricing Section */}
           <section className="py-16 px-4 bg-background">
             <div className="container mx-auto">
-              <h2 className="text-3xl font-bold mb-12 text-center">
-                Compare <span className="text-primary">Features</span>
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                Lead Generation & <span className="text-primary">Acquisition Services</span>
               </h2>
+              <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+                High-quality verified leads with advanced outreach technologies for maximum conversion.
+              </p>
               
-              <div className="w-full overflow-x-auto">
-                <table className="w-full min-w-[800px] border-collapse border border-border">
-                  <thead>
-                    <tr className="bg-card">
-                      <th className="p-4 text-left border-b border-border">Feature</th>
-                      <th className="p-4 text-center border-b border-border">Starter</th>
-                      <th className="p-4 text-center border-b border-border">Growth</th>
-                      <th className="p-4 text-center border-b border-border">Elite</th>
+              <div className="overflow-x-auto">
+                <table className="w-full bg-gradient-to-br from-slate-900/50 to-slate-800/30 border border-slate-700/50 rounded-xl overflow-hidden">
+                  <thead className="bg-gradient-to-r from-blue-900/50 to-purple-900/50">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-foreground font-bold">Lead Type</th>
+                      <th className="px-6 py-4 text-left text-foreground font-bold">Pricing</th>
+                      <th className="px-6 py-4 text-left text-foreground font-bold">Description</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td className="p-4 border-b border-border">Marketing Campaigns</td>
-                      <td className="p-4 text-center border-b border-border">3</td>
-                      <td className="p-4 text-center border-b border-border">10</td>
-                      <td className="p-4 text-center border-b border-border">Unlimited</td>
+                  <tbody className="divide-y divide-slate-700/50">
+                    <tr className="hover:bg-slate-800/30 transition-colors">
+                      <td className="px-6 py-4 text-foreground font-medium">Email Lists</td>
+                      <td className="px-6 py-4 text-primary font-bold">From $150 per 1,000 leads</td>
+                      <td className="px-6 py-4 text-muted-foreground">Verified B2B/B2C email contacts</td>
                     </tr>
-                    <tr className="bg-card/30">
-                      <td className="p-4 border-b border-border">Social Media Channels</td>
-                      <td className="p-4 text-center border-b border-border">1</td>
-                      <td className="p-4 text-center border-b border-border">3</td>
-                      <td className="p-4 text-center border-b border-border">All</td>
+                    <tr className="hover:bg-slate-800/30 transition-colors">
+                      <td className="px-6 py-4 text-foreground font-medium">Phone Lists</td>
+                      <td className="px-6 py-4 text-primary font-bold">From $200 per 1,000 leads</td>
+                      <td className="px-6 py-4 text-muted-foreground">Validated phone contacts, business or consumer</td>
                     </tr>
-                    <tr>
-                      <td className="p-4 border-b border-border">Monthly Email Sends</td>
-                      <td className="p-4 text-center border-b border-border">500</td>
-                      <td className="p-4 text-center border-b border-border">5,000</td>
-                      <td className="p-4 text-center border-b border-border">50,000</td>
+                    <tr className="hover:bg-slate-800/30 transition-colors">
+                      <td className="px-6 py-4 text-foreground font-medium">Combined Lists</td>
+                      <td className="px-6 py-4 text-primary font-bold">From $250 per 1,000 leads</td>
+                      <td className="px-6 py-4 text-muted-foreground">Fully verified contacts with emails and phone numbers</td>
                     </tr>
-                    <tr className="bg-card/30">
-                      <td className="p-4 border-b border-border">AI Copywriting</td>
-                      <td className="p-4 text-center border-b border-border">
-                        <X className="h-5 w-5 mx-auto text-muted-foreground" />
-                      </td>
-                      <td className="p-4 text-center border-b border-border">25/mo</td>
-                      <td className="p-4 text-center border-b border-border">Unlimited</td>
+                    <tr className="hover:bg-slate-800/30 transition-colors">
+                      <td className="px-6 py-4 text-foreground font-medium">Ringless Voicemail Drops</td>
+                      <td className="px-6 py-4 text-primary font-bold">$159 per 1,000 drops</td>
+                      <td className="px-6 py-4 text-muted-foreground">Fully managed campaigns including content creation, deployment, and analytics</td>
                     </tr>
-                    <tr>
-                      <td className="p-4 border-b border-border">Custom Workflows</td>
-                      <td className="p-4 text-center border-b border-border">
-                        <X className="h-5 w-5 mx-auto text-muted-foreground" />
-                      </td>
-                      <td className="p-4 text-center border-b border-border">
-                        <Check className="h-5 w-5 mx-auto text-primary" />
-                      </td>
-                      <td className="p-4 text-center border-b border-border">
-                        <Check className="h-5 w-5 mx-auto text-primary" />
-                      </td>
+                    <tr className="hover:bg-slate-800/30 transition-colors">
+                      <td className="px-6 py-4 text-foreground font-medium">AI Voice Calls</td>
+                      <td className="px-6 py-4 text-primary font-bold">From $0.25 per call</td>
+                      <td className="px-6 py-4 text-muted-foreground">AI-driven personalized outbound calling campaigns</td>
                     </tr>
-                    <tr className="bg-card/30">
-                      <td className="p-4 border-b border-border">CRM Integration</td>
-                      <td className="p-4 text-center border-b border-border">
-                        <X className="h-5 w-5 mx-auto text-muted-foreground" />
-                      </td>
-                      <td className="p-4 text-center border-b border-border">
-                        <Check className="h-5 w-5 mx-auto text-primary" />
-                      </td>
-                      <td className="p-4 text-center border-b border-border">
-                        <Check className="h-5 w-5 mx-auto text-primary" />
-                      </td>
+                    <tr className="hover:bg-slate-800/30 transition-colors">
+                      <td className="px-6 py-4 text-foreground font-medium">Live Caller Services</td>
+                      <td className="px-6 py-4 text-primary font-bold">From $25/hour per agent</td>
+                      <td className="px-6 py-4 text-muted-foreground">Managed outbound calling services, with domestic and offshore options available</td>
                     </tr>
-                    <tr>
-                      <td className="p-4 border-b border-border">Telegram Integrations</td>
-                      <td className="p-4 text-center border-b border-border">
-                        <X className="h-5 w-5 mx-auto text-muted-foreground" />
-                      </td>
-                      <td className="p-4 text-center border-b border-border">
-                        <Check className="h-5 w-5 mx-auto text-primary" />
-                      </td>
-                      <td className="p-4 text-center border-b border-border">
-                        <Check className="h-5 w-5 mx-auto text-primary" />
-                      </td>
-                    </tr>
-                    <tr className="bg-card/30">
-                      <td className="p-4 border-b border-border">White Labeling</td>
-                      <td className="p-4 text-center border-b border-border">
-                        <X className="h-5 w-5 mx-auto text-muted-foreground" />
-                      </td>
-                      <td className="p-4 text-center border-b border-border">
-                        <X className="h-5 w-5 mx-auto text-muted-foreground" />
-                      </td>
-                      <td className="p-4 text-center border-b border-border">
-                        <Check className="h-5 w-5 mx-auto text-primary" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 border-b border-border">Dedicated Account Manager</td>
-                      <td className="p-4 text-center border-b border-border">
-                        <X className="h-5 w-5 mx-auto text-muted-foreground" />
-                      </td>
-                      <td className="p-4 text-center border-b border-border">
-                        <X className="h-5 w-5 mx-auto text-muted-foreground" />
-                      </td>
-                      <td className="p-4 text-center border-b border-border">
-                        <Check className="h-5 w-5 mx-auto text-primary" />
-                      </td>
-                    </tr>
-                    <tr className="bg-card/30">
-                      <td className="p-4 border-b border-border">Support</td>
-                      <td className="p-4 text-center border-b border-border">Email</td>
-                      <td className="p-4 text-center border-b border-border">Priority</td>
-                      <td className="p-4 text-center border-b border-border">24/7 Priority</td>
+                    <tr className="hover:bg-slate-800/30 transition-colors">
+                      <td className="px-6 py-4 text-foreground font-medium">Real Estate Acquisition Leads</td>
+                      <td className="px-6 py-4 text-primary font-bold">From $50 per lead</td>
+                      <td className="px-6 py-4 text-muted-foreground">Premium, validated leads for high-value transactions</td>
                     </tr>
                   </tbody>
                 </table>
+              </div>
+              
+              <div className="text-center mt-8">
+                <Button 
+                  size="lg" 
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                  onClick={() => {
+                    trackEvent({
+                      category: 'lead_generation',
+                      action: 'click',
+                      label: 'lead_generation_cta',
+                    });
+                  }}
+                >
+                  Get Custom Lead Generation Quote
+                </Button>
               </div>
             </div>
           </section>
