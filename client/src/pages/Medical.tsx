@@ -191,12 +191,14 @@ export default function Medical() {
           </section>
           
           {/* Pain Points Section with Enhanced Red Ambient Glow */}
-          <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
-            {/* Enhanced red ambient glow behind the content */}
-            <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-transparent to-orange-600/10 z-0"></div>
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/15 rounded-full blur-3xl z-0"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl z-0"></div>
-            <div className="absolute inset-0 bg-red-500/5 blur-2xl z-0"></div>
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-950 via-red-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-red-900/20 via-red-800/10 to-orange-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-red-500/8 via-transparent to-orange-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-8 text-center">
@@ -368,10 +370,13 @@ export default function Medical() {
           </section>
           
           {/* Healthcare Industry Expertise Section with Yellow Ambient Glow */}
-          <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
-            {/* Yellow/amber ambient glow behind the content */}
-            <div className="absolute inset-0 bg-[#ffa500]/5 z-0"></div>
-            <div className="absolute -inset-1/2 bg-[#ffa500]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-900 via-amber-950/30 to-slate-950 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-900/20 via-yellow-800/10 to-amber-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-amber-500/8 via-transparent to-orange-500/8 z-0"></div>
+            <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl z-0"></div>
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-8 text-center">
@@ -545,10 +550,13 @@ export default function Medical() {
           </section>
           
           {/* Solution Section with Green Ambient Glow */}
-          <section className="py-16 px-4 bg-[#0a0a0d] relative overflow-hidden">
-            {/* Green ambient glow behind the content */}
-            <div className="absolute inset-0 bg-[#14ffc8]/5 z-0"></div>
-            <div className="absolute -inset-1/2 bg-[#14ffc8]/3 blur-3xl rounded-full opacity-10 z-0"></div>
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-950 via-emerald-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/20 via-green-800/10 to-teal-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl z-0"></div>
             
             <div className="container mx-auto relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">
