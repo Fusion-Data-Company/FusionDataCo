@@ -560,10 +560,11 @@ export default function Trades() {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-8 w-8 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 space-y-4 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <svg className="h-6 w-6 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
                     </div>
@@ -589,10 +590,11 @@ export default function Trades() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-8 w-8 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 space-y-4 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <svg className="h-6 w-6 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
@@ -618,11 +620,12 @@ export default function Trades() {
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-card border border-border/50 hover:border-primary/40 transition-colors">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg className="h-8 w-8 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-6 space-y-4 relative z-10">
+                    <div className="h-12 w-12 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <svg className="h-6 w-6 text-[#14ffc8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     </div>
                     <h3 className="text-xl font-semibold text-center">Reputation Management</h3>
