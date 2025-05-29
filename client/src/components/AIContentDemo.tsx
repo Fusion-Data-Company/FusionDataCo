@@ -193,23 +193,37 @@ export default function AIContentDemo() {
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-white">Select Your Business Type</h3>
-              <Button 
-                onClick={handleGenerate}
-                disabled={isGenerating}
-                className="bg-[#8f00ff] hover:bg-[#8f00ff]/90 text-white flex items-center gap-2"
-              >
-                {isGenerating ? (
-                  <>
-                    <RefreshCw className="h-4 w-4 animate-spin" />
-                    Generating...
-                  </>
-                ) : (
-                  <>
-                    <Wand2 className="h-4 w-4" />
-                    Generate New Content
-                  </>
-                )}
-              </Button>
+              <div className="flex items-center gap-3">
+                <Select value={selectedModel} onValueChange={setSelectedModel}>
+                  <SelectTrigger className="w-48 bg-[#0a0a0d] border-[#333340] text-white text-sm">
+                    <SelectValue placeholder="Choose AI Model" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0a0a0d] border-[#333340] text-white">
+                    <SelectItem value="anthropic/claude-3-sonnet:beta">Claude 3 Sonnet</SelectItem>
+                    <SelectItem value="anthropic/claude-3-haiku:beta">Claude 3 Haiku</SelectItem>
+                    <SelectItem value="openai/gpt-4o">GPT-4o</SelectItem>
+                    <SelectItem value="perplexity/llama-3.1-sonar-large-128k-online">Perplexity Sonar</SelectItem>
+                    <SelectItem value="meta-llama/llama-3-70b-instruct">Llama 3 70B</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Button 
+                  onClick={handleGenerate}
+                  disabled={isGenerating}
+                  className="bg-[#8f00ff] hover:bg-[#8f00ff]/90 text-white flex items-center gap-2"
+                >
+                  {isGenerating ? (
+                    <>
+                      <RefreshCw className="h-4 w-4 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    <>
+                      <Wand2 className="h-4 w-4" />
+                      Generate AI Content
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
             
             <Select value={selectedBusiness} onValueChange={setSelectedBusiness}>
@@ -235,8 +249,15 @@ export default function AIContentDemo() {
               <div className="text-2xl">{currentBusiness.icon}</div>
               <div>
                 <h4 className="text-white font-medium">Content for {currentBusiness.name}</h4>
-                <p className="text-gray-400 text-sm">AI-generated marketing content tailored to your industry</p>
+                <p className="text-gray-400 text-sm">
+                  {aiContent ? 'Real AI-generated content from OpenRouter' : 'Example content - click Generate to create fresh AI content'}
+                </p>
               </div>
+              {aiContent && (
+                <Badge className="bg-green-500/10 text-green-400 border-green-500/20" variant="outline">
+                  ✨ AI Generated
+                </Badge>
+              )}
               <Badge className={currentBusiness.color} variant="outline">
                 {currentBusiness.name}
               </Badge>
