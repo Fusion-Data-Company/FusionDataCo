@@ -228,7 +228,7 @@ export default function RealEstate() {
                         <div className="mt-1">
                           <XCircle className="h-5 w-5 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           <span className="font-semibold text-red-100">Inconsistent Lead Flow:</span> You're spending thousands on lead generation, but the quality is poor and follow-up is inconsistent.
                         </p>
                       </li>
@@ -236,7 +236,7 @@ export default function RealEstate() {
                         <div className="mt-1">
                           <XCircle className="h-5 w-5 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           <span className="font-semibold text-red-100">Website Underperformance:</span> Your current website isn't capturing leads or positioning you as the go-to expert in your market.
                         </p>
                       </li>
@@ -244,7 +244,7 @@ export default function RealEstate() {
                         <div className="mt-1">
                           <XCircle className="h-5 w-5 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           <span className="font-semibold text-red-100">Manual Follow-up:</span> You're missing opportunities because you can't personally follow up with every lead at the right time.
                         </p>
                       </li>
@@ -266,7 +266,7 @@ export default function RealEstate() {
                         <div className="mt-1">
                           <XCircle className="h-5 w-5 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           <span className="font-semibold text-red-100">Marketing Time Drain:</span> Creating social posts, email campaigns, and follow-up sequences takes time away from your clients.
                         </p>
                       </li>
@@ -274,7 +274,7 @@ export default function RealEstate() {
                         <div className="mt-1">
                           <XCircle className="h-5 w-5 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           <span className="font-semibold text-red-100">Tech Frustration:</span> You've tried multiple tools but none work together and you end up juggling too many platforms.
                         </p>
                       </li>
@@ -282,7 +282,7 @@ export default function RealEstate() {
                         <div className="mt-1">
                           <XCircle className="h-5 w-5 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           <span className="font-semibold text-red-100">Inconsistent Branding:</span> Your marketing lacks a cohesive look and message that makes you memorable to potential clients.
                         </p>
                       </li>
@@ -306,7 +306,7 @@ export default function RealEstate() {
               <h2 className="text-3xl font-bold mb-8 text-center">
                 Our <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">Real Estate Industry Expertise</span>
               </h2>
-              <p className="text-xl text-center text-muted-foreground mb-12 max-w-4xl mx-auto">
+              <p className="text-xl text-center text-white mb-12 max-w-4xl mx-auto">
                 We understand real estate marketing because we've mastered the unique challenges of market cycles, commission structures, and high-value client acquisition that drive sustainable growth.
               </p>
               
@@ -405,7 +405,7 @@ export default function RealEstate() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h4 className="text-lg font-semibold mb-4 text-white">Financial & Timeline Qualification</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    <ul className="space-y-2 text-sm text-white">
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
                         <span>Pre-approval status and lending relationship verification</span>
@@ -426,7 +426,7 @@ export default function RealEstate() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold mb-4 text-white">Property & Market Alignment</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    <ul className="space-y-2 text-sm text-white">
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
                         <span>Specific neighborhood preferences and lifestyle requirements</span>
@@ -454,19 +454,19 @@ export default function RealEstate() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">94%</div>
-                    <div className="text-sm text-muted-foreground">Higher listing conversion rates vs. generic marketing</div>
+                    <div className="text-sm text-white">Higher listing conversion rates vs. generic marketing</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">$75K</div>
-                    <div className="text-sm text-muted-foreground">Average commission increase per qualified lead</div>
+                    <div className="text-sm text-white">Average commission increase per qualified lead</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">18 days</div>
-                    <div className="text-sm text-muted-foreground">Average time from lead to contract signing</div>
+                    <div className="text-sm text-white">Average time from lead to contract signing</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">85%</div>
-                    <div className="text-sm text-muted-foreground">Client referral rate from satisfied customers</div>
+                    <div className="text-sm text-white">Client referral rate from satisfied customers</div>
                   </div>
                 </div>
               </div>

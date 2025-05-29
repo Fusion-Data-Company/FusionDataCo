@@ -108,7 +108,7 @@ export default function Trades() {
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
                     Book More Jobs and Scale Your <span className="text-[#14ffc8]">Trades</span> Business
                   </h1>
-                  <p className="text-xl text-muted-foreground mb-8">
+                  <p className="text-xl text-white mb-8">
                     Stop worrying about where your next job will come from. Our proven marketing system 
                     helps trades businesses generate a steady flow of qualified leads.
                   </p>
@@ -146,7 +146,7 @@ export default function Trades() {
                             <h3 className="text-lg font-semibold mb-1">
                               35+ Quality Leads Per Month
                             </h3>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-white text-sm">
                               Our trades clients average 35+ qualified leads per month that convert to booked jobs.
                             </p>
                           </div>
@@ -160,7 +160,7 @@ export default function Trades() {
                             <h3 className="text-lg font-semibold mb-1">
                               2.4x Average Ticket Value
                             </h3>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-white text-sm">
                               Our systems help you target higher-value jobs and upsell additional services.
                             </p>
                           </div>
@@ -174,7 +174,7 @@ export default function Trades() {
                             <h3 className="text-lg font-semibold mb-1">
                               83% Customer Retention
                             </h3>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-white text-sm">
                               Our automated follow-up system turns one-time customers into lifetime clients.
                             </p>
                           </div>
@@ -204,7 +204,6 @@ export default function Trades() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-400/25 to-red-500/25 blur-md z-0"></div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/40 via-white/15 to-red-500/40 z-0"></div>
                   <CardContent className="p-6 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
@@ -217,25 +216,25 @@ export default function Trades() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Alternating between being too busy and struggling to find jobs
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Seasonal fluctuations making staffing and inventory planning difficult
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Constant stress about where the next job will come from
                         </p>
                       </li>
@@ -257,25 +256,25 @@ export default function Trades() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Wasting time and money on leads that never convert to jobs
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Online directories and lead services charging high fees for shared leads
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Low-budget customers haggling on price and causing payment problems
                         </p>
                       </li>
@@ -299,7 +298,7 @@ export default function Trades() {
                         <div className="mt-1 flex-shrink-0">
                           <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           No time to manage multiple marketing channels while running your business
                         </p>
                       </li>
@@ -307,7 +306,7 @@ export default function Trades() {
                         <div className="mt-1 flex-shrink-0">
                           <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           Agencies that don't understand the trades industry charging premium rates
                         </p>
                       </li>
@@ -315,7 +314,7 @@ export default function Trades() {
                         <div className="mt-1 flex-shrink-0">
                           <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           Uncertainty about which marketing strategies actually work for service businesses
                         </p>
                       </li>
@@ -339,7 +338,7 @@ export default function Trades() {
                         <div className="mt-1 flex-shrink-0">
                           <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           Losing potential repeat business because of poor follow-up systems
                         </p>
                       </li>
@@ -347,7 +346,7 @@ export default function Trades() {
                         <div className="mt-1 flex-shrink-0">
                           <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           No systematic approach to getting reviews and referrals
                         </p>
                       </li>
@@ -355,7 +354,7 @@ export default function Trades() {
                         <div className="mt-1 flex-shrink-0">
                           <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           Missing out on maintenance contracts and recurring revenue opportunities
                         </p>
                       </li>
@@ -379,7 +378,7 @@ export default function Trades() {
               <h2 className="text-3xl font-bold mb-8 text-center">
                 Our <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">Trades Industry Expertise</span>
               </h2>
-              <p className="text-xl text-center text-muted-foreground mb-12 max-w-4xl mx-auto">
+              <p className="text-xl text-center text-white mb-12 max-w-4xl mx-auto">
                 We understand trades businesses because we've mastered the unique challenges of seasonal demand, emergency calls, and high-value project acquisition that drive sustainable growth.
               </p>
               
@@ -478,7 +477,7 @@ export default function Trades() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h4 className="text-lg font-semibold mb-4 text-white">Project Value & Urgency Assessment</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    <ul className="space-y-2 text-sm text-white">
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
                         <span>Emergency vs. planned work classification (premium pricing opportunities)</span>
@@ -499,7 +498,7 @@ export default function Trades() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold mb-4 text-white">Customer Profile & Payment Verification</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    <ul className="space-y-2 text-sm text-white">
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
                         <span>Property ownership verification and decision-maker identification</span>
@@ -527,19 +526,19 @@ export default function Trades() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">92%</div>
-                    <div className="text-sm text-muted-foreground">Higher job conversion rates vs. generic marketing</div>
+                    <div className="text-sm text-white">Higher job conversion rates vs. generic marketing</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">$2,850</div>
-                    <div className="text-sm text-muted-foreground">Average project value increase</div>
+                    <div className="text-sm text-white">Average project value increase</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">45min</div>
-                    <div className="text-sm text-muted-foreground">Average response time to emergency calls</div>
+                    <div className="text-sm text-white">Average response time to emergency calls</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">78%</div>
-                    <div className="text-sm text-muted-foreground">Customer retention for recurring services</div>
+                    <div className="text-sm text-white">Customer retention for recurring services</div>
                   </div>
                 </div>
               </div>
@@ -585,7 +584,7 @@ export default function Trades() {
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">Monthly Leads:</p>
+                      <p className="text-sm text-white">Monthly Leads:</p>
                       <p className="text-xl font-bold text-[#14ffc8]">35+</p>
                     </div>
                   </CardContent>
@@ -615,7 +614,7 @@ export default function Trades() {
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">Time Saved:</p>
+                      <p className="text-sm text-white">Time Saved:</p>
                       <p className="text-xl font-bold text-[#14ffc8]">23 hrs/week</p>
                     </div>
                   </CardContent>
@@ -645,7 +644,7 @@ export default function Trades() {
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">Positive Reviews:</p>
+                      <p className="text-sm text-white">Positive Reviews:</p>
                       <p className="text-xl font-bold text-[#14ffc8]">+187%</p>
                     </div>
                   </CardContent>
@@ -658,7 +657,7 @@ export default function Trades() {
                     <h3 className="text-2xl font-semibold mb-2">
                       "My schedule stays full now, even in the slow season."
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-white">
                       "Before working with Fusion, we'd spend thousands on advertising with uneven results. 
                       Their system has completely transformed our business. We're booked solid 3 weeks out, 
                       our average ticket value is up 72%, and I've got the peace of mind knowing new jobs are 
@@ -666,7 +665,7 @@ export default function Trades() {
                     </p>
                     <div className="mt-4">
                       <p className="font-semibold">Mike Rodriguez</p>
-                      <p className="text-sm text-muted-foreground">Owner, Rodriguez Plumbing & HVAC</p>
+                      <p className="text-sm text-white">Owner, Rodriguez Plumbing & HVAC</p>
                     </div>
                   </div>
                   <div className="md:w-1/4 flex justify-center md:justify-end">
@@ -938,7 +937,7 @@ export default function Trades() {
                   <h2 className="text-3xl md:text-4xl font-bold mb-6">
                     Ready to <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Fill Your Schedule</span> With Quality Jobs?
                   </h2>
-                  <p className="text-lg mb-8 text-muted-foreground">
+                  <p className="text-lg mb-8 text-white">
                     Get your customized Lead Generation Plan with a free 30-minute strategy session.
                   </p>
                   
@@ -949,7 +948,7 @@ export default function Trades() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg">Custom Marketing Blueprint</h3>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           We'll analyze your service area and create a tailored marketing plan for your business.
                         </p>
                       </div>
@@ -961,7 +960,7 @@ export default function Trades() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg">Competitor Analysis</h3>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           See what's working for top service providers in your area and how to stand out.
                         </p>
                       </div>
@@ -973,7 +972,7 @@ export default function Trades() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg">Lead Generation Forecast</h3>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Get a detailed projection of leads and revenue potential for your business.
                         </p>
                       </div>
@@ -990,7 +989,7 @@ export default function Trades() {
                             <Check className="h-8 w-8 text-[#14ffc8]" />
                           </div>
                           <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
-                          <p className="text-muted-foreground mb-6">
+                          <p className="text-white mb-6">
                             Your information has been submitted successfully. One of our service business
                             marketing specialists will contact you within 1 business day.
                           </p>
@@ -1108,7 +1107,7 @@ export default function Trades() {
                                 {isSubmitting ? "Submitting..." : "Get My Lead Generation Plan"}
                               </Button>
                               
-                              <p className="text-xs text-center text-muted-foreground pt-2">
+                              <p className="text-xs text-center text-white pt-2">
                                 By submitting, you agree to our Privacy Policy and Terms of Service.
                                 We'll never share your information.
                               </p>

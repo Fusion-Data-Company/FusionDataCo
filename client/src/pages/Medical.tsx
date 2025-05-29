@@ -111,7 +111,7 @@ export default function Medical() {
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
                     Grow Your <span className="text-[#14ffc8]">Medical</span> Practice With Ethical Patient Acquisition
                   </h1>
-                  <p className="text-xl text-muted-foreground mb-8">
+                  <p className="text-xl text-white mb-8">
                     Healthcare professionals trust our HIPAA-compliant marketing system to 
                     attract qualified patients while maintaining the highest ethical standards.
                   </p>
@@ -149,7 +149,7 @@ export default function Medical() {
                             <h3 className="text-lg font-semibold mb-1">
                               Increase Patient Volume by 43%
                             </h3>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-white text-sm">
                               Our medical clients see an average 43% increase in new patients within 90 days.
                             </p>
                           </div>
@@ -163,7 +163,7 @@ export default function Medical() {
                             <h3 className="text-lg font-semibold mb-1">
                               HIPAA-Compliant Marketing
                             </h3>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-white text-sm">
                               Our systems are designed from the ground up to maintain patient privacy and regulatory compliance.
                             </p>
                           </div>
@@ -177,7 +177,7 @@ export default function Medical() {
                             <h3 className="text-lg font-semibold mb-1">
                               Reduce No-Shows by 68%
                             </h3>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-white text-sm">
                               Our automated reminder system dramatically reduces appointment no-shows and cancellations.
                             </p>
                           </div>
@@ -222,23 +222,23 @@ export default function Medical() {
                         <div className="mt-1 flex-shrink-0">
                           <XCircle className="h-4 w-4 text-red-400" />
                         </div>
-                        <p className="text-red-100/80">
+                        <p className="text-white">
                           Difficulty attracting new patients in competitive markets with large hospital networks
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Unreliable referral systems that create unpredictable patient flow
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Marketing agencies with no healthcare experience who don't understand regulations
                         </p>
                       </li>
@@ -260,25 +260,25 @@ export default function Medical() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Negative reviews damaging your practice's reputation even when providing excellent care
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           No systematic approach to collecting and showcasing positive patient testimonials
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Poor online visibility compared to larger healthcare institutions
                         </p>
                       </li>
@@ -300,25 +300,25 @@ export default function Medical() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           High rate of missed appointments and last-minute cancellations
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Inefficient recall systems leading to gaps in preventative care
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Limited patient education systems, reducing treatment compliance
                         </p>
                       </li>
@@ -340,25 +340,25 @@ export default function Medical() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Disjointed systems that don't communicate with each other, creating data silos
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           Staff spending too much time on administrative tasks instead of patient care
                         </p>
                       </li>
                       <li className="flex items-start gap-3">
                         <div className="mt-1 flex-shrink-0">
-                          <ChevronRight className="h-4 w-4 text-[#14ffc8]" />
+                          <XCircle className="h-6 w-6 text-red-400" />
                         </div>
-                        <p className="text-muted-foreground">
+                        <p className="text-white">
                           No comprehensive analytics to make data-driven practice growth decisions
                         </p>
                       </li>
@@ -382,7 +382,7 @@ export default function Medical() {
               <h2 className="text-3xl font-bold mb-8 text-center">
                 Our <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">Healthcare Industry Expertise</span>
               </h2>
-              <p className="text-xl text-center text-muted-foreground mb-12 max-w-4xl mx-auto">
+              <p className="text-xl text-center text-white mb-12 max-w-4xl mx-auto">
                 We understand healthcare marketing because we've mastered the unique challenges, regulations, and patient acquisition strategies that drive practice growth.
               </p>
               
@@ -481,7 +481,7 @@ export default function Medical() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h4 className="text-lg font-semibold mb-4 text-white">Insurance & Financial Qualification</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    <ul className="space-y-2 text-sm text-white">
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
                         <span>Real-time insurance verification and coverage assessment</span>
@@ -502,7 +502,7 @@ export default function Medical() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold mb-4 text-white">Clinical & Urgency Assessment</h4>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    <ul className="space-y-2 text-sm text-white">
                       <li className="flex items-start gap-2">
                         <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
                         <span>Symptom severity and treatment urgency evaluation</span>
@@ -530,19 +530,19 @@ export default function Medical() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">87%</div>
-                    <div className="text-sm text-muted-foreground">Higher patient conversion rates vs. generic marketing</div>
+                    <div className="text-sm text-white">Higher patient conversion rates vs. generic marketing</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">$340</div>
-                    <div className="text-sm text-muted-foreground">Average patient lifetime value increase</div>
+                    <div className="text-sm text-white">Average patient lifetime value increase</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">24hrs</div>
-                    <div className="text-sm text-muted-foreground">Average time to qualified appointment booking</div>
+                    <div className="text-sm text-white">Average time to qualified appointment booking</div>
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">100%</div>
-                    <div className="text-sm text-muted-foreground">HIPAA compliance with zero violations</div>
+                    <div className="text-sm text-white">HIPAA compliance with zero violations</div>
                   </div>
                 </div>
               </div>
@@ -588,7 +588,7 @@ export default function Medical() {
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">Avg. New Patients:</p>
+                      <p className="text-sm text-white">Avg. New Patients:</p>
                       <p className="text-xl font-bold text-[#14ffc8]">+43%</p>
                     </div>
                   </CardContent>
@@ -618,7 +618,7 @@ export default function Medical() {
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">No-show Reduction:</p>
+                      <p className="text-sm text-white">No-show Reduction:</p>
                       <p className="text-xl font-bold text-[#14ffc8]">68%</p>
                     </div>
                   </CardContent>
@@ -648,7 +648,7 @@ export default function Medical() {
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">Review Volume:</p>
+                      <p className="text-sm text-white">Review Volume:</p>
                       <p className="text-xl font-bold text-[#14ffc8]">5.2x</p>
                     </div>
                   </CardContent>
@@ -662,7 +662,7 @@ export default function Medical() {
                     <h3 className="text-2xl font-semibold mb-2">
                       "Fusion Data Co <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">transformed</span> our patient acquisition strategy."
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-white">
                       "As a busy dermatology practice, we struggled with consistent new patient flow. 
                       Since implementing Fusion's healthcare marketing system, we've seen a 52% increase in new patients 
                       and our schedule is consistently booked 3 weeks out. The system is completely HIPAA-compliant 
@@ -670,7 +670,7 @@ export default function Medical() {
                     </p>
                     <div className="mt-4">
                       <p className="font-semibold">Dr. Amanda Chen, MD</p>
-                      <p className="text-sm text-muted-foreground">Founder, Premier Dermatology Associates</p>
+                      <p className="text-sm text-white">Founder, Premier Dermatology Associates</p>
                     </div>
                   </div>
                   <div className="md:w-1/4 flex justify-center md:justify-end">
