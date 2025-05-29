@@ -138,31 +138,32 @@
 /* Cyberpunk animated text classes */
 .cyberpunk-text-animate {
   background: linear-gradient(90deg, 
-    #cbd5e1 0%, 
-    #f8fafc 25%, 
-    #3b82f6 50%, 
-    #f8fafc 75%, 
-    #cbd5e1 100%);
+    #e2e8f0 0%, 
+    #ffffff 25%, 
+    #dbeafe 50%, 
+    #ffffff 75%, 
+    #e2e8f0 100%);
   background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   animation: gradient-slide 4s ease-in-out infinite;
-  drop-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
 }
 
 .cyberpunk-text-animate-small {
   background: linear-gradient(90deg, 
-    #cbd5e1 0%, 
-    #f8fafc 25%, 
-    #3b82f6 50%, 
-    #f8fafc 75%, 
-    #cbd5e1 100%);
+    #e2e8f0 0%, 
+    #ffffff 25%, 
+    #dbeafe 50%, 
+    #ffffff 75%, 
+    #e2e8f0 100%);
   background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   animation: gradient-slide 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.3));
 }
 
 /* Cyberpunk button specific classes */
