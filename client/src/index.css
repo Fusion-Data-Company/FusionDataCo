@@ -39,16 +39,108 @@
   border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
-/* Small Business Upgrade Button Specific Styling */
-.small-business-button {
-  background: linear-gradient(135deg, #1e40af, #3b82f6);
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
-  transition: all 0.3s ease;
+/* Elite Cyberpunk Button Animations */
+@keyframes cyberpunk-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(6, 182, 212, 0.6),
+      0 0 40px rgba(6, 182, 212, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(6, 182, 212, 0.8),
+      0 0 60px rgba(6, 182, 212, 0.6),
+      0 0 100px rgba(6, 182, 212, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
 }
 
-.small-business-button:hover {
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
-  transform: scale(1.02);
+@keyframes cyberpunk-scan {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes cyberpunk-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px rgba(6, 182, 212, 0.8),
+      0 0 10px rgba(6, 182, 212, 0.6),
+      0 0 15px rgba(6, 182, 212, 0.4);
+  }
+  50% {
+    text-shadow: 
+      0 0 8px rgba(6, 182, 212, 1),
+      0 0 15px rgba(6, 182, 212, 0.8),
+      0 0 25px rgba(6, 182, 212, 0.6),
+      0 0 35px rgba(6, 182, 212, 0.4);
+  }
+}
+
+@keyframes metallic-shine {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes corner-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes hologram-flicker {
+  0%, 100% { opacity: 1; }
+  97% { opacity: 1; }
+  98% { opacity: 0.8; }
+  99% { opacity: 1; }
+}
+
+/* Animation delay utilities */
+.animation-delay-150 {
+  animation-delay: 150ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+/* Cyberpunk button specific classes */
+.cyberpunk-button {
+  animation: cyberpunk-pulse 3s ease-in-out infinite;
+}
+
+.cyberpunk-button:hover {
+  animation: cyberpunk-pulse 1.5s ease-in-out infinite;
+}
+
+.cyberpunk-text {
+  animation: cyberpunk-glow 2s ease-in-out infinite;
+}
+
+.cyberpunk-corners {
+  animation: corner-pulse 2s ease-in-out infinite;
+}
+
+.hologram-effect {
+  animation: hologram-flicker 0.15s linear infinite;
 }
 
 /* Enterprise-level UI effects */

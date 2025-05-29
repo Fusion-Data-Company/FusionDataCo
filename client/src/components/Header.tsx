@@ -134,14 +134,43 @@ export default function Header() {
             ))}
             <Link href="/small-business-upgrade">
               <span className={cn(
-                "ml-2 px-7 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold shadow-lg",
-                "hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer relative group overflow-hidden",
-                "border border-blue-500/30"
+                "ml-2 px-8 py-4 relative group overflow-hidden cursor-pointer",
+                "bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900",
+                "border border-cyan-400/50 rounded-lg font-bold text-sm tracking-wide",
+                "hover:scale-[1.05] transition-all duration-500 ease-out",
+                "shadow-[0_0_30px_rgba(6,182,212,0.6),inset_0_1px_0_rgba(255,255,255,0.1)]",
+                "hover:shadow-[0_0_50px_rgba(6,182,212,0.8),0_0_100px_rgba(6,182,212,0.4),inset_0_1px_0_rgba(255,255,255,0.2)]",
+                "before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-cyan-400/20 before:to-transparent",
+                "before:translate-x-[-100%] before:transition-transform before:duration-1000 before:ease-out",
+                "hover:before:translate-x-[100%]",
+                "after:absolute after:inset-0 after:bg-gradient-to-r after:from-cyan-400/10 after:via-blue-400/20 after:to-cyan-400/10",
+                "after:opacity-0 after:transition-opacity after:duration-500 hover:after:opacity-100"
               )}
-              style={{ boxShadow: '0 0 20px rgba(59, 130, 246, 0.4)' }}
               >
-                <span className="relative z-10">Small Business Upgrade</span>
-                <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                {/* Animated border pulse */}
+                <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400 opacity-60 animate-pulse"></span>
+                <span className="absolute inset-[1px] rounded-lg bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900"></span>
+                
+                {/* Main text with cyberpunk glow */}
+                <span className="relative z-10 flex items-center justify-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-white to-cyan-200 font-['Orbitron'] font-bold text-base tracking-wider drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">
+                  <span className="relative">
+                    Small Business Upgrade
+                    {/* Text glow effect */}
+                    <span className="absolute inset-0 text-cyan-400 blur-sm opacity-70 animate-pulse">
+                      Small Business Upgrade
+                    </span>
+                  </span>
+                </span>
+                
+                {/* Scanning line effect */}
+                <span className="absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-transparent via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-ping"></span>
+                <span className="absolute top-0 right-0 h-full w-1 bg-gradient-to-b from-transparent via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-ping animation-delay-150"></span>
+                
+                {/* Corner accents */}
+                <span className="absolute top-1 left-1 w-3 h-3 border-l-2 border-t-2 border-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="absolute top-1 right-1 w-3 h-3 border-r-2 border-t-2 border-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="absolute bottom-1 left-1 w-3 h-3 border-l-2 border-b-2 border-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="absolute bottom-1 right-1 w-3 h-3 border-r-2 border-b-2 border-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity duration-300"></span>
               </span>
             </Link>
             
