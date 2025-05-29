@@ -235,7 +235,7 @@ export default function AIContentDemo() {
     }
   };
 
-  const currentContent = aiContent || contentExamples[selectedBusiness];
+  const currentContent = aiContent || contentExamples[selectedBusiness] || contentExamples.restaurant;
   const currentBusiness = businessTypes.find(b => b.id === selectedBusiness);
 
   return (
@@ -417,9 +417,13 @@ export default function AIContentDemo() {
                   isGenerating ? 'animate-pulse bg-[#8f00ff]/5 border-[#8f00ff]/20' : 'bg-[#121218] border-[#333340]'
                 }`}>
                   <div className="text-gray-300 whitespace-pre-line leading-relaxed text-sm space-y-3">
-                    {currentContent.socialPost.split('\n').map((line, index) => (
-                      <p key={index} className={line.trim() === '' ? 'h-2' : ''}>{line}</p>
-                    ))}
+                    {currentContent?.socialPost ? (
+                      currentContent.socialPost.split('\n').map((line, index) => (
+                        <p key={index} className={line.trim() === '' ? 'h-2' : ''}>{line}</p>
+                      ))
+                    ) : (
+                      <p>Select a business type to see content examples</p>
+                    )}
                   </div>
                   {aiContent && (
                     <div className="mt-4 pt-4 border-t border-[#333340]">
