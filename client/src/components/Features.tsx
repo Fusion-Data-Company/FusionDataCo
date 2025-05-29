@@ -179,37 +179,50 @@ export default function Features() {
         </div>
         
         <div className="mt-16 flex justify-center">
-          <div className="glass-panel p-8 rounded-xl max-w-4xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-40 h-40 opacity-10">
-              <ShieldCheck className="w-full h-full text-primary" />
+          <div className="relative bg-[#121218]/90 backdrop-blur-md border border-gray-800/50 p-8 rounded-xl max-w-4xl overflow-hidden shadow-xl">
+            <div className="absolute top-0 right-0 w-40 h-40 opacity-5">
+              <ShieldCheck className="w-full h-full text-emerald-400" />
             </div>
             
             <div className="relative z-10">
-              <h3 className="text-2xl font-['Orbitron'] font-semibold mb-4 text-foreground">
+              <h3 className="text-2xl font-['Orbitron'] font-semibold mb-4 text-white">
                 Enterprise-Grade Security & Compliance
               </h3>
               
-              <p className="text-muted-foreground mb-6">
+              <p className="text-gray-300 mb-6">
                 Fusion Data Co is fully compliant with industry regulations including GDPR, CCPA, HIPAA, and SOC 2 Type II. Our enterprise platform provides the security controls required by the most security-conscious organizations.
               </p>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="p-4 bg-card/50 rounded-lg border border-border/30 flex flex-col items-center justify-center hover:bg-card/70 transition-colors">
-                  <ShieldCheck className="w-8 h-8 text-primary mb-2" />
-                  <span className="text-xs font-medium text-foreground">GDPR</span>
-                </div>
-                <div className="p-4 bg-card/50 rounded-lg border border-border/30 flex flex-col items-center justify-center hover:bg-card/70 transition-colors">
-                  <Lock className="w-8 h-8 text-primary mb-2" />
-                  <span className="text-xs font-medium text-foreground">HIPAA</span>
-                </div>
-                <div className="p-4 bg-card/50 rounded-lg border border-border/30 flex flex-col items-center justify-center hover:bg-card/70 transition-colors">
-                  <Award className="w-8 h-8 text-primary mb-2" />
-                  <span className="text-xs font-medium text-foreground">SOC 2</span>
-                </div>
-                <div className="p-4 bg-card/50 rounded-lg border border-border/30 flex flex-col items-center justify-center hover:bg-card/70 transition-colors">
-                  <FileCheck className="w-8 h-8 text-primary mb-2" />
-                  <span className="text-xs font-medium text-foreground">CCPA</span>
-                </div>
+                {[
+                  { icon: <ShieldCheck className="w-8 h-8" />, label: "GDPR", color: "emerald" },
+                  { icon: <Lock className="w-8 h-8" />, label: "HIPAA", color: "blue" },
+                  { icon: <Award className="w-8 h-8" />, label: "SOC 2", color: "violet" },
+                  { icon: <FileCheck className="w-8 h-8" />, label: "CCPA", color: "cyan" }
+                ].map((compliance, index) => {
+                  const colorMap = {
+                    emerald: { bg: 'bg-emerald-500/10', border: 'border-emerald-500/30', text: 'text-emerald-400', glow: 'bg-emerald-500/5' },
+                    blue: { bg: 'bg-blue-500/10', border: 'border-blue-500/30', text: 'text-blue-400', glow: 'bg-blue-500/5' },
+                    violet: { bg: 'bg-violet-500/10', border: 'border-violet-500/30', text: 'text-violet-400', glow: 'bg-violet-500/5' },
+                    cyan: { bg: 'bg-cyan-500/10', border: 'border-cyan-500/30', text: 'text-cyan-400', glow: 'bg-cyan-500/5' }
+                  };
+                  const colors = colorMap[compliance.color as keyof typeof colorMap];
+                  
+                  return (
+                    <div key={compliance.label} className="relative group">
+                      {/* Ambient glow effect */}
+                      <div className={`absolute -inset-1 ${colors.glow} rounded-lg blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300`}></div>
+                      
+                      {/* Card content */}
+                      <div className={`relative ${colors.bg} border ${colors.border} p-4 rounded-lg flex flex-col items-center justify-center hover:-translate-y-0.5 transition-all duration-300`}>
+                        <div className={`${colors.text} mb-2`}>
+                          {compliance.icon}
+                        </div>
+                        <span className={`text-xs font-medium ${colors.text}`}>{compliance.label}</span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
