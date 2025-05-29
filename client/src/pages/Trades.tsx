@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Check, ChevronRight, BarChart3, Wrench, UserPlus } from "lucide-react";
+import { Check, ChevronRight, BarChart3, Wrench, UserPlus, Users, Shield, CheckCircle2 } from "lucide-react";
 import { trackEvent } from '@/components/AnalyticsTracker';
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
