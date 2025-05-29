@@ -168,11 +168,13 @@ import MarketingSuite from "@/pages/MarketingSuite";
 import MarketingAutomations from "@/pages/MarketingAutomations";
 import EmailCenter from "@/pages/EmailCenter";
 import TelegramIntegrationPage from "@/pages/TelegramIntegrationPage";
+import SmallBusinessUpgrade from "@/pages/SmallBusinessUpgrade";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/small-business-upgrade" component={SmallBusinessUpgrade} />
       <Route path="/small-business-owners" component={SmallBusinessOwners} />
       <Route path="/real-estate" component={RealEstate} />
       <Route path="/medical" component={Medical} />

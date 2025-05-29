@@ -132,12 +132,15 @@ export default function Header() {
                 )}
               </div>
             ))}
-            <Link href="/#demo">
+            <Link href="/small-business-upgrade">
               <span className={cn(
-                "ml-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-md font-medium shadow-md",
-                "hover:shadow-lg transition-all duration-200 cursor-pointer relative group overflow-hidden"
-              )}>
-                <span className="relative z-10">Get Enterprise Demo</span>
+                "ml-2 px-7 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold shadow-lg",
+                "hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer relative group overflow-hidden",
+                "border border-blue-500/30"
+              )}
+              style={{ boxShadow: '0 0 20px rgba(59, 130, 246, 0.4)' }}
+              >
+                <span className="relative z-10">Small Business Upgrade</span>
                 <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </span>
             </Link>

@@ -4,6 +4,53 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Sandler Sales Funnel Color Variables */
+:root {
+  --intro-blue: #3b82f6;
+  --pain-red: #ef4444;
+  --info-yellow: #eab308;
+  --solution-green: #22c55e;
+  --cta-purple: #8b5cf6;
+}
+
+/* Ambient Glow Classes for Sandler Funnel */
+.blue-ambient { 
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3); 
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.red-ambient { 
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.3); 
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.yellow-ambient { 
+  box-shadow: 0 0 30px rgba(234, 179, 8, 0.3); 
+  border: 1px solid rgba(234, 179, 8, 0.2);
+}
+
+.green-ambient { 
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.3); 
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.purple-ambient { 
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.4); 
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+/* Small Business Upgrade Button Specific Styling */
+.small-business-button {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  transition: all 0.3s ease;
+}
+
+.small-business-button:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+  transform: scale(1.02);
+}
+
 /* Enterprise-level UI effects */
 @keyframes textShimmer {
   0% {
