@@ -20,12 +20,12 @@ export default function Features() {
     },
     {
       icon: <Database size={30} />,
-      title: "Go High Level CRM Implementation",
-      description: "Complete CRM system setup and optimization with lead generation pipeline development and sales team efficiency optimization.",
+      title: "Enterprise CRM Implementation",
+      description: "Complete CRM system setup and optimization across all major platforms including HubSpot, Salesforce, Monday.com, Notion, or our custom white-label solution.",
       benefits: [
-        "Go High Level funnel implementation", 
-        "Customer relationship management automation", 
-        "Data enrichment and acquisition funnel creation"
+        "Multi-platform CRM implementation (HubSpot, Salesforce, Monday.com, Notion)", 
+        "Custom white-label CRM development and deployment", 
+        "Complete funnel implementation with lead generation pipelines"
       ],
       color: "emerald",
       glowColor: "emerald-500"
