@@ -32,18 +32,14 @@ export default function Pricing() {
       description: "Automated content creation and posting for growing businesses.",
       features: {
         included: [
-          "Automated content on 1 platform",
+          "Automated content creation & posting",
+          "1 social platform",
           "3 posts per week",
-          "Basic analytics",
+          "Basic analytics & performance tracking",
           "Content scheduling",
           "Email support"
         ],
-        notIncluded: [
-          "Multiple platforms",
-          "Daily posting",
-          "Advanced analytics",
-          "Custom content strategy"
-        ]
+        notIncluded: []
       },
       cta: {
         text: "Get Started",
@@ -56,17 +52,14 @@ export default function Pricing() {
       description: "Professional social media management with comprehensive analytics.",
       features: {
         included: [
-          "Automated daily content on up to 3 platforms",
-          "Analytics included",
+          "Everything in Social Starter, plus:",
+          "Up to 3 social platforms",
+          "Daily automated posts",
+          "Comprehensive analytics & reporting",
           "Content strategy consultation",
-          "Performance tracking",
-          "Priority support"
+          "Priority email and chat support"
         ],
-        notIncluded: [
-          "All major platforms",
-          "Custom daily content creation",
-          "Dedicated account manager"
-        ]
+        notIncluded: []
       },
       cta: {
         text: "Get Started",
@@ -80,11 +73,12 @@ export default function Pricing() {
       description: "Complete social media management with custom content and all platforms.",
       features: {
         included: [
-          "Custom daily content creation",
-          "Management of all major platforms",
-          "Advanced analytics & reporting",
+          "Everything in Social Pro, plus:",
+          "Custom daily content creation (human-crafted)",
+          "Management of all major social platforms",
+          "Advanced analytics and custom reporting",
           "Dedicated social media manager",
-          "Custom content strategy",
+          "Tailored content strategy",
           "24/7 priority support"
         ],
         notIncluded: []
