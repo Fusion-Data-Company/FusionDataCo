@@ -203,7 +203,7 @@ export default function Trades() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-400/25 to-red-500/25 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
@@ -243,7 +243,7 @@ export default function Trades() {
                 </Card>
                 
                 <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-400/25 to-red-500/25 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
@@ -283,7 +283,7 @@ export default function Trades() {
                 </Card>
                 
                 <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-400/25 to-red-500/25 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
@@ -323,7 +323,7 @@ export default function Trades() {
                 </Card>
                 
                 <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-400/25 to-red-500/25 blur-md z-0"></div>
                   <CardContent className="p-6 relative z-10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
