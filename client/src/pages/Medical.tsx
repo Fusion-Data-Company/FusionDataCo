@@ -191,13 +191,13 @@ export default function Medical() {
           </section>
           
           {/* Pain Points Section with Enhanced Red Ambient Glow */}
-          <section className="py-16 px-4 bg-gradient-to-br from-slate-950 via-red-950/30 to-slate-900 relative overflow-hidden">
-            {/* Professional layered background effects */}
-            <div className="absolute inset-0 bg-gradient-to-r from-red-900/20 via-red-800/10 to-orange-900/20 z-0"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-600/5 to-transparent z-0"></div>
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-red-500/8 via-transparent to-orange-500/8 z-0"></div>
-            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl z-0"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl z-0"></div>
+          <section className="py-16 px-4 bg-gradient-to-br from-red-950/40 via-red-900/50 to-red-950/40 relative overflow-hidden">
+            {/* Enhanced red background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-red-800/30 via-red-700/20 to-red-800/30 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-red-600/10 via-red-500/15 to-red-600/10 z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-red-500/15 via-transparent to-red-400/15 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-red-500/20 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-red-400/20 rounded-full blur-3xl z-0"></div>
             <div className="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
             
             <div className="container mx-auto relative z-10">
