@@ -284,7 +284,7 @@ export default function Header() {
                     <span>{link.name}</span>
                     <ChevronDown className={cn(
                       "h-4 w-4 transition-transform duration-200",
-                      dropdownOpen && "transform rotate-180"
+                      dropdownOpen === link.name && "transform rotate-180"
                     )} />
                   </button>
                   
