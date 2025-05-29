@@ -19,7 +19,7 @@ import Pricing from "@/pages/Pricing";
 import ContactPage from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 import { EntropyDemo } from "@/components/demos/EntropyDemo";
-import SocialMediaCampaign from "@/pages/SocialMediaCampaign";
+import SocialMedia from "@/pages/SocialMedia";
 
 // We'll implement these pages directly to avoid import issues
 import { useState } from "react";
@@ -180,7 +180,7 @@ function Router() {
       <Route path="/real-estate" component={RealEstate} />
       <Route path="/medical" component={Medical} />
       <Route path="/trades" component={Trades} />
-      <Route path="/social-media" component={SocialMediaCampaign} />
+      <Route path="/social-media" component={SocialMedia} />
       <Route path="/campaigns" component={Campaigns} />
       <Route path="/leads" component={Leads} />
       <Route path="/pricing" component={Pricing} />
