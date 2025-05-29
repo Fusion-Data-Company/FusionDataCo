@@ -242,7 +242,7 @@ export default function Pricing() {
     },
     {
       name: "Elite Care",
-      price: 899,
+      price: 999,
       description: "Premium support with strategic consultations and custom updates.",
       features: {
         included: [

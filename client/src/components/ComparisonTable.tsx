@@ -73,7 +73,7 @@ const comparisonData: ComparisonFeature[] = [
   },
   {
     feature: "Monthly Cost",
-    fusion: "$199/month",
+    fusion: "$299-$1,199/month",
     wix: "$23-$49/month",
     godaddy: "$10-$25/month",
     gohighlevel: "$97-$297/month"

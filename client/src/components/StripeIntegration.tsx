@@ -32,47 +32,49 @@ interface PricingPlan {
 
 const pricingPlans: PricingPlan[] = [
   {
-    id: 'starter',
-    name: 'Starter',
-    price: 99,
-    description: 'Perfect for small businesses getting started',
+    id: 'social-starter',
+    name: 'Social Starter',
+    price: 299,
+    description: 'Automated content creation and posting for growing businesses',
     features: [
-      'Professional website',
-      'Basic CRM (up to 500 contacts)',
-      'Social media management',
-      'Email templates',
-      '24/7 support'
+      'Automated content creation & posting',
+      '1 social platform',
+      '3 posts per week',
+      'Basic analytics & performance tracking',
+      'Content scheduling',
+      'Email support'
     ],
     color: 'bg-blue-500/10 text-blue-500 border-blue-500/20'
   },
   {
-    id: 'professional',
-    name: 'Professional',
-    price: 199,
-    description: 'Everything you need to scale your business',
+    id: 'social-pro',
+    name: 'Social Pro',
+    price: 599,
+    description: 'Professional social media management with comprehensive analytics',
     features: [
-      'Everything in Starter',
-      'Advanced CRM (unlimited contacts)',
-      'Marketing automation',
-      'AI content generation',
-      'Advanced analytics',
-      'Custom integrations'
+      'Everything in Social Starter, plus:',
+      'Up to 3 social platforms',
+      'Daily automated posts',
+      'Comprehensive analytics & reporting',
+      'Content strategy consultation',
+      'Priority email and chat support'
     ],
     color: 'bg-[#14ffc8]/10 text-[#14ffc8] border-[#14ffc8]/20',
     popular: true
   },
   {
-    id: 'enterprise',
-    name: 'Enterprise',
-    price: 399,
-    description: 'For agencies and large businesses',
+    id: 'social-elite',
+    name: 'Social Elite',
+    price: 1199,
+    description: 'Complete social media management with custom content and all platforms',
     features: [
-      'Everything in Professional',
-      'White-label solutions',
-      'Multi-client management',
-      'Priority support',
-      'Custom development',
-      'Dedicated success manager'
+      'Everything in Social Pro, plus:',
+      'Custom daily content creation (human-crafted)',
+      'Management of all major social platforms',
+      'Advanced analytics and custom reporting',
+      'Dedicated social media manager',
+      'Tailored content strategy',
+      '24/7 priority support'
     ],
     color: 'bg-[#8f00ff]/10 text-[#8f00ff] border-[#8f00ff]/20'
   }

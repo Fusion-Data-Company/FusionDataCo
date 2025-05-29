@@ -13,7 +13,7 @@ export default function MobilePricing() {
     {
       name: "Starter",
       icon: <Zap className="w-6 h-6" />,
-      price: "$49",
+      price: "$299",
       period: "/month",
       description: "Perfect for small businesses getting started",
       features: [
@@ -30,7 +30,7 @@ export default function MobilePricing() {
     {
       name: "Professional",
       icon: <Crown className="w-6 h-6" />,
-      price: "$149",
+      price: "$599",
       period: "/month",
       description: "Ideal for growing teams and businesses",
       features: [
