@@ -738,6 +738,243 @@ export default function RealEstate() {
                   </div>
                 </div>
               </div>
+              
+              {/* Detailed Solutions Content */}
+              <div className="space-y-16 mt-16">
+                {/* Advanced Real Estate Marketing Strategy */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <div className="space-y-6">
+                    <h3 className="text-2xl font-bold text-[#14ffc8]">Advanced Real Estate Marketing Strategy</h3>
+                    <p className="text-lg leading-relaxed">
+                      Our real estate marketing system leverages behavioral psychology, market timing, and hyper-local targeting to position 
+                      you as the go-to agent in your area. We create compelling buyer and seller journeys that convert prospects into 
+                      committed clients while building your reputation as a market expert.
+                    </p>
+                    <div className="grid grid-cols-2 gap-6">
+                      <div className="bg-[#14ffc8]/10 p-4 rounded-lg border border-[#14ffc8]/20">
+                        <h4 className="font-semibold text-[#14ffc8] mb-2">Buyer Acquisition</h4>
+                        <ul className="text-sm space-y-1">
+                          <li>• Pre-qualified buyer database</li>
+                          <li>• Exclusive property alerts</li>
+                          <li>• Mortgage pre-approval partnerships</li>
+                          <li>• Virtual tour campaigns</li>
+                        </ul>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 p-4 rounded-lg border border-[#14ffc8]/20">
+                        <h4 className="font-semibold text-[#14ffc8] mb-2">Seller Generation</h4>
+                        <ul className="text-sm space-y-1">
+                          <li>• Home valuation marketing</li>
+                          <li>• Market report automation</li>
+                          <li>• Listing presentation tools</li>
+                          <li>• Seller education sequences</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[#14ffc8]/5 p-8 rounded-lg border border-[#14ffc8]/20">
+                    <h4 className="text-xl font-semibold mb-6 text-center">Real Estate Results</h4>
+                    <div className="grid grid-cols-2 gap-6 text-center">
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">324%</p>
+                        <p className="text-sm text-gray-300">Listing Appointment Increase</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">$1.2M</p>
+                        <p className="text-sm text-gray-300">Average Commission Growth</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">73%</p>
+                        <p className="text-sm text-gray-300">Faster Listing Sales</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">95%</p>
+                        <p className="text-sm text-gray-300">Client Satisfaction Rate</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Market Domination System */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  <div className="lg:col-span-2 space-y-6">
+                    <h3 className="text-2xl font-bold text-[#14ffc8]">Market Domination System</h3>
+                    <p className="text-lg leading-relaxed">
+                      Real estate success requires consistent visibility and credibility in your local market. Our system positions you 
+                      as the neighborhood expert through strategic content marketing, community engagement, and data-driven insights.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <h4 className="font-semibold text-[#14ffc8]">Local Authority Building:</h4>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Neighborhood market reports
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            School district analytics
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Local event partnerships
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Community involvement campaigns
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="space-y-4">
+                        <h4 className="font-semibold text-[#14ffc8]">Digital Presence:</h4>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Property showcase videos
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Client success stories
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Social media automation
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Review generation systems
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[#14ffc8]/5 p-6 rounded-lg border border-[#14ffc8]/20">
+                    <h4 className="font-semibold text-[#14ffc8] mb-4">Market Specializations</h4>
+                    <div className="space-y-3">
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">Luxury Homes</p>
+                        <p className="text-xs text-gray-300">High-net-worth buyer targeting</p>
+                      </div>
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">First-Time Buyers</p>
+                        <p className="text-xs text-gray-300">Education-focused campaigns</p>
+                      </div>
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">Investment Properties</p>
+                        <p className="text-xs text-gray-300">ROI analysis and targeting</p>
+                      </div>
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">Commercial Real Estate</p>
+                        <p className="text-xs text-gray-300">Business owner outreach</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ROI and Performance Metrics */}
+                <div className="bg-[#14ffc8]/5 p-8 rounded-lg border border-[#14ffc8]/20">
+                  <h3 className="text-2xl font-bold text-[#14ffc8] mb-8 text-center">Proven Results for Real Estate Professionals</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">467%</div>
+                      <div className="text-sm text-gray-300 mb-4">Qualified Lead Increase</div>
+                      <div className="text-xs text-gray-400">Within first 6 months of implementation</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">6.2x</div>
+                      <div className="text-sm text-gray-300 mb-4">Return on Marketing Investment</div>
+                      <div className="text-xs text-gray-400">Measured by commission growth</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">84%</div>
+                      <div className="text-sm text-gray-300 mb-4">Referral Rate Improvement</div>
+                      <div className="text-xs text-gray-400">Through client satisfaction systems</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">197%</div>
+                      <div className="text-sm text-gray-300 mb-4">Social Media Engagement</div>
+                      <div className="text-xs text-gray-400">Across all platforms combined</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Purple Registration Section */}
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-950 via-purple-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-violet-800/10 to-purple-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-500/8 via-transparent to-violet-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-3xl font-bold mb-6">
+                  Ready to Become the <span className="text-purple-400 [text-shadow:0_0_5px_#a855f7]">Go-To Agent</span> in Your Market?
+                </h2>
+                <p className="text-xl text-gray-300 mb-8">
+                  Join over 400+ real estate professionals who have transformed their business with our proven marketing system.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Free Market Analysis</h3>
+                    <p className="text-sm text-gray-300">Comprehensive review of your current market position and competitor analysis</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Custom Lead Strategy</h3>
+                    <p className="text-sm text-gray-300">Tailored plan for your market area, price point, and specialty focus</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">90-Day Listing Guarantee</h3>
+                    <p className="text-sm text-gray-300">See increased listing appointments within 3 months or we'll refund your investment</p>
+                  </div>
+                </div>
+
+                <form className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Agent Name</label>
+                      <input type="text" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Brokerage</label>
+                      <input type="text" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Email Address</label>
+                      <input type="email" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Phone Number</label>
+                      <input type="tel" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium mb-2">Real Estate Focus</label>
+                    <select className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none">
+                      <option>Select Your Specialty</option>
+                      <option>Residential Sales</option>
+                      <option>Luxury Homes</option>
+                      <option>First-Time Buyers</option>
+                      <option>Investment Properties</option>
+                      <option>Commercial Real Estate</option>
+                      <option>New Construction</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-semibold py-4 rounded-lg transition-all duration-300 transform hover:scale-105">
+                    Get My Free Real Estate Marketing Analysis
+                  </button>
+                  <p className="text-xs text-gray-400 mt-4 text-center">
+                    No commitment required. Results guaranteed within 90 days.
+                  </p>
+                </form>
+              </div>
             </div>
           </section>
         </main>

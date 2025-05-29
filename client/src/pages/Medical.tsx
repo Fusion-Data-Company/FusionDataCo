@@ -694,6 +694,243 @@ export default function Medical() {
                   </div>
                 </div>
               </div>
+              
+              {/* Detailed Solutions Content */}
+              <div className="space-y-16 mt-16">
+                {/* Advanced Patient Journey Optimization */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <div className="space-y-6">
+                    <h3 className="text-2xl font-bold text-[#14ffc8]">Advanced Patient Journey Optimization</h3>
+                    <p className="text-lg leading-relaxed">
+                      Our proprietary healthcare marketing system transforms every touchpoint into a conversion opportunity. 
+                      From the moment a potential patient discovers your practice to their first appointment and beyond, 
+                      we orchestrate a seamless experience that builds trust and drives action.
+                    </p>
+                    <div className="grid grid-cols-2 gap-6">
+                      <div className="bg-[#14ffc8]/10 p-4 rounded-lg border border-[#14ffc8]/20">
+                        <h4 className="font-semibold text-[#14ffc8] mb-2">Pre-Visit Engagement</h4>
+                        <ul className="text-sm space-y-1">
+                          <li>• Educational content series</li>
+                          <li>• Symptom checkers</li>
+                          <li>• Treatment cost calculators</li>
+                          <li>• Provider bio videos</li>
+                        </ul>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 p-4 rounded-lg border border-[#14ffc8]/20">
+                        <h4 className="font-semibold text-[#14ffc8] mb-2">Post-Visit Retention</h4>
+                        <ul className="text-sm space-y-1">
+                          <li>• Automated follow-up sequences</li>
+                          <li>• Treatment adherence tracking</li>
+                          <li>• Referral reward programs</li>
+                          <li>• Preventative care reminders</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[#14ffc8]/5 p-8 rounded-lg border border-[#14ffc8]/20">
+                    <h4 className="text-xl font-semibold mb-6 text-center">Patient Acquisition Results</h4>
+                    <div className="grid grid-cols-2 gap-6 text-center">
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">287%</p>
+                        <p className="text-sm text-gray-300">Average ROI Increase</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">$2.4M</p>
+                        <p className="text-sm text-gray-300">Additional Revenue Generated</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">4.7x</p>
+                        <p className="text-sm text-gray-300">Patient Lifetime Value</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">92%</p>
+                        <p className="text-sm text-gray-300">Patient Satisfaction Score</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* HIPAA-Compliant Digital Infrastructure */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  <div className="lg:col-span-2 space-y-6">
+                    <h3 className="text-2xl font-bold text-[#14ffc8]">HIPAA-Compliant Digital Infrastructure</h3>
+                    <p className="text-lg leading-relaxed">
+                      Healthcare marketing requires specialized compliance expertise. Our platform is built from the ground up 
+                      with HIPAA regulations in mind, ensuring your patient data remains secure while maximizing marketing effectiveness.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <h4 className="font-semibold text-[#14ffc8]">Security Features:</h4>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            End-to-end encryption for all communications
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Role-based access controls
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Audit trails for all data access
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Regular security assessments
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="space-y-4">
+                        <h4 className="font-semibold text-[#14ffc8]">Compliance Tools:</h4>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Automated consent management
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Data retention policy automation
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Breach notification systems
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Compliance reporting dashboard
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[#14ffc8]/5 p-6 rounded-lg border border-[#14ffc8]/20">
+                    <h4 className="font-semibold text-[#14ffc8] mb-4">Specialty-Specific Solutions</h4>
+                    <div className="space-y-3">
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">Cardiology</p>
+                        <p className="text-xs text-gray-300">Heart health education campaigns</p>
+                      </div>
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">Orthopedics</p>
+                        <p className="text-xs text-gray-300">Sports injury prevention content</p>
+                      </div>
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">Dermatology</p>
+                        <p className="text-xs text-gray-300">Cosmetic procedure showcases</p>
+                      </div>
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">Mental Health</p>
+                        <p className="text-xs text-gray-300">Stigma-reducing awareness campaigns</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ROI and Performance Metrics */}
+                <div className="bg-[#14ffc8]/5 p-8 rounded-lg border border-[#14ffc8]/20">
+                  <h3 className="text-2xl font-bold text-[#14ffc8] mb-8 text-center">Proven Results Across Healthcare Specialties</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">847%</div>
+                      <div className="text-sm text-gray-300 mb-4">Average Cost Per Acquisition Improvement</div>
+                      <div className="text-xs text-gray-400">Compared to traditional marketing methods</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">12.3x</div>
+                      <div className="text-sm text-gray-300 mb-4">Patient Lifetime Value Multiplier</div>
+                      <div className="text-xs text-gray-400">Through improved retention strategies</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">89%</div>
+                      <div className="text-sm text-gray-300 mb-4">No-Show Reduction Rate</div>
+                      <div className="text-xs text-gray-400">Via automated reminder systems</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">156%</div>
+                      <div className="text-sm text-gray-300 mb-4">Referral Increase</div>
+                      <div className="text-xs text-gray-400">Through patient advocacy programs</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Purple Registration Section */}
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-950 via-purple-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-violet-800/10 to-purple-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-500/8 via-transparent to-violet-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-3xl font-bold mb-6">
+                  Ready to Transform Your <span className="text-purple-400 [text-shadow:0_0_5px_#a855f7]">Healthcare Practice?</span>
+                </h2>
+                <p className="text-xl text-gray-300 mb-8">
+                  Join over 500+ healthcare providers who have revolutionized their patient acquisition with our proven system.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Free Strategy Session</h3>
+                    <p className="text-sm text-gray-300">30-minute consultation to analyze your current patient acquisition strategy</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Custom Implementation Plan</h3>
+                    <p className="text-sm text-gray-300">Tailored roadmap for your specialty and patient demographics</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">90-Day Revenue Guarantee</h3>
+                    <p className="text-sm text-gray-300">See measurable results within 3 months or we'll refund your investment</p>
+                  </div>
+                </div>
+
+                <form className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Practice Name</label>
+                      <input type="text" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Your Name</label>
+                      <input type="text" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Email Address</label>
+                      <input type="email" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Phone Number</label>
+                      <input type="tel" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium mb-2">Medical Specialty</label>
+                    <select className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none">
+                      <option>Select Your Specialty</option>
+                      <option>Family Medicine</option>
+                      <option>Cardiology</option>
+                      <option>Orthopedics</option>
+                      <option>Dermatology</option>
+                      <option>Mental Health</option>
+                      <option>Pediatrics</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-semibold py-4 rounded-lg transition-all duration-300 transform hover:scale-105">
+                    Get My Free Healthcare Marketing Analysis
+                  </button>
+                  <p className="text-xs text-gray-400 mt-4 text-center">
+                    No commitment required. HIPAA-compliant consultation guaranteed.
+                  </p>
+                </form>
+              </div>
             </div>
           </section>
           

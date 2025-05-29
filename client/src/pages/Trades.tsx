@@ -686,6 +686,243 @@ export default function Trades() {
                   </div>
                 </div>
               </div>
+              
+              {/* Detailed Solutions Content */}
+              <div className="space-y-16 mt-16">
+                {/* Advanced Lead Generation Strategy */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <div className="space-y-6">
+                    <h3 className="text-2xl font-bold text-[#14ffc8]">Advanced Lead Generation Strategy</h3>
+                    <p className="text-lg leading-relaxed">
+                      Our trades-specific marketing system captures high-intent customers at the exact moment they need your services. 
+                      We combine emergency response marketing, seasonal campaign optimization, and repeat customer nurturing to create 
+                      a steady stream of profitable jobs year-round.
+                    </p>
+                    <div className="grid grid-cols-2 gap-6">
+                      <div className="bg-[#14ffc8]/10 p-4 rounded-lg border border-[#14ffc8]/20">
+                        <h4 className="font-semibold text-[#14ffc8] mb-2">Emergency Response</h4>
+                        <ul className="text-sm space-y-1">
+                          <li>• 24/7 priority call routing</li>
+                          <li>• Emergency service landing pages</li>
+                          <li>• Instant quote systems</li>
+                          <li>• Crisis communication templates</li>
+                        </ul>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 p-4 rounded-lg border border-[#14ffc8]/20">
+                        <h4 className="font-semibold text-[#14ffc8] mb-2">Seasonal Optimization</h4>
+                        <ul className="text-sm space-y-1">
+                          <li>• HVAC seasonal campaigns</li>
+                          <li>• Weather-triggered marketing</li>
+                          <li>• Maintenance reminder systems</li>
+                          <li>• Service contract renewals</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[#14ffc8]/5 p-8 rounded-lg border border-[#14ffc8]/20">
+                    <h4 className="text-xl font-semibold mb-6 text-center">Trades Business Results</h4>
+                    <div className="grid grid-cols-2 gap-6 text-center">
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">394%</p>
+                        <p className="text-sm text-gray-300">Average Job Volume Increase</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">$847K</p>
+                        <p className="text-sm text-gray-300">Additional Annual Revenue</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">67%</p>
+                        <p className="text-sm text-gray-300">Higher Average Ticket</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-[#14ffc8]">91%</p>
+                        <p className="text-sm text-gray-300">Customer Retention Rate</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Multi-Channel Customer Acquisition */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  <div className="lg:col-span-2 space-y-6">
+                    <h3 className="text-2xl font-bold text-[#14ffc8]">Multi-Channel Customer Acquisition</h3>
+                    <p className="text-lg leading-relaxed">
+                      Trades businesses require a diverse approach to reach customers across multiple touchpoints. Our system 
+                      integrates digital marketing, local SEO, review management, and traditional advertising to dominate your local market.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <h4 className="font-semibold text-[#14ffc8]">Digital Presence:</h4>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Google My Business optimization
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Local search domination
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Emergency service advertising
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Social media automation
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="space-y-4">
+                        <h4 className="font-semibold text-[#14ffc8]">Traditional Marketing:</h4>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Vehicle wrap optimization
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Door hanger campaigns
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Referral program automation
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Check className="h-4 w-4 text-[#14ffc8] flex-shrink-0" />
+                            Community event marketing
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-[#14ffc8]/5 p-6 rounded-lg border border-[#14ffc8]/20">
+                    <h4 className="font-semibold text-[#14ffc8] mb-4">Trade-Specific Specialties</h4>
+                    <div className="space-y-3">
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">HVAC</p>
+                        <p className="text-xs text-gray-300">Seasonal maintenance campaigns</p>
+                      </div>
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">Plumbing</p>
+                        <p className="text-xs text-gray-300">Emergency response optimization</p>
+                      </div>
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">Electrical</p>
+                        <p className="text-xs text-gray-300">Safety inspection reminders</p>
+                      </div>
+                      <div className="p-3 bg-[#14ffc8]/10 rounded">
+                        <p className="font-medium text-sm">Roofing</p>
+                        <p className="text-xs text-gray-300">Storm damage response systems</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ROI and Performance Metrics */}
+                <div className="bg-[#14ffc8]/5 p-8 rounded-lg border border-[#14ffc8]/20">
+                  <h3 className="text-2xl font-bold text-[#14ffc8] mb-8 text-center">Proven Results Across Trade Industries</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">542%</div>
+                      <div className="text-sm text-gray-300 mb-4">Emergency Call Response Rate</div>
+                      <div className="text-xs text-gray-400">Within first hour of system activation</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">8.7x</div>
+                      <div className="text-sm text-gray-300 mb-4">Return on Marketing Investment</div>
+                      <div className="text-xs text-gray-400">Compared to traditional advertising</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">76%</div>
+                      <div className="text-sm text-gray-300 mb-4">Repeat Customer Rate</div>
+                      <div className="text-xs text-gray-400">Through maintenance programs</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-[#14ffc8] mb-2">234%</div>
+                      <div className="text-sm text-gray-300 mb-4">Referral Generation Increase</div>
+                      <div className="text-xs text-gray-400">Via automated follow-up systems</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Purple Registration Section */}
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-950 via-purple-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-violet-800/10 to-purple-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-500/8 via-transparent to-violet-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-3xl font-bold mb-6">
+                  Ready to Dominate Your <span className="text-purple-400 [text-shadow:0_0_5px_#a855f7]">Local Market?</span>
+                </h2>
+                <p className="text-xl text-gray-300 mb-8">
+                  Join over 300+ trades businesses that have transformed their lead generation with our proven system.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Free Business Assessment</h3>
+                    <p className="text-sm text-gray-300">Comprehensive analysis of your current marketing and lead generation systems</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Custom Growth Plan</h3>
+                    <p className="text-sm text-gray-300">Trade-specific strategy tailored to your service area and specialties</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">90-Day Job Guarantee</h3>
+                    <p className="text-sm text-gray-300">See increased job volume within 3 months or we'll refund your investment</p>
+                  </div>
+                </div>
+
+                <form className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Business Name</label>
+                      <input type="text" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Your Name</label>
+                      <input type="text" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Email Address</label>
+                      <input type="email" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Phone Number</label>
+                      <input type="tel" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium mb-2">Trade Specialty</label>
+                    <select className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none">
+                      <option>Select Your Trade</option>
+                      <option>HVAC</option>
+                      <option>Plumbing</option>
+                      <option>Electrical</option>
+                      <option>Roofing</option>
+                      <option>General Contractor</option>
+                      <option>Landscaping</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-semibold py-4 rounded-lg transition-all duration-300 transform hover:scale-105">
+                    Get My Free Trades Marketing Analysis
+                  </button>
+                  <p className="text-xs text-gray-400 mt-4 text-center">
+                    No commitment required. Results guaranteed within 90 days.
+                  </p>
+                </form>
+              </div>
             </div>
           </section>
           
