@@ -287,71 +287,37 @@ export default function RealEstate() {
                   </CardContent>
                 </Card>
                 
+                {/* Real Estate Industry Statistics - Vertical Box */}
                 <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
                   <CardContent className="p-8 relative z-10">
-                    <h3 className="text-2xl font-semibold mb-6 text-white">Market Competition & Professional Challenges</h3>
-                    <ul className="space-y-4">
-                      <li className="flex items-start gap-3">
-                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
-                        <div>
-                          <p className="text-white font-medium mb-1">Market Oversaturation</p>
-                          <p className="text-gray-300 text-sm">Too many agents competing for the same clients, forcing you to reduce commission rates and accept difficult deals just to stay competitive in your market.</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
-                        <div>
-                          <p className="text-white font-medium mb-1">Feast-or-Famine Income Cycles</p>
-                          <p className="text-gray-300 text-sm">Your income is unpredictable, swinging from great months to months where you struggle to pay bills, making financial planning and business growth nearly impossible.</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
-                        <div>
-                          <p className="text-white font-medium mb-1">Team and Brokerage Limitations</p>
-                          <p className="text-gray-300 text-sm">Your brokerage provides minimal marketing support, and building your own team seems impossible when you can barely generate consistent leads for yourself.</p>
-                        </div>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
-                        <div>
-                          <p className="text-white font-medium mb-1">Time Management Crisis</p>
-                          <p className="text-gray-300 text-sm">You're working 7 days a week between prospecting, showings, paperwork, and marketing, but still not generating enough quality leads to build a sustainable business.</p>
-                        </div>
-                      </li>
-                    </ul>
+                    <h3 className="text-xl font-bold text-center mb-6 text-white">The Real Estate Agent Reality</h3>
+                    <div className="space-y-4">
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">73%</div>
+                        <div className="text-xs text-white">Of agents earn less than $50K annually</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">87%</div>
+                        <div className="text-xs text-white">Leave the industry within 5 years</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">$147K</div>
+                        <div className="text-xs text-white">Average revenue loss from poor lead generation</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">68%</div>
+                        <div className="text-xs text-white">Depend entirely on referrals and past clients</div>
+                      </div>
+                    </div>
+                    <div className="text-center mt-6 pt-4 border-t border-red-500/20">
+                      <p className="text-red-100 font-medium text-sm italic">
+                        "The average real estate agent closes just 12 transactions per year because they lack a systematic approach to lead generation and follow-up."
+                      </p>
+                      <cite className="text-red-400 text-xs">— National Association of Realtors, 2024</cite>
+                    </div>
                   </CardContent>
                 </Card>
-              </div>
-              
-              {/* Real Estate Industry Statistics */}
-              <div className="bg-gradient-to-r from-red-900/20 to-red-800/10 border border-red-500/30 rounded-xl p-8 max-w-5xl mx-auto">
-                <h3 className="text-2xl font-bold text-center mb-6 text-white">The Real Estate Agent Reality</h3>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center mb-6">
-                  <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-red-400 mb-2">73%</div>
-                    <div className="text-sm text-white">Of agents earn less than $50K annually</div>
-                  </div>
-                  <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-red-400 mb-2">87%</div>
-                    <div className="text-sm text-white">Leave the industry within 5 years</div>
-                  </div>
-                  <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-red-400 mb-2">$147K</div>
-                    <div className="text-sm text-white">Average revenue loss from poor lead generation</div>
-                  </div>
-                  <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-red-400 mb-2">68%</div>
-                    <div className="text-sm text-white">Depend entirely on referrals and past clients</div>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <p className="text-red-100 font-medium">
-                    "The average real estate agent closes just 12 transactions per year because they lack a systematic approach to lead generation and follow-up."
-                  </p>
-                  <cite className="text-red-400 text-sm">— National Association of Realtors, 2024 Industry Report</cite>
-                </div>
               </div>
             </div>
           </section>
