@@ -231,51 +231,58 @@ export default function RealEstate() {
                           <span className="font-semibold text-red-100">Inconsistent Lead Flow:</span> You're spending thousands on lead generation, but the quality is poor and follow-up is inconsistent.
                         </p>
                       </li>
-                      <li className="flex gap-4 items-start">
+                      <li className="flex gap-3 items-start">
                         <div className="mt-1">
-                          <XCircle className="h-5 w-5 text-[#ff3333]" />
+                          <XCircle className="h-5 w-5 text-red-400" />
                         </div>
-                        <p className="text-gray-300">
-                          <span className="font-semibold text-white">Website Underperformance:</span> Your current website isn't capturing leads or positioning you as the go-to expert in your market.
+                        <p className="text-red-100/80">
+                          <span className="font-semibold text-red-100">Website Underperformance:</span> Your current website isn't capturing leads or positioning you as the go-to expert in your market.
                         </p>
                       </li>
-                      <li className="flex gap-4 items-start">
+                      <li className="flex gap-3 items-start">
                         <div className="mt-1">
-                          <XCircle className="h-5 w-5 text-[#ff3333]" />
+                          <XCircle className="h-5 w-5 text-red-400" />
                         </div>
-                        <p className="text-gray-300">
-                          <span className="font-semibold text-white">Manual Follow-up:</span> You're missing opportunities because you can't personally follow up with every lead at the right time.
+                        <p className="text-red-100/80">
+                          <span className="font-semibold text-red-100">Manual Follow-up:</span> You're missing opportunities because you can't personally follow up with every lead at the right time.
                         </p>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
                 
-                <Card className="bg-[#121218]/70 border border-[#ff0000]/20 rounded-lg overflow-hidden">
-                  <CardContent className="p-6">
-                    <ul className="space-y-6">
-                      <li className="flex gap-4 items-start">
+                <Card className="bg-gradient-to-br from-red-950/40 to-red-900/30 border border-red-500/40 rounded-lg overflow-hidden relative backdrop-blur-sm">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-md z-0"></div>
+                  <CardContent className="p-6 relative z-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <Clock className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">Time & Technology Struggles</h3>
+                    </div>
+                    <ul className="space-y-4">
+                      <li className="flex gap-3 items-start">
                         <div className="mt-1">
-                          <XCircle className="h-5 w-5 text-[#ff3333]" />
+                          <XCircle className="h-5 w-5 text-red-400" />
                         </div>
-                        <p className="text-gray-300">
-                          <span className="font-semibold text-white">Marketing Time Drain:</span> Creating social posts, email campaigns, and follow-up sequences takes time away from your clients.
+                        <p className="text-red-100/80">
+                          <span className="font-semibold text-red-100">Marketing Time Drain:</span> Creating social posts, email campaigns, and follow-up sequences takes time away from your clients.
                         </p>
                       </li>
-                      <li className="flex gap-4 items-start">
+                      <li className="flex gap-3 items-start">
                         <div className="mt-1">
-                          <XCircle className="h-5 w-5 text-[#ff3333]" />
+                          <XCircle className="h-5 w-5 text-red-400" />
                         </div>
-                        <p className="text-gray-300">
-                          <span className="font-semibold text-white">Tech Frustration:</span> You've tried multiple tools but none work together and you end up juggling too many platforms.
+                        <p className="text-red-100/80">
+                          <span className="font-semibold text-red-100">Tech Frustration:</span> You've tried multiple tools but none work together and you end up juggling too many platforms.
                         </p>
                       </li>
-                      <li className="flex gap-4 items-start">
+                      <li className="flex gap-3 items-start">
                         <div className="mt-1">
-                          <XCircle className="h-5 w-5 text-[#ff3333]" />
+                          <XCircle className="h-5 w-5 text-red-400" />
                         </div>
-                        <p className="text-gray-300">
-                          <span className="font-semibold text-white">Inconsistent Branding:</span> Your marketing lacks a cohesive look and message that makes you memorable to potential clients.
+                        <p className="text-red-100/80">
+                          <span className="font-semibold text-red-100">Inconsistent Branding:</span> Your marketing lacks a cohesive look and message that makes you memorable to potential clients.
                         </p>
                       </li>
                     </ul>
