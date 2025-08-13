@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Zap, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Zap, Mail, Phone, MapPin, Facebook, Linkedin } from "lucide-react";
 import { useDevice } from "@/hooks/use-device";
 import { trackEvent } from "@/components/AnalyticsTracker";
 
@@ -40,10 +40,8 @@ export default function MobileFooter() {
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Instagram, href: "#", label: "Instagram" }
+    { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61569531779877", label: "Facebook" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/fusion-data-co/", label: "LinkedIn" }
   ];
 
   return (

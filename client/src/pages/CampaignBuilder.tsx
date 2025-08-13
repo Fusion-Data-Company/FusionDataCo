@@ -12,8 +12,6 @@ import {
   Calendar,
   Smartphone,
   Facebook,
-  Twitter,
-  Instagram,
   Linkedin,
   Send
 } from "lucide-react";
@@ -90,8 +88,6 @@ export default function CampaignBuilder() {
 
   const platforms = [
     { value: "Facebook", label: "Facebook", icon: <Facebook className="w-5 h-5 text-[#1877f2]" /> },
-    { value: "Instagram", label: "Instagram", icon: <Instagram className="w-5 h-5 text-[#c13584]" /> },
-    { value: "Twitter", label: "X (Twitter)", icon: <Twitter className="w-5 h-5 text-[#1da1f2]" /> },
     { value: "LinkedIn", label: "LinkedIn", icon: <Linkedin className="w-5 h-5 text-[#0077b5]" /> }
   ];
 

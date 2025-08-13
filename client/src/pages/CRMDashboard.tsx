@@ -25,7 +25,6 @@ import {
   Filter,
   MoreHorizontal,
   Facebook,
-  Instagram,
   CheckCircle,
   Zap,
   Building,
@@ -68,7 +67,6 @@ interface CrmTrialSignup {
   businessType?: string;
   trialType: 'social' | 'crm' | 'website';
   facebookUrl?: string;
-  instagramUrl?: string;
   startDate: string;
   endDate: string;
   status: 'pending' | 'active' | 'completed' | 'converted';
@@ -179,7 +177,6 @@ export default function CRMDashboard() {
       businessType: "restaurant",
       trialType: "social",
       facebookUrl: "https://facebook.com/cafebistro",
-      instagramUrl: "https://instagram.com/cafebistro",
       startDate: "2023-05-21T00:00:00Z",
       endDate: "2023-06-04T23:59:59Z",
       status: "active",
@@ -205,7 +202,6 @@ export default function CRMDashboard() {
       businessType: "service",
       trialType: "social",
       facebookUrl: "https://facebook.com/amandasalon",
-      instagramUrl: "https://instagram.com/amandahairsalon",
       startDate: "2023-05-15T00:00:00Z",
       endDate: "2023-05-29T23:59:59Z",
       status: "completed",
@@ -892,7 +888,6 @@ export default function CRMDashboard() {
                                       <>
                                         <div className="flex mr-2">
                                           <Facebook className="h-4 w-4 text-blue-400 mr-1" />
-                                          <Instagram className="h-4 w-4 text-pink-500" />
                                         </div>
                                         Social Media
                                       </>
@@ -984,14 +979,6 @@ export default function CRMDashboard() {
                                     <Facebook className="h-4 w-4 mr-2 text-blue-400" />
                                     <a href={selectedTrialSignup.facebookUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
                                       {selectedTrialSignup.facebookUrl}
-                                    </a>
-                                  </div>
-                                )}
-                                {selectedTrialSignup.instagramUrl && (
-                                  <div className="flex items-center text-sm">
-                                    <Instagram className="h-4 w-4 mr-2 text-pink-500" />
-                                    <a href={selectedTrialSignup.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:underline">
-                                      {selectedTrialSignup.instagramUrl}
                                     </a>
                                   </div>
                                 )}

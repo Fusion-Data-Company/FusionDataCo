@@ -14,9 +14,7 @@ import {
   Target,
   Lightbulb,
   MessageSquare,
-  Instagram,
   Facebook,
-  Twitter,
   Linkedin,
   Youtube
 } from "lucide-react";
@@ -392,7 +390,7 @@ export default function SocialMedia() {
                     <ul className="space-y-3 text-sm">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Facebook/Instagram algorithm timing and engagement optimization</span>
+                        <span>Facebook algorithm timing and engagement optimization</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
@@ -400,7 +398,7 @@ export default function SocialMedia() {
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>TikTok and Instagram Reels viral content formulas</span>
+                        <span>TikTok viral content formulas</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />

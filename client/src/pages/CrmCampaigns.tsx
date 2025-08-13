@@ -57,10 +57,6 @@ const PlatformIcon = ({ platform }: { platform: string }) => {
   switch (platform) {
     case 'Facebook':
       return <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs">f</div>;
-    case 'Instagram':
-      return <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-purple-600 via-pink-500 to-orange-400 flex items-center justify-center text-white text-xs">i</div>;
-    case 'Twitter':
-      return <div className="w-6 h-6 rounded-full bg-blue-400 flex items-center justify-center text-white text-xs">x</div>;
     case 'LinkedIn':
       return <div className="w-6 h-6 rounded-full bg-blue-700 flex items-center justify-center text-white text-xs">in</div>;
     default:
@@ -361,8 +357,6 @@ export default function CrmCampaigns() {
                   <SelectContent className="bg-[#121218] border-gray-700">
                     <SelectItem value="all">All Platforms</SelectItem>
                     <SelectItem value="Facebook">Facebook</SelectItem>
-                    <SelectItem value="Instagram">Instagram</SelectItem>
-                    <SelectItem value="Twitter">Twitter (X)</SelectItem>
                     <SelectItem value="LinkedIn">LinkedIn</SelectItem>
                   </SelectContent>
                 </Select>

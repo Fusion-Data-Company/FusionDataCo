@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Facebook, Twitter, Instagram, Linkedin, Shield, Globe, Mail, Phone, MapPin, Award, FileCheck, BadgeCheck } from "lucide-react";
+import { Facebook, Linkedin, Shield, Globe, Mail, Phone, MapPin, Award, FileCheck, BadgeCheck } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -78,16 +78,10 @@ export default function Footer() {
             </div>
             
             <div className="flex space-x-4">
-              <a href="#" className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border/50">
-                <Twitter size={18} />
-              </a>
               <a href="https://www.facebook.com/profile.php?id=61569531779877" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border/50">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border/50">
-                <Instagram size={18} />
-              </a>
-              <a href="#" className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border/50">
+              <a href="https://www.linkedin.com/company/fusion-data-co/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors border border-border/50">
                 <Linkedin size={18} />
               </a>
             </div>

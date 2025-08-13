@@ -1,0 +1,70 @@
+SOCIAL MEDIA CLEANUP JOB for FusionDataCo website - CRITICAL INSTRUCTIONS:
+
+CURRENT SITUATION:
+- Facebook: https://www.facebook.com/profile.php?id=61569531779877 (WORKING - DON'T TOUCH THIS)
+- Twitter: # (PLACEHOLDER - NEEDS TO BE ELIMINATED)
+- Instagram: # (PLACEHOLDER - NEEDS TO BE ELIMINATED)
+- LinkedIn: # (PLACEHOLDER - NEEDS REPLACEMENT)
+
+EXECUTION ORDERS:
+
+1. FACEBOOK - DO NOT TOUCH:
+   - Keep exactly as is: https://www.facebook.com/profile.php?id=61569531779877
+   - Don't change the icon, link, or any Facebook-related code
+   - This stays EXACTLY THE SAME
+
+2. LINKEDIN - ADD PROPERLY:
+   - Replace the # placeholder with: https://www.linkedin.com/company/fusion-data-co/
+   - Ensure LinkedIn icon displays correctly
+   - Link must open in new tab
+
+3. TWITTER - COMPLETE ELIMINATION:
+   - Delete ALL Twitter links, icons, and references
+   - Remove from HTML, JSX, components
+   - Delete Twitter icon files if separate
+   - Remove Twitter from any social media arrays/objects
+   - Strip out any Twitter-related CSS classes
+   - No placeholder text, no #, no "coming soon" - NOTHING
+
+4. INSTAGRAM - COMPLETE ELIMINATION:
+   - Delete ALL Instagram links, icons, and references  
+   - Remove from HTML, JSX, components
+   - Delete Instagram icon files if separate
+   - Remove Instagram from any social media arrays/objects
+   - Strip out any Instagram-related CSS classes
+   - No placeholder text, no #, no "coming soon" - NOTHING
+
+SEARCH AND DESTROY LOCATIONS:
+- Header component
+- Footer component
+- Contact page
+- About page
+- Any social media component files
+- Any config/constants files with social links
+- Icon sprite files
+- CSS/SCSS files with social media styles
+
+FINAL RESULT MUST BE:
+- ONLY Facebook and LinkedIn icons/links visible
+- Two icons, properly spaced
+- Both links functional and opening in new tabs
+- Zero traces of Twitter or Instagram anywhere in the codebase
+
+VERIFICATION CHECKLIST:
+✓ Facebook link unchanged and working
+✓ LinkedIn link added and working
+✓ Twitter completely removed (no dead icons, no #, no placeholders)
+✓ Instagram completely removed (no dead icons, no #, no placeholders)
+✓ Only 2 social icons visible anywhere on site
+✓ No console errors about missing social properties
+✓ No broken image icons
+✓ Clean code with no commented-out Twitter/Instagram remnants
+
+UNACCEPTABLE OUTCOMES:
+✗ Leaving # placeholders for Twitter/Instagram
+✗ Keeping dead icon images for Twitter/Instagram
+✗ Having "coming soon" text for Twitter/Instagram
+✗ Breaking the Facebook link in any way
+✗ Having more than 2 social media icons visible
+
+This is a surgical operation - Facebook stays untouched, LinkedIn gets properly connected, and Twitter/Instagram disappear without a trace. Clean and professional.

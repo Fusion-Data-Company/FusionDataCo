@@ -144,7 +144,7 @@ export default function Campaigns() {
                         <Calendar className="w-7 h-7 text-[#14ffc8]" />
                       </div>
                       <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#14ffc8] transition-colors duration-300">Multi-Platform Scheduler</h3>
-                      <p className="text-gray-400 mb-4">Schedule content across Facebook, Instagram, LinkedIn, and X (Twitter) all from one unified dashboard.</p>
+                      <p className="text-gray-400 mb-4">Schedule content across Facebook, LinkedIn, and YouTube all from one unified dashboard.</p>
                     </CardContent>
                   </Card>
                 </motion.div>

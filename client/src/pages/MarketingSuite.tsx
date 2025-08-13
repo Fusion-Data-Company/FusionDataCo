@@ -457,7 +457,7 @@ export default function MarketingSuite() {
                     <ul className="space-y-3">
                       <li className="flex items-start gap-2">
                         <CheckCircle className="w-5 h-5 text-[#ff0aff] shrink-0 mt-0.5" />
-                        <span>Multi-platform publishing (Facebook, Instagram, Twitter, LinkedIn)</span>
+                        <span>Multi-platform publishing (Facebook, LinkedIn, YouTube)</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle className="w-5 h-5 text-[#ff0aff] shrink-0 mt-0.5" />

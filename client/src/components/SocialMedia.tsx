@@ -12,8 +12,6 @@ import {
   Target, 
   Laptop,
   BarChart3,
-  Instagram,
-  Twitter,
   Linkedin,
   Facebook,
   Youtube,
@@ -87,8 +85,6 @@ export default function SocialMedia() {
 
   const platforms = [
     { name: "LinkedIn", icon: <Linkedin size={24} />, color: "primary" },
-    { name: "Twitter", icon: <Twitter size={24} />, color: "primary" },
-    { name: "Instagram", icon: <Instagram size={24} />, color: "primary" },
     { name: "Facebook", icon: <Facebook size={24} />, color: "primary" },
     { name: "YouTube", icon: <Youtube size={24} />, color: "primary" }
   ];
