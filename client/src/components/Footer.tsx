@@ -169,6 +169,16 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-muted-foreground">
               <li>
+                <Link href="/about">
+                  <span className="hover:text-primary transition-colors cursor-pointer">About Us</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/services">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Services</span>
+                </Link>
+              </li>
+              <li>
                 <Link href="/pricing">
                   <span className="hover:text-primary transition-colors cursor-pointer">Pricing</span>
                 </Link>

@@ -2,19 +2,14 @@ import { Helmet } from 'react-helmet';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import ValueProposition from "@/components/ValueProposition";
-import Features from "@/components/Features";
 import IndustrySolutions from "@/components/IndustrySolutions";
-import SocialMedia from "@/components/SocialMedia";
-import CRMSection from "@/components/CRMSection";
-import Pricing from "@/components/Pricing";
 import CTASection from "@/components/CTASection";
-import ContactForm from "@/components/ContactForm";
 import ChatBot from "@/components/ChatBot";
-import AIContentDemo from "@/components/AIContentDemo";
 import MobileHero from "@/components/MobileHero";
-import MobileFeatures from "@/components/MobileFeatures";
-import MobilePricing from "@/components/MobilePricing";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "wouter";
+import { ArrowRight, Zap, TrendingUp, Shield, Globe } from "lucide-react";
 
 export default function Home() {
   return (
@@ -36,40 +31,117 @@ export default function Home() {
         <main className="flex-grow">
           <Hero />
           <MobileHero />
-          <ValueProposition />
-          <Features />
-          <MobileFeatures />
-          <IndustrySolutions />
           
-          {/* AI Content Demo Section */}
-          <section className="py-16 px-4 bg-gradient-to-b from-[#0a0a0d] to-[#121218] relative overflow-hidden">
-            <div className="absolute inset-0 bg-[#8f00ff]/5 z-0"></div>
-            <div className="absolute -inset-1/2 bg-[#8f00ff]/3 blur-3xl rounded-full opacity-10 z-0"></div>
-            
-            <div className="container mx-auto relative z-10">
-              <div className="text-center max-w-3xl mx-auto mb-12">
+          {/* Quick Value Props Section */}
+          <section className="py-16 px-4 bg-card">
+            <div className="container mx-auto">
+              <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  <span className="text-white">Experience</span>{" "}
-                  <span className="text-[#8f00ff] [text-shadow:0_0_5px_#8f00ff]">AI-Powered Content</span>
+                  Everything You Need to <span className="text-primary">Grow Your Business</span>
                 </h2>
-                <p className="text-gray-400 text-lg">
-                  See how our AI creates personalized marketing content for your specific business type. 
-                  Try the interactive demo below and discover content that actually converts.
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                  One platform, unlimited possibilities. Transform your marketing with our complete automation suite.
                 </p>
               </div>
               
-              <div className="max-w-5xl mx-auto">
-                <AIContentDemo />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <Zap className="h-10 w-10 text-primary mb-4" />
+                    <CardTitle>Instant Setup</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription>
+                      Get started in minutes with pre-built templates and industry-specific workflows
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <TrendingUp className="h-10 w-10 text-primary mb-4" />
+                    <CardTitle>Proven Results</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription>
+                      300% average increase in lead generation within the first 6 months
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <Shield className="h-10 w-10 text-primary mb-4" />
+                    <CardTitle>Enterprise Security</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription>
+                      Bank-level encryption and compliance with all major data protection standards
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <Globe className="h-10 w-10 text-primary mb-4" />
+                    <CardTitle>All-in-One Platform</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription>
+                      CRM, websites, email, social media, and AI tools in one integrated system
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="text-center">
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <Link href="/services">
+                    <Button size="lg" className="group">
+                      Explore Our Services
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                  <Link href="/about">
+                    <Button size="lg" variant="outline">
+                      Learn About Us
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </section>
           
-
-          <SocialMedia />
-          <Pricing />
-          <MobilePricing />
+          {/* Industry Solutions Brief */}
+          <IndustrySolutions />
+          
+          {/* Main CTA Section */}
           <CTASection />
-          <ContactForm />
+          
+          {/* Quick Contact CTA */}
+          <section className="py-16 px-4 bg-gradient-to-br from-primary/10 to-accent/10">
+            <div className="container mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Ready to Transform Your Marketing?
+              </h2>
+              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Join thousands of businesses already using Fusion Data Co to automate their growth.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Link href="/pricing">
+                  <Button size="lg" className="group">
+                    View Pricing Plans
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button size="lg" variant="outline">
+                    Contact Sales
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </section>
         </main>
         <Footer />
         <ChatBot />

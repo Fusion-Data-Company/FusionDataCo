@@ -30,9 +30,9 @@ export default function MobileHeader() {
 
   const navigationItems = [
     { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
     { href: "/pricing", label: "Pricing" },
-    { href: "/crm", label: "CRM" },
-    { href: "/campaigns", label: "Campaigns" },
     { href: "/contact", label: "Contact" }
   ];
 
