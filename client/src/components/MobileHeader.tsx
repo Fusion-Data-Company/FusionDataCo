@@ -32,6 +32,8 @@ export default function MobileHeader() {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/services", label: "Services" },
+    { href: "/case-studies", label: "Case Studies" },
+    { href: "/blog", label: "Blog" },
     { href: "/pricing", label: "Pricing" },
     { href: "/contact", label: "Contact" }
   ];

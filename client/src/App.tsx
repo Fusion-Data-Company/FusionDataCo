@@ -11,6 +11,8 @@ import { queryClient } from "./lib/queryClient";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
+import CaseStudies from "@/pages/CaseStudies";
+import Blog from "@/pages/Blog";
 import SmallBusinessOwners from "@/pages/SmallBusinessOwners";
 import RealEstate from "@/pages/RealEstate";
 import Medical from "@/pages/Medical";
@@ -179,6 +181,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/services" component={Services} />
+      <Route path="/case-studies" component={CaseStudies} />
+      <Route path="/blog" component={Blog} />
       <Route path="/small-business-upgrade" component={SmallBusinessUpgrade} />
       <Route path="/small-business-owners" component={SmallBusinessOwners} />
       <Route path="/real-estate" component={RealEstate} />

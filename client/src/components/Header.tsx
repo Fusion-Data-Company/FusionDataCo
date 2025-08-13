@@ -54,6 +54,8 @@ export default function Header() {
         { name: "CRM", path: "/crm" },
       ]
     },
+    { name: "Case Studies", path: "/case-studies" },
+    { name: "Blog", path: "/blog" },
     { name: "Pricing", path: "/pricing" },
     { name: "Contact", path: "/contact" },
   ];
