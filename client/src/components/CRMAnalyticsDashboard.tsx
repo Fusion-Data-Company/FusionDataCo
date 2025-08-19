@@ -194,9 +194,8 @@ export default function CRMAnalyticsDashboard() {
             </div>
           ))}
         </div>
-      </div>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
         {/* Leads by Source */}
         <div className="enterprise-card p-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <div className="glow-wrapper"></div>
@@ -212,7 +211,7 @@ export default function CRMAnalyticsDashboard() {
                 Lead Acquisition Channels
               </h4>
             </div>
-          <div className="h-80">
+            <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
