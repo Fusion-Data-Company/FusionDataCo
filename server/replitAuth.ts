@@ -58,7 +58,7 @@ async function upsertUser(
   claims: any,
 ) {
   // Check if this is an admin user based on email domain or specific email
-  const adminEmails = ['rob@fusiondataco.com', 'admin@fusiondataco.com'];
+  const adminEmails = ['rob@fusiondataco.com', 'mat@fusiondataco.com', 'admin@fusiondataco.com'];
   const isAdmin = adminEmails.includes(claims["email"]) || 
                    claims["email"]?.endsWith('@fusiondataco.com');
   
@@ -110,7 +110,7 @@ export async function setupAuth(app: Express) {
   app.get("/api/login", (req, res, next) => {
     // Store the redirect URL in session before authentication
     const redirectTo = req.query.redirect || '/crm/dashboard';
-    req.session.returnTo = redirectTo as string;
+    (req.session as any).returnTo = redirectTo as string;
     
     passport.authenticate(`replitauth:${req.hostname}`, {
       prompt: "login consent",
@@ -120,7 +120,7 @@ export async function setupAuth(app: Express) {
 
   app.get("/api/callback", (req, res, next) => {
     passport.authenticate(`replitauth:${req.hostname}`, {
-      successReturnToOrRedirect: req.session.returnTo || "/crm/dashboard",
+      successReturnToOrRedirect: (req.session as any).returnTo || "/crm/dashboard",
       failureRedirect: "/login",
     })(req, res, next);
   });

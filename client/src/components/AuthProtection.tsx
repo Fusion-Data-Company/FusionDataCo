@@ -36,7 +36,7 @@ export default function AuthProtection({
       // Track unauthorized access attempt
       trackEvent({
         category: 'authentication',
-        action: 'unauthorized_access',
+        action: 'view' as const,
         label: window.location.pathname
       });
       
@@ -52,7 +52,7 @@ export default function AuthProtection({
     }
     
     // Check role requirement if specified for admin routes
-    if (!isLoading && isAuthenticated && isProtectedRoute && requiredRole === 'admin' && user?.role !== 'admin') {
+    if (!isLoading && isAuthenticated && isProtectedRoute && requiredRole === 'admin' && (user as any)?.role !== 'admin') {
       toast({
         title: "Access Denied",
         description: "This area requires admin privileges.",

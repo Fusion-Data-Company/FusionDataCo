@@ -7,6 +7,7 @@ This repository contains the codebase for a marketing automation platform called
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Admin users: mat@fusiondataco.com, rob@fusiondataco.com
 
 ## System Architecture
 
@@ -94,10 +95,16 @@ The `.replit` configuration file defines the necessary settings for the Replit e
 3. Run database migrations with `npm run db:push`
 4. Start the development server with `npm run dev`
 
+## Recent Changes (January 2025)
+
+1. **Replit Auth Integration**: Implemented Google OAuth authentication through Replit Auth for admin panel access
+2. **Admin Access Control**: Admin privileges granted to mat@fusiondataco.com and rob@fusiondataco.com
+3. **Database Updates**: Added sessions table and user authentication fields for secure auth storage
+4. **Protected Routes**: CRM and admin routes now require authentication via Google login
+
 ## Future Considerations
 
-1. **Authentication**: Currently there's a user schema but no full authentication system implemented
-2. **AI Integration**: The chat functionality is set up but may need further integration with AI services
-3. **Additional Industry Pages**: More industry-specific solutions can be added
-4. **Enhanced CRM Features**: The database schema supports users but could be extended for more CRM functionality
-5. **Social Media Integration**: The UI shows social media capabilities that need to be fully implemented on the backend
+1. **AI Integration**: The chat functionality is set up but may need further integration with AI services
+2. **Additional Industry Pages**: More industry-specific solutions can be added
+3. **Enhanced CRM Features**: The database schema supports users but could be extended for more CRM functionality
+4. **Social Media Integration**: The UI shows social media capabilities that need to be fully implemented on the backend
