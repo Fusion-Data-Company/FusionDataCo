@@ -494,7 +494,9 @@ export default function CRMAnalyticsDashboard() {
             </ResponsiveContainer>
           </div>
         </div>
+        </div>
       </div>
+    </div>
     </div>
   );
 }

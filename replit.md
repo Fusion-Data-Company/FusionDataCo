@@ -1,117 +1,91 @@
-# Fusion Data Co Marketing Automation Platform
+# Fusion Data Co - Marketing Automation SaaS Platform
 
 ## Overview
+A cutting-edge marketing automation SaaS platform that transforms lead generation into a strategic, data-driven conversion ecosystem. Built with React, Express.js, PostgreSQL, and AI-powered features.
 
-This repository contains the codebase for a marketing automation platform called "Fusion Data Co". It's a full-stack web application built with a React frontend and Express backend, using a PostgreSQL database with Drizzle ORM. The platform aims to provide small businesses with marketing automation tools, CRM capabilities, website building, and AI-powered workflows.
+## Recent Changes (January 20, 2025)
+### New Services & Pricing Structure
+- **Conversational AI Service Page**: Enhanced with voice/SMS agents using ElevenLabs + Vapi + OpenRouter
+  - Phone agents with inbound/outbound capabilities
+  - SMS nurture sequences with compliance
+  - Industry-specific examples (Real Estate, Insurance, Healthcare, Finance)
+  - Sandler funnel alignment (Pain → Info → Good News)
+  
+- **Multi-Model Agents (Golf Bag Approach)**: Strategic AI model selection
+  - Driver = long-range generation
+  - Irons = structured reasoning
+  - Wedge = cleanup/extraction
+  - Putter = final polish
+  - OpenRouter integration for 100+ models
 
-## User Preferences
+- **New Pricing Tiers**: Launch/Growth/Scale
+  - Launch: $799/mo + $2k setup (1 agent, basic features)
+  - Growth: $1,799/mo + $6k setup (3 agents, n8n, analytics) [Recommended]
+  - Scale: $4,499/mo + $15k setup (unlimited agents, SLAs, enterprise features)
+  - Add-ons: Additional numbers, voice clones, dashboards, workshops
 
-Preferred communication style: Simple, everyday language.
-Admin users: mat@fusiondataco.com, rob@fusiondataco.com
+## Project Architecture
 
-## System Architecture
+### Technology Stack
+- **Frontend**: React 18 with TypeScript, Vite, TailwindCSS, shadcn/ui
+- **Backend**: Express.js with TypeScript, Drizzle ORM
+- **Database**: PostgreSQL (Neon serverless)
+- **Authentication**: Google OAuth via Passport.js
+- **AI Integration**: OpenRouter for multi-model routing, OpenAI API
+- **Real-time**: WebSockets for live updates
+- **Analytics**: Custom tracking system with GA-style events
 
-The application follows a client-server architecture:
-
-1. **Frontend**: React application with TypeScript, Vite for build tooling, and TailwindCSS for styling
-2. **Backend**: Express.js server with TypeScript
-3. **Database**: PostgreSQL with Drizzle ORM for data access
-4. **State Management**: React Query for server state management
-5. **UI Component Library**: Custom UI components leveraging Radix UI primitives and Shadcn/UI implementation patterns
-
-The application is designed to run both locally for development and can be deployed via Replit's deployment system.
-
-## Key Components
-
-### Frontend Components
-
-1. **Pages**: The application has multiple industry-specific pages (SmallBusiness, RealEstate, Medical, HomeServices, SocialMediaServices) as well as a Pricing page
-2. **UI Components**: Extensive UI component library built with Radix UI primitives and styled with TailwindCSS
-3. **Theme Provider**: Custom theme provider with light/dark mode support
-4. **API Integration**: React Query is used to manage API requests and server state
-
-### Backend Components
-
-1. **Express Server**: Handles API requests and serves the frontend
-2. **Routes**: API routes for contact form submissions and chat functionality 
-3. **Storage**: Database interaction layer for persisting data
-4. **Schema**: Database schema defined with Drizzle ORM and Zod for validation
+### Key Features
+- Conversational AI (Voice + SMS)
+- Multi-model AI routing
+- CRM integration capabilities
+- Marketing automation workflows
+- Social media management
+- Email campaigns
+- Lead generation tools
+- Analytics dashboards
+- Sandler funnel methodology
 
 ### Database Schema
+- Users (with Google OAuth integration)
+- Leads & Contacts
+- Campaigns & Automations
+- Analytics Events
+- Sessions
 
-The database has three main tables:
-1. **users**: Stores user information including username, password, email, etc.
-2. **contact_submissions**: Stores contact form submissions
-3. **chat_messages**: Stores chat conversations with the AI assistant
+### Security & Compliance
+- SOC2 compliant infrastructure
+- GDPR data protection
+- TCPA/CTIA standards
+- HIPAA-ready options
+- Secure OAuth implementation
+- Session management with PostgreSQL store
 
-## Data Flow
+## Development Guidelines
 
-1. **Contact Form Submission**:
-   - User fills out a contact form on the frontend
-   - Form is validated with Zod schemas
-   - Data is sent to `/api/contact` endpoint
-   - Backend validates the data again and stores it in the database
-   - Response is sent back to the frontend
+### Code Style
+- TypeScript for type safety
+- Functional components with hooks
+- Modular component architecture
+- Consistent error handling
+- Comprehensive logging
 
-2. **Chat Interaction**:
-   - User sends a message via the chat interface
-   - Message is sent to `/api/chat` endpoint
-   - Backend processes the message, potentially using AI
-   - Response is stored in the database and returned to the frontend
+### Testing & Deployment
+- Development workflow runs on port 5000
+- HMR enabled for rapid development
+- PostgreSQL database for persistence
+- Ready for Replit Deployments
 
-## External Dependencies
+## User Preferences
+- Enterprise-focused copy without hype
+- Sandler sales methodology alignment
+- Professional, credible tone for CTOs/VPs
+- Cross-linking between all service pages
+- Consistent UI with existing design system
 
-### Frontend Dependencies
-
-1. **React & React DOM**: Core library for UI
-2. **Wouter**: Lightweight router for navigation
-3. **TailwindCSS**: Utility-first CSS framework
-4. **Radix UI**: Unstyled, accessible UI primitives
-5. **Lucide React**: Icon library
-6. **React Query**: Data fetching and state management
-7. **React Hook Form**: Form handling with validation via Zod
-
-### Backend Dependencies
-
-1. **Express**: Web server framework
-2. **Drizzle ORM**: Database ORM for PostgreSQL
-3. **Zod**: Schema validation
-4. **Nanoid**: Unique ID generation
-
-## Deployment Strategy
-
-The application is configured to be deployed on Replit:
-
-1. **Development**: `npm run dev` starts both the Vite development server and the Express backend
-2. **Production Build**: `npm run build` builds both the frontend and backend into the `dist` directory
-3. **Production Start**: `npm run start` runs the production build
-
-The `.replit` configuration file defines the necessary settings for the Replit environment, including the required modules (nodejs-20, web, postgresql-16) and deployment settings.
-
-## Getting Started
-
-1. The application requires a PostgreSQL database connection configured via the `DATABASE_URL` environment variable
-2. Install dependencies with `npm install`
-3. Run database migrations with `npm run db:push`
-4. Start the development server with `npm run dev`
-
-## Recent Changes (January 2025)
-
-1. **Replit Auth Integration**: Implemented Google OAuth authentication through Replit Auth for admin panel access
-2. **Admin Access Control**: Admin privileges granted to mat@fusiondataco.com and rob@fusiondataco.com
-3. **Database Updates**: Added sessions table and user authentication fields for secure auth storage
-4. **Protected Routes**: CRM and admin routes now require authentication via Google login
-5. **Conversational AI Services**: Added comprehensive conversational AI service pages and pricing structure
-   - New service page: `/services/conversational-ai` with ElevenLabs voice + Vapi telephony integration
-   - New service page: `/services/multi-model-agents` with OpenRouter multi-model routing (Golf Bag approach)
-   - Updated pricing page with conversational AI plans (Launch: $799/mo, Growth: $1799/mo, Scale: $4499/mo)
-   - Implemented Sandler Method color coding (Red: Pain, Yellow: Info, Green: Solution)
-   - Added FAQ sections with accordion components
-   - Updated navigation to include new service pages
-
-## Future Considerations
-
-1. **AI Integration**: The chat functionality is set up but may need further integration with AI services
-2. **Additional Industry Pages**: More industry-specific solutions can be added
-3. **Enhanced CRM Features**: The database schema supports users but could be extended for more CRM functionality
-4. **Social Media Integration**: The UI shows social media capabilities that need to be fully implemented on the backend
+## Support & Documentation
+- Comprehensive FAQ sections
+- Industry-specific examples
+- Case study snippets with metrics
+- Clear pricing transparency
+- Enterprise standards highlighted
