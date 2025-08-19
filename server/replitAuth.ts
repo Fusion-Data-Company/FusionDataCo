@@ -90,8 +90,11 @@ export async function setupAuth(app: Express) {
     verified(null, user);
   };
 
-  for (const domain of process.env
-    .REPLIT_DOMAINS!.split(",")) {
+  // Configure strategies for all allowed domains
+  const domains = process.env.REPLIT_DOMAINS!.split(",");
+  console.log('[AUTH] Configuring authentication for domains:', domains);
+  
+  for (const domain of domains) {
     const strategy = new Strategy(
       {
         name: `replitauth:${domain}`,
@@ -102,6 +105,7 @@ export async function setupAuth(app: Express) {
       verify,
     );
     passport.use(strategy);
+    console.log(`[AUTH] Strategy configured for domain: ${domain}`);
   }
 
   passport.serializeUser((user: Express.User, cb) => cb(null, user));
@@ -119,9 +123,42 @@ export async function setupAuth(app: Express) {
   });
 
   app.get("/api/callback", (req, res, next) => {
+    console.log('[AUTH] Callback received for hostname:', req.hostname);
+    console.log('[AUTH] Available domains:', process.env.REPLIT_DOMAINS);
+    
+    // Check if the hostname is in the allowed domains
+    const allowedDomains = process.env.REPLIT_DOMAINS?.split(",") || [];
+    if (!allowedDomains.includes(req.hostname)) {
+      console.error('[AUTH] Domain not configured:', req.hostname);
+      console.error('[AUTH] Allowed domains:', allowedDomains);
+      return res.status(500).json({ 
+        error: "Domain not configured for authentication",
+        hostname: req.hostname,
+        configured: allowedDomains
+      });
+    }
+    
     passport.authenticate(`replitauth:${req.hostname}`, {
       successReturnToOrRedirect: (req.session as any).returnTo || "/crm/dashboard",
       failureRedirect: "/login",
+    }, (err: any, user: any, info: any) => {
+      if (err) {
+        console.error('[AUTH] Authentication error:', err);
+        return res.status(500).json({ error: "Authentication failed", details: err.message });
+      }
+      if (!user) {
+        console.error('[AUTH] No user returned:', info);
+        return res.redirect('/login');
+      }
+      req.logIn(user, (err) => {
+        if (err) {
+          console.error('[AUTH] Login error:', err);
+          return res.status(500).json({ error: "Login failed", details: err.message });
+        }
+        const redirectTo = (req.session as any).returnTo || "/crm/dashboard";
+        delete (req.session as any).returnTo;
+        return res.redirect(redirectTo);
+      });
     })(req, res, next);
   });
 
