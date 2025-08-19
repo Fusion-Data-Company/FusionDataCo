@@ -1,7 +1,7 @@
 import { 
   users, chatMessages, contactSubmissions, crmContacts, crmDeals, crmActivities,
   leads, socialTrials,
-  type User, type InsertUser, 
+  type User, type UpsertUser, 
   type ContactSubmission, type InsertContactSubmission,
   type ChatMessage, type InsertChatMessage,
   type CrmContact, type InsertCrmContact,
@@ -25,10 +25,10 @@ const db = drizzle(pool);
 // modify the interface with any CRUD methods
 // you might need
 export interface IStorage {
-  // User operations
+  // User operations - Updated for Replit Auth
   getUser(id: number): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getUserByReplitAuthId(replitAuthId: string): Promise<User | undefined>;
+  upsertUser(user: UpsertUser): Promise<User>;
   
   // Contact form operations - Enhanced for all form types
   createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
@@ -80,19 +80,29 @@ export interface IStorage {
 }
 
 export class PostgresStorage implements IStorage {
-  // User operations
+  // User operations - Updated for Replit Auth
   async getUser(id: number): Promise<User | undefined> {
     const result = await db.select().from(users).where(eq(users.id, id));
     return result[0];
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    const result = await db.select().from(users).where(eq(users.username, username));
+  async getUserByReplitAuthId(replitAuthId: string): Promise<User | undefined> {
+    const result = await db.select().from(users).where(eq(users.replitAuthId, replitAuthId));
     return result[0];
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const result = await db.insert(users).values(insertUser).returning();
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    const result = await db
+      .insert(users)
+      .values(userData)
+      .onConflictDoUpdate({
+        target: users.replitAuthId,
+        set: {
+          ...userData,
+          updatedAt: new Date(),
+        },
+      })
+      .returning();
     return result[0];
   }
 

@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
 import { 
   contactSubmissionSchema, 
   chatMessageSchema, 
@@ -15,6 +16,25 @@ import { nanoid } from "nanoid";
 import axios from "axios";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup Replit Auth
+  await setupAuth(app);
+  
+  // Auth routes for user info
+  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const replitAuthId = req.user.claims.sub;
+      const user = await storage.getUserByReplitAuthId(replitAuthId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+  
+  // Protect admin routes
+  app.use("/api/admin/*", isAdmin);
+  app.use("/api/crm/*", isAdmin);
+  
   // Register marketing routes
   app.use("/api/marketing", marketingRouter);
 

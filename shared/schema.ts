@@ -1,24 +1,34 @@
-import { pgTable, text, serial, integer, boolean, jsonb, timestamp, date, varchar, primaryKey } from "drizzle-orm/pg-core";
+import { sql } from 'drizzle-orm';
+import { pgTable, text, serial, integer, boolean, jsonb, timestamp, date, varchar, primaryKey, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-// User table
+// Session storage table for Replit Auth
+export const sessions = pgTable(
+  "sessions",
+  {
+    sid: varchar("sid").primaryKey(),
+    sess: jsonb("sess").notNull(),
+    expire: timestamp("expire").notNull(),
+  },
+  (table) => [index("IDX_session_expire").on(table.expire)],
+);
+
+// User table - Updated for Replit Auth with backward compatibility
 export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
-  email: text("email").notNull().unique(),
-  fullName: text("full_name"),
+  id: serial("id").primaryKey(), // Keep integer for compatibility with existing tables
+  replitAuthId: varchar("replit_auth_id").unique(), // Replit Auth ID
+  email: text("email").unique(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  profileImageUrl: text("profile_image_url"),
   role: text("role").default("user"),
   createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
-  email: true,
-  fullName: true,
-});
+export type UpsertUser = Omit<typeof users.$inferInsert, 'id'>;
+export type User = typeof users.$inferSelect;
 
 // Contact form submissions - Enhanced for all form types
 export const contactSubmissions = pgTable("contact_submissions", {

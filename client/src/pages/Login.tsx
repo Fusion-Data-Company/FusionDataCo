@@ -1,98 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation } from 'wouter';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from '@/hooks/use-toast';
 import { trackEvent } from '@/components/AnalyticsTracker';
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-
-// Define form schema
-const formSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  password: z.string().min(6, { message: "Password must be at least 6 characters." }),
-  rememberMe: z.boolean().default(false),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+import { useAuth } from '@/hooks/useAuth';
+import { SiGoogle } from 'react-icons/si';
 
 export default function Login() {
   const { toast } = useToast();
   const [, setLocation] = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { isAuthenticated, isLoading } = useAuth();
   
   // Get redirect URL from query parameter
   const searchParams = new URLSearchParams(window.location.search);
-  const redirectUrl = searchParams.get('redirect') || '/crm';
+  const redirectUrl = searchParams.get('redirect') || '/crm/dashboard';
 
-  // Initialize form
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-      rememberMe: false,
-    },
-  });
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      setLocation(redirectUrl);
+    }
+  }, [isAuthenticated, isLoading, redirectUrl, setLocation]);
 
-  // Form submission handler
-  const onSubmit = async (data: FormValues) => {
+  // Use Replit Auth for login
+  const handleGoogleLogin = () => {
     setIsSubmitting(true);
     
-    try {
-      // Track login attempt
-      trackEvent({
-        category: 'authentication',
-        action: 'submit',
-        label: 'login_form',
-      });
-      
-      // In a real app, this would make an API call to authenticate
-      // For now, we'll simulate a successful login
-      setTimeout(() => {
-        // Store auth token in localStorage
-        localStorage.setItem('auth_token', 'mock_token_12345');
-        
-        // Track successful login
-        trackEvent({
-          category: 'authentication',
-          action: 'login',
-          label: 'login_success',
-        });
-        
-        toast({
-          title: "Login successful",
-          description: "Welcome back to Fusion Data Co!",
-        });
-        
-        // Redirect to the intended destination
-        setLocation(redirectUrl);
-      }, 1000);
-      
-    } catch (error) {
-      console.error('Login error:', error);
-      
-      // Track failed login
-      trackEvent({
-        category: 'authentication',
-        action: 'login',
-        label: 'login_failed',
-      });
-      
-      toast({
-        title: "Login failed",
-        description: "Invalid email or password. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Track login attempt
+    trackEvent({
+      category: 'authentication',
+      action: 'submit',
+      label: 'google_login',
+    });
+    
+    // Redirect to Replit Auth login endpoint with redirect parameter
+    const loginUrl = `/api/login?redirect=${encodeURIComponent(redirectUrl)}`;
+    window.location.href = loginUrl;
   };
+      
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -114,115 +72,37 @@ export default function Login() {
                 className="h-10"
               />
             </div>
-            <CardTitle className="text-2xl font-bold">Sign In</CardTitle>
+            <CardTitle className="text-2xl font-bold">Admin Login</CardTitle>
             <CardDescription>
-              Enter your email and password to access your account
+              Sign in with your Google account to access the admin panel
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="name@example.com" 
-                          type="email"
-                          autoComplete="email"
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className="flex items-center justify-between">
-                        <FormLabel>Password</FormLabel>
-                        <a 
-                          href="#" 
-                          className="text-sm text-primary hover:underline"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            trackEvent({
-                              category: 'authentication',
-                              action: 'click',
-                              label: 'forgot_password',
-                            });
-                            toast({
-                              title: "Password Reset",
-                              description: "This feature is coming soon. Please contact support for assistance.",
-                            });
-                          }}
-                        >
-                          Forgot password?
-                        </a>
-                      </div>
-                      <FormControl>
-                        <Input 
-                          placeholder="••••••••" 
-                          type="password"
-                          autoComplete="current-password"
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="remember"
-                    className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                    checked={form.watch('rememberMe')}
-                    onChange={(e) => form.setValue('rememberMe', e.target.checked)}
-                  />
-                  <Label htmlFor="remember" className="text-sm font-normal cursor-pointer">
-                    Remember me for 30 days
-                  </Label>
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90" 
-                  size="lg"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Signing in..." : "Sign in"}
-                </Button>
-              </form>
-            </Form>
+          <CardContent className="space-y-4">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-border/50" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  Secure Authentication
+                </span>
+              </div>
+            </div>
+            
+            <Button 
+              onClick={handleGoogleLogin}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90" 
+              size="lg"
+              disabled={isSubmitting}
+            >
+              <SiGoogle className="mr-2 h-4 w-4" />
+              {isSubmitting ? "Redirecting..." : "Continue with Google"}
+            </Button>
             
             <div className="mt-4 text-center">
-              <span className="text-sm text-muted-foreground">
-                Don't have an account?{" "}
-                <a 
-                  href="/register" 
-                  className="text-primary hover:underline font-medium"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    trackEvent({
-                      category: 'authentication',
-                      action: 'click',
-                      label: 'signup_link',
-                    });
-                    setLocation('/register');
-                  }}
-                >
-                  Sign up
-                </a>
-              </span>
+              <p className="text-sm text-muted-foreground">
+                Admin access only. Sign in with your authorized Google account.
+              </p>
             </div>
           </CardContent>
           <CardFooter className="border-t border-border p-6 text-center">
