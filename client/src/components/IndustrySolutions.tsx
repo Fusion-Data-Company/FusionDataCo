@@ -40,10 +40,10 @@ interface IndustrySolution {
 export default function IndustrySolutions() {
   const solutions: IndustrySolution[] = [
     {
-      title: "Enterprise",
-      subtitle: "For Global Organizations",
+      title: "Small Business",
+      subtitle: "For Growing Companies",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
-      link: "/enterprise",
+      link: "/small-business-owners",
       icon: <Building size={24} />,
       color: "primary",
       challenges: [
@@ -66,10 +66,10 @@ export default function IndustrySolutions() {
       ]
     },
     {
-      title: "Financial Services",
-      subtitle: "For Banking & Investment",
+      title: "Real Estate",
+      subtitle: "For Property Professionals",
       image: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
-      link: "/finance",
+      link: "/real-estate",
       icon: <BarChart size={24} />,
       color: "accent",
       challenges: [
@@ -92,10 +92,10 @@ export default function IndustrySolutions() {
       ]
     },
     {
-      title: "Healthcare",
-      subtitle: "For Medical Enterprises",
+      title: "Medical",
+      subtitle: "For Healthcare Providers",
       image: "https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
-      link: "/healthcare",
+      link: "/medical",
       icon: <Shield size={24} />,
       color: "secondary",
       challenges: [
@@ -118,10 +118,10 @@ export default function IndustrySolutions() {
       ]
     },
     {
-      title: "Manufacturing",
-      subtitle: "For Industry Leaders",
+      title: "Trades",
+      subtitle: "For Service Professionals",
       image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
-      link: "/manufacturing",
+      link: "/trades",
       icon: <FileText size={24} />,
       color: "muted-foreground",
       challenges: [
