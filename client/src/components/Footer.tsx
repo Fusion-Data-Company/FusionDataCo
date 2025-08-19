@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Facebook, Linkedin, Shield, Globe, Mail, Phone, MapPin, Award, FileCheck, BadgeCheck } from "lucide-react";
+import NewsletterSignup from "./NewsletterSignup";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,33 +12,7 @@ export default function Footer() {
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Newsletter signup */}
-        <div className="glass-panel mb-16 p-8 rounded-xl max-w-5xl mx-auto relative overflow-hidden">
-          <div className="absolute -top-10 -right-10 w-40 h-40 opacity-5">
-            <Shield className="w-full h-full text-primary" />
-          </div>
-          
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="max-w-lg">
-              <h3 className="font-['Orbitron'] text-2xl font-semibold mb-3 text-foreground">
-                Stay Updated with Enterprise Insights
-              </h3>
-              <p className="text-muted-foreground">
-                Subscribe to our newsletter for exclusive industry trends, product updates, and enterprise marketing strategies.
-              </p>
-            </div>
-            
-            <div className="w-full lg:w-auto flex flex-col sm:flex-row gap-3">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="px-4 py-3 bg-muted/30 border border-border rounded-md text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors w-full sm:w-64"
-              />
-              <button className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium shadow-md hover:shadow-lg transition-all duration-200 whitespace-nowrap">
-                Subscribe Now
-              </button>
-            </div>
-          </div>
-        </div>
+        <NewsletterSignup />
         
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-12 mb-16">

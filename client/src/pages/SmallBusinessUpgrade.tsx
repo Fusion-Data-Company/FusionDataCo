@@ -9,8 +9,11 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { trackEvent } from "@/components/AnalyticsTracker";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function SmallBusinessUpgrade() {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     businessName: '',
     name: '',
@@ -18,18 +21,58 @@ export default function SmallBusinessUpgrade() {
     phone: '',
     revenue: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    trackEvent({
-      category: 'lead_generation',
-      action: 'submit',
-      label: 'small_business_upgrade_form'
-    });
     
-    // Here you would integrate with your CRM/lead management system
-    console.log('Form submitted:', formData);
-    alert('Thank you! We\'ll be in touch within 24 hours to show you your personalized CRM demo.');
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    
+    try {
+      trackEvent({
+        category: 'lead_generation',
+        action: 'submit',
+        label: 'small_business_upgrade_form'
+      });
+      
+      // Submit to backend
+      await apiRequest("/api/contact", {
+        method: "POST",
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          businessName: formData.businessName,
+          company: formData.businessName,
+          message: `Small Business Upgrade Request - Revenue: ${formData.revenue}`,
+          formType: "small_business",
+          source: "SmallBusinessUpgrade"
+        })
+      });
+      
+      toast({
+        title: "Request submitted successfully!",
+        description: "We'll be in touch within 24 hours to show you your personalized CRM demo.",
+      });
+      
+      // Clear form
+      setFormData({
+        businessName: '',
+        name: '',
+        email: '',
+        phone: '',
+        revenue: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Submission failed",
+        description: "There was an error submitting your request. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {

@@ -1,0 +1,66 @@
+CRITICAL SYSTEM AUDIT: FORMS & ADMIN AUTHENTICATION
+
+PRIORITY OBJECTIVE:
+Conduct a comprehensive audit of ALL forms and the Admin login system. Verify they are capturing data correctly and functioning as intended. The live website must remain unchanged and fully operational during this entire process.
+
+PHASE 1 - COMPLETE SYSTEM RECONNAISSANCE:
+1. Map out EVERY form on the website (contact forms, signup forms, newsletter subscriptions, etc.)
+2. Locate the Admin login portal and all associated authentication pages
+3. Identify the backend database or storage system where form data is collected
+4. Document all form action URLs, methods (POST/GET), and endpoints
+5. List all form validation rules and required fields
+6. Trace the complete data flow from form submission to storage
+
+PHASE 2 - DEEP DIVE ANALYSIS:
+Before making ANY changes, investigate:
+- Backend server configuration (PHP, Node.js, Python, etc.)
+- Database connections and credentials storage
+- API endpoints handling form submissions
+- Email notification systems tied to forms
+- Session management for admin authentication
+- Any CSS/JavaScript that might interfere with form functionality
+- Security measures (CSRF tokens, captcha, rate limiting)
+- Error handling and logging mechanisms
+
+PHASE 3 - TESTING PROTOCOL:
+For EACH form discovered:
+1. Submit test data with all fields filled
+2. Submit with required fields empty (test validation)
+3. Submit with invalid data formats (test sanitization)
+4. Verify data appears in the backend storage
+5. Confirm any email notifications are sent
+6. Check for proper success/error message display
+7. Test on desktop and mobile devices
+
+For Admin Login:
+1. Test with valid credentials (if available)
+2. Test with invalid credentials
+3. Verify session creation and persistence
+4. Check "Remember Me" functionality if present
+5. Test password reset mechanism if available
+6. Verify proper access control to admin areas
+7. Test logout functionality
+
+PHASE 4 - FIX IMPLEMENTATION:
+When issues are found:
+1. Document the exact problem
+2. Identify root cause (frontend JS, backend processing, database connection, etc.)
+3. Implement fix WITHOUT altering site appearance or breaking other features
+4. Test the fix thoroughly
+5. Verify no side effects on other site functions
+
+DELIVERABLES:
+1. Complete inventory of all forms with their purposes
+2. Admin login system functionality report
+3. List of all issues discovered with their fixes
+4. Confirmation that all forms are capturing and storing data
+5. Evidence of successful data capture (screenshots, database records)
+6. Backend configuration documentation
+
+CRITICAL WARNINGS:
+- Do NOT modify any visual elements of the website
+- Do NOT break any existing functionality while fixing issues
+- Do NOT proceed with fixes without understanding the full impact
+- Do NOT report completion without testing EVERY form and feature
+
+Confirm understanding of these requirements, then begin with the complete system reconnaissance.

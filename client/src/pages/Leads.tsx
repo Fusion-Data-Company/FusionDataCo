@@ -10,8 +10,11 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { trackEvent } from "@/components/AnalyticsTracker";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function Leads() {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     businessName: '',
     name: '',
@@ -19,17 +22,58 @@ export default function Leads() {
     phone: '',
     leadType: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    trackEvent({
-      category: 'lead_generation',
-      action: 'submit',
-      label: 'lead_generation_form'
-    });
     
-    console.log('Lead generation form submitted:', formData);
-    alert('Thank you! We\'ll contact you within 24 hours to discuss your lead generation strategy.');
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    
+    try {
+      trackEvent({
+        category: 'lead_generation',
+        action: 'submit',
+        label: 'lead_generation_form'
+      });
+      
+      // Submit to backend
+      await apiRequest("/api/contact", {
+        method: "POST",
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          businessName: formData.businessName,
+          company: formData.businessName,
+          message: `Lead Generation Request - Lead Type: ${formData.leadType}`,
+          formType: "lead_generation",
+          source: "LeadGenerationPage"
+        })
+      });
+      
+      toast({
+        title: "Request submitted successfully!",
+        description: "We'll contact you within 24 hours to discuss your lead generation strategy.",
+      });
+      
+      // Clear form
+      setFormData({
+        businessName: '',
+        name: '',
+        email: '',
+        phone: '',
+        leadType: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Submission failed",
+        description: "There was an error submitting your request. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {

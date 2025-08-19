@@ -23,6 +23,7 @@ const formSchema = z.object({
   company: z.string().optional(),
   message: z.string().min(5, { message: "Please enter a message with at least 5 characters." }),
   source: z.string().default("ContactPage"),
+  formType: z.string().default("contact"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -42,6 +43,7 @@ export default function Contact() {
       company: "",
       message: "",
       source: "ContactPage",
+      formType: "contact",
     },
   });
 
