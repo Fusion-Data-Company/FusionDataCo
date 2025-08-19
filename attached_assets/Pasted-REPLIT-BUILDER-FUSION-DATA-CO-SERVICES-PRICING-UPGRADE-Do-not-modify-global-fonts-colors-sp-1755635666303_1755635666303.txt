@@ -1,0 +1,393 @@
+REPLIT BUILDER — FUSION DATA CO (SERVICES + PRICING UPGRADE)
+
+Do not modify global fonts, colors, spacing, or components. Reuse existing Section/Container/Card/Typography classes. No new CSS frameworks.
+
+GLOBAL RULES
+
+Preserve styling: inherit all typography and theme tokens from the platform.
+
+
+Sandler color coding:
+
+Pain/Risks = Red band
+
+
+Info/Discovery = Yellow band
+
+
+Good News/Solution/CTA = Green band
+Use the site’s existing utility classes or color tokens; if tokens exist (e.g., text-success, bg-warning), use those. If not, reuse the subtle band component already used on other pages.
+
+
+
+Navigation: add “Conversational AI” under Services/Solutions; ensure Pricing is in top-level nav (or keep current path if it already exists).
+
+
+SEO: page titles and meta descriptions only; keep canonical structure.
+
+1) PAGE: /services/conversational-ai
+
+Create a new service page using existing layout components. Content below is final copy; do not change voice or brand styling—only slot text into cards/sections.
+
+HERO (Solution/Good News – Green band)
+
+H1: Conversational AI that Answers, Qualifies & Books — 24/7
+Sub: ElevenLabs voice + Vapi telephony + OpenRouter multi-model routing. Phone and SMS that sound human, follow process, and put revenue on your calendar.
+
+CTAs:
+
+Primary: “Hear a Demo” (opens modal with sample audio URL placeholder)
+
+
+Secondary: “See Pricing” → /pricing
+
+SECTION: What It Does (Info – Yellow band)
+
+Cards (3–6 across responsive):
+
+Phone Agents — Inbound/outbound, greeting → intent → qualify → schedule/transfer → CRM summary.
+
+
+SMS Agents — Instant replies, drip nurture, reminders, link delivery, two-way conversation.
+
+
+Persona Control — System prompts + guardrails; tone locked to your brand.
+
+
+Live Handoffs — Detect hot intent → warm transfer or priority alert.
+
+
+Analytics — Transcripts, tags, conversion tracking, and KPI dashboards.
+
+
+Compliance — Opt-in/opt-out, consent logging, call-record notices.
+
+SECTION: How It Works (Info – Yellow band)
+
+Two columns:
+
+Column A: Voice (ElevenLabs + Vapi)
+
+STT/TTS: low-latency recognition + lifelike voice.
+
+
+Call flow: greeting → purpose detection → identity capture (name/phone/email) → CRM match/create → qualification (timeframe, budget, need) → booking/transfer → structured summary to CRM.
+
+
+Handoffs: warm transfer; voicemail detection; callback scheduling.
+
+
+Latency envelope: target <700ms turns for natural feel.
+
+
+Guardrails: no PII beyond necessity; do-not-call handling; profanity/abuse fallback.
+
+
+Column B: SMS
+
+Instant response: receipt + value link.
+
+
+Sequencing: day 1 follow-up, day 3 FAQ, day 7 booking incentive (STOP supported).
+
+
+Short links & UTM: attributable outcomes; fraud checks for links.
+
+
+Escalation: keyword “CALL” or “AGENT” triggers live follow-up.
+
+SECTION: n8n Automations (Info → Solution transition – Yellow/Green)
+
+What we automate (examples):
+
+Lead Intake → Deal: enrich → score → SMS/email → calendar → Slack alert → CRM update.
+
+
+Case/Ticketing: classify → assign owner → SLA timers → escalation → close loop.
+
+
+Docs & E-Sign: generate PDF → e-sign → deliver → attach to CRM deal/contact.
+
+
+RevOps Alerts: payment events → notify team → update dashboard.
+
+
+Reliability patterns: retries, dead-letter queues, idempotent ops, structured logging, alerting, and runbooks.
+SECTION: Sandler Method Alignment (Good News – Green band)
+
+Pain (red): slow responses, dropped leads, inconsistent qualification.
+
+
+Info (yellow): transcripts and tags reveal patterns; no guessing.
+
+
+Good News (green): booked meetings, clean CRM, faster close cycles.
+
+SECTION: Evaluation & Improvement (Info – Yellow band)
+
+Weekly transcript reviews (top 10 wins/losses).
+
+
+Prompt AB tests; routing tweaks by intent.
+
+
+KPI ladder: contact → qualified → booked → showed → won.
+
+2) PAGE: /services/multi-model-agents (Golf-Bag Presentation)
+
+Use an accordion or slide-like sections (existing components). Keep styling identical to other service pages.
+
+HERO (Info – Yellow band)
+
+H1: The Golf Bag: Multi-Model AI with OpenRouter
+Sub: There is no single “best model.” Pros pick the right club for the shot—task, distance, lie, wind… context, latency, cost, and determinism.
+PRESENTATION (Slides/Accordions)
+
+Slide 1 — The Mistake
+People ask “What’s the best model?” That’s like walking onto a course with one club.
+
+Slide 2 — The Bag (Concept)
+
+Driver = broad exploration, long-form generation, ideation.
+
+
+Long Irons = structured reasoning, step-wise planning, JSON outputs.
+
+
+Mid Irons = tool calling, code, API/memory interaction.
+
+
+Wedge = cleanup from a bad lie: noisy inputs, rewriting, extraction.
+
+
+Putter = final polish: headlines, SMS, tight copy.
+
+
+Slide 3 — The Lie (Data Condition)
+
+Tight fairway (clean data) → irons; heavy rough (messy data) → wedge first.
+
+
+Sand (ambiguous intent) → probe with short prompts; don’t over-swing.
+
+
+Slide 4 — Distance (Context Length)
+
+Long distance (big context) → model with longer context & cost control.
+
+
+Short game (microcopy) → small, deterministic, fast.
+
+
+Slide 5 — Wind (Latency & Cost)
+
+Phone calls = wind in your face → pick low-latency models.
+
+
+Batch jobs = tailwind → can use slower, cheaper models at scale.
+
+
+Slide 6 — Angle (Determinism & Schema)
+
+When downstream automations depend on structure, use models that obey JSON and function calls reliably.
+
+
+Slide 7 — Club Fitting (Your Stack)
+
+OpenRouter lets us route to the best “club” step-by-step inside one workflow.
+
+
+We snapshot prompts + routing so results are reproducible.
+
+
+Slide 8 — Shot Routine (Our Process)
+
+Inspect lie (data). 2) Pick club (model). 3) Shot plan (prompt schema).
+
+
+Swing (call). 5) Check landing (eval). 6) Adjust.
+
+
+Slide 9 — Scorecard (Metrics)
+
+Contact → Qualified → Booked → Show → Won; plus latency, cost/lead, accuracy.
+
+
+Slide 10 — Caddy (Your Agent)
+
+Your agent is the caddy that knows the bag, the course, and your swing.
+
+
+Slide 11 — Hazards (Risks)
+
+Hallucination, privacy, compliance. Mitigate with guardrails, redaction, and human review on high-risk steps.
+
+
+Slide 12 — The Win
+
+Multi-model routing beats single-model dogma—every time, on real revenue.
+
+
+CTA (Green band): “Build My Multi-Model Agent” → /contact
+3) PAGE: /pricing  (Cards using existing styling)
+
+Implement pricing as data-driven JSON so Boss can edit numbers only. Keep your card component styles.
+
+
+
+// data/pricing.conversational-ai.ts
+export default {
+  currency: "USD",
+  plans: [
+    {
+      slug: "launch",
+      name: "Launch",
+      priceMonthly: 799,         // edit only numbers
+      setupOneTime: 2000,
+      blurb: "Get to first calls fast with a single agent and core flows.",
+      includes: [
+        "1 voice+SMS agent (Vapi + ElevenLabs)",
+        "1 phone number",
+        "Core call flow + SMS auto-replies",
+        "Calendar + CRM integration",
+        "Weekly transcript review (top 10)",
+        "Usage billed at vendor cost (pass-through)"
+      ],
+      cta: { label: "Start Launch", href: "/contact" }
+    },
+    {
+      slug: "growth",
+      name: "Growth",
+      priceMonthly: 1799,
+      setupOneTime: 6000,
+      blurb: "Multiple flows, deeper automation, faster iteration.",
+      includes: [
+        "Up to 3 agents (brands/queues)",
+        "Advanced qualification & scoring",
+        "n8n automations (intake → deal; ticketing; docs)",
+        "Analytics dashboard + alerts",
+        "Bi-weekly optimization",
+        "Usage billed at vendor cost (pass-through)"
+      ],
+      cta: { label: "Choose Growth", href: "/contact" },
+      recommended: true
+    },
+    {
+      slug: "scale",
+      name: "Scale",
+      priceMonthly: 4499,
+      setupOneTime: 15000,
+      blurb: "High volume, SLAs, and multi-brand orchestration.",
+      includes: [
+        "Unlimited agents & flows",
+        "Priority SLAs + on-call support",
+        "Multi-model routing playbooks",
+        "Human-in-the-loop tooling",
+        "Weekly experiment cadence",
+        "Security reviews & compliance logs"
+      ],
+      cta: { label: "Talk to Sales", href: "/contact" }
+    }
+  ],
+  addons: [
+    { name: "Additional phone numbers", note: "per DID", price: 5 },
+    { name: "Custom voice clone", note: "per voice", price: 99 },
+    { name: "Bespoke dashboard pack", note: "per pack", price: 750 },
+    { name: "Dedicated training workshop", note: "half-day", price: 1250 }
+  ],
+  legal: [
+    "Telephony, LLM, and TTS/STT usage billed at vendor cost (pass-through).",
+    "SMS requires opt-in and clear STOP/HELP handling (TCPA/CTIA).",
+    "Call recording requires consent language per jurisdiction."
+  ]
+}
+
+
+
+Render the JSON into your existing PricingCards component. Under the cards, add an FAQ accordion with:
+
+“What’s included vs. usage?”
+
+
+“How fast is setup?” (Typical: days for Launch)
+
+
+“Can you work with our CRM?” (Yes—two-way sync)
+
+
+“How do you evaluate quality?” (Transcripts, tags, conversions)
+
+4) CROSS-LINKS & CTAS
+
+On /services/conversational-ai and /services/multi-model-agents, add a sticky CTA in the sidebar/footer: “See Pricing → /pricing” and “Talk to Us → /contact”.
+
+
+Add a mini-panel (Green band) on both pages summarizing Sandler ladder and KPIs.
+
+5) ANALYTICS (light touch)
+
+Fire events: view_conversational_ai, view_multimodel, view_pricing, cta_contact_click, cta_pricing_click.
+
+
+No UI changes; use existing analytics integration.
+
+6) CONTENT SNIPPETS (ready to paste into cards/sections)
+
+Capabilities (bullet block):
+
+Phone: greet → intent → ID capture → qualify → schedule/transfer → CRM summary
+
+
+SMS: instant reply, drips, reminders, verified links
+
+
+Persona/guardrails: brand tone, crosstalk handling, fallback phrases
+
+
+Handoffs: warm transfer with context packet
+
+
+Metrics: transcripts, tags, step conversion
+
+
+Compliance: opt-in/opt-out, consent, redaction
+
+
+n8n Reliability (bullet block):
+
+Retries + backoff, dead-letter queues, idempotency keys
+
+
+Structured logs + alerting, replay tooling
+
+
+Secrets vaulted, least-privilege tokens, audit trails
+
+
+Sandler Bands (short copy):
+
+Red: “Leads wait, slip, and go cold.”
+
+
+Yellow: “We expose bottlenecks with transcripts, tags, and KPIs.”
+
+
+Green: “We answer, qualify, and book—automatically.”
+
+7) DONE CHECKS
+
+Fonts and colors unchanged globally.
+
+
+New pages inherit the same spacing, cards, and typography.
+
+
+Nav + breadcrumbs correct; pages indexed in sitemap.
+
+
+CTAs point to /pricing and /contact.
+
+
+Sandler color bands used only as existing components/tokens (no new CSS).
+
+If you want real numbers changed for pricing later, we just edit the JSON. Want me to also drop ready-to-paste copy for each card/section directly into your repo files?
