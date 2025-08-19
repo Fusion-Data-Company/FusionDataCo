@@ -14,7 +14,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { apiRequest } from "@/lib/queryClient";
-const matPhoto = "/mat-photo.jpg";
 
 // Define form schema
 const formSchema = z.object({
@@ -147,34 +146,6 @@ export default function Contact() {
                           <div className="flex items-center gap-2 text-sm">
                             <Phone className="h-4 w-4 text-primary" />
                             <a href="tel:+16157882808" className="text-primary hover:underline">+1 (615) 788-2808</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Mat Mercado - Operations */}
-                    <div className="flex flex-col sm:flex-row gap-6 p-6 bg-background/50 rounded-lg border border-border/30">
-                      <div className="w-24 h-24 rounded-full overflow-hidden flex-shrink-0">
-                        <img 
-                          src={matPhoto} 
-                          alt="Mat Mercado" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-primary mb-2">Mat Mercado</h3>
-                        <p className="text-sm text-muted-foreground font-medium mb-3">Operations Administrator & Logistical Coordinator</p>
-                        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                          Based in Manila, Philippines, Mat is the cornerstone of Fusion Data Co's daily operations and an expert in logistics who has been instrumental since the company's inception. Having worked with the team even before Fusion Data Co was founded, Mat brings unparalleled operational expertise that allows our CEO to focus on strategic initiatives. His influence extends throughout our entire operation, making him an invaluable asset who ensures seamless coordination of all moving parts. Mat's dedication and expertise in logistics make him not just an administrator, but a strategic partner who drives our success from behind the scenes.
-                        </p>
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2 text-sm">
-                            <Mail className="h-4 w-4 text-primary" />
-                            <a href="mailto:mat@fusiondataco.com" className="text-primary hover:underline">mat@fusiondataco.com</a>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm">
-                            <MapPin className="h-4 w-4 text-primary" />
-                            <span className="text-muted-foreground">Manila, Philippines</span>
                           </div>
                         </div>
                       </div>
