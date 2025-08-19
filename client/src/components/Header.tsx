@@ -48,6 +48,8 @@ export default function Header() {
       path: "/social-media",
       hasDropdown: true,
       dropdownItems: [
+        { name: "Conversational AI", path: "/services/conversational-ai" },
+        { name: "Multi-Model Agents", path: "/services/multi-model-agents" },
         { name: "Social Media", path: "/social-media" },
         { name: "Campaign Builder", path: "/campaign-builder" },
         { name: "Lead Magnet", path: "/lead-magnet" },

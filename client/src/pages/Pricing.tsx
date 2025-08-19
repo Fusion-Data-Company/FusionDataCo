@@ -4,9 +4,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Check, X } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Check, X, Star, Phone, MessageSquare } from "lucide-react";
 import { trackEvent } from '@/components/AnalyticsTracker';
 import { formatPrice } from '@/lib/utils';
+import conversationalAIPricing from '@/data/pricing-conversational-ai';
 
 interface PricingTier {
   name: string;
@@ -284,11 +287,15 @@ export default function Pricing() {
   return (
     <>
       <Helmet>
-        <title>Pricing Plans | Fusion Data Co</title>
-        <meta 
-          name="description" 
-          content="Flexible pricing plans for businesses of all sizes. Choose the right marketing automation plan for your business needs with Fusion Data Co."
-        />
+        <title>Pricing - Marketing Automation & Conversational AI Solutions | Fusion Data Co</title>
+        <meta name="description" content="Transparent pricing for our comprehensive marketing automation platform including conversational AI, CRM, and social media management. Choose the plan that fits your business needs." />
+        <meta name="keywords" content="conversational AI pricing, marketing automation pricing, CRM pricing, social media management cost, website development pricing, voice agents pricing" />
+        
+        {/* Open Graph / Social Media */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Pricing - Marketing Automation & Conversational AI Solutions | Fusion Data Co" />
+        <meta property="og:description" content="Transparent pricing for conversational AI, marketing automation, CRM, and website development services." />
+        <meta property="og:url" content="https://fusiondataco.com/pricing" />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -303,7 +310,7 @@ export default function Pricing() {
                   <span className="text-primary">Enterprise Solutions</span> Made Affordable
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8">
-                  Professional website development, social media management, CRM solutions, and lead generation services designed for small and medium businesses.
+                  Conversational AI, marketing automation, CRM solutions, and website development services designed for small and medium businesses.
                 </p>
                 <div className="flex justify-center gap-4">
                   <Button 
@@ -327,6 +334,133 @@ export default function Pricing() {
             </div>
           </section>
           
+          {/* Conversational AI Pricing Section */}
+          <section id="conversational-ai-pricing" className="py-16 px-4 bg-gradient-to-b from-green-900/10 to-green-800/5">
+            <div className="container mx-auto">
+              <div className="text-center mb-12">
+                <Badge className="mb-4 bg-green-500/10 text-green-400 border-green-500/20">
+                  Featured Solution
+                </Badge>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  <Phone className="inline-block mr-3 h-8 w-8 text-green-400" />
+                  <span className="text-green-400">Conversational AI</span> Voice & SMS Agents
+                </h2>
+                <p className="text-center text-muted-foreground mb-8 max-w-3xl mx-auto">
+                  AI agents that answer, qualify, and book appointments 24/7. ElevenLabs voice + Vapi telephony + OpenRouter multi-model routing.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                {conversationalAIPricing.plans.map((plan, index) => (
+                  <Card 
+                    key={plan.slug}
+                    className={`bg-background border ${plan.recommended ? 'border-green-500 border-2 shadow-lg shadow-green-500/20' : 'border-green-500/20'} h-full flex flex-col relative`}
+                  >
+                    {plan.recommended && (
+                      <div className="absolute -top-3 left-0 right-0 flex justify-center">
+                        <div className="bg-green-500 text-white text-xs font-bold py-1 px-3 rounded-full flex items-center">
+                          <Star className="w-3 h-3 mr-1" />
+                          RECOMMENDED
+                        </div>
+                      </div>
+                    )}
+                    <CardHeader className={`pt-6 ${plan.recommended ? 'pt-8' : ''}`}>
+                      <CardTitle className="text-2xl font-bold text-green-400">{plan.name}</CardTitle>
+                      <CardDescription>{plan.blurb}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <div className="mb-6">
+                        <div className="flex items-baseline mb-2">
+                          <span className="text-3xl font-bold text-green-400">${plan.priceMonthly}</span>
+                          <span className="text-muted-foreground ml-1">/month</span>
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          + ${plan.setupOneTime} one-time setup
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-base font-semibold mb-4 text-green-400">What's included:</h3>
+                        <ul className="space-y-3 mb-6">
+                          {plan.includes.map((feature, featureIndex) => (
+                            <li key={featureIndex} className="flex items-start gap-2">
+                              <Check className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                              <span className="text-sm">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </CardContent>
+                    <CardFooter className="pt-4 border-t border-border">
+                      <Button 
+                        className={`w-full ${plan.recommended ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-green-500/10 hover:bg-green-500/20 text-green-400 border border-green-500/20'}`}
+                        size="lg"
+                        onClick={() => handleCtaClick(plan.name)}
+                      >
+                        {plan.cta.label}
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Add-ons Section */}
+              <div className="bg-card/50 rounded-lg p-6 mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-center">Optional Add-ons</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {conversationalAIPricing.addons.map((addon, index) => (
+                    <div key={index} className="text-center p-4 border border-green-500/20 rounded-lg">
+                      <div className="text-lg font-semibold text-green-400">${addon.price}</div>
+                      <div className="text-sm text-muted-foreground">{addon.note}</div>
+                      <div className="text-sm font-medium mt-1">{addon.name}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Legal Notice */}
+              <div className="text-center text-xs text-muted-foreground space-y-1">
+                {conversationalAIPricing.legal.map((item, index) => (
+                  <p key={index}>{item}</p>
+                ))}
+              </div>
+
+              {/* FAQ Section */}
+              <div className="mt-12">
+                <h3 className="text-2xl font-bold mb-6 text-center text-green-400">Frequently Asked Questions</h3>
+                <Accordion type="single" collapsible className="max-w-3xl mx-auto">
+                  <AccordionItem value="included-vs-usage" className="border-green-500/20">
+                    <AccordionTrigger className="text-left">What's included vs. usage?</AccordionTrigger>
+                    <AccordionContent>
+                      Monthly fees cover platform access, setup, and optimization. Actual telephony, LLM, and voice synthesis costs are billed at vendor rates (pass-through pricing) for complete transparency.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="setup-speed" className="border-green-500/20">
+                    <AccordionTrigger className="text-left">How fast is setup?</AccordionTrigger>
+                    <AccordionContent>
+                      Typical setup time is 3-5 business days for Launch, 1-2 weeks for Growth, and 2-4 weeks for Scale. We'll have you taking calls as quickly as possible.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="crm-integration" className="border-green-500/20">
+                    <AccordionTrigger className="text-left">Can you work with our CRM?</AccordionTrigger>
+                    <AccordionContent>
+                      Yes! We provide two-way sync with most major CRMs including Salesforce, HubSpot, Pipedrive, and more. Custom integrations available for Scale plans.
+                    </AccordionContent>
+                  </AccordionItem>
+                  
+                  <AccordionItem value="quality-evaluation" className="border-green-500/20">
+                    <AccordionTrigger className="text-left">How do you evaluate quality?</AccordionTrigger>
+                    <AccordionContent>
+                      We review transcripts, analyze conversation tags, and track conversion metrics. Our KPI ladder follows: Contact → Qualified → Booked → Showed → Won.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+            </div>
+          </section>
+
           {/* Social Media Pricing Section */}
           <section id="social-media-pricing" className="py-16 px-4 bg-card">
             <div className="container mx-auto">

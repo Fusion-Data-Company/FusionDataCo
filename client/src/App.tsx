@@ -11,6 +11,8 @@ import { queryClient } from "./lib/queryClient";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
+import ConversationalAI from "@/pages/ConversationalAI";
+import MultiModelAgents from "@/pages/MultiModelAgents";
 import CaseStudies from "@/pages/CaseStudies";
 import Blog from "@/pages/Blog";
 import SmallBusinessOwners from "@/pages/SmallBusinessOwners";
@@ -52,6 +54,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/services" component={Services} />
+      <Route path="/services/conversational-ai" component={ConversationalAI} />
+      <Route path="/services/multi-model-agents" component={MultiModelAgents} />
       <Route path="/case-studies" component={CaseStudies} />
       <Route path="/blog" component={Blog} />
       <Route path="/small-business-upgrade" component={SmallBusinessUpgrade} />

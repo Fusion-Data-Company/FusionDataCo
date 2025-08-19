@@ -32,6 +32,8 @@ export default function MobileHeader() {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/services", label: "Services" },
+    { href: "/services/conversational-ai", label: "Conversational AI" },
+    { href: "/services/multi-model-agents", label: "Multi-Model Agents" },
     { href: "/case-studies", label: "Case Studies" },
     { href: "/blog", label: "Blog" },
     { href: "/pricing", label: "Pricing" },
