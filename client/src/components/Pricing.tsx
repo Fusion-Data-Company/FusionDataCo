@@ -253,7 +253,7 @@ export default function Pricing() {
                 
                 {/* CTA Button */}
                 <div className="mb-2">
-                  <Link href="/#enterprise-demo">
+                  <Link href="/demos/entropy">
                     <div className={cn(
                       "btn-titanium block w-full py-3.5 text-center rounded-lg font-medium shadow-md transition-all duration-300 cursor-pointer relative group overflow-hidden",
                       index === 0 ? "bg-primary/90 text-primary-foreground border border-primary/30" :

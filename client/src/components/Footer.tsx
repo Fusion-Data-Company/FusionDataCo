@@ -172,7 +172,11 @@ export default function Footer() {
                   <span className="hover:text-primary transition-colors cursor-pointer">Login</span>
                 </Link>
               </li>
-              <li><a href="#" className="hover:text-primary transition-colors">Partners</a></li>
+              <li>
+                <Link href="/partners">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Partners</span>
+                </Link>
+              </li>
               <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
             </ul>
           </div>
@@ -216,11 +220,11 @@ export default function Footer() {
         <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm mb-4 md:mb-0">&copy; {currentYear} Fusion Data Co. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-6 text-xs text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors flex items-center gap-1">
+            <a href="/privacy-policy" className="hover:text-foreground transition-colors flex items-center gap-1">
               <FileCheck size={14} />
               <span>Privacy Policy</span>
             </a>
-            <a href="#" className="hover:text-foreground transition-colors flex items-center gap-1">
+            <a href="/terms-of-service" className="hover:text-foreground transition-colors flex items-center gap-1">
               <FileCheck size={14} />
               <span>Terms of Service</span>
             </a>

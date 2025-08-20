@@ -44,7 +44,7 @@ export default function SocialMediaServices() {
                       Start Free 14-Day Trial
                     </a>
                   </Link>
-                  <Link href="/#demo">
+                  <Link href="/demos/entropy">
                     <a className="px-6 py-3 bg-transparent border border-[#14ffc8] text-white rounded-md font-medium hover:bg-[#14ffc8] hover:text-[#0b0b0d] transition-all duration-300 text-center">
                       Schedule Demo
                     </a>

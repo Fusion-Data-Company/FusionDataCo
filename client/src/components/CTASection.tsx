@@ -75,7 +75,7 @@ export default function CTASection() {
                   </span>
                 </Link>
                 
-                <Link href="/#enterprise-demo">
+                <Link href="/demos/entropy">
                   <span className={cn(
                     "px-8 py-4 bg-transparent border border-border text-foreground rounded-md font-medium", 
                     "hover:bg-accent/10 hover:border-accent hover:text-accent transition-all duration-300",
@@ -168,7 +168,7 @@ export default function CTASection() {
                   </button>
                   
                   <p className="text-xs text-muted-foreground text-center">
-                    By submitting this form, you agree to our <a href="#" className="text-primary hover:underline">Privacy Policy</a> and <a href="#" className="text-primary hover:underline">Terms of Service</a>.
+                    By submitting this form, you agree to our <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a> and <a href="/terms-of-service" className="text-primary hover:underline">Terms of Service</a>.
                   </p>
                 </form>
               </div>

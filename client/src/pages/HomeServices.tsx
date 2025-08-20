@@ -43,7 +43,7 @@ export default function HomeServices() {
                       Start Free 14-Day Trial
                     </span>
                   </Link>
-                  <Link href="/#demo">
+                  <Link href="/demos/entropy">
                     <span className="px-6 py-3 bg-transparent border border-[#14ffc8] text-white rounded-md font-medium hover:bg-[#14ffc8] hover:text-[#0b0b0d] transition-all duration-300 text-center cursor-pointer inline-block">
                       Schedule Demo
                     </span>
@@ -237,7 +237,7 @@ export default function HomeServices() {
                 </div>
                 
                 <div className="text-center">
-                  <Link href="/#demo">
+                  <Link href="/demos/entropy">
                     <span className="inline-flex items-center px-6 py-3 bg-[#8f00ff] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#8f00ff,0_0_10px_#8f00ff] transition-all duration-300 cursor-pointer">
                       See How It Works <ChevronRight size={16} className="ml-2" />
                     </span>

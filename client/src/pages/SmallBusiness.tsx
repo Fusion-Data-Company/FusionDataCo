@@ -43,7 +43,7 @@ export default function SmallBusiness() {
                       Start Free 14-Day Trial
                     </a>
                   </Link>
-                  <Link href="/#demo">
+                  <Link href="/demos/entropy">
                     <a className="px-6 py-3 bg-transparent border border-[#8f00ff] text-white rounded-md font-medium hover:bg-[#8f00ff] hover:text-[#0b0b0d] transition-all duration-300 text-center">
                       Schedule Demo
                     </a>
@@ -237,7 +237,7 @@ export default function SmallBusiness() {
                 </div>
                 
                 <div className="text-center">
-                  <Link href="/#demo">
+                  <Link href="/demos/entropy">
                     <a className="inline-flex items-center px-6 py-3 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8,0_0_10px_#14ffc8] transition-all duration-300">
                       See How It Works <ChevronRight size={16} className="ml-2" />
                     </a>

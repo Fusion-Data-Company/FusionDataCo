@@ -114,7 +114,7 @@ export default function CRM() {
                       Start Free Trial
                     </span>
                   </Link>
-                  <Link href="#demo">
+                  <Link href="/demos/entropy">
                     <span className="px-8 py-4 border border-gray-600 text-white font-semibold rounded-lg hover:bg-gray-800/50 transition-all duration-300 cursor-pointer">
                       Watch Demo
                     </span>

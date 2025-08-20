@@ -24,6 +24,9 @@ import CRMDashboard from "@/pages/CRMDashboard";
 import Pricing from "@/pages/Pricing";
 import ContactPage from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsOfService from "@/pages/TermsOfService";
+import Partners from "@/pages/Partners";
 import { EntropyDemo } from "@/components/demos/EntropyDemo";
 import SocialMedia from "@/pages/SocialMedia";
 
@@ -87,6 +90,11 @@ function Router() {
       
       {/* Demo Components */}
       <Route path="/demos/entropy" component={EntropyDemo} />
+      
+      {/* Legal Pages */}
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-of-service" component={TermsOfService} />
+      <Route path="/partners" component={Partners} />
       
       <Route component={NotFound} />
     </Switch>

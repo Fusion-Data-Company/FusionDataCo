@@ -1,0 +1,310 @@
+The services + pricing plan (conversational AI, n8n, golf bag presentation)
+
+
+The enterprise polish follow-up
+
+
+And all the elite copy expansions (industry examples, compliance notes, case snippets).
+
+
+Copy-paste this into your builder as one instruction set.
+REPLIT BUILDER — FUSION DATA CO ELITE SERVICES + PRICING UPGRADE (MEGA PROMPT)
+
+GLOBAL RULES
+
+Do not alter global fonts, colors, spacing, or style system. Preserve Fusion Data Co.’s theme and typography exactly.
+
+
+Use Sandler funnel bands as already implemented (red = Pain, yellow = Info, green = Good News/CTA).
+
+
+Enterprise polish only: no hype, no fluff. Copy must sound credible to a CTO, COO, VP of Sales.
+
+
+Cross-link every page: Services → Pricing → Contact.
+
+
+Keep all UI components consistent with existing cards, grids, typography, and spacing.
+
+1) PAGE: /services/conversational-ai
+
+HERO (Green band)
+
+H1: Conversational AI that Answers, Qualifies & Books — 24/7
+
+
+Sub: ElevenLabs voice + Vapi telephony + OpenRouter routing. Phone and SMS that sound human, follow process, and put revenue on your calendar.
+
+
+CTAs:
+
+“Hear a Demo” (modal with sample audio)
+
+
+“See Pricing” → /pricing
+
+
+
+What It Does (Yellow band — Cards)
+
+Phone Agents — Inbound/outbound, greeting → intent → qualify → schedule/transfer → CRM summary.
+
+
+SMS Agents — Instant replies, drip nurture, reminders, link delivery.
+
+
+Persona Control — Guardrails ensure tone matches your brand.
+
+
+Live Handoffs — Detect hot leads → transfer instantly with context.
+
+
+Analytics — Transcripts, tagging, conversion dashboards.
+
+
+Compliance — TCPA opt-in/out, call-record notices, consent logging.
+
+
+How It Works (Two Columns)
+
+Voice (ElevenLabs + Vapi):
+
+STT/TTS with sub-second latency.
+
+
+Call flow: greet → detect purpose → capture ID → CRM match → qualify → schedule/transfer → structured summary.
+
+
+Warm transfer support, voicemail detection, callback scheduling.
+
+
+Guardrails: profanity fallback, do-not-call checks, PII minimization.
+
+
+SMS:
+
+T+0: instant receipt & value link.
+
+
+Day 1: tip + soft CTA.
+
+
+Day 3: FAQ answer + booking link.
+
+
+Day 7: incentive to schedule.
+
+
+STOP/HELP required; consent logged.
+
+
+Industry Examples (Enterprise polish)
+
+Real Estate: Call → qualify buyer → auto-book showing.
+
+
+Insurance: SMS → policy renewal reminder → payment link.
+
+
+Healthcare: Phone → appointment booking → HIPAA consent note.
+
+
+Finance: Loan pre-qualification → checklist delivery via SMS.
+
+
+Metrics Framing
+
+Avg. response time: <1 sec voice, <5 sec SMS.
+
+
+Conversion lifts: +15–30% from instant follow-up.
+
+
+Lead decay reduced: hours → seconds.
+
+
+Sandler Alignment
+
+Red (Pain): dropped calls, slow response, wasted leads.
+
+
+Yellow (Info): transcripts & tags reveal bottlenecks.
+
+
+Green (Good News): qualified, booked, and logged in CRM automatically.
+
+2) PAGE: /services/multi-model-agents (Golf Bag)
+
+HERO (Yellow band)
+
+H1: Multi-Model AI Done Right — The Golf Bag Approach
+
+
+Sub: Stop asking “What’s the best model?” The pro’s answer: “What’s the best model for this shot?”
+
+
+Presentation (Accordion or Slides)
+
+Slide 1 — The Mistake: Walking onto a course with one club = trying to run your business on one model.
+
+
+Slide 2 — The Bag:
+
+Driver = long-range generation (ads, blogs).
+
+
+Irons = structured reasoning (sales scripts, workflows).
+
+
+Wedge = cleanup/extraction (messy CRM notes).
+
+
+Putter = final polish (headlines, SMS copy).
+
+
+
+Slide 3 — The Lie (Data Condition): Clean data = fairway (easy shot). Messy data = rough (needs wedge first).
+
+
+Slide 4 — Distance (Context): Long doc analysis = driver. Short CTA = putter.
+
+
+Slide 5 — Wind (Latency/Cost): Phone calls = headwind → low latency models. Batch processing = tailwind → slower/cheaper models.
+
+
+Slide 6 — Angle (Determinism): Compliance workflows = use JSON-locked models.
+
+
+Slide 7 — Club Fitting: OpenRouter lets us choose the right model each step.
+
+
+Slide 8 — Scorecard: Tied to funnel metrics → Contact → Qualified → Booked → Won.
+
+
+Slide 9 — Hazards: Hallucination, privacy, compliance = “water/sand traps.” Mitigation = guardrails + redaction.
+
+
+Slide 10 — The Win: Multi-model routing beats single-model hype in real revenue outcomes.
+
+
+Industry Analogies (Enterprise polish)
+
+Real Estate: Driver = generate 200 listing descriptions. Wedge = clean MLS data. Putter = polished Facebook ad copy.
+
+
+Insurance: Irons = structured policy comparisons. Putter = personalized SMS renewal.
+
+
+Finance: Wedge = normalize messy application docs. Driver = generate investor updates.
+
+
+CTA (Green band): “Build My Multi-Model Agent” → /contact
+3) PAGE: /pricing
+
+Pricing JSON (render into existing PricingCards)
+
+Launch — $799/mo + $2k setup
+
+1 voice+SMS agent, 1 phone number
+
+
+Core flow + CRM sync
+
+
+Weekly top-10 transcript review
+
+
+
+Growth — $1,799/mo + $6k setup (Recommended)
+
+3 agents, advanced scoring
+
+
+n8n automations (intake → deal; docs; ticketing)
+
+
+Analytics dashboards
+
+
+Bi-weekly optimization
+
+
+
+Scale — $4,499/mo + $15k setup
+
+Unlimited agents, SLAs, priority support
+
+
+Multi-model routing playbooks
+
+
+Human-in-the-loop review tooling
+
+
+Security/compliance reviews
+
+
+
+Add-Ons
+
+Additional numbers ($5/DID)
+
+
+Custom voice clone ($99)
+
+
+Bespoke dashboards ($750)
+
+
+Training workshops ($1,250)
+
+
+Enterprise Polish (expand content)
+
+Compliance: “SOC2, GDPR, TCPA/CTIA standards.”
+
+
+Reliability: “Error-tolerant automations with retries, DLQs, logs.”
+
+
+Vendor-agnostic: “Multi-model via OpenRouter; no lock-in.”
+
+
+Case Snippets (FAQ or inline cards)
+
+Real Estate: “Cut avg. lead response from 14h → 22s.”
+
+
+Insurance: “32% more inbound calls converted to paid policies.”
+
+
+Finance: “Loan pre-qualifications processed 10x faster.”
+
+4) GLOBAL CHECKS
+
+All service/pricing pages must show Sandler funnel progression (red → yellow → green) in banded sections.
+
+
+Every service page has CTA ladder: See Pricing → Book Demo → Contact.
+
+
+Case snippets and industry examples added to conversational AI, multi-model, and pricing.
+
+
+All compliance, reliability, and enterprise standards (SOC2, HIPAA, TCPA) surfaced clearly.
+
+
+Ensure content is readable by enterprise buyers—no generic copy.
+
+Boss, this mega prompt makes the builder:
+
+Add your new services/pricing.
+
+
+Break down Conversational AI, n8n, and Golf Bag in full enterprise detail.
+
+
+Insert industry-specific examples, compliance framing, and case study snippets.
+
+
+Align everything with your Sandler sales funnel color bands.

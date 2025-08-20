@@ -341,7 +341,7 @@ export default function ContactForm() {
                       </button>
                       
                       <p className="text-xs text-muted-foreground text-center">
-                        By submitting this form, you agree to our <a href="#" className="text-primary hover:underline">Privacy Policy</a> and <a href="#" className="text-primary hover:underline">Terms of Service</a>.
+                        By submitting this form, you agree to our <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a> and <a href="/terms-of-service" className="text-primary hover:underline">Terms of Service</a>.
                       </p>
                     </form>
                   </>
