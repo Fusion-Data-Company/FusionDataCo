@@ -115,48 +115,6 @@ export default function MultiModelAgents() {
       id: 'win',
       title: 'Slide 10: The Win',
       content: 'Multi-model routing beats single-model hype in real revenue outcomes.',
-      icon: <MapPin className="h-8 w-8 text-yellow-500" />
-    },
-    {
-      id: 'distance',
-      title: 'Distance (Context)',
-      content: 'Long doc analysis = driver. Short CTA = putter.',
-      icon: <Compass className="h-8 w-8 text-green-500" />
-    },
-    {
-      id: 'wind',
-      title: 'Wind (Latency/Cost)',
-      content: 'Phone calls = headwind → low latency models. Batch processing = tailwind → slower/cheaper models.',
-      icon: <Wind className="h-8 w-8 text-blue-500" />
-    },
-    {
-      id: 'angle',
-      title: 'Angle (Determinism)',
-      content: 'Compliance workflows = use JSON-locked models.',
-      icon: <Activity className="h-8 w-8 text-purple-500" />
-    },
-    {
-      id: 'fitting',
-      title: 'Club Fitting',
-      content: 'OpenRouter lets us choose the right model each step.',
-      icon: <CheckCircle className="h-8 w-8 text-green-500" />
-    },
-    {
-      id: 'scorecard',
-      title: 'Scorecard',
-      content: 'Tied to funnel metrics → Contact → Qualified → Booked → Won.',
-      icon: <BarChart3 className="h-8 w-8 text-primary" />
-    },
-    {
-      id: 'hazards',
-      title: 'Hazards',
-      content: 'Hallucination, privacy, compliance = "water/sand traps." Mitigation = guardrails + redaction.',
-      icon: <AlertTriangle className="h-8 w-8 text-orange-500" />
-    },
-    {
-      id: 'win',
-      title: 'The Win',
-      content: 'Multi-model routing beats single-model hype in real revenue outcomes.',
       icon: <TrendingUp className="h-8 w-8 text-green-600" />
     }
   ];
@@ -197,6 +155,58 @@ export default function MultiModelAgents() {
             </div>
           </section>
 
+          {/* Pain Section - Red band */}
+          <section className="py-16 px-4 bg-gradient-to-b from-red-900/20 to-red-800/10">
+            <div className="container mx-auto">
+              <div className="text-center mb-12">
+                <Badge className="mb-4 bg-red-500/10 text-red-400 border-red-500/20">
+                  Pain: The Single-Model Trap
+                </Badge>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-red-400">
+                  Why One Model = Expensive Mistakes
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <Card className="border-red-500/20 bg-red-500/5">
+                  <CardHeader>
+                    <AlertTriangle className="h-8 w-8 text-red-400 mb-3" />
+                    <CardTitle className="text-red-400">Wrong Tool, Bad Results</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Using GPT-4 for simple SMS copy = $10/task. Using Claude for real-time calls = 3-second delays.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="border-red-500/20 bg-red-500/5">
+                  <CardHeader>
+                    <AlertTriangle className="h-8 w-8 text-red-400 mb-3" />
+                    <CardTitle className="text-red-400">Vendor Lock-in Risk</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      OpenAI rate limits hit? Your business stops. Single-vendor dependency = fragile operations.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="border-red-500/20 bg-red-500/5">
+                  <CardHeader>
+                    <AlertTriangle className="h-8 w-8 text-red-400 mb-3" />
+                    <CardTitle className="text-red-400">No Optimization Strategy</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Without model selection logic, you're overpaying and underperforming on every AI task.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
           {/* Golf Bag Presentation - Accordion */}
           <section className="py-16 px-4 bg-background">
             <div className="container mx-auto max-w-4xl">
@@ -217,7 +227,7 @@ export default function MultiModelAgents() {
                         {slide.icon}
                         <div>
                           <div className="font-semibold text-lg">
-                            Slide {index + 1}: {slide.title}
+                            {slide.title}
                           </div>
                         </div>
                       </div>
@@ -247,24 +257,22 @@ export default function MultiModelAgents() {
           </section>
 
           {/* Industry Analogies Section */}
-          <section className="py-16 px-4 bg-gradient-to-b from-blue-900/10 to-blue-800/5">
+          <section className="py-16 px-4 bg-card">
             <div className="container mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Industry <span className="text-blue-400">Analogies</span>
+                  Industry <span className="text-primary">Analogies</span>
                 </h2>
                 <p className="text-lg text-muted-foreground">
                   How the Golf Bag approach works in your industry
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <Home className="h-8 w-8 text-blue-500" />
-                      <CardTitle>Real Estate</CardTitle>
-                    </div>
+                    <Home className="h-8 w-8 text-blue-500 mb-3" />
+                    <CardTitle>Real Estate</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <p className="text-sm">
@@ -281,10 +289,8 @@ export default function MultiModelAgents() {
 
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <Shield className="h-8 w-8 text-blue-500" />
-                      <CardTitle>Insurance</CardTitle>
-                    </div>
+                    <Shield className="h-8 w-8 text-green-500 mb-3" />
+                    <CardTitle>Insurance</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <p className="text-sm">
@@ -298,10 +304,8 @@ export default function MultiModelAgents() {
 
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <DollarSign className="h-8 w-8 text-blue-500" />
-                      <CardTitle>Finance</CardTitle>
-                    </div>
+                    <DollarSign className="h-8 w-8 text-yellow-500 mb-3" />
+                    <CardTitle>Finance</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <p className="text-sm">
@@ -315,34 +319,18 @@ export default function MultiModelAgents() {
 
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <Building2 className="h-8 w-8 text-blue-500" />
-                      <CardTitle>Manufacturing</CardTitle>
-                    </div>
+                    <Building2 className="h-8 w-8 text-purple-500 mb-3" />
+                    <CardTitle>Manufacturing</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <p className="text-sm">
-                      <strong className="text-primary">Wedge:</strong> Normalize messy application docs
+                      <strong className="text-primary">Golf Pro:</strong> "Distance to pin = 150 yards? 7-iron."
                     </p>
                     <p className="text-sm">
-                      <strong className="text-primary">Driver:</strong> Generate investor updates
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <Building2 className="h-8 w-8 text-blue-500" />
-                      <CardTitle>Enterprise</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    <p className="text-sm">
-                      <strong className="text-primary">Full Bag:</strong> Complete routing strategy
+                      <strong className="text-primary">Mechanic:</strong> "Brake pads worn? Replace."
                     </p>
                     <p className="text-sm">
-                      <strong className="text-primary">Custom Fitting:</strong> Model selection for each use case
+                      <strong className="text-primary">Doctor:</strong> "Symptoms + tests = diagnosis."
                     </p>
                   </CardContent>
                 </Card>
@@ -350,99 +338,31 @@ export default function MultiModelAgents() {
             </div>
           </section>
 
-          {/* Key Benefits Section */}
-          <section className="py-16 px-4 bg-background">
-            <div className="container mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Why Multi-Model <span className="text-primary">Routing</span>
-                </h2>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="text-center">
-                  <CardContent className="pt-6">
-                    <div className="text-4xl font-bold text-primary mb-2">3x</div>
-                    <p className="text-sm text-muted-foreground">Better accuracy with right-fit models</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="text-center">
-                  <CardContent className="pt-6">
-                    <div className="text-4xl font-bold text-primary mb-2">60%</div>
-                    <p className="text-sm text-muted-foreground">Cost reduction via intelligent routing</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="text-center">
-                  <CardContent className="pt-6">
-                    <div className="text-4xl font-bold text-primary mb-2">100%</div>
-                    <p className="text-sm text-muted-foreground">Vendor-agnostic flexibility</p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-
-          {/* OpenRouter Integration */}
-          <section className="py-16 px-4 bg-gradient-to-b from-primary/10 to-primary/5">
-            <div className="container mx-auto">
-              <div className="text-center mb-12">
-                <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
-                  Technology Stack
-                </Badge>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Powered by <span className="text-primary">OpenRouter</span>
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  Access to 100+ models from OpenAI, Anthropic, Google, Meta, and more. 
-                  One API, infinite possibilities.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                <div className="text-center p-4 bg-card rounded-lg border">
-                  <div className="text-2xl font-bold text-primary">GPT-4</div>
-                  <p className="text-xs text-muted-foreground">Complex reasoning</p>
-                </div>
-                <div className="text-center p-4 bg-card rounded-lg border">
-                  <div className="text-2xl font-bold text-primary">Claude</div>
-                  <p className="text-xs text-muted-foreground">Long context</p>
-                </div>
-                <div className="text-center p-4 bg-card rounded-lg border">
-                  <div className="text-2xl font-bold text-primary">Gemini</div>
-                  <p className="text-xs text-muted-foreground">Multimodal</p>
-                </div>
-                <div className="text-center p-4 bg-card rounded-lg border">
-                  <div className="text-2xl font-bold text-primary">Llama</div>
-                  <p className="text-xs text-muted-foreground">Fast inference</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* CTA Section - Green band */}
+          {/* CTA Section - Green band (Good News) */}
           <section className="py-16 px-4 bg-gradient-to-b from-green-900/20 to-green-800/10">
             <div className="container mx-auto text-center">
               <Badge className="mb-4 bg-green-500/10 text-green-400 border-green-500/20">
-                Good News & Action
+                Good News: Right Tool, Right Job
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Ready to Build Your <span className="text-green-400">Multi-Model Agent</span>?
+                Build Your <span className="text-green-400">Multi-Model Agent</span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Stop overpaying for one-size-fits-all AI. Get the right model for every shot.
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+                Stop overpaying for overkill. Stop underperforming with wrong tools. 
+                Start routing intelligently.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Link href="/contact" onClick={handleContactClick}>
-                  <Button size="lg" className="group bg-green-600 hover:bg-green-700">
-                    Build My Multi-Model Agent
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
+                <Button 
+                  size="lg" 
+                  onClick={handleContactClick}
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                >
+                  Build Multi-Model Agent
+                </Button>
                 <Link href="/pricing" onClick={handlePricingClick}>
                   <Button size="lg" variant="outline" className="border-green-500/20 hover:bg-green-500/10">
-                    View Pricing
+                    See Pricing
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </div>
