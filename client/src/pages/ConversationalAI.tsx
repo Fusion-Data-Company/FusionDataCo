@@ -632,6 +632,65 @@ export default function ConversationalAI() {
             </div>
           </section>
 
+          {/* Cross-linking Section */}
+          <section className="py-16 px-4 bg-gradient-to-r from-blue-900/20 to-purple-900/20">
+            <div className="container mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Complete Your <span className="text-primary">AI Stack</span>
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                  Voice + SMS agents are just the beginning. Build a complete enterprise AI system.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <Card className="border-blue-500/20 bg-blue-900/5 hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3">
+                      🏌️ <span>Multi-Model AI Routing</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground mb-4">
+                      Don't use GPT-4 for simple SMS. Learn the Golf Bag approach to intelligent model selection.
+                    </p>
+                    <div className="flex gap-3">
+                      <Link href="/services/multi-model-agents">
+                        <Button variant="outline" size="sm">
+                          Learn Method
+                        </Button>
+                      </Link>
+                      <Link href="/blog/golf-bag-approach-multi-model-ai">
+                        <Button variant="outline" size="sm">
+                          Read Guide
+                        </Button>
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-purple-500/20 bg-purple-900/5 hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3">
+                      📊 <span>CRM Analytics Dashboard</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground mb-4">
+                      Track your funnel metrics: Contact → Qualified → Booked → Won.
+                    </p>
+                    <Link href="/crm">
+                      <Button variant="outline" size="sm">
+                        View CRM Features
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
           {/* CTA Section */}
           <section className="py-16 px-4 bg-gradient-to-b from-primary/10 to-primary/5">
             <div className="container mx-auto text-center">
