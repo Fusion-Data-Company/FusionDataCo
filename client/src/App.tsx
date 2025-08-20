@@ -15,6 +15,7 @@ import ConversationalAI from "@/pages/ConversationalAI";
 import MultiModelAgents from "@/pages/MultiModelAgents";
 import CaseStudies from "@/pages/CaseStudies";
 import Blog from "@/pages/Blog";
+import GolfBagBlogPost from "@/pages/GolfBagBlogPost";
 import SmallBusinessOwners from "@/pages/SmallBusinessOwners";
 import RealEstate from "@/pages/RealEstate";
 import Medical from "@/pages/Medical";
@@ -61,6 +62,7 @@ function Router() {
       <Route path="/services/multi-model-agents" component={MultiModelAgents} />
       <Route path="/case-studies" component={CaseStudies} />
       <Route path="/blog" component={Blog} />
+      <Route path="/blog/golf-bag-approach-multi-model-ai" component={GolfBagBlogPost} />
       <Route path="/small-business-upgrade" component={SmallBusinessUpgrade} />
       <Route path="/small-business-owners" component={SmallBusinessOwners} />
       <Route path="/real-estate" component={RealEstate} />
