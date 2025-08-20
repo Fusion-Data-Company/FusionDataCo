@@ -495,8 +495,9 @@ export default function CRMAnalyticsDashboard() {
           </div>
         </div>
         </div>
+        </div>
       </div>
-    </div>
+      </div>
     </div>
   );
 }
