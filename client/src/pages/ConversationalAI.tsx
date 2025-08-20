@@ -115,6 +115,58 @@ export default function ConversationalAI() {
             </div>
           </section>
 
+          {/* Pain Points Section - Red band */}
+          <section className="py-16 px-4 bg-gradient-to-b from-red-900/20 to-red-800/10">
+            <div className="container mx-auto">
+              <div className="text-center mb-12">
+                <Badge className="mb-4 bg-red-500/10 text-red-400 border-red-500/20">
+                  Pain: Revenue Leaking Daily
+                </Badge>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-red-400">
+                  Every Missed Call = Lost Revenue
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <Card className="border-red-500/20 bg-red-500/5">
+                  <CardHeader>
+                    <AlertTriangle className="h-8 w-8 text-red-400 mb-3" />
+                    <CardTitle className="text-red-400">Dropped Calls</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      67% of calls go to voicemail during business hours. Prospects hang up or call competitors.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="border-red-500/20 bg-red-500/5">
+                  <CardHeader>
+                    <Clock className="h-8 w-8 text-red-400 mb-3" />
+                    <CardTitle className="text-red-400">Slow Response</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Average SMS response: 14+ hours. Leads decay 90% after first hour.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="border-red-500/20 bg-red-500/5">
+                  <CardHeader>
+                    <TrendingUp className="h-8 w-8 text-red-400 mb-3" />
+                    <CardTitle className="text-red-400">Wasted Leads</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Unqualified prospects consume sales time. No structured qualification process.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
           {/* What It Does Section - Yellow band (Info) */}
           <section className="py-16 px-4 bg-gradient-to-b from-yellow-900/20 to-yellow-800/10">
             <div className="container mx-auto">
@@ -270,6 +322,109 @@ export default function ConversationalAI() {
                       <ShieldCheck className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                       <p className="text-sm">STOP/HELP required; consent logged.</p>
                     </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* Industry Examples Section */}
+          <section className="py-16 px-4 bg-card">
+            <div className="container mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Industry <span className="text-primary">Examples</span>
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Enterprise polish for real business outcomes
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <Home className="h-8 w-8 text-blue-500 mb-3" />
+                    <CardTitle>Real Estate</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      Call → qualify buyer → auto-book showing.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <Shield className="h-8 w-8 text-green-500 mb-3" />
+                    <CardTitle>Insurance</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      SMS → policy renewal reminder → payment link.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <Heart className="h-8 w-8 text-red-500 mb-3" />
+                    <CardTitle>Healthcare</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      Phone → appointment booking → HIPAA consent note.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <DollarSign className="h-8 w-8 text-yellow-500 mb-3" />
+                    <CardTitle>Finance</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      Loan pre-qualification → checklist delivery via SMS.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* Metrics Framing Section */}
+          <section className="py-16 px-4 bg-gradient-to-b from-primary/5 to-background">
+            <div className="container mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Proven <span className="text-primary">Metrics</span>
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <Card className="text-center border-primary/20">
+                  <CardContent className="pt-6">
+                    <Clock className="h-12 w-12 text-primary mx-auto mb-4" />
+                    <div className="text-3xl font-bold text-primary mb-2">&lt;1 sec</div>
+                    <p className="text-sm text-muted-foreground">Average voice response time</p>
+                    <div className="text-2xl font-bold text-secondary mt-2">&lt;5 sec</div>
+                    <p className="text-sm text-muted-foreground">Average SMS response time</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="text-center border-primary/20">
+                  <CardContent className="pt-6">
+                    <TrendingUp className="h-12 w-12 text-green-500 mx-auto mb-4" />
+                    <div className="text-3xl font-bold text-green-500 mb-2">15-30%</div>
+                    <p className="text-sm text-muted-foreground">Conversion lifts from instant follow-up</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="text-center border-primary/20">
+                  <CardContent className="pt-6">
+                    <Zap className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
+                    <div className="text-3xl font-bold text-yellow-500 mb-2">Hours → Seconds</div>
+                    <p className="text-sm text-muted-foreground">Lead decay reduced</p>
                   </CardContent>
                 </Card>
               </div>

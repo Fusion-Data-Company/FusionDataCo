@@ -17,8 +17,7 @@ export const conversationalAIPricingTiers: PricingTier[] = [
     setupFee: 2000,
     description: "Perfect for businesses starting their AI journey",
     features: [
-      "1 voice+SMS agent",
-      "1 phone number",
+      "1 voice+SMS agent, 1 phone number",
       "Core flow + CRM sync",
       "Weekly top-10 transcript review",
       "Basic analytics dashboard",
@@ -31,11 +30,11 @@ export const conversationalAIPricingTiers: PricingTier[] = [
     setupFee: 6000,
     description: "Scale your operations with advanced automation",
     features: [
-      "3 agents",
-      "Advanced scoring",
+      "3 agents, advanced scoring",
       "n8n automations (intake → deal; docs; ticketing)",
       "Analytics dashboards",
       "Bi-weekly optimization",
+      "SOC2, GDPR, TCPA/CTIA standards",
       "Priority support"
     ],
     recommended: true
@@ -46,19 +45,18 @@ export const conversationalAIPricingTiers: PricingTier[] = [
     setupFee: 15000,
     description: "Enterprise-grade solution with unlimited capacity",
     features: [
-      "Unlimited agents",
-      "SLAs",
-      "Priority support",
+      "Unlimited agents, SLAs, priority support",
       "Multi-model routing playbooks",
       "Human-in-the-loop review tooling",
       "Security/compliance reviews",
-      "Dedicated account manager"
+      "Error-tolerant automations with retries, DLQs, logs",
+      "Vendor-agnostic: Multi-model via OpenRouter; no lock-in"
     ]
   }
 ];
 
 export const addOnServices = [
-  { name: "Additional phone numbers", price: "$5/DID" },
+  { name: "Additional numbers", price: "$5/DID" },
   { name: "Custom voice clone", price: "$99" },
   { name: "Bespoke dashboards", price: "$750" },
   { name: "Training workshops", price: "$1,250" }
@@ -71,7 +69,7 @@ export const caseSnippets = [
     icon: "🏠"
   },
   {
-    industry: "Insurance",
+    industry: "Insurance", 
     result: "32% more inbound calls converted to paid policies",
     icon: "🛡️"
   },

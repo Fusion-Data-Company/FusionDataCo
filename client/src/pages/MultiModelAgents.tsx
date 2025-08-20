@@ -54,13 +54,13 @@ export default function MultiModelAgents() {
   const golfBagSlides = [
     {
       id: 'mistake',
-      title: 'The Mistake',
+      title: 'Slide 1: The Mistake',
       content: 'Walking onto a course with one club = trying to run your business on one model.',
       icon: <AlertTriangle className="h-8 w-8 text-red-500" />
     },
     {
       id: 'bag',
-      title: 'The Bag',
+      title: 'Slide 2: The Bag',
       clubs: [
         { name: 'Driver', use: 'long-range generation (ads, blogs)' },
         { name: 'Irons', use: 'structured reasoning (sales scripts, workflows)' },
@@ -71,8 +71,50 @@ export default function MultiModelAgents() {
     },
     {
       id: 'lie',
-      title: 'The Lie (Data Condition)',
+      title: 'Slide 3: The Lie (Data Condition)',
       content: 'Clean data = fairway (easy shot). Messy data = rough (needs wedge first).',
+      icon: <MapPin className="h-8 w-8 text-green-500" />
+    },
+    {
+      id: 'distance',
+      title: 'Slide 4: Distance (Context)',
+      content: 'Long doc analysis = driver. Short CTA = putter.',
+      icon: <Target className="h-8 w-8 text-blue-500" />
+    },
+    {
+      id: 'wind',
+      title: 'Slide 5: Wind (Latency/Cost)',
+      content: 'Phone calls = headwind → low latency models. Batch processing = tailwind → slower/cheaper models.',
+      icon: <Wind className="h-8 w-8 text-cyan-500" />
+    },
+    {
+      id: 'angle',
+      title: 'Slide 6: Angle (Determinism)',
+      content: 'Compliance workflows = use JSON-locked models.',
+      icon: <Compass className="h-8 w-8 text-purple-500" />
+    },
+    {
+      id: 'fitting',
+      title: 'Slide 7: Club Fitting',
+      content: 'OpenRouter lets us choose the right model each step.',
+      icon: <Activity className="h-8 w-8 text-orange-500" />
+    },
+    {
+      id: 'scorecard',
+      title: 'Slide 8: Scorecard',
+      content: 'Tied to funnel metrics → Contact → Qualified → Booked → Won.',
+      icon: <BarChart3 className="h-8 w-8 text-yellow-500" />
+    },
+    {
+      id: 'hazards',
+      title: 'Slide 9: Hazards',
+      content: 'Hallucination, privacy, compliance = "water/sand traps." Mitigation = guardrails + redaction.',
+      icon: <AlertTriangle className="h-8 w-8 text-red-500" />
+    },
+    {
+      id: 'win',
+      title: 'Slide 10: The Win',
+      content: 'Multi-model routing beats single-model hype in real revenue outcomes.',
       icon: <MapPin className="h-8 w-8 text-yellow-500" />
     },
     {
@@ -259,6 +301,23 @@ export default function MultiModelAgents() {
                     <div className="flex items-center gap-3">
                       <DollarSign className="h-8 w-8 text-blue-500" />
                       <CardTitle>Finance</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <p className="text-sm">
+                      <strong className="text-primary">Wedge:</strong> Normalize messy application docs
+                    </p>
+                    <p className="text-sm">
+                      <strong className="text-primary">Driver:</strong> Generate investor updates
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <Building2 className="h-8 w-8 text-blue-500" />
+                      <CardTitle>Manufacturing</CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-2">
