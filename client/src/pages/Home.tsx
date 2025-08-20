@@ -32,6 +32,27 @@ export default function Home() {
           <Hero />
           <MobileHero />
           
+          {/* Featured Blog Post Banner */}
+          <section className="py-8 px-4 bg-gradient-to-r from-green-900/30 to-blue-900/30 border-y border-green-500/20">
+            <div className="container mx-auto">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="flex items-center gap-4">
+                  <div className="text-4xl">🏌️</div>
+                  <div>
+                    <h3 className="text-xl font-bold text-green-400">New Guide: The Golf Bag Approach to Multi-Model AI</h3>
+                    <p className="text-muted-foreground">Why one AI model isn't enough for enterprise operations</p>
+                  </div>
+                </div>
+                <Link href="/blog/golf-bag-approach-multi-model-ai">
+                  <Button className="bg-green-600 hover:bg-green-700 whitespace-nowrap">
+                    Read Full Guide
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </section>
+          
           {/* Quick Value Props Section */}
           <section className="py-16 px-4 bg-card">
             <div className="container mx-auto">
