@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0b0b0d;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1a1f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0b0b0d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#14ffc8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/> 
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <!-- Grid pattern background -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#14ffc8" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Main logo network -->
+  <g transform="translate(100,150)">
+    <!-- Central hub -->
+    <circle cx="100" cy="100" r="12" fill="#14ffc8" filter="url(#glow)"/>
+    
+    <!-- Data nodes -->
+    <circle cx="30" cy="30" r="8" fill="#0ea5e9" opacity="0.8"/>
+    <circle cx="170" cy="30" r="8" fill="#0ea5e9" opacity="0.8"/>
+    <circle cx="30" cy="170" r="8" fill="#0ea5e9" opacity="0.8"/>
+    <circle cx="170" cy="170" r="8" fill="#0ea5e9" opacity="0.8"/>
+    <circle cx="10" cy="100" r="6" fill="#8b5cf6" opacity="0.7"/>
+    <circle cx="190" cy="100" r="6" fill="#8b5cf6" opacity="0.7"/>
+    <circle cx="100" cy="10" r="6" fill="#8b5cf6" opacity="0.7"/>
+    <circle cx="100" cy="190" r="6" fill="#8b5cf6" opacity="0.7"/>
+    
+    <!-- Connection lines -->
+    <line x1="100" y1="100" x2="30" y2="30" stroke="url(#textGrad)" stroke-width="2" opacity="0.8"/>
+    <line x1="100" y1="100" x2="170" y2="30" stroke="url(#textGrad)" stroke-width="2" opacity="0.8"/>
+    <line x1="100" y1="100" x2="30" y2="170" stroke="url(#textGrad)" stroke-width="2" opacity="0.8"/>
+    <line x1="100" y1="100" x2="170" y2="170" stroke="url(#textGrad)" stroke-width="2" opacity="0.8"/>
+    <line x1="100" y1="100" x2="10" y2="100" stroke="url(#textGrad)" stroke-width="2" opacity="0.6"/>
+    <line x1="100" y1="100" x2="190" y2="100" stroke="url(#textGrad)" stroke-width="2" opacity="0.6"/>
+    <line x1="100" y1="100" x2="100" y2="10" stroke="url(#textGrad)" stroke-width="2" opacity="0.6"/>
+    <line x1="100" y1="100" x2="100" y2="190" stroke="url(#textGrad)" stroke-width="2" opacity="0.6"/>
+  </g>
+  
+  <!-- Company name -->
+  <text x="400" y="280" fill="url(#textGrad)" font-family="Arial, sans-serif" font-size="72" font-weight="bold" filter="url(#glow)">
+    FUSION DATA CO
+  </text>
+  
+  <!-- Tagline -->
+  <text x="400" y="350" fill="#ffffff" font-family="Arial, sans-serif" font-size="32" opacity="0.9">
+    All-in-One Marketing Automation Platform
+  </text>
+  
+  <!-- Key features -->
+  <text x="400" y="420" fill="#14ffc8" font-family="Arial, sans-serif" font-size="24" opacity="0.8">
+    • Conversational AI  • Multi-Model Agents  • CRM Integration
+  </text>
+  
+  <!-- Accent elements -->
+  <circle cx="950" cy="120" r="4" fill="#14ffc8" opacity="0.6"/>
+  <circle cx="1050" cy="180" r="3" fill="#8b5cf6" opacity="0.6"/>
+  <circle cx="980" cy="250" r="2" fill="#0ea5e9" opacity="0.6"/>
+  <circle cx="1100" cy="350" r="4" fill="#14ffc8" opacity="0.4"/>
+  <circle cx="920" cy="450" r="3" fill="#8b5cf6" opacity="0.4"/>
+</svg>
