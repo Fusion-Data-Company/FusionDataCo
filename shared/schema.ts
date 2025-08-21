@@ -27,8 +27,16 @@ export const users = pgTable("users", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+export const insertUserSchema = createInsertSchema(users).pick({
+  replitAuthId: true,
+  email: true,
+  firstName: true,
+  lastName: true,
+  profileImageUrl: true,
+  role: true,
+});
+
 export type UpsertUser = Omit<typeof users.$inferInsert, 'id'>;
-export type User = typeof users.$inferSelect;
 
 // Contact form submissions - Enhanced for all form types
 export const contactSubmissions = pgTable("contact_submissions", {
