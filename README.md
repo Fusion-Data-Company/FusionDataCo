@@ -114,9 +114,31 @@ A cutting-edge marketing automation SaaS platform that transforms lead generatio
 - Cross-linking between all service pages
 - Consistent UI with existing design system
 
+
 ## Support & Documentation
 - Comprehensive FAQ sections
 - Industry-specific examples
 - Case study snippets with metrics
 - Clear pricing transparency
 - Enterprise standards highlighted
+
+### Frontend Dependencies
+
+1. **React & React DOM**: Core library for UI
+2. **Wouter**: Lightweight router for navigation
+3. **TailwindCSS**: Utility-first CSS framework
+4. **Radix UI**: Unstyled, accessible UI primitives
+5. **Lucide React**: Icon library
+6. **React Query**: Data fetching and state management
+7. **React Hook Form**: Form handling with validation via Zod
+
+### Backend Dependencies
+
+1. **Express**: Web server framework
+2. **Drizzle ORM**: Database ORM for PostgreSQL
+3. **Zod**: Schema validation
+4. **Nanoid**: Unique ID generation
+
+## Deployment Strategy
+
+The application is configured to be deployed on Replit:
