@@ -16,7 +16,7 @@ export const sessions = pgTable(
 
 // User table - Updated for Replit Auth with backward compatibility
 export const users = pgTable("users", {
-  id: serial("id").primaryKey(), // Keep integer for compatibility with existing tables
+  id: serial("id").primaryKey(), // Use serial to match foreign key expectations
   replitAuthId: varchar("replit_auth_id").unique(), // Replit Auth ID
   email: text("email").unique(),
   firstName: text("first_name"),
