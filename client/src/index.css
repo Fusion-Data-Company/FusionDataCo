@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -895,6 +895,15 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-['Orbitron'] font-bold;
+  }
+
+  /* Apply Cinzel font to content text */
+  p, li, .text-muted-foreground, 
+  [class*="CardDescription"] p, [class*="CardContent"] p,
+  .card-description, .card-content,
+  span:not([class*="font-"]):not([class*="title"]):not([class*="Title"]),
+  div > p, section > p {
+    font-family: 'Cinzel', serif;
   }
 }
 
