@@ -37,19 +37,19 @@ The question isn't "What's the best AI model?" The question is "What's the best 
 Most enterprises deploy one premium model (usually GPT-4) for everything. It's like using only a driver for every golf shot.
 
 ### Slide 2: The Bag
-Professional golfers carry 14 clubs. Enterprise AI should route between multiple models based on task requirements.
+Professional golfers carry 14 clubs: driver, irons, wedges, putter. Enterprise AI should have multiple LLMs: GPT-4, Claude, Gemini, Grok, QWEN, Llama - each optimized for different task conditions.
 
-### Slide 3: The Lie
-Assess your situation. Is this a complex reasoning task requiring GPT-4? Or simple classification that Claude Haiku can handle at 1/20th the cost?
+### Slide 3: The Lie (Task Position)
+Assess your task's condition. Complex reasoning task (rough terrain)? Simple classification (clean fairway)? The task's complexity and position determines which LLM to select.
 
-### Slide 4: Distance to Pin
-Match model capability to task complexity. Don't use frontier models for routine operations.
+### Slide 4: Distance to Pin (Task Scope)
+Match LLM to task scope. Don't use GPT-4 (driver) for a simple SMS (short putt). Don't use Claude Haiku (putter) for complex document analysis (long drive).
 
-### Slide 5: Wind Conditions
-Consider external factors: latency requirements, cost constraints, compliance needs.
+### Slide 5: Wind Conditions (Constraints)
+Consider external factors: latency requirements favor faster LLMs, cost constraints favor efficient models, compliance needs require reliable models.
 
-### Slide 6: Club Selection
-Route intelligently: GPT-4 for complex reasoning, Claude for content, Llama for classification, specialized models for domain-specific tasks.
+### Slide 6: LLM Selection
+Choose the right LLM for each task: GPT-4 (driver) for complex reasoning, Claude (iron) for content generation, Gemini (hybrid) for analysis, Llama (wedge) for classification, QWEN (specialty club) for domain tasks.
 
 ### Slide 7: The Fitting
 Custom models for your specific use cases. Fine-tune smaller models for repeated patterns.
@@ -67,17 +67,17 @@ Vendor lock-in is a water hazard. Build model-agnostic infrastructure from day o
 
 Here's how this works in practice:
 
-**Customer Service Routing:**
-- Intent classification: Claude Haiku (fast, cheap)
-- Complex problem solving: GPT-4 (when needed)
-- Knowledge retrieval: Specialized embedding models
-- Response generation: Claude Sonnet (balanced)
+**Customer Service Example:**
+- **Task**: Intent classification (easy putt) → **LLM**: Claude Haiku (putter - precise, efficient)
+- **Task**: Complex problem solving (challenging drive) → **LLM**: GPT-4 (driver - power and distance)
+- **Task**: Knowledge retrieval (mid-range approach) → **LLM**: Specialized embedding models (irons - accuracy)
+- **Task**: Response generation (versatile shot) → **LLM**: Claude Sonnet (hybrid club - balanced)
 
-**Content Operations:**
-- SEO optimization: Claude Sonnet
-- Technical documentation: GPT-4
-- Social media: Llama 2 (cost-effective)
-- Translations: Specialized translation models
+**Content Operations Example:**
+- **Task**: SEO optimization (strategic placement) → **LLM**: Claude Sonnet (approach iron - precision)
+- **Task**: Technical documentation (long-form analysis) → **LLM**: GPT-4 (driver - comprehensive power)
+- **Task**: Social media posts (quick shots) → **LLM**: Llama 2 (putter - fast and cost-effective)
+- **Task**: Translations (specialized terrain) → **LLM**: Specialized translation models (specialty wedge)
 
 ## The Enterprise Results
 
@@ -95,7 +95,7 @@ Companies implementing multi-model routing report:
 4. **Implement routing logic with fallbacks**
 5. **Monitor and optimize based on performance data**
 
-The golf bag approach isn't just about saving money. It's about using the right tool for each job, maximizing both performance and efficiency.
+The golf bag approach isn't just about saving money. It's about using the right LLM for each task - just like using the right golf club for each shot - maximizing both performance and efficiency.
 
 ## Next Steps
 

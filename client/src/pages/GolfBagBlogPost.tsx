@@ -127,75 +127,75 @@ export default function GolfBagBlogPost() {
                 </h2>
 
                 <p className="text-lg leading-relaxed mb-8">
-                  Just like a golf bag contains different clubs for different situations, your AI strategy needs different models for different tasks. Here's how we break it down:
+                  Just like a golf bag contains different clubs (driver, irons, wedges, putter), your AI strategy needs different LLMs (GPT-4, Claude, Gemini, Grok, QWEN, Llama). Each task is like a golf ball positioned differently on the course, and each LLM excels in different situations:
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   <Card>
                     <CardHeader>
-                      <Badge className="w-fit mb-2 bg-blue-500/10 text-blue-400">Driver</Badge>
-                      <CardTitle>Long-Range Generation</CardTitle>
+                      <Badge className="w-fit mb-2 bg-blue-500/10 text-blue-400">GPT-4 (Driver)</Badge>
+                      <CardTitle>Long-Range Complex Tasks</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="mb-4">For when you need distance and power:</p>
+                      <p className="mb-4">When tasks need maximum power and distance:</p>
                       <ul className="space-y-2">
                         <li>• Blog posts (1,000+ words)</li>
                         <li>• Email campaigns</li>
                         <li>• Market analyses</li>
                         <li>• Training materials</li>
                       </ul>
-                      <p className="mt-4 text-sm text-muted-foreground">Best models: GPT-4, Claude-3-Opus</p>
+                      <p className="mt-4 text-sm text-muted-foreground">LLM: GPT-4, Claude-3-Opus (the "drivers" of AI)</p>
                     </CardContent>
                   </Card>
 
                   <Card>
                     <CardHeader>
-                      <Badge className="w-fit mb-2 bg-green-500/10 text-green-400">Irons</Badge>
-                      <CardTitle>Structured Reasoning</CardTitle>
+                      <Badge className="w-fit mb-2 bg-green-500/10 text-green-400">Claude (Irons)</Badge>
+                      <CardTitle>Mid-Range Structured Tasks</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="mb-4">For precision and accuracy:</p>
+                      <p className="mb-4">When tasks need precision and accuracy:</p>
                       <ul className="space-y-2">
                         <li>• Sales script generation</li>
                         <li>• Workflow automation</li>
                         <li>• Data analysis</li>
                         <li>• Process documentation</li>
                       </ul>
-                      <p className="mt-4 text-sm text-muted-foreground">Best models: Claude-3, GPT-4-Turbo</p>
+                      <p className="mt-4 text-sm text-muted-foreground">LLM: Claude-3, Gemini (the "irons" of AI)</p>
                     </CardContent>
                   </Card>
 
                   <Card>
                     <CardHeader>
-                      <Badge className="w-fit mb-2 bg-orange-500/10 text-orange-400">Wedge</Badge>
-                      <CardTitle>Cleanup & Extraction</CardTitle>
+                      <Badge className="w-fit mb-2 bg-orange-500/10 text-orange-400">Llama (Wedge)</Badge>
+                      <CardTitle>Cleanup & Extraction Tasks</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="mb-4">For getting out of messy situations:</p>
+                      <p className="mb-4">When tasks are in messy situations:</p>
                       <ul className="space-y-2">
                         <li>• Cleaning CRM notes</li>
                         <li>• Extracting data from PDFs</li>
                         <li>• Normalizing formats</li>
                         <li>• Error correction</li>
                       </ul>
-                      <p className="mt-4 text-sm text-muted-foreground">Best models: GPT-3.5, Claude-Haiku</p>
+                      <p className="mt-4 text-sm text-muted-foreground">LLM: Llama, Claude-Haiku (the "wedges" of AI)</p>
                     </CardContent>
                   </Card>
 
                   <Card>
                     <CardHeader>
-                      <Badge className="w-fit mb-2 bg-purple-500/10 text-purple-400">Putter</Badge>
-                      <CardTitle>Final Polish</CardTitle>
+                      <Badge className="w-fit mb-2 bg-purple-500/10 text-purple-400">Grok (Putter)</Badge>
+                      <CardTitle>Quick Finishing Tasks</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="mb-4">For the finishing touches:</p>
+                      <p className="mb-4">When tasks need quick finishing touches:</p>
                       <ul className="space-y-2">
                         <li>• SMS copy</li>
                         <li>• Headlines</li>
                         <li>• Subject lines</li>
                         <li>• Quick responses</li>
                       </ul>
-                      <p className="mt-4 text-sm text-muted-foreground">Best models: GPT-3.5-Turbo, Llama-2</p>
+                      <p className="mt-4 text-sm text-muted-foreground">LLM: Grok, GPT-3.5-Turbo (the "putters" of AI)</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -232,7 +232,7 @@ export default function GolfBagBlogPost() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p>Your AI toolkit: Driver for long content, Irons for structured work, Wedge for cleanup, Putter for polish.</p>
+                      <p>Your LLM arsenal: GPT-4 (driver) for complex tasks, Claude (irons) for structured work, Llama (wedge) for cleanup, Grok (putter) for quick tasks.</p>
                     </CardContent>
                   </Card>
 
@@ -244,7 +244,7 @@ export default function GolfBagBlogPost() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p>Clean data = fairway (easy shot). Messy data = rough (needs wedge first to clean up).</p>
+                      <p>Clean data task = fairway (easy shot). Messy data task = rough (use Llama wedge first to clean up).</p>
                     </CardContent>
                   </Card>
 
@@ -256,7 +256,7 @@ export default function GolfBagBlogPost() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p>Long document analysis = driver. Short CTA generation = putter. Match the tool to the task size.</p>
+                      <p>Long document analysis task = use GPT-4 driver. Short CTA generation task = use Grok putter. Match the LLM to the task scope.</p>
                     </CardContent>
                   </Card>
 

@@ -60,43 +60,43 @@ export default function MultiModelAgents() {
     },
     {
       id: 'bag',
-      title: 'Slide 2: The Bag',
+      title: 'Slide 2: The LLM Arsenal',
       clubs: [
-        { name: 'Driver', use: 'long-range generation (ads, blogs)' },
-        { name: 'Irons', use: 'structured reasoning (sales scripts, workflows)' },
-        { name: 'Wedge', use: 'cleanup/extraction (messy CRM notes)' },
-        { name: 'Putter', use: 'final polish (headlines, SMS copy)' }
+        { name: 'GPT-4 (Driver)', use: 'complex reasoning tasks (long analyses, blogs)' },
+        { name: 'Claude (Irons)', use: 'structured tasks (sales scripts, workflows)' },
+        { name: 'Llama (Wedge)', use: 'cleanup tasks (messy CRM notes, data extraction)' },
+        { name: 'Grok (Putter)', use: 'quick tasks (headlines, SMS copy)' }
       ],
       icon: <Target className="h-8 w-8 text-blue-500" />
     },
     {
       id: 'lie',
       title: 'Slide 3: The Lie (Data Condition)',
-      content: 'Clean data = fairway (easy shot). Messy data = rough (needs wedge first).',
+      content: 'Clean data task = fairway (easy shot). Messy data task = rough (use Llama wedge first).',
       icon: <MapPin className="h-8 w-8 text-green-500" />
     },
     {
       id: 'distance',
       title: 'Slide 4: Distance (Context)',
-      content: 'Long doc analysis = driver. Short CTA = putter.',
+      content: 'Long doc analysis task = GPT-4 driver. Short CTA task = Grok putter.',
       icon: <Target className="h-8 w-8 text-blue-500" />
     },
     {
       id: 'wind',
       title: 'Slide 5: Wind (Latency/Cost)',
-      content: 'Phone calls = headwind → low latency models. Batch processing = tailwind → slower/cheaper models.',
+      content: 'Phone call tasks = headwind → use fast LLMs like Grok. Batch processing tasks = tailwind → use efficient LLMs like Llama.',
       icon: <Wind className="h-8 w-8 text-cyan-500" />
     },
     {
       id: 'angle',
       title: 'Slide 6: Angle (Determinism)',
-      content: 'Compliance workflows = use JSON-locked models.',
+      content: 'Compliance workflow tasks = use reliable LLMs with JSON output like Claude.',
       icon: <Compass className="h-8 w-8 text-purple-500" />
     },
     {
       id: 'fitting',
       title: 'Slide 7: Club Fitting',
-      content: 'OpenRouter lets us choose the right model each step.',
+      content: 'OpenRouter lets us choose the right LLM for each task.',
       icon: <Activity className="h-8 w-8 text-orange-500" />
     },
     {
@@ -114,7 +114,7 @@ export default function MultiModelAgents() {
     {
       id: 'win',
       title: 'Slide 10: The Win',
-      content: 'Multi-model routing beats single-model hype in real revenue outcomes.',
+      content: 'Multi-LLM routing beats single-LLM dependency in real revenue outcomes.',
       icon: <TrendingUp className="h-8 w-8 text-green-600" />
     }
   ];
