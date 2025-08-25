@@ -46,7 +46,7 @@ export default function GolfBagBlogPost() {
         <Header />
         <main className="flex-grow">
           {/* Article Header */}
-          <section className="py-16 px-4 bg-gradient-to-b from-primary/10 to-primary/5">
+          <section className="py-16 px-4">
             <div className="container mx-auto max-w-4xl">
               <div className="mb-8">
                 <Badge className="mb-4">AI Strategy</Badge>
@@ -477,7 +477,7 @@ export default function GolfBagBlogPost() {
               </div>
 
               {/* CTA Section */}
-              <div className="text-center bg-gradient-to-r from-green-900/20 to-green-800/10 p-8 rounded-lg">
+              <div className="text-center bg-gradient-to-r from-green-500/10 to-green-400/5 p-8 rounded-lg">
                 <h3 className="text-2xl font-bold mb-4">Ready to Build Your AI Golf Bag?</h3>
                 <p className="text-lg text-muted-foreground mb-6">
                   Stop overpaying for overkill. Start routing intelligently.
