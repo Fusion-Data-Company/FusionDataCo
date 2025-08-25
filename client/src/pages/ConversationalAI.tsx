@@ -154,8 +154,8 @@ export default function ConversationalAI() {
         <Header />
         <main className="flex-grow">
 
-          {/* PAIN SECTION - MAROON BACKGROUND */}
-          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-stone-900 to-stone-800 relative overflow-hidden" style={{backgroundColor: '#800020', backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.2) 0%, transparent 50%), linear-gradient(135deg, rgba(101, 67, 33, 0.1) 0%, rgba(139, 69, 19, 0.05) 100%)'}}>
+          {/* PAIN SECTION - MAROON BACKGROUND WITH BLACK STUCCO */}
+          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-stone-900 to-stone-800 relative overflow-hidden dark-stucco-background" style={{backgroundColor: '#800020'}}>
             <div className="container mx-auto relative z-10">
               <div className="text-center max-w-5xl mx-auto mb-16">
                 <Badge className="mb-4 bg-amber-600/20 text-amber-300 border-amber-500/30 elite-badge">
