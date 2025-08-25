@@ -416,6 +416,59 @@
   pointer-events: none;
 }
 
+/* Dark Stucco Background for Maroon Sections */
+.dark-stucco-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.dark-stucco-background::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(101, 67, 33, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(160, 82, 45, 0.04) 0%, transparent 50%),
+    repeating-linear-gradient(45deg, 
+      transparent 0px, 
+      rgba(139, 69, 19, 0.02) 1px, 
+      transparent 2px, 
+      rgba(160, 82, 45, 0.01) 3px),
+    repeating-linear-gradient(-45deg, 
+      transparent 0px, 
+      rgba(101, 67, 33, 0.015) 1px, 
+      transparent 2px, 
+      rgba(139, 69, 19, 0.02) 3px);
+  animation: stucco-drift 60s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.dark-stucco-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-radial-gradient(circle at 30% 30%, 
+      transparent 0px, 
+      rgba(139, 69, 19, 0.025) 2px, 
+      transparent 4px),
+    repeating-radial-gradient(circle at 70% 70%, 
+      transparent 0px, 
+      rgba(101, 67, 33, 0.02) 2px, 
+      transparent 4px);
+  animation: texture-float 40s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
 /* Glassmorphism Buttons */
 .glass-button {
   background: linear-gradient(135deg, 
