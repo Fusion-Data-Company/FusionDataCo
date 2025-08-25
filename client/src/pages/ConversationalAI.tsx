@@ -150,12 +150,12 @@ export default function ConversationalAI() {
         <meta property="og:url" content="https://fusiondataco.com/services/conversational-ai" />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-background text-foreground enterprise-background">
+      <div className="min-h-screen flex flex-col bg-background text-foreground">
         <Header />
         <main className="flex-grow">
 
           {/* RED SECTION - PAIN (Alex Hormozi Hook) */}
-          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-red-900/20 to-red-800/10 relative overflow-hidden enterprise-background elite-section-red">
+          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-red-900/20 to-red-800/10 relative overflow-hidden">
             <div className="absolute inset-0 bg-red-500/5 z-0"></div>
             <div className="container mx-auto relative z-10">
               <div className="text-center max-w-5xl mx-auto mb-16">
@@ -177,7 +177,7 @@ export default function ConversationalAI() {
 
               {/* Pain Points Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <Card className="border-red-500/20 bg-red-500/5 premium-card">
+                <Card className="border-red-500/20 bg-red-500/5 metallic-red-card">
                   <CardHeader>
                     <AlertTriangle className="h-8 w-8 text-red-400 mb-3 elite-icon" />
                     <CardTitle className="text-red-400">Lost Revenue</CardTitle>
@@ -189,7 +189,7 @@ export default function ConversationalAI() {
                   </CardContent>
                 </Card>
                 
-                <Card className="border-red-500/20 bg-red-500/5 premium-card">
+                <Card className="border-red-500/20 bg-red-500/5 metallic-red-card">
                   <CardHeader>
                     <Clock className="h-8 w-8 text-red-400 mb-3 elite-icon" />
                     <CardTitle className="text-red-400">Unqualified Interviews</CardTitle>
@@ -201,7 +201,7 @@ export default function ConversationalAI() {
                   </CardContent>
                 </Card>
                 
-                <Card className="border-red-500/20 bg-red-500/5 premium-card">
+                <Card className="border-red-500/20 bg-red-500/5 metallic-red-card">
                   <CardHeader>
                     <DollarSign className="h-8 w-8 text-red-400 mb-3 elite-icon" />
                     <CardTitle className="text-red-400">Training Costs</CardTitle>
@@ -213,7 +213,7 @@ export default function ConversationalAI() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-red-500/20 bg-red-500/5 premium-card">
+                <Card className="border-red-500/20 bg-red-500/5 metallic-red-card">
                   <CardHeader>
                     <TrendingUp className="h-8 w-8 text-red-400 mb-3 elite-icon" />
                     <CardTitle className="text-red-400">Onboarding Failures</CardTitle>
@@ -229,7 +229,7 @@ export default function ConversationalAI() {
           </section>
 
           {/* YELLOW SECTION - SOLUTION (The Fusion Voice Arsenal) */}
-          <section className="py-16 px-4 bg-gradient-to-b from-yellow-900/20 to-yellow-800/10 enterprise-background elite-section-yellow">
+          <section className="py-16 px-4 bg-gradient-to-b from-yellow-900/20 to-yellow-800/10">
             <div className="container mx-auto">
               <div className="text-center mb-12">
                 <Badge className="mb-4 bg-yellow-500/10 text-yellow-400 border-yellow-500/20 elite-badge">
@@ -281,7 +281,7 @@ export default function ConversationalAI() {
                       </li>
                     </ul>
                     <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700 glass-button"
+                      className="w-full bg-yellow-600 hover:bg-yellow-700 vibrant-button"
                       onClick={() => {
                         handleAgentClick('sales_coach');
                         window.open('https://elevenlabs.io/app/talk-to?agent_id=agent_01jz0xtv25ej8axfe92t1sdv9t', '_blank');
@@ -328,7 +328,7 @@ export default function ConversationalAI() {
                       </li>
                     </ul>
                     <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700 glass-button"
+                      className="w-full bg-yellow-600 hover:bg-yellow-700 vibrant-button"
                       onClick={() => {
                         handleAgentClick('hiring_screener');
                         window.open('https://elevenlabs.io/app/talk-to?agent_id=agent_01k07mhgszfcg9br6n46m8d35m', '_blank');
@@ -375,7 +375,7 @@ export default function ConversationalAI() {
                       </li>
                     </ul>
                     <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700 glass-button"
+                      className="w-full bg-yellow-600 hover:bg-yellow-700 vibrant-button"
                       onClick={() => {
                         handleAgentClick('onboarding_companion');
                         window.open('https://elevenlabs.io/app/talk-to?agent_id=agent_01jxb0mn53ft19tt6crjzaqnwc', '_blank');
@@ -422,7 +422,7 @@ export default function ConversationalAI() {
                       </li>
                     </ul>
                     <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700 glass-button"
+                      className="w-full bg-yellow-600 hover:bg-yellow-700 vibrant-button"
                       onClick={() => {
                         handleAgentClick('website_concierge');
                         window.open('https://elevenlabs.io/app/talk-to?agent_id=ybtdqCeRrbskLzgWulrg', '_blank');
@@ -460,7 +460,7 @@ export default function ConversationalAI() {
           </section>
 
           {/* GREEN SECTION - ROI/GOOD NEWS */}
-          <section className="py-16 px-4 bg-gradient-to-b from-green-900/20 to-green-800/10 enterprise-background elite-section-green">
+          <section className="py-16 px-4 bg-gradient-to-b from-green-900/20 to-green-800/10">
             <div className="container mx-auto">
               <div className="text-center mb-12">
                 <Badge className="mb-4 bg-green-500/10 text-green-400 border-green-500/20 elite-badge">
@@ -561,7 +561,7 @@ export default function ConversationalAI() {
           </section>
 
           {/* REGISTRATION FORM SECTION */}
-          <section className="py-16 px-4 bg-gradient-to-b from-primary/10 to-background enterprise-background">
+          <section className="py-16 px-4 bg-gradient-to-b from-primary/10 to-background">
             <div className="container mx-auto">
               <div className="max-w-4xl mx-auto">
                 
@@ -759,7 +759,7 @@ export default function ConversationalAI() {
                           <Button 
                             type="submit" 
                             size="lg" 
-                            className="w-full bg-primary hover:bg-primary/90 glass-button" 
+                            className="w-full bg-primary hover:bg-primary/90 vibrant-button" 
                             disabled={isSubmitting}
                           >
                             {isSubmitting ? "Booking Your Session..." : "Book My FREE Strategy Session"}

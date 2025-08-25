@@ -533,26 +533,63 @@
   filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.5));
 }
 
-/* Elite Section Backgrounds */
-.elite-section-red {
+/* Metallic Red Effects for Sandler Funnel */
+.metallic-red-card {
   background: linear-gradient(135deg, 
-    rgba(239, 68, 68, 0.08) 0%, 
-    rgba(220, 38, 38, 0.05) 100%);
+    rgba(239, 68, 68, 0.1) 0%, 
+    rgba(220, 38, 38, 0.08) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.2);
   position: relative;
+  overflow: hidden;
 }
 
-.elite-section-yellow {
-  background: linear-gradient(135deg, 
-    rgba(234, 179, 8, 0.08) 0%, 
-    rgba(202, 138, 4, 0.05) 100%);
-  position: relative;
+.metallic-red-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    transparent 100%);
+  animation: metallic-shine 2s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.elite-section-green {
-  background: linear-gradient(135deg, 
-    rgba(34, 197, 94, 0.08) 0%, 
-    rgba(21, 128, 61, 0.05) 100%);
+.metallic-red-card:hover {
+  box-shadow: 
+    0 4px 15px rgba(239, 68, 68, 0.25),
+    0 0 20px rgba(239, 68, 68, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Vibrant Button Effects */
+.vibrant-button {
   position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.vibrant-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 100%);
+  animation: buttonShimmer 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.vibrant-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* Enterprise-level UI effects */
