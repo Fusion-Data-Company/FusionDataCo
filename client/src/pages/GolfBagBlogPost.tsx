@@ -76,7 +76,7 @@ export default function GolfBagBlogPost() {
 
           {/* Article Content */}
           <section className="py-16 px-4">
-            <div className="container mx-auto max-w-4xl prose prose-lg dark:prose-invert">
+            <div className="container mx-auto max-w-4xl">
               
               {/* Introduction */}
               <div className="mb-12">
@@ -123,82 +123,105 @@ export default function GolfBagBlogPost() {
               <div className="mb-12">
                 <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
                   <Target className="h-8 w-8 text-blue-500" />
-                  The Golf Bag Methodology
+                  The Complete Golf Bag to LLM Mapping
                 </h2>
 
                 <p className="text-lg leading-relaxed mb-8">
-                  Just like a golf bag contains different clubs (driver, irons, wedges, putter), your AI strategy needs different LLMs (GPT-4, Claude, Gemini, Grok, QWEN, Llama). Each task is like a golf ball positioned differently on the course, and each LLM excels in different situations:
+                  Just like a professional golfer's bag contains 14 specialized clubs, your AI strategy needs a complete arsenal of LLMs. Each club serves a specific purpose, distance, and course condition. Here's the complete mapping:
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  <Card>
-                    <CardHeader>
-                      <Badge className="w-fit mb-2 bg-blue-500/10 text-blue-400">GPT-4 (Driver)</Badge>
-                      <CardTitle>Long-Range Complex Tasks</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="mb-4">When tasks need maximum power and distance:</p>
-                      <ul className="space-y-2">
-                        <li>• Blog posts (1,000+ words)</li>
-                        <li>• Email campaigns</li>
-                        <li>• Market analyses</li>
-                        <li>• Training materials</li>
-                      </ul>
-                      <p className="mt-4 text-sm text-muted-foreground">LLM: GPT-4, Claude-3-Opus (the "drivers" of AI)</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <Badge className="w-fit mb-2 bg-green-500/10 text-green-400">Claude (Irons)</Badge>
-                      <CardTitle>Mid-Range Structured Tasks</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="mb-4">When tasks need precision and accuracy:</p>
-                      <ul className="space-y-2">
-                        <li>• Sales script generation</li>
-                        <li>• Workflow automation</li>
-                        <li>• Data analysis</li>
-                        <li>• Process documentation</li>
-                      </ul>
-                      <p className="mt-4 text-sm text-muted-foreground">LLM: Claude-3, Gemini (the "irons" of AI)</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <Badge className="w-fit mb-2 bg-orange-500/10 text-orange-400">Llama (Wedge)</Badge>
-                      <CardTitle>Cleanup & Extraction Tasks</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="mb-4">When tasks are in messy situations:</p>
-                      <ul className="space-y-2">
-                        <li>• Cleaning CRM notes</li>
-                        <li>• Extracting data from PDFs</li>
-                        <li>• Normalizing formats</li>
-                        <li>• Error correction</li>
-                      </ul>
-                      <p className="mt-4 text-sm text-muted-foreground">LLM: Llama, Claude-Haiku (the "wedges" of AI)</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <Badge className="w-fit mb-2 bg-purple-500/10 text-purple-400">Grok (Putter)</Badge>
-                      <CardTitle>Quick Finishing Tasks</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="mb-4">When tasks need quick finishing touches:</p>
-                      <ul className="space-y-2">
-                        <li>• SMS copy</li>
-                        <li>• Headlines</li>
-                        <li>• Subject lines</li>
-                        <li>• Quick responses</li>
-                      </ul>
-                      <p className="mt-4 text-sm text-muted-foreground">LLM: Grok, GPT-3.5-Turbo (the "putters" of AI)</p>
-                    </CardContent>
-                  </Card>
+                <div className="overflow-x-auto mb-8">
+                  <table className="w-full border-collapse border border-border rounded-lg">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-green-500/10 to-blue-500/10">
+                        <th className="border border-border p-4 text-left font-bold">Golf Club</th>
+                        <th className="border border-border p-4 text-left font-bold">LLM Model</th>
+                        <th className="border border-border p-4 text-left font-bold">Unique Use Case</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="hover:bg-blue-500/5">
+                        <td className="border border-border p-4 font-semibold text-blue-400">Driver</td>
+                        <td className="border border-border p-4">GPT-4 Turbo</td>
+                        <td className="border border-border p-4">Long-form content generation, complex reasoning, strategic planning</td>
+                      </tr>
+                      <tr className="hover:bg-green-500/5">
+                        <td className="border border-border p-4 font-semibold text-green-400">3-Wood</td>
+                        <td className="border border-border p-4">Claude-3 Opus</td>
+                        <td className="border border-border p-4">Technical documentation, code analysis, detailed research</td>
+                      </tr>
+                      <tr className="hover:bg-purple-500/5">
+                        <td className="border border-border p-4 font-semibold text-purple-400">5-Wood</td>
+                        <td className="border border-border p-4">Gemini Pro</td>
+                        <td className="border border-border p-4">Multimodal tasks, image analysis, video processing</td>
+                      </tr>
+                      <tr className="hover:bg-cyan-500/5">
+                        <td className="border border-border p-4 font-semibold text-cyan-400">3-Iron</td>
+                        <td className="border border-border p-4">Claude-3 Sonnet</td>
+                        <td className="border border-border p-4">Structured data analysis, workflow automation</td>
+                      </tr>
+                      <tr className="hover:bg-orange-500/5">
+                        <td className="border border-border p-4 font-semibold text-orange-400">4-Iron</td>
+                        <td className="border border-border p-4">GPT-4</td>
+                        <td className="border border-border p-4">Business strategy, market analysis, competitive research</td>
+                      </tr>
+                      <tr className="hover:bg-yellow-500/5">
+                        <td className="border border-border p-4 font-semibold text-yellow-400">5-Iron</td>
+                        <td className="border border-border p-4">Anthropic Claude</td>
+                        <td className="border border-border p-4">Ethics review, compliance checking, risk assessment</td>
+                      </tr>
+                      <tr className="hover:bg-red-500/5">
+                        <td className="border border-border p-4 font-semibold text-red-400">6-Iron</td>
+                        <td className="border border-border p-4">Llama-3 70B</td>
+                        <td className="border border-border p-4">Open-source requirements, cost-sensitive applications</td>
+                      </tr>
+                      <tr className="hover:bg-pink-500/5">
+                        <td className="border border-border p-4 font-semibold text-pink-400">7-Iron</td>
+                        <td className="border border-border p-4">Mixtral 8x7B</td>
+                        <td className="border border-border p-4">Multilingual tasks, translation, global content</td>
+                      </tr>
+                      <tr className="hover:bg-teal-500/5">
+                        <td className="border border-border p-4 font-semibold text-teal-400">8-Iron</td>
+                        <td className="border border-border p-4">Claude-3 Haiku</td>
+                        <td className="border border-border p-4">Fast API responses, real-time chat, customer service</td>
+                      </tr>
+                      <tr className="hover:bg-indigo-500/5">
+                        <td className="border border-border p-4 font-semibold text-indigo-400">9-Iron</td>
+                        <td className="border border-border p-4">GPT-3.5 Turbo</td>
+                        <td className="border border-border p-4">High-volume processing, simple Q&A, basic automation</td>
+                      </tr>
+                      <tr className="hover:bg-emerald-500/5">
+                        <td className="border border-border p-4 font-semibold text-emerald-400">Pitching Wedge</td>
+                        <td className="border border-border p-4">Grok-1</td>
+                        <td className="border border-border p-4">Real-time data integration, current events, trending topics</td>
+                      </tr>
+                      <tr className="hover:bg-amber-500/5">
+                        <td className="border border-border p-4 font-semibold text-amber-400">Gap Wedge</td>
+                        <td className="border border-border p-4">Perplexity AI</td>
+                        <td className="border border-border p-4">Research synthesis, fact-checking, source attribution</td>
+                      </tr>
+                      <tr className="hover:bg-lime-500/5">
+                        <td className="border border-border p-4 font-semibold text-lime-400">Sand Wedge</td>
+                        <td className="border border-border p-4">Llama-2 Chat</td>
+                        <td className="border border-border p-4">Data cleaning, format standardization, error correction</td>
+                      </tr>
+                      <tr className="hover:bg-violet-500/5">
+                        <td className="border border-border p-4 font-semibold text-violet-400">Putter</td>
+                        <td className="border border-border p-4">GPT-3.5</td>
+                        <td className="border border-border p-4">Final polish, headlines, subject lines, SMS copy</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
+
+                <Card className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border-green-500/20">
+                  <CardContent className="pt-6">
+                    <h3 className="text-xl font-semibold mb-4 text-green-400">The Power of Choice</h3>
+                    <p className="text-lg">
+                      Tiger Woods doesn't use the same club for every shot. Neither should you use the same LLM for every task. The magic happens when you match the right tool to the right situation.
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
 
               <Separator className="my-12" />
