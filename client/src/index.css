@@ -823,8 +823,21 @@
     @apply border-border;
   }
 
+  html {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
   body {
     @apply bg-background text-foreground font-sans;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Prevent horizontal scrolling globally */
+  #root {
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -833,6 +846,24 @@
 }
 
 @layer utilities {
+  /* Overflow prevention utilities */
+  .prevent-horizontal-scroll {
+    overflow-x: hidden;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  
+  .container-safe {
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  /* Ensure containers don't exceed viewport */
+  .max-vw-100 {
+    max-width: 100vw;
+  }
+
   /* Text effects */
   .text-shadow-titanium {
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
