@@ -154,71 +154,71 @@ export default function ConversationalAI() {
         <Header />
         <main className="flex-grow">
 
-          {/* RED SECTION - PAIN (Alex Hormozi Hook) */}
-          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-red-900 to-red-700 dark-stucco-background relative overflow-hidden" style={{backgroundColor: '#800000'}}>
+          {/* PAIN SECTION - MAROON BACKGROUND */}
+          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-stone-900 to-stone-800 relative overflow-hidden" style={{backgroundColor: '#800020', backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.2) 0%, transparent 50%), linear-gradient(135deg, rgba(101, 67, 33, 0.1) 0%, rgba(139, 69, 19, 0.05) 100%)'}}>
             <div className="container mx-auto relative z-10">
               <div className="text-center max-w-5xl mx-auto mb-16">
-                <Badge className="mb-4 bg-red-500/10 text-red-400 border-red-500/20 elite-badge">
+                <Badge className="mb-4 bg-amber-600/20 text-amber-300 border-amber-500/30 elite-badge">
                   Pain: The $10,000/Month Problem
                 </Badge>
                 <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                  <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-red-400 bg-clip-text text-transparent">
                     While You Sleep, Your Competitors Steal Your Customers
                   </span>
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8">
                   Here's what nobody tells you about running a business in 2025: While you're sleeping, your competitors are stealing your customers with AI agents that never sleep, never call in sick, and convert 3x better than your best sales rep.
                 </p>
-                <p className="text-lg text-red-300 mb-8">
+                <p className="text-lg text-amber-200 mb-8">
                   Meanwhile, you're still paying $10,000+ per month for humans who miss calls, forget follow-ups, and let qualified leads slip through the cracks.
                 </p>
               </div>
 
               {/* Pain Points Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <Card className="border-red-500/20 bg-red-500/5 metallic-red-card">
+                <Card className="border-amber-500/30 bg-gradient-to-br from-amber-900/20 to-orange-900/10 backdrop-blur-sm shadow-lg">
                   <CardHeader>
-                    <AlertTriangle className="h-8 w-8 text-red-400 mb-3 elite-icon" />
-                    <CardTitle className="text-red-400">Lost Revenue</CardTitle>
+                    <AlertTriangle className="h-8 w-8 text-amber-400 mb-3 elite-icon" />
+                    <CardTitle className="text-amber-300">Lost Revenue</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">
+                    <p className="text-stone-200">
                       67% of calls go unanswered. Average loss: $847 per missed opportunity.
                     </p>
                   </CardContent>
                 </Card>
                 
-                <Card className="border-red-500/20 bg-red-500/5 metallic-red-card">
+                <Card className="border-amber-500/30 bg-gradient-to-br from-amber-900/20 to-orange-900/10 backdrop-blur-sm shadow-lg">
                   <CardHeader>
-                    <Clock className="h-8 w-8 text-red-400 mb-3 elite-icon" />
-                    <CardTitle className="text-red-400">Unqualified Interviews</CardTitle>
+                    <Clock className="h-8 w-8 text-amber-400 mb-3 elite-icon" />
+                    <CardTitle className="text-amber-300">Unqualified Interviews</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">
+                    <p className="text-stone-200">
                       HR teams waste 40+ hours/week on bad candidates who never make it past round one.
                     </p>
                   </CardContent>
                 </Card>
                 
-                <Card className="border-red-500/20 bg-red-500/5 metallic-red-card">
+                <Card className="border-amber-500/30 bg-gradient-to-br from-amber-900/20 to-orange-900/10 backdrop-blur-sm shadow-lg">
                   <CardHeader>
-                    <DollarSign className="h-8 w-8 text-red-400 mb-3 elite-icon" />
-                    <CardTitle className="text-red-400">Training Costs</CardTitle>
+                    <DollarSign className="h-8 w-8 text-amber-400 mb-3 elite-icon" />
+                    <CardTitle className="text-amber-300">Training Costs</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">
+                    <p className="text-stone-200">
                       $15,000+ per new sales hire, 90-day ramp time, and still no guarantee they'll hit quota.
                     </p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-red-500/20 bg-red-500/5 metallic-red-card">
+                <Card className="border-amber-500/30 bg-gradient-to-br from-amber-900/20 to-orange-900/10 backdrop-blur-sm shadow-lg">
                   <CardHeader>
-                    <TrendingUp className="h-8 w-8 text-red-400 mb-3 elite-icon" />
-                    <CardTitle className="text-red-400">Onboarding Failures</CardTitle>
+                    <TrendingUp className="h-8 w-8 text-amber-400 mb-3 elite-icon" />
+                    <CardTitle className="text-amber-300">Onboarding Failures</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">
+                    <p className="text-stone-200">
                       58% of new hires quit within 6 months due to poor training and overwhelming processes.
                     </p>
                   </CardContent>
