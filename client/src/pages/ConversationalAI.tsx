@@ -155,8 +155,8 @@ export default function ConversationalAI() {
         <main className="flex-grow">
 
           {/* RED SECTION - PAIN (Alex Hormozi Hook) */}
-          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-red-900/80 to-red-800/60 relative overflow-hidden">
-            <div className="absolute inset-0 bg-red-900/20 z-0"></div>
+          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-red-950 to-red-900 relative overflow-hidden">
+            <div className="absolute inset-0 bg-red-950/40 z-0"></div>
             <div className="container mx-auto relative z-10">
               <div className="text-center max-w-5xl mx-auto mb-16">
                 <Badge className="mb-4 bg-red-500/10 text-red-400 border-red-500/20 elite-badge">
