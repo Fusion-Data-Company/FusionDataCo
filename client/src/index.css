@@ -203,6 +203,358 @@
   animation: hologram-flicker 0.15s linear infinite;
 }
 
+/* ENTERPRISE ELITE VISUAL EFFECTS */
+
+/* Moving Stucco Background Texture */
+@keyframes stucco-drift {
+  0% {
+    background-position: 0% 0%;
+    transform: scale(1);
+  }
+  25% {
+    background-position: 25% 15%;
+    transform: scale(1.02);
+  }
+  50% {
+    background-position: 50% 30%;
+    transform: scale(1);
+  }
+  75% {
+    background-position: 75% 45%;
+    transform: scale(1.01);
+  }
+  100% {
+    background-position: 100% 60%;
+    transform: scale(1);
+  }
+}
+
+@keyframes texture-float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px) rotate(1deg);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(0px) translateX(10px) rotate(0deg);
+    opacity: 0.12;
+  }
+  75% {
+    transform: translateY(10px) translateX(5px) rotate(-1deg);
+    opacity: 0.18;
+  }
+}
+
+/* Glassmorphism Button Effects */
+@keyframes glass-shine {
+  0% {
+    background-position: -100% 0;
+    transform: scale(1);
+  }
+  50% {
+    background-position: 100% 0;
+    transform: scale(1.02);
+  }
+  100% {
+    background-position: 200% 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes glass-ripple {
+  0% {
+    box-shadow: 
+      0 8px 32px 0 rgba(31, 38, 135, 0.37),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+  50% {
+    box-shadow: 
+      0 12px 48px 0 rgba(31, 38, 135, 0.45),
+      0 0 30px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  100% {
+    box-shadow: 
+      0 8px 32px 0 rgba(31, 38, 135, 0.37),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+}
+
+/* Premium Card Effects */
+@keyframes premium-glow {
+  0%, 100% {
+    box-shadow: 
+      0 4px 15px 0 rgba(31, 38, 135, 0.2),
+      0 0 20px rgba(139, 92, 246, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 8px 25px 0 rgba(31, 38, 135, 0.3),
+      0 0 35px rgba(139, 92, 246, 0.2),
+      0 0 50px rgba(59, 130, 246, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+@keyframes edge-scan {
+  0% {
+    border-image-source: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(139, 92, 246, 0.3) 45%, 
+      rgba(139, 92, 246, 0.6) 50%, 
+      rgba(139, 92, 246, 0.3) 55%, 
+      transparent 100%);
+  }
+  100% {
+    border-image-source: linear-gradient(90deg, 
+      rgba(139, 92, 246, 0.3) 0%, 
+      rgba(139, 92, 246, 0.6) 45%, 
+      rgba(59, 130, 246, 0.6) 50%, 
+      rgba(139, 92, 246, 0.6) 55%, 
+      rgba(139, 92, 246, 0.3) 100%);
+  }
+}
+
+/* Elite Badge Effects */
+@keyframes badge-pulse {
+  0%, 100% {
+    background: linear-gradient(135deg, 
+      rgba(139, 92, 246, 0.15) 0%, 
+      rgba(59, 130, 246, 0.25) 50%, 
+      rgba(139, 92, 246, 0.15) 100%);
+    transform: scale(1);
+  }
+  50% {
+    background: linear-gradient(135deg, 
+      rgba(139, 92, 246, 0.25) 0%, 
+      rgba(59, 130, 246, 0.35) 50%, 
+      rgba(139, 92, 246, 0.25) 100%);
+    transform: scale(1.05);
+  }
+}
+
+/* Icon Enhancement Effects */
+@keyframes icon-orbit {
+  0% {
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
+  }
+  25% {
+    transform: rotate(90deg) scale(1.1);
+    filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.4));
+  }
+  50% {
+    transform: rotate(180deg) scale(1);
+    filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.5));
+  }
+  75% {
+    transform: rotate(270deg) scale(1.1);
+    filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.4));
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
+  }
+}
+
+/* ENTERPRISE ELITE CSS CLASSES */
+
+/* Moving Stucco Background */
+.enterprise-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.enterprise-background::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.02) 0%, transparent 50%),
+    repeating-linear-gradient(45deg, 
+      transparent 0px, 
+      rgba(255, 255, 255, 0.01) 1px, 
+      transparent 2px, 
+      rgba(139, 92, 246, 0.005) 3px),
+    repeating-linear-gradient(-45deg, 
+      transparent 0px, 
+      rgba(59, 130, 246, 0.005) 1px, 
+      transparent 2px, 
+      rgba(255, 255, 255, 0.01) 3px);
+  animation: stucco-drift 60s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.enterprise-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-radial-gradient(circle at 30% 30%, 
+      transparent 0px, 
+      rgba(139, 92, 246, 0.01) 2px, 
+      transparent 4px),
+    repeating-radial-gradient(circle at 70% 70%, 
+      transparent 0px, 
+      rgba(59, 130, 246, 0.01) 2px, 
+      transparent 4px);
+  animation: texture-float 40s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Glassmorphism Buttons */
+.glass-button {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.glass-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 100%);
+  animation: glass-shine 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.glass-button:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(255, 255, 255, 0.08) 100%);
+  transform: translateY(-2px);
+  animation: glass-ripple 2s ease-in-out infinite;
+}
+
+/* Premium Cards */
+.premium-card {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.premium-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(139, 92, 246, 0.5) 50%, 
+    transparent 100%);
+  animation: edge-scan 4s ease-in-out infinite;
+}
+
+.premium-card:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.12) 0%, 
+    rgba(255, 255, 255, 0.06) 100%);
+  transform: translateY(-4px);
+  animation: premium-glow 2s ease-in-out infinite;
+}
+
+/* Elite Badges */
+.elite-badge {
+  background: linear-gradient(135deg, 
+    rgba(139, 92, 246, 0.15) 0%, 
+    rgba(59, 130, 246, 0.25) 50%, 
+    rgba(139, 92, 246, 0.15) 100%);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.elite-badge::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s ease;
+}
+
+.elite-badge:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.elite-badge:hover {
+  animation: badge-pulse 1.5s ease-in-out infinite;
+}
+
+/* Enhanced Icons */
+.elite-icon {
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.3));
+  transition: all 0.3s ease;
+}
+
+.elite-icon:hover {
+  animation: icon-orbit 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.5));
+}
+
+/* Elite Section Backgrounds */
+.elite-section-red {
+  background: linear-gradient(135deg, 
+    rgba(239, 68, 68, 0.08) 0%, 
+    rgba(220, 38, 38, 0.05) 100%);
+  position: relative;
+}
+
+.elite-section-yellow {
+  background: linear-gradient(135deg, 
+    rgba(234, 179, 8, 0.08) 0%, 
+    rgba(202, 138, 4, 0.05) 100%);
+  position: relative;
+}
+
+.elite-section-green {
+  background: linear-gradient(135deg, 
+    rgba(34, 197, 94, 0.08) 0%, 
+    rgba(21, 128, 61, 0.05) 100%);
+  position: relative;
+}
+
 /* Enterprise-level UI effects */
 @keyframes textShimmer {
   0% {

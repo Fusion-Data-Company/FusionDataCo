@@ -150,16 +150,16 @@ export default function ConversationalAI() {
         <meta property="og:url" content="https://fusiondataco.com/services/conversational-ai" />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <div className="min-h-screen flex flex-col bg-background text-foreground enterprise-background">
         <Header />
         <main className="flex-grow">
 
           {/* RED SECTION - PAIN (Alex Hormozi Hook) */}
-          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-red-900/20 to-red-800/10 relative overflow-hidden">
+          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-red-900/20 to-red-800/10 relative overflow-hidden enterprise-background elite-section-red">
             <div className="absolute inset-0 bg-red-500/5 z-0"></div>
             <div className="container mx-auto relative z-10">
               <div className="text-center max-w-5xl mx-auto mb-16">
-                <Badge className="mb-4 bg-red-500/10 text-red-400 border-red-500/20">
+                <Badge className="mb-4 bg-red-500/10 text-red-400 border-red-500/20 elite-badge">
                   Pain: The $10,000/Month Problem
                 </Badge>
                 <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -177,9 +177,9 @@ export default function ConversationalAI() {
 
               {/* Pain Points Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <Card className="border-red-500/20 bg-red-500/5">
+                <Card className="border-red-500/20 bg-red-500/5 premium-card">
                   <CardHeader>
-                    <AlertTriangle className="h-8 w-8 text-red-400 mb-3" />
+                    <AlertTriangle className="h-8 w-8 text-red-400 mb-3 elite-icon" />
                     <CardTitle className="text-red-400">Lost Revenue</CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -189,9 +189,9 @@ export default function ConversationalAI() {
                   </CardContent>
                 </Card>
                 
-                <Card className="border-red-500/20 bg-red-500/5">
+                <Card className="border-red-500/20 bg-red-500/5 premium-card">
                   <CardHeader>
-                    <Clock className="h-8 w-8 text-red-400 mb-3" />
+                    <Clock className="h-8 w-8 text-red-400 mb-3 elite-icon" />
                     <CardTitle className="text-red-400">Unqualified Interviews</CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -201,9 +201,9 @@ export default function ConversationalAI() {
                   </CardContent>
                 </Card>
                 
-                <Card className="border-red-500/20 bg-red-500/5">
+                <Card className="border-red-500/20 bg-red-500/5 premium-card">
                   <CardHeader>
-                    <DollarSign className="h-8 w-8 text-red-400 mb-3" />
+                    <DollarSign className="h-8 w-8 text-red-400 mb-3 elite-icon" />
                     <CardTitle className="text-red-400">Training Costs</CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -213,9 +213,9 @@ export default function ConversationalAI() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-red-500/20 bg-red-500/5">
+                <Card className="border-red-500/20 bg-red-500/5 premium-card">
                   <CardHeader>
-                    <TrendingUp className="h-8 w-8 text-red-400 mb-3" />
+                    <TrendingUp className="h-8 w-8 text-red-400 mb-3 elite-icon" />
                     <CardTitle className="text-red-400">Onboarding Failures</CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -229,10 +229,10 @@ export default function ConversationalAI() {
           </section>
 
           {/* YELLOW SECTION - SOLUTION (The Fusion Voice Arsenal) */}
-          <section className="py-16 px-4 bg-gradient-to-b from-yellow-900/20 to-yellow-800/10">
+          <section className="py-16 px-4 bg-gradient-to-b from-yellow-900/20 to-yellow-800/10 enterprise-background elite-section-yellow">
             <div className="container mx-auto">
               <div className="text-center mb-12">
-                <Badge className="mb-4 bg-yellow-500/10 text-yellow-400 border-yellow-500/20">
+                <Badge className="mb-4 bg-yellow-500/10 text-yellow-400 border-yellow-500/20 elite-badge">
                   Solution: The Fusion Voice Arsenal
                 </Badge>
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">
@@ -247,10 +247,10 @@ export default function ConversationalAI() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 
                 {/* Agent 1: AI Sales Coach */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all">
+                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all premium-card">
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-4">
-                      <GraduationCap className="h-10 w-10 text-yellow-400" />
+                      <GraduationCap className="h-10 w-10 text-yellow-400 elite-icon" />
                       <div>
                         <CardTitle className="text-xl">AI Sales Coach</CardTitle>
                         <p className="text-sm text-yellow-300">For Sales Teams</p>
@@ -264,24 +264,24 @@ export default function ConversationalAI() {
                   <CardContent>
                     <ul className="space-y-2 mb-6">
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Pain identification & tool presentation mastery</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Hostage negotiation tactics integration</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Real-time pitch coaching & feedback</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Custom knowledge base integration</span>
                       </li>
                     </ul>
                     <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700"
+                      className="w-full bg-yellow-600 hover:bg-yellow-700 glass-button"
                       onClick={() => {
                         handleAgentClick('sales_coach');
                         window.open('https://elevenlabs.io/app/talk-to?agent_id=agent_01jz0xtv25ej8axfe92t1sdv9t', '_blank');
@@ -294,10 +294,10 @@ export default function ConversationalAI() {
                 </Card>
 
                 {/* Agent 2: AI Hiring Screener */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all">
+                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all premium-card">
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-4">
-                      <UserCheck className="h-10 w-10 text-yellow-400" />
+                      <UserCheck className="h-10 w-10 text-yellow-400 elite-icon" />
                       <div>
                         <CardTitle className="text-xl">AI Hiring Screener</CardTitle>
                         <p className="text-sm text-yellow-300">For HR Directors</p>
@@ -311,24 +311,24 @@ export default function ConversationalAI() {
                   <CardContent>
                     <ul className="space-y-2 mb-6">
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Indeed automation integration</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">AI transcript analysis & scoring</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Custom questions & variables</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Only interview pre-qualified A-players</span>
                       </li>
                     </ul>
                     <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700"
+                      className="w-full bg-yellow-600 hover:bg-yellow-700 glass-button"
                       onClick={() => {
                         handleAgentClick('hiring_screener');
                         window.open('https://elevenlabs.io/app/talk-to?agent_id=agent_01k07mhgszfcg9br6n46m8d35m', '_blank');
@@ -341,10 +341,10 @@ export default function ConversationalAI() {
                 </Card>
 
                 {/* Agent 3: AI Onboarding Companion */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all">
+                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all premium-card">
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-4">
-                      <Heart className="h-10 w-10 text-yellow-400" />
+                      <Heart className="h-10 w-10 text-yellow-400 elite-icon" />
                       <div>
                         <CardTitle className="text-xl">AI Onboarding Companion</CardTitle>
                         <p className="text-sm text-yellow-300">For New Hires</p>
@@ -358,24 +358,24 @@ export default function ConversationalAI() {
                   <CardContent>
                     <ul className="space-y-2 mb-6">
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Tactical empathy & supportive coaching</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Full company knowledge base access</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Overwhelming situation management</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Historical data & project guidance</span>
                       </li>
                     </ul>
                     <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700"
+                      className="w-full bg-yellow-600 hover:bg-yellow-700 glass-button"
                       onClick={() => {
                         handleAgentClick('onboarding_companion');
                         window.open('https://elevenlabs.io/app/talk-to?agent_id=agent_01jxb0mn53ft19tt6crjzaqnwc', '_blank');
@@ -388,10 +388,10 @@ export default function ConversationalAI() {
                 </Card>
 
                 {/* Agent 4: AI Website Concierge */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all">
+                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all premium-card">
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-4">
-                      <Globe className="h-10 w-10 text-yellow-400" />
+                      <Globe className="h-10 w-10 text-yellow-400 elite-icon" />
                       <div>
                         <CardTitle className="text-xl">AI Website Concierge</CardTitle>
                         <p className="text-sm text-yellow-300">For Websites</p>
@@ -405,24 +405,24 @@ export default function ConversationalAI() {
                   <CardContent>
                     <ul className="space-y-2 mb-6">
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Website layout & product knowledge</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Twilio & Google Calendar integration</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Live agent transfer for emergencies</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
                         <span className="text-sm">Objection handling & sales closes</span>
                       </li>
                     </ul>
                     <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700"
+                      className="w-full bg-yellow-600 hover:bg-yellow-700 glass-button"
                       onClick={() => {
                         handleAgentClick('website_concierge');
                         window.open('https://elevenlabs.io/app/talk-to?agent_id=ybtdqCeRrbskLzgWulrg', '_blank');
@@ -438,7 +438,7 @@ export default function ConversationalAI() {
 
               {/* Languages Section */}
               <div className="mt-16 text-center">
-                <Card className="border-yellow-500/20 bg-yellow-500/5 max-w-4xl mx-auto">
+                <Card className="border-yellow-500/20 bg-yellow-500/5 max-w-4xl mx-auto premium-card">
                   <CardHeader>
                     <CardTitle className="text-2xl text-yellow-400">40+ Languages Supported</CardTitle>
                     <p className="text-muted-foreground">
@@ -448,7 +448,7 @@ export default function ConversationalAI() {
                   <CardContent>
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 text-sm">
                       {['English', 'Spanish', 'French', 'German', 'Italian', 'Portuguese', 'Dutch', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Arabic', 'Hindi', 'Turkish', 'Polish', 'Swedish', 'Norwegian', 'Danish', 'Finnish', 'Czech', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Slovak', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Greek', 'Hebrew', 'Thai', 'Vietnamese', 'Indonesian', 'Malay', 'Filipino', 'Ukrainian', 'Bengali', 'Tamil', 'Telugu'].map((language) => (
-                        <Badge key={language} variant="outline" className="text-xs border-yellow-500/20">
+                        <Badge key={language} variant="outline" className="text-xs border-yellow-500/20 elite-badge">
                           {language}
                         </Badge>
                       ))}
@@ -460,10 +460,10 @@ export default function ConversationalAI() {
           </section>
 
           {/* GREEN SECTION - ROI/GOOD NEWS */}
-          <section className="py-16 px-4 bg-gradient-to-b from-green-900/20 to-green-800/10">
+          <section className="py-16 px-4 bg-gradient-to-b from-green-900/20 to-green-800/10 enterprise-background elite-section-green">
             <div className="container mx-auto">
               <div className="text-center mb-12">
-                <Badge className="mb-4 bg-green-500/10 text-green-400 border-green-500/20">
+                <Badge className="mb-4 bg-green-500/10 text-green-400 border-green-500/20 elite-badge">
                   Good News: The $50K+ Monthly Savings
                 </Badge>
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">
@@ -476,49 +476,49 @@ export default function ConversationalAI() {
 
               {/* ROI Value Stack */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
-                <Card className="border-green-500/20 bg-green-500/5">
+                <Card className="border-green-500/20 bg-green-500/5 premium-card">
                   <CardContent className="pt-6">
-                    <DollarSign className="h-12 w-12 text-green-400 mx-auto mb-4" />
+                    <DollarSign className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
                     <div className="text-3xl font-bold text-green-400 mb-2 text-center">$35,000/month</div>
                     <p className="text-sm text-muted-foreground text-center">Saved on hiring costs by eliminating bad candidates</p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-green-500/20 bg-green-500/5">
+                <Card className="border-green-500/20 bg-green-500/5 premium-card">
                   <CardContent className="pt-6">
-                    <TrendingUp className="h-12 w-12 text-green-400 mx-auto mb-4" />
+                    <TrendingUp className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
                     <div className="text-3xl font-bold text-green-400 mb-2 text-center">47%</div>
                     <p className="text-sm text-muted-foreground text-center">Revenue increase with never-miss lead response</p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-green-500/20 bg-green-500/5">
+                <Card className="border-green-500/20 bg-green-500/5 premium-card">
                   <CardContent className="pt-6">
-                    <Clock className="h-12 w-12 text-green-400 mx-auto mb-4" />
+                    <Clock className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
                     <div className="text-3xl font-bold text-green-400 mb-2 text-center">70%</div>
                     <p className="text-sm text-muted-foreground text-center">Reduction in training time with AI coaching</p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-green-500/20 bg-green-500/5">
+                <Card className="border-green-500/20 bg-green-500/5 premium-card">
                   <CardContent className="pt-6">
-                    <Users className="h-12 w-12 text-green-400 mx-auto mb-4" />
+                    <Users className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
                     <div className="text-3xl font-bold text-green-400 mb-2 text-center">58%</div>
                     <p className="text-sm text-muted-foreground text-center">Reduction in turnover with proper onboarding</p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-green-500/20 bg-green-500/5">
+                <Card className="border-green-500/20 bg-green-500/5 premium-card">
                   <CardContent className="pt-6">
-                    <Globe className="h-12 w-12 text-green-400 mx-auto mb-4" />
+                    <Globe className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
                     <div className="text-3xl font-bold text-green-400 mb-2 text-center">24/7/365</div>
                     <p className="text-sm text-muted-foreground text-center">Availability in 40+ languages</p>
                   </CardContent>
                 </Card>
 
-                <Card className="border-green-500/20 bg-green-500/5">
+                <Card className="border-green-500/20 bg-green-500/5 premium-card">
                   <CardContent className="pt-6">
-                    <Shield className="h-12 w-12 text-green-400 mx-auto mb-4" />
+                    <Shield className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
                     <div className="text-3xl font-bold text-green-400 mb-2 text-center">Zero</div>
                     <p className="text-sm text-muted-foreground text-center">Sick days, vacations, or workplace drama</p>
                   </CardContent>
@@ -527,9 +527,9 @@ export default function ConversationalAI() {
 
               {/* Social Proof Results */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                <Card className="border-green-500/20 bg-green-500/5">
+                <Card className="border-green-500/20 bg-green-500/5 premium-card">
                   <CardContent className="pt-6">
-                    <Star className="h-8 w-8 text-green-400 mb-3" />
+                    <Star className="h-8 w-8 text-green-400 mb-3 elite-icon" />
                     <p className="text-sm text-green-300 mb-2 font-semibold">Real Estate Client</p>
                     <p className="text-sm text-muted-foreground">
                       "Went from 23% to 71% lead conversion in 90 days with the AI Sales Coach"
@@ -537,9 +537,9 @@ export default function ConversationalAI() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-green-500/20 bg-green-500/5">
+                <Card className="border-green-500/20 bg-green-500/5 premium-card">
                   <CardContent className="pt-6">
-                    <Star className="h-8 w-8 text-green-400 mb-3" />
+                    <Star className="h-8 w-8 text-green-400 mb-3 elite-icon" />
                     <p className="text-sm text-green-300 mb-2 font-semibold">Manufacturing Company</p>
                     <p className="text-sm text-muted-foreground">
                       "Saved $847 per interview by filtering candidates with AI Hiring Screener first"
@@ -547,9 +547,9 @@ export default function ConversationalAI() {
                   </CardContent>
                 </Card>
 
-                <Card className="border-green-500/20 bg-green-500/5">
+                <Card className="border-green-500/20 bg-green-500/5 premium-card">
                   <CardContent className="pt-6">
-                    <Star className="h-8 w-8 text-green-400 mb-3" />
+                    <Star className="h-8 w-8 text-green-400 mb-3 elite-icon" />
                     <p className="text-sm text-green-300 mb-2 font-semibold">SaaS Startup</p>
                     <p className="text-sm text-muted-foreground">
                       "Reduced onboarding from 6 weeks to 10 days with the AI Onboarding Companion"
@@ -561,12 +561,12 @@ export default function ConversationalAI() {
           </section>
 
           {/* REGISTRATION FORM SECTION */}
-          <section className="py-16 px-4 bg-gradient-to-b from-primary/10 to-background">
+          <section className="py-16 px-4 bg-gradient-to-b from-primary/10 to-background enterprise-background">
             <div className="container mx-auto">
               <div className="max-w-4xl mx-auto">
                 
                 {submitted ? (
-                  <Card className="border-green-500/20 bg-green-500/5">
+                  <Card className="border-green-500/20 bg-green-500/5 premium-card">
                     <CardContent className="pt-8 text-center">
                       <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
                       <h2 className="text-2xl font-bold text-green-400 mb-4">Strategy Session Booked!</h2>
@@ -579,7 +579,7 @@ export default function ConversationalAI() {
                     </CardContent>
                   </Card>
                 ) : (
-                  <Card className="border-primary/20">
+                  <Card className="border-primary/20 premium-card">
                     <CardHeader className="text-center">
                       <CardTitle className="text-3xl md:text-4xl font-bold mb-4">
                         Get Your Custom Voice Agent Strategy Session
@@ -759,7 +759,7 @@ export default function ConversationalAI() {
                           <Button 
                             type="submit" 
                             size="lg" 
-                            className="w-full bg-primary hover:bg-primary/90" 
+                            className="w-full bg-primary hover:bg-primary/90 glass-button" 
                             disabled={isSubmitting}
                           >
                             {isSubmitting ? "Booking Your Session..." : "Book My FREE Strategy Session"}
