@@ -238,7 +238,7 @@ export default function GolfBagBlogPost() {
                 <Slideshow slides={[
                   {
                     id: 1,
-                    title: "Slide 1: The Million-Dollar Mistake",
+                    title: "The Million-Dollar Mistake",
                     icon: <AlertTriangle className="h-8 w-8 text-red-500" />,
                     titleColor: "text-red-400",
                     bgColor: "bg-red-500/5",
@@ -257,7 +257,7 @@ export default function GolfBagBlogPost() {
                   },
                   {
                     id: 2,
-                    title: "Slide 2: Building Your AI Golf Bag",
+                    title: "Building Your AI Golf Bag",
                     icon: <Target className="h-8 w-8 text-blue-500" />,
                     titleColor: "text-blue-400",
                     bgColor: "bg-blue-500/5",
@@ -289,7 +289,7 @@ export default function GolfBagBlogPost() {
                   },
                   {
                     id: 3,
-                    title: "Slide 3: Reading the Lie (Data Condition Assessment)",
+                    title: "Reading the Lie (Data Condition Assessment)",
                     icon: <MapPin className="h-8 w-8 text-green-500" />,
                     titleColor: "text-green-400",
                     bgColor: "bg-green-500/5",
@@ -314,7 +314,7 @@ export default function GolfBagBlogPost() {
                   },
                   {
                     id: 4,
-                    title: "Slide 4: Measuring Distance (Context Length & Complexity)",
+                    title: "Measuring Distance (Context Length & Complexity)",
                     icon: <Target className="h-8 w-8 text-yellow-500" />,
                     titleColor: "text-yellow-400",
                     bgColor: "bg-yellow-500/5",
@@ -342,7 +342,7 @@ export default function GolfBagBlogPost() {
                   },
                   {
                     id: 5,
-                    title: "Slide 5: Reading the Wind (Latency & Cost Constraints)",
+                    title: "Reading the Wind (Latency & Cost Constraints)",
                     icon: <Wind className="h-8 w-8 text-cyan-500" />,
                     titleColor: "text-cyan-400",
                     bgColor: "bg-cyan-500/5",
@@ -376,7 +376,7 @@ export default function GolfBagBlogPost() {
                   },
                   {
                     id: 6,
-                    title: "Slide 6: Calculating the Angle (Output Determinism)",
+                    title: "Calculating the Angle (Output Determinism)",
                     icon: <Compass className="h-8 w-8 text-purple-500" />,
                     titleColor: "text-purple-400",
                     bgColor: "bg-purple-500/5",
@@ -398,7 +398,7 @@ export default function GolfBagBlogPost() {
                   },
                   {
                     id: 7,
-                    title: "Slide 7: The Custom Fitting (Model Fine-Tuning)",
+                    title: "The Custom Fitting (Model Fine-Tuning)",
                     icon: <Activity className="h-8 w-8 text-orange-500" />,
                     titleColor: "text-orange-400",
                     bgColor: "bg-orange-500/5",
@@ -423,7 +423,7 @@ export default function GolfBagBlogPost() {
                   },
                   {
                     id: 8,
-                    title: "Slide 8: Keeping Score (Performance Analytics)",
+                    title: "Keeping Score (Performance Analytics)",
                     icon: <BarChart3 className="h-8 w-8 text-emerald-500" />,
                     titleColor: "text-emerald-400",
                     bgColor: "bg-emerald-500/5",
@@ -456,7 +456,7 @@ export default function GolfBagBlogPost() {
                   },
                   {
                     id: 9,
-                    title: "Slide 9: Avoiding the Water Hazard (Vendor Lock-in Prevention)",
+                    title: "Avoiding the Water Hazard (Vendor Lock-in Prevention)",
                     icon: <AlertTriangle className="h-8 w-8 text-amber-500" />,
                     titleColor: "text-amber-400",
                     bgColor: "bg-amber-500/5",
@@ -481,7 +481,7 @@ export default function GolfBagBlogPost() {
                   },
                   {
                     id: 10,
-                    title: "Slide 10: Winning the Tournament (Measurable Results)",
+                    title: "Winning the Tournament (Measurable Results)",
                     icon: <TrendingUp className="h-8 w-8 text-green-500" />,
                     titleColor: "text-green-400",
                     bgColor: "bg-gradient-to-r from-green-500/10 to-blue-500/10",
