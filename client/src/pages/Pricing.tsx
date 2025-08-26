@@ -31,13 +31,13 @@ export default function Pricing() {
   return (
     <>
       <Helmet>
-        <title>Pricing - Launch, Growth & Scale Plans | Fusion Data Co</title>
-        <meta name="description" content="Transparent pricing for Conversational AI, multi-model agents, and automation solutions. Launch from $799/mo, Growth from $1,799/mo, Scale from $4,499/mo." />
+        <title>Custom Pricing Solutions | Fusion Data Co</title>
+        <meta name="description" content="Get custom pricing tailored to your specific needs. We create solutions based on your unique pain points to save you money and maximize efficiency." />
         <meta name="keywords" content="conversational AI pricing, voice agent pricing, SMS automation cost, enterprise AI pricing" />
         
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Transparent AI & Automation Pricing" />
-        <meta property="og:description" content="Launch from $799/mo. Growth from $1,799/mo. Scale from $4,499/mo. Plus setup fees." />
+        <meta property="og:title" content="Custom Pricing Solutions" />
+        <meta property="og:description" content="Schedule a free consultation with our sales team for pricing tailored to your specific needs and pain points." />
         <meta property="og:url" content="https://fusiondataco.com/pricing" />
       </Helmet>
       
@@ -48,99 +48,134 @@ export default function Pricing() {
           <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-primary/10 to-background">
             <div className="container mx-auto text-center">
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
-                Transparent Pricing
+                Custom Solutions
               </Badge>
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Choose Your <span className="text-primary">Growth Path</span>
+                <span className="text-primary">Schedule A Free Consultation</span> With Our Sales Team For Pricing
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Enterprise-grade conversational AI and automation solutions. No hidden fees, no surprises.
+                We create custom solutions for clients based on their pain points throughout the day. We save our clients money by building solutions tailored to their specific needs instead of making them pay for parts of a larger plan they won't use.
               </p>
             </div>
           </section>
 
-          {/* Main Pricing Tiers - Launch/Growth/Scale */}
+          {/* Custom Solutions Approach */}
           <section className="py-16 px-4">
             <div className="container mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Conversational AI <span className="text-primary">Plans</span>
+                  Our <span className="text-primary">Custom Approach</span>
                 </h2>
-                <p className="text-lg text-muted-foreground">
-                  Voice + SMS agents that qualify, book, and close 24/7
+                <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+                  Every business is unique, with its own set of challenges and pain points. Instead of forcing you into a one-size-fits-all solution, we take the time to understand your specific needs and create a tailored solution that addresses exactly what you need.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {conversationalAIPricingTiers.map((tier) => (
-                  <Card 
-                    key={tier.name} 
-                    className={`relative hover:shadow-xl transition-shadow ${tier.recommended ? 'border-primary ring-2 ring-primary/20' : ''}`}
-                  >
-                    {tier.recommended && (
-                      <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground">
-                        Recommended
-                      </Badge>
-                    )}
-                    <CardHeader>
-                      <CardTitle className="text-2xl">{tier.name}</CardTitle>
-                      <CardDescription>{tier.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="mb-6">
-                        <div className="flex items-baseline">
-                          <span className="text-4xl font-bold">${tier.price.toLocaleString()}</span>
-                          <span className="text-muted-foreground ml-2">/month</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-2">
-                          + ${tier.setupFee.toLocaleString()} setup fee
-                        </p>
-                      </div>
-                      
-                      <ul className="space-y-3 mb-6">
-                        {tier.features.map((feature, index) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                    <CardFooter>
-                      <Link href="/contact" className="w-full" onClick={() => handleGetStarted(tier.name)}>
-                        <Button 
-                          className="w-full" 
-                          variant={tier.recommended ? "default" : "outline"}
-                        >
-                          Get Started
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </Link>
-                    </CardFooter>
-                  </Card>
-                ))}
+                <Card className="text-center hover:shadow-xl transition-shadow">
+                  <CardHeader>
+                    <MessageSquare className="h-12 w-12 text-primary mx-auto mb-4" />
+                    <CardTitle className="text-2xl">Discovery Call</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      We start with a comprehensive consultation to understand your current challenges, workflows, and goals.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                <Card className="text-center hover:shadow-xl transition-shadow border-primary ring-2 ring-primary/20">
+                  <CardHeader>
+                    <Zap className="h-12 w-12 text-primary mx-auto mb-4" />
+                    <CardTitle className="text-2xl">Custom Solution</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      We design and build a solution that targets your specific pain points without unnecessary features that inflate costs.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                <Card className="text-center hover:shadow-xl transition-shadow">
+                  <CardHeader>
+                    <DollarSign className="h-12 w-12 text-primary mx-auto mb-4" />
+                    <CardTitle className="text-2xl">Cost Savings</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      Pay only for what you need. Our custom approach typically saves clients 30-50% compared to traditional packages.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </section>
 
-          {/* Add-On Services */}
+          {/* Why Custom Solutions */}
           <section className="py-16 px-4 bg-muted/30">
             <div className="container mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Add-On <span className="text-primary">Services</span>
+                  Why <span className="text-primary">Custom</span> Works Better
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                {addOnServices.map((addon, index) => (
-                  <Card key={index} className="text-center">
-                    <CardContent className="pt-6">
-                      <h4 className="font-semibold mb-2">{addon.name}</h4>
-                      <p className="text-2xl font-bold text-primary">{addon.price}</p>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <Card className="hover:shadow-xl transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-xl">
+                      <CheckCircle className="h-6 w-6 text-green-500" />
+                      No Wasted Features
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      Traditional packages include features you may never use. Our custom solutions focus only on what will actually help your business grow.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-xl transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-xl">
+                      <CheckCircle className="h-6 w-6 text-green-500" />
+                      Perfect Integration
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      We build solutions that work seamlessly with your existing tools and workflows, not against them.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-xl transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-xl">
+                      <CheckCircle className="h-6 w-6 text-green-500" />
+                      Scalable Growth
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      Start with what you need today and add features as your business grows. No need to pay upfront for future capabilities.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-xl transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-xl">
+                      <CheckCircle className="h-6 w-6 text-green-500" />
+                      Dedicated Support
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      Get personalized support from a team that understands your unique setup and business needs.
+                    </CardDescription>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </section>
@@ -208,38 +243,38 @@ export default function Pricing() {
               </div>
 
               <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="setup">
-                  <AccordionTrigger>What's included in the setup fee?</AccordionTrigger>
+                <AccordionItem value="consultation">
+                  <AccordionTrigger>How does the consultation process work?</AccordionTrigger>
                   <AccordionContent>
-                    Setup includes agent configuration, voice tuning, CRM integration, workflow design, testing, and initial training. Launch tier gets you running in 3-5 days, Growth in 7-10 days, Scale includes full enterprise onboarding over 2-3 weeks.
+                    Our consultation process starts with a detailed discovery call where we learn about your business, current challenges, and goals. We then create a custom proposal that addresses your specific needs and pain points, ensuring you only pay for solutions that will actually benefit your business.
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="contract">
-                  <AccordionTrigger>Are there long-term contracts?</AccordionTrigger>
+                <AccordionItem value="timeline">
+                  <AccordionTrigger>How long does it take to get a custom solution?</AccordionTrigger>
                   <AccordionContent>
-                    Month-to-month for Launch tier. Growth requires 6-month commitment. Scale includes annual agreements with SLAs and dedicated support.
+                    After our initial consultation, we typically provide a detailed proposal within 2-3 business days. Implementation timelines vary based on complexity, but most custom solutions are deployed within 1-4 weeks depending on your specific requirements.
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="usage">
-                  <AccordionTrigger>What about usage limits?</AccordionTrigger>
+                <AccordionItem value="cost">
+                  <AccordionTrigger>How much can I expect to save with a custom solution?</AccordionTrigger>
                   <AccordionContent>
-                    Each tier includes generous usage limits. Launch: 1,000 minutes/month. Growth: 5,000 minutes/month. Scale: Unlimited with fair use policy. Additional minutes at $0.05/min.
+                    Our clients typically save 30-50% compared to traditional package pricing because they only pay for features and capabilities they actually need. We eliminate the waste of paying for unused features while ensuring you get exactly what will drive results for your business.
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="integrations">
-                  <AccordionTrigger>Which CRMs do you integrate with?</AccordionTrigger>
+                <AccordionItem value="support">
+                  <AccordionTrigger>What kind of support do you provide?</AccordionTrigger>
                   <AccordionContent>
-                    We integrate with all major CRMs including Salesforce, HubSpot, Pipedrive, Monday.com, and custom APIs. n8n automation included in Growth and Scale tiers enables virtually any integration.
+                    All custom solutions include dedicated support from our team who understands your specific setup. We provide training, ongoing optimization, and technical support to ensure you get maximum value from your investment.
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="upgrade">
-                  <AccordionTrigger>Can I upgrade or downgrade?</AccordionTrigger>
+                <AccordionItem value="scaling">
+                  <AccordionTrigger>Can I add features as my business grows?</AccordionTrigger>
                   <AccordionContent>
-                    Upgrade anytime with prorated billing. Downgrading requires 30-day notice and may involve feature limitations. Our team helps ensure smooth transitions.
+                    Absolutely! One of the key benefits of our custom approach is scalability. Start with what you need today and add capabilities as your business grows. This allows you to expand strategically without overpaying upfront for future needs.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -250,21 +285,21 @@ export default function Pricing() {
           <section className="py-16 px-4 bg-gradient-to-b from-primary/10 to-primary/5">
             <div className="container mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Ready to Transform Your <span className="text-primary">Revenue Operations</span>?
+                Ready to Get Your <span className="text-primary">Custom Solution</span>?
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Join businesses that have cut response times from hours to seconds.
+                Schedule your free consultation today and discover how we can save you money while solving your specific business challenges.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link href="/contact" onClick={handleContactClick}>
                   <Button size="lg" className="group">
-                    Get Started Today
+                    Schedule Free Consultation
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
-                <Link href="/services/conversational-ai">
+                <Link href="/services">
                   <Button size="lg" variant="outline">
-                    Learn More
+                    View Our Services
                   </Button>
                 </Link>
               </div>
