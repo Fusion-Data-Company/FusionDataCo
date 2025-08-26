@@ -248,34 +248,6 @@ export default function Services() {
                     </a>
                   </CardContent>
                 </Card>
-
-                {/* CRM Demo Card */}
-                <Card className="backdrop-blur-md bg-gradient-to-br from-[#ff0aff]/10 to-[#14ffc8]/10 rounded-xl border border-[#ff0aff] hover:border-[#ff0aff]/80 transition-all duration-300 group">
-                  <CardHeader>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Laptop className="h-5 w-5 text-[#ff0aff]" />
-                      <CardTitle className="text-white">Live CRM Demo</CardTitle>
-                    </div>
-                    <CardDescription className="text-gray-400">
-                      Experience our white-label sales agent CRM with AI rebuttal generator
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <div className="space-y-2">
-                      <a 
-                        href="https://sonshieldusa.app/" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-[#ff0aff] hover:text-[#ff0aff]/80 transition-colors font-semibold"
-                      >
-                        Try Live Demo <ExternalLink className="h-4 w-4" />
-                      </a>
-                      <div className="text-sm text-gray-500">
-                        Demo PIN: <span className="font-mono text-[#14ffc8] font-bold">1001</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
               </div>
 
               {/* CTA */}
@@ -324,52 +296,161 @@ export default function Services() {
           {/* CRM Section */}
           <CRMSection />
           
-          {/* CRM Demo Highlight */}
-          <section className="py-16 px-4 bg-gradient-to-b from-[#ff0aff]/10 to-background">
-            <div className="container mx-auto text-center">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Experience Our <span className="text-[#ff0aff]">AI-Powered CRM</span> Live
+          {/* CRM System Showcase - Interactive Demo */}
+          <section className="py-20 px-4 bg-gradient-to-b from-[#0a0a0d] via-[#121218] to-[#0a0a0d] relative overflow-hidden">
+            {/* Animated Background Effects */}
+            <div className="absolute inset-0">
+              <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#14ffc8]/10 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[#ff0aff]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+              <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+            </div>
+            
+            <div className="container mx-auto relative z-10">
+              {/* Header */}
+              <div className="text-center mb-16">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#14ffc8]/20 to-[#ff0aff]/20 px-4 py-2 rounded-full mb-6">
+                  <div className="w-2 h-2 bg-[#14ffc8] rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-[#14ffc8]">LIVE DEMO AVAILABLE</span>
+                </div>
+                <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                  <span className="bg-gradient-to-r from-[#14ffc8] via-white to-[#ff0aff] bg-clip-text text-transparent">
+                    Enterprise CRM System
+                  </span>
                 </h2>
-                <p className="text-lg text-muted-foreground mb-8">
-                  Try our white-label sales agent mini CRM with built-in AI rebuttal generator. See how it can transform your sales process.
+                <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                  Experience the future of customer relationship management with AI-powered call centers, comprehensive databases, and intelligent automation.
                 </p>
-                
-                <Card className="max-w-2xl mx-auto bg-gradient-to-br from-[#ff0aff]/5 to-[#14ffc8]/5 border-[#ff0aff]/20">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center justify-center gap-4 mb-4">
-                      <Laptop className="h-8 w-8 text-[#ff0aff]" />
-                      <Phone className="h-6 w-6 text-[#14ffc8]" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2 text-white">Live Demo Available</h3>
-                    <p className="text-gray-400 mb-4">
-                      Access our fully functional CRM demo to explore lead management, AI rebuttals, and automation features.
+              </div>
+
+              {/* Three-Panel Product Display */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                {/* Panel 1 - Call Center */}
+                <div className="group relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#14ffc8]/20 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                  <Card className="relative backdrop-blur-md bg-[#121218]/80 border-[#14ffc8]/20 hover:border-[#14ffc8] transition-all duration-500 overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#14ffc8] to-transparent"></div>
+                    <CardContent className="p-6">
+                      <div className="mb-4">
+                        <img 
+                          src="@assets/Screenshot 2025-08-26 at 08.53.17_1756223601235.png" 
+                          alt="Enterprise Call Center Interface" 
+                          className="w-full h-48 object-cover rounded-lg border border-[#14ffc8]/20"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3 text-[#14ffc8]">
+                        🎯 AI Call Center
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        Advanced call management with AI assistance and enterprise analytics. Real-time rebuttal generation and lead qualification.
+                      </p>
+                      <div className="flex items-center gap-2 text-sm text-[#14ffc8]">
+                        <div className="w-2 h-2 bg-[#14ffc8] rounded-full animate-pulse"></div>
+                        <span>Live AI Assistance</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Panel 2 - Database */}
+                <div className="group relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#ff0aff]/20 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                  <Card className="relative backdrop-blur-md bg-[#121218]/80 border-[#ff0aff]/20 hover:border-[#ff0aff] transition-all duration-500 overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#ff0aff] to-transparent"></div>
+                    <CardContent className="p-6">
+                      <div className="mb-4">
+                        <img 
+                          src="@assets/Screenshot 2025-08-26 at 08.53.38_1756223620928.png" 
+                          alt="Enterprise Database System" 
+                          className="w-full h-48 object-cover rounded-lg border border-[#ff0aff]/20"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3 text-[#ff0aff]">
+                        📊 Smart Database
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        Comprehensive contact management with 3,172 records and live sync capabilities. Advanced search and filtering system.
+                      </p>
+                      <div className="flex items-center gap-2 text-sm text-[#ff0aff]">
+                        <div className="w-2 h-2 bg-[#ff0aff] rounded-full animate-pulse"></div>
+                        <span>Real-time Sync</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Panel 3 - Contact Intelligence */}
+                <div className="group relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#14ffc8]/10 via-[#ff0aff]/10 to-[#14ffc8]/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                  <Card className="relative backdrop-blur-md bg-[#121218]/80 border-gray-600 hover:border-[#14ffc8] transition-all duration-500 overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#14ffc8] via-[#ff0aff] to-[#14ffc8]"></div>
+                    <CardContent className="p-6">
+                      <div className="mb-4">
+                        <img 
+                          src="@assets/Screenshot 2025-08-26 at 08.54.01_1756223643177.png" 
+                          alt="Contact Intelligence System" 
+                          className="w-full h-48 object-cover rounded-lg border border-gray-600"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-[#14ffc8] to-[#ff0aff] bg-clip-text text-transparent">
+                        🧠 Contact Intelligence
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        Deep social media integration and contact enrichment. LinkedIn, Facebook, Instagram, and multi-platform data aggregation.
+                      </p>
+                      <div className="flex items-center gap-2 text-sm text-[#14ffc8]">
+                        <div className="w-2 h-2 bg-gradient-to-r from-[#14ffc8] to-[#ff0aff] rounded-full animate-pulse"></div>
+                        <span>Social Intelligence</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+
+              {/* Call-to-Action Section */}
+              <div className="text-center">
+                <div className="max-w-4xl mx-auto">
+                  <div className="bg-gradient-to-r from-[#121218]/50 to-[#121218]/80 backdrop-blur-md border border-[#14ffc8]/20 rounded-2xl p-8 mb-8">
+                    <h3 className="text-3xl font-bold mb-4">
+                      🚀 <span className="bg-gradient-to-r from-[#14ffc8] to-[#ff0aff] bg-clip-text text-transparent">Try It Live Right Now</span>
+                    </h3>
+                    <p className="text-lg text-gray-300 mb-6">
+                      No signup required. Full access to all features. See why leading companies choose our platform.
                     </p>
-                    <div className="bg-black/20 rounded-lg p-4 mb-6">
-                      <p className="text-sm text-gray-400 mb-2">Demo Access Details:</p>
-                      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <div className="text-center">
-                          <p className="text-xs text-gray-500">URL:</p>
-                          <p className="font-mono text-[#14ffc8] text-sm">sonshieldusa.app</p>
-                        </div>
-                        <div className="text-center">
-                          <p className="text-xs text-gray-500">Demo PIN:</p>
-                          <p className="font-mono text-[#ff0aff] text-xl font-bold">1001</p>
-                        </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      <div className="bg-black/30 rounded-xl p-4 border border-[#14ffc8]/20">
+                        <h4 className="text-[#14ffc8] font-semibold mb-2">🌐 Demo URL</h4>
+                        <p className="font-mono text-white text-lg">sonshieldusa.app</p>
+                      </div>
+                      <div className="bg-black/30 rounded-xl p-4 border border-[#ff0aff]/20">
+                        <h4 className="text-[#ff0aff] font-semibold mb-2">🔑 Access PIN</h4>
+                        <p className="font-mono text-white text-2xl font-bold">1001</p>
                       </div>
                     </div>
-                    <a 
-                      href="https://sonshieldusa.app/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      <Button size="lg" className="bg-gradient-to-r from-[#ff0aff] to-[#14ffc8] text-black hover:opacity-90 transition-opacity">
-                        Launch Demo Now
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                    </a>
-                  </CardContent>
-                </Card>
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <a 
+                        href="https://sonshieldusa.app/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        <Button size="lg" className="group bg-gradient-to-r from-[#14ffc8] to-[#ff0aff] text-black hover:scale-105 transition-all duration-300 px-8 py-3 text-lg font-semibold">
+                          🎯 Launch Live Demo
+                          <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </a>
+                      <Link href="/contact">
+                        <Button size="lg" variant="outline" className="border-[#14ffc8] text-[#14ffc8] hover:bg-[#14ffc8] hover:text-black transition-all duration-300 px-8 py-3 text-lg font-semibold">
+                          📞 Schedule Custom Demo
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                  
+                  <p className="text-sm text-gray-500">
+                    💡 <strong>Pro Tip:</strong> Use PIN 1001 to access all premium features instantly. No credit card required.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
