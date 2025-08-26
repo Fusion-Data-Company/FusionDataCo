@@ -4,17 +4,84 @@ import { Lightbulb, ArrowRight, Shield, ChevronRight, Star, Lock } from "lucide-
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 
-// Live Counter Component
+// Live Counter Component - Dynamic Daily Updates
 function LiveCounter() {
   const [count, setCount] = useState(1000);
 
   useEffect(() => {
-    // Update every 2.4 hours (approximately 10 per day)
-    const interval = setInterval(() => {
-      setCount(prev => prev + 1);
-    }, 2.4 * 60 * 60 * 1000); // 2.4 hours in milliseconds
+    const initializeCounter = () => {
+      const stored = localStorage.getItem('consultationCounter');
+      const lastUpdate = localStorage.getItem('counterLastUpdate');
+      const now = Date.now();
+      
+      if (stored && lastUpdate) {
+        const storedCount = parseInt(stored);
+        const lastUpdateTime = parseInt(lastUpdate);
+        const timeSinceUpdate = now - lastUpdateTime;
+        
+        // Check if it's been 12-24 hours since last update
+        const minUpdateInterval = 12 * 60 * 60 * 1000; // 12 hours
+        const maxUpdateInterval = 24 * 60 * 60 * 1000; // 24 hours
+        
+        if (timeSinceUpdate >= minUpdateInterval) {
+          // Random chance to update (50% chance if past 12h, 100% if past 24h)
+          const shouldUpdate = timeSinceUpdate >= maxUpdateInterval || Math.random() > 0.5;
+          
+          if (shouldUpdate) {
+            // Random increment between 1-7 consultations
+            const increment = Math.floor(Math.random() * 7) + 1;
+            const newCount = storedCount + increment;
+            
+            setCount(newCount);
+            localStorage.setItem('consultationCounter', newCount.toString());
+            localStorage.setItem('counterLastUpdate', now.toString());
+          } else {
+            setCount(storedCount);
+          }
+        } else {
+          setCount(storedCount);
+        }
+      } else {
+        // Initialize with random number between 847-1247
+        const initialCount = Math.floor(Math.random() * 400) + 847;
+        setCount(initialCount);
+        localStorage.setItem('consultationCounter', initialCount.toString());
+        localStorage.setItem('counterLastUpdate', now.toString());
+      }
+    };
 
-    return () => clearInterval(interval);
+    initializeCounter();
+
+    // Check for updates every hour
+    const checkInterval = setInterval(() => {
+      const stored = localStorage.getItem('consultationCounter');
+      const lastUpdate = localStorage.getItem('counterLastUpdate');
+      const now = Date.now();
+      
+      if (stored && lastUpdate) {
+        const storedCount = parseInt(stored);
+        const lastUpdateTime = parseInt(lastUpdate);
+        const timeSinceUpdate = now - lastUpdateTime;
+        
+        const minUpdateInterval = 12 * 60 * 60 * 1000; // 12 hours
+        const maxUpdateInterval = 24 * 60 * 60 * 1000; // 24 hours
+        
+        if (timeSinceUpdate >= minUpdateInterval) {
+          const shouldUpdate = timeSinceUpdate >= maxUpdateInterval || Math.random() > 0.7;
+          
+          if (shouldUpdate) {
+            const increment = Math.floor(Math.random() * 7) + 1;
+            const newCount = storedCount + increment;
+            
+            setCount(newCount);
+            localStorage.setItem('consultationCounter', newCount.toString());
+            localStorage.setItem('counterLastUpdate', now.toString());
+          }
+        }
+      }
+    }, 60 * 60 * 1000); // Check every hour
+
+    return () => clearInterval(checkInterval);
   }, []);
 
   return (
