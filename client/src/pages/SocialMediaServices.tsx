@@ -12,6 +12,9 @@ export default function SocialMediaServices() {
         <title>Social Media Automation | Fusion Data Co</title>
         <meta name="description" content="Professional social media advertising management and optimization with marketing automation systems, lead nurture sequences, and ROI-focused campaign management. Complete analytics and performance tracking." />
         <meta name="keywords" content="social media advertising management, marketing automation systems, lead nurture sequences, conversion funnel optimization, ROI campaign management, performance tracking analytics" />
+        
+        {/* ElevenLabs ConvAI Script */}
+        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#0b0b0d] text-white">
@@ -284,7 +287,6 @@ export default function SocialMediaServices() {
         </main>
         <Footer />
         <elevenlabs-convai agent-id="agent_6701k3kk65vsetbtrmhe3ek7sgdt"></elevenlabs-convai>
-        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </div>
     </>
   );

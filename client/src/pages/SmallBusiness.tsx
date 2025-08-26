@@ -12,6 +12,9 @@ export default function SmallBusiness() {
         <title>Small Business Marketing Automation | Fusion Data Co</title>
         <meta name="description" content="All-in-one marketing automation platform tailored for small businesses. Increase leads, boost sales, and save time with our comprehensive solution." />
         <meta name="keywords" content="small business marketing, marketing automation, lead generation, small business CRM, marketing ROI" />
+        
+        {/* ElevenLabs ConvAI Script */}
+        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#0b0b0d] text-white">
@@ -250,7 +253,6 @@ export default function SmallBusiness() {
         </main>
         <Footer />
         <elevenlabs-convai agent-id="agent_6701k3kk65vsetbtrmhe3ek7sgdt"></elevenlabs-convai>
-        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </div>
     </>
   );

@@ -71,6 +71,9 @@ export default function CRM() {
         <title>White-Label CRM Platform | Fusion Data Co</title>
         <meta name="description" content="Revolutionary white-label CRM that automatically captures website visitors, tracks behavior, and converts leads into customers. Complete branding customization available." />
         <meta name="keywords" content="white-label CRM, visitor tracking, lead generation, website analytics, customer relationship management, automated workflows" />
+        
+        {/* ElevenLabs ConvAI Script */}
+        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#0b0b0d] text-white">
@@ -277,7 +280,6 @@ export default function CRM() {
         </main>
         <Footer />
         <elevenlabs-convai agent-id="agent_6701k3kk65vsetbtrmhe3ek7sgdt"></elevenlabs-convai>
-        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </div>
     </>
   );

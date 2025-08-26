@@ -23,6 +23,9 @@ export default function Home() {
         <meta property="og:title" content="Fusion Data Co - Complete Business Automation Platform" />
         <meta property="og:description" content="White-label business platform combining custom websites, integrated CRM, AI email marketing, and social media automation. One platform for complete business operations." />
         <meta property="og:url" content="https://fusiondataco.com" />
+        
+        {/* ElevenLabs ConvAI Script */}
+        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -165,7 +168,6 @@ export default function Home() {
         </main>
         <Footer />
         <elevenlabs-convai agent-id="agent_6701k3kk65vsetbtrmhe3ek7sgdt"></elevenlabs-convai>
-        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </div>
     </>
   );
