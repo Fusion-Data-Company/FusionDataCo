@@ -20,6 +20,7 @@ import {
   User,
   Clock
 } from "lucide-react";
+import Slideshow from "@/components/Slideshow";
 
 export default function GolfBagBlogPost() {
   return (
@@ -234,15 +235,15 @@ export default function GolfBagBlogPost() {
                   We've distilled our Golf Bag methodology into a comprehensive 10-slide framework that covers every critical decision point in multi-model AI routing. This isn't theory—this is the exact playbook Fortune 500 companies use to achieve 60% cost reductions while tripling their AI accuracy:
                 </p>
 
-                <div className="space-y-8">
-                  <Card className="border-red-500/20 bg-red-500/5">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <AlertTriangle className="h-8 w-8 text-red-500" />
-                        <CardTitle className="text-2xl">Slide 1: The Million-Dollar Mistake</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
+                <Slideshow slides={[
+                  {
+                    id: 1,
+                    title: "Slide 1: The Million-Dollar Mistake",
+                    icon: <AlertTriangle className="h-8 w-8 text-red-500" />,
+                    titleColor: "text-red-400",
+                    bgColor: "bg-red-500/5",
+                    borderColor: "border-red-500/20",
+                    content: (
                       <div className="space-y-4">
                         <p className="text-lg font-semibold text-red-400">Walking onto Augusta National with only a 7-iron = Running your business with only GPT-4</p>
                         <p>Most enterprises make the same costly error: they select one "premium" AI model and force it to handle every task. It's like Tiger Woods using only a driver for 18 holes—technically possible, but financially devastating.</p>
@@ -252,17 +253,16 @@ export default function GolfBagBlogPost() {
                           <li>• <strong>Opportunity Loss:</strong> Missing 3x better performance from specialized models</li>
                         </ul>
                       </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-blue-500/20 bg-blue-500/5">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Target className="h-8 w-8 text-blue-500" />
-                        <CardTitle className="text-2xl">Slide 2: Building Your AI Golf Bag</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
+                    )
+                  },
+                  {
+                    id: 2,
+                    title: "Slide 2: Building Your AI Golf Bag",
+                    icon: <Target className="h-8 w-8 text-blue-500" />,
+                    titleColor: "text-blue-400",
+                    bgColor: "bg-blue-500/5",
+                    borderColor: "border-blue-500/20",
+                    content: (
                       <div className="space-y-4">
                         <p className="text-lg font-semibold text-blue-400">14 clubs in a golf bag = 14+ LLMs in your AI arsenal</p>
                         <p>Professional golfers carry drivers, fairway woods, irons, wedges, and putters—each optimized for specific distances and conditions. Your AI strategy needs the same diversity:</p>
@@ -285,17 +285,16 @@ export default function GolfBagBlogPost() {
                           </div>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-green-500/20 bg-green-500/5">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <MapPin className="h-8 w-8 text-green-500" />
-                        <CardTitle className="text-2xl">Slide 3: Reading the Lie (Data Condition Assessment)</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
+                    )
+                  },
+                  {
+                    id: 3,
+                    title: "Slide 3: Reading the Lie (Data Condition Assessment)",
+                    icon: <MapPin className="h-8 w-8 text-green-500" />,
+                    titleColor: "text-green-400",
+                    bgColor: "bg-green-500/5",
+                    borderColor: "border-green-500/20",
+                    content: (
                       <div className="space-y-4">
                         <p className="text-lg font-semibold text-green-400">Data quality determines model selection—just like ball position determines club choice</p>
                         <p>In golf, you assess the lie before selecting a club. In AI, you assess your data condition before routing to a model:</p>
@@ -311,17 +310,16 @@ export default function GolfBagBlogPost() {
                           </div>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-yellow-500/20 bg-yellow-500/5">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Target className="h-8 w-8 text-yellow-500" />
-                        <CardTitle className="text-2xl">Slide 4: Measuring Distance (Context Length & Complexity)</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
+                    )
+                  },
+                  {
+                    id: 4,
+                    title: "Slide 4: Measuring Distance (Context Length & Complexity)",
+                    icon: <Target className="h-8 w-8 text-yellow-500" />,
+                    titleColor: "text-yellow-400",
+                    bgColor: "bg-yellow-500/5",
+                    borderColor: "border-yellow-500/20",
+                    content: (
                       <div className="space-y-4">
                         <p className="text-lg font-semibold text-yellow-400">Task complexity determines model power—bigger challenges need bigger clubs</p>
                         <p>Distance in golf = Context length in AI. You wouldn't use a putter for a 300-yard drive, and you shouldn't use GPT-4 for a 10-word SMS:</p>
@@ -340,17 +338,16 @@ export default function GolfBagBlogPost() {
                           </div>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-cyan-500/20 bg-cyan-500/5">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Wind className="h-8 w-8 text-cyan-500" />
-                        <CardTitle className="text-2xl">Slide 5: Reading the Wind (Latency & Cost Constraints)</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
+                    )
+                  },
+                  {
+                    id: 5,
+                    title: "Slide 5: Reading the Wind (Latency & Cost Constraints)",
+                    icon: <Wind className="h-8 w-8 text-cyan-500" />,
+                    titleColor: "text-cyan-400",
+                    bgColor: "bg-cyan-500/5",
+                    borderColor: "border-cyan-500/20",
+                    content: (
                       <div className="space-y-4">
                         <p className="text-lg font-semibold text-cyan-400">Environmental factors affect model selection—speed vs. accuracy trade-offs</p>
                         <p>Wind affects golf shots; business constraints affect AI routing. Real-time applications need "headwind" adjustments:</p>
@@ -375,235 +372,151 @@ export default function GolfBagBlogPost() {
                           </div>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-purple-500/20 bg-purple-500/5">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Compass className="h-8 w-8 text-purple-500" />
-                        <CardTitle className="text-2xl">Slide 6: Calculating the Angle (Output Determinism)</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
+                    )
+                  },
+                  {
+                    id: 6,
+                    title: "Slide 6: Calculating the Angle (Output Determinism)",
+                    icon: <Compass className="h-8 w-8 text-purple-500" />,
+                    titleColor: "text-purple-400",
+                    bgColor: "bg-purple-500/5",
+                    borderColor: "border-purple-500/20",
+                    content: (
                       <div className="space-y-4">
                         <p className="text-lg font-semibold text-purple-400">Shot angle precision = Output format requirements</p>
                         <p>Some golf shots require exact angles (putting); others allow creativity (recovery shots). AI tasks have similar requirements:</p>
                         <div className="space-y-3 mt-4">
                           <div className="p-3 bg-purple-500/10 rounded-lg">
-                            <strong className="text-purple-300">High Determinism Required:</strong>
-                            <ul className="ml-4 mt-2 space-y-1">
-                              <li>• Compliance reports (exact JSON format)</li>
-                              <li>• Financial calculations (precise numbers)</li>
-                              <li>• API responses (strict schemas)</li>
-                            </ul>
-                            <p className="text-sm mt-2 text-purple-200">→ Use models with function calling: GPT-4, Claude-3</p>
+                            <strong className="text-purple-300">Precise Angles (Structured Output):</strong> JSON responses, API calls, database entries → Use deterministic models with low temperature
                           </div>
-                          <div className="p-3 bg-blue-500/10 rounded-lg">
-                            <strong className="text-blue-300">Creative Freedom Allowed:</strong>
-                            <ul className="ml-4 mt-2 space-y-1">
-                              <li>• Marketing copy generation</li>
-                              <li>• Blog content creation</li>
-                              <li>• Brainstorming sessions</li>
-                            </ul>
-                            <p className="text-sm mt-2 text-blue-200">→ Use creative models: GPT-4, Claude Opus, Gemini</p>
+                          <div className="p-3 bg-pink-500/10 rounded-lg">
+                            <strong className="text-pink-300">Creative Shots (Flexible Output):</strong> Marketing copy, blog content, brainstorming → Use creative models with higher temperature settings
                           </div>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-orange-500/20 bg-orange-500/5">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <Activity className="h-8 w-8 text-orange-500" />
-                        <CardTitle className="text-2xl">Slide 7: Professional Club Fitting (OpenRouter Integration)</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
+                    )
+                  },
+                  {
+                    id: 7,
+                    title: "Slide 7: The Custom Fitting (Model Fine-Tuning)",
+                    icon: <Activity className="h-8 w-8 text-orange-500" />,
+                    titleColor: "text-orange-400",
+                    bgColor: "bg-orange-500/5",
+                    borderColor: "border-orange-500/20",
+                    content: (
                       <div className="space-y-4">
-                        <p className="text-lg font-semibold text-orange-400">One API to rule them all—accessing 100+ models through unified routing</p>
-                        <p>Professional golfers get custom-fitted clubs. Enterprise AI needs custom-fitted model access through OpenRouter:</p>
+                        <p className="text-lg font-semibold text-orange-400">Club fitting for your swing = Model tuning for your data patterns</p>
+                        <p>Professional golfers get custom club fittings to match their unique swing characteristics. Similarly, you should fine-tune models for your specific use cases:</p>
+                        <div className="space-y-3 mt-4">
+                          <div className="p-3 bg-orange-500/10 rounded-lg">
+                            <strong className="text-orange-300">When to Fine-Tune:</strong>
+                            <ul className="mt-2 space-y-1">
+                              <li>• Repetitive tasks with consistent patterns</li>
+                              <li>• Domain-specific terminology requirements</li>
+                              <li>• Unique formatting or style preferences</li>
+                              <li>• Compliance or regulatory language needs</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  },
+                  {
+                    id: 8,
+                    title: "Slide 8: Keeping Score (Performance Analytics)",
+                    icon: <BarChart3 className="h-8 w-8 text-emerald-500" />,
+                    titleColor: "text-emerald-400",
+                    bgColor: "bg-emerald-500/5",
+                    borderColor: "border-emerald-500/20",
+                    content: (
+                      <div className="space-y-4">
+                        <p className="text-lg font-semibold text-emerald-400">Golf scorecards track every shot = AI dashboards track every model call</p>
+                        <p>Professional golfers meticulously track their performance to identify improvement opportunities. Your AI routing system needs the same rigorous measurement:</p>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                           <div className="space-y-3">
-                            <h4 className="font-semibold text-orange-300">Without OpenRouter (Amateur Setup)</h4>
-                            <ul className="space-y-2 text-sm">
-                              <li>• 5+ different API endpoints</li>
-                              <li>• Multiple authentication systems</li>
-                              <li>• Inconsistent rate limiting</li>
-                              <li>• Complex error handling</li>
-                              <li>• Vendor lock-in risks</li>
+                            <h4 className="font-semibold text-emerald-300">Essential Metrics</h4>
+                            <ul className="space-y-2">
+                              <li>• <strong>Cost per task</strong> by model</li>
+                              <li>• <strong>Response latency</strong> averages</li>
+                              <li>• <strong>Error rates</strong> and retry frequency</li>
+                              <li>• <strong>User satisfaction</strong> scores</li>
                             </ul>
                           </div>
                           <div className="space-y-3">
-                            <h4 className="font-semibold text-orange-300">With OpenRouter (Pro Setup)</h4>
-                            <ul className="space-y-2 text-sm">
-                              <li>• Single API endpoint</li>
-                              <li>• Unified authentication</li>
-                              <li>• Intelligent fallbacks</li>
-                              <li>• Automatic model selection</li>
-                              <li>• Real-time cost optimization</li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div className="p-4 bg-orange-500/10 rounded-lg mt-4">
-                          <p className="text-sm"><strong>Pro Tip:</strong> OpenRouter handles model routing, rate limiting, and cost optimization automatically—like having a professional golf caddie for AI.</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-yellow-600/20 bg-yellow-600/5">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <BarChart3 className="h-8 w-8 text-yellow-600" />
-                        <CardTitle className="text-2xl">Slide 8: Keeping Score (Performance Metrics & KPIs)</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <p className="text-lg font-semibold text-yellow-500">Golf scorecards track every shot—AI dashboards should track every model call</p>
-                        <p>You can't improve what you don't measure. Enterprise AI requires comprehensive scorekeeping across your entire model portfolio:</p>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                          <div className="p-3 bg-yellow-600/10 rounded-lg">
-                            <h4 className="font-semibold text-yellow-400 mb-2">Cost Metrics</h4>
-                            <ul className="text-sm space-y-1">
-                              <li>• Cost per task type</li>
-                              <li>• Monthly spend by model</li>
-                              <li>• ROI on automation</li>
-                              <li>• Token efficiency rates</li>
-                            </ul>
-                          </div>
-                          <div className="p-3 bg-green-600/10 rounded-lg">
-                            <h4 className="font-semibold text-green-400 mb-2">Quality Metrics</h4>
-                            <ul className="text-sm space-y-1">
-                              <li>• Task success rates</li>
-                              <li>• Human review scores</li>
-                              <li>• Error/hallucination rates</li>
-                              <li>• Customer satisfaction</li>
-                            </ul>
-                          </div>
-                          <div className="p-3 bg-blue-600/10 rounded-lg">
-                            <h4 className="font-semibold text-blue-400 mb-2">Speed Metrics</h4>
-                            <ul className="text-sm space-y-1">
-                              <li>• Average response time</li>
-                              <li>• 95th percentile latency</li>
-                              <li>• Model availability</li>
-                              <li>• Fallback trigger rates</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-red-600/20 bg-red-600/5">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <AlertTriangle className="h-8 w-8 text-red-600" />
-                        <CardTitle className="text-2xl">Slide 9: Avoiding Hazards (Risk Management & Compliance)</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <p className="text-lg font-semibold text-red-400">Water hazards end golf rounds—AI risks end businesses</p>
-                        <p>Professional golfers study course hazards before playing. Enterprise AI teams must identify and mitigate risks before deployment:</p>
-                        <div className="space-y-4 mt-4">
-                          <div className="p-4 bg-red-600/10 rounded-lg border-l-4 border-red-500">
-                            <h4 className="font-semibold text-red-300 mb-2">🚨 Critical Hazards</h4>
+                            <h4 className="font-semibold text-emerald-300">Optimization Triggers</h4>
                             <ul className="space-y-2">
-                              <li><strong>Data Privacy Breaches:</strong> Customer PII exposed in model training → Use on-premise models for sensitive data</li>
-                              <li><strong>Hallucination Incidents:</strong> False information in customer communications → Implement fact-checking layers</li>
-                              <li><strong>Compliance Violations:</strong> GDPR/HIPAA violations → Use compliant model providers with data residency</li>
-                              <li><strong>Vendor Lock-in:</strong> Single-provider dependency → Multi-model architecture with OpenRouter</li>
-                            </ul>
-                          </div>
-                          <div className="p-4 bg-green-600/10 rounded-lg border-l-4 border-green-500">
-                            <h4 className="font-semibold text-green-300 mb-2">✅ Risk Mitigation Strategies</h4>
-                            <ul className="space-y-2">
-                              <li><strong>Data Redaction:</strong> PII scrubbing before model calls</li>
-                              <li><strong>Output Validation:</strong> Automated fact-checking and compliance scanning</li>
-                              <li><strong>Fallback Systems:</strong> Multiple model providers with automatic failover</li>
-                              <li><strong>Audit Trails:</strong> Complete logging of all AI decisions and data flows</li>
+                              <li>• Switch models when cost/quality ratio degrades</li>
+                              <li>• Implement A/B testing for routing decisions</li>
+                              <li>• Set up automated failover to backup models</li>
                             </ul>
                           </div>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-green-600/20 bg-green-600/5">
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <TrendingUp className="h-8 w-8 text-green-600" />
-                        <CardTitle className="text-2xl">Slide 10: Winning the Tournament (Measurable Business Outcomes)</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
+                    )
+                  },
+                  {
+                    id: 9,
+                    title: "Slide 9: Avoiding the Water Hazard (Vendor Lock-in Prevention)",
+                    icon: <AlertTriangle className="h-8 w-8 text-amber-500" />,
+                    titleColor: "text-amber-400",
+                    bgColor: "bg-amber-500/5",
+                    borderColor: "border-amber-500/20",
+                    content: (
                       <div className="space-y-4">
-                        <p className="text-lg font-semibold text-green-400">Golf tournaments are won by strategy, not just skill—AI ROI comes from smart routing, not expensive models</p>
-                        <p>The Golf Bag approach delivers measurable results that traditional single-model strategies simply cannot match:</p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                          <div className="space-y-4">
-                            <h4 className="font-semibold text-green-300 text-xl">📊 Quantified Results</h4>
-                            <div className="space-y-3">
-                              <div className="flex justify-between items-center p-3 bg-green-600/10 rounded-lg">
-                                <span className="font-semibold">Cost Reduction:</span>
-                                <span className="text-2xl text-green-400">60%</span>
-                              </div>
-                              <div className="flex justify-between items-center p-3 bg-blue-600/10 rounded-lg">
-                                <span className="font-semibold">Accuracy Improvement:</span>
-                                <span className="text-2xl text-blue-400">3x</span>
-                              </div>
-                              <div className="flex justify-between items-center p-3 bg-purple-600/10 rounded-lg">
-                                <span className="font-semibold">Response Time:</span>
-                                <span className="text-2xl text-purple-400">80% faster</span>
-                              </div>
-                              <div className="flex justify-between items-center p-3 bg-orange-600/10 rounded-lg">
-                                <span className="font-semibold">Uptime:</span>
-                                <span className="text-2xl text-orange-400">99.9%</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="space-y-4">
-                            <h4 className="font-semibold text-green-300 text-xl">🎯 Strategic Advantages</h4>
-                            <ul className="space-y-3">
-                              <li className="flex items-start gap-3">
-                                <span className="text-green-400 font-bold">•</span>
-                                <div>
-                                  <strong>Vendor Independence:</strong> No single point of failure
-                                </div>
-                              </li>
-                              <li className="flex items-start gap-3">
-                                <span className="text-blue-400 font-bold">•</span>
-                                <div>
-                                  <strong>Scalable Architecture:</strong> Add new models without refactoring
-                                </div>
-                              </li>
-                              <li className="flex items-start gap-3">
-                                <span className="text-purple-400 font-bold">•</span>
-                                <div>
-                                  <strong>Cost Optimization:</strong> Automatic routing to cheapest appropriate model
-                                </div>
-                              </li>
-                              <li className="flex items-start gap-3">
-                                <span className="text-orange-400 font-bold">•</span>
-                                <div>
-                                  <strong>Future-Proof:</strong> Ready for next-generation models
-                                </div>
-                              </li>
+                        <p className="text-lg font-semibold text-amber-400">Water hazards destroy golf rounds = Vendor lock-in destroys AI flexibility</p>
+                        <p>Smart golfers study course maps to avoid hazards; smart enterprises build model-agnostic infrastructure from day one:</p>
+                        <div className="space-y-3 mt-4">
+                          <div className="p-3 bg-amber-500/10 rounded-lg">
+                            <strong className="text-amber-300">Architecture Principles:</strong>
+                            <ul className="mt-2 space-y-1">
+                              <li>• Standardized API interfaces across all models</li>
+                              <li>• Centralized prompt management and versioning</li>
+                              <li>• Model-agnostic data preprocessing pipelines</li>
+                              <li>• Unified monitoring and logging systems</li>
                             </ul>
                           </div>
                         </div>
-                        <div className="p-4 bg-gradient-to-r from-green-600/20 to-blue-600/20 rounded-lg mt-6">
-                          <p className="text-lg font-semibold text-center">
-                            🏆 Multi-model routing beats single-model hype in real revenue outcomes—every single time.
-                          </p>
+                      </div>
+                    )
+                  },
+                  {
+                    id: 10,
+                    title: "Slide 10: Winning the Tournament (Measurable Results)",
+                    icon: <TrendingUp className="h-8 w-8 text-green-500" />,
+                    titleColor: "text-green-400",
+                    bgColor: "bg-gradient-to-r from-green-500/10 to-blue-500/10",
+                    borderColor: "border-green-500/20",
+                    content: (
+                      <div className="space-y-4">
+                        <p className="text-lg font-semibold text-green-400">Masters Tournament victory = Enterprise AI transformation success</p>
+                        <p>Professional implementation of the Golf Bag approach delivers quantifiable results that directly impact your bottom line:</p>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                          <div className="p-4 bg-green-500/10 rounded-lg text-center">
+                            <div className="text-3xl font-bold text-green-400 mb-2">60%</div>
+                            <div className="text-sm font-semibold text-green-300 mb-1">Cost Reduction</div>
+                            <div className="text-xs text-muted-foreground">Right-sized models for each task</div>
+                          </div>
+                          <div className="p-4 bg-blue-500/10 rounded-lg text-center">
+                            <div className="text-3xl font-bold text-blue-400 mb-2">3x</div>
+                            <div className="text-sm font-semibold text-blue-300 mb-1">Accuracy Improvement</div>
+                            <div className="text-xs text-muted-foreground">Specialized models outperform generalists</div>
+                          </div>
+                          <div className="p-4 bg-purple-500/10 rounded-lg text-center">
+                            <div className="text-3xl font-bold text-purple-400 mb-2">99.9%</div>
+                            <div className="text-sm font-semibold text-purple-300 mb-1">Uptime Guarantee</div>
+                            <div className="text-xs text-muted-foreground">Multi-vendor redundancy</div>
+                          </div>
+                        </div>
+                        
+                        <div className="mt-6 p-4 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-lg">
+                          <p className="text-center text-lg font-semibold">\"We reduced our AI costs by $47,000/month while improving response quality by 240% using the Golf Bag methodology.\"</p>
+                          <p className="text-center text-sm text-muted-foreground mt-2">— Enterprise Client, Fortune 500 Manufacturing</p>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-                </div>
+                    )
+                  }
+                ]} />
               </div>
 
               <Separator className="my-12" />
@@ -648,35 +561,30 @@ export default function GolfBagBlogPost() {
                           <div className="space-y-3">
                             <div className="p-3 bg-blue-500/10 rounded-lg">
                               <h4 className="font-semibold text-blue-400">Driver (GPT-4 Turbo)</h4>
-                              <p className="text-sm">Complex policy comparisons, annual compliance reports, market analysis documents</p>
-                              <p className="text-xs text-blue-300 mt-1">Usage: 15% of calls, 60% of previous cost</p>
+                              <p className="text-sm">Complex policy comparisons, annual compliance reports</p>
+                              <p className="text-xs text-blue-300 mt-1">Usage: 15% of calls, 60% cost reduction</p>
                             </div>
                             <div className="p-3 bg-green-500/10 rounded-lg">
                               <h4 className="font-semibold text-green-400">3-Wood (Claude-3 Sonnet)</h4>
-                              <p className="text-sm">Structured claims processing, workflow automation, data analysis</p>
-                              <p className="text-xs text-green-300 mt-1">Usage: 25% of calls, 20% of previous cost</p>
+                              <p className="text-sm">Structured claims processing, workflow automation</p>
+                              <p className="text-xs text-green-300 mt-1">Usage: 25% of calls, 20% cost reduction</p>
                             </div>
                             <div className="p-3 bg-orange-500/10 rounded-lg">
                               <h4 className="font-semibold text-orange-400">Iron (Claude Haiku)</h4>
-                              <p className="text-sm">Customer service responses, email templates, basic document generation</p>
-                              <p className="text-xs text-orange-300 mt-1">Usage: 30% of calls, 15% of previous cost</p>
+                              <p className="text-sm">Customer service responses, email templates</p>
+                              <p className="text-xs text-orange-300 mt-1">Usage: 30% of calls, 15% cost reduction</p>
                             </div>
                           </div>
                           <div className="space-y-3">
                             <div className="p-3 bg-purple-500/10 rounded-lg">
                               <h4 className="font-semibold text-purple-400">Wedge (GPT-3.5 Turbo)</h4>
-                              <p className="text-sm">Data cleaning, format standardization, simple classifications</p>
-                              <p className="text-xs text-purple-300 mt-1">Usage: 20% of calls, 3% of previous cost</p>
+                              <p className="text-sm">Data cleaning, format standardization</p>
+                              <p className="text-xs text-purple-300 mt-1">Usage: 20% of calls, 3% cost reduction</p>
                             </div>
                             <div className="p-3 bg-yellow-500/10 rounded-lg">
                               <h4 className="font-semibold text-yellow-400">Putter (Llama-2 Chat)</h4>
-                              <p className="text-sm">SMS reminders, simple notifications, basic Q&A responses</p>
-                              <p className="text-xs text-yellow-300 mt-1">Usage: 10% of calls, 2% of previous cost</p>
-                            </div>
-                            <div className="p-3 bg-teal-500/10 rounded-lg">
-                              <h4 className="font-semibold text-teal-400">Specialty (Perplexity)</h4>
-                              <p className="text-sm">Real-time policy research, regulatory updates, industry news</p>
-                              <p className="text-xs text-teal-300 mt-1">Usage: 5% of calls, minimal cost</p>
+                              <p className="text-sm">SMS reminders, simple notifications</p>
+                              <p className="text-xs text-yellow-300 mt-1">Usage: 10% of calls, 2% cost reduction</p>
                             </div>
                           </div>
                         </div>
@@ -684,27 +592,27 @@ export default function GolfBagBlogPost() {
                     </CardContent>
                   </Card>
 
-                <Card className="bg-blue-500/5 border-blue-500/20">
-                  <CardHeader>
-                    <CardTitle>The Results</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-blue-500">60%</div>
-                        <p className="text-sm">Cost reduction</p>
+                  <Card className="bg-blue-500/5 border-blue-500/20">
+                    <CardHeader>
+                      <CardTitle>The Results</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-blue-500">60%</div>
+                          <p className="text-sm">Cost reduction</p>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-green-500">3x</div>
+                          <p className="text-sm">Better accuracy</p>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-purple-500">Zero</div>
+                          <p className="text-sm">Downtime incidents</p>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-green-500">3x</div>
-                        <p className="text-sm">Better accuracy</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-purple-500">Zero</div>
-                        <p className="text-sm">Downtime incidents</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
 
@@ -737,10 +645,10 @@ export default function GolfBagBlogPost() {
                     </CardHeader>
                     <CardContent>
                       <ul className="space-y-2">
-                        <li>• Map tasks to appropriate models</li>
-                        <li>• Set up OpenRouter account</li>
-                        <li>• Configure routing rules</li>
-                        <li>• Implement fallback strategies</li>
+                        <li>• Map tasks to appropriate model "clubs"</li>
+                        <li>• Set up OpenRouter or similar routing platform</li>
+                        <li>• Create routing logic based on task characteristics</li>
+                        <li>• Implement fallback systems for reliability</li>
                       </ul>
                     </CardContent>
                   </Card>
@@ -752,67 +660,20 @@ export default function GolfBagBlogPost() {
                     </CardHeader>
                     <CardContent>
                       <ul className="space-y-2">
-                        <li>• A/B test different models for each task</li>
-                        <li>• Monitor cost and performance metrics</li>
-                        <li>• Fine-tune routing logic</li>
-                        <li>• Train your team on the new system</li>
+                        <li>• Run A/B tests comparing single vs multi-model performance</li>
+                        <li>• Monitor cost savings and accuracy improvements</li>
+                        <li>• Fine-tune routing logic based on real usage patterns</li>
+                        <li>• Set up automated performance monitoring</li>
                       </ul>
                     </CardContent>
                   </Card>
                 </div>
               </div>
-
-              <Separator className="my-12" />
-
-              {/* Conclusion */}
-              <div className="mb-12">
-                <h2 className="text-3xl font-bold mb-8">The Bottom Line</h2>
-                
-                <p className="text-lg leading-relaxed mb-6">
-                  Tiger Woods doesn't win tournaments with one club. Apple doesn't build products with one tool. Netflix doesn't stream content with one server.
-                </p>
-                
-                <p className="text-lg leading-relaxed mb-6">
-                  So why are you trying to run your business with one AI model?
-                </p>
-                
-                <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
-                  <CardContent className="pt-6">
-                    <p className="text-lg font-semibold mb-4">
-                      The Golf Bag approach isn't just about saving money (though our clients typically see 60% cost reductions). It's about building resilient, optimized AI systems that scale with your business.
-                    </p>
-                    <p className="text-lg">
-                      Stop playing AI golf with one club. Build your bag.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* CTA Section */}
-              <div className="text-center bg-gradient-to-r from-green-500/10 to-green-400/5 p-8 rounded-lg">
-                <h3 className="text-2xl font-bold mb-4">Ready to Build Your AI Golf Bag?</h3>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Stop overpaying for overkill. Start routing intelligently.
-                </p>
-                <div className="flex flex-wrap gap-4 justify-center">
-                  <Link href="/services/multi-model-agents">
-                    <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                      Learn Multi-Model Strategy
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                  <Link href="/pricing">
-                    <Button size="lg" variant="outline">
-                      See Pricing
-                    </Button>
-                  </Link>
-                </div>
-              </div>
             </div>
           </section>
         </main>
-        <Footer />
       </div>
+      <Footer />
     </>
-  );
+  )
 }
