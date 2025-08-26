@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet';
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ChatBot from "@/components/ChatBot";
 import { AlertCircle, Home } from "lucide-react";
 
 export default function NotFound() {
@@ -41,7 +40,8 @@ export default function NotFound() {
           </div>
         </main>
         <Footer />
-        <ChatBot />
+        <elevenlabs-convai agent-id="agent_6701k3kk65vsetbtrmhe3ek7sgdt"></elevenlabs-convai>
+        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </div>
     </>
   );

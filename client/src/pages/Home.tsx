@@ -4,7 +4,6 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import IndustrySolutions from "@/components/IndustrySolutions";
 import CTASection from "@/components/CTASection";
-import ChatBot from "@/components/ChatBot";
 import MobileHero from "@/components/MobileHero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -165,7 +164,8 @@ export default function Home() {
           </section>
         </main>
         <Footer />
-        <ChatBot />
+        <elevenlabs-convai agent-id="agent_6701k3kk65vsetbtrmhe3ek7sgdt"></elevenlabs-convai>
+        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </div>
     </>
   );
