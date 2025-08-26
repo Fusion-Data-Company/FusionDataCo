@@ -36,7 +36,6 @@ import SocialMedia from "@/pages/SocialMedia";
 import Login from "@/pages/Login";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import MobileHeader from "@/components/MobileHeader";
 import MobileFooter from "@/components/MobileFooter";
 
 
@@ -136,8 +135,6 @@ function App() {
             </script>
           </Helmet>
           <Toaster />
-          {/* Mobile Header - only shows on mobile/tablet */}
-          <MobileHeader />
           {/* Wrap Router with AuthProtection */}
           <AuthProtection>
             <Router />
