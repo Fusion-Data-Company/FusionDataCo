@@ -3,10 +3,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Download, CheckCircle2, Mail, Calendar, Users, Lightbulb, Send, Lock } from "lucide-react";
+import { Download, CheckCircle2, Mail, Calendar, Users, Lightbulb, Send, Lock, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Card, CardContent } from "@/components/ui/card";
 import { 
   Select, 
   SelectContent, 
@@ -16,6 +17,7 @@ import {
 } from "@/components/ui/select";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "wouter";
 
 export default function LeadMagnet() {
   const { toast } = useToast();
@@ -92,10 +94,10 @@ export default function LeadMagnet() {
   return (
     <>
       <Helmet>
-        <title>Free AI Marketing Playbook | Fusion Data Co</title>
-        <meta name="description" content="Download our free AI Marketing Playbook and learn how to leverage artificial intelligence to boost your marketing results, increase engagement, and drive more leads." />
-        <meta property="og:title" content="Free AI Marketing Playbook | Fusion Data Co" />
-        <meta property="og:description" content="Download our free AI Marketing Playbook and learn how to leverage artificial intelligence to boost your marketing results." />
+        <title>Lead Gen - AI-Powered Lead Generation Platform | Fusion Data Co</title>
+        <meta name="description" content="Experience our AI-powered lead generation platform with live call center demo, smart database, and contact intelligence. Try it live - no signup required." />
+        <meta property="og:title" content="Lead Gen - AI-Powered Lead Generation Platform | Fusion Data Co" />
+        <meta property="og:description" content="Experience our AI-powered lead generation platform with live call center demo, smart database, and contact intelligence. Try it live now." />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#0a0a0d] text-white">
@@ -116,7 +118,7 @@ export default function LeadMagnet() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                   >
-                    Download Our Free AI Marketing Playbook
+                    AI-Powered Lead Generation Platform
                   </motion.h1>
                   
                   <motion.p 
@@ -125,7 +127,7 @@ export default function LeadMagnet() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
                   >
-                    Discover how to leverage AI to boost your marketing results, increase engagement, and drive more leads.
+                    Experience our live AI call center, smart database, and contact intelligence platform. Try it now - no signup required.
                   </motion.p>
                   
                   <motion.div
@@ -301,6 +303,154 @@ export default function LeadMagnet() {
                       </div>
                     </motion.div>
                   )}
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* CRM Platform Demo Section */}
+          <section className="py-16 px-4 bg-gradient-to-b from-[#0c0c14] to-[#121218] relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#14ffc8]/5 to-[#ff0aff]/5 z-0"></div>
+            <div className="container mx-auto relative z-10">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  <span className="text-white">Live</span>{" "}
+                  <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Lead Generation</span>{" "}
+                  <span className="text-white">Platform</span>
+                </h2>
+                <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+                  See our AI-powered lead generation tools in action. Full access, no signup required.
+                </p>
+              </div>
+
+              {/* Three-Panel Product Display */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                {/* Panel 1 - Call Center */}
+                <div className="group relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#14ffc8]/20 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                  <Card className="relative backdrop-blur-md bg-[#121218]/80 border-[#14ffc8]/20 hover:border-[#14ffc8] transition-all duration-500 overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#14ffc8] to-transparent"></div>
+                    <CardContent className="p-6">
+                      <div className="mb-4">
+                        <img 
+                          src="@assets/Screenshot 2025-08-26 at 08.53.17_1756223601235.png" 
+                          alt="Enterprise Call Center Interface" 
+                          className="w-full h-48 object-cover rounded-lg border border-[#14ffc8]/20"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3 text-[#14ffc8]">
+                        🎯 AI Call Center
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        Advanced call management with AI assistance and enterprise analytics. Real-time rebuttal generation and lead qualification.
+                      </p>
+                      <div className="flex items-center gap-2 text-sm text-[#14ffc8]">
+                        <div className="w-2 h-2 bg-[#14ffc8] rounded-full animate-pulse"></div>
+                        <span>Live AI Assistance</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Panel 2 - Database */}
+                <div className="group relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#ff0aff]/20 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                  <Card className="relative backdrop-blur-md bg-[#121218]/80 border-[#ff0aff]/20 hover:border-[#ff0aff] transition-all duration-500 overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#ff0aff] to-transparent"></div>
+                    <CardContent className="p-6">
+                      <div className="mb-4">
+                        <img 
+                          src="@assets/Screenshot 2025-08-26 at 08.53.38_1756223620928.png" 
+                          alt="Enterprise Database System" 
+                          className="w-full h-48 object-cover rounded-lg border border-[#ff0aff]/20"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3 text-[#ff0aff]">
+                        📊 Smart Database
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        Comprehensive contact management with 3,172 records and live sync capabilities. Advanced search and filtering system.
+                      </p>
+                      <div className="flex items-center gap-2 text-sm text-[#ff0aff]">
+                        <div className="w-2 h-2 bg-[#ff0aff] rounded-full animate-pulse"></div>
+                        <span>Real-time Sync</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Panel 3 - Contact Intelligence */}
+                <div className="group relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#14ffc8]/10 via-[#ff0aff]/10 to-[#14ffc8]/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                  <Card className="relative backdrop-blur-md bg-[#121218]/80 border-gray-600 hover:border-[#14ffc8] transition-all duration-500 overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#14ffc8] via-[#ff0aff] to-[#14ffc8]"></div>
+                    <CardContent className="p-6">
+                      <div className="mb-4">
+                        <img 
+                          src="@assets/Screenshot 2025-08-26 at 08.54.01_1756223643177.png" 
+                          alt="Contact Intelligence System" 
+                          className="w-full h-48 object-cover rounded-lg border border-gray-600"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-[#14ffc8] to-[#ff0aff] bg-clip-text text-transparent">
+                        🧠 Contact Intelligence
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        Deep social media integration and contact enrichment. LinkedIn, Facebook, Instagram, and multi-platform data aggregation.
+                      </p>
+                      <div className="flex items-center gap-2 text-sm text-[#14ffc8]">
+                        <div className="w-2 h-2 bg-gradient-to-r from-[#14ffc8] to-[#ff0aff] rounded-full animate-pulse"></div>
+                        <span>Social Intelligence</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+
+              {/* Call-to-Action Section */}
+              <div className="text-center">
+                <div className="max-w-4xl mx-auto">
+                  <div className="bg-gradient-to-r from-[#121218]/50 to-[#121218]/80 backdrop-blur-md border border-[#14ffc8]/20 rounded-2xl p-8 mb-8">
+                    <h3 className="text-3xl font-bold mb-4">
+                      🚀 <span className="bg-gradient-to-r from-[#14ffc8] to-[#ff0aff] bg-clip-text text-transparent">Try It Live Right Now</span>
+                    </h3>
+                    <p className="text-lg text-gray-300 mb-6">
+                      No signup required. Full access to all features. See why leading companies choose our platform.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      <div className="bg-black/30 rounded-xl p-4 border border-[#14ffc8]/20">
+                        <h4 className="text-[#14ffc8] font-semibold mb-2">🌐 Demo URL</h4>
+                        <p className="font-mono text-white text-lg">sonshieldusa.app</p>
+                      </div>
+                      <div className="bg-black/30 rounded-xl p-4 border border-[#ff0aff]/20">
+                        <h4 className="text-[#ff0aff] font-semibold mb-2">🔑 Access PIN</h4>
+                        <p className="font-mono text-white text-2xl font-bold">1001</p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <a 
+                        href="https://sonshieldusa.app/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        <Button size="lg" className="group bg-gradient-to-r from-[#14ffc8] to-[#ff0aff] text-black hover:scale-105 transition-all duration-300 px-8 py-3 text-lg font-semibold">
+                          🎯 Launch Live Demo
+                          <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </a>
+                      <Link href="/contact">
+                        <Button size="lg" variant="outline" className="border-[#14ffc8] text-[#14ffc8] hover:bg-[#14ffc8] hover:text-black transition-all duration-300 px-8 py-3 text-lg font-semibold">
+                          📞 Schedule Custom Demo
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                  
+                  <p className="text-sm text-gray-500">
+                    💡 <strong>Pro Tip:</strong> Use PIN 1001 to access all premium features instantly. No credit card required.
+                  </p>
                 </div>
               </div>
             </div>
