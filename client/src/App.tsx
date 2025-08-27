@@ -31,6 +31,7 @@ import TermsOfService from "@/pages/TermsOfService";
 import Partners from "@/pages/Partners";
 import { EntropyDemo } from "@/components/demos/EntropyDemo";
 import SocialMedia from "@/pages/SocialMedia";
+import FunnelsPage from "@/pages/Funnels";
 
 // Import the proper Login page with Google authentication
 import Login from "@/pages/Login";
@@ -71,6 +72,7 @@ function Router() {
       <Route path="/medical" component={Medical} />
       <Route path="/trades" component={Trades} />
       <Route path="/social-media" component={SocialMedia} />
+      <Route path="/funnels" component={FunnelsPage} />
       <Route path="/campaigns" component={Campaigns} />
       <Route path="/leads" component={Leads} />
       <Route path="/pricing" component={Pricing} />

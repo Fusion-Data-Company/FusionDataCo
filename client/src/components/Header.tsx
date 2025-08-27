@@ -52,6 +52,7 @@ export default function Header() {
         { name: "Multi-Model Agents", path: "/services/multi-model-agents" },
         { name: "Demographics", path: "/demographics" },
         { name: "Social Media", path: "/social-media" },
+        { name: "Funnels", path: "/funnels" },
         { name: "Campaign Builder", path: "/campaign-builder" },
         { name: "Lead Gen", path: "/lead-magnet" },
         { name: "CRM", path: "/crm" },
