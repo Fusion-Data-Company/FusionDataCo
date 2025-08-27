@@ -907,6 +907,163 @@ export default function Services() {
               </div>
             </div>
           </section>
+
+          {/* ElevenLabs AI Agents Showcase */}
+          <section className="py-16 px-4 bg-gradient-to-br from-[#121218] via-purple-950/30 to-[#121218] relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-violet-800/10 to-purple-900/20 z-0"></div>
+            <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  🤖 <span className="text-white">Live AI Agent</span>{" "}
+                  <span className="text-purple-400 [text-shadow:0_0_5px_#a855f7]">Experiences</span>
+                </h2>
+                <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+                  Experience our specialized AI agents in action. Each agent is trained for specific industries and use cases.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {/* Interview Agent */}
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_01k07mhgszfcg9br6n46m8d35m" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-purple-500/30 rounded-lg overflow-hidden relative hover:border-purple-400/60 transition-all duration-300 cursor-pointer h-full">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-purple-400/5 blur-md z-0 group-hover:from-purple-400/30 group-hover:to-purple-300/10 transition-all duration-300"></div>
+                    <CardContent className="p-6 relative z-10 h-full flex flex-col">
+                      <div className="h-12 w-12 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Phone className="h-6 w-6 text-purple-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-3 text-purple-400">Interview Agent</h3>
+                      <p className="text-sm text-gray-300 text-center flex-grow">
+                        First-line interview agent for Indeed postings. Automatically sorts and qualifies clients before human interaction.
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-purple-400 border border-purple-400/30 px-3 py-1 rounded-full">Click to Try Live</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+
+                {/* Luxury Golf Trip Planner */}
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_9101k0w1eth5ef7b5c7qd1xy0f14" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-purple-500/30 rounded-lg overflow-hidden relative hover:border-purple-400/60 transition-all duration-300 cursor-pointer h-full">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-purple-400/5 blur-md z-0 group-hover:from-purple-400/30 group-hover:to-purple-300/10 transition-all duration-300"></div>
+                    <CardContent className="p-6 relative z-10 h-full flex flex-col">
+                      <div className="h-12 w-12 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Globe className="h-6 w-6 text-purple-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-3 text-purple-400">Luxury Golf Trip Planner</h3>
+                      <p className="text-sm text-gray-300 text-center flex-grow">
+                        Books luxury golf trips, hotel rooms, and makes outbound coordination calls. Perfect for high-end travel services.
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-purple-400 border border-purple-400/30 px-3 py-1 rounded-full">Click to Try Live</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+
+                {/* Sales Training Coach */}
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_01jz0xtv25ej8axfe92t1sdv9t" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-purple-500/30 rounded-lg overflow-hidden relative hover:border-purple-400/60 transition-all duration-300 cursor-pointer h-full">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-purple-400/5 blur-md z-0 group-hover:from-purple-400/30 group-hover:to-purple-300/10 transition-all duration-300"></div>
+                    <CardContent className="p-6 relative z-10 h-full flex flex-col">
+                      <div className="h-12 w-12 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Users className="h-6 w-6 text-purple-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-3 text-purple-400">Sales Training Coach</h3>
+                      <p className="text-sm text-gray-300 text-center flex-grow">
+                        Advanced sales coach with company knowledgebase integration. Trained in verbal judo and Chris Voss negotiation tactics.
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-purple-400 border border-purple-400/30 px-3 py-1 rounded-full">Click to Try Live</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+
+                {/* Website Sales Support */}
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_01jw96xdk3etzvskmex8kx5mjn" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-purple-500/30 rounded-lg overflow-hidden relative hover:border-purple-400/60 transition-all duration-300 cursor-pointer h-full">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-purple-400/5 blur-md z-0 group-hover:from-purple-400/30 group-hover:to-purple-300/10 transition-all duration-300"></div>
+                    <CardContent className="p-6 relative z-10 h-full flex flex-col">
+                      <div className="h-12 w-12 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <MessageSquare className="h-6 w-6 text-purple-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-3 text-purple-400">Website Sales Support</h3>
+                      <p className="text-sm text-gray-300 text-center flex-grow">
+                        Retail product sales and customer support agent. Fully customizable for any business with seamless integration.
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-purple-400 border border-purple-400/30 px-3 py-1 rounded-full">Click to Try Live</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+
+                {/* Real Estate Development Analyst */}
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_8801k2t62y9qehhsqqdmzmp10kt9" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-purple-500/30 rounded-lg overflow-hidden relative hover:border-purple-400/60 transition-all duration-300 cursor-pointer h-full">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-purple-400/5 blur-md z-0 group-hover:from-purple-400/30 group-hover:to-purple-300/10 transition-all duration-300"></div>
+                    <CardContent className="p-6 relative z-10 h-full flex flex-col">
+                      <div className="h-12 w-12 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <TrendingUp className="h-6 w-6 text-purple-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-3 text-purple-400">Real Estate Development Analyst</h3>
+                      <p className="text-sm text-gray-300 text-center flex-grow">
+                        Advanced analytical agent for real estate development projects. Communicates at MBA level with sophisticated insights.
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-purple-400 border border-purple-400/30 px-3 py-1 rounded-full">Click to Try Live</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+
+                {/* Google Workspace Receptionist */}
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_8401k1kvjadwe0hrqhpkesdc91bk" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-purple-500/30 rounded-lg overflow-hidden relative hover:border-purple-400/60 transition-all duration-300 cursor-pointer h-full">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-purple-400/5 blur-md z-0 group-hover:from-purple-400/30 group-hover:to-purple-300/10 transition-all duration-300"></div>
+                    <CardContent className="p-6 relative z-10 h-full flex flex-col">
+                      <div className="h-12 w-12 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Zap className="h-6 w-6 text-purple-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-3 text-purple-400">Google Workspace Receptionist</h3>
+                      <p className="text-sm text-gray-300 text-center flex-grow">
+                        Professional receptionist with swagger and full MCP connections to Google Workspace (Email, Calendar, Drive, etc.).
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-purple-400 border border-purple-400/30 px-3 py-1 rounded-full">Click to Try Live</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+              </div>
+              
+              <div className="text-center">
+                <div className="bg-[#121218]/90 border border-purple-500/30 rounded-xl p-8 max-w-3xl mx-auto">
+                  <h3 className="text-2xl font-bold mb-4 text-purple-400">🎯 Try Any Agent Live</h3>
+                  <p className="text-gray-300 mb-6">
+                    Each agent runs 24/7 and can be customized for your specific business needs. Click any agent above to start a live conversation.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link href="/services/conversational-ai">
+                      <Button size="lg" className="bg-gradient-to-r from-purple-500 to-violet-500 text-white hover:scale-105 transition-all duration-300">
+                        Learn More About Conversational AI
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
+                    <Link href="/contact">
+                      <Button size="lg" variant="outline" className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black transition-all duration-300">
+                        Custom Agent Development
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </main>
         <Footer />
       </div>

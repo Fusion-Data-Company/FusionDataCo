@@ -374,16 +374,16 @@ export default function ConversationalAI() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 {/* Phone Agents */}
-                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_01k07mhgszfcg9br6n46m8d35m" target="_blank" rel="noopener noreferrer" className="group">
                   <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
                     <CardContent className="p-8 relative z-10">
                       <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Phone className="h-6 w-6 text-[#ffa500]" />
                       </div>
-                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Phone Agents</h3>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Interview Agent</h3>
                       <p className="text-sm text-gray-300 text-center">
-                        Inbound/outbound, greeting → intent → qualify → schedule/transfer → CRM summary
+                        First-line interview agent for Indeed postings - sorts and qualifies clients automatically
                       </p>
                       <div className="mt-4 text-center">
                         <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
@@ -393,16 +393,16 @@ export default function ConversationalAI() {
                 </a>
 
                 {/* SMS Agents */}
-                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_9101k0w1eth5ef7b5c7qd1xy0f14" target="_blank" rel="noopener noreferrer" className="group">
                   <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
                     <CardContent className="p-8 relative z-10">
                       <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <MessageSquare className="h-6 w-6 text-[#ffa500]" />
                       </div>
-                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">SMS Agents</h3>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Luxury Golf Trip Planner</h3>
                       <p className="text-sm text-gray-300 text-center">
-                        Instant replies, drip nurture, reminders, link delivery
+                        Books luxury golf trips, hotel rooms, and makes outbound coordination calls
                       </p>
                       <div className="mt-4 text-center">
                         <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
@@ -412,16 +412,16 @@ export default function ConversationalAI() {
                 </a>
 
                 {/* Persona Control */}
-                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_01jz0xtv25ej8axfe92t1sdv9t" target="_blank" rel="noopener noreferrer" className="group">
                   <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
                     <CardContent className="p-8 relative z-10">
                       <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Shield className="h-6 w-6 text-[#ffa500]" />
                       </div>
-                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Persona Control</h3>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Sales Training Coach</h3>
                       <p className="text-sm text-gray-300 text-center">
-                        Guardrails ensure tone matches your brand
+                        Advanced sales coach with company knowledgebase, verbal judo & Chris Voss tactics
                       </p>
                       <div className="mt-4 text-center">
                         <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
@@ -431,16 +431,16 @@ export default function ConversationalAI() {
                 </a>
 
                 {/* Live Handoffs */}
-                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_01jw96xdk3etzvskmex8kx5mjn" target="_blank" rel="noopener noreferrer" className="group">
                   <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
                     <CardContent className="p-8 relative z-10">
                       <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Zap className="h-6 w-6 text-[#ffa500]" />
                       </div>
-                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Live Handoffs</h3>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Website Sales Support</h3>
                       <p className="text-sm text-gray-300 text-center">
-                        Detect hot leads → transfer instantly with context
+                        Retail product sales and customer support agent - fully customizable for any business
                       </p>
                       <div className="mt-4 text-center">
                         <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
@@ -450,16 +450,16 @@ export default function ConversationalAI() {
                 </a>
 
                 {/* Analytics */}
-                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_8801k2t62y9qehhsqqdmzmp10kt9" target="_blank" rel="noopener noreferrer" className="group">
                   <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
                     <CardContent className="p-8 relative z-10">
                       <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <BarChart3 className="h-6 w-6 text-[#ffa500]" />
                       </div>
-                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Analytics</h3>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Real Estate Development Analyst</h3>
                       <p className="text-sm text-gray-300 text-center">
-                        Transcripts, tagging, conversion dashboards
+                        Advanced analytical agent for real estate development projects - communicates at MBA level
                       </p>
                       <div className="mt-4 text-center">
                         <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
@@ -469,16 +469,16 @@ export default function ConversationalAI() {
                 </a>
 
                 {/* Compliance */}
-                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                <a href="https://elevenlabs.io/app/talk-to?agent_id=agent_8401k1kvjadwe0hrqhpkesdc91bk" target="_blank" rel="noopener noreferrer" className="group">
                   <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
                     <CardContent className="p-8 relative z-10">
                       <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Shield className="h-6 w-6 text-[#ffa500]" />
                       </div>
-                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Compliance</h3>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Google Workspace Receptionist</h3>
                       <p className="text-sm text-gray-300 text-center">
-                        TCPA opt-in/opt-out, call-record notices, consent logging
+                        Receptionist with swagger and full MCP connections to Google Workspace (Email, Calendar, etc.)
                       </p>
                       <div className="mt-4 text-center">
                         <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
@@ -557,13 +557,13 @@ export default function ConversationalAI() {
                   <div className="mt-6 pt-4 border-t border-[#ffa500]/20">
                     <p className="text-gray-400 text-xs mb-3">Or access the agent directly:</p>
                     <a 
-                      href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" 
+                      href="https://elevenlabs.io/app/talk-to?agent_id=agent_01k07mhgszfcg9br6n46m8d35m" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-[#ffa500] hover:bg-[#ffa500]/90 text-black px-4 py-2 rounded-lg font-medium transition-all duration-300"
                     >
                       <span>🗣️</span>
-                      Open Agent in New Tab
+                      Open Interview Agent in New Tab
                       <span className="ml-1">↗</span>
                     </a>
                   </div>
