@@ -319,6 +319,9 @@ export async function handleStreamableMCP(req: Request, res: Response) {
     }
 
     if (req.method === 'POST') {
+      console.log('[MCP] Raw request body:', JSON.stringify(req.body, null, 2));
+      console.log('[MCP] Raw headers:', JSON.stringify(req.headers, null, 2));
+      
       const { name, parameters } = req.body;
       console.log('[MCP] Tool execution:', name, 'with parameters:', parameters);
 
