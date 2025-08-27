@@ -695,7 +695,7 @@ Healthcare marketing compliance is complex and evolving. Consider partnering wit
     date: "January 12, 2025",
     readTime: "12 min read",
     category: "Healthcare",
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
+    image: "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
     featured: false,
     tags: ["HIPAA Compliance", "Healthcare Marketing", "Digital Marketing", "Privacy Regulations", "Healthcare Technology"],
     seo: {
