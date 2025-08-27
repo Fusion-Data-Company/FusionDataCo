@@ -13,8 +13,6 @@ export default function HomeServices() {
         <meta name="description" content="Marketing automation solutions for plumbers, electricians, HVAC, and other home service professionals. Never miss a call and grow your business." />
         <meta name="keywords" content="home services marketing, plumbing marketing automation, contractor marketing, field service marketing" />
         
-        {/* ElevenLabs ConvAI Script */}
-        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#0b0b0d] text-white">
@@ -252,7 +250,6 @@ export default function HomeServices() {
           <CTASection />
         </main>
         <Footer />
-        <elevenlabs-convai agent-id="agent_6701k3kk65vsetbtrmhe3ek7sgdt"></elevenlabs-convai>
       </div>
     </>
   );

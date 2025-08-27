@@ -37,6 +37,7 @@ import Login from "@/pages/Login";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileFooter from "@/components/MobileFooter";
+import ElevenLabsWidget from "@/components/ElevenLabsWidget";
 
 
 
@@ -143,6 +144,8 @@ function App() {
           <MobileFooter />
           {/* Add analytics tracker component */}
           <AnalyticsTracker />
+          {/* ElevenLabs Widget - appears on all pages */}
+          <ElevenLabsWidget />
         </TooltipProvider>
       </QueryClientProvider>
     </ThemeProvider>

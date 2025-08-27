@@ -11,8 +11,6 @@ export default function NotFound() {
         <title>Page Not Found | Fusion Data Co</title>
         <meta name="description" content="The page you're looking for couldn't be found. Return to the Fusion Data Co homepage." />
         
-        {/* ElevenLabs ConvAI Script */}
-        <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#0b0b0d] text-white">
@@ -43,7 +41,6 @@ export default function NotFound() {
           </div>
         </main>
         <Footer />
-        <elevenlabs-convai agent-id="agent_6701k3kk65vsetbtrmhe3ek7sgdt"></elevenlabs-convai>
       </div>
     </>
   );
