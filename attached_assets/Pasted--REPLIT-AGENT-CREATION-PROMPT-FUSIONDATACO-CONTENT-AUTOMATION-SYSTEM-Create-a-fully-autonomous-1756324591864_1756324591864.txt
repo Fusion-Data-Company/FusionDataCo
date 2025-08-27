@@ -1,0 +1,158 @@
+"""
+REPLIT AGENT CREATION PROMPT - FUSIONDATACO CONTENT AUTOMATION SYSTEM
+
+Create a fully autonomous OpenRouter-powered agent system with the following specifications:
+
+## CORE AGENT ARCHITECTURE
+
+Build a Python-based scheduling agent using:
+- OpenRouter API for LLM orchestration (use existing API keys)
+- Mailjet API for newsletter distribution (use existing credentials)
+- Schedule library for cron-based triggers
+- Requests/BeautifulSoup for web scraping
+- YouTube Data API v3 for channel monitoring
+- WordPress REST API for blog posting to fusiondataco.com
+
+## SCHEDULED OPERATIONS
+
+1. **DAILY BLOG POST TRIGGER**
+   - Execute every day at 8:00 AM Pacific Time
+   - Workflow sequence:
+     a. Research Phase (6:00 AM - 7:00 AM):
+        - Scrape tech news sites: TechCrunch, VentureBeat, The Verge AI sections
+        - Monitor Reddit: r/singularity, r/MachineLearning, r/LocalLLaMA
+        - Check Twitter/X for trending AI hashtags
+        - YouTube API calls to check trending videos in categories:
+          * "vibe coding" OR "cursor ai" OR "v0 dev"
+          * "elevenlabs agents" OR "conversational ai"
+          * "n8n automation" OR "make.com workflows"
+          * "AI video generation" OR "runway ml" OR "pika labs"
+     
+     b. Content Synthesis Phase (7:00 AM - 7:30 AM):
+        - Use OpenRouter with Claude-3-opus or GPT-4 to analyze gathered data
+        - Apply APEX Framework:
+          * Attention-grabbing headline focusing on VIBE CODING revolution
+          * Problem identification for small business owners
+          * Evidence from today's discoveries
+          * eXecution steps using discovered tools
+        - Structure content with sections:
+          * "What the Hottest Vibe Coders Did Today"
+          * "New LLM Drops & What They Mean for Your Business"
+          * "Multimodal Magic: ElevenLabs + OpenRouter Combos"
+          * "Automation Arsenal: N8N/Make/Cursor/Gumloop Updates"
+          * "Creator Economy Tools: Video Gen & Influencer Tech"
+     
+     c. Publishing Phase (7:30 AM - 8:00 AM):
+        - Format as WordPress-compatible HTML
+        - Include fusiondataco.com styling classes
+        - Post via WordPress REST API to /blog endpoint
+        - Generate social media snippets
+
+2. **MONTHLY NEWSLETTER TRIGGER**
+   - Execute on the 1st of each month at 9:00 AM Pacific
+   - Workflow:
+     a. Aggregate top-performing blog posts from past month
+     b. Create Sandler-style sales funnel content:
+        - RED Section: Pain points (what's breaking in their business)
+        - YELLOW Section: Consequences (what happens if they don't adapt)
+        - GREEN Section: Solutions (our tools and methods)
+        - PURPLE Section: Registration CTA with urgency
+     c. Format with fusiondataco.com email template
+     d. Send via Mailjet API to subscriber list
+
+## YOUTUBE CHANNEL MONITORING
+
+Monitor these channels hourly for new content:
+- Add configurable channel list via environment variables
+- Default monitors:
+  * Channels focusing on Cursor, V0, Bolt.new
+  * ElevenLabs official channel
+  * N8N, Make.com official channels
+  * AI news channels (configurable)
+
+## CONTENT GENERATION RULES
+
+System Prompt for OpenRouter:
+"You are FusionDataCo's AI content specialist. Every piece of content must:
+1. Lead with VIBE CODING as the primary narrative - this is the future of development
+2. Position all tools and news through the lens of 'build fast, ship faster'
+3. Use casual but authoritative tone - we're the cool kids who actually know our shit
+4. Include actionable takeaways for non-technical entrepreneurs
+5. Reference specific use cases with real tools combinations
+6. Always tie back to lead generation and business growth
+7. Emphasize no-code/low-code solutions that amplify technical capabilities
+8. Highlight multimodal AI applications that create competitive advantages"
+
+## TECHNICAL REQUIREMENTS
+
+```python
+import schedule
+import time
+import pytz
+from datetime import datetime
+import openai
+import requests
+from bs4 import BeautifulSoup
+import mailjet_rest
+import os
+from googleapiclient.discovery import build
+
+# Environment variables (already configured in Replit)
+OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
+MAILJET_API_KEY = os.getenv('MAILJET_API_KEY')
+MAILJET_SECRET = os.getenv('MAILJET_SECRET')
+WORDPRESS_API_URL = 'https://fusiondataco.com/wp-json/wp/v2'
+WORDPRESS_USER = os.getenv('WORDPRESS_USER')
+WORDPRESS_PASS = os.getenv('WORDPRESS_PASS')
+YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
+
+class FusionDataCoAgent:
+    def __init__(self):
+        self.pacific_tz = pytz.timezone('US/Pacific')
+        self.setup_apis()
+        
+    def setup_apis(self):
+        # Initialize all API connections
+        self.openrouter = openai.OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=OPENROUTER_API_KEY
+        )
+        self.mailjet = mailjet_rest.Client(
+            auth=(MAILJET_API_KEY, MAILJET_SECRET)
+        )
+        self.youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
+    
+    def research_daily_content(self):
+        # Implement web scraping and API calls
+        # Return structured data for content generation
+        pass
+    
+    def generate_blog_post(self, research_data):
+        # Use OpenRouter to create APEX-framework content
+        # Focus on VIBE CODING as primary narrative
+        pass
+    
+    def publish_to_wordpress(self, content):
+        # Post to fusiondataco.com/blog
+        pass
+    
+    def create_monthly_newsletter(self):
+        # Aggregate month's content
+        # Apply Sandler funnel framework
+        # Send via Mailjet
+        pass
+    
+    def run_scheduled_tasks(self):
+        # Daily blog post at 8 AM Pacific
+        schedule.every().day.at("08:00").do(self.daily_blog_workflow)
+        
+        # Monthly newsletter on 1st at 9 AM Pacific
+        schedule.every().month.at("09:00").do(self.monthly_newsletter_workflow)
+        
+        while True:
+            schedule.run_pending()
+            time.sleep(60)
+
+if __name__ == "__main__":
+    agent = FusionDataCoAgent()
+    agent.run_scheduled_tasks()
