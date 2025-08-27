@@ -583,7 +583,7 @@ export default function Services() {
             </div>
           </section>
 
-          {/* Bristol Real Estate Demographics Platform */}
+          {/* Data Analytics Platform */}
           <section className="py-20 px-4 bg-gradient-to-b from-[#0a0a0d] via-[#121218] to-[#0a0a0d] relative overflow-hidden">
             {/* Animated Background Effects */}
             <div className="absolute inset-0">
@@ -601,7 +601,7 @@ export default function Services() {
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold mb-6">
                   <span className="bg-gradient-to-r from-[#00ff88] via-white to-[#0088ff] bg-clip-text text-transparent">
-                    Bristol Demographics Platform
+                    Data Analytics Platform
                   </span>
                 </h2>
                 <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
@@ -714,7 +714,7 @@ export default function Services() {
                           <span className="text-white">Configuration</span>
                         </h3>
                         <p className="text-gray-300 text-lg mb-6">
-                          Deploy the Bristol platform under your company's brand with fully customizable search parameters, company-specific metrics, and automated competitive intelligence that aligns with your business strategy.
+                          Deploy the Data Analytics Platform under your company's brand with fully customizable search parameters, company-specific metrics, and automated competitive intelligence that aligns with your business strategy.
                         </p>
                         <div className="space-y-4">
                           <div className="flex items-start gap-3">
@@ -779,10 +779,10 @@ export default function Services() {
                 <div className="max-w-4xl mx-auto">
                   <div className="bg-gradient-to-r from-[#121218]/50 to-[#121218]/80 backdrop-blur-md border border-[#00ff88]/20 rounded-2xl p-8">
                     <h3 className="text-3xl font-bold mb-4">
-                      🚀 <span className="bg-gradient-to-r from-[#00ff88] to-[#0088ff] bg-clip-text text-transparent">Experience Bristol Live</span>
+                      🚀 <span className="bg-gradient-to-r from-[#00ff88] to-[#0088ff] bg-clip-text text-transparent">Experience Data Analytics Live</span>
                     </h3>
                     <p className="text-lg text-gray-300 mb-6">
-                      Access the full Bristol real estate demographics platform. No registration required - see the power of advanced market intelligence in action.
+                      Access the full Data Analytics Platform for real estate demographics. No registration required - see the power of advanced market intelligence in action.
                     </p>
                     
                     <div className="bg-black/30 rounded-xl p-6 border border-[#00ff88]/20 mb-8">
@@ -798,7 +798,7 @@ export default function Services() {
                         rel="noopener noreferrer"
                       >
                         <Button size="lg" className="group bg-gradient-to-r from-[#00ff88] to-[#0088ff] text-black hover:scale-105 transition-all duration-300 px-8 py-3 text-lg font-semibold">
-                          🗺️ Launch Bristol Platform
+                          🗺️ Launch Data Analytics Platform
                           <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                         </Button>
                       </a>
