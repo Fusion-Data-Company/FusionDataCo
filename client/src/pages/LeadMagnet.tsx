@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AIContentDemo from "@/components/AIContentDemo";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Download, CheckCircle2, Mail, Calendar, Users, Lightbulb, Send, Lock } from "lucide-react";
@@ -93,10 +92,10 @@ export default function LeadMagnet() {
   return (
     <>
       <Helmet>
-        <title>Lead Gen - AI-Powered Lead Generation | Fusion Data Co</title>
-        <meta name="description" content="Experience our AI-powered lead generation tools and download our free AI Marketing Playbook to boost your marketing results and drive more qualified leads." />
-        <meta property="og:title" content="Lead Gen - AI-Powered Lead Generation | Fusion Data Co" />
-        <meta property="og:description" content="Experience our AI-powered lead generation tools and download our free AI Marketing Playbook to boost your marketing results." />
+        <title>Free AI Marketing Playbook | Fusion Data Co</title>
+        <meta name="description" content="Download our free AI Marketing Playbook and learn how to leverage artificial intelligence to boost your marketing results, increase engagement, and drive more leads." />
+        <meta property="og:title" content="Free AI Marketing Playbook | Fusion Data Co" />
+        <meta property="og:description" content="Download our free AI Marketing Playbook and learn how to leverage artificial intelligence to boost your marketing results." />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#0a0a0d] text-white">
@@ -117,7 +116,7 @@ export default function LeadMagnet() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                   >
-                    AI-Powered Lead Generation
+                    Download Our Free AI Marketing Playbook
                   </motion.h1>
                   
                   <motion.p 
@@ -126,7 +125,7 @@ export default function LeadMagnet() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
                   >
-                    Experience our AI content generation tools and download our free playbook to transform your lead generation results.
+                    Discover how to leverage AI to boost your marketing results, increase engagement, and drive more leads.
                   </motion.p>
                   
                   <motion.div
@@ -304,22 +303,6 @@ export default function LeadMagnet() {
                   )}
                 </div>
               </div>
-            </div>
-          </section>
-          
-          {/* AI Content Creation Section */}
-          <section className="py-20 bg-[#0c0c14]">
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Experience AI-Powered Content Creation</span>
-                </h2>
-                <p className="text-xl text-white max-w-4xl mx-auto">
-                  See how our AI generates compelling lead generation content tailored to your industry and audience
-                </p>
-              </div>
-              
-              <AIContentDemo />
             </div>
           </section>
           
