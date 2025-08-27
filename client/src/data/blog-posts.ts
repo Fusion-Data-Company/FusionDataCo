@@ -102,7 +102,7 @@ The golf bag approach isn't just about saving money. It's about using the right 
 Ready to implement multi-model routing in your organization? Our team can help you design and deploy a complete Golf Bag AI strategy.
 
 [Contact our enterprise team](/contact) to discuss your specific use case.`,
-    author: "Fusion Data Co Team",
+    author: "Robert Yeager",
     date: "January 20, 2025",
     readTime: "8 min read",
     category: "AI Strategy",
@@ -155,7 +155,7 @@ Key metrics for 2025:
 - Marketing qualified lead (MQL) to customer conversion rates
 
 Ready to modernize your marketing automation? [Contact our team](/contact) for a strategy consultation.`,
-    author: "Sarah Chen",
+    author: "Robert Yeager", 
     date: "January 18, 2025",
     readTime: "8 min read",
     category: "AI & Technology",
@@ -215,7 +215,7 @@ Consider these factors:
 - Budget and ROI expectations
 
 [Schedule a CRM consultation](/contact) to discuss your specific requirements.`,
-    author: "Michael Roberts",
+    author: "Robert Yeager",
     date: "January 15, 2025",
     readTime: "6 min read",
     category: "CRM Strategy",

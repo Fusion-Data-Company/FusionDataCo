@@ -9,55 +9,78 @@ import { ArrowRight, Calendar, Clock, User, BookOpen, TrendingUp, Lightbulb, Tar
 import { blogPosts, getFeaturedPosts, getRecentPosts } from "@/data/blog-posts";
 
 export default function Blog() {
-  const featuredPosts = getFeaturedPosts();
+  const allFeaturedPosts = getFeaturedPosts();
+  // Ensure golf post is always first by sorting featured posts
+  const featuredPosts = allFeaturedPosts.sort((a, b) => {
+    // Golf post always comes first
+    if (a.id === 'golf-bag-approach-multi-model-ai') return -1;
+    if (b.id === 'golf-bag-approach-multi-model-ai') return 1;
+    // Then sort by date for other featured posts
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
   const recentPosts = getRecentPosts().filter(post => !post.featured);
   
-  // Legacy hardcoded posts for additional content
+  // Real blog posts with Robert Yeager as author and recent dates
   const legacyPosts = [
     {
-      title: "10 Essential CRM Features Every Enterprise Needs",
-      excerpt: "A comprehensive guide to the must-have CRM features that drive business growth and customer satisfaction at scale.",
-      author: "Michael Roberts",
-      date: "March 12, 2024",
-      readTime: "6 min read",
+      title: "Essential CRM Features Every Enterprise Needs in 2025",
+      excerpt: "Discover the 10 must-have CRM features driving business growth and customer satisfaction at enterprise scale.",
+      author: "Robert Yeager",
+      date: "January 15, 2025",
+      readTime: "8 min read",
       category: "CRM Strategy",
+      slug: "2025-01-15-essential-crm-features-enterprise-needs",
       image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
     },
     {
-      title: "HIPAA Compliance in Healthcare Marketing: What You Need to Know",
-      excerpt: "Navigate the complexities of HIPAA compliance while implementing effective digital marketing strategies for healthcare organizations.",
-      author: "Dr. Emily Watson",
-      date: "March 10, 2024",
-      readTime: "10 min read",
+      title: "HIPAA Compliance in Healthcare Marketing: 2025 Complete Guide",
+      excerpt: "Navigate HIPAA complexities while implementing effective digital marketing strategies for healthcare organizations.",
+      author: "Robert Yeager", 
+      date: "January 12, 2025",
+      readTime: "12 min read",
       category: "Healthcare",
+      slug: "2025-01-12-hipaa-compliance-healthcare-marketing-guide",
       image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
     },
     {
-      title: "Real Estate Lead Generation: Advanced Strategies That Work",
-      excerpt: "Learn proven tactics for generating high-quality leads in the competitive real estate market using automation tools.",
-      author: "David Park",
-      date: "March 8, 2024",
-      readTime: "7 min read",
+      title: "Real Estate Lead Generation: Advanced Strategies That Convert in 2025",
+      excerpt: "Learn proven tactics for generating high-quality leads in competitive real estate markets using automation tools.",
+      author: "Robert Yeager",
+      date: "January 10, 2025", 
+      readTime: "9 min read",
       category: "Real Estate",
+      slug: "2025-01-10-real-estate-lead-generation-advanced-strategies",
       image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
     },
     {
-      title: "Building a Data-Driven Marketing Strategy: A Step-by-Step Guide",
-      excerpt: "Transform your marketing approach with data-driven insights and analytics-based decision making.",
-      author: "Jennifer Lee",
-      date: "March 5, 2024",
-      readTime: "9 min read",
+      title: "Building a Data-Driven Marketing Strategy: Executive Playbook 2025",
+      excerpt: "Transform your marketing approach with data-driven insights and analytics-based decision making for enterprise success.",
+      author: "Robert Yeager",
+      date: "January 8, 2025",
+      readTime: "11 min read", 
       category: "Strategy",
+      slug: "2025-01-08-building-data-driven-marketing-strategy",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
     },
     {
-      title: "Social Media Automation Without Losing Authenticity",
-      excerpt: "How to maintain genuine connections with your audience while leveraging automation for efficiency.",
-      author: "Alex Martinez",
-      date: "March 3, 2024",
-      readTime: "5 min read",
-      category: "Social Media",
+      title: "Social Media Automation Without Losing Authenticity in 2025",
+      excerpt: "Master the balance between automation efficiency and genuine human connection in your social media strategy.",
+      author: "Robert Yeager",
+      date: "January 5, 2025",
+      readTime: "7 min read",
+      category: "Social Media", 
+      slug: "2025-01-05-social-media-automation-without-losing-authenticity",
       image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
+    },
+    {
+      title: "Email Marketing Automation: Enterprise Implementation Guide 2025",
+      excerpt: "Advanced email marketing automation strategies for enterprise teams focused on scalability and personalization.",
+      author: "Robert Yeager",
+      date: "January 3, 2025",
+      readTime: "10 min read",
+      category: "Email Marketing",
+      slug: "2025-01-03-email-marketing-automation-enterprise-guide", 
+      image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
     }
   ];
 
