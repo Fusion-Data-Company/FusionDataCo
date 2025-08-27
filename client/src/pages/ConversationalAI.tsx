@@ -513,12 +513,32 @@ export default function ConversationalAI() {
               {/* LIVE AI AGENTS DEMO */}
               <div className="mb-12">
                 <h3 className="text-2xl font-bold text-center mb-8 text-[#ffa500]">🎯 Experience Our AI Agents Live</h3>
-                <div className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg p-8 text-center">
+                <div className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg p-8 text-center min-h-[400px] flex flex-col justify-center">
                   <p className="text-white mb-6">Talk directly with our conversational AI agents - trained on real estate, insurance, healthcare, and business scenarios:</p>
-                  <ElevenLabsWidget />
+                  
+                  {/* AI Agent Interface */}
+                  <div className="mb-6">
+                    <ElevenLabsWidget />
+                  </div>
+                  
                   <p className="text-gray-400 text-sm mt-4">This agent supports voice and text conversations in 40+ languages</p>
                   <div className="bg-[#ffa500]/10 border border-[#ffa500]/20 rounded-lg p-4 mt-4 max-w-2xl mx-auto">
                     <p className="text-[#ffa500] font-semibold">Try asking: "What's my home worth?" or "I need business insurance quotes"</p>
+                  </div>
+                  
+                  {/* Alternative Access */}
+                  <div className="mt-6 pt-4 border-t border-[#ffa500]/20">
+                    <p className="text-gray-400 text-xs mb-3">Or access the agent directly:</p>
+                    <a 
+                      href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-[#ffa500] hover:bg-[#ffa500]/90 text-black px-4 py-2 rounded-lg font-medium transition-all duration-300"
+                    >
+                      <span>🗣️</span>
+                      Open Agent in New Tab
+                      <span className="ml-1">↗</span>
+                    </a>
                   </div>
                 </div>
               </div>
