@@ -16,24 +16,32 @@ export default function BlogPost() {
   
   useEffect(() => {
     if (slug) {
+      console.log('BlogPost: Looking for slug:', slug);
+      
       // Check static blog posts first
       const staticPost = getBlogPostBySlug(slug);
+      console.log('BlogPost: Static post found:', !!staticPost);
+      
       if (staticPost) {
+        console.log('BlogPost: Using static post:', staticPost.title);
         setPost(staticPost);
         setLoading(false);
         return;
       }
       
       // If not found in static posts, try to fetch from database
+      console.log('BlogPost: Fetching from API:', `/api/blog/post/${slug}`);
       fetch(`/api/blog/post/${slug}`)
         .then(res => res.json())
         .then(data => {
+          console.log('BlogPost: API response:', data);
           if (data && !data.error) {
             setPost(data);
           }
           setLoading(false);
         })
-        .catch(() => {
+        .catch(error => {
+          console.log('BlogPost: API error:', error);
           setLoading(false);
         });
     }
