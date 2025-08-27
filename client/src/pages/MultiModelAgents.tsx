@@ -22,19 +22,18 @@ import {
   Shield,
   DollarSign,
   Building2,
-  ChevronDown,
-  ChevronUp
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause
 } from "lucide-react";
 import { trackEvent } from '@/components/AnalyticsTracker';
-import { useState } from 'react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useState, useEffect } from 'react';
 
 export default function MultiModelAgents() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  
   const handleContactClick = () => {
     trackEvent({
       category: 'engagement',
@@ -50,6 +49,27 @@ export default function MultiModelAgents() {
       label: 'see_pricing_from_multi_model'
     });
   };
+  
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % golfBagSlides.length);
+  };
+  
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + golfBagSlides.length) % golfBagSlides.length);
+  };
+  
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+  
+  // Auto-play functionality
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isPlaying) {
+      interval = setInterval(nextSlide, 4000); // 4 seconds per slide
+    }
+    return () => clearInterval(interval);
+  }, [isPlaying]);
 
   const golfBagSlides = [
     {
@@ -207,52 +227,110 @@ export default function MultiModelAgents() {
             </div>
           </section>
 
-          {/* Golf Bag Presentation - Accordion */}
-          <section className="py-16 px-4 bg-background">
-            <div className="container mx-auto max-w-4xl">
+          {/* Golf Bag Presentation - Interactive Slideshow */}
+          <section className="py-16 px-4 bg-gradient-to-b from-background to-card">
+            <div className="container mx-auto max-w-5xl">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  The Golf Bag <span className="text-primary">Methodology</span>
+                  The Golf Bag <span className="text-primary">METHODOLOGY</span>
                 </h2>
-                <p className="text-lg text-muted-foreground">
+                <p className="text-lg text-muted-foreground mb-8">
                   Understanding AI model selection through the lens of professional golf
                 </p>
               </div>
 
-              <Accordion type="single" collapsible className="w-full">
-                {golfBagSlides.map((slide, index) => (
-                  <AccordionItem key={slide.id} value={slide.id} className="border-primary/20">
-                    <AccordionTrigger className="hover:no-underline">
-                      <div className="flex items-center gap-4 text-left">
-                        {slide.icon}
-                        <div>
-                          <div className="font-semibold text-lg">
-                            {slide.title}
-                          </div>
-                        </div>
+              {/* Slideshow Container */}
+              <div className="relative">
+                {/* Main Slide Display */}
+                <Card className="min-h-[400px] bg-gradient-to-br from-card to-background border-primary/20 overflow-hidden">
+                  <CardContent className="p-8 md:p-12">
+                    <div className="flex flex-col items-center text-center h-full justify-center space-y-6">
+                      {/* Slide Icon */}
+                      <div className="mb-4">
+                        {golfBagSlides[currentSlide].icon}
                       </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="pl-12 space-y-4">
-                        {slide.clubs ? (
-                          <div className="space-y-3">
-                            {slide.clubs.map((club) => (
-                              <div key={club.name} className="flex items-start gap-3">
-                                <Badge variant="outline" className="min-w-fit">
+                      
+                      {/* Slide Title */}
+                      <h3 className="text-2xl md:text-3xl font-bold mb-6 text-primary">
+                        {golfBagSlides[currentSlide].title}
+                      </h3>
+                      
+                      {/* Slide Content */}
+                      <div className="max-w-3xl mx-auto">
+                        {golfBagSlides[currentSlide].clubs ? (
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {golfBagSlides[currentSlide].clubs.map((club) => (
+                              <div key={club.name} className="bg-primary/5 rounded-lg p-4 border border-primary/10">
+                                <Badge variant="outline" className="mb-2 bg-primary/10 text-primary border-primary/20">
                                   {club.name}
                                 </Badge>
-                                <span className="text-muted-foreground">{club.use}</span>
+                                <p className="text-sm text-muted-foreground">{club.use}</p>
                               </div>
                             ))}
                           </div>
                         ) : (
-                          <p className="text-muted-foreground">{slide.content}</p>
+                          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                            {golfBagSlides[currentSlide].content}
+                          </p>
                         )}
                       </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                {/* Navigation Arrows */}
+                <Button 
+                  variant="outline" 
+                  size="icon"
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary/10"
+                  onClick={prevSlide}
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+                
+                <Button 
+                  variant="outline" 
+                  size="icon"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary/10"
+                  onClick={nextSlide}
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </div>
+              
+              {/* Slide Controls */}
+              <div className="flex items-center justify-center mt-8 space-x-6">
+                {/* Play/Pause Button */}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsPlaying(!isPlaying)}
+                  className="border-primary/20 hover:bg-primary/10"
+                >
+                  {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                  <span className="ml-2">{isPlaying ? 'Pause' : 'Play'}</span>
+                </Button>
+                
+                {/* Slide Indicators */}
+                <div className="flex space-x-2">
+                  {golfBagSlides.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToSlide(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        index === currentSlide 
+                          ? 'bg-primary scale-125' 
+                          : 'bg-primary/30 hover:bg-primary/50'
+                      }`}
+                    />
+                  ))}
+                </div>
+                
+                {/* Slide Counter */}
+                <span className="text-sm text-muted-foreground">
+                  {currentSlide + 1} / {golfBagSlides.length}
+                </span>
+              </div>
             </div>
           </section>
 
