@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Check, ChevronRight, BarChart3, Home, Clock, XCircle, CheckCircle2, Users, Calendar, TrendingUp, Shield, AlertTriangle, CheckCircle } from "lucide-react";
+import { Check, ChevronRight, BarChart3, Home, Clock, XCircle, CheckCircle2, Users, Calendar, TrendingUp, Shield } from "lucide-react";
 import { trackEvent } from '@/components/AnalyticsTracker';
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
@@ -108,474 +107,711 @@ export default function RealEstate() {
         />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <div className="min-h-screen flex flex-col bg-[#0a0a0d] text-white">
         <Header />
         
         <main className="flex-grow">
-          {/* Hero Section - Blue band */}
-          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-background to-card relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 z-0"></div>
-            <div className="container mx-auto relative z-10">
-              <div className="text-center max-w-4xl mx-auto mb-16">
-                <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                  <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                    STOP LOSING LISTINGS TO BETTER MARKETING
-                  </span>
-                </h1>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
-                  Real Estate Marketing Automation Platform
-                </h2>
-                <p className="text-xl text-muted-foreground mb-8">
-                  You're an amazing agent. You know the market, you serve clients well, and you close deals. 
-                  But while you're helping buyers and sellers, other agents with better marketing systems 
-                  are capturing the leads that should be yours.
-                </p>
-              </div>
-            </div>
-          </section>
-          
-          {/* Pain Section - Red band */}
-          <section className="py-16 px-4 bg-gradient-to-b from-red-900/20 to-red-800/10">
+          {/* Hero Section */}
+          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-[#0a0a0d] to-[#121218]">
             <div className="container mx-auto">
-              <div className="text-center mb-12">
-                <Badge className="mb-4 bg-red-500/10 text-red-400 border-red-500/20">
-                  Pain: Real Estate Marketing Gaps
-                </Badge>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-red-400">
-                  Why Real Estate Agents Struggle with Lead Generation
-                </h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                    Stop Losing Listings to <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Better Marketing</span>
+                  </h1>
+                  <p className="text-xl text-gray-300 mb-8">
+                    You're an amazing agent. You know the market, you serve clients well, and you close deals. 
+                    But while you're helping buyers and sellers, other agents with better marketing systems 
+                    are capturing the leads that should be yours.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button 
+                      size="lg" 
+                      className="bg-[#14ffc8] hover:bg-[#14ffc8]/90 text-black font-semibold rounded-md px-8 py-6 text-lg shadow-[0_0_15px_rgba(20,255,200,0.3)] hover:shadow-[0_0_20px_rgba(20,255,200,0.5)] transition-all duration-300"
+                      onClick={() => {
+                        const formSection = document.getElementById('lead-form');
+                        formSection?.scrollIntoView({ behavior: 'smooth' });
+                        
+                        trackEvent({
+                          category: 'engagement',
+                          action: 'click',
+                          label: 'scroll_to_form_button',
+                        });
+                      }}
+                    >
+                      Get More Listings Now
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <Card className="bg-[#121218] border border-gray-800 overflow-hidden rounded-lg shadow-xl">
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0d] to-[#121218] opacity-50"></div>
+                    <CardContent className="p-8 relative z-10">
+                      <div className="space-y-6">
+                        <div className="flex items-start gap-4">
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <Home className="h-6 w-6 text-[#14ffc8]" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1 text-white">
+                              24/7 Lead Generation
+                            </h3>
+                            <p className="text-gray-400 text-sm">
+                              Capture seller leads and buyer inquiries even when you're showing properties.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start gap-4">
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <TrendingUp className="h-6 w-6 text-[#14ffc8]" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1 text-white">
+                              Professional Presence
+                            </h3>
+                            <p className="text-gray-400 text-sm">
+                              Stand out with marketing that positions you as the area's top agent.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start gap-4">
+                          <div className="bg-[#14ffc8]/10 p-3 rounded-full">
+                            <Users className="h-6 w-6 text-[#14ffc8]" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold mb-1 text-white">
+                              Automated Follow-up
+                            </h3>
+                            <p className="text-gray-400 text-sm">
+                              Never lose a lead again with smart nurturing that turns prospects into clients.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
+            </div>
+          </section>
+          
+          {/* Pain Points Section with Enhanced Red Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
+            {/* Red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                The <span className="text-white">Real Challenges</span> Real Estate Agents Face
+              </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                <Card className="border-red-500/20 bg-red-500/5">
-                  <CardHeader>
-                    <AlertTriangle className="h-8 w-8 text-red-400 mb-3" />
-                    <CardTitle className="text-red-400">Inconsistent Lead Flow</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      You're spending thousands on lead generation, but the quality is poor and follow-up is inconsistent. Leads slip through the cracks.
-                    </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <TrendingUp className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">Lead & Marketing Challenges</h3>
+                    </div>
+                    <ul className="space-y-4">
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Inconsistent Lead Flow:</span> You're spending thousands on lead generation, but the quality is poor and follow-up is inconsistent.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Website Underperformance:</span> Your current website isn't capturing leads or positioning you as the go-to expert in your market.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Manual Follow-up:</span> You're missing opportunities because you can't personally follow up with every lead at the right time.
+                        </p>
+                      </li>
+                    </ul>
                   </CardContent>
                 </Card>
                 
-                <Card className="border-red-500/20 bg-red-500/5">
-                  <CardHeader>
-                    <AlertTriangle className="h-8 w-8 text-red-400 mb-3" />
-                    <CardTitle className="text-red-400">Marketing Time Drain</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Creating social posts, email campaigns, and follow-up sequences takes time away from serving your clients and closing deals.
-                    </p>
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <Clock className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">Time & Technology Struggles</h3>
+                    </div>
+                    <ul className="space-y-4">
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Marketing Time Drain:</span> Creating social posts, email campaigns, and follow-up sequences takes time away from your clients.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Tech Frustration:</span> You've tried multiple tools but none work together and you end up juggling too many platforms.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Inconsistent Branding:</span> Your marketing lacks a cohesive look and message that makes you memorable to potential clients.
+                        </p>
+                      </li>
+                    </ul>
                   </CardContent>
                 </Card>
                 
-                <Card className="border-red-500/20 bg-red-500/5">
-                  <CardHeader>
-                    <AlertTriangle className="h-8 w-8 text-red-400 mb-3" />
-                    <CardTitle className="text-red-400">Technology Frustration</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      You've tried multiple tools but none work together. You end up juggling too many platforms that don't deliver results.
-                    </p>
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <h3 className="text-2xl font-semibold mb-6 text-white">Market Competition & Professional Challenges</h3>
+                    <ul className="space-y-4">
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Market Oversaturation</p>
+                          <p className="text-gray-300 text-sm">Too many agents competing for the same clients, forcing you to reduce commission rates and accept difficult deals just to stay competitive in your market.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Feast-or-Famine Income Cycles</p>
+                          <p className="text-gray-300 text-sm">Your income is unpredictable, swinging from great months to months where you struggle to pay bills, making financial planning and business growth nearly impossible.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Team and Brokerage Limitations</p>
+                          <p className="text-gray-300 text-sm">Your brokerage provides minimal marketing support, and building your own team seems impossible when you can barely generate consistent leads for yourself.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Time Management Crisis</p>
+                          <p className="text-gray-300 text-sm">You're working 7 days a week between prospecting, showings, paperwork, and marketing, but still not generating enough quality leads to build a sustainable business.</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Real Estate Industry Statistics - Vertical Box */}
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <h3 className="text-xl font-bold text-center mb-6 text-white">The Real Estate Agent Reality</h3>
+                    <div className="space-y-4">
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">73%</div>
+                        <div className="text-xs text-white">Of agents earn less than $50K annually</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">87%</div>
+                        <div className="text-xs text-white">Leave the industry within 5 years</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">$147K</div>
+                        <div className="text-xs text-white">Average revenue loss from poor lead generation</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">68%</div>
+                        <div className="text-xs text-white">Depend entirely on referrals and past clients</div>
+                      </div>
+                    </div>
+                    <div className="text-center mt-6 pt-4 border-t border-red-500/20">
+                      <p className="text-red-100 font-medium text-sm italic">
+                        "The average real estate agent closes just 12 transactions per year because they lack a systematic approach to lead generation and follow-up."
+                      </p>
+                      <cite className="text-red-400 text-xs">— National Association of Realtors, 2024</cite>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
             </div>
           </section>
           
-          {/* Solution Section - Yellow band (Information & Tools) */}
-          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-yellow-900/20 to-yellow-800/10 relative overflow-hidden">
-            <div className="absolute inset-0 bg-yellow-500/5 z-0"></div>
+          {/* Real Estate Industry Expertise Section with Yellow Ambient Glow */}
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-900 via-amber-950/30 to-slate-950 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-900/20 via-yellow-800/10 to-amber-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-amber-500/8 via-transparent to-orange-500/8 z-0"></div>
+            <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl z-0"></div>
+            
             <div className="container mx-auto relative z-10">
-              <div className="text-center mb-12">
-                <Badge className="mb-4 bg-yellow-500/10 text-yellow-400 border-yellow-500/20">
-                  Information & Strategy: Complete Marketing Automation
-                </Badge>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  <span className="text-yellow-400">Real Estate Marketing Platform</span> Features
-                </h2>
-                <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-                  Everything you need for systematic lead generation and client nurturing in one unified platform
-                </p>
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                Our <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">Real Estate Industry Expertise</span>
+              </h2>
+              <p className="text-xl text-center text-white mb-12 max-w-4xl mx-auto">
+                We understand real estate marketing because we've mastered the unique challenges of market cycles, commission structures, and high-value client acquisition that drive sustainable growth.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {/* High-Value Lead Types */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Users className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Premium Client Demographics</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Luxury home buyers with $500K+ purchasing power</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Investment property buyers seeking portfolio expansion</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>High-net-worth sellers with exclusive listings</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Commercial property investors and developers</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Market Dynamics */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <BarChart3 className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Market Cycle Understanding</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Seasonal buying patterns: Spring surge, winter slowdown strategies</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Interest rate impact on buyer behavior and timing</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Inventory fluctuations creating seller vs. buyer markets</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Economic indicators driving urgency and pricing strategies</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Decision Psychology */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Shield className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Client Trust & Decision Drivers</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Local market expertise and neighborhood knowledge validation</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Recent sales performance and client testimonials impact</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Professional photography and staging presentation quality</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Response time and communication style preferences</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Advanced Lead Qualification for Real Estate */}
+              <div className="bg-gradient-to-br from-[#ffa500]/10 to-[#ff8c00]/5 border border-[#ffa500]/30 rounded-xl p-8 mb-12">
+                <h3 className="text-2xl font-bold text-center mb-6 text-[#ffa500]">Advanced Real Estate Lead Qualification Methods</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-lg font-semibold mb-4 text-white">Financial & Timeline Qualification</h4>
+                    <ul className="space-y-2 text-sm text-white">
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Pre-approval status and lending relationship verification</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Down payment capacity and liquid asset assessment</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Current home sale contingency and timing coordination</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Investment property experience and portfolio goals</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold mb-4 text-white">Property & Market Alignment</h4>
+                    <ul className="space-y-2 text-sm text-white">
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Specific neighborhood preferences and lifestyle requirements</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Property type, size, and feature must-haves vs. nice-to-haves</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Commute requirements and school district priorities</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Urgency level and competitive market strategy readiness</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Competitive Advantage */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-[#ffa500]">Why Our Real Estate Expertise Beats the Competition</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">94%</div>
+                    <div className="text-sm text-white">Higher listing conversion rates vs. generic marketing</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">$75K</div>
+                    <div className="text-sm text-white">Average commission increase per qualified lead</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">18 days</div>
+                    <div className="text-sm text-white">Average time from lead to contract signing</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">85%</div>
+                    <div className="text-sm text-white">Client referral rate from satisfied customers</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* Solution Section with Green Ambient Glow */}
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-950 via-emerald-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/20 via-green-800/10 to-teal-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">The Solution:</span> Complete Real Estate Marketing System
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-6">
+                      <BarChart3 className="h-8 w-8 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">Advanced Lead Generation System</h3>
+                    <div className="space-y-3 text-gray-300">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">IDX-integrated websites with instant property valuations that capture 73% more leads than generic sites</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Neighborhood-specific landing pages optimized for local SEO dominance</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Social media advertising campaigns targeting first-time homebuyers, luxury buyers, and investors</span>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: 340% increase in qualified leads within 90 days</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-6">
+                      <Calendar className="h-8 w-8 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">Smart Nurture Automation</h3>
+                    <div className="space-y-3 text-gray-300">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">12-month drip campaigns with market updates, new listings, and pricing trends</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Behavioral triggers based on property searches, price range changes, and engagement levels</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Personalized video messages and custom property recommendations</span>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: 60% faster deal closings with automated follow-up</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-6">
+                      <Shield className="h-8 w-8 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">Market Authority Builder</h3>
+                    <div className="space-y-3 text-gray-300">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Weekly market analysis reports positioning you as the neighborhood expert</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Google My Business optimization for local search dominance</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Client success story campaigns and video testimonials that build instant trust</span>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: 85% of leads choose you over competitors</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Performance Metrics Section */}
+              <div className="bg-gradient-to-r from-[#14ffc8]/10 to-emerald-500/10 border border-[#14ffc8]/30 rounded-xl p-8 mb-12">
+                <h3 className="text-3xl font-bold text-center mb-8">
+                  <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Proven Real Estate Marketing Results</span>
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center mb-8">
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">340%</div>
+                    <div className="text-white font-medium">Lead Generation Increase</div>
+                    <div className="text-gray-400 text-sm mt-1">vs. traditional marketing</div>
+                  </div>
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">$147K</div>
+                    <div className="text-white font-medium">Average Annual ROI</div>
+                    <div className="text-gray-400 text-sm mt-1">per agent implementation</div>
+                  </div>
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">18 Days</div>
+                    <div className="text-white font-medium">Lead to Contract</div>
+                    <div className="text-gray-400 text-sm mt-1">average conversion time</div>
+                  </div>
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">94%</div>
+                    <div className="text-white font-medium">Client Satisfaction</div>
+                    <div className="text-gray-400 text-sm mt-1">would recommend to peers</div>
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <blockquote className="text-xl italic text-gray-300 mb-4">
+                    "Fusion Data Co completely transformed my real estate business. I went from struggling to find quality leads to having a 6-month pipeline of qualified buyers and sellers. The automated systems handle my marketing while I focus on closing deals."
+                  </blockquote>
+                  <cite className="text-[#14ffc8] font-semibold">— Sarah Chen, Top 1% Producer, Luxury Properties Group</cite>
+                </div>
               </div>
               
-              {/* Main Features Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                {/* Lead Generation Engine */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:bg-yellow-500/10 transition-colors">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-3">
-                      <Home className="h-8 w-8 text-yellow-400" />
-                      <CardTitle className="text-yellow-400">🏡 Lead Generation Engine</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">
-                      Automated lead capture and qualification system designed specifically for real estate professionals 
-                      to identify and engage high-value prospects.
-                    </p>
-                    <div className="grid grid-cols-1 gap-2">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">24/7 listing inquiry capture</span>
+              {/* Strategic Implementation Process */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <div>
+                  <h3 className="text-2xl font-bold mb-6 text-[#14ffc8]">Your 90-Day Market Domination Plan</h3>
+                  <div className="space-y-4">
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 bg-[#14ffc8]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-[#14ffc8] font-bold">1</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">Buyer qualification automation</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">Seller lead identification</span>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Market Analysis & Setup (Days 1-14)</h4>
+                        <p className="text-gray-300 text-sm">Complete competitive analysis, target audience research, and system implementation</p>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* CRM & Follow-up Automation */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:bg-yellow-500/10 transition-colors">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-3">
-                      <Users className="h-8 w-8 text-yellow-400" />
-                      <CardTitle className="text-yellow-400">📱 CRM & Follow-up Automation</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">
-                      Smart nurturing sequences that automatically follow up with prospects based on their behavior, 
-                      interests, and stage in the buying or selling process.
-                    </p>
-                    <div className="grid grid-cols-1 gap-2">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">Automated drip campaigns</span>
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 bg-[#14ffc8]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-[#14ffc8] font-bold">2</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">Behavior-triggered responses</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">Market update automation</span>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Lead Generation Launch (Days 15-45)</h4>
+                        <p className="text-gray-300 text-sm">Deploy targeted campaigns, optimize conversion funnels, and scale successful strategies</p>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* Marketing Automation */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:bg-yellow-500/10 transition-colors">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-3">
-                      <TrendingUp className="h-8 w-8 text-yellow-400" />
-                      <CardTitle className="text-yellow-400">📈 Marketing Automation</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">
-                      Professional marketing campaigns that position you as the area expert while consistently 
-                      generating new leads and nurturing existing relationships.
-                    </p>
-                    <div className="grid grid-cols-1 gap-2">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">Social media management</span>
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 bg-[#14ffc8]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-[#14ffc8] font-bold">3</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">Email marketing campaigns</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">Market report distribution</span>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Authority Building & Scale (Days 46-90)</h4>
+                        <p className="text-gray-300 text-sm">Establish market authority, expand reach, and systematize your lead flow</p>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* Analytics & ROI Tracking */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:bg-yellow-500/10 transition-colors">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-3">
-                      <BarChart3 className="h-8 w-8 text-yellow-400" />
-                      <CardTitle className="text-yellow-400">📊 Analytics & ROI Tracking</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">
-                      Complete visibility into your marketing performance with detailed analytics that show 
-                      exactly which efforts are generating the best results and highest-value leads.
-                    </p>
-                    <div className="grid grid-cols-1 gap-2">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">Lead source tracking</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">Conversion rate analysis</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-yellow-400" />
-                        <span className="text-sm">Campaign performance metrics</span>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-2xl font-bold mb-6 text-[#14ffc8]">What Sets Our System Apart</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <Shield className="h-6 w-6 text-[#14ffc8] mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Real Estate Specialization</h4>
+                        <p className="text-gray-300 text-sm">Unlike generic marketing agencies, we exclusively focus on real estate with 8+ years of industry expertise</p>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                    <div className="flex items-start gap-3">
+                      <BarChart3 className="h-6 w-6 text-[#14ffc8] mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Data-Driven Results</h4>
+                        <p className="text-gray-300 text-sm">Every strategy is backed by market data and continuously optimized for maximum ROI</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Users className="h-6 w-6 text-[#14ffc8] mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Proven Track Record</h4>
+                        <p className="text-gray-300 text-sm">Over 400+ agents using our system with an average 340% increase in qualified leads</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* Green Section - Solutions/Good News */}
-          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-green-900/20 to-green-800/10 relative overflow-hidden">
-            <div className="absolute inset-0 bg-green-500/5 z-0"></div>
+
+          {/* Purple Registration Section */}
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-950 via-purple-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-violet-800/10 to-purple-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-500/8 via-transparent to-violet-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl z-0"></div>
+            
             <div className="container mx-auto relative z-10">
-              <div className="text-center mb-12">
-                <Badge className="mb-4 bg-green-500/10 text-green-400 border-green-500/20">
-                  Good News: Real Estate Success Platform
-                </Badge>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  <span className="text-green-400">Transform Your Real Estate Business</span> With Proven Results
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-3xl font-bold mb-6">
+                  Ready to Become the <span className="text-purple-400 [text-shadow:0_0_5px_#a855f7]">Go-To Agent</span> in Your Market?
                 </h2>
-                <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-                  Join hundreds of successful real estate professionals who have dramatically increased their lead generation 
-                  and closed more deals with our comprehensive marketing automation platform.
+                <p className="text-xl text-gray-300 mb-8">
+                  Join over 400+ real estate professionals who have transformed their business with our proven marketing system.
                 </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <Card className="border-green-500/20 bg-green-500/5 hover:bg-green-500/10 transition-colors">
-                  <CardHeader>
-                    <div className="h-16 w-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
-                      <BarChart3 className="h-8 w-8 text-green-400" />
-                    </div>
-                    <CardTitle className="text-green-400">340% More Qualified Leads</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">
-                      Our automated lead generation system consistently delivers 3x more qualified prospects than traditional marketing methods.
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-400" />
-                        <span className="text-sm">24/7 automated lead capture</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-400" />
-                        <span className="text-sm">Pre-qualified buyer identification</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-green-500/20 bg-green-500/5 hover:bg-green-500/10 transition-colors">
-                  <CardHeader>
-                    <div className="h-16 w-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
-                      <Clock className="h-8 w-8 text-green-400" />
-                    </div>
-                    <CardTitle className="text-green-400">60% Faster Deal Closings</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">
-                      Automated follow-up sequences and smart nurturing campaigns dramatically reduce time from lead to closing.
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-400" />
-                        <span className="text-sm">Intelligent follow-up automation</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-400" />
-                        <span className="text-sm">Behavioral trigger campaigns</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-green-500/20 bg-green-500/5 hover:bg-green-500/10 transition-colors">
-                  <CardHeader>
-                    <div className="h-16 w-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
-                      <TrendingUp className="h-8 w-8 text-green-400" />
-                    </div>
-                    <CardTitle className="text-green-400">85% Higher Commission Per Lead</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">
-                      Focus on high-value prospects and premium listings while our system handles lead nurturing and qualification automatically.
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-400" />
-                        <span className="text-sm">Premium client targeting</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-green-400" />
-                        <span className="text-sm">Luxury market positioning</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Success Metrics */}
-              <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-xl p-8 text-center">
-                <h3 className="text-2xl font-bold mb-6 text-green-400">Proven Results Across All Market Conditions</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  <div>
-                    <div className="text-3xl font-bold text-green-400 mb-2">94%</div>
-                    <div className="text-sm text-muted-foreground">Client retention rate</div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Free Market Analysis</h3>
+                    <p className="text-sm text-gray-300">Comprehensive review of your current market position and competitor analysis</p>
                   </div>
-                  <div>
-                    <div className="text-3xl font-bold text-green-400 mb-2">$185K</div>
-                    <div className="text-sm text-muted-foreground">Average annual commission increase</div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Custom Lead Strategy</h3>
+                    <p className="text-sm text-gray-300">Tailored plan for your market area, price point, and specialty focus</p>
                   </div>
-                  <div>
-                    <div className="text-3xl font-bold text-green-400 mb-2">18 days</div>
-                    <div className="text-sm text-muted-foreground">Average time from lead to contract</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-green-400 mb-2">400+</div>
-                    <div className="text-sm text-muted-foreground">Successful real estate professionals</div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">90-Day Listing Guarantee</h3>
+                    <p className="text-sm text-gray-300">See increased listing appointments within 3 months or we'll refund your investment</p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
 
-          {/* Purple Section - Call to Action/Registration */}
-          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-purple-900/20 to-violet-800/10 relative overflow-hidden">
-            <div className="absolute inset-0 bg-purple-500/5 z-0"></div>
-            <div className="container mx-auto relative z-10 max-w-4xl">
-              <div className="text-center mb-12">
-                <Badge className="mb-4 bg-purple-500/10 text-purple-400 border-purple-500/20">
-                  Ready to Get Started?
-                </Badge>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  <span className="text-purple-400">Start Your Real Estate Marketing Transformation</span> Today
-                </h2>
-                <p className="text-xl text-muted-foreground mb-8">
-                  Get your free market analysis and custom lead generation strategy consultation. 
-                  See exactly how our platform can transform your real estate business.
-                </p>
-              </div>
-
-              <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/20">
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-muted-foreground">
-                        Full Name *
-                      </label>
-                      <Input
-                        type="text"
-                        placeholder="Your name"
-                        className="bg-background/50 border-purple-500/20 focus:border-purple-400"
-                        required
-                      />
+                      <label className="block text-sm font-medium mb-2">Agent Name</label>
+                      <input type="text" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-muted-foreground">
-                        Brokerage Name
-                      </label>
-                      <Input
-                        type="text"
-                        placeholder="Your brokerage"
-                        className="bg-background/50 border-purple-500/20 focus:border-purple-400"
-                      />
+                      <label className="block text-sm font-medium mb-2">Brokerage</label>
+                      <input type="text" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
                     </div>
                   </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-muted-foreground">
-                        Email Address *
-                      </label>
-                      <Input
-                        type="email"
-                        placeholder="your@email.com"
-                        className="bg-background/50 border-purple-500/20 focus:border-purple-400"
-                        required
-                      />
+                      <label className="block text-sm font-medium mb-2">Email Address</label>
+                      <input type="email" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-muted-foreground">
-                        Phone Number *
-                      </label>
-                      <Input
-                        type="tel"
-                        placeholder="(555) 123-4567"
-                        className="bg-background/50 border-purple-500/20 focus:border-purple-400"
-                        required
-                      />
+                      <label className="block text-sm font-medium mb-2">Phone Number</label>
+                      <input type="tel" className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" />
                     </div>
                   </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-muted-foreground">
-                      Market Focus Area
-                    </label>
-                    <Select>
-                      <SelectTrigger className="bg-background/50 border-purple-500/20 focus:border-purple-400">
-                        <SelectValue placeholder="Select your primary market" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="residential-sales">Residential Sales</SelectItem>
-                        <SelectItem value="luxury-homes">Luxury Homes ($1M+)</SelectItem>
-                        <SelectItem value="first-time-buyers">First-Time Buyers</SelectItem>
-                        <SelectItem value="investment-properties">Investment Properties</SelectItem>
-                        <SelectItem value="commercial">Commercial Real Estate</SelectItem>
-                        <SelectItem value="new-construction">New Construction</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium mb-2">Real Estate Focus</label>
+                    <select className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none">
+                      <option>Select Your Specialty</option>
+                      <option>Residential Sales</option>
+                      <option>Luxury Homes</option>
+                      <option>First-Time Buyers</option>
+                      <option>Investment Properties</option>
+                      <option>Commercial Real Estate</option>
+                      <option>New Construction</option>
+                      <option>Other</option>
+                    </select>
                   </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-muted-foreground">
-                      Current Monthly Lead Volume
-                    </label>
-                    <Select>
-                      <SelectTrigger className="bg-background/50 border-purple-500/20 focus:border-purple-400">
-                        <SelectValue placeholder="How many leads do you currently generate per month?" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="0-10">0-10 leads per month</SelectItem>
-                        <SelectItem value="11-25">11-25 leads per month</SelectItem>
-                        <SelectItem value="26-50">26-50 leads per month</SelectItem>
-                        <SelectItem value="51-100">51-100 leads per month</SelectItem>
-                        <SelectItem value="100+">100+ leads per month</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-muted-foreground">
-                      What's your biggest marketing challenge? (Optional)
-                    </label>
-                    <Textarea
-                      placeholder="Tell us about your current marketing challenges..."
-                      className="bg-background/50 border-purple-500/20 focus:border-purple-400 min-h-[100px]"
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-semibold py-4 text-lg"
-                  >
+                  <button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-semibold py-4 rounded-lg transition-all duration-300 transform hover:scale-105">
                     Get My Free Real Estate Marketing Analysis
-                  </Button>
+                  </button>
+                  <p className="text-xs text-gray-400 mt-4 text-center">
+                    No commitment required. Results guaranteed within 90 days.
+                  </p>
                 </form>
-
-                <div className="mt-6 text-center space-y-2">
-                  <p className="text-sm text-muted-foreground">
-                    🔒 Your information is secure and will never be shared
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    No spam, no sales calls until you're ready. Get your custom strategy within 24 hours.
-                  </p>
-                </div>
               </div>
             </div>
           </section>
