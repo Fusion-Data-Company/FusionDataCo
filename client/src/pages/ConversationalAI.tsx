@@ -373,92 +373,119 @@ export default function ConversationalAI() {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                {/* AI Sales Coach */}
-                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
-                  <CardContent className="p-8 relative z-10">
-                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Target className="h-6 w-6 text-[#ffa500]" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">AI Sales Coach</h3>
-                    <ul className="space-y-3 text-sm">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Turns rookies into closers in 30 days with proven methodologies</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Pain identification & solution presentation mastery</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Real-time coaching with hostage negotiation tactics</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Custom knowledge base integration for your industry</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
+                {/* Phone Agents */}
+                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
+                    <CardContent className="p-8 relative z-10">
+                      <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Phone className="h-6 w-6 text-[#ffa500]" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Phone Agents</h3>
+                      <p className="text-sm text-gray-300 text-center">
+                        Inbound/outbound, greeting → intent → qualify → schedule/transfer → CRM summary
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
 
-                {/* AI Hiring Screener */}
-                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
-                  <CardContent className="p-8 relative z-10">
-                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Users className="h-6 w-6 text-[#ffa500]" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">AI Hiring Screener</h3>
-                    <ul className="space-y-3 text-sm">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Filters 1,000 candidates down to 10 perfect matches automatically</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Indeed automation with AI transcript analysis</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Custom questions and scoring variables</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Save 35+ hours per week on unqualified candidates</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
+                {/* SMS Agents */}
+                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
+                    <CardContent className="p-8 relative z-10">
+                      <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <MessageSquare className="h-6 w-6 text-[#ffa500]" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">SMS Agents</h3>
+                      <p className="text-sm text-gray-300 text-center">
+                        Instant replies, drip nurture, reminders, link delivery
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
 
-                {/* AI Website Concierge */}
-                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
-                  <CardContent className="p-8 relative z-10">
-                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Globe className="h-6 w-6 text-[#ffa500]" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Website Concierge</h3>
-                    <ul className="space-y-3 text-sm">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Converts visitors to booked calls 24/7 in 40+ languages</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Complete website knowledge and product expertise</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Calendar integration and live agent transfer</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Advanced objection handling and sales closing</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
+                {/* Persona Control */}
+                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
+                    <CardContent className="p-8 relative z-10">
+                      <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Shield className="h-6 w-6 text-[#ffa500]" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Persona Control</h3>
+                      <p className="text-sm text-gray-300 text-center">
+                        Guardrails ensure tone matches your brand
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+
+                {/* Live Handoffs */}
+                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
+                    <CardContent className="p-8 relative z-10">
+                      <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Zap className="h-6 w-6 text-[#ffa500]" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Live Handoffs</h3>
+                      <p className="text-sm text-gray-300 text-center">
+                        Detect hot leads → transfer instantly with context
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+
+                {/* Analytics */}
+                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
+                    <CardContent className="p-8 relative z-10">
+                      <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <BarChart3 className="h-6 w-6 text-[#ffa500]" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Analytics</h3>
+                      <p className="text-sm text-gray-300 text-center">
+                        Transcripts, tagging, conversion dashboards
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+
+                {/* Compliance */}
+                <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer" className="group">
+                  <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative hover:border-[#ffa500]/60 transition-all duration-300 cursor-pointer">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0 group-hover:from-[#ffa500]/30 group-hover:to-[#ffa500]/10 transition-all duration-300"></div>
+                    <CardContent className="p-8 relative z-10">
+                      <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Shield className="h-6 w-6 text-[#ffa500]" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Compliance</h3>
+                      <p className="text-sm text-gray-300 text-center">
+                        TCPA opt-in/opt-out, call-record notices, consent logging
+                      </p>
+                      <div className="mt-4 text-center">
+                        <span className="text-xs text-[#ffa500] border border-[#ffa500]/30 px-2 py-1 rounded">Click to Experience Live Agent</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
               </div>
 
               {/* AI Technology Framework */}
