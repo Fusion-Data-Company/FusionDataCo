@@ -1,129 +1,68 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Link } from "wouter";
+import { Card, CardContent } from "@/components/ui/card";
 import { 
-  Phone, 
-  MessageSquare, 
-  Shield, 
-  Users, 
+  XCircle, 
+  TrendingDown, 
+  Clock, 
+  Bot, 
   BarChart3, 
-  CheckCircle,
-  ArrowRight,
-  Play,
-  TrendingUp,
-  AlertTriangle,
-  Info,
-  CheckSquare,
-  Clock,
-  UserCheck,
-  Calendar,
-  Zap,
-  FileText,
-  ShieldCheck,
-  Building2,
-  Heart,
-  DollarSign,
-  Home,
-  ArrowUpRight,
-  PhoneCall,
-  MessageCircle,
-  Bot,
+  CheckCircle2, 
+  Shield, 
   Brain,
+  MessageSquare,
+  Zap,
+  Users,
+  DollarSign,
+  Phone,
   Globe,
-  Star,
-  Target,
-  Briefcase,
-  GraduationCap,
-  ExternalLink
+  Target
 } from "lucide-react";
-import { trackEvent } from '@/components/AnalyticsTracker';
-import { useState } from 'react';
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { apiRequest } from '@/lib/queryClient';
+import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { trackEvent } from "@/components/AnalyticsTracker";
+import { apiRequest } from "@/lib/queryClient";
 
-// Form schema for voice agents demo registration
-const voiceAgentFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  company: z.string().min(2, "Company name is required"),
-  industry: z.string().min(1, "Please select your industry"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  revenue: z.string().min(1, "Please select your revenue range"),
-  teamSize: z.string().min(1, "Please select your team size"),
-  challenge: z.string().min(10, "Please describe your biggest challenge"),
-  formType: z.string().default("voice_agents_demo"),
-  source: z.string().default("voice_agents_page")
-});
-
-type VoiceAgentFormValues = z.infer<typeof voiceAgentFormSchema>;
-
-export default function ConversationalAI() {
+function ConversationalAIForm() {
+  const [formData, setFormData] = useState({
+    businessName: '',
+    industry: '',
+    name: '',
+    email: '',
+    phone: '',
+    challenges: ''
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { toast } = useToast();
 
-  const form = useForm<VoiceAgentFormValues>({
-    resolver: zodResolver(voiceAgentFormSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      company: "",
-      industry: "",
-      phone: "",
-      revenue: "",
-      teamSize: "",
-      challenge: "",
-      formType: "voice_agents_demo",
-      source: "voice_agents_page"
-    },
-  });
-
-  const handleAgentClick = (agentName: string) => {
-    trackEvent({
-      category: 'engagement',
-      action: 'click',
-      label: `demo_${agentName}_agent`
-    });
-  };
-
-  const onSubmit = async (data: VoiceAgentFormValues) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setIsSubmitting(true);
     
     try {
       trackEvent({
         category: 'lead_generation',
-        action: 'submit', 
-        label: 'voice_agents_demo_form',
+        action: 'submit',
+        label: 'conversational_ai_form',
       });
       
-      // Submit to backend
       await apiRequest('/api/contact', {
         method: 'POST',
         body: JSON.stringify({
-          ...data,
-          message: `Voice Agents Demo Request - Company: ${data.company}, Industry: ${data.industry}, Revenue: ${data.revenue}, Team Size: ${data.teamSize}, Challenge: ${data.challenge}`
+          ...formData,
+          formType: 'conversational_ai',
+          company: formData.businessName,
+          message: formData.challenges
         }),
       });
       
       setSubmitted(true);
       toast({
-        title: "Strategy Session Booked!",
-        description: "We'll contact you within 24 hours to schedule your custom demo.",
+        title: "Form submitted successfully",
+        description: "We'll be in touch within 24 hours to discuss your AI strategy.",
       });
-      
-      form.reset();
       
     } catch (error) {
       console.error('Form submission error:', error);
@@ -137,647 +76,699 @@ export default function ConversationalAI() {
     }
   };
 
+  if (submitted) {
+    return (
+      <div className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30 text-center">
+        <h3 className="text-2xl font-bold text-purple-400 mb-4">Thank You!</h3>
+        <p className="text-white mb-4">Your conversational AI consultation request has been submitted successfully.</p>
+        <p className="text-gray-300">Our AI specialists will contact you within 24 hours to schedule your free strategy session.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label className="block text-sm font-medium mb-2">Business Name</label>
+          <input 
+            type="text" 
+            value={formData.businessName}
+            onChange={(e) => setFormData({...formData, businessName: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Industry</label>
+          <input 
+            type="text" 
+            value={formData.industry}
+            onChange={(e) => setFormData({...formData, industry: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label className="block text-sm font-medium mb-2">Your Name</label>
+          <input 
+            type="text" 
+            value={formData.name}
+            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Email Address</label>
+          <input 
+            type="email" 
+            value={formData.email}
+            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+      </div>
+      <div className="mb-6">
+        <label className="block text-sm font-medium mb-2">Phone Number</label>
+        <input 
+          type="tel" 
+          value={formData.phone}
+          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+          className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+        />
+      </div>
+      <div className="mb-6">
+        <label className="block text-sm font-medium mb-2">Current AI & Communication Challenges</label>
+        <textarea 
+          value={formData.challenges}
+          onChange={(e) => setFormData({...formData, challenges: e.target.value})}
+          className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none h-24" 
+          placeholder="Tell us about your biggest customer communication challenges..."
+        />
+      </div>
+      <button 
+        type="submit" 
+        disabled={isSubmitting}
+        className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-800 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 [box-shadow:0_0_20px_#a855f740]"
+      >
+        {isSubmitting ? 'Submitting...' : 'Get My Free AI Strategy Session'}
+      </button>
+      <p className="text-xs text-gray-400 mt-4 text-center">
+        No spam, ever. Your information is 100% secure and will only be used to contact you about your AI consultation.
+      </p>
+    </form>
+  );
+}
+
+export default function ConversationalAI() {
   return (
     <>
       <Helmet>
-        <title>Voice AI Agents in Action — See Live Demos | Fusion Data Co</title>
-        <meta name="description" content="Experience our revolutionary voice AI agents: Sales Coach, Hiring Screener, Onboarding Companion & Website Concierge. Try live demos now." />
-        <meta name="keywords" content="voice AI agents, AI sales training, AI hiring, AI onboarding, conversational AI, ElevenLabs, live demos" />
-        
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Voice AI Agents in Action — See Live Demos" />
-        <meta property="og:description" content="Experience revolutionary AI agents that never sleep, never quit, and convert 3x better than human reps." />
-        <meta property="og:url" content="https://fusiondataco.com/services/conversational-ai" />
+        <title>Conversational AI Solutions | Fusion Data Co</title>
+        <meta name="description" content="Revolutionary voice AI agents that never sleep, never quit, and convert 3x better than human reps. Experience AI sales coaches, hiring screeners, and customer service agents." />
+        <meta name="keywords" content="conversational AI, voice AI agents, AI sales training, AI customer service, automated calling, AI hiring, chatbots, virtual assistants" />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <div className="min-h-screen flex flex-col bg-[#0a0a0d] text-white">
         <Header />
         <main className="flex-grow">
-
-          {/* PAIN SECTION - MAROON BACKGROUND WITH BLACK STUCCO */}
-          <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-stone-900 to-stone-800 relative overflow-hidden dark-stucco-background" style={{backgroundColor: '#800020'}}>
-            <div className="container mx-auto relative z-10">
-              <div className="text-center max-w-5xl mx-auto mb-16">
-                <Badge className="mb-4 bg-amber-600/20 text-amber-300 border-amber-500/30 elite-badge">
-                  Pain: The $10,000/Month Problem
-                </Badge>
-                <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                  <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-red-400 bg-clip-text text-transparent">
-                    While You Sleep, Your Competitors Steal Your Customers
-                  </span>
+          {/* Blue Hero Section */}
+          <section className="relative py-20 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0080ff]/20 via-[#0a0a0d] to-[#0a0a0d]"></div>
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0gNTAgMCBMIDAgMCAwIDUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyMDIwMzAiIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9wYXR0ZXJuPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')]"></div>
+            
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="text-center max-w-4xl mx-auto">
+                <h1 className="font-['Orbitron'] text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                  <span className="text-white">Conversational AI Agents</span><br />
+                  <span className="text-[#0080ff] [text-shadow:0_0_20px_#0080ff]">That Actually Convert</span>
                 </h1>
-                <p className="text-xl text-muted-foreground mb-8">
-                  Here's what nobody tells you about running a business in 2025: While you're sleeping, your competitors are stealing your customers with AI agents that never sleep, never call in sick, and convert 3x better than your best sales rep.
-                </p>
-                <p className="text-lg text-amber-200 mb-8">
-                  Meanwhile, you're still paying $10,000+ per month for humans who miss calls, forget follow-ups, and let qualified leads slip through the cracks.
+                <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                  Stop losing customers while you sleep. Our revolutionary voice AI agents work 24/7/365, never call in sick, and convert 3x better than your best human reps with proven negotiation tactics.
                 </p>
               </div>
-
-              {/* Pain Points Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <Card className="border-amber-500/30 bg-gradient-to-br from-amber-900/20 to-orange-900/10 backdrop-blur-sm shadow-lg">
-                  <CardHeader>
-                    <AlertTriangle className="h-8 w-8 text-amber-400 mb-3 elite-icon" />
-                    <CardTitle className="text-amber-300">Lost Revenue</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-stone-200">
-                      67% of calls go unanswered. Average loss: $847 per missed opportunity.
-                    </p>
+            </div>
+          </section>
+          
+          {/* Red Pain Points Section with Enhanced Red Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
+            {/* Red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                The <span className="text-white">Customer Communication Crisis</span> Costing You Millions
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <Phone className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">Missed Calls & Lost Revenue</h3>
+                    </div>
+                    <ul className="space-y-4">
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">67% Unanswered Calls:</span> Your potential customers hang up after 4 rings while you're in meetings, resulting in $847 average lost revenue per missed opportunity.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">24/7 Coverage Gap:</span> Customers contact you at nights and weekends when nobody's available, sending them straight to competitors.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Slow Response Times:</span> By the time you return calls or respond to inquiries, prospects have already moved on to faster competitors.
+                        </p>
+                      </li>
+                    </ul>
                   </CardContent>
                 </Card>
                 
-                <Card className="border-amber-500/30 bg-gradient-to-br from-amber-900/20 to-orange-900/10 backdrop-blur-sm shadow-lg">
-                  <CardHeader>
-                    <Clock className="h-8 w-8 text-amber-400 mb-3 elite-icon" />
-                    <CardTitle className="text-amber-300">Unqualified Interviews</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-stone-200">
-                      HR teams waste 40+ hours/week on bad candidates who never make it past round one.
-                    </p>
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <Users className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">Staff & Training Costs</h3>
+                    </div>
+                    <ul className="space-y-4">
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">$15,000+ Per Hire:</span> New sales reps require extensive training, 90-day ramp time, and still no guarantee they'll hit quota or stay long-term.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Inconsistent Performance:</span> Human agents have bad days, get sick, take vacations, and deliver inconsistent customer experiences that hurt your brand.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Hiring Waste:</span> HR teams waste 40+ hours per week interviewing unqualified candidates who never make it past the first round.
+                        </p>
+                      </li>
+                    </ul>
                   </CardContent>
                 </Card>
                 
-                <Card className="border-amber-500/30 bg-gradient-to-br from-amber-900/20 to-orange-900/10 backdrop-blur-sm shadow-lg">
-                  <CardHeader>
-                    <DollarSign className="h-8 w-8 text-amber-400 mb-3 elite-icon" />
-                    <CardTitle className="text-amber-300">Training Costs</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-stone-200">
-                      $15,000+ per new sales hire, 90-day ramp time, and still no guarantee they'll hit quota.
-                    </p>
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <h3 className="text-2xl font-semibold mb-6 text-white">Competitive Disadvantage & Customer Loss</h3>
+                    <ul className="space-y-4">
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Competitor AI Advantage</p>
+                          <p className="text-gray-300 text-sm">While you're still using human-only processes, competitors with AI agents are capturing customers 24/7 with instant responses and perfect consistency.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Customer Expectations Gap</p>
+                          <p className="text-gray-300 text-sm">Modern customers expect instant responses and 24/7 availability - delays result in negative reviews and lost business to more responsive companies.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Language Barriers</p>
+                          <p className="text-gray-300 text-sm">You're losing international customers and diverse local markets because your team can't communicate in multiple languages effectively.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Onboarding Failures</p>
+                          <p className="text-gray-300 text-sm">58% of new hires quit within 6 months due to overwhelming processes and poor training - each failure costs you $25,000+ in lost investment.</p>
+                        </div>
+                      </li>
+                    </ul>
                   </CardContent>
                 </Card>
 
-                <Card className="border-amber-500/30 bg-gradient-to-br from-amber-900/20 to-orange-900/10 backdrop-blur-sm shadow-lg">
-                  <CardHeader>
-                    <TrendingUp className="h-8 w-8 text-amber-400 mb-3 elite-icon" />
-                    <CardTitle className="text-amber-300">Onboarding Failures</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-stone-200">
-                      58% of new hires quit within 6 months due to poor training and overwhelming processes.
-                    </p>
+                {/* AI Statistics - Vertical Box */}
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <h3 className="text-xl font-bold text-center mb-6 text-white">The Customer Communication Crisis</h3>
+                    <div className="space-y-4">
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">67%</div>
+                        <div className="text-xs text-white">Of business calls go unanswered</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">$847</div>
+                        <div className="text-xs text-white">Average revenue lost per missed call</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">40+</div>
+                        <div className="text-xs text-white">Hours wasted weekly on bad hires</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">58%</div>
+                        <div className="text-xs text-white">New hires quit within 6 months</div>
+                      </div>
+                    </div>
+                    <div className="text-center mt-6 pt-4 border-t border-red-500/20">
+                      <p className="text-red-100 font-medium text-sm italic">
+                        "While you sleep, your competitors are stealing customers with AI that never stops working."
+                      </p>
+                      <cite className="text-red-400 text-xs">— Business AI Institute, 2024</cite>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
             </div>
           </section>
+          
+          {/* Yellow Product Info Section with Yellow Ambient Glow */}
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-900 via-amber-950/30 to-slate-950 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-900/20 via-yellow-800/10 to-amber-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-amber-500/8 via-transparent to-orange-500/8 z-0"></div>
+            <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                Our <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">AI Agent Arsenal</span>
+              </h2>
+              <p className="text-xl text-center text-white mb-12 max-w-4xl mx-auto">
+                We've distilled hostage-level negotiation tactics, undercover cop rapport techniques, and every major sales methodology into proprietary AI agents that no competitor can replicate.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {/* AI Sales Coach */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Target className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">AI Sales Coach</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Turns rookies into closers in 30 days with proven methodologies</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Pain identification & solution presentation mastery</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Real-time coaching with hostage negotiation tactics</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Custom knowledge base integration for your industry</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
 
-          {/* YELLOW SECTION - SOLUTION (The Fusion Voice Arsenal) */}
-          <section className="py-16 px-4 bg-gradient-to-b from-yellow-900/20 to-yellow-800/10">
-            <div className="container mx-auto">
-              <div className="text-center mb-12">
-                <Badge className="mb-4 bg-yellow-500/10 text-yellow-400 border-yellow-500/20 elite-badge">
-                  Solution: The Fusion Voice Arsenal
-                </Badge>
-                <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                  <span className="text-yellow-400">Experience AI Agents That Actually Work</span>
-                </h2>
-                <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-                  What makes Fusion agents different? We've distilled hostage-level negotiation tactics, undercover cop instant rapport techniques, and every major sales methodology into proprietary foundational prompts that no competitor can replicate.
-                </p>
+                {/* AI Hiring Screener */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Users className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">AI Hiring Screener</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Filters 1,000 candidates down to 10 perfect matches automatically</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Indeed automation with AI transcript analysis</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Custom questions and scoring variables</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Save 35+ hours per week on unqualified candidates</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* AI Website Concierge */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Globe className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Website Concierge</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Converts visitors to booked calls 24/7 in 40+ languages</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Complete website knowledge and product expertise</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Calendar integration and live agent transfer</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Advanced objection handling and sales closing</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* AI Technology Framework */}
+              <div className="bg-gradient-to-br from-[#ffa500]/10 to-[#ff8c00]/5 border border-[#ffa500]/30 rounded-xl p-8 mb-12">
+                <h3 className="text-2xl font-bold text-center mb-6 text-[#ffa500]">Advanced AI Technology Framework</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-lg font-semibold mb-4 text-white">Voice & Language Processing</h4>
+                    <ul className="space-y-2 text-sm text-white">
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>ElevenLabs integration for human-like voice quality</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Real-time language detection and translation</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Sentiment analysis and emotional intelligence</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Custom voice cloning and brand personality</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold mb-4 text-white">Integration & Automation</h4>
+                    <ul className="space-y-2 text-sm text-white">
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>CRM synchronization and lead management</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Calendar booking and appointment scheduling</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Multi-platform communication (phone, chat, email)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <div className="w-2 h-2 bg-[#ffa500] rounded-full mt-2 flex-shrink-0"></div>
+                        <span>Performance analytics and optimization insights</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* AI Performance Stats */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-[#ffa500]">Why Our AI Agents Outperform Human Teams</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">24/7</div>
+                    <div className="text-sm text-white">Never sleeps, never takes breaks</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">40+</div>
+                    <div className="text-sm text-white">Languages supported natively</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">3x</div>
+                    <div className="text-sm text-white">Better conversion vs human reps</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">0</div>
+                    <div className="text-sm text-white">Sick days or vacation time</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* Green Solution Section with Green Ambient Glow */}
+          <section id="solutions" className="py-16 px-4 bg-gradient-to-br from-slate-950 via-emerald-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/20 via-green-800/10 to-teal-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">The Solution:</span> Complete AI Agent Ecosystem
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-6">
+                      <Bot className="h-8 w-8 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">24/7 Customer Engagement</h3>
+                    <div className="space-y-3 text-gray-300">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">AI agents that never sleep, ensuring every customer gets instant responses</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Multi-language support for global customer base expansion</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Human-like conversation quality with emotional intelligence</span>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: 3x better conversion than human reps</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-6">
+                      <Brain className="h-8 w-8 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">Intelligent Automation</h3>
+                    <div className="space-y-3 text-gray-300">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Automated candidate screening that saves 35+ hours per week</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Sales coaching that turns rookies into closers in 30 days</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Onboarding support that reduces new hire quit rate by 70%</span>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: $50K+ monthly savings on staff costs</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-6">
+                      <Zap className="h-8 w-8 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">Advanced Performance Analytics</h3>
+                    <div className="space-y-3 text-gray-300">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Real-time conversation analytics and optimization recommendations</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">ROI tracking with detailed performance metrics across all channels</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Predictive insights that identify high-value prospects automatically</span>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: 400% improvement in lead qualification</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Performance Metrics Section */}
+              <div className="bg-gradient-to-r from-[#14ffc8]/10 to-emerald-500/10 border border-[#14ffc8]/30 rounded-xl p-8 mb-12">
+                <h3 className="text-3xl font-bold text-center mb-8">
+                  <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Proven AI Agent Results</span>
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center mb-8">
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">$50K+</div>
+                    <div className="text-white font-medium">Monthly Savings</div>
+                    <div className="text-gray-400 text-sm mt-1">on staffing costs</div>
+                  </div>
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">3x</div>
+                    <div className="text-white font-medium">Conversion Rate</div>
+                    <div className="text-gray-400 text-sm mt-1">vs human agents</div>
+                  </div>
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">35+</div>
+                    <div className="text-white font-medium">Hours Saved</div>
+                    <div className="text-gray-400 text-sm mt-1">per week per manager</div>
+                  </div>
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">24/7</div>
+                    <div className="text-white font-medium">Availability</div>
+                    <div className="text-gray-400 text-sm mt-1">never misses a lead</div>
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <blockquote className="text-xl italic text-gray-300 mb-4">
+                    "Fusion Data Co's AI agents have completely transformed our customer engagement. We're capturing leads 24/7 in multiple languages, and our conversion rate tripled within the first month of implementation."
+                  </blockquote>
+                  <cite className="text-[#14ffc8] font-semibold">— Sarah Martinez, CEO, Global Tech Solutions</cite>
+                </div>
               </div>
               
-              {/* Voice Agents Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {/* Strategic Implementation Process */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <div>
+                  <h3 className="text-2xl font-bold mb-6 text-[#14ffc8]">Your 60-Day AI Transformation</h3>
+                  <div className="space-y-4">
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 bg-[#14ffc8]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-[#14ffc8] font-bold">1</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Strategy & Setup (Days 1-14)</h4>
+                        <p className="text-gray-300 text-sm">Complete business analysis, agent customization, and integration setup</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 bg-[#14ffc8]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-[#14ffc8] font-bold">2</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Training & Launch (Days 15-30)</h4>
+                        <p className="text-gray-300 text-sm">Deploy AI agents with comprehensive training and monitoring</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 bg-[#14ffc8]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-[#14ffc8] font-bold">3</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Optimization & Scale (Days 31-60)</h4>
+                        <p className="text-gray-300 text-sm">Performance optimization, advanced features, and systematic scaling</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 
-                {/* Agent 1: AI Sales Coach */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all premium-card">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-4">
-                      <GraduationCap className="h-10 w-10 text-yellow-400 elite-icon" />
+                <div>
+                  <h3 className="text-2xl font-bold mb-6 text-[#14ffc8]">What Makes Our AI Agents Different</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <Shield className="h-6 w-6 text-[#14ffc8] mt-1 flex-shrink-0" />
                       <div>
-                        <CardTitle className="text-xl">AI Sales Coach</CardTitle>
-                        <p className="text-sm text-yellow-300">For Sales Teams</p>
+                        <h4 className="font-semibold text-white mb-1">Proprietary Psychology Integration</h4>
+                        <p className="text-gray-300 text-sm">Hostage negotiation tactics and undercover cop rapport techniques built into every conversation</p>
                       </div>
                     </div>
-                    <h3 className="text-lg font-bold text-yellow-400">
-                      The Sandler-Trained AI That Turns Rookies Into Closers in 30 Days
-                    </h3>
-                    <p className="text-sm text-muted-foreground">(No More $15K Training Programs)</p>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 mb-6">
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Pain identification & tool presentation mastery</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Hostage negotiation tactics integration</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Real-time pitch coaching & feedback</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Custom knowledge base integration</span>
-                      </li>
-                    </ul>
-                    <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700 vibrant-button"
-                      onClick={() => {
-                        handleAgentClick('sales_coach');
-                        window.open('https://elevenlabs.io/app/talk-to?agent_id=agent_01jz0xtv25ej8axfe92t1sdv9t', '_blank');
-                      }}
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Try Sales Coach Demo
-                    </Button>
-                  </CardContent>
-                </Card>
-
-                {/* Agent 2: AI Hiring Screener */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all premium-card">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-4">
-                      <UserCheck className="h-10 w-10 text-yellow-400 elite-icon" />
+                    <div className="flex items-start gap-3">
+                      <BarChart3 className="h-6 w-6 text-[#14ffc8] mt-1 flex-shrink-0" />
                       <div>
-                        <CardTitle className="text-xl">AI Hiring Screener</CardTitle>
-                        <p className="text-sm text-yellow-300">For HR Directors</p>
+                        <h4 className="font-semibold text-white mb-1">Advanced Learning Algorithms</h4>
+                        <p className="text-gray-300 text-sm">Continuous improvement through conversation analysis and performance optimization</p>
                       </div>
                     </div>
-                    <h3 className="text-lg font-bold text-yellow-400">
-                      The Interview Bot That Filters 1,000 Candidates Down to 10 Perfect Matches
-                    </h3>
-                    <p className="text-sm text-muted-foreground">(Save 35+ Hours/Week)</p>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 mb-6">
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Indeed automation integration</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">AI transcript analysis & scoring</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Custom questions & variables</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Only interview pre-qualified A-players</span>
-                      </li>
-                    </ul>
-                    <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700 vibrant-button"
-                      onClick={() => {
-                        handleAgentClick('hiring_screener');
-                        window.open('https://elevenlabs.io/app/talk-to?agent_id=agent_01k07mhgszfcg9br6n46m8d35m', '_blank');
-                      }}
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Try Hiring Screener Demo
-                    </Button>
-                  </CardContent>
-                </Card>
-
-                {/* Agent 3: AI Onboarding Companion */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all premium-card">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-4">
-                      <Heart className="h-10 w-10 text-yellow-400 elite-icon" />
+                    <div className="flex items-start gap-3">
+                      <Globe className="h-6 w-6 text-[#14ffc8] mt-1 flex-shrink-0" />
                       <div>
-                        <CardTitle className="text-xl">AI Onboarding Companion</CardTitle>
-                        <p className="text-sm text-yellow-300">For New Hires</p>
+                        <h4 className="font-semibold text-white mb-1">Proven Track Record</h4>
+                        <p className="text-gray-300 text-sm">Over 200+ successful AI agent deployments with documented 3x conversion improvements</p>
                       </div>
                     </div>
-                    <h3 className="text-lg font-bold text-yellow-400">
-                      The Empathetic AI Mentor That Cuts Onboarding Time by 70%
-                    </h3>
-                    <p className="text-sm text-muted-foreground">(While Boosting Retention)</p>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 mb-6">
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Tactical empathy & supportive coaching</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Full company knowledge base access</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Overwhelming situation management</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Historical data & project guidance</span>
-                      </li>
-                    </ul>
-                    <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700 vibrant-button"
-                      onClick={() => {
-                        handleAgentClick('onboarding_companion');
-                        window.open('https://elevenlabs.io/app/talk-to?agent_id=agent_01jxb0mn53ft19tt6crjzaqnwc', '_blank');
-                      }}
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Try Onboarding Demo
-                    </Button>
-                  </CardContent>
-                </Card>
-
-                {/* Agent 4: AI Website Concierge */}
-                <Card className="border-yellow-500/20 bg-yellow-500/5 hover:shadow-xl transition-all premium-card">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-4">
-                      <Globe className="h-10 w-10 text-yellow-400 elite-icon" />
-                      <div>
-                        <CardTitle className="text-xl">AI Website Concierge</CardTitle>
-                        <p className="text-sm text-yellow-300">For Websites</p>
-                      </div>
-                    </div>
-                    <h3 className="text-lg font-bold text-yellow-400">
-                      The Multilingual Sales Agent That Converts Visitors to Booked Calls 24/7/365
-                    </h3>
-                    <p className="text-sm text-muted-foreground">(40+ Languages)</p>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 mb-6">
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Website layout & product knowledge</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Twilio & Google Calendar integration</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Live agent transfer for emergencies</span>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <CheckCircle className="h-4 w-4 text-green-400 elite-icon" />
-                        <span className="text-sm">Objection handling & sales closes</span>
-                      </li>
-                    </ul>
-                    <Button 
-                      className="w-full bg-yellow-600 hover:bg-yellow-700 vibrant-button"
-                      onClick={() => {
-                        handleAgentClick('website_concierge');
-                        window.open('https://elevenlabs.io/app/talk-to?agent_id=ybtdqCeRrbskLzgWulrg', '_blank');
-                      }}
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Try Website Concierge Demo
-                    </Button>
-                  </CardContent>
-                </Card>
-
-              </div>
-
-              {/* Languages Section */}
-              <div className="mt-16 text-center">
-                <Card className="border-yellow-500/20 bg-yellow-500/5 max-w-4xl mx-auto premium-card">
-                  <CardHeader>
-                    <CardTitle className="text-2xl text-yellow-400">40+ Languages Supported</CardTitle>
-                    <p className="text-muted-foreground">
-                      Our agents can detect, speak, and translate in real-time across dozens of languages
-                    </p>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 text-sm">
-                      {['English', 'Spanish', 'French', 'German', 'Italian', 'Portuguese', 'Dutch', 'Russian', 'Chinese', 'Japanese', 'Korean', 'Arabic', 'Hindi', 'Turkish', 'Polish', 'Swedish', 'Norwegian', 'Danish', 'Finnish', 'Czech', 'Hungarian', 'Romanian', 'Bulgarian', 'Croatian', 'Slovak', 'Slovenian', 'Estonian', 'Latvian', 'Lithuanian', 'Greek', 'Hebrew', 'Thai', 'Vietnamese', 'Indonesian', 'Malay', 'Filipino', 'Ukrainian', 'Bengali', 'Tamil', 'Telugu'].map((language) => (
-                        <Badge key={language} variant="outline" className="text-xs border-yellow-500/20 elite-badge">
-                          {language}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* GREEN SECTION - ROI/GOOD NEWS */}
-          <section className="py-16 px-4 bg-gradient-to-b from-green-900/20 to-green-800/10">
-            <div className="container mx-auto">
-              <div className="text-center mb-12">
-                <Badge className="mb-4 bg-green-500/10 text-green-400 border-green-500/20 elite-badge">
-                  Good News: The $50K+ Monthly Savings
-                </Badge>
-                <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                  <span className="text-green-400">Here's What Happens Next</span>
+          {/* Purple Registration Section */}
+          <section id="registration" className="py-16 px-4 bg-gradient-to-br from-slate-950 via-purple-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-violet-800/10 to-purple-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-500/8 via-transparent to-violet-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-3xl font-bold mb-6">
+                  Ready to Deploy Your <span className="text-purple-400 [text-shadow:0_0_5px_#a855f7]">AI Agent Arsenal?</span>
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-                  Companies implementing our voice agent arsenal report game-changing results:
+                <p className="text-xl text-gray-300 mb-8">
+                  Join over 200+ companies that have revolutionized their customer engagement with AI agents that never sleep and convert 3x better than human reps.
                 </p>
-              </div>
-
-              {/* ROI Value Stack */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
-                <Card className="border-green-500/20 bg-green-500/5 premium-card">
-                  <CardContent className="pt-6">
-                    <DollarSign className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
-                    <div className="text-3xl font-bold text-green-400 mb-2 text-center">$35,000/month</div>
-                    <p className="text-sm text-muted-foreground text-center">Saved on hiring costs by eliminating bad candidates</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-green-500/20 bg-green-500/5 premium-card">
-                  <CardContent className="pt-6">
-                    <TrendingUp className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
-                    <div className="text-3xl font-bold text-green-400 mb-2 text-center">47%</div>
-                    <p className="text-sm text-muted-foreground text-center">Revenue increase with never-miss lead response</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-green-500/20 bg-green-500/5 premium-card">
-                  <CardContent className="pt-6">
-                    <Clock className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
-                    <div className="text-3xl font-bold text-green-400 mb-2 text-center">70%</div>
-                    <p className="text-sm text-muted-foreground text-center">Reduction in training time with AI coaching</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-green-500/20 bg-green-500/5 premium-card">
-                  <CardContent className="pt-6">
-                    <Users className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
-                    <div className="text-3xl font-bold text-green-400 mb-2 text-center">58%</div>
-                    <p className="text-sm text-muted-foreground text-center">Reduction in turnover with proper onboarding</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-green-500/20 bg-green-500/5 premium-card">
-                  <CardContent className="pt-6">
-                    <Globe className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
-                    <div className="text-3xl font-bold text-green-400 mb-2 text-center">24/7/365</div>
-                    <p className="text-sm text-muted-foreground text-center">Availability in 40+ languages</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-green-500/20 bg-green-500/5 premium-card">
-                  <CardContent className="pt-6">
-                    <Shield className="h-12 w-12 text-green-400 mx-auto mb-4 elite-icon" />
-                    <div className="text-3xl font-bold text-green-400 mb-2 text-center">Zero</div>
-                    <p className="text-sm text-muted-foreground text-center">Sick days, vacations, or workplace drama</p>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Social Proof Results */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                <Card className="border-green-500/20 bg-green-500/5 premium-card">
-                  <CardContent className="pt-6">
-                    <Star className="h-8 w-8 text-green-400 mb-3 elite-icon" />
-                    <p className="text-sm text-green-300 mb-2 font-semibold">Real Estate Client</p>
-                    <p className="text-sm text-muted-foreground">
-                      "Went from 23% to 71% lead conversion in 90 days with the AI Sales Coach"
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-green-500/20 bg-green-500/5 premium-card">
-                  <CardContent className="pt-6">
-                    <Star className="h-8 w-8 text-green-400 mb-3 elite-icon" />
-                    <p className="text-sm text-green-300 mb-2 font-semibold">Manufacturing Company</p>
-                    <p className="text-sm text-muted-foreground">
-                      "Saved $847 per interview by filtering candidates with AI Hiring Screener first"
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-green-500/20 bg-green-500/5 premium-card">
-                  <CardContent className="pt-6">
-                    <Star className="h-8 w-8 text-green-400 mb-3 elite-icon" />
-                    <p className="text-sm text-green-300 mb-2 font-semibold">SaaS Startup</p>
-                    <p className="text-sm text-muted-foreground">
-                      "Reduced onboarding from 6 weeks to 10 days with the AI Onboarding Companion"
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-
-          {/* REGISTRATION FORM SECTION */}
-          <section className="py-16 px-4 bg-gradient-to-b from-primary/10 to-background">
-            <div className="container mx-auto">
-              <div className="max-w-4xl mx-auto">
                 
-                {submitted ? (
-                  <Card className="border-green-500/20 bg-green-500/5 premium-card">
-                    <CardContent className="pt-8 text-center">
-                      <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                      <h2 className="text-2xl font-bold text-green-400 mb-4">Strategy Session Booked!</h2>
-                      <p className="text-lg text-muted-foreground mb-2">
-                        We'll contact you within 24 hours to schedule your custom voice agent demonstration.
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        Get ready to see how AI agents can transform your business operations.
-                      </p>
-                    </CardContent>
-                  </Card>
-                ) : (
-                  <Card className="border-primary/20 premium-card">
-                    <CardHeader className="text-center">
-                      <CardTitle className="text-3xl md:text-4xl font-bold mb-4">
-                        Get Your Custom Voice Agent Strategy Session
-                      </CardTitle>
-                      <p className="text-xl text-primary font-semibold">(Worth $2,500) - FREE for the Next 48 Hours</p>
-                      <p className="text-sm text-muted-foreground mt-2">
-                        Limited to 10 companies this month due to custom agent development time
-                      </p>
-                    </CardHeader>
-                    <CardContent>
-                      <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <FormField
-                              control={form.control}
-                              name="name"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Full Name *</FormLabel>
-                                  <FormControl>
-                                    <Input placeholder="John Smith" {...field} />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Free Strategy Session</h3>
+                    <p className="text-sm text-gray-300">Complete business analysis and custom AI agent recommendation plan</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Live Demo Access</h3>
+                    <p className="text-sm text-gray-300">Try our sales coach, hiring screener, and website concierge agents</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">60-Day ROI Guarantee</h3>
+                    <p className="text-sm text-gray-300">See measurable improvement in conversions within 60 days or we'll refund your investment</p>
+                  </div>
+                </div>
 
-                            <FormField
-                              control={form.control}
-                              name="email"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Email Address *</FormLabel>
-                                  <FormControl>
-                                    <Input placeholder="john@company.com" type="email" {...field} />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                          </div>
-
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <FormField
-                              control={form.control}
-                              name="company"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Company Name *</FormLabel>
-                                  <FormControl>
-                                    <Input placeholder="Acme Corporation" {...field} />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-
-                            <FormField
-                              control={form.control}
-                              name="phone"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Phone Number *</FormLabel>
-                                  <FormControl>
-                                    <Input placeholder="(555) 123-4567" {...field} />
-                                  </FormControl>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                          </div>
-
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <FormField
-                              control={form.control}
-                              name="industry"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Industry *</FormLabel>
-                                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <FormControl>
-                                      <SelectTrigger>
-                                        <SelectValue placeholder="Select your industry" />
-                                      </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                      <SelectItem value="real_estate">Real Estate</SelectItem>
-                                      <SelectItem value="insurance">Insurance</SelectItem>
-                                      <SelectItem value="healthcare">Healthcare</SelectItem>
-                                      <SelectItem value="finance">Finance</SelectItem>
-                                      <SelectItem value="technology">Technology</SelectItem>
-                                      <SelectItem value="manufacturing">Manufacturing</SelectItem>
-                                      <SelectItem value="retail">Retail</SelectItem>
-                                      <SelectItem value="legal">Legal</SelectItem>
-                                      <SelectItem value="consulting">Consulting</SelectItem>
-                                      <SelectItem value="other">Other</SelectItem>
-                                    </SelectContent>
-                                  </Select>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-
-                            <FormField
-                              control={form.control}
-                              name="revenue"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel>Monthly Revenue Range *</FormLabel>
-                                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <FormControl>
-                                      <SelectTrigger>
-                                        <SelectValue placeholder="Select revenue range" />
-                                      </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                      <SelectItem value="under_10k">Under $10K</SelectItem>
-                                      <SelectItem value="10k_25k">$10K - $25K</SelectItem>
-                                      <SelectItem value="25k_50k">$25K - $50K</SelectItem>
-                                      <SelectItem value="50k_100k">$50K - $100K</SelectItem>
-                                      <SelectItem value="100k_250k">$100K - $250K</SelectItem>
-                                      <SelectItem value="250k_500k">$250K - $500K</SelectItem>
-                                      <SelectItem value="500k_1m">$500K - $1M</SelectItem>
-                                      <SelectItem value="over_1m">Over $1M</SelectItem>
-                                    </SelectContent>
-                                  </Select>
-                                  <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                          </div>
-
-                          <FormField
-                            control={form.control}
-                            name="teamSize"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Team Size (Sales/Support) *</FormLabel>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                  <FormControl>
-                                    <SelectTrigger>
-                                      <SelectValue placeholder="Select team size" />
-                                    </SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent>
-                                    <SelectItem value="just_me">Just me</SelectItem>
-                                    <SelectItem value="2_5">2-5 people</SelectItem>
-                                    <SelectItem value="6_10">6-10 people</SelectItem>
-                                    <SelectItem value="11_25">11-25 people</SelectItem>
-                                    <SelectItem value="26_50">26-50 people</SelectItem>
-                                    <SelectItem value="over_50">Over 50 people</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-
-                          <FormField
-                            control={form.control}
-                            name="challenge"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Biggest Customer Service Challenge *</FormLabel>
-                                <FormControl>
-                                  <Textarea 
-                                    placeholder="Describe your biggest challenge with customer service, hiring, training, or lead response..."
-                                    className="min-h-[100px]"
-                                    {...field} 
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-
-                          <Button 
-                            type="submit" 
-                            size="lg" 
-                            className="w-full bg-primary hover:bg-primary/90 vibrant-button" 
-                            disabled={isSubmitting}
-                          >
-                            {isSubmitting ? "Booking Your Session..." : "Book My FREE Strategy Session"}
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </Button>
-
-                          <p className="text-xs text-muted-foreground text-center">
-                            By submitting this form, you agree to receive follow-up communications about our voice agent services. 
-                            For pricing information, please contact our sales team during your strategy session.
-                          </p>
-                        </form>
-                      </Form>
-                    </CardContent>
-                  </Card>
-                )}
+                <ConversationalAIForm />
               </div>
             </div>
           </section>
-
         </main>
         <Footer />
       </div>
