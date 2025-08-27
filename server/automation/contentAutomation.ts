@@ -134,7 +134,7 @@ export class ContentAutomationService {
     const content = `<article class="vibe-coding-post max-w-4xl mx-auto">
 <header class="mb-8">
   <h1 class="text-4xl font-bold mb-4">${title}</h1>
-  <p class="text-gray-600 text-lg">Published on ${dateStr} | VIBE CODING Analysis</p>
+  <p class="text-gray-600 text-lg">By Robert Yeager | Published on ${dateStr} | VIBE CODING Analysis</p>
 </header>
 
 <section class="executive-summary bg-gradient-to-r from-blue-50 to-green-50 p-6 rounded-lg mb-8">
