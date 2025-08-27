@@ -39,6 +39,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register marketing routes
   app.use("/api/marketing", marketingRouter);
 
+  // MCP (Model Context Protocol) endpoints for ElevenLabs integration
+  const { handleStreamableMCP, handleMCPJson } = await import("./mcp-server");
+  
+  // Streamable HTTP endpoint for ElevenLabs (SSE)
+  app.all("/api/mcp", handleStreamableMCP);
+  
+  // Regular JSON endpoint for testing and direct API calls
+  app.all("/api/mcp/json", handleMCPJson);
+
   // AI Content Demo endpoint
   app.post("/api/ai-content-demo", async (req, res) => {
     try {

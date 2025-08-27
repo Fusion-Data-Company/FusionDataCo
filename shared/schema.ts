@@ -659,3 +659,40 @@ export type InsertYoutubeChannel = z.infer<typeof insertYoutubeChannelSchema>;
 
 export type YoutubeVideo = typeof youtubeVideos.$inferSelect;
 export type InsertYoutubeVideo = z.infer<typeof insertYoutubeVideoSchema>;
+
+// ElevenLabs Conversational AI Interactions
+export const elevenLabsConversations = pgTable("elevenlabs_conversations", {
+  id: serial("id").primaryKey(),
+  sessionId: text("session_id").notNull().unique(), // ElevenLabs session identifier
+  contactId: integer("contact_id").references(() => crmContacts.id),
+  callerName: text("caller_name"), // Name provided during call
+  phoneNumber: text("phone_number"), // Phone number if available
+  conversationSummary: text("conversation_summary"), // AI summary of conversation
+  callNotes: text("call_notes"), // Detailed notes from the call
+  intent: text("intent"), // What the caller wanted (quote, information, etc.)
+  status: text("status").default("active"), // active, completed, follow_up_needed
+  duration: integer("duration"), // Call duration in seconds
+  isNewContact: boolean("is_new_contact").default(true),
+  followUpRequired: boolean("follow_up_required").default(false),
+  conversationData: jsonb("conversation_data").default({}), // Raw conversation data
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertElevenLabsConversationSchema = createInsertSchema(elevenLabsConversations).pick({
+  sessionId: true,
+  contactId: true,
+  callerName: true,
+  phoneNumber: true,
+  conversationSummary: true,
+  callNotes: true,
+  intent: true,
+  status: true,
+  duration: true,
+  isNewContact: true,
+  followUpRequired: true,
+  conversationData: true,
+});
+
+export type ElevenLabsConversation = typeof elevenLabsConversations.$inferSelect;
+export type InsertElevenLabsConversation = z.infer<typeof insertElevenLabsConversationSchema>;
