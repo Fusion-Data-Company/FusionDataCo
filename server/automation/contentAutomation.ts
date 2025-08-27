@@ -1,11 +1,13 @@
 import { storage } from '../storage';
 import { generateContent } from '../openRouter';
+import OpenAI from 'openai';
 import { 
   InsertContentResearch, 
-  InsertBlogPost,
-  contentResearchTable,
-  blogPostTable
+  InsertBlogPost
 } from '../../shared/schema';
+
+// Initialize OpenAI for DALL-E image generation
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export class ContentAutomationService {
   
@@ -38,12 +40,8 @@ export class ContentAutomationService {
     const researchItems: InsertContentResearch[] = [];
     
     try {
-      // Get recent content research from YouTube monitoring and other sources
-      const recentResearch = await storage.getRecentContentResearch(24); // last 24 hours
-      
-      if (recentResearch.length > 0) {
-        return recentResearch;
-      }
+      // For now, use curated trending topics since we don't have recent research method
+      // TODO: Implement getRecentContentResearch method when needed
 
       // Fallback: Create research from trending VIBE CODING topics
       const trendingTopics = [
@@ -101,7 +99,10 @@ export class ContentAutomationService {
 
       // Store research in database for future reference
       for (const topic of trendingTopics) {
-        const stored = await storage.storeContentResearch(topic);
+        const stored = await storage.createContentResearch({
+          ...topic,
+          rawData: topic as any // Convert to Json type for database storage
+        });
         researchItems.push(stored);
       }
 
@@ -110,6 +111,50 @@ export class ContentAutomationService {
     } catch (error) {
       console.error('[RESEARCH] Failed to gather research data:', error);
       return [];
+    }
+  }
+
+  // IMAGE GENERATION PHASE
+  private async generateBlogPostImage(title: string, researchData: InsertContentResearch[]): Promise<string> {
+    try {
+      // Create a cinematic prompt based on the blog post content
+      const keywords = researchData
+        .flatMap(r => r.keywords || [])
+        .slice(0, 5)
+        .join(', ');
+
+      const imagePrompt = `Cinematic ultra HD professional tech scene: ${title}. 
+      Modern AI development workspace with holographic displays showing code, data visualizations, and ${keywords}. 
+      Futuristic glass surfaces, neon accent lighting in blues and purples, sleek minimalist design. 
+      High-tech developer environment with multiple curved monitors, floating UI elements, particle effects. 
+      Professional photography style, dramatic lighting, ultra sharp 8K quality, cyberpunk aesthetic meets clean corporate design.
+      VIBE CODING branding elements subtly integrated. Cinematic composition with depth of field.`;
+
+      console.log('[IMAGE] Generating cinematic blog post image with DALL-E 3...');
+      
+      // the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
+      const response = await openai.images.generate({
+        model: "dall-e-3",
+        prompt: imagePrompt,
+        n: 1,
+        size: "1792x1024", // Ultra HD wide format perfect for blog headers
+        quality: "hd",
+        style: "vivid" // For more cinematic, engaging visuals
+      });
+
+      const imageUrl = response.data?.[0]?.url;
+      if (imageUrl) {
+        console.log('[IMAGE] ✅ Successfully generated cinematic blog post image');
+        return imageUrl;
+      } else {
+        console.log('[IMAGE] ⚠️ No image URL returned from DALL-E');
+        return '';
+      }
+      
+    } catch (error) {
+      console.error('[IMAGE] ❌ Failed to generate blog post image:', error);
+      // Return empty string if image generation fails - blog will still work without image
+      return '';
     }
   }
 
@@ -131,8 +176,14 @@ export class ContentAutomationService {
 
     const title = this.generateRealTitle(topResearch);
     
+    // Generate cinematic image for the blog post
+    const featuredImageUrl = await this.generateBlogPostImage(title, topResearch);
+    
     const content = `<article class="vibe-coding-post max-w-4xl mx-auto">
 <header class="mb-8">
+  ${featuredImageUrl ? `<div class="featured-image mb-6">
+    <img src="${featuredImageUrl}" alt="${title}" class="w-full h-64 md:h-96 object-cover rounded-lg shadow-xl" />
+  </div>` : ''}
   <h1 class="text-4xl font-bold mb-4">${title}</h1>
   <p class="text-gray-600 text-lg">By Robert Yeager | Published on ${dateStr} | VIBE CODING Analysis</p>
 </header>
@@ -251,7 +302,8 @@ export class ContentAutomationService {
       publishedAt: new Date(),
       authorId: 1,
       isAutomated: true,
-      sourceData: { researchData, generatedAt: new Date().toISOString() },
+      featuredImage: featuredImageUrl, // Add the generated cinematic image
+      sourceData: { researchData, generatedAt: new Date().toISOString(), imageUrl: featuredImageUrl },
       socialSnippets: {
         twitter: `🚀 New VIBE CODING insights: ${title.substring(0, 100)}... Read the full analysis on cutting-edge AI development tools. #VibeCoding #AI`,
         linkedin: `Today's VIBE CODING analysis reveals key developments in AI-powered development. Essential insights for engineering leaders on Cursor AI, ElevenLabs, and multi-model workflows. Full analysis on FusionDataCo blog.`,
@@ -332,9 +384,10 @@ export class ContentAutomationService {
       oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
       const blogPosts = await storage.getAllBlogPosts();
-      const recentPosts = blogPosts.filter(post => 
-        new Date(post.publishedAt || post.createdAt) > oneMonthAgo
-      ).slice(0, 5);
+      const recentPosts = blogPosts.filter(post => {
+        const postDate = post.publishedAt || post.createdAt;
+        return postDate && new Date(postDate) > oneMonthAgo;
+      }).slice(0, 5);
 
       // Generate newsletter content using Sandler methodology
       const newsletterContent = await this.generateNewsletterContent(recentPosts);
