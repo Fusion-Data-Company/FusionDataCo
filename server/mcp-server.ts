@@ -196,11 +196,12 @@ export async function handleStreamableMCP(req: Request, res: Response) {
       // Handle MCP protocol methods
       switch (method) {
         case 'initialize':
+          const { protocolVersion } = params || {};
           const initResponse = {
             jsonrpc: '2.0',
             id,
             result: {
-              protocolVersion: '2024-11-05',
+              protocolVersion: protocolVersion || '2025-03-26',
               capabilities: {
                 tools: {}
               },
@@ -212,6 +213,12 @@ export async function handleStreamableMCP(req: Request, res: Response) {
           };
           console.log('[MCP] Initialize response:', JSON.stringify(initResponse, null, 2));
           res.json(initResponse);
+          break;
+
+        case 'notifications/initialized':
+          // Handle initialized notification (no response needed)
+          console.log('[MCP] Received notifications/initialized');
+          res.status(200).end();
           break;
 
         case 'tools/list':
