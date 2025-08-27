@@ -97,12 +97,12 @@ export default function BlogPost() {
         <meta name="twitter:image" content={post.featuredImage || post.image} />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#0a0a0d] via-[#121218] to-[#1a1a20] text-foreground">
         <Header />
         
         <main className="flex-grow">
           {/* Hero Section */}
-          <section className="py-12 px-4 bg-gradient-to-b from-[#0a0a0d] to-[#121218]">
+          <section className="py-12 px-4 bg-gradient-to-br from-[#0a0a0d] via-[#14141a] to-[#1a1a24] relative overflow-hidden">
             <div className="container mx-auto max-w-4xl">
               <Link href="/blog">
                 <Button variant="ghost" className="mb-6">
@@ -167,8 +167,13 @@ export default function BlogPost() {
           </section>
 
           {/* Article Content */}
-          <section className="py-12 px-4 bg-gradient-to-b from-background to-muted/20">
-            <div className="container mx-auto max-w-4xl">
+          <section className="py-12 px-4 bg-gradient-to-b from-[#121218] via-[#1a1a24] to-[#0f0f15] relative">
+            {/* Decorative Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-accent/10 to-primary/10 rounded-full blur-3xl"></div>
+            </div>
+            <div className="container mx-auto max-w-4xl relative z-10">
               <article className="prose prose-xl prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-primary prose-li:text-foreground/90 prose-code:text-primary prose-blockquote:border-primary prose-blockquote:text-foreground">
                 {post.content ? (
                   <div 
@@ -194,7 +199,7 @@ export default function BlogPost() {
               </article>
               
               {/* Call to Action */}
-              <div className="mt-12 p-8 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg text-center">
+              <div className="mt-12 p-8 bg-gradient-to-r from-primary/20 via-accent/10 to-primary/20 rounded-xl border border-primary/20 backdrop-blur-sm text-center shadow-2xl">
                 <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Business?</h3>
                 <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
                   Get expert guidance on implementing these strategies for your organization.
