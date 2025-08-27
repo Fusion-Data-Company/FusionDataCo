@@ -13,6 +13,7 @@ import About from "@/pages/About";
 import Services from "@/pages/Services";
 import ConversationalAI from "@/pages/ConversationalAI";
 import MultiModelAgents from "@/pages/MultiModelAgents";
+import Demographics from "@/pages/Demographics";
 import Blog from "@/pages/Blog";
 import BlogAdmin from "@/pages/BlogAdmin";
 import GolfBagBlogPost from "@/pages/GolfBagBlogPost";
@@ -59,6 +60,7 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/services/conversational-ai" component={ConversationalAI} />
       <Route path="/services/multi-model-agents" component={MultiModelAgents} />
+      <Route path="/demographics" component={Demographics} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/admin" component={BlogAdmin} />
       <Route path="/blog/golf-bag-approach-multi-model-ai" component={GolfBagBlogPost} />
