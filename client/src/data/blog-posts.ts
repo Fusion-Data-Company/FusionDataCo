@@ -106,7 +106,7 @@ Ready to implement multi-model routing in your organization? Our team can help y
     date: "January 20, 2025",
     readTime: "8 min read",
     category: "AI Strategy",
-    image: "/api/placeholder/800/400",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
     featured: true,
     tags: ["AI Strategy", "Multi-Model AI", "Enterprise AI", "Cost Optimization", "OpenRouter"],
     seo: {
@@ -159,7 +159,7 @@ Ready to modernize your marketing automation? [Contact our team](/contact) for a
     date: "January 18, 2025",
     readTime: "8 min read",
     category: "AI & Technology",
-    image: "/api/placeholder/800/400",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
     featured: true,
     tags: ["Marketing Automation", "AI", "Machine Learning", "2025 Trends", "Enterprise Marketing"],
     seo: {
@@ -368,7 +368,7 @@ Consider these factors:
     date: "January 15, 2025",
     readTime: "6 min read",
     category: "CRM Strategy",
-    image: "/api/placeholder/800/400",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
     featured: false,
     tags: ["CRM", "Enterprise Software", "Customer Management", "Sales Technology"],
     seo: {
@@ -695,7 +695,7 @@ Healthcare marketing compliance is complex and evolving. Consider partnering wit
     date: "January 12, 2025",
     readTime: "12 min read",
     category: "Healthcare",
-    image: "/api/placeholder/800/400",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
     featured: false,
     tags: ["HIPAA Compliance", "Healthcare Marketing", "Digital Marketing", "Privacy Regulations", "Healthcare Technology"],
     seo: {
@@ -992,7 +992,7 @@ Real estate lead generation success requires balancing technology efficiency wit
     date: "January 10, 2025",
     readTime: "9 min read",
     category: "Real Estate",
-    image: "/api/placeholder/800/400",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
     featured: false,
     tags: ["Real Estate Marketing", "Lead Generation", "Real Estate Technology", "Sales Automation", "Digital Marketing"],
     seo: {
@@ -1358,7 +1358,7 @@ Data-driven marketing transformation requires expertise in analytics, technology
     date: "January 8, 2025",
     readTime: "11 min read",
     category: "Strategy",
-    image: "/api/placeholder/800/400",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
     featured: false,
     tags: ["Data-Driven Marketing", "Marketing Strategy", "Analytics", "Business Intelligence", "Digital Transformation"],
     seo: {
@@ -1689,7 +1689,7 @@ Balancing automation efficiency with authentic human connection requires experti
     date: "January 5, 2025",
     readTime: "7 min read",
     category: "Social Media",
-    image: "/api/placeholder/800/400",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
     featured: false,
     tags: ["Social Media Automation", "Authentic Marketing", "Community Management", "Digital Strategy", "Brand Voice"],
     seo: {
@@ -2031,7 +2031,7 @@ Enterprise email marketing automation success requires balancing technical sophi
     date: "January 3, 2025",
     readTime: "10 min read",
     category: "Email Marketing",
-    image: "/api/placeholder/800/400",
+    image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
     featured: false,
     tags: ["Email Marketing", "Marketing Automation", "Enterprise Marketing", "Lead Nurturing", "Customer Journey"],
     seo: {

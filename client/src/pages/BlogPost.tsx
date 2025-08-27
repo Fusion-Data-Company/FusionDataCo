@@ -111,16 +111,14 @@ export default function BlogPost() {
                 </Button>
               </Link>
               
-              {post.featuredImage && (
-                <div className="relative h-64 md:h-96 rounded-xl overflow-hidden mb-8">
-                  <img 
-                    src={post.featuredImage || post.image} 
-                    alt={post.title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
-              )}
+              <div className="relative h-64 md:h-96 rounded-xl overflow-hidden mb-8">
+                <img 
+                  src={post.featuredImage || post.image} 
+                  alt={post.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </div>
               
               <div className="mb-6">
                 <div className="flex items-center gap-4 mb-4">
@@ -169,25 +167,25 @@ export default function BlogPost() {
           </section>
 
           {/* Article Content */}
-          <section className="py-12 px-4">
+          <section className="py-12 px-4 bg-gradient-to-b from-background to-muted/20">
             <div className="container mx-auto max-w-4xl">
-              <article className="prose prose-xl prose-invert max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-li:text-muted-foreground prose-code:text-primary prose-blockquote:border-primary prose-blockquote:text-foreground">
+              <article className="prose prose-xl prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground/90 prose-strong:text-primary prose-li:text-foreground/90 prose-code:text-primary prose-blockquote:border-primary prose-blockquote:text-foreground">
                 {post.content ? (
                   <div 
-                    className="formatted-content space-y-6 text-lg leading-relaxed"
+                    className="formatted-content space-y-8 text-lg leading-relaxed"
                     dangerouslySetInnerHTML={{ 
                       __html: post.content
-                        .replace(/\n\n/g, '</p><p class="mt-6">')
-                        .replace(/^/, '<p>')
+                        .replace(/\n\n/g, '</p><p class="mt-6 text-foreground/90 leading-relaxed">')
+                        .replace(/^/, '<p class="text-foreground/90 leading-relaxed">')
                         .replace(/$/, '</p>')
-                        .replace(/## (.*)/g, '<h2 class="text-2xl font-bold mt-8 mb-4 text-foreground">$1</h2>')
-                        .replace(/### (.*)/g, '<h3 class="text-xl font-semibold mt-6 mb-3 text-foreground">$1</h3>')
-                        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>')
-                        .replace(/- (.*)/g, '<li class="ml-4 mb-2">• $1</li>')
+                        .replace(/## (.*)/g, '<h2 class="text-3xl font-bold mt-10 mb-6 text-primary bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">$1</h2>')
+                        .replace(/### (.*)/g, '<h3 class="text-2xl font-semibold mt-8 mb-4 text-foreground border-l-4 border-primary pl-4">$1</h3>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-primary">$1</strong>')
+                        .replace(/- (.*)/g, '<li class="ml-4 mb-3 text-foreground/90 flex items-start"><span class="text-primary mr-2">•</span><span>$1</span></li>')
                     }} 
                   />
                 ) : (
-                  <div className="text-xl leading-relaxed space-y-6 text-muted-foreground">
+                  <div className="text-xl leading-relaxed space-y-6 text-foreground/90">
                     {post.excerpt.split('\n\n').map((paragraph: string, index: number) => (
                       <p key={index} className="mb-6">{paragraph}</p>
                     ))}
