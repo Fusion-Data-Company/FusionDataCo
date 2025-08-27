@@ -435,6 +435,136 @@ export default function ConversationalAI() {
 
               </div>
 
+              {/* AI Content Creation Section */}
+              <div className="mt-16 mb-16">
+                <div className="text-center mb-12">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-6">
+                    <span className="text-yellow-400">Experience AI-Powered Content Creation</span>
+                  </h3>
+                  <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+                    See how our AI generates compelling content tailored to your industry and audience
+                  </p>
+                </div>
+
+                <Card className="border-yellow-500/20 bg-yellow-500/5 max-w-6xl mx-auto premium-card">
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <CardTitle className="text-2xl text-yellow-400">APEX2.0 AI Content Architecture</CardTitle>
+                        <p className="text-muted-foreground">
+                          Enterprise-grade psychological content generation using Fortune 500 influence frameworks
+                        </p>
+                      </div>
+                      <Button className="bg-yellow-600 hover:bg-yellow-700 vibrant-button">
+                        <Play className="mr-2 h-4 w-4" />
+                        Live Demo
+                      </Button>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      {/* Left Side - Business Type Selection */}
+                      <div>
+                        <div className="mb-6">
+                          <div className="flex items-center gap-3 mb-4">
+                            <Bot className="h-8 w-8 text-yellow-400" />
+                            <div>
+                              <h4 className="text-lg font-semibold">Select Your Business Type</h4>
+                              <p className="text-sm text-muted-foreground">Claude 3 Sonnet</p>
+                            </div>
+                          </div>
+                          <Button className="w-full bg-yellow-600 hover:bg-yellow-700 mb-4">
+                            Generate AI Content
+                          </Button>
+                        </div>
+
+                        <Card className="border-yellow-500/30 bg-yellow-600/10 mb-6">
+                          <CardContent className="p-4">
+                            <div className="flex items-center gap-3">
+                              <span className="text-2xl">🍽️</span>
+                              <div>
+                                <h5 className="font-semibold text-yellow-300">Restaurant</h5>
+                                <p className="text-sm text-muted-foreground">APEX2.0 Psychological Framework</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        {/* APEX Framework */}
+                        <div className="space-y-3 mb-6">
+                          <div className="flex items-center gap-3 text-sm">
+                            <Badge className="w-8 h-8 rounded-full flex items-center justify-center bg-yellow-600 text-black font-bold">A</Badge>
+                            <span>Attention Architecture</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-sm">
+                            <Badge className="w-8 h-8 rounded-full flex items-center justify-center bg-yellow-600 text-black font-bold">P</Badge>
+                            <span>Psychological Positioning</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-sm">
+                            <Badge className="w-8 h-8 rounded-full flex items-center justify-center bg-yellow-600 text-black font-bold">E</Badge>
+                            <span>Emotional Escalation</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-sm">
+                            <Badge className="w-8 h-8 rounded-full flex items-center justify-center bg-yellow-600 text-black font-bold">X</Badge>
+                            <span>Expectation Subversion</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-sm">
+                            <Badge className="w-8 h-8 rounded-full flex items-center justify-center bg-yellow-600 text-black font-bold">2.0</Badge>
+                            <span>Adaptive Optimization</span>
+                          </div>
+                        </div>
+
+                        <p className="text-xs text-yellow-200 mb-4">
+                          Proprietary framework targeting neurochemical engagement: Dopamine → Oxytocin → Adrenaline → Endorphins
+                        </p>
+                      </div>
+
+                      {/* Right Side - Generated Content */}
+                      <div>
+                        <div className="mb-6">
+                          <div className="flex items-center gap-3 mb-4">
+                            <span className="text-2xl">🍽️</span>
+                            <div>
+                              <h4 className="text-lg font-semibold text-yellow-300">Content for Restaurant</h4>
+                              <p className="text-sm text-muted-foreground">Sample content - generate with APEX2.0 framework for Fortune 500 level influence</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Content Type Tabs */}
+                        <div className="flex gap-2 mb-4 flex-wrap">
+                          {['Restaurant', 'Social Media', 'Email', 'Website', 'Advertising'].map((type) => (
+                            <Badge key={type} variant={type === 'Social Media' ? 'default' : 'outline'} className="px-3 py-1 elite-badge">
+                              {type}
+                            </Badge>
+                          ))}
+                        </div>
+
+                        {/* Generated Content Display */}
+                        <Card className="border-yellow-500/30 bg-yellow-900/20 mb-4">
+                          <CardHeader>
+                            <CardTitle className="text-lg text-yellow-300 flex items-center gap-2">
+                              <MessageSquare className="h-5 w-5" />
+                              Social Media Post
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-gray-200 leading-relaxed">
+                              🍽️ Fresh ingredients, bold flavors, unforgettable experiences. Tonight's special: Pan-seared salmon with lemon herb risotto. Book your table now! #FreshDining #LocalFavorites
+                            </p>
+                          </CardContent>
+                        </Card>
+
+                        <div className="text-sm text-muted-foreground">
+                          <p>Content generated: <span className="text-yellow-400 font-semibold">0</span> times</p>
+                          <p>Business type: <span className="text-yellow-400 font-semibold">Restaurant</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
               {/* Languages Section */}
               <div className="mt-16 text-center">
                 <Card className="border-yellow-500/20 bg-yellow-500/5 max-w-4xl mx-auto premium-card">
