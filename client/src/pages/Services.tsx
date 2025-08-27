@@ -8,10 +8,54 @@ import CRMSection from "@/components/CRMSection";
 import AIContentDemo from "@/components/AIContentDemo";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { TitaniumCard } from "@/components/ui/TitaniumCard";
 import { Link } from "wouter";
-import { ArrowRight, Sparkles, TrendingUp, Users, Zap, Globe, MessageSquare, BarChart3, ExternalLink, Laptop, Phone } from "lucide-react";
+import { ArrowRight, Sparkles, TrendingUp, Users, Zap, Globe, MessageSquare, BarChart3, ExternalLink, Laptop, Phone, Lock, Server, Brain, LineChart, Database, UserRoundCog } from "lucide-react";
 
 export default function Services() {
+  const enterpriseCapabilities = [
+    {
+      icon: <Lock size={20} />,
+      title: "Enterprise Security",
+      description: "SOC 2 Type II compliant with end-to-end encryption and role-based access"
+    },
+    {
+      icon: <Server size={20} />,
+      title: "Global Infrastructure",
+      description: "99.99% uptime SLA with multi-region deployment and disaster recovery"
+    },
+    {
+      icon: <BarChart3 size={20} />,
+      title: "Advanced Analytics",
+      description: "Custom reporting, predictive analytics, and executive dashboards"
+    },
+    {
+      icon: <Brain size={20} />,
+      title: "AI Workflow Automation",
+      description: "Intelligent automation with custom AI models for your industry"
+    },
+    {
+      icon: <LineChart size={20} />,
+      title: "Attribution Modeling",
+      description: "Multi-touch attribution across all marketing channels and campaigns"
+    },
+    {
+      icon: <Globe size={20} />,
+      title: "Global Compliance",
+      description: "GDPR, CCPA, HIPAA, and industry-specific compliance frameworks"
+    },
+    {
+      icon: <Database size={20} />,
+      title: "Data Integration",
+      description: "Enterprise API access with custom integrations and data warehousing"
+    },
+    {
+      icon: <UserRoundCog size={20} />,
+      title: "Dedicated Support",
+      description: "White-glove onboarding, dedicated CSM, and 24/7 technical support"
+    }
+  ];
+
   return (
     <>
       <Helmet>
@@ -119,6 +163,38 @@ export default function Services() {
                     </CardDescription>
                   </CardContent>
                 </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* Enterprise-Grade Capabilities */}
+          <section className="py-16 px-4 bg-gradient-to-b from-background to-card">
+            <div className="container mx-auto">
+              <div className="max-w-6xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                    Enterprise-Grade <span className="text-primary">Capabilities</span>
+                  </h2>
+                  <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                    Our enterprise platform provides the comprehensive suite of tools that Fortune 500 companies rely on for marketing excellence.
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                  {enterpriseCapabilities.map((capability, index) => (
+                    <TitaniumCard key={index} glowColor="blue" className="p-4 hover:bg-primary/5 transition-colors duration-300">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+                          <div className="text-primary">
+                            {capability.icon}
+                          </div>
+                        </div>
+                        <h4 className="font-medium text-foreground">{capability.title}</h4>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{capability.description}</p>
+                    </TitaniumCard>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
