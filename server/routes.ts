@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
+import { automationScheduler, getAutomationStatus, manualTriggers } from './automation';
 import { 
   contactSubmissionSchema, 
   chatMessageSchema, 
@@ -615,6 +616,115 @@ Remember: We solve COMPLETE business operations, not just lead generation. Quali
 
   // Marketing routes
   app.use("/api/marketing", marketingRouter);
+
+  // AUTOMATION SYSTEM ROUTES
+  
+  // Get automation status
+  app.get("/api/automation/status", isAdmin, async (req, res) => {
+    try {
+      const status = await getAutomationStatus();
+      res.json(status);
+    } catch (error) {
+      console.error("Error getting automation status:", error);
+      res.status(500).json({ error: "Failed to get automation status" });
+    }
+  });
+
+  // Manual triggers for testing
+  app.post("/api/automation/trigger/daily-blog", isAdmin, async (req, res) => {
+    try {
+      console.log("[API] Manual trigger: daily blog");
+      const result = await manualTriggers.dailyBlog();
+      res.json({ success: true, result });
+    } catch (error) {
+      console.error("Error triggering daily blog:", error);
+      res.status(500).json({ error: "Failed to trigger daily blog" });
+    }
+  });
+
+  app.post("/api/automation/trigger/monthly-newsletter", isAdmin, async (req, res) => {
+    try {
+      console.log("[API] Manual trigger: monthly newsletter");
+      const result = await manualTriggers.monthlyNewsletter();
+      res.json({ success: true, result });
+    } catch (error) {
+      console.error("Error triggering monthly newsletter:", error);
+      res.status(500).json({ error: "Failed to trigger monthly newsletter" });
+    }
+  });
+
+  app.post("/api/automation/trigger/youtube-monitoring", isAdmin, async (req, res) => {
+    try {
+      console.log("[API] Manual trigger: YouTube monitoring");
+      await manualTriggers.youtubeMonitoring();
+      res.json({ success: true, result: "YouTube monitoring completed" });
+    } catch (error) {
+      console.error("Error triggering YouTube monitoring:", error);
+      res.status(500).json({ error: "Failed to trigger YouTube monitoring" });
+    }
+  });
+
+  // Get recent automation jobs
+  app.get("/api/automation/jobs", isAdmin, async (req, res) => {
+    try {
+      const limit = parseInt(req.query.limit as string) || 20;
+      const jobs = await automationScheduler.getRecentJobs(limit);
+      res.json(jobs);
+    } catch (error) {
+      console.error("Error getting automation jobs:", error);
+      res.status(500).json({ error: "Failed to get automation jobs" });
+    }
+  });
+
+  // BLOG MANAGEMENT ROUTES
+  
+  // Get all blog posts
+  app.get("/api/blog/posts", async (req, res) => {
+    try {
+      const posts = await storage.getAllBlogPosts();
+      res.json(posts);
+    } catch (error) {
+      console.error("Error getting blog posts:", error);
+      res.status(500).json({ error: "Failed to get blog posts" });
+    }
+  });
+
+  // Get published blog posts (public route)
+  app.get("/api/blog/published", async (req, res) => {
+    try {
+      const posts = await storage.getPublishedBlogPosts();
+      res.json(posts);
+    } catch (error) {
+      console.error("Error getting published blog posts:", error);
+      res.status(500).json({ error: "Failed to get published blog posts" });
+    }
+  });
+
+  // Get single blog post by slug (public route)
+  app.get("/api/blog/post/:slug", async (req, res) => {
+    try {
+      const post = await storage.getBlogPostBySlug(req.params.slug);
+      if (!post) {
+        return res.status(404).json({ error: "Blog post not found" });
+      }
+      res.json(post);
+    } catch (error) {
+      console.error("Error getting blog post:", error);
+      res.status(500).json({ error: "Failed to get blog post" });
+    }
+  });
+
+  // Initialize automation system on startup
+  try {
+    console.log("[STARTUP] Initializing content automation system...");
+    // We'll import and initialize this after the routes are set up
+    const { initializeAutomation } = await import('./automation');
+    await initializeAutomation();
+    console.log("[STARTUP] ✅ Content automation system initialized");
+  } catch (error) {
+    console.error("[STARTUP] ❌ Failed to initialize automation system:", error);
+    // Don't fail the entire server if automation fails to start
+  }
   
   // Create HTTP server
   const httpServer = createServer(app);

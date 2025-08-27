@@ -449,3 +449,213 @@ export const insertSocialTrialSchema = createInsertSchema(socialTrials).pick({
 
 export type SocialTrial = typeof socialTrials.$inferSelect;
 export type InsertSocialTrial = z.infer<typeof insertSocialTrialSchema>;
+
+// CONTENT AUTOMATION SYSTEM TABLES
+
+// Blog posts table for automated content
+export const blogPosts = pgTable("blog_posts", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  content: text("content").notNull(),
+  excerpt: text("excerpt"),
+  featuredImage: text("featured_image"),
+  tags: text("tags").array(),
+  category: text("category").default("VIBE CODING"),
+  status: text("status").default("draft"), // draft, published, scheduled
+  publishedAt: timestamp("published_at"),
+  scheduledFor: timestamp("scheduled_for"),
+  authorId: integer("author_id").references(() => users.id),
+  isAutomated: boolean("is_automated").default(true),
+  sourceData: jsonb("source_data").default({}), // Research data used to generate
+  socialSnippets: jsonb("social_snippets").default({}), // Generated social media posts
+  metrics: jsonb("metrics").default({}), // views, shares, etc.
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertBlogPostSchema = createInsertSchema(blogPosts).pick({
+  title: true,
+  slug: true,
+  content: true,
+  excerpt: true,
+  featuredImage: true,
+  tags: true,
+  category: true,
+  status: true,
+  publishedAt: true,
+  scheduledFor: true,
+  authorId: true,
+  isAutomated: true,
+  sourceData: true,
+  socialSnippets: true,
+  metrics: true,
+});
+
+// Content automation jobs tracking
+export const automationJobs = pgTable("automation_jobs", {
+  id: serial("id").primaryKey(),
+  jobType: text("job_type").notNull(), // daily_blog, monthly_newsletter, youtube_monitor
+  status: text("status").default("pending"), // pending, running, completed, failed
+  scheduledTime: timestamp("scheduled_time").notNull(),
+  startedAt: timestamp("started_at"),
+  completedAt: timestamp("completed_at"),
+  errorMessage: text("error_message"),
+  resultData: jsonb("result_data").default({}),
+  parameters: jsonb("parameters").default({}),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertAutomationJobSchema = createInsertSchema(automationJobs).pick({
+  jobType: true,
+  status: true,
+  scheduledTime: true,
+  startedAt: true,
+  completedAt: true,
+  errorMessage: true,
+  resultData: true,
+  parameters: true,
+});
+
+// Content research data storage
+export const contentResearch = pgTable("content_research", {
+  id: serial("id").primaryKey(),
+  date: date("date").notNull().defaultNow(),
+  source: text("source").notNull(), // techcrunch, verge, youtube, reddit
+  sourceUrl: text("source_url"),
+  title: text("title").notNull(),
+  summary: text("summary"),
+  keywords: text("keywords").array(),
+  relevanceScore: integer("relevance_score").default(0), // 1-10
+  category: text("category"), // vibe_coding, ai_tools, automation, etc.
+  rawData: jsonb("raw_data").default({}),
+  processed: boolean("processed").default(false),
+  usedInContent: boolean("used_in_content").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertContentResearchSchema = createInsertSchema(contentResearch).pick({
+  date: true,
+  source: true,
+  sourceUrl: true,
+  title: true,
+  summary: true,
+  keywords: true,
+  relevanceScore: true,
+  category: true,
+  rawData: true,
+  processed: true,
+  usedInContent: true,
+});
+
+// Newsletter subscribers (separate from leads for newsletter-specific tracking)
+export const newsletterSubscribers = pgTable("newsletter_subscribers", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  name: text("name"),
+  company: text("company"),
+  industryInterest: text("industry_interest"),
+  subscriptionSource: text("subscription_source").default("website"),
+  subscribedAt: timestamp("subscribed_at").defaultNow(),
+  isActive: boolean("is_active").default(true),
+  unsubscribedAt: timestamp("unsubscribed_at"),
+  lastEmailSent: timestamp("last_email_sent"),
+  emailPreferences: jsonb("email_preferences").default({
+    frequency: "monthly",
+    contentTypes: ["blog", "industry_news", "tools"]
+  }),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertNewsletterSubscriberSchema = createInsertSchema(newsletterSubscribers).pick({
+  email: true,
+  name: true,
+  company: true,
+  industryInterest: true,
+  subscriptionSource: true,
+  subscribedAt: true,
+  isActive: true,
+  unsubscribedAt: true,
+  lastEmailSent: true,
+  emailPreferences: true,
+});
+
+// YouTube channel monitoring configuration
+export const youtubeChannels = pgTable("youtube_channels", {
+  id: serial("id").primaryKey(),
+  channelId: text("channel_id").notNull().unique(),
+  channelName: text("channel_name").notNull(),
+  channelUrl: text("channel_url"),
+  keywords: text("keywords").array(), // keywords to monitor for
+  isActive: boolean("is_active").default(true),
+  lastChecked: timestamp("last_checked"),
+  videoCount: integer("video_count").default(0),
+  subscriberCount: integer("subscriber_count").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertYoutubeChannelSchema = createInsertSchema(youtubeChannels).pick({
+  channelId: true,
+  channelName: true,
+  channelUrl: true,
+  keywords: true,
+  isActive: true,
+  lastChecked: true,
+  videoCount: true,
+  subscriberCount: true,
+});
+
+// YouTube videos discovered through monitoring
+export const youtubeVideos = pgTable("youtube_videos", {
+  id: serial("id").primaryKey(),
+  videoId: text("video_id").notNull().unique(),
+  channelId: text("channel_id").references(() => youtubeChannels.channelId),
+  title: text("title").notNull(),
+  description: text("description"),
+  publishedAt: timestamp("published_at"),
+  thumbnailUrl: text("thumbnail_url"),
+  videoUrl: text("video_url"),
+  viewCount: integer("view_count").default(0),
+  likeCount: integer("like_count").default(0),
+  relevanceScore: integer("relevance_score").default(0),
+  keywords: text("keywords").array(),
+  isRelevant: boolean("is_relevant").default(false),
+  usedInContent: boolean("used_in_content").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertYoutubeVideoSchema = createInsertSchema(youtubeVideos).pick({
+  videoId: true,
+  channelId: true,
+  title: true,
+  description: true,
+  publishedAt: true,
+  thumbnailUrl: true,
+  videoUrl: true,
+  viewCount: true,
+  likeCount: true,
+  relevanceScore: true,
+  keywords: true,
+  isRelevant: true,
+  usedInContent: true,
+});
+
+// Type exports for automation system
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
+
+export type AutomationJob = typeof automationJobs.$inferSelect;
+export type InsertAutomationJob = z.infer<typeof insertAutomationJobSchema>;
+
+export type ContentResearch = typeof contentResearch.$inferSelect;
+export type InsertContentResearch = z.infer<typeof insertContentResearchSchema>;
+
+export type NewsletterSubscriber = typeof newsletterSubscribers.$inferSelect;
+export type InsertNewsletterSubscriber = z.infer<typeof insertNewsletterSubscriberSchema>;
+
+export type YoutubeChannel = typeof youtubeChannels.$inferSelect;
+export type InsertYoutubeChannel = z.infer<typeof insertYoutubeChannelSchema>;
+
+export type YoutubeVideo = typeof youtubeVideos.$inferSelect;
+export type InsertYoutubeVideo = z.infer<typeof insertYoutubeVideoSchema>;

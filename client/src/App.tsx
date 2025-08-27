@@ -30,6 +30,8 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import Partners from "@/pages/Partners";
 import { EntropyDemo } from "@/components/demos/EntropyDemo";
+
+const AutomationDashboard = React.lazy(() => import("@/pages/AutomationDashboard"));
 import SocialMedia from "@/pages/SocialMedia";
 import FunnelsPage from "@/pages/Funnels";
 
@@ -66,6 +68,7 @@ function Router() {
       <Route path="/blog" component={Blog} />
       <Route path="/blog/admin" component={BlogAdmin} />
       <Route path="/blog/golf-bag-approach-multi-model-ai" component={GolfBagBlogPost} />
+      <Route path="/admin/automation" component={() => <Suspense fallback={<div>Loading...</div>}><AutomationDashboard /></Suspense>} />
       <Route path="/small-business-upgrade" component={SmallBusinessUpgrade} />
       <Route path="/small-business-owners" component={SmallBusinessOwners} />
       <Route path="/real-estate" component={RealEstate} />

@@ -1,6 +1,7 @@
 import { 
   users, chatMessages, contactSubmissions, crmContacts, crmDeals, crmActivities,
-  leads, socialTrials,
+  leads, socialTrials, blogPosts, automationJobs, contentResearch, 
+  newsletterSubscribers, youtubeChannels, youtubeVideos,
   type User, type UpsertUser, 
   type ContactSubmission, type InsertContactSubmission,
   type ChatMessage, type InsertChatMessage,
@@ -8,7 +9,13 @@ import {
   type CrmDeal, type InsertCrmDeal,
   type CrmActivity, type InsertCrmActivity,
   type Lead, type InsertLead,
-  type SocialTrial, type InsertSocialTrial
+  type SocialTrial, type InsertSocialTrial,
+  type BlogPost, type InsertBlogPost,
+  type AutomationJob, type InsertAutomationJob,
+  type ContentResearch, type InsertContentResearch,
+  type NewsletterSubscriber, type InsertNewsletterSubscriber,
+  type YoutubeChannel, type InsertYoutubeChannel,
+  type YoutubeVideo, type InsertYoutubeVideo
 } from "@shared/schema";
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq, and, desc } from 'drizzle-orm';
@@ -77,6 +84,44 @@ export interface IStorage {
   getAllSocialTrials(): Promise<SocialTrial[]>;
   updateSocialTrial(id: number, trial: Partial<InsertSocialTrial>): Promise<SocialTrial | undefined>;
   deleteSocialTrial(id: number): Promise<boolean>;
+  
+  // Content automation operations
+  // Blog posts
+  createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
+  getBlogPost(id: number): Promise<BlogPost | undefined>;
+  getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
+  getAllBlogPosts(): Promise<BlogPost[]>;
+  getPublishedBlogPosts(): Promise<BlogPost[]>;
+  updateBlogPost(id: number, post: Partial<InsertBlogPost>): Promise<BlogPost | undefined>;
+  deleteBlogPost(id: number): Promise<boolean>;
+  
+  // Automation jobs
+  createAutomationJob(job: InsertAutomationJob): Promise<AutomationJob>;
+  getAutomationJob(id: number): Promise<AutomationJob | undefined>;
+  getPendingJobs(): Promise<AutomationJob[]>;
+  getJobsByType(jobType: string): Promise<AutomationJob[]>;
+  updateAutomationJob(id: number, job: Partial<InsertAutomationJob>): Promise<AutomationJob | undefined>;
+  
+  // Content research
+  createContentResearch(research: InsertContentResearch): Promise<ContentResearch>;
+  getContentResearchByDate(date: string): Promise<ContentResearch[]>;
+  getUnprocessedResearch(): Promise<ContentResearch[]>;
+  updateContentResearch(id: number, research: Partial<InsertContentResearch>): Promise<ContentResearch | undefined>;
+  
+  // Newsletter subscribers
+  createNewsletterSubscriber(subscriber: InsertNewsletterSubscriber): Promise<NewsletterSubscriber>;
+  getNewsletterSubscriber(email: string): Promise<NewsletterSubscriber | undefined>;
+  getActiveSubscribers(): Promise<NewsletterSubscriber[]>;
+  updateNewsletterSubscriber(id: number, subscriber: Partial<InsertNewsletterSubscriber>): Promise<NewsletterSubscriber | undefined>;
+  
+  // YouTube monitoring
+  createYoutubeChannel(channel: InsertYoutubeChannel): Promise<YoutubeChannel>;
+  getActiveYoutubeChannels(): Promise<YoutubeChannel[]>;
+  updateYoutubeChannel(id: number, channel: Partial<InsertYoutubeChannel>): Promise<YoutubeChannel | undefined>;
+  
+  createYoutubeVideo(video: InsertYoutubeVideo): Promise<YoutubeVideo>;
+  getRecentVideos(limit?: number): Promise<YoutubeVideo[]>;
+  updateYoutubeVideo(id: number, video: Partial<InsertYoutubeVideo>): Promise<YoutubeVideo | undefined>;
 }
 
 export class PostgresStorage implements IStorage {
@@ -319,6 +364,196 @@ export class PostgresStorage implements IStorage {
       console.error("Error deleting social trial:", error);
       return false;
     }
+  }
+
+  // Content automation operations
+  // Blog posts
+  async createBlogPost(post: InsertBlogPost): Promise<BlogPost> {
+    const result = await db.insert(blogPosts).values(post).returning();
+    return result[0];
+  }
+
+  async getBlogPost(id: number): Promise<BlogPost | undefined> {
+    const result = await db.select().from(blogPosts).where(eq(blogPosts.id, id));
+    return result[0];
+  }
+
+  async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+    const result = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug));
+    return result[0];
+  }
+
+  async getAllBlogPosts(): Promise<BlogPost[]> {
+    return await db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt));
+  }
+
+  async getPublishedBlogPosts(): Promise<BlogPost[]> {
+    return await db.select().from(blogPosts)
+      .where(eq(blogPosts.status, 'published'))
+      .orderBy(desc(blogPosts.publishedAt));
+  }
+
+  async updateBlogPost(id: number, post: Partial<InsertBlogPost>): Promise<BlogPost | undefined> {
+    const result = await db.update(blogPosts)
+      .set({ ...post, updatedAt: new Date() })
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return result[0];
+  }
+
+  async deleteBlogPost(id: number): Promise<boolean> {
+    const result = await db.delete(blogPosts).where(eq(blogPosts.id, id)).returning();
+    return result.length > 0;
+  }
+
+  // Automation jobs
+  async createAutomationJob(job: InsertAutomationJob): Promise<AutomationJob> {
+    const result = await db.insert(automationJobs).values(job).returning();
+    return result[0];
+  }
+
+  async getAutomationJob(id: number): Promise<AutomationJob | undefined> {
+    const result = await db.select().from(automationJobs).where(eq(automationJobs.id, id));
+    return result[0];
+  }
+
+  async getPendingJobs(): Promise<AutomationJob[]> {
+    return await db.select().from(automationJobs)
+      .where(eq(automationJobs.status, 'pending'))
+      .orderBy(automationJobs.scheduledTime);
+  }
+
+  async getJobsByType(jobType: string): Promise<AutomationJob[]> {
+    return await db.select().from(automationJobs)
+      .where(eq(automationJobs.jobType, jobType))
+      .orderBy(desc(automationJobs.createdAt));
+  }
+
+  async updateAutomationJob(id: number, job: Partial<InsertAutomationJob>): Promise<AutomationJob | undefined> {
+    const result = await db.update(automationJobs)
+      .set(job)
+      .where(eq(automationJobs.id, id))
+      .returning();
+    return result[0];
+  }
+
+  // Content research
+  async createContentResearch(research: InsertContentResearch): Promise<ContentResearch> {
+    const result = await db.insert(contentResearch).values(research).returning();
+    return result[0];
+  }
+
+  async getContentResearchByDate(date: string): Promise<ContentResearch[]> {
+    return await db.select().from(contentResearch)
+      .where(eq(contentResearch.date, date))
+      .orderBy(desc(contentResearch.relevanceScore));
+  }
+
+  async getUnprocessedResearch(): Promise<ContentResearch[]> {
+    return await db.select().from(contentResearch)
+      .where(eq(contentResearch.processed, false))
+      .orderBy(desc(contentResearch.createdAt));
+  }
+
+  async updateContentResearch(id: number, research: Partial<InsertContentResearch>): Promise<ContentResearch | undefined> {
+    const result = await db.update(contentResearch)
+      .set(research)
+      .where(eq(contentResearch.id, id))
+      .returning();
+    return result[0];
+  }
+
+  // Newsletter subscribers
+  async createNewsletterSubscriber(subscriber: InsertNewsletterSubscriber): Promise<NewsletterSubscriber> {
+    const result = await db.insert(newsletterSubscribers)
+      .values(subscriber)
+      .onConflictDoUpdate({
+        target: newsletterSubscribers.email,
+        set: {
+          ...subscriber,
+          isActive: true,
+          unsubscribedAt: null,
+        },
+      })
+      .returning();
+    return result[0];
+  }
+
+  async getNewsletterSubscriber(email: string): Promise<NewsletterSubscriber | undefined> {
+    const result = await db.select().from(newsletterSubscribers)
+      .where(eq(newsletterSubscribers.email, email));
+    return result[0];
+  }
+
+  async getActiveSubscribers(): Promise<NewsletterSubscriber[]> {
+    return await db.select().from(newsletterSubscribers)
+      .where(eq(newsletterSubscribers.isActive, true))
+      .orderBy(desc(newsletterSubscribers.subscribedAt));
+  }
+
+  async updateNewsletterSubscriber(id: number, subscriber: Partial<InsertNewsletterSubscriber>): Promise<NewsletterSubscriber | undefined> {
+    const result = await db.update(newsletterSubscribers)
+      .set(subscriber)
+      .where(eq(newsletterSubscribers.id, id))
+      .returning();
+    return result[0];
+  }
+
+  // YouTube monitoring
+  async createYoutubeChannel(channel: InsertYoutubeChannel): Promise<YoutubeChannel> {
+    const result = await db.insert(youtubeChannels)
+      .values(channel)
+      .onConflictDoUpdate({
+        target: youtubeChannels.channelId,
+        set: {
+          ...channel,
+          updatedAt: new Date(),
+        },
+      })
+      .returning();
+    return result[0];
+  }
+
+  async getActiveYoutubeChannels(): Promise<YoutubeChannel[]> {
+    return await db.select().from(youtubeChannels)
+      .where(eq(youtubeChannels.isActive, true))
+      .orderBy(youtubeChannels.channelName);
+  }
+
+  async updateYoutubeChannel(id: number, channel: Partial<InsertYoutubeChannel>): Promise<YoutubeChannel | undefined> {
+    const result = await db.update(youtubeChannels)
+      .set({ ...channel, updatedAt: new Date() })
+      .where(eq(youtubeChannels.id, id))
+      .returning();
+    return result[0];
+  }
+
+  async createYoutubeVideo(video: InsertYoutubeVideo): Promise<YoutubeVideo> {
+    const result = await db.insert(youtubeVideos)
+      .values(video)
+      .onConflictDoUpdate({
+        target: youtubeVideos.videoId,
+        set: {
+          ...video,
+        },
+      })
+      .returning();
+    return result[0];
+  }
+
+  async getRecentVideos(limit: number = 50): Promise<YoutubeVideo[]> {
+    return await db.select().from(youtubeVideos)
+      .where(eq(youtubeVideos.isRelevant, true))
+      .orderBy(desc(youtubeVideos.publishedAt))
+      .limit(limit);
+  }
+
+  async updateYoutubeVideo(id: number, video: Partial<InsertYoutubeVideo>): Promise<YoutubeVideo | undefined> {
+    const result = await db.update(youtubeVideos)
+      .set(video)
+      .where(eq(youtubeVideos.id, id))
+      .returning();
+    return result[0];
   }
 }
 
