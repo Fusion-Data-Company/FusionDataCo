@@ -510,6 +510,39 @@ export default function Demographics() {
                 </div>
               </div>
 
+              {/* BRISTOL ANALYTICS PLATFORM ACCESS */}
+              <div className="mb-12">
+                <div className="max-w-4xl mx-auto">
+                  <div className="bg-gradient-to-r from-[#121218]/50 to-[#121218]/80 backdrop-blur-md border border-[#ffa500]/20 rounded-2xl p-8">
+                    <h3 className="text-3xl font-bold mb-4">
+                      🚀 <span className="bg-gradient-to-r from-[#ffa500] to-[#ff8c00] bg-clip-text text-transparent">Experience Bristol Analytics Platform Live</span>
+                    </h3>
+                    <p className="text-lg text-gray-300 mb-6">
+                      Access the full Bristol Analytics Platform for real estate demographics. No registration required - see the power of advanced market intelligence in action.
+                    </p>
+                    
+                    <div className="bg-black/30 rounded-xl p-6 border border-[#ffa500]/20 mb-8">
+                      <h4 className="text-[#ffa500] font-semibold mb-3">🌐 Live Platform Access</h4>
+                      <p className="font-mono text-white text-xl mb-2">Bristol-Development-Site-Intel-Platform.replit.app</p>
+                      <p className="text-gray-400 text-sm">Full access to all mapping tools, demographic analysis, and competitive intelligence features</p>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <a 
+                        href="https://Bristol-Development-Site-Intel-Platform.replit.app" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        <button className="group bg-gradient-to-r from-[#ffa500] to-[#ff8c00] text-black hover:scale-105 transition-all duration-300 px-8 py-3 text-lg font-semibold rounded-lg">
+                          🗺️ Launch Bristol Analytics Platform
+                          <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">→</span>
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* LIVE DEMOGRAPHICS PLATFORM DEMO */}
               <div className="mb-12">
                 <h3 className="text-2xl font-bold text-center mb-8 text-[#ffa500]">🎯 Try Our Demographics Intelligence Platform Live</h3>
