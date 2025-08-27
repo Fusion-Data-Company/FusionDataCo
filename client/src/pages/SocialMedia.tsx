@@ -22,7 +22,6 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/components/AnalyticsTracker";
 import { apiRequest } from "@/lib/queryClient";
-import AIContentDemo from "@/components/AIContentDemo";
 
 function SocialMediaForm() {
   const [formData, setFormData] = useState({
@@ -468,19 +467,6 @@ export default function SocialMedia() {
                 </Card>
               </div>
 
-              {/* AI Content Creation Section */}
-              <div className="mt-16 mb-16">
-                <div className="text-center mb-12">
-                  <h3 className="text-3xl md:text-4xl font-bold mb-6">
-                    <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">Experience AI-Powered Content Creation</span>
-                  </h3>
-                  <p className="text-xl text-white max-w-4xl mx-auto">
-                    See how our AI generates compelling social media content tailored to your industry and audience
-                  </p>
-                </div>
-
-                <AIContentDemo />
-              </div>
 
               {/* Advanced Social Media Strategy Methods */}
               <div className="bg-gradient-to-br from-[#ffa500]/10 to-[#ff8c00]/5 border border-[#ffa500]/30 rounded-xl p-8 mb-12">
