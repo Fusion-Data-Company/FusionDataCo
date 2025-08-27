@@ -1,380 +1,764 @@
-import { Helmet } from 'react-helmet';
-import { Link } from "wouter";
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CTASection from "@/components/CTASection";
-import { Users, Database, Zap, PieChart, Globe, Smartphone, Shield, ArrowRight, CheckCircle, Star, TrendingUp } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { 
+  XCircle, 
+  TrendingDown, 
+  Clock, 
+  Users, 
+  BarChart3, 
+  CheckCircle2, 
+  Shield, 
+  Database,
+  Globe,
+  Target,
+  Smartphone,
+  DollarSign,
+  AlertTriangle,
+  Building2
+} from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { trackEvent } from "@/components/AnalyticsTracker";
+import { apiRequest } from "@/lib/queryClient";
+import CRMSection from "@/components/CRMSection";
+
+function CRMForm() {
+  const [formData, setFormData] = useState({
+    businessName: '',
+    industry: '',
+    name: '',
+    email: '',
+    phone: '',
+    challenges: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      trackEvent({
+        category: 'lead_generation',
+        action: 'submit',
+        label: 'crm_form',
+      });
+      
+      await apiRequest('/api/contact', {
+        method: 'POST',
+        body: JSON.stringify({
+          ...formData,
+          formType: 'crm_platform',
+          company: formData.businessName,
+          message: formData.challenges
+        }),
+      });
+      
+      setSubmitted(true);
+      toast({
+        title: "Form submitted successfully",
+        description: "We'll be in touch within 24 hours to discuss your CRM platform.",
+      });
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Submission failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30 text-center">
+        <h3 className="text-2xl font-bold text-purple-400 mb-4">Thank You!</h3>
+        <p className="text-white mb-4">Your white-label CRM platform consultation request has been submitted successfully.</p>
+        <p className="text-gray-300">Our CRM specialists will contact you within 24 hours to discuss your custom platform.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto bg-[#121218]/90 p-8 rounded-lg border border-purple-500/30">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label className="block text-sm font-medium mb-2">Business Name</label>
+          <input 
+            type="text" 
+            value={formData.businessName}
+            onChange={(e) => setFormData({...formData, businessName: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Industry</label>
+          <input 
+            type="text" 
+            value={formData.industry}
+            onChange={(e) => setFormData({...formData, industry: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label className="block text-sm font-medium mb-2">Your Name</label>
+          <input 
+            type="text" 
+            value={formData.name}
+            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Email Address</label>
+          <input 
+            type="email" 
+            value={formData.email}
+            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+            required
+          />
+        </div>
+      </div>
+      <div className="mb-6">
+        <label className="block text-sm font-medium mb-2">Phone Number</label>
+        <input 
+          type="tel" 
+          value={formData.phone}
+          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+          className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none" 
+        />
+      </div>
+      <div className="mb-6">
+        <label className="block text-sm font-medium mb-2">Current CRM & Lead Management Challenges</label>
+        <textarea 
+          value={formData.challenges}
+          onChange={(e) => setFormData({...formData, challenges: e.target.value})}
+          className="w-full px-4 py-3 bg-[#1a1a24] border border-purple-500/30 rounded-lg focus:border-purple-400 focus:outline-none h-24" 
+          placeholder="Tell us about your biggest customer relationship management and lead tracking challenges..."
+        />
+      </div>
+      <button 
+        type="submit" 
+        disabled={isSubmitting}
+        className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-800 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 [box-shadow:0_0_20px_#a855f740]"
+      >
+        {isSubmitting ? 'Submitting...' : 'Get My White-Label CRM Platform'}
+      </button>
+      <p className="text-xs text-gray-400 mt-4 text-center">
+        No spam, ever. Your information is 100% secure and will only be used to contact you about your CRM consultation.
+      </p>
+    </form>
+  );
+}
 
 export default function CRM() {
-  const features = [
-    {
-      icon: <Users className="text-[#14ffc8]" size={28} />,
-      title: "Go High Level Funnel Implementation",
-      description: "Complete CRM system setup and optimization with professional funnel development for maximum lead conversion."
-    },
-    {
-      icon: <Database className="text-[#ff0aff]" size={28} />,
-      title: "Lead Generation Pipeline Development",
-      description: "Custom lead generation pipelines with data enrichment processes and acquisition funnel creation for optimal results."
-    },
-    {
-      icon: <Zap className="text-[#8f00ff]" size={28} />,
-      title: "Customer Relationship Management Automation",
-      description: "Automated customer relationship management with sales team efficiency optimization and intelligent lead nurturing."
-    },
-    {
-      icon: <PieChart className="text-[#00ffff]" size={28} />,
-      title: "Sales Team Efficiency Optimization",
-      description: "Streamline your sales processes with automated workflows, performance tracking, and conversion optimization strategies."
-    }
-  ];
-
-  const whitelabelFeatures = [
-    {
-      icon: <Globe />,
-      title: "Your Brand, Your Domain",
-      description: "Complete white-labeling with custom domains, logos, and branding throughout the entire platform."
-    },
-    {
-      icon: <Smartphone />,
-      title: "Mobile-First Design",
-      description: "Responsive CRM that works perfectly on all devices with native mobile app capabilities."
-    },
-    {
-      icon: <Shield />,
-      title: "Enterprise Security",
-      description: "Bank-level security with SSO, role-based permissions, and compliance-ready data protection."
-    }
-  ];
-
-  const benefits = [
-    {
-      icon: <TrendingUp className="text-[#14ffc8]" size={24} />,
-      title: "3x Higher Conversion",
-      description: "Our clients see average conversion rate increases of 300% within 90 days of implementation."
-    },
-    {
-      icon: <Star className="text-[#ff0aff]" size={24} />,
-      title: "Zero Development Time",
-      description: "Launch your white-label CRM in under 24 hours with full customization and branding."
-    },
-    {
-      icon: <CheckCircle className="text-[#8f00ff]" size={24} />,
-      title: "Revenue Sharing",
-      description: "Earn recurring revenue from every client subscription with our generous partner program."
-    }
-  ];
-
   return (
     <>
       <Helmet>
-        <title>White-Label CRM Platform | Fusion Data Co</title>
-        <meta name="description" content="Revolutionary white-label CRM that automatically captures website visitors, tracks behavior, and converts leads into customers. Complete branding customization available." />
-        <meta name="keywords" content="white-label CRM, visitor tracking, lead generation, website analytics, customer relationship management, automated workflows" />
-        
+        <title>White-Label CRM Platform | Enterprise Marketing Automation | Fusion Data Co</title>
+        <meta name="description" content="Revolutionary white-label CRM that captures website visitors, tracks behavior, converts leads into customers. Complete branding customization, automated workflows, enterprise security." />
+        <meta name="keywords" content="white-label CRM, visitor tracking, lead generation, customer relationship management, automated workflows, enterprise platform, marketing automation" />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-[#0b0b0d] text-white">
+      <div className="min-h-screen flex flex-col bg-[#0a0a0d] text-white">
         <Header />
         <main className="flex-grow">
-          {/* Hero Section */}
-          <section className="relative overflow-hidden bg-gradient-to-br from-[#0b0b0d] via-[#121218] to-[#1a1a2e] py-20 md:py-28">
-            {/* Background effects */}
-            <div className="absolute inset-0 opacity-40">
-              <div className="absolute inset-0 bg-grid-pattern"></div>
-            </div>
-            <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-20 w-96 h-96 bg-green-500/10 rounded-full blur-3xl"></div>
+          {/* Blue Hero Section */}
+          <section className="relative py-20 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0080ff]/20 via-[#0a0a0d] to-[#0a0a0d]"></div>
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0gNTAgMCBMIDAgMCAwIDUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyMDIwMzAiIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9wYXR0ZXJuPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')]"></div>
             
             <div className="container mx-auto px-4 relative z-10">
-              <div className="max-w-4xl mx-auto text-center">
-                {/* Badge */}
-                <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500/20 to-green-500/20 rounded-full border border-blue-500/30 mb-8">
-                  <span className="text-sm font-medium text-blue-300">ENTERPRISE SOLUTION</span>
-                </div>
-                
-                {/* Main heading */}
+              <div className="text-center max-w-4xl mx-auto">
                 <h1 className="font-['Orbitron'] text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  <span className="text-white">Enterprise-Grade</span>
-                  <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-400 to-blue-500">
-                    Marketing Platform
-                  </span>
+                  <span className="text-white">White-Label CRM Platform</span><br />
+                  <span className="text-[#0080ff] [text-shadow:0_0_20px_#0080ff]">Enterprise Marketing Automation</span>
                 </h1>
-                
-                {/* Subtitle */}
-                <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-                  A comprehensive solution that combines <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400">advanced CRM</span>, <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400">analytics</span>, and <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400">AI-powered workflows</span> to transform your <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400">business operations</span> and <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400">accelerate growth</span>.
+                <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                  Revolutionary white-label CRM that automatically captures every website visitor, tracks their behavior, and converts them into qualified leads—all under your company brand with complete customization.
                 </p>
-                
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                  <Link href="/pricing">
-                    <span className="px-8 py-4 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 cursor-pointer">
-                      Start Free Trial
-                    </span>
-                  </Link>
-                  <Link href="/demos/entropy">
-                    <span className="px-8 py-4 border border-gray-600 text-white font-semibold rounded-lg hover:bg-gray-800/50 transition-all duration-300 cursor-pointer">
-                      Watch Demo
-                    </span>
-                  </Link>
-                </div>
-                
-                {/* Key metrics */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
-                  <div className="text-center">
-                    <div className="text-2xl md:text-3xl font-bold text-green-400 mb-1">99.9%</div>
-                    <div className="text-sm text-gray-400">Uptime</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-1">10K+</div>
-                    <div className="text-sm text-gray-400">Active Users</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl md:text-3xl font-bold text-green-400 mb-1">500+</div>
-                    <div className="text-sm text-gray-400">Integrations</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-1">24/7</div>
-                    <div className="text-sm text-gray-400">Support</div>
-                  </div>
-                </div>
               </div>
             </div>
           </section>
-
-          {/* How It Works Section */}
-          <section className="py-16 bg-gradient-to-b from-[#121218] to-[#0b0b0d] relative overflow-hidden">
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4">
-                  <span className="text-white">Turn Your Website Into a</span>{" "}
-                  <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Lead Generation Machine</span>
-                </h2>
-                <p className="text-gray-400 text-lg">
-                  Our white-label CRM automatically captures every visitor, tracks their behavior, and converts them into qualified leads—all under your brand.
-                </p>
-              </div>
-              
-              {/* Features Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                {features.map((feature, index) => (
-                  <div key={index} className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800 hover:border-[#14ffc8] transition-all duration-300">
-                    <div className="w-12 h-12 rounded-full bg-[#14ffc8]/20 flex items-center justify-center mb-4">
-                      {feature.icon}
-                    </div>
-                    <h3 className="font-['Orbitron'] text-xl font-semibold mb-3">{feature.title}</h3>
-                    <p className="text-gray-400">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Spider Web Analogy */}
-              <div className="backdrop-blur-md bg-[#121218]/70 rounded-2xl p-8 border border-gray-800 max-w-4xl mx-auto">
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold mb-4 text-[#14ffc8]">
-                    Like a Spider Web for Your Business
-                  </h3>
-                  <p className="text-gray-300 text-lg mb-6">
-                    Just as a spider web captures everything that touches it, our CRM captures every visitor interaction, 
-                    building a complete picture of your potential customers before they even make contact.
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-[#14ffc8]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <span className="text-2xl">🕸️</span>
-                      </div>
-                      <h4 className="font-semibold mb-2">Capture</h4>
-                      <p className="text-gray-400 text-sm">Every visitor leaves digital footprints</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-[#ff0aff]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <span className="text-2xl">🎯</span>
-                      </div>
-                      <h4 className="font-semibold mb-2">Analyze</h4>
-                      <p className="text-gray-400 text-sm">AI identifies intent and interest level</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-[#8f00ff]/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <span className="text-2xl">💰</span>
-                      </div>
-                      <h4 className="font-semibold mb-2">Convert</h4>
-                      <p className="text-gray-400 text-sm">Automated workflows nurture into sales</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* White-Label Features */}
-          <section className="py-16 bg-[#0b0b0d]">
-            <div className="container mx-auto px-4">
-              <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4">
-                  <span className="text-white">Complete White-Label</span>{" "}
-                  <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Customization</span>
-                </h2>
-                <p className="text-gray-400 text-lg">
-                  Make it yours with complete branding control and custom domain hosting
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                {whitelabelFeatures.map((feature, index) => (
-                  <div key={index} className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-8 border border-gray-800 hover:border-[#14ffc8] transition-all duration-300">
-                    <div className="w-16 h-16 rounded-full bg-[#14ffc8]/20 flex items-center justify-center mb-6 text-[#14ffc8]">
-                      {feature.icon}
-                    </div>
-                    <h3 className="font-['Orbitron'] text-xl font-semibold mb-4">{feature.title}</h3>
-                    <p className="text-gray-400">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Benefits */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="backdrop-blur-md bg-[#121218]/70 rounded-xl p-6 border border-gray-800">
-                    <div className="flex items-center mb-4">
-                      {benefit.icon}
-                      <h3 className="font-semibold ml-3">{benefit.title}</h3>
-                    </div>
-                    <p className="text-gray-400">{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Website/CRM Hybrid Platforms - Yellow Section */}
-          <section className="py-16 bg-gradient-to-b from-[#121218] to-[#1a1505] relative overflow-hidden">
-            {/* Yellow background effects */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute inset-0 bg-grid-pattern"></div>
-            </div>
-            <div className="absolute top-20 left-20 w-72 h-72 bg-yellow-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+          
+          {/* Red Pain Points Section with Enhanced Red Ambient Glow */}
+          <section className="py-16 px-4 bg-[#0c0c14] relative overflow-hidden">
+            {/* Red ambient glow behind the content */}
+            <div className="absolute inset-0 bg-[#ff0000]/5 z-0"></div>
+            <div className="absolute -inset-1/2 bg-[#ff0000]/3 blur-3xl rounded-full opacity-20 z-0"></div>
             
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="text-center max-w-4xl mx-auto mb-16">
-                <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4">
-                  <span className="text-white">Website/CRM</span>{" "}
-                  <span className="text-yellow-400 [text-shadow:0_0_5px_#fbbf24]">Hybrid Platforms</span>
-                </h2>
-                <p className="text-gray-300 text-lg">
-                  Explore sample styles of our integrated website and CRM solutions built for different industries
-                </p>
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                The <span className="text-white">CRM & Lead Management Crisis</span> Bleeding Revenue
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <AlertTriangle className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">Invisible Visitor Problem</h3>
+                    </div>
+                    <ul className="space-y-4">
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">95% Anonymous Traffic:</span> Most website visitors leave without identifying themselves - you're losing qualified leads who showed genuine interest.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Zero Behavior Tracking:</span> Without visitor intelligence, you can't nurture prospects based on their interests and engagement level.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Missed Follow-up Opportunities:</span> Hot prospects slip through cracks because you don't know they were researching your solutions.
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <Database className="h-6 w-6 text-red-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-red-100">Fragmented CRM Chaos</h3>
+                    </div>
+                    <ul className="space-y-4">
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Multiple System Juggling:</span> Separate tools for email, phone, website tracking, and customer data creates gaps where leads disappear.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">Manual Process Bottlenecks:</span> Sales team wastes hours on data entry and lead qualification instead of closing deals.
+                        </p>
+                      </li>
+                      <li className="flex gap-3 items-start">
+                        <div className="mt-1">
+                          <XCircle className="h-5 w-5 text-red-400" />
+                        </div>
+                        <p className="text-white">
+                          <span className="font-semibold text-red-100">No Lead Scoring Intelligence:</span> Without automated lead qualification, sales team chases cold prospects while hot leads go cold.
+                        </p>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <h3 className="text-2xl font-semibold mb-6 text-white">Brand Authority & Client Retention Issues</h3>
+                    <ul className="space-y-4">
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Generic Third-Party Systems</p>
+                          <p className="text-gray-300 text-sm">Using HubSpot, Salesforce, or other branded platforms makes clients see you as a middleman, not the technology leader.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Revenue Leakage</p>
+                          <p className="text-gray-300 text-sm">Clients eventually buy direct from CRM providers, cutting you out of recurring revenue streams and ongoing relationships.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Limited Customization Control</p>
+                          <p className="text-gray-300 text-sm">Can't fully customize workflows, branding, or features to match client needs, leading to compromised solutions.</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <XCircle className="h-6 w-6 text-red-400 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-white font-medium mb-1">Pricing Pressure</p>
+                          <p className="text-gray-300 text-sm">Without proprietary technology, you compete on price instead of value, eroding margins and client relationships.</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* CRM Statistics - Vertical Box */}
+                <Card className="bg-[#121218]/90 border border-red-900/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-900/20 to-red-800/10 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <h3 className="text-xl font-bold text-center mb-6 text-white">The CRM Reality Crisis</h3>
+                    <div className="space-y-4">
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">95%</div>
+                        <div className="text-xs text-white">Website visitors remain anonymous</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">68%</div>
+                        <div className="text-xs text-white">Leads lost due to poor follow-up timing</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">$15,000</div>
+                        <div className="text-xs text-white">Annual cost per sales rep for CRM tools</div>
+                      </div>
+                      <div className="bg-[#121218]/60 border border-red-500/20 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold text-red-400 mb-1">47%</div>
+                        <div className="text-xs text-white">Sales time wasted on manual data entry</div>
+                      </div>
+                    </div>
+                    <div className="text-center mt-6 pt-4 border-t border-red-500/20">
+                      <p className="text-red-100 font-medium text-sm italic">
+                        "Without visitor tracking and automated nurturing, businesses lose 95% of potential leads."
+                      </p>
+                      <cite className="text-red-400 text-xs">— Marketing Technology Institute, 2024</cite>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+          
+          {/* Yellow Product Info Section with Yellow Ambient Glow */}
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-900 via-amber-950/30 to-slate-950 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-900/20 via-yellow-800/10 to-amber-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-amber-500/8 via-transparent to-orange-500/8 z-0"></div>
+            <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                Our <span className="text-[#ffa500] [text-shadow:0_0_5px_#ffa500]">Enterprise CRM Platform</span>
+              </h2>
+              <p className="text-xl text-center text-white mb-12 max-w-4xl mx-auto">
+                Turn your website into a lead generation machine with our white-label CRM that captures every visitor, tracks behavior, and automates conversion—all under your brand.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {/* Visitor Intelligence & Capture */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Users className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Visitor Intelligence Engine</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Automatic visitor identification and behavior tracking</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Real-time lead scoring based on engagement and interest level</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Digital footprint analysis and contact enrichment</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Automated lead qualification and routing</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Automated Workflow Engine */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Target className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Sales Automation</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Go High Level funnel implementation and optimization</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Custom lead generation pipelines with automated nurturing</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Intelligent follow-up sequences and timing optimization</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Sales team efficiency optimization and performance tracking</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* White-Label Customization */}
+                <Card className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#ffa500]/20 to-[#ffa500]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Globe className="h-6 w-6 text-[#ffa500]" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Complete Branding Control</h3>
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Your brand, domain, and visual identity throughout</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Mobile-first design with native app capabilities</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Enterprise security with SSO and role-based permissions</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
+                        <span>Revenue sharing program for recurring client income</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* CRM Platform Features Framework */}
+              <div className="bg-gradient-to-br from-[#ffa500]/10 to-[#ff8c00]/5 border border-[#ffa500]/30 rounded-xl p-8 mb-12">
+                <h3 className="text-2xl font-bold text-center mb-6 text-[#ffa500]">Spider Web Visitor Capture Technology</h3>
+                <div className="text-center mb-8">
+                  <p className="text-lg text-white mb-6">
+                    Like a spider web captures everything that touches it, our CRM captures every visitor interaction, building a complete picture of potential customers before they make contact.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-[#ffa500]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span className="text-3xl">🕸️</span>
+                    </div>
+                    <h4 className="font-semibold mb-3 text-[#ffa500]">Capture Every Visitor</h4>
+                    <p className="text-gray-300 text-sm">Every visitor leaves digital footprints - pages viewed, time spent, interests shown, and engagement patterns all tracked intelligently.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-[#ffa500]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span className="text-3xl">🎯</span>
+                    </div>
+                    <h4 className="font-semibold mb-3 text-[#ffa500]">AI Intent Analysis</h4>
+                    <p className="text-gray-300 text-sm">Advanced AI identifies purchase intent, interest level, and optimal timing for contact based on behavioral signals and engagement data.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-[#ffa500]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span className="text-3xl">💰</span>
+                    </div>
+                    <h4 className="font-semibold mb-3 text-[#ffa500]">Automated Conversion</h4>
+                    <p className="text-gray-300 text-sm">Intelligent workflows nurture leads from anonymous visitor to qualified prospect to closed sale with minimal manual intervention.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* LIVE WHITE-LABEL CRM PLATFORM DEMO */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold text-center mb-8 text-[#ffa500]">🎯 Experience Your White-Label CRM Platform</h3>
+                <CRMSection />
+              </div>
+
+              {/* Platform Performance Stats */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-[#ffa500]">Why Our CRM Platform Dominates</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">300%</div>
+                    <div className="text-sm text-white">Higher conversion vs traditional CRM</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">99.9%</div>
+                    <div className="text-sm text-white">System uptime with enterprise reliability</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">500+</div>
+                    <div className="text-sm text-white">Integrations and automation capabilities</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">24/7</div>
+                    <div className="text-sm text-white">Support with dedicated success management</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* Green Solution Section with Green Ambient Glow */}
+          <section id="solutions" className="py-16 px-4 bg-gradient-to-br from-slate-950 via-emerald-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/20 via-green-800/10 to-teal-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-500/8 via-transparent to-teal-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <h2 className="text-3xl font-bold mb-8 text-center">
+                <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">The Solution:</span> Your Branded CRM Empire
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-6">
+                      <Shield className="h-8 w-8 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">Complete White-Label Solution</h3>
+                    <div className="space-y-3 text-gray-300">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Your brand, domain, and visual identity throughout entire platform</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Zero development time - launch in under 24 hours with full customization</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Recurring revenue sharing program with generous partner terms</span>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: 3x higher client retention with branded solution</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-6">
+                      <Database className="h-8 w-8 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">Intelligent Lead Capture System</h3>
+                    <div className="space-y-3 text-gray-300">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Automatic visitor identification and behavioral analysis</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Real-time lead scoring with AI-powered qualification</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Automated nurturing workflows with perfect timing optimization</span>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: 300% increase in lead conversion rates</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-[#121218]/90 border border-[#14ffc8]/30 rounded-lg overflow-hidden relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#14ffc8]/20 to-[#14ffc8]/5 blur-md z-0"></div>
+                  <CardContent className="p-8 relative z-10">
+                    <div className="h-16 w-16 bg-[#14ffc8]/10 rounded-full flex items-center justify-center mb-6">
+                      <Building2 className="h-8 w-8 text-[#14ffc8]" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">Enterprise-Grade Infrastructure</h3>
+                    <div className="space-y-3 text-gray-300">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Bank-level security with SSO and role-based permissions</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Mobile-first responsive design with native app capabilities</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-[#14ffc8] mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">99.9% uptime guarantee with 24/7 dedicated support</span>
+                      </div>
+                      <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: Enterprise-level reliability at SMB pricing</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Performance Metrics Section */}
+              <div className="bg-gradient-to-r from-[#14ffc8]/10 to-emerald-500/10 border border-[#14ffc8]/30 rounded-xl p-8 mb-12">
+                <h3 className="text-3xl font-bold text-center mb-8">
+                  <span className="text-[#14ffc8] [text-shadow:0_0_5px_#14ffc8]">Proven White-Label Results</span>
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center mb-8">
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">300%</div>
+                    <div className="text-white font-medium">Conversion Increase</div>
+                    <div className="text-gray-400 text-sm mt-1">vs traditional CRMs</div>
+                  </div>
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">&lt;24h</div>
+                    <div className="text-white font-medium">Launch Time</div>
+                    <div className="text-gray-400 text-sm mt-1">full white-label setup</div>
+                  </div>
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">10K+</div>
+                    <div className="text-white font-medium">Active Users</div>
+                    <div className="text-gray-400 text-sm mt-1">across partner platforms</div>
+                  </div>
+                  <div className="bg-[#121218]/60 border border-[#14ffc8]/20 rounded-lg p-6">
+                    <div className="text-4xl font-bold text-[#14ffc8] mb-2">500+</div>
+                    <div className="text-white font-medium">Integrations</div>
+                    <div className="text-gray-400 text-sm mt-1">seamless connectivity</div>
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <blockquote className="text-xl italic text-gray-300 mb-4">
+                    "The white-label CRM completely transformed our business model. Clients see us as the technology leader, not a reseller. Our recurring revenue has tripled, and client retention is at 95%. It's like having our own software company."
+                  </blockquote>
+                  <cite className="text-[#14ffc8] font-semibold">— Michael Chen, CEO, Digital Solutions Partners</cite>
+                </div>
               </div>
               
-              {/* Website Examples Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-xl p-6 border border-yellow-500/30 hover:border-yellow-400 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
-                    <span className="text-2xl">☀️</span>
+              {/* Implementation Process */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <div>
+                  <h3 className="text-2xl font-bold mb-6 text-[#14ffc8]">Your 24-Hour Platform Launch</h3>
+                  <div className="space-y-4">
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 bg-[#14ffc8]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-[#14ffc8] font-bold">1</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Brand Integration (Hours 1-8)</h4>
+                        <p className="text-gray-300 text-sm">Complete branding, domain setup, and visual identity integration</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 bg-[#14ffc8]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-[#14ffc8] font-bold">2</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">System Configuration (Hours 9-16)</h4>
+                        <p className="text-gray-300 text-sm">Workflow setup, lead capture configuration, and automation deployment</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 bg-[#14ffc8]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-[#14ffc8] font-bold">3</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Go-Live & Training (Hours 17-24)</h4>
+                        <p className="text-gray-300 text-sm">Platform deployment, team training, and success management onboarding</p>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-yellow-400">Solar Shield USA</h3>
-                  <p className="text-gray-300 mb-4">Solar energy and home improvement services with integrated lead management</p>
-                  <Link href="#" className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
-                    View Website
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Link>
                 </div>
-
-                <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-xl p-6 border border-yellow-500/30 hover:border-yellow-400 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
-                    <span className="text-2xl">🚗</span>
+                
+                <div>
+                  <h3 className="text-2xl font-bold mb-6 text-[#14ffc8]">What Makes Our Platform Different</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <Smartphone className="h-6 w-6 text-[#14ffc8] mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Spider Web Technology</h4>
+                        <p className="text-gray-300 text-sm">Captures every website visitor interaction, building complete prospect profiles before contact</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <DollarSign className="h-6 w-6 text-[#14ffc8] mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Revenue Sharing Program</h4>
+                        <p className="text-gray-300 text-sm">Generous partner terms with recurring revenue from every client subscription</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <BarChart3 className="h-6 w-6 text-[#14ffc8] mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Proven Enterprise Results</h4>
+                        <p className="text-gray-300 text-sm">300% conversion improvement with 10K+ active users across partner platforms</p>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-yellow-400">Drive City Lube & Smog</h3>
-                  <p className="text-gray-300 mb-4">Automotive services with appointment scheduling and customer management</p>
-                  <Link href="#" className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
-                    View Website
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Link>
                 </div>
-
-                <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-xl p-6 border border-yellow-500/30 hover:border-yellow-400 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
-                    <span className="text-2xl">🏠</span>
-                  </div>
-                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-yellow-400">California RES</h3>
-                  <p className="text-gray-300 mb-4">Real estate services with property listings and client relationship tools</p>
-                  <Link href="#" className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
-                    View Website
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Link>
-                </div>
-
-                <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-xl p-6 border border-yellow-500/30 hover:border-yellow-400 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
-                    <span className="text-2xl">👤</span>
-                  </div>
-                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-yellow-400">Tyler Shoemake</h3>
-                  <p className="text-gray-300 mb-4">Personal brand and professional services with client engagement features</p>
-                  <Link href="#" className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
-                    View Website
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Link>
-                </div>
-
-                <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-xl p-6 border border-yellow-500/30 hover:border-yellow-400 transition-all duration-300 md:col-span-2 lg:col-span-1">
-                  <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
-                    <span className="text-2xl">💼</span>
-                  </div>
-                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-yellow-400">AP Redding</h3>
-                  <p className="text-gray-300 mb-4">Professional services platform with integrated business management tools</p>
-                  <Link href="#" className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
-                    View Website
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Call to Action */}
-              <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-2xl p-8 border border-yellow-500/30 max-w-3xl mx-auto text-center">
-                <h3 className="font-['Orbitron'] text-2xl font-bold mb-4 text-yellow-400">
-                  Ready to See Your Custom Solution?
-                </h3>
-                <p className="text-gray-300 text-lg mb-6">
-                  Each platform is tailored to the specific needs and industry of our clients. Let's build something unique for your business.
-                </p>
-                <Link href="/contact">
-                  <span className="px-8 py-4 bg-yellow-500 text-black rounded-lg font-semibold hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 cursor-pointer">
-                    Schedule Your Demo
-                  </span>
-                </Link>
               </div>
             </div>
           </section>
 
-          {/* CTA Section */}
-          <section className="py-16 bg-gradient-to-b from-[#1a1505] to-[#121218]">
-            <div className="container mx-auto px-4">
-              <div className="backdrop-blur-md bg-[#121218]/70 rounded-2xl p-12 border border-gray-800 max-w-4xl mx-auto text-center">
-                <h2 className="font-['Orbitron'] text-3xl font-bold mb-4">
-                  Ready to Launch Your Own CRM Platform?
+          {/* Purple Registration Section */}
+          <section id="registration" className="py-16 px-4 bg-gradient-to-br from-slate-950 via-purple-950/30 to-slate-900 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-violet-800/10 to-purple-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-500/8 via-transparent to-violet-500/8 z-0"></div>
+            <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-3xl font-bold mb-6">
+                  Ready to Launch Your <span className="text-purple-400 [text-shadow:0_0_5px_#a855f7]">White-Label CRM Empire?</span>
                 </h2>
-                <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-                  Join hundreds of agencies and consultants who are building recurring revenue streams with our white-label CRM solution.
+                <p className="text-xl text-gray-300 mb-8">
+                  Join hundreds of agencies and consultants building recurring revenue streams with our white-label CRM solution - 300% better conversion with complete brand control.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/pricing">
-                    <span className="px-8 py-4 bg-[#14ffc8] text-[#0b0b0d] rounded-lg font-semibold hover:shadow-lg hover:shadow-[#14ffc8]/25 transition-all duration-300 cursor-pointer">
-                      Start Free Trial
-                    </span>
-                  </Link>
-                  <Link href="/contact">
-                    <span className="px-8 py-4 border border-[#14ffc8] text-[#14ffc8] rounded-lg font-semibold hover:bg-[#14ffc8] hover:text-[#0b0b0d] transition-all duration-300 cursor-pointer">
-                      Schedule Demo
-                    </span>
-                  </Link>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Free Platform Demo</h3>
+                    <p className="text-sm text-gray-300">Complete branded platform walkthrough with revenue sharing details</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">24-Hour Launch</h3>
+                    <p className="text-sm text-gray-300">Full white-label setup with branding, domain, and team training</p>
+                  </div>
+                  <div className="bg-purple-500/10 p-6 rounded-lg border border-purple-500/20">
+                    <h3 className="font-semibold text-purple-400 mb-2">Success Guarantee</h3>
+                    <p className="text-sm text-gray-300">See measurable improvement in client retention and recurring revenue</p>
+                  </div>
                 </div>
+
+                <CRMForm />
               </div>
             </div>
           </section>
-
-          <CTASection />
         </main>
         <Footer />
       </div>

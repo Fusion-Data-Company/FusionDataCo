@@ -23,6 +23,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/components/AnalyticsTracker";
 import { apiRequest } from "@/lib/queryClient";
+import DemographicsPlatform from "@/components/DemographicsPlatform";
 
 function DemographicsForm() {
   const [formData, setFormData] = useState({
@@ -507,6 +508,12 @@ export default function Demographics() {
                     </ul>
                   </div>
                 </div>
+              </div>
+
+              {/* LIVE DEMOGRAPHICS PLATFORM DEMO */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold text-center mb-8 text-[#ffa500]">🎯 Try Our Demographics Intelligence Platform Live</h3>
+                <DemographicsPlatform />
               </div>
 
               {/* Platform Performance Stats */}

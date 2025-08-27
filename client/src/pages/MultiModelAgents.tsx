@@ -24,6 +24,263 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/components/AnalyticsTracker";
 import { apiRequest } from "@/lib/queryClient";
+import Slideshow from "@/components/Slideshow";
+
+const golfBagSlides = [
+  {
+    id: 1,
+    title: "Slide 1: The Mistake",
+    icon: <span className="text-4xl">❌</span>,
+    titleColor: "text-red-400",
+    bgColor: "bg-gradient-to-br from-red-900/20 to-red-800/10",
+    borderColor: "border-red-500/30",
+    subtitle: "Every golfer makes this error",
+    content: (
+      <div className="space-y-4">
+        <p className="text-white">Like a weekend golfer grabbing their driver for every shot, most businesses use one AI model for every task - GPT-4 for everything.</p>
+        <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+          <h4 className="font-bold text-red-300 mb-2">The Single-Model Trap</h4>
+          <ul className="text-sm text-gray-300 space-y-1">
+            <li>• Using GPT-4o for simple data cleanup: $50 per task</li>
+            <li>• Using Claude Haiku for complex analysis: Poor results</li>
+            <li>• No optimization, no strategy, just "hit and hope"</li>
+          </ul>
+        </div>
+        <p className="text-gray-300 text-sm italic">Result: 300% higher costs, 60% worse performance</p>
+      </div>
+    ),
+  },
+  {
+    id: 2,
+    title: "Slide 2: The Golf Bag",
+    icon: <span className="text-4xl">🏌️</span>,
+    titleColor: "text-blue-400",
+    bgColor: "bg-gradient-to-br from-blue-900/20 to-blue-800/10",
+    borderColor: "border-blue-500/30",
+    subtitle: "Pro golfers carry 14 clubs for different shots",
+    content: (
+      <div className="space-y-4">
+        <p className="text-white">Professional golfers don't use one club - they carry a strategic selection of 14 different clubs, each optimized for specific situations.</p>
+        <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+          <h4 className="font-bold text-blue-300 mb-2">The Professional's Arsenal</h4>
+          <div className="grid grid-cols-2 gap-3 text-sm text-gray-300">
+            <div>
+              <strong>Driver:</strong> Long distance shots<br/>
+              <strong>Irons:</strong> Precision approach<br/>
+              <strong>Wedges:</strong> Short game finesse
+            </div>
+            <div>
+              <strong>Putter:</strong> Finishing the hole<br/>
+              <strong>Hybrid:</strong> Versatile situations<br/>
+              <strong>Sand Wedge:</strong> Trouble recovery
+            </div>
+          </div>
+        </div>
+        <p className="text-gray-300 text-sm italic">AI Strategy: Have the right model for every business task</p>
+      </div>
+    ),
+  },
+  {
+    id: 3,
+    title: "Slide 3: Analyzing the Lie",
+    icon: <span className="text-4xl">🔍</span>,
+    titleColor: "text-yellow-400",
+    bgColor: "bg-gradient-to-br from-yellow-900/20 to-yellow-800/10",
+    borderColor: "border-yellow-500/30",
+    subtitle: "Data quality determines model choice",
+    content: (
+      <div className="space-y-4">
+        <p className="text-white">Before selecting a club, pros analyze their "lie" - is the ball on perfect grass, in the rough, or in a bunker?</p>
+        <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4">
+          <h4 className="font-bold text-yellow-300 mb-2">Data Quality Assessment</h4>
+          <div className="text-sm text-gray-300 space-y-2">
+            <div><strong>Clean Data (Fairway):</strong> Use efficient models like Llama or Gemini</div>
+            <div><strong>Messy Data (Rough):</strong> Need GPT-4o's advanced reasoning</div>
+            <div><strong>Corrupted Data (Bunker):</strong> Claude's structured approach</div>
+          </div>
+        </div>
+        <p className="text-gray-300 text-sm italic">Match your model choice to your data conditions</p>
+      </div>
+    ),
+  },
+  {
+    id: 4,
+    title: "Slide 4: Measuring Distance",
+    icon: <span className="text-4xl">📏</span>,
+    titleColor: "text-green-400",
+    bgColor: "bg-gradient-to-br from-green-900/20 to-green-800/10",
+    borderColor: "border-green-500/30",
+    subtitle: "Context length determines model selection",
+    content: (
+      <div className="space-y-4">
+        <p className="text-white">Golf pros use rangefinders to measure exact distances. In AI, we measure "context length" - how much information the model needs to process.</p>
+        <div className="bg-green-900/20 border border-green-500/30 rounded-lg p-4">
+          <h4 className="font-bold text-green-300 mb-2">Context Length Strategy</h4>
+          <div className="text-sm text-gray-300 space-y-2">
+            <div><strong>Short Tasks (Putter):</strong> Grok, Haiku - quick & cheap</div>
+            <div><strong>Medium Tasks (Iron):</strong> Claude Sonnet - balanced performance</div>
+            <div><strong>Long Tasks (Driver):</strong> GPT-4 Turbo - maximum context</div>
+          </div>
+        </div>
+        <p className="text-gray-300 text-sm italic">200-word email vs 50-page document analysis</p>
+      </div>
+    ),
+  },
+  {
+    id: 5,
+    title: "Slide 5: Reading the Wind",
+    icon: <span className="text-4xl">💨</span>,
+    titleColor: "text-purple-400",
+    bgColor: "bg-gradient-to-br from-purple-900/20 to-purple-800/10",
+    borderColor: "border-purple-500/30",
+    subtitle: "Latency requirements guide model choice",
+    content: (
+      <div className="space-y-4">
+        <p className="text-white">Wind affects every golf shot. In AI, "latency" is your wind - how fast do you need results?</p>
+        <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
+          <h4 className="font-bold text-purple-300 mb-2">Speed vs Quality Trade-offs</h4>
+          <div className="text-sm text-gray-300 space-y-2">
+            <div><strong>Real-time (Strong Wind):</strong> Groq, Grok - sub-second responses</div>
+            <div><strong>Batch Processing (Calm):</strong> GPT-4 - optimize for quality</div>
+            <div><strong>Interactive (Light Breeze):</strong> Claude - balanced speed</div>
+          </div>
+        </div>
+        <p className="text-gray-300 text-sm italic">Customer chat vs overnight report generation</p>
+      </div>
+    ),
+  },
+  {
+    id: 6,
+    title: "Slide 6: Angle of Attack",
+    icon: <span className="text-4xl">📐</span>,
+    titleColor: "text-orange-400",
+    bgColor: "bg-gradient-to-br from-orange-900/20 to-orange-800/10",
+    borderColor: "border-orange-500/30",
+    subtitle: "Determinism needs shape your approach",
+    content: (
+      <div className="space-y-4">
+        <p className="text-white">Golf shots need the right angle - steep for sand traps, shallow for chip shots. In AI, this is "determinism" - how consistent do results need to be?</p>
+        <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+          <h4 className="font-bold text-orange-300 mb-2">Consistency Requirements</h4>
+          <div className="text-sm text-gray-300 space-y-2">
+            <div><strong>High Determinism:</strong> Claude for compliance, legal docs</div>
+            <div><strong>Creative Tasks:</strong> GPT-4 for brainstorming, content</div>
+            <div><strong>Structured Output:</strong> GPT-4 with JSON mode</div>
+          </div>
+        </div>
+        <p className="text-gray-300 text-sm italic">Financial reports vs marketing copy</p>
+      </div>
+    ),
+  },
+  {
+    id: 7,
+    title: "Slide 7: Club Fitting",
+    icon: <span className="text-4xl">⚙️</span>,
+    titleColor: "text-teal-400",
+    bgColor: "bg-gradient-to-br from-teal-900/20 to-teal-800/10",
+    borderColor: "border-teal-500/30",
+    subtitle: "OpenRouter optimizes model selection",
+    content: (
+      <div className="space-y-4">
+        <p className="text-white">Pro golfers get custom-fitted clubs. OpenRouter is your AI club fitter - automatically selecting the optimal model for each task.</p>
+        <div className="bg-teal-900/20 border border-teal-500/30 rounded-lg p-4">
+          <h4 className="font-bold text-teal-300 mb-2">Automatic Optimization</h4>
+          <div className="text-sm text-gray-300 space-y-2">
+            <div>• 100+ models available instantly</div>
+            <div>• Automatic failover if models are down</div>
+            <div>• Cost optimization based on task complexity</div>
+            <div>• Performance monitoring and adjustment</div>
+          </div>
+        </div>
+        <p className="text-gray-300 text-sm italic">No manual model switching - it's all automated</p>
+      </div>
+    ),
+  },
+  {
+    id: 8,
+    title: "Slide 8: Keeping Score",
+    icon: <span className="text-4xl">📊</span>,
+    titleColor: "text-cyan-400",
+    bgColor: "bg-gradient-to-br from-cyan-900/20 to-cyan-800/10",
+    borderColor: "border-cyan-500/30",
+    subtitle: "Metrics drive continuous improvement",
+    content: (
+      <div className="space-y-4">
+        <p className="text-white">Every golf round is scored. Every AI task should be measured against business outcomes.</p>
+        <div className="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-4">
+          <h4 className="font-bold text-cyan-300 mb-2">AI Performance Scorecard</h4>
+          <div className="text-sm text-gray-300 space-y-2">
+            <div><strong>Speed:</strong> Response time per task type</div>
+            <div><strong>Quality:</strong> Accuracy vs business requirements</div>
+            <div><strong>Cost:</strong> $ per successful outcome</div>
+            <div><strong>Reliability:</strong> Success rate & uptime</div>
+          </div>
+        </div>
+        <p className="text-gray-300 text-sm italic">Track what matters to your business goals</p>
+      </div>
+    ),
+  },
+  {
+    id: 9,
+    title: "Slide 9: Avoiding Hazards",
+    icon: <span className="text-4xl">⚠️</span>,
+    titleColor: "text-red-400",
+    bgColor: "bg-gradient-to-br from-red-900/20 to-red-800/10",
+    borderColor: "border-red-500/30",
+    subtitle: "Risk management and guardrails",
+    content: (
+      <div className="space-y-4">
+        <p className="text-white">Smart golfers play around water hazards and sand traps. Smart businesses build guardrails around AI risks.</p>
+        <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+          <h4 className="font-bold text-red-300 mb-2">AI Risk Mitigation</h4>
+          <div className="text-sm text-gray-300 space-y-2">
+            <div><strong>Hallucination Detection:</strong> Cross-validate critical outputs</div>
+            <div><strong>Data Privacy:</strong> Never send sensitive data to wrong models</div>
+            <div><strong>Cost Controls:</strong> Automatic spending limits and alerts</div>
+            <div><strong>Backup Models:</strong> Failover when primary models fail</div>
+          </div>
+        </div>
+        <p className="text-gray-300 text-sm italic">Prevention is better than costly mistakes</p>
+      </div>
+    ),
+  },
+  {
+    id: 10,
+    title: "Slide 10: Winning the Game",
+    icon: <span className="text-4xl">🏆</span>,
+    titleColor: "text-gold-400 text-yellow-400",
+    bgColor: "bg-gradient-to-br from-yellow-900/20 to-gold-800/10",
+    borderColor: "border-yellow-500/30",
+    subtitle: "Multi-model success results",
+    content: (
+      <div className="space-y-4">
+        <p className="text-white">The golf bag approach doesn't just lower your score - it wins tournaments. Multi-model AI doesn't just cut costs - it transforms businesses.</p>
+        <div className="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4">
+          <h4 className="font-bold text-yellow-300 mb-2">Proven Results</h4>
+          <div className="grid grid-cols-2 gap-4 text-sm text-gray-300">
+            <div>
+              <strong>60% Cost Reduction</strong><br/>
+              Smart model selection
+            </div>
+            <div>
+              <strong>3x Better Accuracy</strong><br/>
+              Right tool, right task
+            </div>
+            <div>
+              <strong>99.9% Uptime</strong><br/>
+              Automatic failover
+            </div>
+            <div>
+              <strong>5min Setup</strong><br/>
+              OpenRouter integration
+            </div>
+          </div>
+        </div>
+        <p className="text-gray-300 text-sm italic">From amateur hour to professional performance</p>
+      </div>
+    ),
+  },
+];
 
 function MultiModelAgentsForm() {
   const [formData, setFormData] = useState({
@@ -516,6 +773,12 @@ export default function MultiModelAgents() {
                     </ul>
                   </div>
                 </div>
+              </div>
+
+              {/* LIVE GOLF BAG METHODOLOGY SLIDESHOW */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold text-center mb-8 text-[#ffa500]">🎯 The 10-Slide Golf Bag Framework Interactive Demo</h3>
+                <Slideshow slides={golfBagSlides} />
               </div>
 
               {/* Performance Statistics */}

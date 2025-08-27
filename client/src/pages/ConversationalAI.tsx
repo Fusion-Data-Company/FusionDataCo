@@ -23,6 +23,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/components/AnalyticsTracker";
 import { apiRequest } from "@/lib/queryClient";
+import ElevenLabsWidget from "@/components/ElevenLabsWidget";
 
 function ConversationalAIForm() {
   const [formData, setFormData] = useState({
@@ -506,6 +507,16 @@ export default function ConversationalAI() {
                       </li>
                     </ul>
                   </div>
+                </div>
+              </div>
+
+              {/* LIVE AI AGENTS DEMO */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold text-center mb-8 text-[#ffa500]">🎯 Talk to Our Live AI Agents Now</h3>
+                <div className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg p-8 text-center">
+                  <p className="text-white mb-6">Experience our conversational AI agents directly - they're trained on real estate, insurance, and business scenarios:</p>
+                  <ElevenLabsWidget />
+                  <p className="text-gray-400 text-sm mt-4">This agent responds to voice and text - ask about real estate leads, insurance quotes, or business automation</p>
                 </div>
               </div>
 
