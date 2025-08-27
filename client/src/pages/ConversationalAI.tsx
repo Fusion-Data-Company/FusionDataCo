@@ -510,85 +510,13 @@ export default function ConversationalAI() {
                 </div>
               </div>
 
-              {/* 6-AGENT INTERACTIVE PANEL */}
+              {/* LIVE AI AGENTS DEMO */}
               <div className="mb-12">
-                <h3 className="text-2xl font-bold text-center mb-8 text-[#ffa500]">🎯 Talk to Our Specialized AI Agents</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {/* Real Estate Agent */}
-                  <div className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg p-6 text-center hover:border-[#ffa500]/50 transition-all duration-300">
-                    <div className="text-4xl mb-3">🏠</div>
-                    <h4 className="text-[#ffa500] font-semibold mb-2">Real Estate Agent</h4>
-                    <p className="text-gray-300 text-sm mb-4">Specializes in property valuations, market analysis, and buyer/seller qualification</p>
-                    <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer">
-                      <button className="bg-[#ffa500] hover:bg-[#ffa500]/90 text-black px-4 py-2 rounded-lg font-medium transition-all duration-300">
-                        🗣️ Start Conversation
-                      </button>
-                    </a>
-                  </div>
-
-                  {/* Insurance Agent */}
-                  <div className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg p-6 text-center hover:border-[#ffa500]/50 transition-all duration-300">
-                    <div className="text-4xl mb-3">🛡️</div>
-                    <h4 className="text-[#ffa500] font-semibold mb-2">Insurance Specialist</h4>
-                    <p className="text-gray-300 text-sm mb-4">Expert in auto, home, life, and business insurance quotes and policy comparisons</p>
-                    <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer">
-                      <button className="bg-[#ffa500] hover:bg-[#ffa500]/90 text-black px-4 py-2 rounded-lg font-medium transition-all duration-300">
-                        🗣️ Start Conversation
-                      </button>
-                    </a>
-                  </div>
-
-                  {/* Business Consultant */}
-                  <div className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg p-6 text-center hover:border-[#ffa500]/50 transition-all duration-300">
-                    <div className="text-4xl mb-3">💼</div>
-                    <h4 className="text-[#ffa500] font-semibold mb-2">Business Consultant</h4>
-                    <p className="text-gray-300 text-sm mb-4">Helps with marketing strategies, lead generation, and business automation solutions</p>
-                    <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer">
-                      <button className="bg-[#ffa500] hover:bg-[#ffa500]/90 text-black px-4 py-2 rounded-lg font-medium transition-all duration-300">
-                        🗣️ Start Conversation
-                      </button>
-                    </a>
-                  </div>
-
-                  {/* Mortgage Advisor */}
-                  <div className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg p-6 text-center hover:border-[#ffa500]/50 transition-all duration-300">
-                    <div className="text-4xl mb-3">🏦</div>
-                    <h4 className="text-[#ffa500] font-semibold mb-2">Mortgage Advisor</h4>
-                    <p className="text-gray-300 text-sm mb-4">Provides loan pre-qualification, rate comparisons, and refinancing options</p>
-                    <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer">
-                      <button className="bg-[#ffa500] hover:bg-[#ffa500]/90 text-black px-4 py-2 rounded-lg font-medium transition-all duration-300">
-                        🗣️ Start Conversation
-                      </button>
-                    </a>
-                  </div>
-
-                  {/* Healthcare Scheduler */}
-                  <div className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg p-6 text-center hover:border-[#ffa500]/50 transition-all duration-300">
-                    <div className="text-4xl mb-3">🏥</div>
-                    <h4 className="text-[#ffa500] font-semibold mb-2">Healthcare Scheduler</h4>
-                    <p className="text-gray-300 text-sm mb-4">Handles appointment booking, insurance verification, and patient pre-screening</p>
-                    <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer">
-                      <button className="bg-[#ffa500] hover:bg-[#ffa500]/90 text-black px-4 py-2 rounded-lg font-medium transition-all duration-300">
-                        🗣️ Start Conversation
-                      </button>
-                    </a>
-                  </div>
-
-                  {/* Sales Development */}
-                  <div className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg p-6 text-center hover:border-[#ffa500]/50 transition-all duration-300">
-                    <div className="text-4xl mb-3">📈</div>
-                    <h4 className="text-[#ffa500] font-semibold mb-2">Sales Development</h4>
-                    <p className="text-gray-300 text-sm mb-4">Qualifies leads, books demos, and handles initial sales conversations professionally</p>
-                    <a href="https://elevenlabs.com/conversational-ai/agents/6701k3kk65vsetbtrmhe3ek7sgdt" target="_blank" rel="noopener noreferrer">
-                      <button className="bg-[#ffa500] hover:bg-[#ffa500]/90 text-black px-4 py-2 rounded-lg font-medium transition-all duration-300">
-                        🗣️ Start Conversation
-                      </button>
-                    </a>
-                  </div>
-                </div>
-
-                <div className="text-center mt-8">
-                  <p className="text-gray-400 text-sm">All agents support voice and text conversations in 40+ languages</p>
+                <h3 className="text-2xl font-bold text-center mb-8 text-[#ffa500]">🎯 Experience Our AI Agents Live</h3>
+                <div className="bg-[#121218]/90 border border-[#ffa500]/30 rounded-lg p-8 text-center">
+                  <p className="text-white mb-6">Talk directly with our conversational AI agents - trained on real estate, insurance, healthcare, and business scenarios:</p>
+                  <ElevenLabsWidget />
+                  <p className="text-gray-400 text-sm mt-4">This agent supports voice and text conversations in 40+ languages</p>
                   <div className="bg-[#ffa500]/10 border border-[#ffa500]/20 rounded-lg p-4 mt-4 max-w-2xl mx-auto">
                     <p className="text-[#ffa500] font-semibold">Try asking: "What's my home worth?" or "I need business insurance quotes"</p>
                   </div>
