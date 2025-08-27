@@ -22,6 +22,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/components/AnalyticsTracker";
 import { apiRequest } from "@/lib/queryClient";
+import DemographicsPlatform from "@/components/DemographicsPlatform";
 
 function LeadGenForm() {
   const [formData, setFormData] = useState({
@@ -802,6 +803,35 @@ export default function LeadMagnet() {
                         </button>
                       </a>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* LIVE DEMOGRAPHICS PLATFORM DEMO */}
+              <div className="mb-12">
+                <h3 className="text-2xl font-bold text-center mb-8 text-[#ffa500]">🎯 Try Our Demographics Intelligence Platform Live</h3>
+                <DemographicsPlatform />
+              </div>
+
+              {/* Platform Performance Stats */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-[#ffa500]">Why Our Demographics Platform Dominates</h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">95%</div>
+                    <div className="text-sm text-white">Time reduction on market analysis tasks</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">Real-time</div>
+                    <div className="text-sm text-white">Data updates and demographic insights</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">100%</div>
+                    <div className="text-sm text-white">White-label customization available</div>
+                  </div>
+                  <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
+                    <div className="text-3xl font-bold text-[#ffa500] mb-2">24/7</div>
+                    <div className="text-sm text-white">Automated analysis and monitoring</div>
                   </div>
                 </div>
               </div>
