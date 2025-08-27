@@ -17,6 +17,7 @@ import Demographics from "@/pages/Demographics";
 import Blog from "@/pages/Blog";
 import BlogAdmin from "@/pages/BlogAdmin";
 import GolfBagBlogPost from "@/pages/GolfBagBlogPost";
+import BlogPost from "@/pages/BlogPost";
 import SmallBusinessOwners from "@/pages/SmallBusinessOwners";
 import RealEstate from "@/pages/RealEstate";
 import Medical from "@/pages/Medical";
@@ -68,6 +69,7 @@ function Router() {
       <Route path="/blog" component={Blog} />
       <Route path="/blog/admin" component={BlogAdmin} />
       <Route path="/blog/golf-bag-approach-multi-model-ai" component={GolfBagBlogPost} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/admin/automation" component={() => <Suspense fallback={<div>Loading...</div>}><AutomationDashboard /></Suspense>} />
       <Route path="/small-business-upgrade" component={SmallBusinessUpgrade} />
       <Route path="/small-business-owners" component={SmallBusinessOwners} />
