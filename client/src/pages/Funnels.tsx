@@ -187,14 +187,6 @@ export default function Funnels() {
                 <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
                   Stop losing qualified prospects in your sales process. Our proven systematic methodology creates color-coded, conversion-optimized funnel systems that drive consistent revenue growth.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="#solutions" className="bg-[#0080ff] hover:bg-[#0066cc] text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 [box-shadow:0_0_20px_#0080ff40]">
-                    See Our Funnels
-                  </a>
-                  <a href="#registration" className="border border-[#0080ff] text-[#0080ff] hover:bg-[#0080ff] hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300">
-                    Start Free Analysis
-                  </a>
-                </div>
               </div>
             </div>
           </section>
