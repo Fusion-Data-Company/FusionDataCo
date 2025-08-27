@@ -16,32 +16,24 @@ export default function BlogPost() {
   
   useEffect(() => {
     if (slug) {
-      console.log('BlogPost: Looking for slug:', slug);
-      
       // Check static blog posts first
       const staticPost = getBlogPostBySlug(slug);
-      console.log('BlogPost: Static post found:', !!staticPost);
-      
       if (staticPost) {
-        console.log('BlogPost: Using static post:', staticPost.title);
         setPost(staticPost);
         setLoading(false);
         return;
       }
       
       // If not found in static posts, try to fetch from database
-      console.log('BlogPost: Fetching from API:', `/api/blog/post/${slug}`);
       fetch(`/api/blog/post/${slug}`)
         .then(res => res.json())
         .then(data => {
-          console.log('BlogPost: API response:', data);
           if (data && !data.error) {
             setPost(data);
           }
           setLoading(false);
         })
-        .catch(error => {
-          console.log('BlogPost: API error:', error);
+        .catch(() => {
           setLoading(false);
         });
     }
@@ -179,12 +171,26 @@ export default function BlogPost() {
           {/* Article Content */}
           <section className="py-12 px-4">
             <div className="container mx-auto max-w-4xl">
-              <article className="prose prose-lg prose-invert max-w-none">
+              <article className="prose prose-xl prose-invert max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground prose-li:text-muted-foreground prose-code:text-primary prose-blockquote:border-primary prose-blockquote:text-foreground">
                 {post.content ? (
-                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                  <div 
+                    className="formatted-content space-y-6 text-lg leading-relaxed"
+                    dangerouslySetInnerHTML={{ 
+                      __html: post.content
+                        .replace(/\n\n/g, '</p><p class="mt-6">')
+                        .replace(/^/, '<p>')
+                        .replace(/$/, '</p>')
+                        .replace(/## (.*)/g, '<h2 class="text-2xl font-bold mt-8 mb-4 text-foreground">$1</h2>')
+                        .replace(/### (.*)/g, '<h3 class="text-xl font-semibold mt-6 mb-3 text-foreground">$1</h3>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>')
+                        .replace(/- (.*)/g, '<li class="ml-4 mb-2">• $1</li>')
+                    }} 
+                  />
                 ) : (
-                  <div className="text-lg leading-relaxed whitespace-pre-wrap">
-                    {post.excerpt}
+                  <div className="text-xl leading-relaxed space-y-6 text-muted-foreground">
+                    {post.excerpt.split('\n\n').map((paragraph: string, index: number) => (
+                      <p key={index} className="mb-6">{paragraph}</p>
+                    ))}
                   </div>
                 )}
               </article>
