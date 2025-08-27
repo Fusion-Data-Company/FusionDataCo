@@ -175,7 +175,7 @@ async function getConversationHistory(params: {
   }
 }
 
-// ElevenLabs MCP Server - Simplified for direct tool usage
+// ElevenLabs MCP Server - Proper JSON-RPC 2.0 implementation
 export async function handleStreamableMCP(req: Request, res: Response) {
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 'no-cache');
@@ -189,165 +189,236 @@ export async function handleStreamableMCP(req: Request, res: Response) {
   }
 
   try {
-    if (req.method === 'GET') {
-      // Return available tools
-      const tools = [
-        {
-          name: "lookup_contact",
-          description: "Look up an existing contact by name to retrieve conversation history and notes",
-          parameters: {
-            type: "object",
-            properties: {
-              name: {
-                type: "string",
-                description: "The name of the contact to look up"
-              }
-            },
-            required: ["name"]
-          }
-        },
-        {
-          name: "create_contact", 
-          description: "Create a new contact record for a prospective client",
-          parameters: {
-            type: "object",
-            properties: {
-              name: {
-                type: "string",
-                description: "Full name of the contact"
-              },
-              email: {
-                type: "string",
-                description: "Email address if provided"
-              },
-              phone: {
-                type: "string", 
-                description: "Phone number if available"
-              },
-              company: {
-                type: "string",
-                description: "Company name if mentioned"
-              },
-              position: {
-                type: "string",
-                description: "Job title or position if mentioned"
-              },
-              source: {
-                type: "string",
-                description: "How they heard about us"
-              },
-              notes: {
-                type: "string",
-                description: "Initial notes from the conversation"
-              }
-            },
-            required: ["name"]
-          }
-        },
-        {
-          name: "save_conversation",
-          description: "Save conversation summary and notes for a contact",
-          parameters: {
-            type: "object",
-            properties: {
-              sessionId: {
-                type: "string",
-                description: "ElevenLabs session identifier"
-              },
-              contactId: {
-                type: "number",
-                description: "ID of the contact (from lookup_contact or create_contact)"
-              },
-              callerName: {
-                type: "string",
-                description: "Name the caller provided"
-              },
-              phoneNumber: {
-                type: "string",
-                description: "Phone number if available"
-              },
-              conversationSummary: {
-                type: "string",
-                description: "Brief summary of the conversation"
-              },
-              callNotes: {
-                type: "string",
-                description: "Detailed notes from the call"
-              },
-              intent: {
-                type: "string",
-                description: "What the caller wanted (quote, information, etc.)"
-              },
-              followUpRequired: {
-                type: "boolean",
-                description: "Whether follow-up is needed"
-              },
-              duration: {
-                type: "number",
-                description: "Call duration in seconds"
-              },
-              isNewContact: {
-                type: "boolean",
-                description: "Whether this is a new contact"
-              }
-            },
-            required: ["sessionId", "contactId", "callerName", "conversationSummary"]
-          }
-        },
-        {
-          name: "get_conversation_history",
-          description: "Get previous conversation history for a returning contact",
-          parameters: {
-            type: "object",
-            properties: {
-              contactId: {
-                type: "number",
-                description: "ID of the contact to get history for"
-              },
-              limit: {
-                type: "number",
-                description: "Maximum number of conversations to return (default: 5)"
-              }
-            },
-            required: ["contactId"]
-          }
-        }
-      ];
-
-      res.json({ tools });
-      return;
-    }
-
     if (req.method === 'POST') {
-      const { tool_name, parameters } = req.body;
-      console.log('[MCP] Tool call:', tool_name, 'with params:', parameters);
+      const { jsonrpc, id, method, params } = req.body;
+      console.log('[MCP] Received request:', JSON.stringify(req.body, null, 2));
 
-      let result;
-      switch (tool_name) {
-        case 'lookup_contact':
-          result = await lookupContact(parameters);
+      // Handle MCP protocol methods
+      switch (method) {
+        case 'initialize':
+          const initResponse = {
+            jsonrpc: '2.0',
+            id,
+            result: {
+              protocolVersion: '2024-11-05',
+              capabilities: {
+                tools: {}
+              },
+              serverInfo: {
+                name: 'Fusion Data Company MCP',
+                version: '1.0.0'
+              }
+            }
+          };
+          console.log('[MCP] Initialize response:', JSON.stringify(initResponse, null, 2));
+          res.json(initResponse);
           break;
-        case 'create_contact':
-          result = await createContact(parameters);
+
+        case 'tools/list':
+          const toolsResponse = {
+            jsonrpc: '2.0',
+            id,
+            result: {
+              tools: [
+                {
+                  name: "lookup_contact",
+                  description: "Look up an existing contact by name to retrieve conversation history and notes",
+                  inputSchema: {
+                    type: "object",
+                    properties: {
+                      name: {
+                        type: "string",
+                        description: "The name of the contact to look up"
+                      }
+                    },
+                    required: ["name"]
+                  }
+                },
+                {
+                  name: "create_contact", 
+                  description: "Create a new contact record for a prospective client",
+                  inputSchema: {
+                    type: "object",
+                    properties: {
+                      name: {
+                        type: "string",
+                        description: "Full name of the contact"
+                      },
+                      email: {
+                        type: "string",
+                        description: "Email address if provided"
+                      },
+                      phone: {
+                        type: "string", 
+                        description: "Phone number if available"
+                      },
+                      company: {
+                        type: "string",
+                        description: "Company name if mentioned"
+                      },
+                      position: {
+                        type: "string",
+                        description: "Job title or position if mentioned"
+                      },
+                      source: {
+                        type: "string",
+                        description: "How they heard about us"
+                      },
+                      notes: {
+                        type: "string",
+                        description: "Initial notes from the conversation"
+                      }
+                    },
+                    required: ["name"]
+                  }
+                },
+                {
+                  name: "save_conversation",
+                  description: "Save conversation summary and notes for a contact",
+                  inputSchema: {
+                    type: "object",
+                    properties: {
+                      sessionId: {
+                        type: "string",
+                        description: "ElevenLabs session identifier"
+                      },
+                      contactId: {
+                        type: "number",
+                        description: "ID of the contact (from lookup_contact or create_contact)"
+                      },
+                      callerName: {
+                        type: "string",
+                        description: "Name the caller provided"
+                      },
+                      phoneNumber: {
+                        type: "string",
+                        description: "Phone number if available"
+                      },
+                      conversationSummary: {
+                        type: "string",
+                        description: "Brief summary of the conversation"
+                      },
+                      callNotes: {
+                        type: "string",
+                        description: "Detailed notes from the call"
+                      },
+                      intent: {
+                        type: "string",
+                        description: "What the caller wanted (quote, information, etc.)"
+                      },
+                      followUpRequired: {
+                        type: "boolean",
+                        description: "Whether follow-up is needed"
+                      },
+                      duration: {
+                        type: "number",
+                        description: "Call duration in seconds"
+                      },
+                      isNewContact: {
+                        type: "boolean",
+                        description: "Whether this is a new contact"
+                      }
+                    },
+                    required: ["sessionId", "contactId", "callerName", "conversationSummary"]
+                  }
+                },
+                {
+                  name: "get_conversation_history",
+                  description: "Get previous conversation history for a returning contact",
+                  inputSchema: {
+                    type: "object",
+                    properties: {
+                      contactId: {
+                        type: "number",
+                        description: "ID of the contact to get history for"
+                      },
+                      limit: {
+                        type: "number",
+                        description: "Maximum number of conversations to return (default: 5)"
+                      }
+                    },
+                    required: ["contactId"]
+                  }
+                }
+              ]
+            }
+          };
+          console.log('[MCP] Tools list response:', JSON.stringify(toolsResponse, null, 2));
+          res.json(toolsResponse);
           break;
-        case 'save_conversation':
-          result = await saveConversation(parameters);
+
+        case 'tools/call':
+          const { name: toolName, arguments: toolArgs } = params;
+          console.log('[MCP] Tool call:', toolName, 'with params:', toolArgs);
+
+          let result;
+          switch (toolName) {
+            case 'lookup_contact':
+              result = await lookupContact(toolArgs);
+              break;
+            case 'create_contact':
+              result = await createContact(toolArgs);
+              break;
+            case 'save_conversation':
+              result = await saveConversation(toolArgs);
+              break;
+            case 'get_conversation_history':
+              result = await getConversationHistory(toolArgs);
+              break;
+            default:
+              throw new Error(`Unknown tool: ${toolName}`);
+          }
+
+          const toolResponse = {
+            jsonrpc: '2.0',
+            id,
+            result: {
+              content: [
+                {
+                  type: 'text',
+                  text: JSON.stringify(result, null, 2)
+                }
+              ]
+            }
+          };
+          console.log('[MCP] Tool response:', JSON.stringify(toolResponse, null, 2));
+          res.json(toolResponse);
           break;
-        case 'get_conversation_history':
-          result = await getConversationHistory(parameters);
-          break;
+
         default:
-          throw new Error(`Unknown tool: ${tool_name}`);
+          const errorResponse = {
+            jsonrpc: '2.0',
+            id,
+            error: {
+              code: -32601,
+              message: `Method not found: ${method}`
+            }
+          };
+          res.status(400).json(errorResponse);
       }
-
-      console.log('[MCP] Tool result:', result);
-      res.json(result);
+    } else {
+      // GET request - return server info
+      res.json({
+        name: 'Fusion Data Company MCP Server',
+        version: '1.0.0',
+        description: 'MCP server for managing contact information and conversation history',
+        endpoints: {
+          mcp: 'POST /api/mcp - MCP JSON-RPC 2.0 endpoint'
+        }
+      });
     }
   } catch (error) {
     console.error('[MCP] Error:', error);
-    res.status(500).json({
-      error: error instanceof Error ? error.message : 'Unknown error'
-    });
+    const errorResponse = {
+      jsonrpc: '2.0',
+      id: req.body?.id || 'error',
+      error: {
+        code: -32603,
+        message: 'Internal error',
+        data: error instanceof Error ? error.message : 'Unknown error'
+      }
+    };
+    res.status(500).json(errorResponse);
   }
 }
 
