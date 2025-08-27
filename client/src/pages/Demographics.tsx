@@ -515,10 +515,10 @@ export default function Demographics() {
                 <div className="max-w-4xl mx-auto">
                   <div className="bg-gradient-to-r from-[#121218]/50 to-[#121218]/80 backdrop-blur-md border border-[#ffa500]/20 rounded-2xl p-8">
                     <h3 className="text-3xl font-bold mb-4">
-                      🚀 <span className="bg-gradient-to-r from-[#ffa500] to-[#ff8c00] bg-clip-text text-transparent">Experience Bristol Analytics Platform Live</span>
+                      🚀 <span className="bg-gradient-to-r from-[#ffa500] to-[#ff8c00] bg-clip-text text-transparent">Experience Analytics Platform Live</span>
                     </h3>
                     <p className="text-lg text-gray-300 mb-6">
-                      Access the full Bristol Analytics Platform for real estate demographics. No registration required - see the power of advanced market intelligence in action.
+                      Access the full Analytics Platform for real estate demographics. No registration required - see the power of advanced market intelligence in action.
                     </p>
                     
                     <div className="bg-black/30 rounded-xl p-6 border border-[#ffa500]/20 mb-8">
@@ -534,7 +534,7 @@ export default function Demographics() {
                         rel="noopener noreferrer"
                       >
                         <button className="group bg-gradient-to-r from-[#ffa500] to-[#ff8c00] text-black hover:scale-105 transition-all duration-300 px-8 py-3 text-lg font-semibold rounded-lg">
-                          🗺️ Launch Bristol Analytics Platform
+                          🗺️ Launch Analytics Platform
                           <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">→</span>
                         </button>
                       </a>

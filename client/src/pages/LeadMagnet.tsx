@@ -763,6 +763,50 @@ export default function LeadMagnet() {
               </div>
             </div>
           </section>
+
+          {/* ANALYTICS PLATFORM ACCESS */}
+          <section className="py-16 px-4 bg-gradient-to-br from-slate-900 via-amber-950/30 to-slate-950 relative overflow-hidden">
+            {/* Professional layered background effects */}
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-900/20 via-yellow-800/10 to-amber-900/20 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-600/5 to-transparent z-0"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-amber-500/8 via-transparent to-orange-500/8 z-0"></div>
+            <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl z-0"></div>
+            
+            <div className="container mx-auto relative z-10">
+              <div className="mb-12">
+                <div className="max-w-4xl mx-auto">
+                  <div className="bg-gradient-to-r from-[#121218]/50 to-[#121218]/80 backdrop-blur-md border border-[#ffa500]/20 rounded-2xl p-8">
+                    <h3 className="text-3xl font-bold mb-4">
+                      🚀 <span className="bg-gradient-to-r from-[#ffa500] to-[#ff8c00] bg-clip-text text-transparent">Experience Analytics Platform Live</span>
+                    </h3>
+                    <p className="text-lg text-gray-300 mb-6">
+                      Access the full Analytics Platform for real estate demographics. No registration required - see the power of advanced market intelligence in action.
+                    </p>
+                    
+                    <div className="bg-black/30 rounded-xl p-6 border border-[#ffa500]/20 mb-8">
+                      <h4 className="text-[#ffa500] font-semibold mb-3">🌐 Live Platform Access</h4>
+                      <p className="font-mono text-white text-xl mb-2">Bristol-Development-Site-Intel-Platform.replit.app</p>
+                      <p className="text-gray-400 text-sm">Full access to all mapping tools, demographic analysis, and competitive intelligence features</p>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <a 
+                        href="https://Bristol-Development-Site-Intel-Platform.replit.app" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        <button className="group bg-gradient-to-r from-[#ffa500] to-[#ff8c00] text-black hover:scale-105 transition-all duration-300 px-8 py-3 text-lg font-semibold rounded-lg">
+                          🗺️ Launch Analytics Platform
+                          <span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">→</span>
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </main>
         <Footer />
       </div>
