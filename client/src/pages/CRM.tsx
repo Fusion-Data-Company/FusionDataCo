@@ -250,8 +250,108 @@ export default function CRM() {
             </div>
           </section>
 
+          {/* Website/CRM Hybrid Platforms - Yellow Section */}
+          <section className="py-16 bg-gradient-to-b from-[#121218] to-[#1a1505] relative overflow-hidden">
+            {/* Yellow background effects */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute inset-0 bg-grid-pattern"></div>
+            </div>
+            <div className="absolute top-20 left-20 w-72 h-72 bg-yellow-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 right-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+            
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="text-center max-w-4xl mx-auto mb-16">
+                <h2 className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4">
+                  <span className="text-white">Website/CRM</span>{" "}
+                  <span className="text-yellow-400 [text-shadow:0_0_5px_#fbbf24]">Hybrid Platforms</span>
+                </h2>
+                <p className="text-gray-300 text-lg">
+                  Explore sample styles of our integrated website and CRM solutions built for different industries
+                </p>
+              </div>
+              
+              {/* Website Examples Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-xl p-6 border border-yellow-500/30 hover:border-yellow-400 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
+                    <span className="text-2xl">☀️</span>
+                  </div>
+                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-yellow-400">Solar Shield USA</h3>
+                  <p className="text-gray-300 mb-4">Solar energy and home improvement services with integrated lead management</p>
+                  <Link href="#" className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
+                    View Website
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </div>
+
+                <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-xl p-6 border border-yellow-500/30 hover:border-yellow-400 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
+                    <span className="text-2xl">🚗</span>
+                  </div>
+                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-yellow-400">Drive City Lube & Smog</h3>
+                  <p className="text-gray-300 mb-4">Automotive services with appointment scheduling and customer management</p>
+                  <Link href="#" className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
+                    View Website
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </div>
+
+                <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-xl p-6 border border-yellow-500/30 hover:border-yellow-400 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
+                    <span className="text-2xl">🏠</span>
+                  </div>
+                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-yellow-400">California RES</h3>
+                  <p className="text-gray-300 mb-4">Real estate services with property listings and client relationship tools</p>
+                  <Link href="#" className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
+                    View Website
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </div>
+
+                <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-xl p-6 border border-yellow-500/30 hover:border-yellow-400 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
+                    <span className="text-2xl">👤</span>
+                  </div>
+                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-yellow-400">Tyler Shoemake</h3>
+                  <p className="text-gray-300 mb-4">Personal brand and professional services with client engagement features</p>
+                  <Link href="#" className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
+                    View Website
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </div>
+
+                <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-xl p-6 border border-yellow-500/30 hover:border-yellow-400 transition-all duration-300 md:col-span-2 lg:col-span-1">
+                  <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
+                    <span className="text-2xl">💼</span>
+                  </div>
+                  <h3 className="font-['Orbitron'] text-xl font-semibold mb-3 text-yellow-400">AP Redding</h3>
+                  <p className="text-gray-300 mb-4">Professional services platform with integrated business management tools</p>
+                  <Link href="#" className="inline-flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
+                    View Website
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Call to Action */}
+              <div className="backdrop-blur-md bg-[#1a1505]/70 rounded-2xl p-8 border border-yellow-500/30 max-w-3xl mx-auto text-center">
+                <h3 className="font-['Orbitron'] text-2xl font-bold mb-4 text-yellow-400">
+                  Ready to See Your Custom Solution?
+                </h3>
+                <p className="text-gray-300 text-lg mb-6">
+                  Each platform is tailored to the specific needs and industry of our clients. Let's build something unique for your business.
+                </p>
+                <Link href="/contact">
+                  <span className="px-8 py-4 bg-yellow-500 text-black rounded-lg font-semibold hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 cursor-pointer">
+                    Schedule Your Demo
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </section>
+
           {/* CTA Section */}
-          <section className="py-16 bg-gradient-to-b from-[#0b0b0d] to-[#121218]">
+          <section className="py-16 bg-gradient-to-b from-[#1a1505] to-[#121218]">
             <div className="container mx-auto px-4">
               <div className="backdrop-blur-md bg-[#121218]/70 rounded-2xl p-12 border border-gray-800 max-w-4xl mx-auto text-center">
                 <h2 className="font-['Orbitron'] text-3xl font-bold mb-4">
