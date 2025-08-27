@@ -3,163 +3,9 @@ import { db } from './db';
 import { crmContacts, elevenLabsConversations, crmActivities } from '@shared/schema';
 import { eq, and, desc, ilike } from 'drizzle-orm';
 
-// MCP Protocol Types
-interface MCPRequest {
-  jsonrpc: string;
-  id: string | number;
-  method: string;
-  params?: any;
-}
-
-interface MCPResponse {
-  jsonrpc: string;
-  id: string | number;
-  result?: any;
-  error?: {
-    code: number;
-    message: string;
-    data?: any;
-  };
-}
-
-interface MCPTool {
-  name: string;
-  description: string;
-  inputSchema: {
-    type: string;
-    properties: Record<string, any>;
-    required?: string[];
-  };
-}
-
-// Available tools for ElevenLabs agent
-const MCP_TOOLS: MCPTool[] = [
-  {
-    name: "lookup_contact",
-    description: "Look up an existing contact by name to retrieve conversation history and notes",
-    inputSchema: {
-      type: "object",
-      properties: {
-        name: {
-          type: "string",
-          description: "The name of the contact to look up"
-        }
-      },
-      required: ["name"]
-    }
-  },
-  {
-    name: "create_contact",
-    description: "Create a new contact record for a prospective client",
-    inputSchema: {
-      type: "object",
-      properties: {
-        name: {
-          type: "string",
-          description: "Full name of the contact"
-        },
-        email: {
-          type: "string",
-          description: "Email address if provided"
-        },
-        phone: {
-          type: "string",
-          description: "Phone number if available"
-        },
-        company: {
-          type: "string",
-          description: "Company name if mentioned"
-        },
-        position: {
-          type: "string",
-          description: "Job title or position if mentioned"
-        },
-        source: {
-          type: "string",
-          description: "How they heard about us"
-        },
-        notes: {
-          type: "string",
-          description: "Initial notes from the conversation"
-        }
-      },
-      required: ["name"]
-    }
-  },
-  {
-    name: "save_conversation",
-    description: "Save conversation summary and notes for a contact",
-    inputSchema: {
-      type: "object",
-      properties: {
-        sessionId: {
-          type: "string",
-          description: "ElevenLabs session identifier"
-        },
-        contactId: {
-          type: "number",
-          description: "ID of the contact (from lookup_contact or create_contact)"
-        },
-        callerName: {
-          type: "string",
-          description: "Name the caller provided"
-        },
-        phoneNumber: {
-          type: "string",
-          description: "Phone number if available"
-        },
-        conversationSummary: {
-          type: "string",
-          description: "Brief summary of the conversation"
-        },
-        callNotes: {
-          type: "string",
-          description: "Detailed notes from the call"
-        },
-        intent: {
-          type: "string",
-          description: "What the caller wanted (quote, information, etc.)"
-        },
-        followUpRequired: {
-          type: "boolean",
-          description: "Whether follow-up is needed"
-        },
-        duration: {
-          type: "number",
-          description: "Call duration in seconds"
-        },
-        isNewContact: {
-          type: "boolean",
-          description: "Whether this is a new contact"
-        }
-      },
-      required: ["sessionId", "contactId", "callerName", "conversationSummary"]
-    }
-  },
-  {
-    name: "get_conversation_history",
-    description: "Get previous conversation history for a returning contact",
-    inputSchema: {
-      type: "object",
-      properties: {
-        contactId: {
-          type: "number",
-          description: "ID of the contact to get history for"
-        },
-        limit: {
-          type: "number",
-          description: "Maximum number of conversations to return (default: 5)"
-        }
-      },
-      required: ["contactId"]
-    }
-  }
-];
-
 // Tool implementations
 async function lookupContact(params: { name: string }) {
   try {
-    // Search for contacts by name (case-insensitive)
     const contacts = await db
       .select()
       .from(crmContacts)
@@ -173,7 +19,6 @@ async function lookupContact(params: { name: string }) {
       };
     }
 
-    // Get recent conversations for each contact
     const contactsWithHistory = await Promise.all(
       contacts.map(async (contact) => {
         const recentConversations = await db
@@ -250,7 +95,6 @@ async function saveConversation(params: {
   isNewContact?: boolean;
 }) {
   try {
-    // Save conversation record
     const [conversation] = await db
       .insert(elevenLabsConversations)
       .values({
@@ -268,7 +112,6 @@ async function saveConversation(params: {
       })
       .returning();
 
-    // Also create a CRM activity record
     await db
       .insert(crmActivities)
       .values({
@@ -280,7 +123,6 @@ async function saveConversation(params: {
         isCompleted: true,
       });
 
-    // Update contact's last contact date
     await db
       .update(crmContacts)
       .set({ 
@@ -333,93 +175,10 @@ async function getConversationHistory(params: {
   }
 }
 
-// Main MCP request handler
-async function handleMCPRequest(request: MCPRequest): Promise<MCPResponse> {
-  const { id, method, params } = request;
-
-  try {
-    switch (method) {
-      case 'initialize':
-        return {
-          jsonrpc: '2.0',
-          id,
-          result: {
-            protocolVersion: '2024-11-05',
-            capabilities: {
-              tools: {}
-            },
-            serverInfo: {
-              name: 'Fusion Data Company MCP',
-              version: '1.0.0'
-            }
-          }
-        };
-
-      case 'tools/list':
-        return {
-          jsonrpc: '2.0',
-          id,
-          result: {
-            tools: MCP_TOOLS
-          }
-        };
-
-      case 'tools/call':
-        const { name: toolName, arguments: toolArgs } = params;
-        
-        let result;
-        switch (toolName) {
-          case 'lookup_contact':
-            result = await lookupContact(toolArgs);
-            break;
-          case 'create_contact':
-            result = await createContact(toolArgs);
-            break;
-          case 'save_conversation':
-            result = await saveConversation(toolArgs);
-            break;
-          case 'get_conversation_history':
-            result = await getConversationHistory(toolArgs);
-            break;
-          default:
-            throw new Error(`Unknown tool: ${toolName}`);
-        }
-
-        return {
-          jsonrpc: '2.0',
-          id,
-          result: {
-            content: [
-              {
-                type: 'text',
-                text: JSON.stringify(result, null, 2)
-              }
-            ]
-          }
-        };
-
-      default:
-        throw new Error(`Unknown method: ${method}`);
-    }
-  } catch (error) {
-    return {
-      jsonrpc: '2.0',
-      id,
-      error: {
-        code: -1,
-        message: error instanceof Error ? error.message : 'Unknown error',
-        data: error
-      }
-    };
-  }
-}
-
-// Streamable HTTP endpoint for ElevenLabs
+// ElevenLabs MCP Server - Simplified for direct tool usage
 export async function handleStreamableMCP(req: Request, res: Response) {
-  // Set headers for Server-Sent Events
-  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 'no-cache');
-  res.setHeader('Connection', 'keep-alive');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -430,46 +189,169 @@ export async function handleStreamableMCP(req: Request, res: Response) {
   }
 
   try {
-    if (req.method === 'POST') {
-      const mcpRequest = req.body as MCPRequest;
-      console.log('[MCP] Received request:', JSON.stringify(mcpRequest, null, 2));
-      
-      const response = await handleMCPRequest(mcpRequest);
-      console.log('[MCP] Sending response:', JSON.stringify(response, null, 2));
-      
-      // Send as Server-Sent Event
-      res.write(`data: ${JSON.stringify(response)}\n\n`);
-      res.end();
-    } else {
-      // Handle GET request for connection testing
-      res.write(`data: ${JSON.stringify({
-        jsonrpc: '2.0',
-        method: 'notification',
-        params: {
-          type: 'connection_established',
-          message: 'Fusion Data Company MCP Server is ready',
-          timestamp: new Date().toISOString()
+    if (req.method === 'GET') {
+      // Return available tools
+      const tools = [
+        {
+          name: "lookup_contact",
+          description: "Look up an existing contact by name to retrieve conversation history and notes",
+          parameters: {
+            type: "object",
+            properties: {
+              name: {
+                type: "string",
+                description: "The name of the contact to look up"
+              }
+            },
+            required: ["name"]
+          }
+        },
+        {
+          name: "create_contact", 
+          description: "Create a new contact record for a prospective client",
+          parameters: {
+            type: "object",
+            properties: {
+              name: {
+                type: "string",
+                description: "Full name of the contact"
+              },
+              email: {
+                type: "string",
+                description: "Email address if provided"
+              },
+              phone: {
+                type: "string", 
+                description: "Phone number if available"
+              },
+              company: {
+                type: "string",
+                description: "Company name if mentioned"
+              },
+              position: {
+                type: "string",
+                description: "Job title or position if mentioned"
+              },
+              source: {
+                type: "string",
+                description: "How they heard about us"
+              },
+              notes: {
+                type: "string",
+                description: "Initial notes from the conversation"
+              }
+            },
+            required: ["name"]
+          }
+        },
+        {
+          name: "save_conversation",
+          description: "Save conversation summary and notes for a contact",
+          parameters: {
+            type: "object",
+            properties: {
+              sessionId: {
+                type: "string",
+                description: "ElevenLabs session identifier"
+              },
+              contactId: {
+                type: "number",
+                description: "ID of the contact (from lookup_contact or create_contact)"
+              },
+              callerName: {
+                type: "string",
+                description: "Name the caller provided"
+              },
+              phoneNumber: {
+                type: "string",
+                description: "Phone number if available"
+              },
+              conversationSummary: {
+                type: "string",
+                description: "Brief summary of the conversation"
+              },
+              callNotes: {
+                type: "string",
+                description: "Detailed notes from the call"
+              },
+              intent: {
+                type: "string",
+                description: "What the caller wanted (quote, information, etc.)"
+              },
+              followUpRequired: {
+                type: "boolean",
+                description: "Whether follow-up is needed"
+              },
+              duration: {
+                type: "number",
+                description: "Call duration in seconds"
+              },
+              isNewContact: {
+                type: "boolean",
+                description: "Whether this is a new contact"
+              }
+            },
+            required: ["sessionId", "contactId", "callerName", "conversationSummary"]
+          }
+        },
+        {
+          name: "get_conversation_history",
+          description: "Get previous conversation history for a returning contact",
+          parameters: {
+            type: "object",
+            properties: {
+              contactId: {
+                type: "number",
+                description: "ID of the contact to get history for"
+              },
+              limit: {
+                type: "number",
+                description: "Maximum number of conversations to return (default: 5)"
+              }
+            },
+            required: ["contactId"]
+          }
         }
-      })}\n\n`);
-      res.end();
+      ];
+
+      res.json({ tools });
+      return;
+    }
+
+    if (req.method === 'POST') {
+      const { tool_name, parameters } = req.body;
+      console.log('[MCP] Tool call:', tool_name, 'with params:', parameters);
+
+      let result;
+      switch (tool_name) {
+        case 'lookup_contact':
+          result = await lookupContact(parameters);
+          break;
+        case 'create_contact':
+          result = await createContact(parameters);
+          break;
+        case 'save_conversation':
+          result = await saveConversation(parameters);
+          break;
+        case 'get_conversation_history':
+          result = await getConversationHistory(parameters);
+          break;
+        default:
+          throw new Error(`Unknown tool: ${tool_name}`);
+      }
+
+      console.log('[MCP] Tool result:', result);
+      res.json(result);
     }
   } catch (error) {
-    console.error('[MCP] Error handling request:', error);
-    const errorResponse = {
-      jsonrpc: '2.0',
-      id: 'error',
-      error: {
-        code: -1,
-        message: 'Internal server error',
-        data: error instanceof Error ? error.message : 'Unknown error'
-      }
-    };
-    res.write(`data: ${JSON.stringify(errorResponse)}\n\n`);
-    res.end();
+    console.error('[MCP] Error:', error);
+    res.status(500).json({
+      error: error instanceof Error ? error.message : 'Unknown error'
+    });
   }
 }
 
-// Regular JSON endpoint for direct API calls
+// Keep the JSON endpoint for testing
 export async function handleMCPJson(req: Request, res: Response) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -481,23 +363,44 @@ export async function handleMCPJson(req: Request, res: Response) {
   }
 
   try {
-    const mcpRequest = req.body as MCPRequest;
-    console.log('[MCP-JSON] Received request:', JSON.stringify(mcpRequest, null, 2));
+    if (req.method === 'GET') {
+      res.json({
+        status: 'Fusion Data Company MCP Server Ready',
+        endpoints: {
+          tools: 'GET /api/mcp - Get available tools',
+          execute: 'POST /api/mcp - Execute a tool'
+        }
+      });
+      return;
+    }
+
+    const { tool_name, parameters } = req.body;
+    console.log('[MCP-JSON] Tool call:', tool_name, 'with params:', parameters);
     
-    const response = await handleMCPRequest(mcpRequest);
-    console.log('[MCP-JSON] Sending response:', JSON.stringify(response, null, 2));
-    
-    res.json(response);
+    let result;
+    switch (tool_name) {
+      case 'lookup_contact':
+        result = await lookupContact(parameters);
+        break;
+      case 'create_contact':
+        result = await createContact(parameters);
+        break;
+      case 'save_conversation':
+        result = await saveConversation(parameters);
+        break;
+      case 'get_conversation_history':
+        result = await getConversationHistory(parameters);
+        break;
+      default:
+        throw new Error(`Unknown tool: ${tool_name}`);
+    }
+
+    console.log('[MCP-JSON] Tool result:', result);
+    res.json(result);
   } catch (error) {
-    console.error('[MCP-JSON] Error handling request:', error);
+    console.error('[MCP-JSON] Error:', error);
     res.status(500).json({
-      jsonrpc: '2.0',
-      id: 'error',
-      error: {
-        code: -1,
-        message: 'Internal server error',
-        data: error instanceof Error ? error.message : 'Unknown error'
-      }
+      error: error instanceof Error ? error.message : 'Unknown error'
     });
   }
 }
