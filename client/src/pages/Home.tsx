@@ -68,7 +68,7 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                 <Card enhanced className="group">
                   <CardHeader>
-                    <Zap className="h-10 w-10 text-primary mb-4 micro-feedback" />
+                    <Zap className="h-10 w-10 text-primary mb-4 micro-feedback gpu-accelerated" />
                     <CardTitle className="group-hover:text-primary transition-colors">Instant Setup</CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -80,7 +80,7 @@ export default function Home() {
 
                 <Card enhanced className="group">
                   <CardHeader>
-                    <TrendingUp className="h-10 w-10 text-primary mb-4 micro-feedback" />
+                    <TrendingUp className="h-10 w-10 text-primary mb-4 micro-feedback gpu-accelerated" />
                     <CardTitle className="group-hover:text-primary transition-colors">Proven Results</CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -92,7 +92,7 @@ export default function Home() {
 
                 <Card enhanced className="group">
                   <CardHeader>
-                    <Shield className="h-10 w-10 text-primary mb-4 micro-feedback" />
+                    <Shield className="h-10 w-10 text-primary mb-4 micro-feedback gpu-accelerated" />
                     <CardTitle className="group-hover:text-primary transition-colors">Enterprise Security</CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -104,7 +104,7 @@ export default function Home() {
 
                 <Card enhanced className="group">
                   <CardHeader>
-                    <Globe className="h-10 w-10 text-primary mb-4 micro-feedback" />
+                    <Globe className="h-10 w-10 text-primary mb-4 micro-feedback gpu-accelerated" />
                     <CardTitle className="group-hover:text-primary transition-colors">All-in-One Platform</CardTitle>
                   </CardHeader>
                   <CardContent>

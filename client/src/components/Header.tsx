@@ -143,7 +143,7 @@ export default function Header() {
                       "hover:bg-slate-800/50 hover:border hover:border-blue-400/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]",
                       location === link.path && "bg-slate-800/30 border border-blue-400/20"
                     )}>
-                      <span className="cyberpunk-text-animate-nav micro-feedback">
+                      <span className="cyberpunk-text-animate-nav micro-feedback focus-ring-enhanced">
                         {link.name}
                       </span>
                       

@@ -15,7 +15,11 @@ export function FusionSpinner({ size = "md", className }: FusionSpinnerProps) {
   }
 
   return (
-    <div className={cn("fusion-spinner", sizeClasses[size], className)} />
+    <div 
+      className={cn("fusion-spinner gpu-accelerated", sizeClasses[size], className)}
+      role="status"
+      aria-label="Loading content"
+    />
   )
 }
 
@@ -26,7 +30,12 @@ interface FusionSkeletonProps {
 
 export function FusionSkeleton({ className, children }: FusionSkeletonProps) {
   return (
-    <div className={cn("skeleton-enhanced rounded-md", className)}>
+    <div 
+      className={cn("skeleton-enhanced rounded-md gpu-accelerated", className)}
+      role="status"
+      aria-busy="true"
+      aria-label="Content loading"
+    >
       {children}
     </div>
   )

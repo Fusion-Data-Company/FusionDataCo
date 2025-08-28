@@ -9,10 +9,12 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
-      enhanced && "card-hover-enhanced cursor-pointer",
+      "rounded-lg border bg-card text-card-foreground shadow-sm gpu-accelerated",
+      enhanced && "card-hover-enhanced cursor-pointer focus-ring-enhanced",
       className
     )}
+    tabIndex={enhanced ? 0 : undefined}
+    role={enhanced ? "button" : undefined}
     {...props}
   />
 ))

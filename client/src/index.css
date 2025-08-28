@@ -1292,6 +1292,152 @@ body {
   100% { background-position: 200% 0; }
 }
 
+/* Advanced Accessibility & Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .card-hover-enhanced,
+  .micro-feedback,
+  .nav-item-enhanced,
+  .button-ripple,
+  .fusion-pulse,
+  .fusion-spinner,
+  .skeleton-enhanced {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .card-hover-enhanced:hover {
+    transform: none !important;
+  }
+  
+  .micro-feedback:hover {
+    transform: none !important;
+  }
+}
+
+/* Focus Management & Keyboard Navigation */
+.focus-ring-enhanced:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .fusion-glow::before {
+    background: linear-gradient(45deg, #000, #fff, #000);
+  }
+  
+  .card-hover-enhanced:hover {
+    border: 2px solid currentColor;
+  }
+  
+  .nav-item-enhanced::before {
+    background: currentColor;
+  }
+}
+
+/* Enhanced Touch Targets */
+@media (hover: none) and (pointer: coarse) {
+  .micro-feedback {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .card-hover-enhanced {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(59, 130, 246, 0.3);
+  }
+}
+
+/* Advanced Form Validation States */
+.input-enhanced.error {
+  border: 2px solid #ef4444;
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(135deg, #ef4444, #dc2626) border-box;
+  animation: shake 0.5s ease-in-out;
+}
+
+.input-enhanced.success {
+  border: 2px solid #10b981;
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(135deg, #10b981, #059669) border-box;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Enhanced Loading Accessibility */
+.fusion-spinner[aria-label] {
+  speak: "Loading";
+}
+
+.skeleton-enhanced[aria-busy="true"] {
+  speak: "Content loading";
+}
+
+/* Advanced Tooltip System */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f2937;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1000;
+}
+
+.tooltip-content::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #1f2937;
+}
+
+.tooltip-container:hover .tooltip-content,
+.tooltip-container:focus .tooltip-content {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+  pointer-events: auto;
+}
+
+/* Enhanced Dark Mode Transitions */
+.dark .card-hover-enhanced:hover {
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(59, 130, 246, 0.2),
+    0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+.dark .input-enhanced:focus {
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+}
+
+/* Performance Optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 /* Phase 3 UI/UX Enhancement Complete */
 
 .dark {
