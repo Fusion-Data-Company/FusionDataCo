@@ -73,8 +73,9 @@ export interface IStorage {
   
   // Lead operations
   createLead(lead: InsertLead): Promise<Lead>;
-  getLead(id: number): Promise<Lead | undefined>;
   getAllLeads(): Promise<Lead[]>;
+  getAllChatMessages(): Promise<ChatMessage[]>;
+  getLead(id: number): Promise<Lead | undefined>;
   updateLead(id: number, lead: Partial<InsertLead>): Promise<Lead | undefined>;
   deleteLead(id: number): Promise<boolean>;
   
@@ -311,6 +312,10 @@ export class PostgresStorage implements IStorage {
 
   async getAllLeads(): Promise<Lead[]> {
     return await db.select().from(leads).orderBy(desc(leads.createdAt));
+  }
+
+  async getAllChatMessages(): Promise<ChatMessage[]> {
+    return await db.select().from(chatMessages).orderBy(desc(chatMessages.createdAt));
   }
 
   async updateLead(id: number, lead: Partial<InsertLead>): Promise<Lead | undefined> {

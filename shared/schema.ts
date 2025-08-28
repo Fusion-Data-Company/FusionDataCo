@@ -641,6 +641,179 @@ export const insertYoutubeVideoSchema = createInsertSchema(youtubeVideos).pick({
   usedInContent: true,
 });
 
+// ELITE NEWSLETTER AUTOMATION SYSTEM
+// Newsletter campaigns for automated bi-monthly sends
+export const newsletterCampaigns = pgTable("newsletter_campaigns", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  subject: text("subject").notNull(),
+  content: text("content").notNull(),
+  htmlContent: text("html_content").notNull(),
+  scheduledDate: timestamp("scheduled_date").notNull(),
+  sentDate: timestamp("sent_date"),
+  status: text("status").default("scheduled"), // scheduled, sending, sent, failed, paused, draft
+  recipientCount: integer("recipient_count").default(0),
+  successCount: integer("success_count").default(0),
+  failureCount: integer("failure_count").default(0),
+  openRate: integer("open_rate").default(0), // percentage
+  clickRate: integer("click_rate").default(0), // percentage
+  topics: text("topics").array(), // Hot topics from YouTube
+  sourceData: jsonb("source_data").default({}), // Research data used
+  isAutomated: boolean("is_automated").default(true),
+  canEdit: boolean("can_edit").default(true),
+  isPaused: boolean("is_paused").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertNewsletterCampaignSchema = createInsertSchema(newsletterCampaigns).pick({
+  title: true,
+  subject: true,
+  content: true,
+  htmlContent: true,
+  scheduledDate: true,
+  sentDate: true,
+  status: true,
+  recipientCount: true,
+  successCount: true,
+  failureCount: true,
+  openRate: true,
+  clickRate: true,
+  topics: true,
+  sourceData: true,
+  isAutomated: true,
+  canEdit: true,
+  isPaused: true,
+});
+
+// Newsletter automation settings and controls
+export const newsletterSettings = pgTable("newsletter_settings", {
+  id: serial("id").primaryKey(),
+  isGloballyEnabled: boolean("is_globally_enabled").default(true),
+  schedule: text("schedule").default("1,15"), // Days of month to send
+  timeOfDay: text("time_of_day").default("09:00"), // Time to send
+  timezone: text("timezone").default("America/Los_Angeles"),
+  fromName: text("from_name").default("Fusion Data Co"),
+  fromEmail: text("from_email").default("newsletter@fusiondata.co"),
+  replyToEmail: text("reply_to_email").default("support@fusiondata.co"),
+  templateId: text("template_id"),
+  apexFrameworkEnabled: boolean("apex_framework_enabled").default(true),
+  youtubeTopicsEnabled: boolean("youtube_topics_enabled").default(true),
+  maxTopicsPerNewsletter: integer("max_topics_per_newsletter").default(5),
+  contentLength: text("content_length").default("enterprise"), // short, medium, enterprise
+  lastProcessedAt: timestamp("last_processed_at"),
+  nextScheduledAt: timestamp("next_scheduled_at"),
+  updatedBy: integer("updated_by").references(() => users.id),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertNewsletterSettingsSchema = createInsertSchema(newsletterSettings).pick({
+  isGloballyEnabled: true,
+  schedule: true,
+  timeOfDay: true,
+  timezone: true,
+  fromName: true,
+  fromEmail: true,
+  replyToEmail: true,
+  templateId: true,
+  apexFrameworkEnabled: true,
+  youtubeTopicsEnabled: true,
+  maxTopicsPerNewsletter: true,
+  contentLength: true,
+  lastProcessedAt: true,
+  nextScheduledAt: true,
+  updatedBy: true,
+});
+
+// MCP Agent data collection and insights
+export const agentInsights = pgTable("agent_insights", {
+  id: serial("id").primaryKey(),
+  category: text("category").notNull(), // market_trends, customer_pain_points, automation_opportunities
+  title: text("title").notNull(),
+  insight: text("insight").notNull(),
+  confidence: integer("confidence").default(85), // 1-100 confidence score
+  source: text("source").notNull(), // youtube, news, customer_data, market_research
+  sourceUrl: text("source_url"),
+  tags: text("tags").array(),
+  relevanceScore: integer("relevance_score").default(0), // 1-100
+  actionableAdvice: text("actionable_advice"), // APEX 2.0 framework advice
+  targetAudience: text("target_audience"), // entrepreneurs, startups, enterprises
+  implementationDifficulty: text("implementation_difficulty").default("medium"), // easy, medium, hard
+  potentialImpact: text("potential_impact").default("medium"), // low, medium, high
+  isUsedInNewsletter: boolean("is_used_in_newsletter").default(false),
+  isUsedInBlog: boolean("is_used_in_blog").default(false),
+  usageCount: integer("usage_count").default(0),
+  rawData: jsonb("raw_data").default({}),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertAgentInsightSchema = createInsertSchema(agentInsights).pick({
+  category: true,
+  title: true,
+  insight: true,
+  confidence: true,
+  source: true,
+  sourceUrl: true,
+  tags: true,
+  relevanceScore: true,
+  actionableAdvice: true,
+  targetAudience: true,
+  implementationDifficulty: true,
+  potentialImpact: true,
+  isUsedInNewsletter: true,
+  isUsedInBlog: true,
+  usageCount: true,
+  rawData: true,
+});
+
+// Hot topics from YouTube for newsletter content
+export const hotTopics = pgTable("hot_topics", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  source: text("source").notNull(), // youtube_video, youtube_channel, trending
+  sourceId: text("source_id"), // video ID or channel ID
+  sourceUrl: text("source_url"),
+  channelName: text("channel_name"),
+  publishedAt: timestamp("published_at"),
+  viewCount: integer("view_count").default(0),
+  engagement: integer("engagement").default(0), // likes + comments
+  trendingScore: integer("trending_score").default(0), // 1-100
+  keywords: text("keywords").array(),
+  category: text("category"), // ai_tools, automation, business_growth, productivity
+  entrepreneurialValue: text("entrepreneurial_value"), // How this helps entrepreneurs
+  businessImpact: text("business_impact"), // Potential business impact
+  implementationTips: text("implementation_tips"), // How to implement
+  isAnalyzed: boolean("is_analyzed").default(false),
+  isUsedInContent: boolean("is_used_in_content").default(false),
+  analyzedAt: timestamp("analyzed_at"),
+  aiSummary: text("ai_summary"), // AI-generated summary for newsletter
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertHotTopicSchema = createInsertSchema(hotTopics).pick({
+  title: true,
+  description: true,
+  source: true,
+  sourceId: true,
+  sourceUrl: true,
+  channelName: true,
+  publishedAt: true,
+  viewCount: true,
+  engagement: true,
+  trendingScore: true,
+  keywords: true,
+  category: true,
+  entrepreneurialValue: true,
+  businessImpact: true,
+  implementationTips: true,
+  isAnalyzed: true,
+  isUsedInContent: true,
+  analyzedAt: true,
+  aiSummary: true,
+});
+
 // Type exports for automation system
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;

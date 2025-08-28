@@ -13,6 +13,7 @@ import {
   insertSocialTrialSchema
 } from "@shared/schema";
 import { marketingRouter } from "./marketing";
+import { newsletterService } from "./services/NewsletterAutomationService";
 import { nanoid } from "nanoid";
 import axios from "axios";
 
@@ -682,6 +683,117 @@ Remember: We solve COMPLETE business operations, not just lead generation. Quali
     } catch (error) {
       console.error("Error getting automation jobs:", error);
       res.status(500).json({ error: "Failed to get automation jobs" });
+    }
+  });
+
+  // ELITE NEWSLETTER AUTOMATION ADMIN ROUTES
+  app.get("/api/admin/contacts", isAdmin, async (req, res) => {
+    try {
+      const contacts = await storage.getAllContactSubmissions();
+      res.json(contacts);
+    } catch (error) {
+      console.error("Error fetching admin contacts:", error);
+      res.status(500).json({ error: "Failed to fetch contacts" });
+    }
+  });
+
+  app.get("/api/admin/leads", isAdmin, async (req, res) => {
+    try {
+      const leadsData = await storage.getAllLeads();
+      res.json(leadsData);
+    } catch (error) {
+      console.error("Error fetching admin leads:", error);
+      res.status(500).json({ error: "Failed to fetch leads" });
+    }
+  });
+
+  app.get("/api/admin/chat-messages", isAdmin, async (req, res) => {
+    try {
+      const messages = await storage.getAllChatMessages();
+      res.json(messages);
+    } catch (error) {
+      console.error("Error fetching admin chat messages:", error);
+      res.status(500).json({ error: "Failed to fetch chat messages" });
+    }
+  });
+
+  app.get("/api/admin/newsletter-campaigns", isAdmin, async (req, res) => {
+    try {
+      const campaigns = await newsletterService.getNewsletterCampaigns();
+      res.json(campaigns);
+    } catch (error) {
+      console.error("Error fetching newsletter campaigns:", error);
+      res.status(500).json({ error: "Failed to fetch newsletter campaigns" });
+    }
+  });
+
+  app.get("/api/admin/newsletter-settings", isAdmin, async (req, res) => {
+    try {
+      const settings = await newsletterService.getNewsletterSettings();
+      res.json(settings);
+    } catch (error) {
+      console.error("Error fetching newsletter settings:", error);
+      res.status(500).json({ error: "Failed to fetch newsletter settings" });
+    }
+  });
+
+  app.get("/api/admin/newsletter-stats", isAdmin, async (req, res) => {
+    try {
+      const recipients = await newsletterService.getNewsletterRecipients();
+      const campaigns = await newsletterService.getNewsletterCampaigns();
+      
+      const totalEmailsSent = campaigns.reduce((sum: number, campaign: any) => sum + (campaign.successCount || 0), 0);
+      const averageOpenRate = campaigns.length > 0 
+        ? Math.round(campaigns.reduce((sum: number, campaign: any) => sum + (campaign.openRate || 0), 0) / campaigns.length)
+        : 0;
+
+      res.json({
+        totalSubscribers: recipients.length,
+        totalEmailsSent,
+        averageOpenRate,
+        campaignCount: campaigns.length
+      });
+    } catch (error) {
+      console.error("Error fetching newsletter stats:", error);
+      res.status(500).json({ error: "Failed to fetch newsletter stats" });
+    }
+  });
+
+  app.post("/api/admin/trigger-newsletter", isAdmin, async (req, res) => {
+    try {
+      console.log("🚀 Manual ELITE newsletter trigger requested");
+      const result = await newsletterService.executeNewsletterAutomation();
+      res.json(result);
+    } catch (error) {
+      console.error("Error triggering newsletter:", error);
+      res.status(500).json({ error: "Failed to trigger newsletter automation" });
+    }
+  });
+
+  app.post("/api/admin/newsletter-campaigns/:id/pause", isAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { isPaused } = req.body;
+      const updated = await newsletterService.toggleCampaignPause(parseInt(id), isPaused);
+      res.json(updated);
+    } catch (error) {
+      console.error("Error updating campaign:", error);
+      res.status(500).json({ error: "Failed to update campaign" });
+    }
+  });
+
+  app.delete("/api/admin/newsletter-campaigns/:id", isAdmin, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const success = await newsletterService.deleteCampaign(parseInt(id));
+      if (success) {
+        res.json({ success: true });
+      } else {
+        res.status(404).json({ error: "Campaign not found" });
+      }
+    } catch (error) {
+      console.error("Error deleting campaign:", error);
+      res.status(500).json({ error: "Failed to delete campaign" });
     }
   });
 

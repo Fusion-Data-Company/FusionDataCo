@@ -6,6 +6,7 @@ import { eq, and, desc, ilike } from 'drizzle-orm';
 // Import automation services for FUSION integration
 import { ContentAutomationService } from './automation/contentAutomation';
 import { AutomationScheduler } from './automation/scheduler';
+import { newsletterService } from './services/NewsletterAutomationService';
 
 // Initialize FUSION automation services
 const contentService = new ContentAutomationService();
@@ -212,21 +213,23 @@ async function triggerFusionNewsletter(params: {
   includeMetrics?: boolean;
 }) {
   try {
-    console.log('[FUSION-MCP] Triggering FUSION newsletter generation');
+    console.log('[FUSION-MCP] Triggering ELITE APEX 2.0 newsletter automation');
     
-    // Use the content automation service to generate newsletter
-    const result = await contentService.generateMonthlyNewsletter();
+    // Use the elite newsletter automation service
+    const result = await newsletterService.executeNewsletterAutomation();
     
     return {
       success: true,
       newsletter: result,
-      theme: params.theme || 'FUSION Enterprise Updates',
+      campaign: result.campaign,
+      sendResults: result.sendResults,
+      theme: params.theme || 'ELITE FUSION Enterprise Intelligence',
       includeMetrics: params.includeMetrics || true,
-      message: 'FUSION newsletter generation completed successfully'
+      message: `APEX 2.0 newsletter automation completed: ${result.sendResults.success} sent, ${result.sendResults.failed} failed`
     };
   } catch (error) {
-    console.error('[FUSION-MCP] Error generating newsletter:', error);
-    throw new Error('Failed to generate FUSION newsletter');
+    console.error('[FUSION-MCP] Error in elite newsletter automation:', error);
+    throw new Error('Failed to execute ELITE newsletter automation');
   }
 }
 
