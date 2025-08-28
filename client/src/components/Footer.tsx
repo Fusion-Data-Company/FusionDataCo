@@ -160,11 +160,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/case-studies">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Case Studies</span>
-                </Link>
-              </li>
-              <li>
                 <Link href="/blog">
                   <span className="hover:text-primary transition-colors cursor-pointer">Blog</span>
                 </Link>
