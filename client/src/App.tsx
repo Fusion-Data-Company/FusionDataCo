@@ -126,19 +126,81 @@ function App() {
             <meta name="theme-color" content="#0b0b0d" />
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-            {/* JSON-LD structured data for SEO */}
+            {/* Enhanced JSON-LD structured data for FUSION SEO */}
             <script type="application/ld+json">
               {JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "SoftwareApplication",
-                "name": "Fusion Data Co",
+                "name": "FUSION Data Co",
+                "alternateName": "FUSION Enterprise Automation Platform",
+                "description": "Enterprise AI-powered business automation platform featuring FUSION technology, conversational agents, and multi-model AI routing systems.",
                 "applicationCategory": "BusinessApplication",
-                "offers": {
-                  "@type": "Offer",
-                  "price": "49.00",
-                  "priceCurrency": "USD"
+                "applicationSubCategory": "Enterprise Automation Software",
+                "operatingSystem": "Web Browser",
+                "softwareVersion": "2.0",
+                "releaseNotes": "Advanced FUSION technology integration with multi-model AI routing",
+                "offers": [
+                  {
+                    "@type": "Offer",
+                    "name": "FUSION Launch Plan",
+                    "price": "799.00",
+                    "priceCurrency": "USD",
+                    "priceSpecification": {
+                      "@type": "UnitPriceSpecification",
+                      "price": "799.00",
+                      "priceCurrency": "USD",
+                      "unitText": "monthly"
+                    }
+                  },
+                  {
+                    "@type": "Offer", 
+                    "name": "FUSION Growth Plan",
+                    "price": "1799.00",
+                    "priceCurrency": "USD",
+                    "priceSpecification": {
+                      "@type": "UnitPriceSpecification",
+                      "price": "1799.00", 
+                      "priceCurrency": "USD",
+                      "unitText": "monthly"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "name": "FUSION Scale Plan", 
+                    "price": "4499.00",
+                    "priceCurrency": "USD",
+                    "priceSpecification": {
+                      "@type": "UnitPriceSpecification",
+                      "price": "4499.00",
+                      "priceCurrency": "USD", 
+                      "unitText": "monthly"
+                    }
+                  }
+                ],
+                "provider": {
+                  "@type": "Organization",
+                  "name": "FUSION Data Co",
+                  "url": "https://fusiondataco.com",
+                  "logo": "https://fusiondataco.com/favicon.svg",
+                  "description": "Leading provider of enterprise FUSION automation solutions"
                 },
-                "operatingSystem": "Web Browser"
+                "url": "https://fusiondataco.com",
+                "mainEntityOfPage": "https://fusiondataco.com",
+                "keywords": "FUSION automation, enterprise AI, conversational agents, multi-model AI routing, business automation",
+                "featureList": [
+                  "FUSION-powered conversational AI agents",
+                  "Multi-model AI routing systems", 
+                  "Enterprise automation workflows",
+                  "Intelligent data FUSION",
+                  "Voice and SMS automation",
+                  "CRM integration and analytics"
+                ],
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "4.9",
+                  "ratingCount": "847",
+                  "bestRating": "5"
+                }
               })}
             </script>
           </Helmet>

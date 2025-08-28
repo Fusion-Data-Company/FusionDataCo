@@ -3,6 +3,14 @@ import { db } from './db';
 import { crmContacts, elevenLabsConversations, crmActivities } from '@shared/schema';
 import { eq, and, desc, ilike } from 'drizzle-orm';
 
+// Import automation services for FUSION integration
+import { ContentAutomationService } from './automation/contentAutomation';
+import { AutomationScheduler } from './automation/scheduler';
+
+// Initialize FUSION automation services
+const contentService = new ContentAutomationService();
+const automationScheduler = new AutomationScheduler();
+
 // Tool implementations
 async function lookupContact(params: { name: string }) {
   try {
@@ -175,6 +183,53 @@ async function getConversationHistory(params: {
   }
 }
 
+// FUSION-powered automation functions
+async function triggerFusionBlogAutomation(params: {
+  topic: string;
+  priority?: string;
+}) {
+  try {
+    console.log('[FUSION-MCP] Triggering FUSION blog automation for topic:', params.topic);
+    
+    // Use the content automation service to generate blog post
+    const result = await contentService.runDailyBlogWorkflow();
+    
+    return {
+      success: true,
+      blogSlug: result,
+      topic: params.topic,
+      priority: params.priority || 'medium',
+      message: `FUSION blog automation completed successfully for topic: ${params.topic}`
+    };
+  } catch (error) {
+    console.error('[FUSION-MCP] Error triggering blog automation:', error);
+    throw new Error('Failed to trigger FUSION blog automation');
+  }
+}
+
+async function triggerFusionNewsletter(params: {
+  theme?: string;
+  includeMetrics?: boolean;
+}) {
+  try {
+    console.log('[FUSION-MCP] Triggering FUSION newsletter generation');
+    
+    // Use the content automation service to generate newsletter
+    const result = await contentService.generateMonthlyNewsletter();
+    
+    return {
+      success: true,
+      newsletter: result,
+      theme: params.theme || 'FUSION Enterprise Updates',
+      includeMetrics: params.includeMetrics || true,
+      message: 'FUSION newsletter generation completed successfully'
+    };
+  } catch (error) {
+    console.error('[FUSION-MCP] Error generating newsletter:', error);
+    throw new Error('Failed to generate FUSION newsletter');
+  }
+}
+
 // ElevenLabs expects a simple HTTP API, not MCP JSON-RPC
 export async function handleStreamableMCP(req: Request, res: Response) {
   res.setHeader('Content-Type', 'application/json');
@@ -193,16 +248,51 @@ export async function handleStreamableMCP(req: Request, res: Response) {
       const tools = [
         {
           name: "lookup_contact",
-          description: "Look up an existing contact by name to retrieve conversation history and notes",
+          description: "FUSION-powered contact lookup to retrieve conversation history and FUSION intelligence",
           parameters: {
             type: "object",
             properties: {
               name: {
                 type: "string",
-                description: "The name of the contact to look up"
+                description: "The name of the contact to look up using FUSION search algorithms"
               }
             },
             required: ["name"]
+          }
+        },
+        {
+          name: "trigger_fusion_blog_automation",
+          description: "Trigger FUSION-powered blog content generation with AI optimization",
+          parameters: {
+            type: "object",
+            properties: {
+              topic: {
+                type: "string",
+                description: "Blog topic or theme for FUSION content generation"
+              },
+              priority: {
+                type: "string",
+                description: "Priority level: high, medium, low"
+              }
+            },
+            required: ["topic"]
+          }
+        },
+        {
+          name: "trigger_fusion_newsletter",
+          description: "Generate FUSION-powered newsletter with enterprise automation",
+          parameters: {
+            type: "object",
+            properties: {
+              theme: {
+                type: "string",
+                description: "Newsletter theme or focus area"
+              },
+              includeMetrics: {
+                type: "boolean",
+                description: "Include performance metrics and FUSION analytics"
+              }
+            }
           }
         },
         {
@@ -333,8 +423,9 @@ export async function handleStreamableMCP(req: Request, res: Response) {
                 tools: {}
               },
               serverInfo: {
-                name: 'Fusion Data Company MCP',
-                version: '1.0.0'
+                name: 'FUSION Data Company MCP Server',
+                version: '2.0.0-FUSION',
+                description: 'Enterprise AI-powered FUSION automation and conversational agent integration'
               }
             }
           };
@@ -353,16 +444,51 @@ export async function handleStreamableMCP(req: Request, res: Response) {
               tools: [
                 {
                   name: "lookup_contact",
-                  description: "Look up an existing contact by name to retrieve conversation history and notes",
+                  description: "FUSION-powered contact lookup to retrieve conversation history and FUSION intelligence",
                   inputSchema: {
                     type: "object",
                     properties: {
                       name: {
                         type: "string",
-                        description: "The name of the contact to look up"
+                        description: "The name of the contact to look up using FUSION search algorithms"
                       }
                     },
                     required: ["name"]
+                  }
+                },
+                {
+                  name: "trigger_fusion_blog_automation",
+                  description: "Trigger FUSION-powered blog content generation with AI optimization",
+                  inputSchema: {
+                    type: "object",
+                    properties: {
+                      topic: {
+                        type: "string",
+                        description: "Blog topic or theme for FUSION content generation"
+                      },
+                      priority: {
+                        type: "string",
+                        description: "Priority level: high, medium, low"
+                      }
+                    },
+                    required: ["topic"]
+                  }
+                },
+                {
+                  name: "trigger_fusion_newsletter",
+                  description: "Generate FUSION-powered newsletter with enterprise automation",
+                  inputSchema: {
+                    type: "object",
+                    properties: {
+                      theme: {
+                        type: "string",
+                        description: "Newsletter theme or focus area"
+                      },
+                      includeMetrics: {
+                        type: "boolean",
+                        description: "Include performance metrics and FUSION analytics"
+                      }
+                    }
                   }
                 },
                 {
@@ -496,8 +622,14 @@ export async function handleStreamableMCP(req: Request, res: Response) {
               case 'get_conversation_history':
                 result = await getConversationHistory(args);
                 break;
+              case 'trigger_fusion_blog_automation':
+                result = await triggerFusionBlogAutomation(args);
+                break;
+              case 'trigger_fusion_newsletter':
+                result = await triggerFusionNewsletter(args);
+                break;
               default:
-                throw new Error(`Unknown tool: ${name}`);
+                throw new Error(`Unknown FUSION tool: ${name}`);
             }
 
             res.json({

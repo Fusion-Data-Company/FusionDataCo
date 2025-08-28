@@ -426,9 +426,9 @@ export default function MultiModelAgents() {
   return (
     <>
       <Helmet>
-        <title>Multi-Model AI Routing | The Golf Bag Approach | Fusion Data Co</title>
-        <meta name="description" content="Stop asking 'What's the best AI model?' Learn our Golf Bag approach: the right model for each task. OpenRouter integration, 60% cost reduction, 3x accuracy improvement." />
-        <meta name="keywords" content="multi-model AI, OpenRouter, AI routing, model selection, Golf Bag approach, enterprise AI optimization, AI cost reduction" />
+        <title>FUSION Multi-Model AI Routing | The Golf Bag Approach | FUSION Data Co</title>
+        <meta name="description" content="FUSION-powered multi-model AI routing eliminates the 'best AI model' question. Our Golf Bag approach delivers the right FUSION model for each task. OpenRouter integration, 60% cost reduction, 3x accuracy improvement through intelligent FUSION optimization." />
+        <meta name="keywords" content="FUSION multi-model AI, FUSION OpenRouter integration, FUSION AI routing, FUSION model selection, FUSION Golf Bag approach, FUSION enterprise AI optimization, FUSION AI cost reduction, intelligent FUSION routing, automated FUSION optimization" />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#0a0a0d] text-white">

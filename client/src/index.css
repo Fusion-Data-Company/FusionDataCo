@@ -1001,6 +1001,117 @@ body {
 
 /* Phase 1 Complete - Mobile Excellence Achieved */
 
+/* ===== PHASE 2: ADVANCED PERFORMANCE OPTIMIZATION ===== */
+
+/* Critical Resource Hints */
+.preload-critical {
+  font-display: swap;
+}
+
+/* Performance-First Animations */
+.performance-animation {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translateZ(0);
+}
+
+/* GPU-Accelerated Transforms */
+.gpu-accelerated {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Enhanced Content Delivery */
+.lazy-load {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Critical Above-the-Fold Optimization */
+.critical-content {
+  contain: layout style paint;
+  content-visibility: auto;
+}
+
+/* FUSION Performance Metrics */
+.fusion-metrics {
+  /* Ensure fast paint times */
+  contain: strict;
+  will-change: auto;
+}
+
+/* Advanced Font Loading */
+@font-face {
+  font-family: 'Orbitron';
+  font-display: swap;
+  font-weight: 400 700;
+}
+
+/* Image Loading Optimization */
+.progressive-image {
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Network Resource Prioritization */
+.critical-resource {
+  /* High priority loading */
+  importance: high;
+}
+
+.deferred-resource {
+  /* Low priority loading */
+  importance: low;
+}
+
+/* Enterprise Loading States Enhancement */
+.enterprise-skeleton {
+  background: linear-gradient(90deg, 
+    rgba(59, 130, 246, 0.1) 0%, 
+    rgba(59, 130, 246, 0.2) 50%, 
+    rgba(59, 130, 246, 0.1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 0.375rem;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Memory Management */
+.memory-efficient {
+  /* Optimize for memory usage */
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
+}
+
+/* Phase 2 Performance - FUSION Speed Optimized */
+
 .dark {
   --background: 222 18% 5%; /* #0a0c10 - near black */
   --foreground: 0 0% 98%; /* #fafafa */

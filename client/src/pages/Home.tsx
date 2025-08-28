@@ -14,14 +14,14 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Fusion Data Co - Complete Business Automation Platform</title>
-        <meta name="description" content="Fusion Data Co delivers custom CRM MCP servers enabling seamless business data interaction through Claude 3.7 Sonnet, N8N workflow automation, Go High Level CRM implementation, ElevenLabs AI voice technology, and enterprise-level solutions with complete workspace integration." />
-        <meta name="keywords" content="custom CRM MCP servers, Claude 3.7 Sonnet business integration, seamless data interaction, workspace automation, N8N workflow automation, Go High Level CRM, ElevenLabs voice synthesis, Claude Desktop MCP servers, API integrations" />
+        <title>FUSION Data Co - Revolutionary Enterprise AI Business Automation Platform</title>
+        <meta name="description" content="FUSION Data Co delivers cutting-edge enterprise automation with AI-powered FUSION systems, conversational agents, multi-model AI routing, and intelligent business FUSION technology that transforms operations and accelerates exponential growth." />
+        <meta name="keywords" content="FUSION enterprise automation, AI-powered business FUSION, intelligent FUSION systems, conversational AI agents, multi-model AI routing, FUSION workflow optimization, enterprise AI automation, FUSION data intelligence, advanced business FUSION, automated FUSION technology" />
         
         {/* Open Graph / Social Media */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Fusion Data Co - Complete Business Automation Platform" />
-        <meta property="og:description" content="White-label business platform combining custom websites, integrated CRM, AI email marketing, and social media automation. One platform for complete business operations." />
+        <meta property="og:title" content="FUSION Data Co - Revolutionary Enterprise AI Business Automation Platform" />
+        <meta property="og:description" content="Transform your enterprise with FUSION-powered automation, intelligent conversational agents, and multi-model AI routing. Experience the future of business FUSION systems." />
         <meta property="og:url" content="https://fusiondataco.com" />
         
       </Helmet>

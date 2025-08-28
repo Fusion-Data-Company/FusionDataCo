@@ -169,9 +169,9 @@ export default function ConversationalAI() {
   return (
     <>
       <Helmet>
-        <title>Conversational AI Solutions | Fusion Data Co</title>
-        <meta name="description" content="Revolutionary voice AI agents that never sleep, never quit, and convert 3x better than human reps. Experience AI sales coaches, hiring screeners, and customer service agents." />
-        <meta name="keywords" content="conversational AI, voice AI agents, AI sales training, AI customer service, automated calling, AI hiring, chatbots, virtual assistants" />
+        <title>FUSION Conversational AI Solutions | Revolutionary Voice Agents | FUSION Data Co</title>
+        <meta name="description" content="FUSION-powered conversational AI agents that never sleep, never quit, and convert 3x better than human reps. Experience revolutionary FUSION voice technology with AI sales coaching, hiring screening, and customer service automation that transforms business operations." />
+        <meta name="keywords" content="FUSION conversational AI, FUSION voice AI agents, FUSION AI sales training, FUSION customer service automation, FUSION automated calling, FUSION AI hiring, FUSION chatbots, FUSION virtual assistants, enterprise FUSION AI, intelligent FUSION agents" />
       </Helmet>
       
       <div className="min-h-screen flex flex-col bg-[#0a0a0d] text-white">
