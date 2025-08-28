@@ -66,49 +66,49 @@ export default function Home() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                <Card className="hover:shadow-lg transition-shadow">
+                <Card enhanced className="group">
                   <CardHeader>
-                    <Zap className="h-10 w-10 text-primary mb-4" />
-                    <CardTitle>Instant Setup</CardTitle>
+                    <Zap className="h-10 w-10 text-primary mb-4 micro-feedback" />
+                    <CardTitle className="group-hover:text-primary transition-colors">Instant Setup</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription>
+                    <CardDescription className="group-hover:text-foreground transition-colors">
                       Get started in minutes with pre-built templates and industry-specific workflows
                     </CardDescription>
                   </CardContent>
                 </Card>
 
-                <Card className="hover:shadow-lg transition-shadow">
+                <Card enhanced className="group">
                   <CardHeader>
-                    <TrendingUp className="h-10 w-10 text-primary mb-4" />
-                    <CardTitle>Proven Results</CardTitle>
+                    <TrendingUp className="h-10 w-10 text-primary mb-4 micro-feedback" />
+                    <CardTitle className="group-hover:text-primary transition-colors">Proven Results</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription>
+                    <CardDescription className="group-hover:text-foreground transition-colors">
                       300% average increase in lead generation within the first 6 months
                     </CardDescription>
                   </CardContent>
                 </Card>
 
-                <Card className="hover:shadow-lg transition-shadow">
+                <Card enhanced className="group">
                   <CardHeader>
-                    <Shield className="h-10 w-10 text-primary mb-4" />
-                    <CardTitle>Enterprise Security</CardTitle>
+                    <Shield className="h-10 w-10 text-primary mb-4 micro-feedback" />
+                    <CardTitle className="group-hover:text-primary transition-colors">Enterprise Security</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription>
+                    <CardDescription className="group-hover:text-foreground transition-colors">
                       Bank-level encryption and compliance with all major data protection standards
                     </CardDescription>
                   </CardContent>
                 </Card>
 
-                <Card className="hover:shadow-lg transition-shadow">
+                <Card enhanced className="group">
                   <CardHeader>
-                    <Globe className="h-10 w-10 text-primary mb-4" />
-                    <CardTitle>All-in-One Platform</CardTitle>
+                    <Globe className="h-10 w-10 text-primary mb-4 micro-feedback" />
+                    <CardTitle className="group-hover:text-primary transition-colors">All-in-One Platform</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription>
+                    <CardDescription className="group-hover:text-foreground transition-colors">
                       CRM, websites, email, social media, and AI tools in one integrated system
                     </CardDescription>
                   </CardContent>
@@ -118,13 +118,13 @@ export default function Home() {
               <div className="text-center">
                 <div className="flex flex-wrap gap-4 justify-center">
                   <Link href="/services">
-                    <Button size="lg" className="group">
+                    <Button size="lg" variant="fusion" className="group">
                       Explore Our Services
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </Link>
                   <Link href="/about">
-                    <Button size="lg" variant="outline">
+                    <Button size="lg" variant="outline" className="fusion-glow">
                       Learn About Us
                     </Button>
                   </Link>

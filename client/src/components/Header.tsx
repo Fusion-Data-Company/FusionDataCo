@@ -139,11 +139,11 @@ export default function Header() {
                 ) : (
                   <Link href={link.path}>
                     <div className={cn(
-                      "relative group px-3 py-2 rounded-lg transition-all duration-300 cursor-pointer",
+                      "relative group px-3 py-2 rounded-lg transition-all duration-300 cursor-pointer nav-item-enhanced",
                       "hover:bg-slate-800/50 hover:border hover:border-blue-400/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]",
                       location === link.path && "bg-slate-800/30 border border-blue-400/20"
                     )}>
-                      <span className="cyberpunk-text-animate-nav">
+                      <span className="cyberpunk-text-animate-nav micro-feedback">
                         {link.name}
                       </span>
                       
