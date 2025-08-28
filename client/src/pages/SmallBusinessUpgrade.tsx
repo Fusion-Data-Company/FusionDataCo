@@ -375,8 +375,347 @@ export default function SmallBusinessUpgrade() {
           </div>
         </section>
 
-        {/* 5. CRM INTRODUCTION BRIDGE */}
-        <section className="py-12 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(139, 92, 246, 0.05))' }}>
+        {/* 5. WHAT WE ACTUALLY PROVIDE - DETAILED EXPLANATIONS */}
+        <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(20, 184, 166, 0.05))' }}>
+          <div className="container mx-auto px-4 relative z-10">
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-3xl md:text-4xl font-['Orbitron'] font-bold mb-6 text-foreground"
+                  style={{ textShadow: '0 0 20px rgba(20, 184, 166, 0.3)' }}>
+                Here's Exactly What You Get (In Plain English)
+              </h2>
+              <div className="bg-card/80 backdrop-blur-sm border border-teal-500/20 rounded-xl p-8 max-w-4xl mx-auto mb-12"
+                   style={{ boxShadow: '0 0 40px rgba(20, 184, 166, 0.2)' }}>
+                <p className="text-lg text-teal-400 mb-4 font-semibold">
+                  "FIRST WE MAKE IT WORK, THEN WE MAKE IT PRETTY"
+                </p>
+                <p className="text-lg text-foreground leading-relaxed">
+                  We focus on what actually grows your business - not flashy features that look good in demos but don't make you money.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Conversational AI Explanation */}
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mb-16"
+            >
+              <div className="bg-card/80 backdrop-blur-sm border border-teal-500/20 rounded-xl p-8"
+                   style={{ boxShadow: '0 0 40px rgba(20, 184, 166, 0.2)' }}>
+                <div className="flex items-center mb-6">
+                  <Phone className="w-10 h-10 text-teal-400 mr-4" />
+                  <h3 className="text-2xl font-bold text-foreground">AI Phone & SMS Agents That Never Sleep</h3>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-400 mb-4">What This Actually Means:</h4>
+                    <ul className="space-y-3 text-foreground">
+                      <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-teal-400 mr-3 mt-0.5 flex-shrink-0" />
+                        Someone calls your business at 3 AM? Our AI answers professionally and takes their info
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-teal-400 mr-3 mt-0.5 flex-shrink-0" />
+                        Text message comes in while you're with a customer? AI responds in under 5 seconds
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-teal-400 mr-3 mt-0.5 flex-shrink-0" />
+                        AI asks the right questions to qualify leads (so you only talk to serious buyers)
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-5 h-5 text-teal-400 mr-3 mt-0.5 flex-shrink-0" />
+                        Automatically schedules appointments in your calendar
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-400 mb-4">Real Example:</h4>
+                    <div className="bg-background/30 rounded-lg p-4 border border-teal-500/10">
+                      <p className="text-sm text-muted-foreground mb-2">Saturday 11:47 PM - Incoming call:</p>
+                      <p className="text-foreground font-semibold mb-2">AI: "Hi! Thanks for calling ABC Plumbing. I'm the after-hours assistant. How can I help you?"</p>
+                      <p className="text-muted-foreground mb-2">Caller: "My water heater is leaking everywhere!"</p>
+                      <p className="text-foreground font-semibold mb-2">AI: "That sounds urgent! Let me get your info and have Mike call you first thing Monday morning. What's the best number to reach you?"</p>
+                      <p className="text-sm text-teal-400 mt-4">Result: Lead captured, info in your CRM, you call them Monday = $2,800 water heater replacement job</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Multi-Model AI Explanation */}
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mb-16"
+            >
+              <div className="bg-card/80 backdrop-blur-sm border border-teal-500/20 rounded-xl p-8"
+                   style={{ boxShadow: '0 0 40px rgba(20, 184, 166, 0.2)' }}>
+                <div className="flex items-center mb-6">
+                  <Lightbulb className="w-10 h-10 text-teal-400 mr-4" />
+                  <h3 className="text-2xl font-bold text-foreground">Smart AI That Picks The Right Tool For Each Job</h3>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-400 mb-4">Think of it like a smart toolbox:</h4>
+                    <p className="text-foreground mb-4">
+                      Just like a good mechanic doesn't use a hammer for every problem, our AI uses different "brain models" for different tasks.
+                    </p>
+                    <ul className="space-y-3 text-foreground">
+                      <li className="flex items-start">
+                        <ArrowRight className="w-5 h-5 text-teal-400 mr-3 mt-0.5 flex-shrink-0" />
+                        <span><strong>Quick questions?</strong> Uses the fast AI model (instant responses)</span>
+                      </li>
+                      <li className="flex items-start">
+                        <ArrowRight className="w-5 h-5 text-teal-400 mr-3 mt-0.5 flex-shrink-0" />
+                        <span><strong>Complex problems?</strong> Uses the smart AI model (thorough analysis)</span>
+                      </li>
+                      <li className="flex items-start">
+                        <ArrowRight className="w-5 h-5 text-teal-400 mr-3 mt-0.5 flex-shrink-0" />
+                        <span><strong>Creative content?</strong> Uses the creative AI model (engaging copy)</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-400 mb-4">Why This Matters To You:</h4>
+                    <div className="space-y-4">
+                      <div className="bg-background/30 rounded-lg p-4 border border-teal-500/10">
+                        <p className="text-foreground font-semibold mb-2">Instead of paying for:</p>
+                        <p className="text-muted-foreground text-sm">• ChatGPT subscription: $20/month</p>
+                        <p className="text-muted-foreground text-sm">• Claude subscription: $20/month</p>
+                        <p className="text-muted-foreground text-sm">• Specialized AI tools: $50-200/month</p>
+                        <p className="text-muted-foreground text-sm">• Manual switching between tools</p>
+                      </div>
+                      <div className="bg-teal-500/10 rounded-lg p-4 border border-teal-500/20">
+                        <p className="text-teal-400 font-semibold mb-2">You get everything in one system that automatically picks the best AI for each task</p>
+                        <p className="text-foreground text-sm">Saves money + saves time + better results</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Lead Qualification Process */}
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mb-16"
+            >
+              <div className="bg-card/80 backdrop-blur-sm border border-teal-500/20 rounded-xl p-8"
+                   style={{ boxShadow: '0 0 40px rgba(20, 184, 166, 0.2)' }}>
+                <div className="flex items-center mb-6">
+                  <Target className="w-10 h-10 text-teal-400 mr-4" />
+                  <h3 className="text-2xl font-bold text-foreground">Automatic Lead Qualification (So You Stop Wasting Time)</h3>
+                </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  <div className="lg:col-span-2">
+                    <h4 className="text-xl font-semibold text-teal-400 mb-4">Here's What Happens Automatically:</h4>
+                    
+                    <div className="space-y-6">
+                      <div className="flex items-start">
+                        <div className="bg-teal-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 mt-1">1</div>
+                        <div>
+                          <h5 className="font-semibold text-foreground mb-2">AI Asks Smart Questions</h5>
+                          <p className="text-muted-foreground">Instead of "How can I help you?", our AI asks specific questions based on your business type to understand what they really need.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="bg-teal-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 mt-1">2</div>
+                        <div>
+                          <h5 className="font-semibold text-foreground mb-2">Scores Each Lead</h5>
+                          <p className="text-muted-foreground">Based on their answers, budget, timeline, and urgency, each lead gets a score from 1-10. You see the 9s and 10s first.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start">
+                        <div className="bg-teal-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 mt-1">3</div>
+                        <div>
+                          <h5 className="font-semibold text-foreground mb-2">Sends You Only the Good Ones</h5>
+                          <p className="text-muted-foreground">Low-quality leads get helpful automated responses. High-quality leads get your immediate attention with all the details you need.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-400 mb-4">Real Impact:</h4>
+                    <div className="space-y-4">
+                      <div className="bg-red-500/10 rounded-lg p-4 border border-red-500/20">
+                        <p className="text-red-400 font-semibold mb-2">Before:</p>
+                        <p className="text-sm text-muted-foreground">• 50 leads per week</p>
+                        <p className="text-sm text-muted-foreground">• You call all 50</p>
+                        <p className="text-sm text-muted-foreground">• 45 are tire-kickers</p>
+                        <p className="text-sm text-muted-foreground">• 5 actually buy</p>
+                        <p className="text-sm text-muted-foreground">• 20+ hours wasted</p>
+                      </div>
+                      <div className="bg-teal-500/10 rounded-lg p-4 border border-teal-500/20">
+                        <p className="text-teal-400 font-semibold mb-2">After:</p>
+                        <p className="text-sm text-foreground">• 50 leads per week</p>
+                        <p className="text-sm text-foreground">• AI screens them all</p>
+                        <p className="text-sm text-foreground">• You call only the 8-10 rated ones</p>
+                        <p className="text-sm text-foreground">• 7-8 actually buy</p>
+                        <p className="text-sm text-foreground">• 3 hours total time</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Simple ROI Calculator */}
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mb-16"
+            >
+              <div className="bg-card/80 backdrop-blur-sm border border-teal-500/20 rounded-xl p-8"
+                   style={{ boxShadow: '0 0 40px rgba(20, 184, 166, 0.2)' }}>
+                <div className="flex items-center mb-6">
+                  <DollarSign className="w-10 h-10 text-teal-400 mr-4" />
+                  <h3 className="text-2xl font-bold text-foreground">The Real Numbers (Why This Actually Saves You Money)</h3>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-xl font-semibold text-red-400 mb-4">What You're Probably Spending Now:</h4>
+                    <div className="bg-red-500/10 rounded-lg p-6 border border-red-500/20">
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-foreground">Missed calls (10 per month @ $500 each)</span>
+                          <span className="text-red-400 font-semibold">$5,000</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-foreground">Time spent on low-quality leads (20 hrs @ $50/hr)</span>
+                          <span className="text-red-400 font-semibold">$1,000</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-foreground">Scattered marketing tools & subscriptions</span>
+                          <span className="text-red-400 font-semibold">$800</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-foreground">Lost follow-up opportunities (5 @ $800 each)</span>
+                          <span className="text-red-400 font-semibold">$4,000</span>
+                        </div>
+                        <hr className="border-red-500/30" />
+                        <div className="flex justify-between font-bold text-lg">
+                          <span className="text-foreground">Monthly Lost Revenue:</span>
+                          <span className="text-red-400">$10,800</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-xl font-semibold text-teal-400 mb-4">What You Get With Our System:</h4>
+                    <div className="bg-teal-500/10 rounded-lg p-6 border border-teal-500/20">
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-foreground">AI answers every call (capture 100%)</span>
+                          <span className="text-teal-400 font-semibold">+$5,000</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-foreground">Pre-qualified leads only (save 17 hrs)</span>
+                          <span className="text-teal-400 font-semibold">+$850</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-foreground">All tools in one platform</span>
+                          <span className="text-teal-400 font-semibold">+$600</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-foreground">Automatic follow-up sequences</span>
+                          <span className="text-teal-400 font-semibold">+$4,000</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-foreground">System cost</span>
+                          <span className="text-red-300 font-semibold">-$1,799</span>
+                        </div>
+                        <hr className="border-teal-500/30" />
+                        <div className="flex justify-between font-bold text-lg">
+                          <span className="text-foreground">Net Monthly Gain:</span>
+                          <span className="text-teal-400">+$8,651</span>
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-4 text-center">
+                      That's $103,812 extra per year. The system pays for itself in the first month.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* What Happens After You Sign Up */}
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-card/80 backdrop-blur-sm border border-teal-500/20 rounded-xl p-8"
+                   style={{ boxShadow: '0 0 40px rgba(20, 184, 166, 0.2)' }}>
+                <div className="flex items-center mb-6">
+                  <CheckCircle className="w-10 h-10 text-teal-400 mr-4" />
+                  <h3 className="text-2xl font-bold text-foreground">What Happens After You Say "Yes"</h3>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="text-center">
+                    <div className="bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mx-auto mb-4">1</div>
+                    <h4 className="font-semibold text-foreground mb-2">Day 1-3</h4>
+                    <p className="text-sm text-muted-foreground">We set up your AI agents, import your contacts, and configure everything for your specific business</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mx-auto mb-4">2</div>
+                    <h4 className="font-semibold text-foreground mb-2">Day 4-7</h4>
+                    <p className="text-sm text-muted-foreground">We train you on the system (it's simpler than you think) and test everything together</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mx-auto mb-4">3</div>
+                    <h4 className="font-semibold text-foreground mb-2">Week 2</h4>
+                    <p className="text-sm text-muted-foreground">System goes live. You start seeing captured leads and automated responses immediately</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mx-auto mb-4">4</div>
+                    <h4 className="font-semibold text-foreground mb-2">Month 1+</h4>
+                    <p className="text-sm text-muted-foreground">We optimize based on your results and add advanced features as you grow</p>
+                  </div>
+                </div>
+                
+                <div className="mt-8 text-center">
+                  <p className="text-lg text-foreground font-semibold mb-2">
+                    Remember: "FIRST WE MAKE IT WORK, THEN WE MAKE IT PRETTY"
+                  </p>
+                  <p className="text-muted-foreground">
+                    We focus on getting you results immediately, not fancy dashboards that don't make you money.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* 6. CRM INTRODUCTION BRIDGE */}
+        <section className="py-12 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(20, 184, 166, 0.05), rgba(139, 92, 246, 0.05))' }}>
           <div className="container mx-auto px-4 relative z-10">
             <motion.div
               initial={{ y: 30, opacity: 0 }}
@@ -386,7 +725,7 @@ export default function SmallBusinessUpgrade() {
               className="text-center"
             >
               <p className="text-xl text-foreground font-semibold">
-                Ready to see how this actually works? Let's start with the foundation every successful business needs...
+                Ready to stop losing money to missed opportunities? Let's get your competitive advantage set up...
               </p>
             </motion.div>
           </div>
