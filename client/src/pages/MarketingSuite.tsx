@@ -593,58 +593,58 @@ export default function MarketingSuite() {
               </div>
               
               <div className="max-w-5xl mx-auto overflow-x-auto">
-                <table className="w-full border-collapse">
+                <table className="w-full min-w-[700px] border-collapse">
                   <thead>
                     <tr>
-                      <th className="py-4 px-6 text-left text-lg font-medium text-gray-300">Features</th>
-                      <th className="py-4 px-6 text-center">
-                        <div className="text-[#14ffc8] text-lg font-bold mb-1">Fusion Data Co</div>
-                        <div className="text-sm text-gray-400">AI Marketing Suite</div>
+                      <th className="py-3 sm:py-4 px-3 sm:px-6 text-left text-base sm:text-lg font-medium text-gray-300">Features</th>
+                      <th className="py-3 sm:py-4 px-3 sm:px-6 text-center">
+                        <div className="text-[#14ffc8] text-base sm:text-lg font-bold mb-1">Fusion Data Co</div>
+                        <div className="text-xs sm:text-sm text-gray-400">AI Marketing Suite</div>
                       </th>
-                      <th className="py-4 px-6 text-center">
-                        <div className="text-white text-lg font-bold mb-1">Hootsuite</div>
-                        <div className="text-sm text-gray-400">Enterprise</div>
+                      <th className="py-3 sm:py-4 px-3 sm:px-6 text-center">
+                        <div className="text-white text-base sm:text-lg font-bold mb-1">Hootsuite</div>
+                        <div className="text-xs sm:text-sm text-gray-400">Enterprise</div>
                       </th>
-                      <th className="py-4 px-6 text-center">
-                        <div className="text-white text-lg font-bold mb-1">Buffer</div>
-                        <div className="text-sm text-gray-400">Business</div>
+                      <th className="py-3 sm:py-4 px-3 sm:px-6 text-center">
+                        <div className="text-white text-base sm:text-lg font-bold mb-1">Buffer</div>
+                        <div className="text-xs sm:text-sm text-gray-400">Business</div>
                       </th>
-                      <th className="py-4 px-6 text-center">
-                        <div className="text-white text-lg font-bold mb-1">Zapier</div>
-                        <div className="text-sm text-gray-400">Professional</div>
+                      <th className="py-3 sm:py-4 px-3 sm:px-6 text-center">
+                        <div className="text-white text-base sm:text-lg font-bold mb-1">Zapier</div>
+                        <div className="text-xs sm:text-sm text-gray-400">Professional</div>
                       </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-800">
                     {Object.entries(features).map(([feature, platforms]) => (
                       <tr key={feature} className="hover:bg-[#0c0c14]">
-                        <td className="py-4 px-6 text-left font-medium">{feature}</td>
-                        <td className="py-4 px-6 text-center">
+                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-left font-medium text-sm sm:text-base">{feature}</td>
+                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-center">
                           {platforms.fusion ? (
-                            <CheckCircle2 className="mx-auto w-6 h-6 text-[#14ffc8]" />
+                            <CheckCircle2 className="mx-auto w-5 sm:w-6 h-5 sm:h-6 text-[#14ffc8]" />
                           ) : (
-                            <XCircle className="mx-auto w-6 h-6 text-gray-600" />
+                            <XCircle className="mx-auto w-5 sm:w-6 h-5 sm:h-6 text-gray-600" />
                           )}
                         </td>
-                        <td className="py-4 px-6 text-center">
+                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-center">
                           {platforms.hootsuite ? (
-                            <CheckCircle2 className="mx-auto w-6 h-6 text-green-500" />
+                            <CheckCircle2 className="mx-auto w-5 sm:w-6 h-5 sm:h-6 text-green-500" />
                           ) : (
-                            <XCircle className="mx-auto w-6 h-6 text-gray-600" />
+                            <XCircle className="mx-auto w-5 sm:w-6 h-5 sm:h-6 text-gray-600" />
                           )}
                         </td>
-                        <td className="py-4 px-6 text-center">
+                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-center">
                           {platforms.buffer ? (
-                            <CheckCircle2 className="mx-auto w-6 h-6 text-green-500" />
+                            <CheckCircle2 className="mx-auto w-5 sm:w-6 h-5 sm:h-6 text-green-500" />
                           ) : (
-                            <XCircle className="mx-auto w-6 h-6 text-gray-600" />
+                            <XCircle className="mx-auto w-5 sm:w-6 h-5 sm:h-6 text-gray-600" />
                           )}
                         </td>
-                        <td className="py-4 px-6 text-center">
+                        <td className="py-3 sm:py-4 px-3 sm:px-6 text-center">
                           {platforms.zapier ? (
-                            <CheckCircle2 className="mx-auto w-6 h-6 text-green-500" />
+                            <CheckCircle2 className="mx-auto w-5 sm:w-6 h-5 sm:h-6 text-green-500" />
                           ) : (
-                            <XCircle className="mx-auto w-6 h-6 text-gray-600" />
+                            <XCircle className="mx-auto w-5 sm:w-6 h-5 sm:h-6 text-gray-600" />
                           )}
                         </td>
                       </tr>

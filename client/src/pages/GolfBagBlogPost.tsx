@@ -132,84 +132,84 @@ export default function GolfBagBlogPost() {
                 </p>
 
                 <div className="overflow-x-auto mb-8">
-                  <table className="w-full border-collapse border border-border rounded-lg">
+                  <table className="w-full min-w-[500px] border-collapse border border-border rounded-lg">
                     <thead>
                       <tr className="bg-gradient-to-r from-green-500/10 to-blue-500/10">
-                        <th className="border border-border p-4 text-left font-bold">Golf Club</th>
-                        <th className="border border-border p-4 text-left font-bold">LLM Model</th>
-                        <th className="border border-border p-4 text-left font-bold">Unique Use Case</th>
+                        <th className="border border-border p-2 sm:p-4 text-left font-bold text-sm sm:text-base">Golf Club</th>
+                        <th className="border border-border p-2 sm:p-4 text-left font-bold text-sm sm:text-base">LLM Model</th>
+                        <th className="border border-border p-2 sm:p-4 text-left font-bold text-sm sm:text-base">Unique Use Case</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr className="hover:bg-blue-500/5">
-                        <td className="border border-border p-4 font-semibold text-blue-400">Driver</td>
-                        <td className="border border-border p-4">GPT-4 Turbo</td>
-                        <td className="border border-border p-4">Long-form content generation, complex reasoning, strategic planning</td>
+                        <td className="border border-border p-2 sm:p-4 font-semibold text-blue-400 text-sm sm:text-base">Driver</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">GPT-4 Turbo</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Long-form content generation, complex reasoning, strategic planning</td>
                       </tr>
                       <tr className="hover:bg-green-500/5">
-                        <td className="border border-border p-4 font-semibold text-green-400">3-Wood</td>
-                        <td className="border border-border p-4">Claude-3 Opus</td>
-                        <td className="border border-border p-4">Technical documentation, code analysis, detailed research</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-green-400">3-Wood</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Claude-3 Opus</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Technical documentation, code analysis, detailed research</td>
                       </tr>
                       <tr className="hover:bg-purple-500/5">
-                        <td className="border border-border p-4 font-semibold text-purple-400">5-Wood</td>
-                        <td className="border border-border p-4">Gemini Pro</td>
-                        <td className="border border-border p-4">Multimodal tasks, image analysis, video processing</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-purple-400">5-Wood</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Gemini Pro</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Multimodal tasks, image analysis, video processing</td>
                       </tr>
                       <tr className="hover:bg-cyan-500/5">
-                        <td className="border border-border p-4 font-semibold text-cyan-400">3-Iron</td>
-                        <td className="border border-border p-4">Claude-3 Sonnet</td>
-                        <td className="border border-border p-4">Structured data analysis, workflow automation</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-cyan-400">3-Iron</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Claude-3 Sonnet</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Structured data analysis, workflow automation</td>
                       </tr>
                       <tr className="hover:bg-orange-500/5">
-                        <td className="border border-border p-4 font-semibold text-orange-400">4-Iron</td>
-                        <td className="border border-border p-4">GPT-4</td>
-                        <td className="border border-border p-4">Business strategy, market analysis, competitive research</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-orange-400">4-Iron</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">GPT-4</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Business strategy, market analysis, competitive research</td>
                       </tr>
                       <tr className="hover:bg-yellow-500/5">
-                        <td className="border border-border p-4 font-semibold text-yellow-400">5-Iron</td>
-                        <td className="border border-border p-4">Anthropic Claude</td>
-                        <td className="border border-border p-4">Ethics review, compliance checking, risk assessment</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-yellow-400">5-Iron</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Anthropic Claude</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Ethics review, compliance checking, risk assessment</td>
                       </tr>
                       <tr className="hover:bg-red-500/5">
-                        <td className="border border-border p-4 font-semibold text-red-400">6-Iron</td>
-                        <td className="border border-border p-4">Llama-3 70B</td>
-                        <td className="border border-border p-4">Open-source requirements, cost-sensitive applications</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-red-400">6-Iron</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Llama-3 70B</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Open-source requirements, cost-sensitive applications</td>
                       </tr>
                       <tr className="hover:bg-pink-500/5">
-                        <td className="border border-border p-4 font-semibold text-pink-400">7-Iron</td>
-                        <td className="border border-border p-4">Mixtral 8x7B</td>
-                        <td className="border border-border p-4">Multilingual tasks, translation, global content</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-pink-400">7-Iron</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Mixtral 8x7B</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Multilingual tasks, translation, global content</td>
                       </tr>
                       <tr className="hover:bg-teal-500/5">
-                        <td className="border border-border p-4 font-semibold text-teal-400">8-Iron</td>
-                        <td className="border border-border p-4">Claude-3 Haiku</td>
-                        <td className="border border-border p-4">Fast API responses, real-time chat, customer service</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-teal-400">8-Iron</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Claude-3 Haiku</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Fast API responses, real-time chat, customer service</td>
                       </tr>
                       <tr className="hover:bg-indigo-500/5">
-                        <td className="border border-border p-4 font-semibold text-indigo-400">9-Iron</td>
-                        <td className="border border-border p-4">GPT-3.5 Turbo</td>
-                        <td className="border border-border p-4">High-volume processing, simple Q&A, basic automation</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-indigo-400">9-Iron</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">GPT-3.5 Turbo</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">High-volume processing, simple Q&A, basic automation</td>
                       </tr>
                       <tr className="hover:bg-emerald-500/5">
-                        <td className="border border-border p-4 font-semibold text-emerald-400">Pitching Wedge</td>
-                        <td className="border border-border p-4">Grok-1</td>
-                        <td className="border border-border p-4">Real-time data integration, current events, trending topics</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-emerald-400">Pitching Wedge</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Grok-1</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Real-time data integration, current events, trending topics</td>
                       </tr>
                       <tr className="hover:bg-amber-500/5">
-                        <td className="border border-border p-4 font-semibold text-amber-400">Gap Wedge</td>
-                        <td className="border border-border p-4">Perplexity AI</td>
-                        <td className="border border-border p-4">Research synthesis, fact-checking, source attribution</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-amber-400">Gap Wedge</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Perplexity AI</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Research synthesis, fact-checking, source attribution</td>
                       </tr>
                       <tr className="hover:bg-lime-500/5">
-                        <td className="border border-border p-4 font-semibold text-lime-400">Sand Wedge</td>
-                        <td className="border border-border p-4">Llama-2 Chat</td>
-                        <td className="border border-border p-4">Data cleaning, format standardization, error correction</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-lime-400">Sand Wedge</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Llama-2 Chat</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Data cleaning, format standardization, error correction</td>
                       </tr>
                       <tr className="hover:bg-violet-500/5">
-                        <td className="border border-border p-4 font-semibold text-violet-400">Putter</td>
-                        <td className="border border-border p-4">GPT-3.5</td>
-                        <td className="border border-border p-4">Final polish, headlines, subject lines, SMS copy</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base font-semibold text-violet-400">Putter</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">GPT-3.5</td>
+                        <td className="border border-border p-2 sm:p-4 text-sm sm:text-base">Final polish, headlines, subject lines, SMS copy</td>
                       </tr>
                     </tbody>
                   </table>

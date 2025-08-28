@@ -305,18 +305,18 @@ export default function ComparisonTable() {
         {/* Comparison Table */}
         {expandedCategory && (
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full min-w-[700px]">
               <thead className="bg-[#0a0a0d]">
                 <tr>
-                  <th className="px-4 py-3 text-left text-white font-semibold">Feature</th>
-                  <th className="px-4 py-3 text-center text-white font-semibold bg-[#14ffc8]/10 border-l border-r border-[#14ffc8]/30">
+                  <th className="px-2 sm:px-4 py-3 text-left text-white font-semibold text-sm sm:text-base">Feature</th>
+                  <th className="px-2 sm:px-4 py-3 text-center text-white font-semibold bg-[#14ffc8]/10 border-l border-r border-[#14ffc8]/30 text-sm sm:text-base">
                     <div className="flex items-center justify-center">
                       <span className="text-[#14ffc8] font-bold">Fusion Data Co</span>
                     </div>
                   </th>
-                  <th className="px-4 py-3 text-center text-gray-400 font-semibold">Wix</th>
-                  <th className="px-4 py-3 text-center text-gray-400 font-semibold">GoDaddy</th>
-                  <th className="px-4 py-3 text-center text-gray-400 font-semibold">GoHighLevel</th>
+                  <th className="px-2 sm:px-4 py-3 text-center text-gray-400 font-semibold text-sm sm:text-base">Wix</th>
+                  <th className="px-2 sm:px-4 py-3 text-center text-gray-400 font-semibold text-sm sm:text-base">GoDaddy</th>
+                  <th className="px-2 sm:px-4 py-3 text-center text-gray-400 font-semibold text-sm sm:text-base">GoHighLevel</th>
                 </tr>
               </thead>
               <tbody>
@@ -324,29 +324,29 @@ export default function ComparisonTable() {
                   .filter(item => item.category === expandedCategory)
                   .map((item, index) => (
                     <tr key={index} className="border-t border-[#333340] hover:bg-[#0a0a0d]/50 transition-colors duration-200">
-                      <td className="px-4 py-4 text-white font-medium">{item.feature}</td>
-                      <td className="px-4 py-4 text-center bg-[#14ffc8]/5 border-l border-r border-[#14ffc8]/20">
-                        <div className="flex items-center justify-center space-x-2">
+                      <td className="px-2 sm:px-4 py-3 sm:py-4 text-white font-medium text-sm sm:text-base">{item.feature}</td>
+                      <td className="px-2 sm:px-4 py-3 sm:py-4 text-center bg-[#14ffc8]/5 border-l border-r border-[#14ffc8]/20">
+                        <div className="flex items-center justify-center space-x-1 sm:space-x-2">
                           {getStatusIcon(item.fusion)}
-                          <span className="text-white text-sm">{getStatusText(item.fusion)}</span>
+                          <span className="text-white text-xs sm:text-sm hidden sm:inline">{getStatusText(item.fusion)}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-4 text-center">
-                        <div className="flex items-center justify-center space-x-2">
+                      <td className="px-2 sm:px-4 py-3 sm:py-4 text-center">
+                        <div className="flex items-center justify-center space-x-1 sm:space-x-2">
                           {getStatusIcon(item.wix)}
-                          <span className="text-gray-400 text-sm">{getStatusText(item.wix)}</span>
+                          <span className="text-gray-400 text-xs sm:text-sm hidden sm:inline">{getStatusText(item.wix)}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-4 text-center">
-                        <div className="flex items-center justify-center space-x-2">
+                      <td className="px-2 sm:px-4 py-3 sm:py-4 text-center">
+                        <div className="flex items-center justify-center space-x-1 sm:space-x-2">
                           {getStatusIcon(item.godaddy)}
-                          <span className="text-gray-400 text-sm">{getStatusText(item.godaddy)}</span>
+                          <span className="text-gray-400 text-xs sm:text-sm hidden sm:inline">{getStatusText(item.godaddy)}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-4 text-center">
-                        <div className="flex items-center justify-center space-x-2">
+                      <td className="px-2 sm:px-4 py-3 sm:py-4 text-center">
+                        <div className="flex items-center justify-center space-x-1 sm:space-x-2">
                           {getStatusIcon(item.gohighlevel)}
-                          <span className="text-gray-400 text-sm">{getStatusText(item.gohighlevel)}</span>
+                          <span className="text-gray-400 text-xs sm:text-sm hidden sm:inline">{getStatusText(item.gohighlevel)}</span>
                         </div>
                       </td>
                     </tr>
