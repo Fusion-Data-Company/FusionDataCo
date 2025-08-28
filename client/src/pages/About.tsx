@@ -36,8 +36,14 @@ export default function About() {
                   </span>
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8">
-                  Empowering businesses with intelligent automation solutions that drive growth, efficiency, and innovation.
+                  Bringing enterprise-grade conversational AI and marketing automation to small businesses who deserve sophisticated tools without the complexity.
                 </p>
+                <div className="bg-gradient-to-r from-primary/20 to-accent/20 rounded-lg p-6 mb-8">
+                  <p className="text-2xl font-bold text-primary text-center">
+                    "FIRST WE MAKE IT WORK, THEN WE MAKE IT PRETTY"
+                  </p>
+                  <p className="text-center text-muted-foreground mt-2">Our Philosophy</p>
+                </div>
               </div>
             </div>
           </section>
@@ -52,10 +58,10 @@ export default function About() {
                     <h2 className="text-3xl font-bold">Our Mission</h2>
                   </div>
                   <p className="text-lg text-muted-foreground mb-6">
-                    To democratize advanced marketing automation technology, making it accessible and affordable for businesses of all sizes. We believe every company deserves enterprise-level tools without enterprise-level complexity or cost.
+                    To empower small businesses with the same conversational AI technology that Fortune 500 companies use - voice agents, SMS automation, and multi-model AI routing - at prices that make sense for growing companies.
                   </p>
                   <p className="text-lg text-muted-foreground">
-                    We're committed to simplifying digital marketing, automating repetitive tasks, and providing actionable insights that help our clients focus on what they do best - growing their business.
+                    We specialize in taking complex enterprise AI systems and making them simple, affordable, and incredibly effective for real estate, healthcare, trades, and service businesses who need to capture every lead and convert more prospects.
                   </p>
                 </div>
                 
@@ -65,10 +71,10 @@ export default function About() {
                     <h2 className="text-3xl font-bold">Our Vision</h2>
                   </div>
                   <p className="text-lg text-muted-foreground mb-6">
-                    To become the global leader in integrated marketing automation, where businesses seamlessly connect with their customers through intelligent, data-driven strategies.
+                    A world where every small business has access to AI agents that answer calls instantly, respond to SMS in seconds, and qualify leads 24/7 - without requiring a team of developers or a massive budget.
                   </p>
                   <p className="text-lg text-muted-foreground">
-                    We envision a future where marketing automation isn't just about efficiency - it's about creating meaningful connections, predictive insights, and sustainable growth for every business we serve.
+                    We're building the future where conversational AI becomes as essential as having a website, where multi-model routing optimizes every customer interaction, and where businesses can compete with enterprise-level automation tools.
                   </p>
                 </div>
               </div>
