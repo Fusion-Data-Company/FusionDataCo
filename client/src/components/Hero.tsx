@@ -124,34 +124,34 @@ export default function Hero() {
   
   return (
     <div className="relative bg-[#050510] text-white overflow-hidden min-h-screen">
-      {/* Superior ambient effects */}
+      {/* Superior ambient effects - responsive */}
       <div className="absolute top-0 left-0 w-full h-full opacity-40 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwMCIgaGVpZ2h0PSI5MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGZpbHRlciBpZD0iYSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9Ii4wMDUiIG51bU9jdGF2ZXM9IjIiIHN0aXRjaFRpbGVzPSJzdGl0Y2giIHJlc3VsdD0ibm9pc2UiLz48ZmVDb2xvck1hdHJpeCB0eXBlPSJtYXRyaXgiIHZhbHVlcz0iMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgLjA1IDAiLz48L2ZpbHRlcj48L2RlZnM+PHBhdGggZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMjUiIGQ9Ik0wIDBoMTYwMHY5MDBIMHoiLz48L3N2Zz4=')]" />
       
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
       
-      {/* Enterprise-grade ambient lighting */}
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-500/5 blur-[120px]" />
-      <div className="absolute bottom-1/3 right-1/4 w-[600px] h-[600px] rounded-full bg-indigo-600/5 blur-[150px]" />
-      <div className="absolute top-2/3 left-1/2 w-[300px] h-[300px] rounded-full bg-cyan-400/5 blur-[100px]" />
+      {/* Enterprise-grade ambient lighting - responsive */}
+      <div className="absolute top-1/3 left-1/4 w-[min(500px,50vw)] h-[min(500px,50vw)] rounded-full bg-blue-500/5 blur-[120px]" />
+      <div className="absolute bottom-1/3 right-1/4 w-[min(600px,60vw)] h-[min(600px,60vw)] rounded-full bg-indigo-600/5 blur-[150px]" />
+      <div className="absolute top-2/3 left-1/2 w-[min(300px,30vw)] h-[min(300px,30vw)] rounded-full bg-cyan-400/5 blur-[100px]" />
       
       {/* Subtle grid overlay */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNjAgNjBIMFYwaDYwdjYwem0tMjAgMEgwVjIwaDQwdjQwem0yMC00MEgxMFYxMGgzMHYxMHoiIGZpbGw9IiMxMTEyMjciIGZpbGwtb3BhY2l0eT0iMC4wMiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] opacity-40" />
       
-      {/* Advanced corner decorations */}
-      <div className="absolute top-0 left-0 w-32 h-px bg-gradient-to-r from-blue-600/70 to-transparent" />
-      <div className="absolute top-0 left-0 h-32 w-px bg-gradient-to-b from-blue-600/70 to-transparent" />
-      <div className="absolute top-0 right-0 w-32 h-px bg-gradient-to-l from-blue-600/70 to-transparent" />
-      <div className="absolute top-0 right-0 h-32 w-px bg-gradient-to-b from-blue-600/70 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-32 h-px bg-gradient-to-r from-blue-600/70 to-transparent" />
-      <div className="absolute bottom-0 left-0 h-32 w-px bg-gradient-to-t from-blue-600/70 to-transparent" />
-      <div className="absolute bottom-0 right-0 w-32 h-px bg-gradient-to-l from-blue-600/70 to-transparent" />
-      <div className="absolute bottom-0 right-0 h-32 w-px bg-gradient-to-t from-blue-600/70 to-transparent" />
+      {/* Advanced corner decorations - responsive */}
+      <div className="absolute top-0 left-0 w-8 sm:w-16 md:w-32 h-px bg-gradient-to-r from-blue-600/70 to-transparent" />
+      <div className="absolute top-0 left-0 h-8 sm:h-16 md:h-32 w-px bg-gradient-to-b from-blue-600/70 to-transparent" />
+      <div className="absolute top-0 right-0 w-8 sm:w-16 md:w-32 h-px bg-gradient-to-l from-blue-600/70 to-transparent" />
+      <div className="absolute top-0 right-0 h-8 sm:h-16 md:h-32 w-px bg-gradient-to-b from-blue-600/70 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-8 sm:w-16 md:w-32 h-px bg-gradient-to-r from-blue-600/70 to-transparent" />
+      <div className="absolute bottom-0 left-0 h-8 sm:h-16 md:h-32 w-px bg-gradient-to-t from-blue-600/70 to-transparent" />
+      <div className="absolute bottom-0 right-0 w-8 sm:w-16 md:w-32 h-px bg-gradient-to-l from-blue-600/70 to-transparent" />
+      <div className="absolute bottom-0 right-0 h-8 sm:h-16 md:h-32 w-px bg-gradient-to-t from-blue-600/70 to-transparent" />
       
-      {/* Two-column layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
+      {/* Two-column layout - responsive */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
         
-        {/* Left column: Text content - positioned even higher with bigger container */}
-        <div className="relative z-10 px-8 pt-6 pb-16 flex flex-col items-start justify-start text-left w-full">
+        {/* Left column: Text content - responsive padding and spacing */}
+        <div className="relative z-10 px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 pb-8 sm:pb-16 flex flex-col items-start justify-start text-left w-full max-w-full">
           {/* Premium Enterprise Badge */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -211,9 +211,9 @@ export default function Hero() {
                   <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/5 via-slate-800/5 to-green-900/5 rounded-lg"></div>
                 </div>
                 
-                {/* Text with matching gradient and textured white Data highlight effect */}
-                <span className="relative z-10 inline-block text-5xl md:text-6xl lg:text-7xl xl:text-8xl enterprise-text-shadow whitespace-nowrap">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500">Fusion </span>
+                {/* Text with matching gradient and textured white Data highlight effect - responsive */}
+                <span className="relative z-10 inline-block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl enterprise-text-shadow break-words">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500">FUSION </span>
                   <span className="relative text-white drop-shadow-lg" style={{
                     textShadow: '0 0 20px rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1)',
                     background: 'linear-gradient(180deg, #ffffff 0%, #ffffff 70%, #f8f9fa 100%)',
@@ -221,9 +221,9 @@ export default function Hero() {
                     WebkitTextFillColor: 'transparent',
                     filter: 'brightness(1.1)'
                   }}>
-                    Data
+                    DATA
                   </span>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500"> Co.</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500"> CO.</span>
                   <span className="absolute -inset-x-1 -inset-y-0.5 bg-blue-500/5 blur-sm rounded-lg z-[-1]"></span>
                   <span className="absolute -inset-x-1 top-1/2 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"></span>
                 </span>
@@ -237,10 +237,10 @@ export default function Hero() {
                 {/* Subtle neon glow */}
                 <div className="absolute inset-0 bg-blue-500/5 rounded-lg blur-md -z-10"></div>
                 
-                {/* Main text with enhanced gradient - smaller size */}
+                {/* Main text with enhanced gradient - responsive size */}
                 <motion.span 
                   ref={textRef}
-                  className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 inline-block enterprise-text text-4xl md:text-5xl"
+                  className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 inline-block enterprise-text text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl"
                 >
                   Custom Business Solutions
                   
@@ -260,16 +260,16 @@ export default function Hero() {
           </motion.div>
           
           <motion.p 
-            className="text-xl md:text-2xl leading-relaxed max-w-xl mb-12 text-slate-300/90 font-light"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-full lg:max-w-xl mb-8 sm:mb-12 text-slate-300/90 font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            We <span className="text-slate-200 font-medium">architect</span> <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">intelligent systems</span>, <span className="text-slate-200 font-medium">automate</span> <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">complex workflows</span>, and unleash <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">AI-powered insights</span> that revolutionize how you operate and <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">accelerate exponential growth</span>.
+            We <span className="text-slate-200 font-medium">architect</span> <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">intelligent FUSION systems</span>, <span className="text-slate-200 font-medium">automate</span> <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">complex workflows</span>, and unleash <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">AI-powered FUSION insights</span> that revolutionize how you operate and <span className="text-transparent bg-clip-text font-medium bg-gradient-to-r from-blue-400 to-cyan-400 enterprise-text-shadow">accelerate exponential growth</span>.
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row gap-5 mb-10"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-5 mb-6 sm:mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -282,7 +282,7 @@ export default function Hero() {
               {/* Titanium/metallic surface with reflective highlights - solid, no transparency */}
               <Button 
                 size="lg" 
-                className="relative overflow-hidden h-14 px-8 z-10 border-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 group-hover:scale-[1.02] transition-transform duration-300"
+                className="relative overflow-hidden h-12 sm:h-14 px-4 sm:px-8 z-10 border-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 group-hover:scale-[1.02] transition-transform duration-300 w-full sm:w-auto touch-manipulation"
                 onMouseEnter={() => setHoverButton1(true)}
                 onMouseLeave={() => setHoverButton1(false)}
               >
@@ -342,7 +342,7 @@ export default function Hero() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="relative h-14 px-8 border-0 z-10 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300"
+                className="relative h-12 sm:h-14 px-4 sm:px-8 border-0 z-10 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300 w-full sm:w-auto touch-manipulation"
                 onMouseEnter={() => setHoverButton2(true)}
                 onMouseLeave={() => setHoverButton2(false)}
               >

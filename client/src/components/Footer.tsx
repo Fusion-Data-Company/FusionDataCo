@@ -70,11 +70,28 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-muted-foreground">
               <li>
+                <Link href="/services/conversational-ai">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Conversational AI</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/multi-model-agents">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Multi-Model Agents</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/demographics">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Demographics</span>
+                </Link>
+              </li>
+              <li>
                 <Link href="/social-media">
-                  <span className="hover:text-primary transition-colors cursor-pointer inline-flex items-center">
-                    <span className="absolute w-1 h-1 rounded-full bg-primary/70 opacity-0 -left-3 group-hover:opacity-100 transition-opacity"></span>
-                    Social Media
-                  </span>
+                  <span className="hover:text-primary transition-colors cursor-pointer">Social Media</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/funnels">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Funnels</span>
                 </Link>
               </li>
               <li>
@@ -84,17 +101,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/lead-magnet">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Lead Magnet</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/automations">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Marketing Automations</span>
+                  <span className="hover:text-primary transition-colors cursor-pointer">Lead Gen</span>
                 </Link>
               </li>
               <li>
                 <Link href="/crm">
-                  <span className="hover:text-primary transition-colors cursor-pointer">CRM Dashboard</span>
+                  <span className="hover:text-primary transition-colors cursor-pointer">CRM</span>
                 </Link>
               </li>
             </ul>
@@ -164,12 +176,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/contact">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Contact Us</span>
+                  <span className="hover:text-primary transition-colors cursor-pointer">Contact</span>
                 </Link>
               </li>
               <li>
-                <Link href="/login">
-                  <span className="hover:text-primary transition-colors cursor-pointer">Login</span>
+                <Link href="/small-business-upgrade">
+                  <span className="hover:text-primary transition-colors cursor-pointer font-semibold text-accent">Small Business Upgrade</span>
                 </Link>
               </li>
               <li>
@@ -177,7 +189,11 @@ export default function Footer() {
                   <span className="hover:text-primary transition-colors cursor-pointer">Partners</span>
                 </Link>
               </li>
-              <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
+              <li>
+                <Link href="/login">
+                  <span className="hover:text-primary transition-colors cursor-pointer">Admin Access</span>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

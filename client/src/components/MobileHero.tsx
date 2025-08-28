@@ -24,13 +24,13 @@ export default function MobileHero() {
   ];
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center px-4 py-20 overflow-hidden bg-gradient-to-b from-background via-background/95 to-background">
-      {/* Background Effects */}
+    <section className="relative min-h-screen flex flex-col justify-center px-4 py-12 sm:py-20 overflow-hidden bg-gradient-to-b from-background via-background/95 to-background">
+      {/* Background Effects - responsive */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-      <div className="absolute top-20 -right-20 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-40 -left-20 w-32 h-32 bg-secondary/20 rounded-full blur-2xl"></div>
+      <div className="absolute top-20 -right-10 sm:-right-20 w-20 sm:w-40 h-20 sm:h-40 bg-primary/20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-40 -left-10 sm:-left-20 w-16 sm:w-32 h-16 sm:h-32 bg-secondary/20 rounded-full blur-2xl"></div>
 
-      <div className="relative z-10 max-w-sm mx-auto text-center">
+      <div className="relative z-10 w-full max-w-xs sm:max-w-sm mx-auto text-center">
         {/* Logo */}
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
@@ -48,11 +48,11 @@ export default function MobileHero() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-['Orbitron'] text-3xl md:text-4xl font-bold mb-4"
+          className="font-['Orbitron'] text-2xl sm:text-3xl md:text-4xl font-bold mb-4 leading-tight"
         >
           <span className="text-foreground">Transform Your</span>
           <br />
-          <span className="text-primary">Marketing ROI</span>
+          <span className="text-primary">FUSION ROI</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -60,9 +60,9 @@ export default function MobileHero() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-lg text-muted-foreground mb-8 leading-relaxed"
+          className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 leading-relaxed px-2"
         >
-          Enterprise-grade marketing automation that drives real results for growing businesses.
+          Enterprise-grade FUSION automation that drives real results for growing businesses.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -70,18 +70,18 @@ export default function MobileHero() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="space-y-4 mb-12"
+          className="space-y-3 mb-8 sm:mb-12 w-full"
         >
           <a
             href="/contact"
             onClick={handleGetStarted}
-            className="w-full bg-gradient-to-r from-primary to-secondary text-white py-4 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 block"
+            className="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 sm:py-4 px-4 sm:px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 block text-center touch-manipulation active:scale-95"
           >
-            Start Free Trial
+            Start FUSION Trial
           </a>
           <a
             href="/pricing"
-            className="w-full border border-border bg-background/50 backdrop-blur-sm text-foreground py-4 px-6 rounded-xl font-semibold hover:bg-accent/10 transition-all duration-300 block"
+            className="w-full border border-border bg-background/50 backdrop-blur-sm text-foreground py-3 sm:py-4 px-4 sm:px-6 rounded-xl font-semibold hover:bg-accent/10 transition-all duration-300 block text-center touch-manipulation active:scale-95"
           >
             View Pricing
           </a>
@@ -92,7 +92,7 @@ export default function MobileHero() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.0 }}
-          className="grid grid-cols-3 gap-4"
+          className="grid grid-cols-3 gap-2 sm:gap-4 w-full"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -100,13 +100,13 @@ export default function MobileHero() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
-              className="text-center p-3 rounded-lg bg-card/30 backdrop-blur-sm border border-border/30"
+              className="text-center p-2 sm:p-3 rounded-lg bg-card/30 backdrop-blur-sm border border-border/30"
             >
-              <div className="flex justify-center mb-2">
-                <stat.icon className="w-5 h-5 text-primary" />
+              <div className="flex justify-center mb-1 sm:mb-2">
+                <stat.icon className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
               </div>
-              <div className="text-lg font-bold text-foreground">{stat.value}</div>
-              <div className="text-xs text-muted-foreground">{stat.label}</div>
+              <div className="text-sm sm:text-lg font-bold text-foreground">{stat.value}</div>
+              <div className="text-xs text-muted-foreground leading-tight">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -116,13 +116,13 @@ export default function MobileHero() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.4 }}
-          className="mt-8 pt-6 border-t border-border/30"
+          className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-border/30 w-full"
         >
-          <p className="text-xs text-muted-foreground mb-3">Trusted by industry leaders</p>
-          <div className="flex justify-center space-x-4 opacity-50">
-            <div className="w-8 h-8 bg-muted-foreground/20 rounded"></div>
-            <div className="w-8 h-8 bg-muted-foreground/20 rounded"></div>
-            <div className="w-8 h-8 bg-muted-foreground/20 rounded"></div>
+          <p className="text-xs text-muted-foreground mb-3">Trusted by FUSION leaders</p>
+          <div className="flex justify-center space-x-3 sm:space-x-4 opacity-50">
+            <div className="w-6 sm:w-8 h-6 sm:h-8 bg-muted-foreground/20 rounded"></div>
+            <div className="w-6 sm:w-8 h-6 sm:h-8 bg-muted-foreground/20 rounded"></div>
+            <div className="w-6 sm:w-8 h-6 sm:h-8 bg-muted-foreground/20 rounded"></div>
           </div>
         </motion.div>
       </div>
