@@ -8,6 +8,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const [location] = useLocation();
   const { theme, setTheme } = useTheme();
 
@@ -22,6 +24,34 @@ export default function Header() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    // Close any open dropdowns when toggling menu
+    if (!isMenuOpen) {
+      setDropdownOpen(null);
+    }
+  };
+
+  // Handle swipe gestures on mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    // Close menu on left swipe, open on right swipe
+    if (isLeftSwipe && isMenuOpen) {
+      setIsMenuOpen(false);
+    } else if (isRightSwipe && !isMenuOpen) {
+      setIsMenuOpen(true);
+    }
   };
 
   const toggleDropdown = (linkName: string) => {
@@ -262,49 +292,93 @@ export default function Header() {
             </button>
           </nav>
           
+          {/* Enhanced Mobile Menu Button */}
           <button 
-            className="lg:hidden text-foreground hover:text-primary transition-colors duration-200" 
+            className={cn(
+              "lg:hidden relative p-2 rounded-lg text-foreground hover:text-primary transition-all duration-300",
+              "hover:bg-primary/10 hover:shadow-lg hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary/50",
+              "active:scale-95 active:bg-primary/20",
+              isMenuOpen && "bg-primary/15 text-primary scale-110 shadow-lg"
+            )}
             onClick={toggleMenu}
             aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
           >
-            {isMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
+            <div className="relative">
+              {/* Animated hamburger/close icon */}
+              <div className={cn(
+                "transition-all duration-300 ease-in-out",
+                isMenuOpen ? "rotate-90 scale-110" : "rotate-0 scale-100"
+              )}>
+                {isMenuOpen ? (
+                  <X size={26} className="drop-shadow-sm" />
+                ) : (
+                  <MenuIcon size={26} className="drop-shadow-sm" />
+                )}
+              </div>
+              
+              {/* Pulse indicator when open */}
+              {isMenuOpen && (
+                <div className="absolute inset-0 rounded-lg bg-primary/20 animate-pulse"></div>
+              )}
+            </div>
+            
+            {/* Menu notification badge */}
+            <div className={cn(
+              "absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full transition-all duration-300",
+              isMenuOpen ? "scale-0 opacity-0" : "scale-100 opacity-60 animate-pulse"
+            )}></div>
           </button>
         </div>
         
-        {/* Mobile menu */}
-        <div className={cn(
-          "lg:hidden pt-5 pb-3 space-y-3 absolute left-0 right-0 bg-card/95 backdrop-blur-lg border-b border-border/40 px-4 shadow-lg",
-          "transition-all duration-300",
-          isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
-        )}>
+        {/* Enhanced Mobile menu with swipe support */}
+        <div 
+          className={cn(
+            "lg:hidden pt-6 pb-4 space-y-4 absolute left-0 right-0 bg-gradient-to-b from-card/98 via-card/95 to-card/92 backdrop-blur-xl border-b border-border/50 px-4 shadow-2xl",
+            "transition-all duration-500 ease-out will-change-transform",
+            isMenuOpen ? "translate-y-0 opacity-100 scale-100" : "-translate-y-full opacity-0 scale-95 pointer-events-none"
+          )}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Swipe indicator */}
+          <div className="flex justify-center mb-2">
+            <div className="w-12 h-1 bg-border/60 rounded-full"></div>
+          </div>
           {navLinks.map((link, idx) => (
-            <div key={idx}>
+            <div key={idx} className="transform transition-all duration-300" style={{ transitionDelay: `${idx * 50}ms` }}>
               {link.hasDropdown ? (
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <button 
                     className={cn(
-                      "flex items-center justify-between w-full py-3 text-muted-foreground transition-colors duration-200",
-                      location.startsWith(link.path) && "text-foreground"
+                      "flex items-center justify-between w-full py-4 px-3 rounded-lg text-muted-foreground transition-all duration-300",
+                      "hover:bg-gradient-to-r hover:from-primary/10 hover:to-accent/5 hover:text-foreground hover:shadow-md",
+                      "focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-primary/5",
+                      location.startsWith(link.path) && "text-foreground bg-primary/10 shadow-sm"
                     )}
                     onClick={() => setDropdownOpen(dropdownOpen === link.name ? null : link.name)}
                   >
-                    <span>{link.name}</span>
+                    <span className="font-medium">{link.name}</span>
                     <ChevronDown className={cn(
-                      "h-4 w-4 transition-transform duration-200",
-                      dropdownOpen === link.name && "transform rotate-180"
+                      "h-5 w-5 transition-all duration-300 text-primary",
+                      dropdownOpen === link.name && "transform rotate-180 scale-110"
                     )} />
                   </button>
                   
                   <div className={cn(
-                    "pl-4 border-l-2 border-border space-y-2 transition-all duration-200",
-                    dropdownOpen ? "h-auto opacity-100 visible" : "h-0 opacity-0 invisible"
+                    "ml-6 pl-4 border-l-2 border-gradient-to-b from-primary/50 to-accent/30 space-y-2 overflow-hidden transition-all duration-300",
+                    "mobile-dropdown-enhanced mobile-optimized",
+                    dropdownOpen === link.name ? "max-h-96 opacity-100 visible" : "max-h-0 opacity-0 invisible"
                   )}>
                     {link.dropdownItems.map((item, i) => (
                       <Link key={i} href={item.path}>
                         <span 
                           className={cn(
-                            "block py-2 text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer",
-                            location === item.path && "text-primary"
+                            "block py-3 px-3 rounded-md text-muted-foreground hover:text-foreground transition-all duration-200 cursor-pointer",
+                            "hover:bg-gradient-to-r hover:from-secondary/10 hover:to-primary/5 hover:translate-x-1 hover:shadow-sm",
+                            "focus:outline-none focus:ring-1 focus:ring-primary/30",
+                            location === item.path && "text-primary bg-primary/5 translate-x-1 shadow-sm"
                           )}
                           onClick={() => setIsMenuOpen(false)}
                         >
@@ -318,8 +392,11 @@ export default function Header() {
                 <Link href={link.path}>
                   <span 
                     className={cn(
-                      "block py-3 text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer",
-                      location === link.path && "text-foreground"
+                      "block py-4 px-3 rounded-lg text-muted-foreground hover:text-foreground transition-all duration-300 cursor-pointer font-medium",
+                      "hover:bg-gradient-to-r hover:from-primary/10 hover:to-accent/5 hover:shadow-md hover:scale-105",
+                      "focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-primary/5 mobile-focus-enhanced",
+                      "active:scale-95 active:bg-primary/15 mobile-touch-target touch-feedback mobile-optimized",
+                      location === link.path && "text-foreground bg-primary/10 shadow-sm scale-105"
                     )}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -330,41 +407,71 @@ export default function Header() {
             </div>
           ))}
           
-          {/* Mobile version of desktop buttons */}
-          <div className="pt-3 border-t border-border/30 mt-3 space-y-3">
+          {/* Enhanced Mobile CTA Buttons */}
+          <div className="pt-6 border-t border-gradient-to-r from-border/20 via-border/60 to-border/20 mt-4 space-y-4">
             <Link href="/small-business-upgrade">
               <span 
                 className={cn(
-                  "block py-3 px-4 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800",
-                  "border border-blue-400/50 rounded-lg font-['Orbitron'] font-bold text-sm tracking-wider text-center cursor-pointer",
-                  "hover:border-blue-300 hover:shadow-[0_0_25px_rgba(59,130,246,0.6)] transition-all duration-300"
+                  "block py-4 px-6 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden group",
+                  "border border-blue-400/50 rounded-xl font-['Orbitron'] font-bold text-sm tracking-wider text-center cursor-pointer",
+                  "hover:border-blue-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] hover:scale-105 transition-all duration-500",
+                  "focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:scale-105 mobile-focus-enhanced",
+                  "active:scale-95 mobile-touch-target mobile-cta-shimmer mobile-optimized mobile-touch-enhanced"
                 )}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="text-white">Small Business Upgrade</span>
+                {/* Animated background shimmer */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-300/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                
+                {/* Pulse effect */}
+                <div className="absolute inset-0 rounded-xl border border-blue-400/30 animate-pulse group-hover:border-blue-300/50"></div>
+                
+                <span className="relative z-10 text-white flex items-center justify-center gap-2">
+                  <span>🚀</span>
+                  Small Business Upgrade
+                </span>
+                
+                {/* Corner highlights */}
+                <div className="absolute top-1 left-1 w-2 h-2 border-l-2 border-t-2 border-blue-300 opacity-70 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute top-1 right-1 w-2 h-2 border-r-2 border-t-2 border-blue-300 opacity-70 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute bottom-1 left-1 w-2 h-2 border-l-2 border-b-2 border-blue-300 opacity-70 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute bottom-1 right-1 w-2 h-2 border-r-2 border-b-2 border-blue-300 opacity-70 group-hover:opacity-100 transition-opacity"></div>
               </span>
             </Link>
             
             <Link href="/login">
               <span 
                 className={cn(
-                  "block py-2 px-4 bg-gradient-to-br from-slate-800 via-blue-800 to-slate-700",
+                  "block py-3 px-4 bg-gradient-to-br from-slate-800 via-blue-800 to-slate-700 relative overflow-hidden group",
                   "border border-blue-400/50 rounded-lg font-['Orbitron'] font-bold text-xs tracking-wider text-center cursor-pointer",
-                  "hover:border-blue-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)] transition-all duration-300"
+                  "hover:border-blue-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:scale-105 transition-all duration-300",
+                  "focus:outline-none focus:ring-2 focus:ring-blue-400/50 mobile-focus-enhanced",
+                  "active:scale-95 mobile-touch-target mobile-cta-shimmer mobile-optimized mobile-touch-enhanced"
                 )}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="text-white">ADMIN</span>
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-300/15 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-800 ease-out"></div>
+                
+                <span className="relative z-10 text-white flex items-center justify-center gap-2">
+                  <span>🔐</span>
+                  ADMIN
+                </span>
               </span>
             </Link>
             
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-2">
               <button
                 onClick={() => {
                   setTheme(theme === "dark" ? "light" : "dark");
                   setIsMenuOpen(false);
                 }}
-                className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors duration-200"
+                className={cn(
+                  "w-12 h-12 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-all duration-300",
+                  "hover:bg-gradient-to-br hover:from-muted/40 hover:to-muted/20 hover:scale-110 hover:shadow-lg",
+                  "focus:outline-none focus:ring-2 focus:ring-primary/50 focus:scale-110",
+                  "active:scale-95"
+                )}
                 aria-label="Toggle theme"
               >
                 {theme === "dark" ? (
@@ -374,12 +481,12 @@ export default function Header() {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-5 h-5"
+                    className="w-6 h-6 transition-transform duration-300 hover:rotate-180"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                      d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0z"
                     />
                   </svg>
                 ) : (
@@ -389,7 +496,7 @@ export default function Header() {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-5 h-5"
+                    className="w-6 h-6 transition-transform duration-300 hover:rotate-180"
                   >
                     <path
                       strokeLinecap="round"
