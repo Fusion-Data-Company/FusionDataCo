@@ -161,7 +161,7 @@ export default function TermsOfService() {
                   </p>
                   <div className="space-y-2">
                     <p><strong>Email:</strong> rob@fusiondataco.com</p>
-                    <p><strong>Phone:</strong> +1 (615) 788-2808</p>
+                    <p><strong>Phone:</strong> +1 (916) 534-0915</p>
                     <p><strong>Business Hours:</strong> Monday-Friday, 9 AM - 6 PM CT</p>
                   </div>
                 </div>

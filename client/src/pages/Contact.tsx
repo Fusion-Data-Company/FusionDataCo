@@ -147,7 +147,7 @@ export default function Contact() {
                           </div>
                           <div className="flex items-center gap-2 text-sm">
                             <Phone className="h-4 w-4 text-primary" />
-                            <a href="tel:+16157882808" className="text-primary hover:underline">+1 (615) 788-2808</a>
+                            <a href="tel:+19165340915" className="text-primary hover:underline">+1 (916) 534-0915</a>
                           </div>
                         </div>
                       </div>
@@ -180,7 +180,7 @@ export default function Contact() {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold">Phone</h3>
-                        <p className="text-muted-foreground">+1 (615) 788-2808</p>
+                        <p className="text-muted-foreground">+1 (916) 534-0915</p>
                         <p className="text-muted-foreground">Monday-Friday, 9am-6pm CST</p>
                       </div>
                     </div>

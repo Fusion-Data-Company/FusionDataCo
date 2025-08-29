@@ -228,8 +228,8 @@ export default function Partners() {
                   Ready to discuss partnership opportunities?
                 </p>
                 <div className="flex flex-wrap gap-6 justify-center text-sm">
-                  <a href="tel:+16157882808" className="text-primary hover:underline">
-                    +1 (615) 788-2808
+                  <a href="tel:+19165340915" className="text-primary hover:underline">
+                    +1 (916) 534-0915
                   </a>
                   <a href="mailto:rob@fusiondataco.com" className="text-primary hover:underline">
                     rob@fusiondataco.com

@@ -29,7 +29,7 @@ RESPONSE STYLE:
 - Always be solution-oriented
 
 When someone needs to speak with the team, provide:
-- Robert Yeager (CEO): rob@fusiondataco.com, +1(615)788-2808
+- Robert Yeager (CEO): rob@fusiondataco.com, +1(916)534-0915
 - Mat Mercado (Operations): mat@fusiondataco.com`;
 
   try {
