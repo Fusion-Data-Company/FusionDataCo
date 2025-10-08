@@ -42,7 +42,7 @@ When someone needs to speak with the team, provide:
     const response = await axios.post(
       OPENROUTER_API_URL,
       {
-        model: "perplexity/llama-3.1-sonar-large-128k-online",
+        model: "perplexity/sonar-pro", // Updated to 2025 model with enhanced precision and web access
         messages: messages,
         temperature: 0.8,
         max_tokens: 800,
@@ -324,8 +324,9 @@ export const AVAILABLE_MODELS = [
   { id: "anthropic/claude-3-sonnet:beta", name: "Claude 3 Sonnet", provider: "Anthropic" },
   { id: "anthropic/claude-3-haiku:beta", name: "Claude 3 Haiku", provider: "Anthropic" },
   { id: "mistralai/mistral-large-latest", name: "Mistral Large", provider: "Mistral AI" },
-  { id: "perplexity/llama-3.1-sonar-large-128k-online", name: "Perplexity Sonar Large 128K (Online)", provider: "Perplexity" },
-  { id: "perplexity/llama-3.1-sonar-small-128k-online", name: "Perplexity Sonar Small 128K (Online)", provider: "Perplexity" },
+  { id: "perplexity/sonar", name: "Perplexity Sonar (2025)", provider: "Perplexity" },
+  { id: "perplexity/sonar-pro", name: "Perplexity Sonar Pro (2025)", provider: "Perplexity" },
+  { id: "perplexity/sonar-reasoning", name: "Perplexity Sonar Reasoning (2025)", provider: "Perplexity" },
   { id: "meta-llama/llama-3-70b-instruct", name: "Llama 3 70B", provider: "Meta" },
   { id: "google/gemini-pro", name: "Gemini Pro", provider: "Google" },
   { id: "openai/gpt-4o", name: "GPT-4o", provider: "OpenAI" },

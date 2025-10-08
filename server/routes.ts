@@ -152,6 +152,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // AI Services Health Check endpoints
+  app.get("/api/health/ai", async (req, res) => {
+    try {
+      const { checkAllAIServices } = await import('./services/aiHealthCheck');
+      const healthResults = await checkAllAIServices();
+      
+      const allHealthy = healthResults.every(result => result.status === 'healthy');
+      
+      res.status(allHealthy ? 200 : 503).json({
+        status: allHealthy ? 'healthy' : 'degraded',
+        services: healthResults,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error("Error checking AI services health:", error);
+      res.status(500).json({ 
+        status: 'error',
+        message: "Failed to check AI services health",
+        error: error instanceof Error ? error.message : String(error)
+      });
+    }
+  });
+
+  // Individual service health checks
+  app.get("/api/health/ai/openrouter", async (req, res) => {
+    try {
+      const { checkOpenRouterHealth } = await import('./services/aiHealthCheck');
+      const result = await checkOpenRouterHealth();
+      res.status(result.status === 'healthy' ? 200 : 503).json(result);
+    } catch (error) {
+      res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
+    }
+  });
+
+  app.get("/api/health/ai/perplexity", async (req, res) => {
+    try {
+      const { checkPerplexityHealth } = await import('./services/aiHealthCheck');
+      const result = await checkPerplexityHealth();
+      res.status(result.status === 'healthy' ? 200 : 503).json(result);
+    } catch (error) {
+      res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
+    }
+  });
+
+  app.get("/api/health/ai/openai", async (req, res) => {
+    try {
+      const { checkOpenAIHealth } = await import('./services/aiHealthCheck');
+      const result = await checkOpenAIHealth();
+      res.status(result.status === 'healthy' ? 200 : 503).json(result);
+    } catch (error) {
+      res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
+    }
+  });
+
   // Lead generation form submission endpoint (for Real Estate, Medical, Trades forms)
   app.post("/api/leads", async (req, res) => {
     try {
