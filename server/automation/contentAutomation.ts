@@ -154,43 +154,51 @@ export class ContentAutomationService {
       const imageCategories = [
         {
           category: 'AI Strategy',
-          prompt: 'Professional modern office with advanced AI technology, holographic displays, data visualization screens, sleek glass surfaces, blue and purple ambient lighting, high-tech workspace, ultra HD quality, corporate photography style',
-          unsplash: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
+          prompt: 'Professional modern office with advanced AI technology, neural networks, holographic displays, cyber control room, data visualization screens, sleek glass surfaces, blue and purple ambient lighting, high-tech workspace, ultra HD quality, corporate photography style',
+          unsplash: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+          stylePreference: 'vivid' as const
         },
         {
           category: 'Marketing Automation',  
-          prompt: 'Modern marketing technology workspace, multiple monitors showing analytics dashboards, automation workflows, professional office environment, contemporary design, natural lighting, high-tech ambiance',
-          unsplash: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
+          prompt: 'Modern marketing technology workspace, futuristic dashboard, neon data streams, enterprise tech, multiple monitors showing analytics dashboards, automation workflows, professional office environment, contemporary design, natural lighting, high-tech ambiance',
+          unsplash: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+          stylePreference: 'vivid' as const
         },
         {
           category: 'CRM Strategy',
-          prompt: 'Professional business meeting room with data analytics on wall displays, collaborative workspace, modern corporate environment, team strategy session, clean minimalist design',
-          unsplash: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
+          prompt: 'Professional business meeting room with advanced customer interface, cyber management system, data analytics on wall displays, collaborative workspace, modern corporate environment, team strategy session, clean minimalist design',
+          unsplash: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+          stylePreference: 'natural' as const
         },
         {
           category: 'Healthcare',
-          prompt: 'Modern healthcare facility, medical professionals in clean white environment, advanced medical equipment, professional healthcare setting, bright and sterile atmosphere',
-          unsplash: 'https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
+          prompt: 'Modern healthcare facility, advanced medical technology, digital health systems, medical professionals in clean white environment, advanced medical equipment, professional healthcare setting, bright and sterile atmosphere',
+          unsplash: 'https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+          stylePreference: 'natural' as const
         },
         {
           category: 'Cybersecurity',
-          prompt: 'High-tech cybersecurity command center, multiple monitors displaying security data, dark professional environment with blue glowing screens, digital security visualization',
-          unsplash: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
+          prompt: 'High-tech cybersecurity command center, sleek cyber workspace, advanced systems, digital enterprise, multiple monitors displaying security data, dark professional environment with blue glowing screens, digital security visualization',
+          unsplash: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+          stylePreference: 'vivid' as const
         },
         {
           category: 'Real Estate',
-          prompt: 'Luxury modern real estate property, contemporary architecture, elegant interior design, professional real estate photography, high-end residential or commercial space',
-          unsplash: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
+          prompt: 'Luxury modern real estate property, smart building technology, digital property systems, contemporary architecture, elegant interior design, professional real estate photography, high-end residential or commercial space',
+          unsplash: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+          stylePreference: 'natural' as const
         },
         {
           category: 'Social Media',
-          prompt: 'Modern social media marketing workspace, content creation setup, professional photography equipment, creative studio environment, vibrant colors and engaging setup',
-          unsplash: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
+          prompt: 'Modern social media marketing workspace, modern digital command center, connected networks, content creation setup, professional photography equipment, creative studio environment, vibrant colors and engaging setup',
+          unsplash: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+          stylePreference: 'natural' as const
         },
         {
           category: 'Email Marketing',
-          prompt: 'Professional email marketing workspace, computer screens showing email campaigns, modern office environment, digital marketing setup, clean contemporary design',
-          unsplash: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
+          prompt: 'Professional email marketing workspace, modern communication center, digital enterprise workspace, computer screens showing email campaigns, modern office environment, digital marketing setup, clean contemporary design',
+          unsplash: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+          stylePreference: 'natural' as const
         }
       ];
 
@@ -218,7 +226,7 @@ export class ContentAutomationService {
       // Strategy 1: Try DALL-E 3 generation (30% chance for variety)
       (async () => {
         if (Math.random() > 0.7) { // 30% chance
-          const imagePrompt = `${category.prompt}. Professional photography, ultra HD quality, corporate standard, no text or branding visible, suitable for business blog header image.`;
+          const imagePrompt = `${category.prompt}. Professional cyber enterprise photography, futuristic corporate aesthetic, ultra HD quality, sleek modern design, no text or branding visible, suitable for enterprise blog header.`;
           console.log('[IMAGE] 🎨 Attempting DALL-E 3 generation for:', category.category);
           
           const response = await openai.images.generate({
@@ -227,12 +235,12 @@ export class ContentAutomationService {
             n: 1,
             size: "1792x1024",
             quality: "hd",
-            style: "natural"
+            style: category.stylePreference || "natural"
           });
           
           const imageUrl = response.data?.[0]?.url;
           if (imageUrl) {
-            console.log('[IMAGE] ✅ DALL-E 3 generation successful');
+            console.log('[IMAGE] ✅ DALL-E 3 generation successful | Size: 1792x1024 HD | Source: OpenAI');
             return imageUrl;
           }
           throw new Error('No image URL returned from DALL-E');
@@ -242,24 +250,36 @@ export class ContentAutomationService {
       
       // Strategy 2: Use curated Unsplash image (primary choice - 70%)
       (async () => {
-        console.log('[IMAGE] 📸 Using professional Unsplash image for:', category.category);
-        // Validate the Unsplash URL works
-        const response = await fetch(category.unsplash, { method: 'HEAD' });
-        if (response.ok) {
+        console.log('[IMAGE] 📸 Attempting professional Unsplash image for:', category.category, '| Target: 4K UHD');
+        
+        // Try 4K first
+        const response4K = await fetch(category.unsplash, { method: 'HEAD' });
+        if (response4K.ok) {
+          console.log('[IMAGE] ✅ Unsplash 4K verified | Resolution: 4K UHD (3840px) | Source: Unsplash');
           return category.unsplash;
         }
-        throw new Error('Unsplash image not accessible');
+        
+        // Downgrade to 1920px if 4K fails
+        console.log('[IMAGE] ⚠️ 4K unavailable, downgrading to 1920px | Source: Unsplash Downgrade');
+        const downgradeUrl = category.unsplash.replace('w=3840', 'w=1920');
+        const response1920 = await fetch(downgradeUrl, { method: 'HEAD' });
+        if (response1920.ok) {
+          console.log('[IMAGE] ✅ Downgrade successful | Resolution: 1920px | Source: Unsplash');
+          return downgradeUrl;
+        }
+        
+        throw new Error('Unsplash image not accessible at any resolution');
       }),
       
       // Strategy 3: Alternative high-quality stock images
       (async () => {
         const alternativeImages = [
-          'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max',
-          'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max',
-          'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
+          'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+          'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+          'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2'
         ];
         const randomImage = alternativeImages[Math.floor(Math.random() * alternativeImages.length)];
-        console.log('[IMAGE] 🔄 Using alternative stock image fallback');
+        console.log('[IMAGE] 🔄 Using alternative stock image fallback | Resolution: 4K UHD (3840px) | Source: Unsplash Alternative');
         return randomImage;
       })
     ];
@@ -273,6 +293,7 @@ export class ContentAutomationService {
           new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 15000)) // 15 second timeout
         ]);
         console.log(`[IMAGE] ✅ Strategy ${i + 1} successful`);
+        console.log(`[IMAGE] 📊 Final selection - Strategy: ${i + 1}, Resolution: ${result.includes('w=3840') ? '4K UHD' : result.includes('w=1920') ? '1920px' : 'Variable'}`);
         return result as string;
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error);
@@ -287,12 +308,12 @@ export class ContentAutomationService {
   }
   
   private getEmergencyImageFallback(): string {
-    console.log('[IMAGE] 🚨 Using emergency image fallback');
+    console.log('[IMAGE] 🚨 Using emergency image fallback | Resolution: 4K UHD (3840px) | Source: Emergency Pool');
     // Multiple emergency fallback images - guaranteed to work
     const emergencyImages = [
-      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max',
-      'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'
+      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2',
+      'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3840&fit=max&auto=format&dpr=2'
     ];
     return emergencyImages[Math.floor(Math.random() * emergencyImages.length)];
   }

@@ -116,6 +116,10 @@ export default function BlogPost() {
                   src={post.featuredImage || post.image} 
                   alt={post.title}
                   className="absolute inset-0 w-full h-full object-cover"
+                  loading="eager"
+                  width="1920"
+                  height="1080"
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               </div>

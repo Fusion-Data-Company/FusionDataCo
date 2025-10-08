@@ -192,6 +192,9 @@ export default function Blog() {
                         src={post.image} 
                         alt={post.title}
                         className="absolute inset-0 w-full h-full object-cover"
+                        loading="lazy"
+                        width="1920"
+                        height="1080"
                       />
                     )}
                     <div className="absolute top-4 left-4">
@@ -262,6 +265,9 @@ export default function Blog() {
                           src={post.image} 
                           alt={post.title}
                           className="absolute inset-0 w-full h-full object-cover"
+                          loading="lazy"
+                          width="800"
+                          height="450"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                         <div className="absolute bottom-4 left-4">
