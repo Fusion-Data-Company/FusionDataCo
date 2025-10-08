@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { ArrowRight, Calendar, Clock, User, BookOpen, TrendingUp, Lightbulb, Target } from "lucide-react";
 import { blogPosts, getFeaturedPosts, getRecentPosts } from "@/data/blog-posts";
+import { useBlogPosts } from "@/lib/queries/blogQueries";
 
 export default function Blog() {
   const allFeaturedPosts = getFeaturedPosts();
@@ -19,6 +20,35 @@ export default function Blog() {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   });
   const recentPosts = getRecentPosts().filter(post => !post.featured);
+
+  // Fetch database blog posts
+  const { data: dbBlogPosts, isLoading } = useBlogPosts();
+
+  // Transform database posts to frontend format
+  const transformedDbPosts = (dbBlogPosts || []).map(post => {
+    const content = post.content || '';
+    const wordCount = content.split(' ').length;
+    const readTime = Math.max(1, Math.ceil(wordCount / 200));
+    
+    return {
+      id: post.slug,
+      title: post.title,
+      slug: post.slug,
+      excerpt: post.excerpt || '',
+      content: content,
+      author: 'Robert Yeager', // Default author for automated posts
+      date: post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : '',
+      readTime: `${readTime} min read`,
+      category: post.category || 'VIBE CODING',
+      image: post.featuredImage || 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e',
+      featured: false, // Automated posts are not featured by default
+      tags: post.tags || [],
+      seo: {
+        metaDescription: post.excerpt || '',
+        keywords: post.tags || []
+      }
+    };
+  });
   
   // Real blog posts with Robert Yeager as author and recent dates
   const legacyPosts = [
@@ -207,51 +237,69 @@ export default function Blog() {
           <section className="py-16 px-4">
             <div className="container mx-auto">
               <h2 className="text-3xl font-bold mb-8">Recent Articles</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[...recentPosts, ...legacyPosts.filter((post: any) => !post.featured)].map((post: any, index) => (
-                  <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
-                    <div className="relative h-48">
-                      <img 
-                        src={post.image} 
-                        alt={post.title}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                      <div className="absolute bottom-4 left-4">
-                        <Badge variant="secondary">{post.category}</Badge>
+              {isLoading ? (
+                <div data-testid="blog-loading-skeleton" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {[1, 2, 3].map(i => (
+                    <Card key={i} className="animate-pulse overflow-hidden">
+                      <div className="h-48 bg-muted"></div>
+                      <CardHeader>
+                        <div className="h-6 bg-muted rounded mb-2"></div>
+                        <div className="h-4 bg-muted rounded w-3/4"></div>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="h-4 bg-muted rounded mb-2"></div>
+                        <div className="h-4 bg-muted rounded w-5/6"></div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <div data-testid="blog-posts-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {[...transformedDbPosts, ...recentPosts, ...legacyPosts.filter((post: any) => !post.featured)].map((post: any, index) => (
+                    <Card key={index} data-testid={`blog-post-card-${post.slug}`} className="overflow-hidden hover:shadow-lg transition-shadow">
+                      <div className="relative h-48">
+                        <img 
+                          src={post.image} 
+                          alt={post.title}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div className="absolute bottom-4 left-4">
+                          <Badge variant="secondary">{post.category}</Badge>
+                        </div>
                       </div>
-                    </div>
-                    <CardHeader>
-                      <CardTitle className="line-clamp-2">{post.title}</CardTitle>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          {post.date}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          {post.readTime}
-                        </span>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="line-clamp-3 mb-4">{post.excerpt}</CardDescription>
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground flex items-center gap-1">
-                          <User className="h-3 w-3" />
-                          {post.author}
-                        </span>
-                        <Link href={post.slug ? `/blog/${post.slug}` : '#'}>
-                          <Button variant="ghost" size="sm" className="group">
-                            Read More
-                            <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform" />
-                          </Button>
-                        </Link>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                      <CardHeader>
+                        <CardTitle className="line-clamp-2">{post.title}</CardTitle>
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            {post.date}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            {post.readTime}
+                          </span>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <CardDescription className="line-clamp-3 mb-4">{post.excerpt}</CardDescription>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-muted-foreground flex items-center gap-1">
+                            <User className="h-3 w-3" />
+                            {post.author}
+                          </span>
+                          <Link href={post.slug ? `/blog/${post.slug}` : '#'}>
+                            <Button variant="ghost" size="sm" className="group">
+                              Read More
+                              <ArrowRight className="ml-1 h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                            </Button>
+                          </Link>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
             </div>
           </section>
 

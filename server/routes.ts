@@ -109,6 +109,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Blog posts API endpoints
+  app.get("/api/blog-posts", async (req, res) => {
+    try {
+      const { status, limit } = req.query;
+      
+      let posts;
+      if (status === 'published') {
+        posts = await storage.getPublishedBlogPosts();
+      } else {
+        posts = await storage.getAllBlogPosts();
+      }
+      
+      // Apply limit if provided and valid
+      if (limit) {
+        const limitNum = parseInt(limit as string, 10);
+        if (Number.isFinite(limitNum) && limitNum > 0) {
+          posts = posts.slice(0, limitNum);
+        }
+      }
+      
+      res.json(posts);
+    } catch (error) {
+      console.error("Error fetching blog posts:", error);
+      res.status(500).json({ message: "Failed to fetch blog posts" });
+    }
+  });
+
+  app.get("/api/blog-posts/:slug", async (req, res) => {
+    try {
+      const { slug } = req.params;
+      const post = await storage.getBlogPostBySlug(slug);
+      
+      if (!post) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      
+      res.json(post);
+    } catch (error) {
+      console.error("Error fetching blog post:", error);
+      res.status(500).json({ message: "Failed to fetch blog post" });
+    }
+  });
+
   // Lead generation form submission endpoint (for Real Estate, Medical, Trades forms)
   app.post("/api/leads", async (req, res) => {
     try {
