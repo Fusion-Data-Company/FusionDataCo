@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { apiRequest } from "@/lib/queryClient";
+import { BookingCTA, BookingDialog } from "@/components/booking";
 
 // Define form schema
 const formSchema = z.object({
@@ -32,6 +33,12 @@ export default function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [leadData, setLeadData] = useState<{ name: string; email: string; phone?: string }>({
+    name: "",
+    email: "",
+    phone: "",
+  });
 
   // Initialize form
   const form = useForm<FormValues>({
@@ -65,6 +72,13 @@ export default function Contact() {
         body: JSON.stringify(data),
       });
       
+      // Save lead data for booking
+      setLeadData({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+      });
+      
       setSubmitted(true);
       toast({
         title: "Form submitted successfully",
@@ -84,6 +98,16 @@ export default function Contact() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Handler for opening booking dialog
+  const handleOpenBooking = () => {
+    trackEvent({
+      category: 'booking',
+      action: 'opened',
+      label: 'contact_form',
+    });
+    setIsBookingOpen(true);
   };
 
   return (
@@ -228,21 +252,31 @@ export default function Contact() {
                   <Card className="bg-background border border-border/50">
                     <CardContent className="p-6 md:p-8">
                       {submitted ? (
-                        <div className="text-center py-8">
-                          <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                            <Check className="h-8 w-8 text-primary" />
+                        <div className="space-y-6 py-4">
+                          <div className="text-center">
+                            <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                              <Check className="h-8 w-8 text-primary" />
+                            </div>
+                            <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
+                            <p className="text-muted-foreground mb-6">
+                              Your message has been submitted successfully. We'll get back to you
+                              within 1-2 business days.
+                            </p>
                           </div>
-                          <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
-                          <p className="text-muted-foreground mb-6">
-                            Your message has been submitted successfully. We'll get back to you
-                            within 1-2 business days.
-                          </p>
-                          <Button 
-                            className="btn-titanium" 
-                            onClick={() => setSubmitted(false)}
-                          >
-                            Send Another Message
-                          </Button>
+                          
+                          <BookingCTA 
+                            onOpenDialog={handleOpenBooking}
+                            leadData={leadData}
+                          />
+                          
+                          <div className="text-center">
+                            <Button 
+                              variant="outline"
+                              onClick={() => setSubmitted(false)}
+                            >
+                              Send Another Message
+                            </Button>
+                          </div>
                         </div>
                       ) : (
                         <>
@@ -414,6 +448,13 @@ export default function Contact() {
         
         <Footer />
       </div>
+
+      {/* Booking Dialog */}
+      <BookingDialog
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        leadContext={leadData}
+      />
     </>
   );
 }

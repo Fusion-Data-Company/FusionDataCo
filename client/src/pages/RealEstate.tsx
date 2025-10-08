@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { apiRequest } from "@/lib/queryClient";
 import ROICalculator from "@/components/ROICalculator";
+import { BookingCTA, BookingDialog } from "@/components/booking";
 
 // Define form schema
 const formSchema = z.object({
@@ -35,6 +36,12 @@ export default function RealEstate() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [leadData, setLeadData] = useState<{ name: string; email: string; phone?: string }>({
+    name: "",
+    email: "",
+    phone: "",
+  });
 
   // Initialize form
   const form = useForm<FormValues>({
@@ -76,6 +83,13 @@ export default function RealEstate() {
         throw new Error('Failed to submit form');
       }
       
+      // Save lead data for booking
+      setLeadData({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+      });
+      
       setSubmitted(true);
       toast({
         title: "Request submitted successfully",
@@ -95,6 +109,16 @@ export default function RealEstate() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Handler for opening booking dialog
+  const handleOpenBooking = () => {
+    trackEvent({
+      category: 'booking',
+      action: 'opened',
+      label: 'real_estate_funnel',
+    });
+    setIsBookingOpen(true);
   };
 
   return (
@@ -819,6 +843,13 @@ export default function RealEstate() {
         
         <Footer />
       </div>
+
+      {/* Booking Dialog */}
+      <BookingDialog
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        leadContext={leadData}
+      />
     </>
   );
 }

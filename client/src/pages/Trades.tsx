@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { apiRequest } from "@/lib/queryClient";
+import { BookingCTA, BookingDialog } from "@/components/booking";
 
 // Define form schema
 const formSchema = z.object({
@@ -32,6 +33,12 @@ export default function Trades() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [leadData, setLeadData] = useState<{ name: string; email: string; phone?: string }>({
+    name: "",
+    email: "",
+    phone: "",
+  });
 
   // Initialize form
   const form = useForm<FormValues>({
@@ -65,6 +72,13 @@ export default function Trades() {
         body: JSON.stringify(data),
       });
       
+      // Save lead data for booking
+      setLeadData({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+      });
+      
       setSubmitted(true);
       toast({
         title: "Form submitted successfully",
@@ -84,6 +98,16 @@ export default function Trades() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Handler for opening booking dialog
+  const handleOpenBooking = () => {
+    trackEvent({
+      category: 'booking',
+      action: 'opened',
+      label: 'trades_funnel',
+    });
+    setIsBookingOpen(true);
   };
 
   return (
@@ -926,6 +950,13 @@ export default function Trades() {
         
         <Footer />
       </div>
+
+      {/* Booking Dialog */}
+      <BookingDialog
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        leadContext={leadData}
+      />
     </>
   );
 }
