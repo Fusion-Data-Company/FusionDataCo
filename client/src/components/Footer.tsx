@@ -193,36 +193,12 @@ export default function Footer() {
           </div>
         </div>
         
-        {/* Certifications */}
+        {/* Enterprise Trust */}
         <div className="flex flex-wrap justify-center gap-6 mb-12">
-          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center min-w-[90px] h-[40px]">
-            <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-              <Shield size={16} />
-              <span>ISO 27001</span>
-            </div>
-          </div>
-          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center min-w-[90px] h-[40px]">
-            <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-              <Shield size={16} />
-              <span>SOC 2 Type II</span>
-            </div>
-          </div>
-          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center min-w-[90px] h-[40px]">
-            <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-              <Shield size={16} />
-              <span>GDPR</span>
-            </div>
-          </div>
-          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center min-w-[90px] h-[40px]">
-            <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-              <Shield size={16} />
-              <span>HIPAA</span>
-            </div>
-          </div>
-          <div className="p-3 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center min-w-[90px] h-[40px]">
-            <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-              <Globe size={16} />
-              <span>AWS Partner</span>
+          <div className="p-4 bg-card/50 rounded-lg border border-border/30 flex items-center justify-center">
+            <div className="flex items-center gap-3 text-sm text-muted-foreground">
+              <Shield size={20} className="text-primary" />
+              <span className="font-medium">Enterprise-grade security and data protection</span>
             </div>
           </div>
         </div>
@@ -245,7 +221,7 @@ export default function Footer() {
             </a>
             <a href="#" className="hover:text-foreground transition-colors flex items-center gap-1">
               <Shield size={14} />
-              <span>GDPR Compliance</span>
+              <span>Data Security</span>
             </a>
           </div>
         </div>

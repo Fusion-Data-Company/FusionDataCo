@@ -43,8 +43,8 @@ export default function MobileFeatures() {
     {
       icon: <Lock size={24} />,
       title: "Enterprise Security",
-      description: "Bank-grade security with comprehensive audit logging and compliance.",
-      benefits: ["SOC 2 Type II", "End-to-end encryption", "Threat protection"],
+      description: "Bank-grade security with comprehensive audit logging and protection.",
+      benefits: ["Enterprise-grade security", "End-to-end encryption", "Threat protection"],
       color: "orange"
     },
     {
@@ -167,28 +167,12 @@ export default function MobileFeatures() {
             </div>
             
             <h3 className="font-['Orbitron'] text-lg font-semibold text-foreground mb-3">
-              Enterprise Security & Compliance
+              Enterprise Security & Data Protection
             </h3>
             
-            <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-              Fully compliant with GDPR, CCPA, HIPAA, and SOC 2 Type II standards.
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Built with enterprise-grade security and industry best practices to protect your data and maintain the highest security standards.
             </p>
-            
-            <div className="grid grid-cols-4 gap-3">
-              {['GDPR', 'HIPAA', 'SOC 2', 'CCPA'].map((standard, index) => (
-                <motion.div
-                  key={standard}
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 1.0 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="p-3 bg-background/50 rounded-lg border border-border/20 flex flex-col items-center justify-center hover:bg-background/70 transition-colors"
-                >
-                  <div className="w-6 h-6 bg-primary/20 rounded mb-1"></div>
-                  <span className="text-xs font-medium text-foreground">{standard}</span>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </motion.div>
       </div>

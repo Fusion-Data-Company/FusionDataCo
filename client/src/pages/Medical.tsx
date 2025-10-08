@@ -136,7 +136,7 @@ export default function Medical() {
                     Grow Your <span className="text-[#14ffc8]">Medical</span> Practice With Ethical Patient Acquisition
                   </h1>
                   <p className="text-xl text-white mb-8">
-                    Healthcare professionals trust our HIPAA-compliant marketing system to 
+                    Healthcare professionals trust our secure marketing system to 
                     attract qualified patients while maintaining the highest ethical standards.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
@@ -185,7 +185,7 @@ export default function Medical() {
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold mb-1">
-                              HIPAA-Compliant Marketing
+                              Secure Marketing
                             </h3>
                             <p className="text-white text-sm">
                               Our systems are designed from the ground up to maintain patient privacy and regulatory compliance.
@@ -440,11 +440,11 @@ export default function Medical() {
                     <div className="h-12 w-12 bg-[#ffa500]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Shield className="h-6 w-6 text-[#ffa500]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">HIPAA-Compliant Marketing</h3>
+                    <h3 className="text-xl font-semibold text-center mb-4 text-[#ffa500]">Secure Healthcare Marketing</h3>
                     <ul className="space-y-3 text-sm">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
-                        <span>Complete HIPAA compliance in all patient communications and data handling</span>
+                        <span>Secure patient communications and data handling with privacy best practices</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#ffa500] flex-shrink-0 mt-0.5" />
@@ -559,7 +559,7 @@ export default function Medical() {
                   </div>
                   <div className="bg-[#121218]/50 border border-[#ffa500]/20 rounded-lg p-4">
                     <div className="text-3xl font-bold text-[#ffa500] mb-2">100%</div>
-                    <div className="text-sm text-white">HIPAA compliance with zero violations</div>
+                    <div className="text-sm text-white">Secure systems with strong privacy protections</div>
                   </div>
                 </div>
               </div>
@@ -631,7 +631,7 @@ export default function Medical() {
                       </li>
                       <li className="flex items-center gap-2">
                         <Check className="h-5 w-5 text-[#14ffc8] flex-shrink-0" />
-                        <span className="text-sm">HIPAA-compliant secure messaging</span>
+                        <span className="text-sm">Secure messaging with encryption</span>
                       </li>
                     </ul>
                     <div className="pt-4 text-center">
@@ -682,7 +682,7 @@ export default function Medical() {
                     <p className="text-white">
                       "As a busy dermatology practice, we struggled with consistent new patient flow. 
                       Since implementing Fusion's healthcare marketing system, we've seen a 52% increase in new patients 
-                      and our schedule is consistently booked 3 weeks out. The system is completely HIPAA-compliant 
+                      and our schedule is consistently booked 3 weeks out. The system is completely secure 
                       and has become an essential part of our practice."
                     </p>
                     <div className="mt-4">
@@ -767,13 +767,13 @@ export default function Medical() {
                   </div>
                 </div>
 
-                {/* HIPAA-Compliant Digital Infrastructure */}
+                {/* Secure Digital Infrastructure */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                   <div className="lg:col-span-2 space-y-6">
-                    <h3 className="text-2xl font-bold text-[#14ffc8]">HIPAA-Compliant Digital Infrastructure</h3>
+                    <h3 className="text-2xl font-bold text-[#14ffc8]">Secure Digital Infrastructure</h3>
                     <p className="text-lg leading-relaxed">
-                      Healthcare marketing requires specialized compliance expertise. Our platform is built from the ground up 
-                      with HIPAA regulations in mind, ensuring your patient data remains secure while maximizing marketing effectiveness.
+                      Healthcare marketing requires specialized security expertise. Our platform is built from the ground up 
+                      with privacy and security best practices, ensuring your patient data remains secure while maximizing marketing effectiveness.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
@@ -944,7 +944,7 @@ export default function Medical() {
                     Get My Free Healthcare Marketing Analysis
                   </button>
                   <p className="text-xs text-gray-400 mt-4 text-center">
-                    No commitment required. HIPAA-compliant consultation guaranteed.
+                    No commitment required. Secure consultation guaranteed.
                   </p>
                 </form>
               </div>

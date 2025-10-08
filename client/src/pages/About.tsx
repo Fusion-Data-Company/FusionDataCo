@@ -224,9 +224,9 @@ export default function About() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">Proven ROI</h3>
+                    <h3 className="text-xl font-semibold mb-2">Results-Driven Approach</h3>
                     <p className="text-muted-foreground">
-                      Our clients see an average 300% increase in lead generation and 50% reduction in marketing costs within the first 6 months.
+                      Our clients consistently see significant improvements in lead conversion rates and operational efficiency through AI-powered automation.
                     </p>
                   </div>
                 </div>
@@ -248,39 +248,40 @@ export default function About() {
             </div>
           </section>
 
-          {/* Company Stats */}
+          {/* Our Commitment */}
           <section className="py-16 px-4 bg-gradient-to-b from-primary/5 to-accent/5">
             <div className="container mx-auto">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">10K+</div>
-                  <div className="text-muted-foreground">Active Businesses</div>
-                </div>
-                <div>
-                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">50M+</div>
-                  <div className="text-muted-foreground">Leads Generated</div>
-                </div>
-                <div>
-                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">98%</div>
-                  <div className="text-muted-foreground">Client Satisfaction</div>
-                </div>
-                <div>
-                  <div className="text-4xl md:text-5xl font-bold text-primary mb-2">24/7</div>
-                  <div className="text-muted-foreground">Support Available</div>
+              <div className="text-center max-w-3xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  Our <span className="text-primary">Commitment</span> to You
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div>
+                    <div className="text-4xl md:text-5xl font-bold text-primary mb-2">Expert</div>
+                    <div className="text-muted-foreground">AI Implementation</div>
+                  </div>
+                  <div>
+                    <div className="text-4xl md:text-5xl font-bold text-primary mb-2">Custom</div>
+                    <div className="text-muted-foreground">Solutions Built</div>
+                  </div>
+                  <div>
+                    <div className="text-4xl md:text-5xl font-bold text-primary mb-2">24/7</div>
+                    <div className="text-muted-foreground">Support Available</div>
+                  </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Team Section */}
+          {/* Our Expertise */}
           <section className="py-16 px-4 bg-card">
             <div className="container mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Meet Our <span className="text-primary">Leadership</span>
+                  Our <span className="text-primary">Expertise</span>
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  Experienced professionals dedicated to your success
+                  Experienced team dedicated to bringing enterprise AI to small businesses
                 </p>
               </div>
 
@@ -290,12 +291,11 @@ export default function About() {
                     <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center">
                       <Users className="h-16 w-16 text-primary" />
                     </div>
-                    <CardTitle>CEO & Founder</CardTitle>
-                    <CardDescription>Visionary Leader</CardDescription>
+                    <CardTitle>AI Implementation</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
-                      20+ years in marketing technology, passionate about democratizing enterprise tools for all businesses.
+                      Extensive experience deploying conversational AI and multi-model routing for businesses across industries.
                     </p>
                   </CardContent>
                 </Card>
@@ -305,12 +305,11 @@ export default function About() {
                     <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center">
                       <Building className="h-16 w-16 text-primary" />
                     </div>
-                    <CardTitle>CTO</CardTitle>
-                    <CardDescription>Technology Innovator</CardDescription>
+                    <CardTitle>Technical Excellence</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
-                      Former Silicon Valley engineer, expert in AI/ML and scalable cloud architectures.
+                      Deep expertise in AI/ML, workflow automation, and scalable cloud architectures using cutting-edge technologies.
                     </p>
                   </CardContent>
                 </Card>
@@ -320,12 +319,11 @@ export default function About() {
                     <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center">
                       <Globe className="h-16 w-16 text-primary" />
                     </div>
-                    <CardTitle>VP of Customer Success</CardTitle>
-                    <CardDescription>Client Champion</CardDescription>
+                    <CardTitle>Customer Focus</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
-                      Dedicated to ensuring every client achieves their goals with our platform.
+                      Committed to ensuring every client successfully implements AI solutions that deliver real business value.
                     </p>
                   </CardContent>
                 </Card>

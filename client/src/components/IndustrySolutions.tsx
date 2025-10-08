@@ -79,9 +79,9 @@ export default function IndustrySolutions() {
         "Data security and client confidentiality"
       ],
       solutions: [
-        "GDPR and FINRA compliant marketing automation",
+        "Secure marketing automation with industry best practices",
         "Secure client segmentation and targeting",
-        "Multi-level approval workflows for compliance",
+        "Multi-level approval workflows",
         "Enterprise-grade security and encryption",
         "Relationship-based marketing intelligence"
       ],
@@ -105,14 +105,14 @@ export default function IndustrySolutions() {
         "Coordinating care team communications"
       ],
       solutions: [
-        "HIPAA-compliant marketing automation",
+        "Secure marketing automation for healthcare",
         "Secure patient journey orchestration",
         "EHR integration for coordinated outreach",
-        "Compliant multi-channel communications",
+        "Multi-channel communications",
         "Provider relationship management"
       ],
       stats: [
-        { value: "100%", label: "HIPAA compliance" },
+        { value: "High", label: "Security standards" },
         { value: "78%", label: "Patient satisfaction increase" },
         { value: "32%", label: "Reduced readmissions" }
       ]
@@ -149,7 +149,7 @@ export default function IndustrySolutions() {
     {
       icon: <Lock size={20} />,
       title: "Enterprise Security",
-      description: "SOC 2 Type II compliant with end-to-end encryption and role-based access"
+      description: "Enterprise-grade security with end-to-end encryption and role-based access"
     },
     {
       icon: <Server size={20} />,
@@ -173,8 +173,8 @@ export default function IndustrySolutions() {
     },
     {
       icon: <Globe size={20} />,
-      title: "Global Compliance",
-      description: "GDPR, CCPA, HIPAA, and industry-specific compliance frameworks"
+      title: "Data Privacy",
+      description: "Built with privacy and security best practices for global operations"
     },
     {
       icon: <Database size={20} />,

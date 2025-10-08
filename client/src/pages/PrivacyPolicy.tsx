@@ -83,7 +83,7 @@ export default function PrivacyPolicy() {
                     <p>We implement industry-standard security measures to protect your information:</p>
                     <ul className="list-disc pl-6 space-y-2">
                       <li>End-to-end encryption for data transmission</li>
-                      <li>SOC2 compliant infrastructure and processes</li>
+                      <li>Industry-standard secure infrastructure and processes</li>
                       <li>Regular security audits and vulnerability assessments</li>
                       <li>Limited access controls and employee training</li>
                       <li>Secure data centers with 24/7 monitoring</li>

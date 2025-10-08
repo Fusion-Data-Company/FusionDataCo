@@ -754,7 +754,7 @@ export default function EmailCenter() {
                     <div>
                       <h3 className="text-xl font-bold mb-2">Email Marketing Tips from AI</h3>
                       <p className="text-gray-400 mb-4">
-                        Our AI has analyzed thousands of successful email campaigns and has some tips for you:
+                        Our AI has analyzed successful email campaigns and has some tips for you:
                       </p>
                       <div className="grid md:grid-cols-3 gap-4">
                         <div className="bg-[#121218] rounded-md p-3 border border-gray-800">

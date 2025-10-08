@@ -114,8 +114,8 @@ export default function RealEstate() {
   // Handler for opening booking dialog
   const handleOpenBooking = () => {
     trackEvent({
-      category: 'booking',
-      action: 'opened',
+      category: 'engagement',
+      action: 'open',
       label: 'real_estate_funnel',
     });
     setIsBookingOpen(true);
@@ -626,7 +626,7 @@ export default function RealEstate() {
                         <span className="text-sm">Personalized video messages and custom property recommendations</span>
                       </div>
                       <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
-                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: 60% faster deal closings with automated follow-up</p>
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: Faster deal closings with automated follow-up</p>
                       </div>
                     </div>
                   </CardContent>
@@ -653,7 +653,7 @@ export default function RealEstate() {
                         <span className="text-sm">Client success story campaigns and video testimonials that build instant trust</span>
                       </div>
                       <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
-                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: 85% of leads choose you over competitors</p>
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: More leads choose you over competitors</p>
                       </div>
                     </div>
                   </CardContent>

@@ -362,7 +362,7 @@ export default function ComparisonTable() {
             Ready to Switch to a Platform That Actually Works?
           </h4>
           <p className="text-gray-400 mb-4">
-            Join thousands of business owners who've made the smart choice
+            Join business owners who've made the smart choice
           </p>
           <Button 
             size="lg" 

@@ -243,7 +243,7 @@ export default function Campaigns() {
                     Ready to <span className="text-[#14ffc8]">Transform</span> Your Social Presence?
                   </h2>
                   <p className="text-xl text-gray-400 mb-6">
-                    Join thousands of businesses that have increased their social engagement by an average of 230% within just 30 days.
+                    Join businesses that have significantly increased their social engagement within just 30 days.
                   </p>
                   <ul className="space-y-4">
                     <li className="flex items-center gap-3">

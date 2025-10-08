@@ -532,7 +532,7 @@ export default function MarketingSuite() {
                   What Our <span className="text-[#14ffc8]">Clients</span> Say
                 </h2>
                 <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                  Join thousands of businesses already using our AI Marketing Suite
+                  Join businesses already using our AI Marketing Suite
                 </p>
               </div>
               
@@ -730,7 +730,7 @@ export default function MarketingSuite() {
                   </h2>
                   
                   <p className="text-xl text-gray-300 mb-8">
-                    Join thousands of businesses already using our AI Marketing Suite to:
+                    Join businesses already using our AI Marketing Suite to:
                   </p>
                   
                   <div className="space-y-4 mb-8">
@@ -883,7 +883,7 @@ export default function MarketingSuite() {
                   Don't Miss Out on the Future of Marketing Automation
                 </h2>
                 <p className="text-xl text-gray-400 mb-8">
-                  Join thousands of businesses already transforming their marketing with AI
+                  Join businesses already transforming their marketing with AI
                 </p>
                 <Button
                   onClick={() => document.getElementById('signup-form')?.scrollIntoView({ behavior: 'smooth' })}

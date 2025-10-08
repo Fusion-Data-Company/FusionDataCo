@@ -38,9 +38,9 @@ export default function SmallBusiness() {
                   Stop missing leads and wasting time on manual tasks. Our all-in-one platform helps you generate more leads, close more deals, and grow your business faster—without hiring an expensive agency.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                  <Link href="/pricing">
+                  <Link href="/contact">
                     <a className="px-6 py-3 bg-[#14ffc8] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#14ffc8,0_0_10px_#14ffc8] animate-[pulse-glow_3s_infinite] text-center">
-                      Start Free 14-Day Trial
+                      Get Started Today
                     </a>
                   </Link>
                   <Link href="/demos/entropy">
@@ -72,7 +72,7 @@ export default function SmallBusiness() {
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold mb-2">Missed Lead Opportunities</h3>
-                        <p className="text-gray-400">Small businesses miss 71% of leads due to slow response times. When you're busy running your business, it's easy to miss website inquiries or fail to follow up quickly.</p>
+                        <p className="text-gray-400">Many small businesses miss valuable leads due to slow response times. When you're busy running your business, it's easy to miss website inquiries or fail to follow up quickly.</p>
                       </div>
                     </div>
                   </div>
@@ -86,7 +86,7 @@ export default function SmallBusiness() {
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold mb-2">Wasted Marketing Budget</h3>
-                        <p className="text-gray-400">On average, small businesses waste 37% of their marketing budget on ineffective channels or campaigns they can't properly track or measure.</p>
+                        <p className="text-gray-400">Many small businesses waste a significant portion of their marketing budget on ineffective channels or campaigns they can't properly track or measure.</p>
                       </div>
                     </div>
                   </div>
@@ -100,7 +100,7 @@ export default function SmallBusiness() {
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold mb-2">Time-Consuming Manual Tasks</h3>
-                        <p className="text-gray-400">Small business owners spend 20+ hours per week on administrative and marketing tasks that could be automated, taking time away from serving customers and growing the business.</p>
+                        <p className="text-gray-400">Small business owners spend significant time each week on administrative and marketing tasks that could be automated, taking time away from serving customers and growing the business.</p>
                       </div>
                     </div>
                   </div>

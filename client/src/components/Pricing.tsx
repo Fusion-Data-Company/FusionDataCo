@@ -72,7 +72,7 @@ export default function Pricing() {
     {
       icon: <ShieldCheck size={24} />,
       title: "Enterprise Security",
-      description: "SOC 2 Type II compliant with end-to-end encryption and advanced threat protection"
+      description: "Enterprise-grade security with end-to-end encryption and advanced threat protection"
     },
     {
       icon: <Users size={24} />,
@@ -86,8 +86,8 @@ export default function Pricing() {
     },
     {
       icon: <BadgeCheck size={24} />,
-      title: "Compliance Ready",
-      description: "GDPR, HIPAA, and CCPA compliant with detailed audit logging"
+      title: "Data Privacy",
+      description: "Built with privacy and security best practices, detailed audit logging"
     }
   ];
 

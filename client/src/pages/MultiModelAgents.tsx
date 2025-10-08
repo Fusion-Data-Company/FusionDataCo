@@ -869,7 +869,7 @@ export default function MultiModelAgents() {
                         <span className="text-sm">Multi-provider redundancy eliminates single points of failure</span>
                       </div>
                       <div className="bg-[#14ffc8]/10 border border-[#14ffc8]/20 rounded-lg p-4 mt-4">
-                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: 99.9% uptime with SOC2 compliance</p>
+                        <p className="text-[#14ffc8] font-semibold text-center">Average Result: 99.9% uptime with enterprise-grade security</p>
                       </div>
                     </div>
                   </CardContent>
@@ -995,7 +995,7 @@ export default function MultiModelAgents() {
                       <Users className="h-6 w-6 text-[#14ffc8] mt-1 flex-shrink-0" />
                       <div>
                         <h4 className="font-semibold text-white mb-1">Enterprise-Ready</h4>
-                        <p className="text-gray-300 text-sm">SOC2 compliant with industry-leading security and uptime guarantees</p>
+                        <p className="text-gray-300 text-sm">Enterprise-grade security with industry-leading uptime guarantees</p>
                       </div>
                     </div>
                   </div>

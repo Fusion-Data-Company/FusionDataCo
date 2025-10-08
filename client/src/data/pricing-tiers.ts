@@ -34,7 +34,7 @@ export const conversationalAIPricingTiers: PricingTier[] = [
       "n8n automations (intake → deal; docs; ticketing)",
       "Analytics dashboards",
       "Bi-weekly optimization",
-      "SOC2, GDPR, TCPA/CTIA standards",
+      "Enterprise-grade security standards",
       "Priority support"
     ],
     recommended: true
@@ -81,10 +81,10 @@ export const caseSnippets = [
 ];
 
 export const complianceFeatures = [
-  "SOC2 compliant infrastructure",
-  "GDPR data protection",
-  "TCPA/CTIA standards",
-  "HIPAA-ready options",
+  "Enterprise-grade secure infrastructure",
+  "Data privacy protection",
+  "Industry-standard communication practices",
+  "Healthcare-ready security options",
   "Error-tolerant automations with retries",
   "Vendor-agnostic via OpenRouter"
 ];

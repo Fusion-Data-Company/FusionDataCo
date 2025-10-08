@@ -38,9 +38,9 @@ export default function HomeServices() {
                   Stop missing calls while on the job. Our platform helps plumbers, electricians, HVAC technicians, and other service professionals capture leads, schedule appointments, and grow their business—even when you're in the field.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                  <Link href="/pricing">
+                  <Link href="/contact">
                     <span className="px-6 py-3 bg-[#8f00ff] text-[#0b0b0d] rounded-md font-medium hover:shadow-[0_0_5px_#8f00ff,0_0_10px_#8f00ff] animate-[pulse-glow_3s_infinite] text-center cursor-pointer inline-block">
-                      Start Free 14-Day Trial
+                      Get Started Today
                     </span>
                   </Link>
                   <Link href="/demos/entropy">
@@ -72,7 +72,7 @@ export default function HomeServices() {
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold mb-2">Missing Calls While on Jobs</h3>
-                        <p className="text-gray-400">Service professionals miss up to 40% of potential customer calls while working on jobs, resulting in significant lost revenue and frustrated potential customers.</p>
+                        <p className="text-gray-400">Service professionals miss a significant number of potential customer calls while working on jobs, resulting in lost revenue and frustrated potential customers.</p>
                       </div>
                     </div>
                   </div>
@@ -86,7 +86,7 @@ export default function HomeServices() {
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold mb-2">Inefficient Scheduling and Dispatching</h3>
-                        <p className="text-gray-400">Home service businesses waste 5-8 hours per week on manual scheduling, route planning, and dispatch coordination, leading to reduced job capacity and revenue.</p>
+                        <p className="text-gray-400">Home service businesses waste considerable time each week on manual scheduling, route planning, and dispatch coordination, leading to reduced job capacity and revenue.</p>
                       </div>
                     </div>
                   </div>
@@ -100,7 +100,7 @@ export default function HomeServices() {
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold mb-2">Limited Recurring Customer Revenue</h3>
-                        <p className="text-gray-400">Without a system for maintenance reminders and follow-ups, service businesses miss out on 30-45% of potential recurring revenue from existing customers.</p>
+                        <p className="text-gray-400">Without a system for maintenance reminders and follow-ups, service businesses miss out on substantial potential recurring revenue from existing customers.</p>
                       </div>
                     </div>
                   </div>

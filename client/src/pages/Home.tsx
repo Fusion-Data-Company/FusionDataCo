@@ -85,7 +85,7 @@ export default function Home() {
                   </CardHeader>
                   <CardContent>
                     <CardDescription className="group-hover:text-foreground transition-colors">
-                      300% average increase in lead generation within the first 6 months
+                      Significant improvements in lead generation and conversion rates with proven strategies
                     </CardDescription>
                   </CardContent>
                 </Card>
@@ -146,7 +146,7 @@ export default function Home() {
                 Ready to Transform Your Marketing?
               </h2>
               <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Join thousands of businesses already using Fusion Data Co to automate their growth.
+                Experience enterprise-grade AI automation designed for growing businesses.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link href="/pricing">

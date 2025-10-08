@@ -107,19 +107,6 @@ export default function ContactForm() {
     }
   ];
 
-  const enterpriseClientsLogos = [
-    "ENTERPRISE 1",
-    "ENTERPRISE 2", 
-    "ENTERPRISE 3",
-    "ENTERPRISE 4"
-  ];
-  
-  const securityBadges = [
-    { icon: <Shield className="h-5 w-5" />, text: "SOC 2 Type II" },
-    { icon: <Globe className="h-5 w-5" />, text: "GDPR Compliant" },
-    { icon: <Shield className="h-5 w-5" />, text: "HIPAA Compliant" }
-  ];
-
   return (
     <section id="enterprise-demo" className="py-24 bg-background relative overflow-hidden">
       {/* Background elements */}
@@ -379,28 +366,11 @@ export default function ContactForm() {
                       </div>
                     </div>
                     
-                    {/* Trusted by */}
-                    <div className="mb-8">
-                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">Trusted by enterprise organizations</p>
-                      <div className="flex flex-wrap gap-4">
-                        {enterpriseClientsLogos.map((logo, idx) => (
-                          <div key={idx} className="h-8 opacity-60 hover:opacity-100 transition-all duration-300 flex items-center">
-                            <div className="bg-card/50 rounded px-3 py-1 border border-border/30">
-                              <span className="text-xs font-semibold text-muted-foreground">{logo}</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
                     
-                    {/* Security badges */}
-                    <div className="flex flex-wrap gap-4 mb-8">
-                      {securityBadges.map((badge, idx) => (
-                        <div key={idx} className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-border/50 text-xs text-muted-foreground">
-                          <span className="text-primary">{badge.icon}</span>
-                          <span>{badge.text}</span>
-                        </div>
-                      ))}
+                    {/* Enterprise Security */}
+                    <div className="flex items-center gap-2 mb-8 px-4 py-3 bg-primary/5 rounded-lg border border-primary/20">
+                      <Shield className="h-5 w-5 text-primary" />
+                      <span className="text-sm text-foreground font-medium">Enterprise-grade security and data protection</span>
                     </div>
                   </div>
                   

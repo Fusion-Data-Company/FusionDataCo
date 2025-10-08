@@ -6,92 +6,6 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "wouter";
 import { trackEvent } from "@/components/AnalyticsTracker";
 
-// Live Counter Component - Dynamic Daily Updates
-function LiveCounter() {
-  const [count, setCount] = useState(1000);
-
-  useEffect(() => {
-    const initializeCounter = () => {
-      const stored = localStorage.getItem('consultationCounter');
-      const lastUpdate = localStorage.getItem('counterLastUpdate');
-      const now = Date.now();
-      
-      if (stored && lastUpdate) {
-        const storedCount = parseInt(stored);
-        const lastUpdateTime = parseInt(lastUpdate);
-        const timeSinceUpdate = now - lastUpdateTime;
-        
-        // Check if it's been 12-24 hours since last update
-        const minUpdateInterval = 12 * 60 * 60 * 1000; // 12 hours
-        const maxUpdateInterval = 24 * 60 * 60 * 1000; // 24 hours
-        
-        if (timeSinceUpdate >= minUpdateInterval) {
-          // Random chance to update (50% chance if past 12h, 100% if past 24h)
-          const shouldUpdate = timeSinceUpdate >= maxUpdateInterval || Math.random() > 0.5;
-          
-          if (shouldUpdate) {
-            // Random increment between 1-7 consultations
-            const increment = Math.floor(Math.random() * 7) + 1;
-            const newCount = storedCount + increment;
-            
-            setCount(newCount);
-            localStorage.setItem('consultationCounter', newCount.toString());
-            localStorage.setItem('counterLastUpdate', now.toString());
-          } else {
-            setCount(storedCount);
-          }
-        } else {
-          setCount(storedCount);
-        }
-      } else {
-        // Initialize with random number between 847-1247
-        const initialCount = Math.floor(Math.random() * 400) + 847;
-        setCount(initialCount);
-        localStorage.setItem('consultationCounter', initialCount.toString());
-        localStorage.setItem('counterLastUpdate', now.toString());
-      }
-    };
-
-    initializeCounter();
-
-    // Check for updates every hour
-    const checkInterval = setInterval(() => {
-      const stored = localStorage.getItem('consultationCounter');
-      const lastUpdate = localStorage.getItem('counterLastUpdate');
-      const now = Date.now();
-      
-      if (stored && lastUpdate) {
-        const storedCount = parseInt(stored);
-        const lastUpdateTime = parseInt(lastUpdate);
-        const timeSinceUpdate = now - lastUpdateTime;
-        
-        const minUpdateInterval = 12 * 60 * 60 * 1000; // 12 hours
-        const maxUpdateInterval = 24 * 60 * 60 * 1000; // 24 hours
-        
-        if (timeSinceUpdate >= minUpdateInterval) {
-          const shouldUpdate = timeSinceUpdate >= maxUpdateInterval || Math.random() > 0.7;
-          
-          if (shouldUpdate) {
-            const increment = Math.floor(Math.random() * 7) + 1;
-            const newCount = storedCount + increment;
-            
-            setCount(newCount);
-            localStorage.setItem('consultationCounter', newCount.toString());
-            localStorage.setItem('counterLastUpdate', now.toString());
-          }
-        }
-      }
-    }, 60 * 60 * 1000); // Check every hour
-
-    return () => clearInterval(checkInterval);
-  }, []);
-
-  return (
-    <span className="text-lg font-bold mr-1.5 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-blue-300">
-      {count.toLocaleString()}
-    </span>
-  );
-}
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -470,28 +384,6 @@ export default function Hero() {
         </motion.div>
       </div>
       
-      {/* Premium live counter at bottom */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-        <div className="relative group">
-          {/* Subtle glow effect */}
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/30 via-indigo-600/30 to-blue-700/30 rounded-xl opacity-60 blur-[5px] group-hover:opacity-100 transition duration-700"></div>
-          
-          {/* Premium counter container */}
-          <div className="relative px-5 py-2 rounded-xl bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-md border border-blue-500/20 shadow-lg flex items-center gap-3">
-            {/* Pulse animation */}
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-green-400/30 animate-ping"></div>
-              <div className="relative z-10 w-2.5 h-2.5 rounded-full bg-green-400 shadow-inner shadow-green-900/10"></div>
-            </div>
-            
-            {/* Premium styled text */}
-            <div className="flex items-center">
-              <LiveCounter />
-              <span className="text-xs tracking-wide text-slate-300 font-medium">consultations requested</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
