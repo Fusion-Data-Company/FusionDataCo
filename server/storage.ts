@@ -1,7 +1,7 @@
 import { 
   users, chatMessages, contactSubmissions, crmContacts, crmDeals, crmActivities,
   leads, socialTrials, blogPosts, automationJobs, contentResearch, 
-  newsletterSubscribers, youtubeChannels, youtubeVideos, meetingRequests,
+  newsletterSubscribers, youtubeChannels, youtubeVideos, meetingRequests, mediaItems,
   type User, type UpsertUser, 
   type ContactSubmission, type InsertContactSubmission,
   type ChatMessage, type InsertChatMessage,
@@ -16,7 +16,8 @@ import {
   type NewsletterSubscriber, type InsertNewsletterSubscriber,
   type YoutubeChannel, type InsertYoutubeChannel,
   type YoutubeVideo, type InsertYoutubeVideo,
-  type MeetingRequest, type InsertMeetingRequest
+  type MeetingRequest, type InsertMeetingRequest,
+  type MediaItem, type InsertMediaItem
 } from "@shared/schema";
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq, and, desc } from 'drizzle-orm';
@@ -131,6 +132,12 @@ export interface IStorage {
   createYoutubeVideo(video: InsertYoutubeVideo): Promise<YoutubeVideo>;
   getRecentVideos(limit?: number): Promise<YoutubeVideo[]>;
   updateYoutubeVideo(id: number, video: Partial<InsertYoutubeVideo>): Promise<YoutubeVideo | undefined>;
+  
+  // Media items operations
+  getAllMediaItems(): Promise<MediaItem[]>;
+  getFeaturedMediaItems(): Promise<MediaItem[]>;
+  getMediaItemsByType(type: string): Promise<MediaItem[]>;
+  createMediaItem(item: InsertMediaItem): Promise<MediaItem>;
 }
 
 export class PostgresStorage implements IStorage {
@@ -599,6 +606,31 @@ export class PostgresStorage implements IStorage {
     const result = await db.update(youtubeVideos)
       .set(video)
       .where(eq(youtubeVideos.id, id))
+      .returning();
+    return result[0];
+  }
+  
+  // Media items operations
+  async getAllMediaItems(): Promise<MediaItem[]> {
+    return await db.select().from(mediaItems)
+      .orderBy(desc(mediaItems.publishDate));
+  }
+
+  async getFeaturedMediaItems(): Promise<MediaItem[]> {
+    return await db.select().from(mediaItems)
+      .where(eq(mediaItems.featured, true))
+      .orderBy(desc(mediaItems.publishDate));
+  }
+
+  async getMediaItemsByType(type: string): Promise<MediaItem[]> {
+    return await db.select().from(mediaItems)
+      .where(eq(mediaItems.type, type))
+      .orderBy(desc(mediaItems.publishDate));
+  }
+
+  async createMediaItem(item: InsertMediaItem): Promise<MediaItem> {
+    const result = await db.insert(mediaItems)
+      .values(item)
       .returning();
     return result[0];
   }

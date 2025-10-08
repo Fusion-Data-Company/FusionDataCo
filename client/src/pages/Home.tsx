@@ -1,16 +1,23 @@
 import { Helmet } from 'react-helmet';
+import { useQuery } from "@tanstack/react-query";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import IndustrySolutions from "@/components/IndustrySolutions";
 import CTASection from "@/components/CTASection";
 import MobileHero from "@/components/MobileHero";
+import MediaCard from "@/components/MediaCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "wouter";
-import { ArrowRight, Zap, TrendingUp, Shield, Globe } from "lucide-react";
+import { ArrowRight, Zap, TrendingUp, Shield, Globe, Mic } from "lucide-react";
+import type { MediaItem } from "@shared/schema";
 
 export default function Home() {
+  const { data: featuredMedia = [] } = useQuery<MediaItem[]>({
+    queryKey: ['/api/media/featured'],
+  });
+
   return (
     <>
       <Helmet>
@@ -135,6 +142,40 @@ export default function Home() {
           
           {/* Industry Solutions Brief */}
           <IndustrySolutions />
+          
+          {/* Featured Media Section */}
+          {featuredMedia.length > 0 && (
+            <section className="py-16 px-4 bg-gradient-to-b from-purple-900/20 to-blue-900/20">
+              <div className="container mx-auto">
+                <div className="text-center mb-12">
+                  <div className="flex items-center justify-center gap-3 mb-4">
+                    <Mic className="h-8 w-8 text-purple-400" />
+                    <h2 className="text-3xl md:text-4xl font-bold">
+                      <span className="text-purple-400">Rob Andino</span> in the Media
+                    </h2>
+                  </div>
+                  <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                    Watch and listen to Rob's insights on AI automation, marketing innovation, and business growth
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                  {featuredMedia.slice(0, 3).map((item) => (
+                    <MediaCard key={item.id} item={item} />
+                  ))}
+                </div>
+
+                <div className="text-center">
+                  <Link href="/media">
+                    <Button size="lg" variant="outline" className="group" data-testid="button-view-all-media">
+                      View All Media
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </section>
+          )}
           
           {/* Main CTA Section */}
           <CTASection />

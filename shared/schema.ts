@@ -910,3 +910,27 @@ export const insertElevenLabsConversationSchema = createInsertSchema(elevenLabsC
 
 export type ElevenLabsConversation = typeof elevenLabsConversations.$inferSelect;
 export type InsertElevenLabsConversation = z.infer<typeof insertElevenLabsConversationSchema>;
+
+// Media Items - Rob's Interviews & Podcasts
+export const mediaItems = pgTable("media_items", {
+  id: serial("id").primaryKey(),
+  type: varchar("type", { length: 50 }).notNull(), // 'podcast', 'video', 'speaking', 'article'
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description").notNull(),
+  publishDate: timestamp("publish_date").notNull(),
+  platform: varchar("platform", { length: 100 }), // 'YouTube', 'Spotify', 'Apple Podcasts', etc.
+  embedUrl: varchar("embed_url", { length: 500 }), // iframe/embed URL
+  externalUrl: varchar("external_url", { length: 500 }), // direct link
+  thumbnailUrl: varchar("thumbnail_url", { length: 500 }),
+  topic: varchar("topic", { length: 100 }), // 'AI', 'Marketing', 'Sales', etc.
+  featured: boolean("featured").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertMediaItemSchema = createInsertSchema(mediaItems).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type MediaItem = typeof mediaItems.$inferSelect;
+export type InsertMediaItem = z.infer<typeof insertMediaItemSchema>;

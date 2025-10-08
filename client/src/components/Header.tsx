@@ -62,6 +62,7 @@ export default function Header() {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
+    { name: "Media", path: "/media" },
     { 
       name: "Industries", 
       path: "/small-business-owners",

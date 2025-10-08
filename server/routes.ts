@@ -152,6 +152,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Media items API endpoints
+  app.get("/api/media", async (req, res) => {
+    try {
+      const { type } = req.query;
+      
+      let mediaItems;
+      if (type && typeof type === 'string') {
+        mediaItems = await storage.getMediaItemsByType(type);
+      } else {
+        mediaItems = await storage.getAllMediaItems();
+      }
+      
+      res.json(mediaItems);
+    } catch (error) {
+      console.error("Error fetching media items:", error);
+      res.status(500).json({ message: "Failed to fetch media items" });
+    }
+  });
+
+  app.get("/api/media/featured", async (req, res) => {
+    try {
+      const featured = await storage.getFeaturedMediaItems();
+      res.json(featured);
+    } catch (error) {
+      console.error("Error fetching featured media:", error);
+      res.status(500).json({ message: "Failed to fetch featured media" });
+    }
+  });
+
+  app.post("/api/media", isAdmin, async (req, res) => {
+    try {
+      const { insertMediaItemSchema } = await import("@shared/schema");
+      const parsedData = insertMediaItemSchema.safeParse(req.body);
+      
+      if (!parsedData.success) {
+        return res.status(400).json({ 
+          message: "Invalid media item data",
+          errors: parsedData.error.errors 
+        });
+      }
+
+      const mediaItem = await storage.createMediaItem(parsedData.data);
+      
+      return res.status(201).json(mediaItem);
+    } catch (error) {
+      console.error("Error creating media item:", error);
+      return res.status(500).json({ message: "Failed to create media item" });
+    }
+  });
+
   // AI Services Health Check endpoints
   app.get("/api/health/ai", async (req, res) => {
     try {

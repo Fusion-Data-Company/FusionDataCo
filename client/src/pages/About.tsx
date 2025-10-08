@@ -1,13 +1,23 @@
 import { Helmet } from 'react-helmet';
+import { useQuery } from "@tanstack/react-query";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ValueProposition from "@/components/ValueProposition";
+import MediaCard from "@/components/MediaCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, Award, Target, Shield, Users, Building, Globe, Rocket, Heart } from "lucide-react";
+import { ArrowRight, Award, Target, Shield, Users, Building, Globe, Rocket, Heart, Mic } from "lucide-react";
+import type { MediaItem } from "@shared/schema";
 
 export default function About() {
+  const { data: mediaItems = [] } = useQuery<MediaItem[]>({
+    queryKey: ['/api/media'],
+  });
+
+  // Get 2 most recent media items
+  const recentMedia = mediaItems.slice(0, 2);
+
   return (
     <>
       <Helmet>
@@ -330,6 +340,40 @@ export default function About() {
               </div>
             </div>
           </section>
+
+          {/* Media Highlights Section */}
+          {recentMedia.length > 0 && (
+            <section className="py-16 px-4 bg-gradient-to-b from-purple-900/20 to-blue-900/20">
+              <div className="container mx-auto">
+                <div className="text-center mb-12">
+                  <div className="flex items-center justify-center gap-3 mb-4">
+                    <Mic className="h-8 w-8 text-purple-400" />
+                    <h2 className="text-3xl md:text-4xl font-bold">
+                      Recent Media <span className="text-purple-400">Appearances</span>
+                    </h2>
+                  </div>
+                  <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                    Hear from Rob about AI automation, business growth strategies, and the future of marketing
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
+                  {recentMedia.map((item) => (
+                    <MediaCard key={item.id} item={item} />
+                  ))}
+                </div>
+
+                <div className="text-center">
+                  <Link href="/media">
+                    <Button size="lg" variant="outline" className="group" data-testid="button-view-all-media-about">
+                      View All Media Appearances
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* CTA Section */}
           <section className="py-20 px-4 bg-gradient-to-br from-primary/10 to-accent/10">
