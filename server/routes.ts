@@ -14,6 +14,7 @@ import {
 } from "@shared/schema";
 import { marketingRouter } from "./marketing";
 import { newsletterService } from "./services/NewsletterAutomationService";
+import { mailjetService } from "./automation/mailjetService";
 import { nanoid } from "nanoid";
 import axios from "axios";
 
@@ -90,12 +91,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const submission = await storage.createContactSubmission(parsedData.data);
       
+      // Send email notification to Rob (non-blocking - don't fail form if email fails)
+      const formType = parsedData.data.formType || 'Contact';
+      mailjetService.sendFormNotification(parsedData.data, formType).catch(err => {
+        console.error('[FORM] Email notification failed for contact submission:', err.message);
+      });
+      
       return res.status(201).json({
         message: "Form submitted successfully",
         id: submission.id
       });
     } catch (error) {
       console.error("Error handling contact form submission:", error);
+      return res.status(500).json({ message: "An error occurred while processing your request" });
+    }
+  });
+
+  // Lead generation form submission endpoint (for Real Estate, Medical, Trades forms)
+  app.post("/api/leads", async (req, res) => {
+    try {
+      const parsedData = insertLeadSchema.safeParse(req.body);
+      
+      if (!parsedData.success) {
+        return res.status(400).json({ 
+          message: "Invalid lead data",
+          errors: parsedData.error.errors 
+        });
+      }
+
+      const lead = await storage.createLead(parsedData.data);
+      
+      // Send email notification to Rob (non-blocking - don't fail form if email fails)
+      const formType = `Lead - ${parsedData.data.source || 'Website'}`;
+      mailjetService.sendFormNotification(parsedData.data, formType).catch(err => {
+        console.error('[FORM] Email notification failed for lead submission:', err.message);
+      });
+      
+      return res.status(201).json({
+        message: "Lead submitted successfully",
+        id: lead.id
+      });
+    } catch (error) {
+      console.error("Error handling lead submission:", error);
       return res.status(500).json({ message: "An error occurred while processing your request" });
     }
   });

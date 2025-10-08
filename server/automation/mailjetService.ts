@@ -104,6 +104,69 @@ export class MailjetService {
       throw error;
     }
   }
+
+  async sendFormNotification(formData: any, formType: string): Promise<void> {
+    if (!this.mailjet) {
+      console.warn('[MAILJET] Service not initialized - skipping email notification');
+      return; // Gracefully degrade if Mailjet is not configured
+    }
+
+    try {
+      // Format form data for email
+      const formFields = Object.entries(formData)
+        .filter(([key]) => key !== 'source' && key !== 'formType')
+        .map(([key, value]) => `<p><strong>${this.formatFieldName(key)}:</strong> ${value || 'Not provided'}</p>`)
+        .join('');
+
+      const subject = `New ${formType} Form Submission - FusionDataCo`;
+      const htmlContent = `
+        <h2>🎯 New ${formType} Form Submission</h2>
+        <p>You have received a new form submission from the FusionDataCo website.</p>
+        <hr style="border: 1px solid #14ffc8; margin: 20px 0;">
+        <h3>Submission Details:</h3>
+        ${formFields}
+        <hr style="border: 1px solid #14ffc8; margin: 20px 0;">
+        <p style="color: #666; font-size: 12px;">
+          Submitted at: ${new Date().toLocaleString()}<br>
+          Source: ${formData.source || 'Website'}
+        </p>
+      `;
+
+      const request = this.mailjet
+        .post('send', { version: 'v3.1' })
+        .request({
+          Messages: [{
+            From: {
+              Email: "notifications@fusiondataco.com",
+              Name: "FusionDataCo Form Notifications"
+            },
+            To: [{
+              Email: "rob@fusiondataco.com",
+              Name: "Rob Yeager"
+            }],
+            Subject: subject,
+            HTMLPart: htmlContent,
+            TextPart: this.stripHtml(htmlContent)
+          }]
+        });
+
+      const result = await request;
+      console.log(`[MAILJET] Form notification sent for ${formType} submission`);
+      
+    } catch (error) {
+      console.error('[MAILJET] Failed to send form notification:', error);
+      // Don't throw - we don't want email failures to break form submissions
+      console.error('[MAILJET] Form was saved but email notification failed');
+    }
+  }
+
+  private formatFieldName(key: string): string {
+    return key
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/^./, str => str.toUpperCase())
+      .replace(/_/g, ' ')
+      .trim();
+  }
 }
 
 export const mailjetService = new MailjetService();

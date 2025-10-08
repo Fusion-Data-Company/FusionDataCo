@@ -1,0 +1,161 @@
+🔧 FUSIONDATACO.COM COMPLETE BUILD-OUT MEGA PROMPT
+PROJECT STATUS BASELINE
+Site is 85% complete but not finished
+Multiple placeholders exist with no real functionality
+Core systems need to be implemented and connected
+
+
+PHASE 1: FORMS & CRM INTEGRATION
+A. Form Creation Requirements
+Create three (3) standard forms for various specific projects
+Create one (1) default main form for general inquiries
+Ensure forms are specific to different project types (not generic duplicates)
+
+B. CTA Button Integration
+Audit all CTA buttons on the website
+Link each CTA button to appropriate form (map which button goes to which form)
+Remove placeholder functionality from all CTA buttons
+Ensure all CTA buttons are fully functional after linking
+
+C. Local CRM Implementation
+Implement onboard CRM system within the app
+Configure CRM to collect all form data locally
+Configure CRM to save all form data locally in the app
+Ensure no data is lost or sent to external systems (unless specified)
+
+D. Notification System
+Set up email notifications for form submissions
+Use rob@fusiondataco.com Google account for sending notifications
+Send email notification to Rob when any form is submitted
+Include all form data in notification emails
+
+E. Calendar Integration
+Implement calendar invite system from website
+Connect to Rob's Google Calendar (rob@fusiondataco.com)
+Allow meeting requests with Rob Yeager (individual option)
+Allow meeting requests with Mat (individual option)
+Allow meeting requests with both Rob and Mat (combined option)
+Automatically generate calendar invites when meeting requested
+Send calendar invites to requestor and selected team members
+
+
+PHASE 2: BLOG SYSTEM IMPLEMENTATION
+A. Blog Generation Infrastructure
+Make blog generation system fully functional (currently not working)
+Implement article scrolling functionality (articles need to scroll)
+Integrate background agent for automated blog management
+
+B. Daily Content Automation
+Configure blog to scrape daily for new AI news
+Set up rotation system for articles about LLM companies and industry data
+Blog must generate one (1) article per day automatically
+Use OpenRouter API for content generation
+Configure Perplexity LLM as the primary model for blog generation
+
+C. Article Topic Coverage
+Daily article topics must cover: OpenAI, Anthropic, Deep Seek, Grok, Perplexity, Alibaba, OpenRouter, Google Gemini, PiAPI, all image and video gen models, 11 Labs, Common A Magic MCP, MCP servers and server lists, Replit, Cursor, Lovable, Gum Loop, GitHub
+Blogger agent picks the hottest new topic each day from the above list
+
+D. Article Visual Generation
+Generate AI image for each blog post
+Image style: futuristic cyber enterprise looking
+Image quality: cinematic full 4K UHD AI art
+Ensure image matches article topic
+
+
+PHASE 3: MONTHLY NEWSLETTER SYSTEM
+A. Newsletter Generation
+Create automated monthly newsletter (first of each month)
+Newsletter must be "sharp" and professional
+Newsletter content focused on: OpenAI, Anthropic, Deep Seek, Grok, Perplexity, Alibaba, OpenRouter, Google Gemini, PiAPI, all image and video gen models, 11 Labs, Common A Magic MCP, MCP servers and server lists, Replit, Cursor, Lovable, Gum Loop, GitHub
+Newsletter highlights all major releases and updates from the above list for the month
+
+B. Newsletter Distribution
+Use rob@fusiondataco.com Google account to send newsletters
+Save each sent newsletter (archive in Google account)
+Maintain mailing list in Google Sheets
+Google Sheets must track all contacts who want newsletter
+Update Google Sheets automatically when new subscribers opt-in
+
+
+PHASE 4: CONTENT & POLISH
+A. Content Updates
+Review all website content
+Update content to reflect most current tools and processes
+Polish wording for all presentation sections
+Remove all placeholder content
+Ensure professional, consistent tone throughout
+
+B. Social Media Integration
+Connect company social media accounts to website
+Ensure social media links are functional and visible
+Integrate social feeds if applicable
+
+C. Media Section for Rob
+Create dedicated section for interviews Rob has done
+Include podcasts Rob appeared on
+Organize media appearances in accessible format
+Ensure media section is easy to navigate
+
+
+PHASE 5: MOBILE OPTIMIZATION (PRE-APPROVAL)
+A. Responsive Design Implementation
+Optimize ALL elements for mobile device dynamic resizing
+Optimize EVERY page for mobile responsiveness
+Optimize EVERY hero section for mobile responsiveness
+Test on multiple mobile device sizes
+Ensure no content breaks or overflows on mobile
+Verify touch targets are appropriately sized for mobile
+
+B. Loose Ends
+Tie up all loose ends throughout the site
+Fix any remaining broken links
+Resolve any incomplete sections
+
+
+PHASE 6: APPROVAL GATE
+Present completed site to Rob for review
+Wait for explicit approval: "it is perfect the way it is"
+Do NOT proceed to Phase 7 until approval received
+
+
+PHASE 7: FINAL OPTIMIZATION (POST-APPROVAL)
+A. Critical Constraint
+RULE: Cannot change any appearances or content in UI once approved as final
+All optimization must happen "off screen" in background
+No visible changes to approved design/content
+
+B. Performance Optimization
+Run all optimization protocols (code, assets, loading speed)
+Implement background performance improvements
+Optimize database queries if applicable
+Compress and optimize images (without changing appearance)
+Minify CSS/JS files
+Implement caching strategies
+
+C. Mobile Version Optimization (Final)
+Mobile version optimization must match Apple.com quality standards
+Final mobile testing across all devices
+Ensure mobile experience is flawless
+Verify mobile performance metrics
+
+
+TECHNICAL SPECIFICATIONS
+Required Integrations:
+Google Account: rob@fusiondataco.com (for email and calendar)
+OpenRouter API: for blog generation
+Perplexity LLM: primary model for content generation
+Google Sheets: for newsletter subscriber list
+Google Calendar: for meeting scheduling
+Image Generation API: for daily blog post images (4K UHD quality)
+
+Team Members:
+Rob Yeager (primary contact, meeting option)
+Mat (secondary contact, meeting option)
+Both available for combined meetings
+
+
+REPLIT AGENT 3 OPTIMIZATION NOTES
+Research Replit Agent 3 new capabilities before building
+Tailor prompt to optimize Agent 3's upgraded features for this build
+Leverage Agent 3's enhanced abilities for automation and integration tasks
