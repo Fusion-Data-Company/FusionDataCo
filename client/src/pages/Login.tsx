@@ -70,6 +70,7 @@ export default function Login() {
                 src="/logo.svg" 
                 alt="Fusion Data Co Logo" 
                 className="h-10"
+                loading="lazy"
               />
             </div>
             <CardTitle className="text-2xl font-bold">Admin Login</CardTitle>

@@ -103,9 +103,9 @@ export default function Contact() {
   // Handler for opening booking dialog
   const handleOpenBooking = () => {
     trackEvent({
-      category: 'booking',
-      action: 'opened',
-      label: 'contact_form',
+      category: 'engagement',
+      action: 'open',
+      label: 'booking_dialog_contact',
     });
     setIsBookingOpen(true);
   };
@@ -156,6 +156,7 @@ export default function Contact() {
                           src="/rob-photo.jpg" 
                           alt="Robert Yeager" 
                           className="w-full h-full object-cover"
+                          loading="lazy"
                         />
                       </div>
                       <div className="flex-1">

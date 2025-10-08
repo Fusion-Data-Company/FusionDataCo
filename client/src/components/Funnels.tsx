@@ -243,7 +243,8 @@ export default function Funnels() {
                   <img 
                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" 
                     alt="Enterprise sales funnel dashboard" 
-                    className="rounded-b-lg border border-border/40 w-full" 
+                    className="rounded-b-lg border border-border/40 w-full"
+                    loading="lazy"
                   />
                   
                   {/* Dashboard overlay with metrics */}
@@ -363,7 +364,8 @@ export default function Funnels() {
                   <img 
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max" 
                     alt="Enterprise Sales Director" 
-                    className="w-full h-full object-cover" 
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 

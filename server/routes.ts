@@ -129,6 +129,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
       
+      res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=600');
       res.json(posts);
     } catch (error) {
       console.error("Error fetching blog posts:", error);
@@ -145,6 +146,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Blog post not found" });
       }
       
+      res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=600');
       res.json(post);
     } catch (error) {
       console.error("Error fetching blog post:", error);
@@ -164,6 +166,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         mediaItems = await storage.getAllMediaItems();
       }
       
+      res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=600');
       res.json(mediaItems);
     } catch (error) {
       console.error("Error fetching media items:", error);
@@ -174,6 +177,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/media/featured", async (req, res) => {
     try {
       const featured = await storage.getFeaturedMediaItems();
+      res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=600');
       res.json(featured);
     } catch (error) {
       console.error("Error fetching featured media:", error);
@@ -210,6 +214,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const allHealthy = healthResults.every(result => result.status === 'healthy');
       
+      res.setHeader('Cache-Control', 'private, max-age=60');
       res.status(allHealthy ? 200 : 503).json({
         status: allHealthy ? 'healthy' : 'degraded',
         services: healthResults,

@@ -63,7 +63,8 @@ export default function CRMSection() {
           <img 
             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" 
             alt="CRM Dashboard" 
-            className="w-full h-auto rounded-lg" 
+            className="w-full h-auto rounded-lg"
+            loading="lazy"
           />
           <div className="absolute bottom-0 left-0 w-full p-6 md:p-10">
             <h3 className="font-['Orbitron'] text-2xl md:text-3xl font-bold mb-4 text-white">

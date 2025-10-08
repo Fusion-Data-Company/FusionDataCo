@@ -55,7 +55,10 @@ export const contactSubmissions = pgTable("contact_submissions", {
   source: text("source").default("website"),
   status: text("status").default("new"),
   createdAt: timestamp("created_at").defaultNow(),
-});
+}, (table) => [
+  index("idx_contact_submissions_created_at").on(table.createdAt),
+  index("idx_contact_submissions_industry").on(table.industry),
+]);
 
 export const contactSubmissionSchema = createInsertSchema(contactSubmissions).pick({
   name: true,
@@ -513,7 +516,11 @@ export const blogPosts = pgTable("blog_posts", {
   metrics: jsonb("metrics").default({}), // views, shares, etc.
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
-});
+}, (table) => [
+  index("idx_blog_posts_slug").on(table.slug),
+  index("idx_blog_posts_published_at").on(table.publishedAt),
+  index("idx_blog_posts_status").on(table.status),
+]);
 
 export const insertBlogPostSchema = createInsertSchema(blogPosts).pick({
   title: true,
@@ -925,7 +932,11 @@ export const mediaItems = pgTable("media_items", {
   topic: varchar("topic", { length: 100 }), // 'AI', 'Marketing', 'Sales', etc.
   featured: boolean("featured").default(false),
   createdAt: timestamp("created_at").defaultNow(),
-});
+}, (table) => [
+  index("idx_media_items_type").on(table.type),
+  index("idx_media_items_featured").on(table.featured),
+  index("idx_media_items_publish_date").on(table.publishDate),
+]);
 
 export const insertMediaItemSchema = createInsertSchema(mediaItems).omit({
   id: true,

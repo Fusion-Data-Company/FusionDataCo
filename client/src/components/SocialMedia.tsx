@@ -238,7 +238,8 @@ export default function SocialMedia() {
                   <img 
                     src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" 
                     alt="Enterprise social media dashboard" 
-                    className="rounded-b-lg border border-border/40 w-full" 
+                    className="rounded-b-lg border border-border/40 w-full"
+                    loading="lazy"
                   />
                   
                   {/* Dashboard overlay with metrics */}
@@ -358,7 +359,8 @@ export default function SocialMedia() {
                   <img 
                     src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max" 
                     alt="Enterprise CMO" 
-                    className="w-full h-full object-cover" 
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 

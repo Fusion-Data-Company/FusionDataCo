@@ -176,7 +176,8 @@ export default function SocialMediaServices() {
                     <img 
                       src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" 
                       alt="Social media automation dashboard" 
-                      className="rounded-lg shadow-lg border border-gray-700 transform transition-transform duration-500 hover:scale-105" 
+                      className="rounded-lg shadow-lg border border-gray-700 transform transition-transform duration-500 hover:scale-105"
+                      loading="lazy"
                     />
                   </div>
                 </div>

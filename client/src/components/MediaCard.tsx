@@ -77,6 +77,7 @@ export default function MediaCard({ item }: MediaCardProps) {
               src={item.thumbnailUrl} 
               alt={item.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
               data-testid={`img-thumbnail-${item.id}`}
             />
           ) : (

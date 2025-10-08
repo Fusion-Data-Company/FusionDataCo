@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/lib/ThemeProvider";
 import { Helmet } from "react-helmet";
 import { queryClient } from "./lib/queryClient";
 
-// Pages
+// Pages - Regular imports for commonly visited pages
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
@@ -16,7 +16,6 @@ import MultiModelAgents from "@/pages/MultiModelAgents";
 import Demographics from "@/pages/Demographics";
 import Media from "@/pages/Media";
 import Blog from "@/pages/Blog";
-import BlogAdmin from "@/pages/BlogAdmin";
 import GolfBagBlogPost from "@/pages/GolfBagBlogPost";
 import BlogPost from "@/pages/BlogPost";
 import SmallBusinessOwners from "@/pages/SmallBusinessOwners";
@@ -24,7 +23,6 @@ import RealEstate from "@/pages/RealEstate";
 import Medical from "@/pages/Medical";
 import Trades from "@/pages/Trades";
 import CRM from "@/pages/CRM";
-import CRMDashboard from "@/pages/CRMDashboard";
 import Pricing from "@/pages/Pricing";
 import ContactPage from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
@@ -32,31 +30,28 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
 import Partners from "@/pages/Partners";
 import { EntropyDemo } from "@/components/demos/EntropyDemo";
-
-const AutomationDashboard = React.lazy(() => import("@/pages/AutomationDashboard"));
 import SocialMedia from "@/pages/SocialMedia";
 import FunnelsPage from "@/pages/Funnels";
-
-// Import the proper Login page with Google authentication
 import Login from "@/pages/Login";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileFooter from "@/components/MobileFooter";
 import ElevenLabsWidget from "@/components/ElevenLabsWidget";
-
-
-
-// Marketing Automation Pages
 import Campaigns from "@/pages/Campaigns";
-import CampaignBuilder from "@/pages/CampaignBuilder";
-import CrmCampaigns from "@/pages/CrmCampaigns";
 import LeadMagnet from "@/pages/LeadMagnet";
-import MarketingSuite from "@/pages/MarketingSuite";
-import MarketingAutomations from "@/pages/MarketingAutomations";
-import EmailCenter from "@/pages/EmailCenter";
-import TelegramIntegrationPage from "@/pages/TelegramIntegrationPage";
 import SmallBusinessUpgrade from "@/pages/SmallBusinessUpgrade";
-import Leads from "@/pages/Leads";
+
+// Lazy loaded admin/dashboard pages for better code splitting
+const AutomationDashboard = React.lazy(() => import("@/pages/AutomationDashboard"));
+const BlogAdmin = React.lazy(() => import("@/pages/BlogAdmin"));
+const CRMDashboard = React.lazy(() => import("@/pages/CRMDashboard"));
+const CampaignBuilder = React.lazy(() => import("@/pages/CampaignBuilder"));
+const CrmCampaigns = React.lazy(() => import("@/pages/CrmCampaigns"));
+const MarketingSuite = React.lazy(() => import("@/pages/MarketingSuite"));
+const MarketingAutomations = React.lazy(() => import("@/pages/MarketingAutomations"));
+const EmailCenter = React.lazy(() => import("@/pages/EmailCenter"));
+const TelegramIntegrationPage = React.lazy(() => import("@/pages/TelegramIntegrationPage"));
+const Leads = React.lazy(() => import("@/pages/Leads"));
 
 function Router() {
   return (
@@ -69,10 +64,10 @@ function Router() {
       <Route path="/demographics" component={Demographics} />
       <Route path="/media" component={Media} />
       <Route path="/blog" component={Blog} />
-      <Route path="/blog/admin" component={BlogAdmin} />
+      <Route path="/blog/admin" component={() => <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}><BlogAdmin /></Suspense>} />
       <Route path="/blog/golf-bag-approach-multi-model-ai" component={GolfBagBlogPost} />
       <Route path="/blog/:slug" component={BlogPost} />
-      <Route path="/admin/automation" component={() => <Suspense fallback={<div>Loading...</div>}><AutomationDashboard /></Suspense>} />
+      <Route path="/admin/automation" component={() => <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}><AutomationDashboard /></Suspense>} />
       <Route path="/small-business-upgrade" component={SmallBusinessUpgrade} />
       <Route path="/small-business-owners" component={SmallBusinessOwners} />
       <Route path="/real-estate" component={RealEstate} />
@@ -81,7 +76,7 @@ function Router() {
       <Route path="/social-media" component={SocialMedia} />
       <Route path="/funnels" component={FunnelsPage} />
       <Route path="/campaigns" component={Campaigns} />
-      <Route path="/leads" component={Leads} />
+      <Route path="/leads" component={() => <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}><Leads /></Suspense>} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/login" component={Login} />
@@ -90,16 +85,16 @@ function Router() {
       <Route path="/crm" component={CRM} />
       
       {/* Admin CRM Routes - Protected */}
-      <Route path="/crm/dashboard" component={CRMDashboard} />
-      <Route path="/crm/campaigns" component={CrmCampaigns} />
-      <Route path="/crm/email-center" component={EmailCenter} />
-      <Route path="/crm/telegram" component={TelegramIntegrationPage} />
+      <Route path="/crm/dashboard" component={() => <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}><CRMDashboard /></Suspense>} />
+      <Route path="/crm/campaigns" component={() => <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}><CrmCampaigns /></Suspense>} />
+      <Route path="/crm/email-center" component={() => <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}><EmailCenter /></Suspense>} />
+      <Route path="/crm/telegram" component={() => <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}><TelegramIntegrationPage /></Suspense>} />
       
       {/* Marketing Automation Routes */}
-      <Route path="/campaign-builder" component={CampaignBuilder} />
+      <Route path="/campaign-builder" component={() => <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}><CampaignBuilder /></Suspense>} />
       <Route path="/lead-magnet" component={LeadMagnet} />
-      <Route path="/ai-marketing-suite" component={MarketingSuite} />
-      <Route path="/automations" component={MarketingAutomations} />
+      <Route path="/ai-marketing-suite" component={() => <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}><MarketingSuite /></Suspense>} />
+      <Route path="/automations" component={() => <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}><MarketingAutomations /></Suspense>} />
       
       {/* Demo Components */}
       <Route path="/demos/entropy" component={EntropyDemo} />
