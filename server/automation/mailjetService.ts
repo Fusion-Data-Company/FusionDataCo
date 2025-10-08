@@ -11,9 +11,9 @@ export class MailjetService {
     try {
       this.mailjet = new Mailjet({
         apiKey: process.env.MAILJET_API_KEY!,
-        apiSecret: process.env.MAILJET_SECRET!
+        apiSecret: process.env.MAILJET_SECRET_KEY!
       });
-      console.log('[MAILJET] Service initialized');
+      console.log('[MAILJET] ✅ Service initialized successfully');
     } catch (error) {
       console.error('[MAILJET] Failed to initialize:', error);
     }
