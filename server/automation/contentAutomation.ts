@@ -34,7 +34,8 @@ export class ContentAutomationService {
           ]);
           console.log(`[AUTOMATION] ✅ Research completed: ${researchData.length} items`);
         } catch (researchError) {
-          console.log(`[AUTOMATION] ⚠️ Research failed, using emergency fallback: ${researchError.message}`);
+          const errorMessage = researchError instanceof Error ? researchError.message : String(researchError);
+          console.log(`[AUTOMATION] ⚠️ Research failed, using emergency fallback: ${errorMessage}`);
           researchData = this.getEmergencyResearchFallback();
         }
         
@@ -49,7 +50,8 @@ export class ContentAutomationService {
           ]);
           console.log(`[AUTOMATION] ✅ Content generated: ${blogPostData.title}`);
         } catch (contentError) {
-          console.log(`[AUTOMATION] ⚠️ Content generation failed, using emergency template: ${contentError.message}`);
+          const errorMessage = contentError instanceof Error ? contentError.message : String(contentError);
+          console.log(`[AUTOMATION] ⚠️ Content generation failed, using emergency template: ${errorMessage}`);
           blogPostData = this.getEmergencyBlogPostTemplate();
         }
         
@@ -62,13 +64,15 @@ export class ContentAutomationService {
           return publishedPost.slug;
           
         } catch (publishError) {
-          console.log(`[AUTOMATION] ⚠️ Publishing failed: ${publishError.message}`);
+          const errorMessage = publishError instanceof Error ? publishError.message : String(publishError);
+          console.log(`[AUTOMATION] ⚠️ Publishing failed: ${errorMessage}`);
           throw publishError; // This will trigger the next attempt
         }
         
       } catch (error) {
         lastError = error as Error;
-        console.log(`[AUTOMATION] ❌ Attempt ${attempt} failed: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        console.log(`[AUTOMATION] ❌ Attempt ${attempt} failed: ${errorMessage}`);
         
         if (attempt < maxAttempts) {
           const delay = 2000 * Math.pow(2, attempt - 1); // Exponential backoff
@@ -120,7 +124,8 @@ export class ContentAutomationService {
             console.log(`[RESEARCH] ✅ Stored: ${topic.title.substring(0, 50)}...`);
           }
         } catch (storeError) {
-          console.error(`[RESEARCH] ⚠️ Failed to store research item, continuing: ${storeError.message}`);
+          const errorMessage = storeError instanceof Error ? storeError.message : String(storeError);
+          console.error(`[RESEARCH] ⚠️ Failed to store research item, continuing: ${errorMessage}`);
           // Continue with other items even if one fails
         }
       }
@@ -270,7 +275,8 @@ export class ContentAutomationService {
         console.log(`[IMAGE] ✅ Strategy ${i + 1} successful`);
         return result as string;
       } catch (error) {
-        console.log(`[IMAGE] ⚠️ Strategy ${i + 1} failed: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        console.log(`[IMAGE] ⚠️ Strategy ${i + 1} failed: ${errorMessage}`);
         if (i === fallbackStrategies.length - 1) {
           throw error;
         }
@@ -596,7 +602,8 @@ export class ContentAutomationService {
           return result;
           
         } catch (error) {
-          console.log(`[PUBLISH] ⚠️ Strategy ${strategyIndex + 1}, Attempt ${attempt} failed: ${error.message}`);
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          console.log(`[PUBLISH] ⚠️ Strategy ${strategyIndex + 1}, Attempt ${attempt} failed: ${errorMessage}`);
           
           if (attempt < 3) {
             // Exponential backoff between attempts
@@ -627,8 +634,9 @@ export class ContentAutomationService {
       return await storage.createBlogPost(absoluteMinimum);
       
     } catch (finalError) {
+      const errorMessage = finalError instanceof Error ? finalError.message : String(finalError);
       console.error('[PUBLISH] ❌ CRITICAL: Even absolute minimum post failed:', finalError);
-      throw new Error(`Blog publishing completely failed: ${finalError.message}`);
+      throw new Error(`Blog publishing completely failed: ${errorMessage}`);
     }
   }
   
@@ -697,108 +705,13 @@ export class ContentAutomationService {
     return fallbackTitles[Math.floor(Math.random() * fallbackTitles.length)];
   }
 
-  // COMPREHENSIVE BLOG CONTENT GENERATION - Like our amazing manual blog posts
-  private async generateComprehensiveBlogContent(
-    title: string, 
-    research: InsertContentResearch[], 
-    featuredImageUrl: string, 
-    dateStr: string
-  ): Promise<string> {
-    const keywords = research.flatMap(r => r.keywords || []).join(' ').toLowerCase();
-    
-    // Determine the main topic/category for contextualized content
-    const topicCategories = [
-      { name: 'AI Strategy', keywords: ['ai', 'artificial intelligence', 'machine learning', 'automation'], color: 'blue' },
-      { name: 'Marketing Automation', keywords: ['marketing', 'campaigns', 'email', 'social media'], color: 'green' },
-      { name: 'Customer Service', keywords: ['customer', 'support', 'service', 'helpdesk'], color: 'purple' },
-      { name: 'Healthcare', keywords: ['healthcare', 'medical', 'patient', 'clinical'], color: 'red' },
-      { name: 'Real Estate', keywords: ['property', 'real estate', 'listings', 'agents'], color: 'yellow' },
-      { name: 'Financial Services', keywords: ['finance', 'banking', 'fintech', 'payments'], color: 'indigo' }
-    ];
-
-    const mainTopic = topicCategories.find(cat => 
-      cat.keywords.some(keyword => keywords.includes(keyword))
-    ) || topicCategories[0];
-
-    // Generate comprehensive sections using AI
-    const comprehensiveContent = `<article class="max-w-4xl mx-auto prose lg:prose-xl">
-<header class="mb-12 text-center">
-  ${featuredImageUrl ? `<div class="featured-image mb-8">
-    <img src="${featuredImageUrl}" alt="${title}" class="w-full h-80 object-cover rounded-2xl shadow-2xl" />
-  </div>` : ''}
-  <h1 class="text-5xl font-bold mb-6 leading-tight">${title}</h1>
-  <div class="flex items-center justify-center space-x-4 text-lg text-gray-600">
-    <span>By Robert Yeager</span>
-    <span>•</span>
-    <span>${dateStr}</span>
-    <span>•</span>
-    <span>8-12 min read</span>
-  </div>
-</header>
-
-<div class="executive-summary bg-gradient-to-r from-${mainTopic.color}-50 to-${mainTopic.color}-100 p-8 rounded-2xl mb-12">
-  <h2 class="text-3xl font-bold mb-6 text-${mainTopic.color}-800">🎯 Executive Summary</h2>
-  <p class="text-xl leading-relaxed text-${mainTopic.color}-700">${await this.generateExecutiveSummary(title, research, mainTopic.name)}</p>
-</div>
-
-<section class="mb-12">
-  <h2 class="text-4xl font-bold mb-8">🔍 Current Market Analysis</h2>
-  ${await this.generateMarketAnalysis(research, mainTopic.name)}
-</section>
-
-<section class="mb-12">
-  <h2 class="text-4xl font-bold mb-8">⚡ Implementation Strategy</h2>
-  ${await this.generateImplementationStrategy(title, mainTopic.name)}
-</section>
-
-<section class="mb-12">
-  <h2 class="text-4xl font-bold mb-8">📊 ROI & Performance Metrics</h2>
-  ${this.generateROIMetrics(mainTopic.name)}
-</section>
-
-<section class="mb-12">
-  <h2 class="text-4xl font-bold mb-8">🚀 Industry Success Stories</h2>
-  ${this.generateSuccessStories(mainTopic.name)}
-</section>
-
-<section class="mb-12">
-  <h2 class="text-4xl font-bold mb-8">🔮 Future Outlook & Predictions</h2>
-  ${await this.generateFutureOutlook(mainTopic.name)}
-</section>
-
-<section class="call-to-action bg-gradient-to-r from-${mainTopic.color}-600 to-${mainTopic.color}-800 text-white p-10 rounded-2xl text-center mb-12">
-  <h2 class="text-4xl font-bold mb-6">Ready to Transform Your ${mainTopic.name} Strategy?</h2>
-  <p class="text-xl mb-8">FusionDataCo specializes in implementing cutting-edge ${mainTopic.name.toLowerCase()} solutions that deliver measurable results.</p>
-  <div class="grid md:grid-cols-3 gap-6 mb-8">
-    <div class="stat-item">
-      <div class="text-4xl font-bold">85%</div>
-      <div class="text-lg">Average Efficiency Increase</div>
-    </div>
-    <div class="stat-item">
-      <div class="text-4xl font-bold">3-6</div>
-      <div class="text-lg">Months to Full ROI</div>
-    </div>
-    <div class="stat-item">
-      <div class="text-4xl font-bold">24/7</div>
-      <div class="text-lg">Continuous Operation</div>
-    </div>
-  </div>
-  <a href="/contact" class="inline-block bg-white text-${mainTopic.color}-800 px-10 py-4 rounded-xl font-bold text-xl hover:bg-gray-100 transition-colors">
-    Get Your Free ${mainTopic.name} Assessment →
-  </a>
-</section>
-
-</article>`;
-
-    return comprehensiveContent;
-  }
 
   // COMPREHENSIVE CONTENT HELPER METHODS
   private async generateExecutiveSummary(title: string, research: InsertContentResearch[], topic: string): Promise<string> {
     const keywords = research.flatMap(r => r.keywords || []).join(' ');
     const summaries = research.map(r => r.summary).filter(Boolean).join(' ');
     
-    const summaryPrompts = {
+    const summaryPrompts: Record<string, string> = {
       'AI Strategy': `The ${topic.toLowerCase()} landscape is experiencing unprecedented transformation. Today's analysis reveals critical insights for enterprise leaders navigating AI implementation, automation workflows, and strategic technology adoption. Key findings indicate significant opportunities for operational efficiency and competitive advantage.`,
       'Marketing Automation': `Revolutionary advances in ${topic.toLowerCase()} are reshaping how enterprises engage customers and optimize conversion funnels. Our comprehensive analysis identifies breakthrough strategies that top-performing organizations use to achieve measurable ROI while maintaining authentic customer relationships.`,
       'Customer Service': `The ${topic.toLowerCase()} revolution is fundamentally changing customer experience paradigms. This in-depth analysis examines how leading organizations leverage AI-powered solutions to deliver exceptional service while reducing operational costs and improving satisfaction metrics.`,
@@ -923,7 +836,7 @@ export class ContentAutomationService {
   }
 
   private generateROIMetrics(topic: string): string {
-    const metricsData = {
+    const metricsData: Record<string, { efficiency: string; cost: string; time: string; accuracy: string }> = {
       'AI Strategy': {
         efficiency: '85%',
         cost: '60%',
@@ -992,7 +905,7 @@ export class ContentAutomationService {
   }
 
   private generateSuccessStories(topic: string): string {
-    const stories = {
+    const stories: Record<string, Array<{ company: string; result: string; metric: string }>> = {
       'AI Strategy': [
         { company: 'Fortune 500 Tech Company', result: '300% faster product development', metric: '18-month implementation' },
         { company: 'Healthcare Network', result: '85% reduction in manual processes', metric: '12-month ROI achievement' },
@@ -1013,7 +926,7 @@ export class ContentAutomationService {
     const topicStories = stories[topic] || stories['AI Strategy'];
     
     return `<div class="success-stories space-y-6">
-      ${topicStories.map((story, index) => `
+      ${topicStories.map((story: { company: string; result: string; metric: string }, index: number) => `
         <div class="story-card bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl border border-indigo-200">
           <div class="flex items-start justify-between">
             <div class="flex-1">
@@ -1185,7 +1098,8 @@ export class ContentAutomationService {
         console.log(`[RESEARCH] 🔄 Attempting research source with ${source.length} topics`);
         return source;
       } catch (error) {
-        console.log(`[RESEARCH] ⚠️ Research source failed, trying next: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        console.log(`[RESEARCH] ⚠️ Research source failed, trying next: ${errorMessage}`);
         continue;
       }
     }
@@ -1200,7 +1114,8 @@ export class ContentAutomationService {
         const stored = await storage.createContentResearch(researchData);
         return stored;
       } catch (error) {
-        console.log(`[RESEARCH] ⚠️ Storage attempt ${attempt}/${maxRetries} failed: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        console.log(`[RESEARCH] ⚠️ Storage attempt ${attempt}/${maxRetries} failed: ${errorMessage}`);
         if (attempt === maxRetries) {
           throw error;
         }
@@ -1215,7 +1130,6 @@ export class ContentAutomationService {
     const now = new Date();
     return [
       {
-        id: -1,
         source: 'Emergency Fallback',
         sourceUrl: null,
         title: 'AI Technology Trends: Enterprise Digital Transformation Continues',
@@ -1226,7 +1140,6 @@ export class ContentAutomationService {
         rawData: { emergency: true, generated: now.toISOString() },
         processed: false,
         usedInContent: false,
-        createdAt: now,
         date: now.toISOString()
       }
     ];
@@ -1482,17 +1395,6 @@ export class ContentAutomationService {
       .substring(0, 50)}`;
   }
 
-  // PUBLISHING PHASE
-  private async publishBlogPost(blogPostData: InsertBlogPost): Promise<any> {
-    try {
-      const publishedPost = await storage.createBlogPost(blogPostData);
-      console.log(`[PUBLISHING] Blog post published: ${publishedPost.title}`);
-      return publishedPost;
-    } catch (error) {
-      console.error('[PUBLISHING] Failed to publish blog post:', error);
-      throw error;
-    }
-  }
 
   // MONTHLY NEWSLETTER WORKFLOW
   async generateMonthlyNewsletter(): Promise<string> {
