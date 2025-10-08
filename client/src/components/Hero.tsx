@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Lightbulb, ArrowRight, Shield, ChevronRight, Star, Lock } from "lucide-react";
 import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
+import { Link } from "wouter";
+import { trackEvent } from "@/components/AnalyticsTracker";
 
 // Live Counter Component - Dynamic Daily Updates
 function LiveCounter() {
@@ -280,58 +282,61 @@ export default function Hero() {
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 rounded-lg opacity-70 group-hover:opacity-100 blur-md transition-all duration-500 group-hover:duration-200 animate-glow-fade"></div>
               
               {/* Titanium/metallic surface with reflective highlights - solid, no transparency */}
-              <Button 
-                size="lg" 
-                className="relative overflow-hidden h-12 sm:h-14 px-4 sm:px-8 z-10 border-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 group-hover:scale-[1.02] transition-transform duration-300 w-full sm:w-auto touch-manipulation"
-                onMouseEnter={() => setHoverButton1(true)}
-                onMouseLeave={() => setHoverButton1(false)}
-              >
-                {/* Metallic reflective surface effect - solid */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900"></div>
-                
-                {/* Shimmer effect layer - on top of solid background */}
-                <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent bg-[length:200%_100%] animate-[buttonShimmer_2s_ease-in-out_infinite]"></div>
-                </div>
-                
-                {/* Horizontal light reflection sweep - on top of solid background */}
-                <div className="absolute inset-0 overflow-hidden">
-                  <div className="w-[200%] h-full absolute top-0 -left-full bg-gradient-to-r from-transparent via-blue-400/20 to-transparent transform translate-x-[60%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out"></div>
-                </div>
-                
-                {/* Glass highlight at the top */}
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-blue-300/30"></div>
-                <div className="absolute top-[1px] left-0 right-0 h-[1px] bg-blue-300/20"></div>
-                <div className="absolute top-[2px] left-0 right-0 h-[1px] bg-blue-300/10"></div>
-                
-                {/* Button text and icon */}
-                <span className="relative z-10 flex items-center gap-3 font-medium text-base text-white">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-white to-blue-200 group-hover:opacity-90 transition-opacity">Start Enterprise Trial</span>
-                  <AnimatePresence>
-                    {hoverButton1 ? (
-                      <motion.span
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="text-blue-300"
-                      >
-                        <ArrowRight className="h-5 w-5" />
-                      </motion.span>
-                    ) : (
-                      <motion.span
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -10 }}
-                        transition={{ duration: 0.2 }}
-                        className="text-blue-300"
-                      >
-                        <ChevronRight className="h-5 w-5" />
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </span>
-              </Button>
+              <Link href="/contact">
+                <Button 
+                  size="lg" 
+                  className="relative overflow-hidden h-12 sm:h-14 px-4 sm:px-8 z-10 border-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 group-hover:scale-[1.02] transition-transform duration-300 w-full sm:w-auto touch-manipulation"
+                  onMouseEnter={() => setHoverButton1(true)}
+                  onMouseLeave={() => setHoverButton1(false)}
+                  onClick={() => trackEvent({ category: 'engagement', action: 'click', label: 'hero_enterprise_trial' })}
+                >
+                  {/* Metallic reflective surface effect - solid */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900"></div>
+                  
+                  {/* Shimmer effect layer - on top of solid background */}
+                  <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent bg-[length:200%_100%] animate-[buttonShimmer_2s_ease-in-out_infinite]"></div>
+                  </div>
+                  
+                  {/* Horizontal light reflection sweep - on top of solid background */}
+                  <div className="absolute inset-0 overflow-hidden">
+                    <div className="w-[200%] h-full absolute top-0 -left-full bg-gradient-to-r from-transparent via-blue-400/20 to-transparent transform translate-x-[60%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-out"></div>
+                  </div>
+                  
+                  {/* Glass highlight at the top */}
+                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-blue-300/30"></div>
+                  <div className="absolute top-[1px] left-0 right-0 h-[1px] bg-blue-300/20"></div>
+                  <div className="absolute top-[2px] left-0 right-0 h-[1px] bg-blue-300/10"></div>
+                  
+                  {/* Button text and icon */}
+                  <span className="relative z-10 flex items-center gap-3 font-medium text-base text-white">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-white to-blue-200 group-hover:opacity-90 transition-opacity">Start Enterprise Trial</span>
+                    <AnimatePresence>
+                      {hoverButton1 ? (
+                        <motion.span
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: 10 }}
+                          transition={{ duration: 0.2 }}
+                          className="text-blue-300"
+                        >
+                          <ArrowRight className="h-5 w-5" />
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -10 }}
+                          transition={{ duration: 0.2 }}
+                          className="text-blue-300"
+                        >
+                          <ChevronRight className="h-5 w-5" />
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </span>
+                </Button>
+              </Link>
             </div>
             
             {/* Premium Schedule Demo Button - Digital Bowling Ball / Marble Effect with Shimmer */}
@@ -339,66 +344,69 @@ export default function Hero() {
               {/* Enhanced ambient glow with matching animation */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-600 rounded-lg opacity-70 group-hover:opacity-100 blur-md transition-all duration-500 group-hover:duration-200 animate-glow-fade"></div>
               
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="relative h-12 sm:h-14 px-4 sm:px-8 border-0 z-10 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300 w-full sm:w-auto touch-manipulation"
-                onMouseEnter={() => setHoverButton2(true)}
-                onMouseLeave={() => setHoverButton2(false)}
-              >
-                {/* Solid background - no transparency */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800"></div>
-                
-                {/* Marble/swirl effect texture overlay - opacity adjusted for solid appearance */}
-                <div className="absolute inset-0" 
-                  style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                    backgroundSize: '150%',
-                    backgroundPosition: 'center',
-                    opacity: 0.2
-                  }}
-                ></div>
-                
-                {/* Shimmer effect on top of solid background */}
-                <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-400/20 to-transparent bg-[length:200%_100%] animate-[buttonShimmer_2s_ease-in-out_infinite]"></div>
-                </div>
-                
-                {/* Swirl patterns with adjusted opacity for solid appearance */}
-                <div className="absolute top-0 left-0 w-32 h-32 rounded-full bg-gradient-to-br from-blue-600/10 to-slate-900/0 rotate-45 transform -translate-x-16 -translate-y-24"></div>
-                <div className="absolute bottom-0 right-0 w-24 h-24 rounded-full bg-gradient-to-br from-indigo-600/10 to-slate-900/0 rotate-45 transform translate-x-12 translate-y-12"></div>
-                
-                {/* Highlight reflections */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-300/40 to-transparent"></div>
-                
-                {/* Button content */}
-                <span className="relative z-10 flex items-center gap-3 font-medium text-base">
-                  <AnimatePresence>
-                    {hoverButton2 ? (
-                      <motion.span
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.2 }}
-                        className="bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full p-1 text-white"
-                      >
-                        <Lock className="h-4 w-4" />
-                      </motion.span>
-                    ) : (
-                      <motion.span
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.2 }}
-                        className="bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full p-1 text-white"
-                      >
-                        <Shield className="h-4 w-4" />
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 via-white to-blue-100 group-hover:opacity-90 transition-opacity">Schedule Enterprise Demo</span>
-                </span>
-              </Button>
+              <Link href="/demos/entropy">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="relative h-12 sm:h-14 px-4 sm:px-8 border-0 z-10 overflow-hidden group-hover:scale-[1.02] transition-transform duration-300 w-full sm:w-auto touch-manipulation"
+                  onMouseEnter={() => setHoverButton2(true)}
+                  onMouseLeave={() => setHoverButton2(false)}
+                  onClick={() => trackEvent({ category: 'engagement', action: 'click', label: 'hero_schedule_demo' })}
+                >
+                  {/* Solid background - no transparency */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800"></div>
+                  
+                  {/* Marble/swirl effect texture overlay - opacity adjusted for solid appearance */}
+                  <div className="absolute inset-0" 
+                    style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundSize: '150%',
+                      backgroundPosition: 'center',
+                      opacity: 0.2
+                    }}
+                  ></div>
+                  
+                  {/* Shimmer effect on top of solid background */}
+                  <div className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-400/20 to-transparent bg-[length:200%_100%] animate-[buttonShimmer_2s_ease-in-out_infinite]"></div>
+                  </div>
+                  
+                  {/* Swirl patterns with adjusted opacity for solid appearance */}
+                  <div className="absolute top-0 left-0 w-32 h-32 rounded-full bg-gradient-to-br from-blue-600/10 to-slate-900/0 rotate-45 transform -translate-x-16 -translate-y-24"></div>
+                  <div className="absolute bottom-0 right-0 w-24 h-24 rounded-full bg-gradient-to-br from-indigo-600/10 to-slate-900/0 rotate-45 transform translate-x-12 translate-y-12"></div>
+                  
+                  {/* Highlight reflections */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-300/40 to-transparent"></div>
+                  
+                  {/* Button content */}
+                  <span className="relative z-10 flex items-center gap-3 font-medium text-base">
+                    <AnimatePresence>
+                      {hoverButton2 ? (
+                        <motion.span
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8 }}
+                          transition={{ duration: 0.2 }}
+                          className="bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full p-1 text-white"
+                        >
+                          <Lock className="h-4 w-4" />
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8 }}
+                          transition={{ duration: 0.2 }}
+                          className="bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full p-1 text-white"
+                        >
+                          <Shield className="h-4 w-4" />
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-100 via-white to-blue-100 group-hover:opacity-90 transition-opacity">Schedule Enterprise Demo</span>
+                  </span>
+                </Button>
+              </Link>
             </div>
           </motion.div>
           

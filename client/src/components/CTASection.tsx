@@ -1,8 +1,24 @@
 import { Link } from "wouter";
 import { ArrowRight, Zap, CheckCircle2, ShieldCheck, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { trackEvent } from "@/components/AnalyticsTracker";
+import { apiRequest } from "@/lib/queryClient";
 
 export default function CTASection() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    interest: ""
+  });
+
   const benefits = [
     {
       icon: <CheckCircle2 className="h-5 w-5" />,
@@ -17,6 +33,62 @@ export default function CTASection() {
       text: "Dedicated customer success team"
     }
   ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      trackEvent({
+        category: 'lead_generation',
+        action: 'submit',
+        label: 'enterprise_consultation'
+      });
+
+      await apiRequest('/api/contact', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.interest,
+          formType: 'enterprise_consultation'
+        })
+      });
+
+      setSubmitted(true);
+      toast({
+        title: "Request submitted successfully!",
+        description: "Our enterprise team will contact you within 24 hours.",
+      });
+
+      setFormData({
+        name: "",
+        company: "",
+        email: "",
+        phone: "",
+        interest: ""
+      });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast({
+        title: "Submission failed",
+        description: "Please try again later or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
 
   return (
     <section className="py-24 bg-background relative overflow-hidden">
@@ -100,14 +172,17 @@ export default function CTASection() {
                   Get a personalized consultation and discover how our enterprise solutions can address your organization's unique challenges.
                 </p>
                 
-                <form className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">Full Name</label>
                       <input 
                         type="text" 
                         id="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
                         placeholder="John Smith" 
+                        required
                         className="w-full px-4 py-3 bg-muted/30 border border-border rounded-md text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                       />
                     </div>
@@ -117,6 +192,8 @@ export default function CTASection() {
                       <input 
                         type="text" 
                         id="company"
+                        value={formData.company}
+                        onChange={handleInputChange}
                         placeholder="Enterprise, Inc." 
                         className="w-full px-4 py-3 bg-muted/30 border border-border rounded-md text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                       />
@@ -128,7 +205,10 @@ export default function CTASection() {
                     <input 
                       type="email" 
                       id="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
                       placeholder="john@enterprise.com" 
+                      required
                       className="w-full px-4 py-3 bg-muted/30 border border-border rounded-md text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                     />
                   </div>
@@ -138,6 +218,8 @@ export default function CTASection() {
                     <input 
                       type="tel" 
                       id="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
                       placeholder="+1 (555) 000-0000" 
                       className="w-full px-4 py-3 bg-muted/30 border border-border rounded-md text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
                     />
@@ -147,8 +229,9 @@ export default function CTASection() {
                     <label htmlFor="interest" className="block text-sm font-medium text-muted-foreground mb-1">Area of Interest</label>
                     <select 
                       id="interest"
+                      value={formData.interest}
+                      onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-muted/30 border border-border rounded-md text-foreground focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
-                      defaultValue=""
                     >
                       <option value="" disabled>Select your primary interest</option>
                       <option value="crm">Enterprise CRM</option>
@@ -160,11 +243,20 @@ export default function CTASection() {
                   </div>
                   
                   <button 
-                    type="button"
-                    className="w-full py-4 bg-accent text-accent-foreground rounded-md font-medium shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center"
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-4 bg-accent text-accent-foreground rounded-md font-medium shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Request Enterprise Consultation
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    {isSubmitting ? (
+                      <>
+                        <span className="mr-2">Submitting...</span>
+                      </>
+                    ) : (
+                      <>
+                        Request Enterprise Consultation
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </>
+                    )}
                   </button>
                   
                   <p className="text-xs text-muted-foreground text-center">
