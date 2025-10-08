@@ -1,7 +1,7 @@
 import { 
   users, chatMessages, contactSubmissions, crmContacts, crmDeals, crmActivities,
   leads, socialTrials, blogPosts, automationJobs, contentResearch, 
-  newsletterSubscribers, youtubeChannels, youtubeVideos,
+  newsletterSubscribers, youtubeChannels, youtubeVideos, meetingRequests,
   type User, type UpsertUser, 
   type ContactSubmission, type InsertContactSubmission,
   type ChatMessage, type InsertChatMessage,
@@ -15,7 +15,8 @@ import {
   type ContentResearch, type InsertContentResearch,
   type NewsletterSubscriber, type InsertNewsletterSubscriber,
   type YoutubeChannel, type InsertYoutubeChannel,
-  type YoutubeVideo, type InsertYoutubeVideo
+  type YoutubeVideo, type InsertYoutubeVideo,
+  type MeetingRequest, type InsertMeetingRequest
 } from "@shared/schema";
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq, and, desc } from 'drizzle-orm';
@@ -78,6 +79,13 @@ export interface IStorage {
   getLead(id: number): Promise<Lead | undefined>;
   updateLead(id: number, lead: Partial<InsertLead>): Promise<Lead | undefined>;
   deleteLead(id: number): Promise<boolean>;
+  
+  // Meeting request operations
+  createMeetingRequest(meeting: InsertMeetingRequest): Promise<MeetingRequest>;
+  getMeetingRequest(id: number): Promise<MeetingRequest | undefined>;
+  getAllMeetingRequests(): Promise<MeetingRequest[]>;
+  updateMeetingRequest(id: number, meeting: Partial<InsertMeetingRequest>): Promise<MeetingRequest | undefined>;
+  deleteMeetingRequest(id: number): Promise<boolean>;
   
   // Social trial operations
   createSocialTrial(trial: InsertSocialTrial): Promise<SocialTrial>;
@@ -367,6 +375,40 @@ export class PostgresStorage implements IStorage {
       return (result.rowCount || 0) > 0;
     } catch (error) {
       console.error("Error deleting social trial:", error);
+      return false;
+    }
+  }
+
+  // Meeting request operations
+  async createMeetingRequest(meeting: InsertMeetingRequest): Promise<MeetingRequest> {
+    const [newMeeting] = await db.insert(meetingRequests).values(meeting).returning();
+    return newMeeting;
+  }
+
+  async getMeetingRequest(id: number): Promise<MeetingRequest | undefined> {
+    const [meeting] = await db.select().from(meetingRequests).where(eq(meetingRequests.id, id));
+    return meeting;
+  }
+
+  async getAllMeetingRequests(): Promise<MeetingRequest[]> {
+    return await db.select().from(meetingRequests).orderBy(desc(meetingRequests.createdAt));
+  }
+
+  async updateMeetingRequest(id: number, meeting: Partial<InsertMeetingRequest>): Promise<MeetingRequest | undefined> {
+    const [updatedMeeting] = await db
+      .update(meetingRequests)
+      .set({ ...meeting, updatedAt: new Date() })
+      .where(eq(meetingRequests.id, id))
+      .returning();
+    return updatedMeeting;
+  }
+
+  async deleteMeetingRequest(id: number): Promise<boolean> {
+    try {
+      const result = await db.delete(meetingRequests).where(eq(meetingRequests.id, id));
+      return (result.rowCount || 0) > 0;
+    } catch (error) {
+      console.error("Error deleting meeting request:", error);
       return false;
     }
   }

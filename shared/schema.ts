@@ -421,6 +421,47 @@ export const insertLeadSchema = createInsertSchema(leads).pick({
 export type Lead = typeof leads.$inferSelect;
 export type InsertLead = z.infer<typeof insertLeadSchema>;
 
+// Meeting requests table for Google Calendar integration
+export const meetingRequests = pgTable("meeting_requests", {
+  id: serial("id").primaryKey(),
+  leadId: integer("lead_id").references(() => leads.id),
+  contactId: integer("contact_id").references(() => contactSubmissions.id),
+  attendeeType: text("attendee_type").notNull(), // 'ROB', 'MAT', 'BOTH'
+  attendeeName: text("attendee_name").notNull(),
+  attendeeEmail: text("attendee_email").notNull(),
+  attendeePhone: text("attendee_phone"),
+  preferredDateTime: timestamp("preferred_date_time").notNull(),
+  timezone: text("timezone").notNull().default("America/Los_Angeles"),
+  duration: integer("duration").notNull().default(30), // in minutes
+  meetingPurpose: text("meeting_purpose"),
+  notes: text("notes"),
+  status: text("status").notNull().default("pending"), // pending, confirmed, cancelled
+  googleEventId: text("google_event_id"),
+  googleEventLink: text("google_event_link"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const insertMeetingRequestSchema = createInsertSchema(meetingRequests).pick({
+  leadId: true,
+  contactId: true,
+  attendeeType: true,
+  attendeeName: true,
+  attendeeEmail: true,
+  attendeePhone: true,
+  preferredDateTime: true,
+  timezone: true,
+  duration: true,
+  meetingPurpose: true,
+  notes: true,
+  status: true,
+  googleEventId: true,
+  googleEventLink: true,
+});
+
+export type MeetingRequest = typeof meetingRequests.$inferSelect;
+export type InsertMeetingRequest = z.infer<typeof insertMeetingRequestSchema>;
+
 // Social media trial signups
 export const socialTrials = pgTable("social_trials", {
   id: serial("id").primaryKey(),

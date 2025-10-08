@@ -10,11 +10,13 @@ import {
   insertCrmDealSchema,
   insertCrmActivitySchema,
   insertLeadSchema,
-  insertSocialTrialSchema
+  insertSocialTrialSchema,
+  insertMeetingRequestSchema
 } from "@shared/schema";
 import { marketingRouter } from "./marketing";
 import { newsletterService } from "./services/NewsletterAutomationService";
 import { mailjetService } from "./automation/mailjetService";
+import { calendarService, type AttendeeType } from "./services/calendarService";
 import { nanoid } from "nanoid";
 import axios from "axios";
 
@@ -134,6 +136,148 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error handling lead submission:", error);
       return res.status(500).json({ message: "An error occurred while processing your request" });
+    }
+  });
+
+  // Meeting request/scheduling endpoint
+  app.post("/api/meetings", async (req, res) => {
+    try {
+      const parsedData = insertMeetingRequestSchema.safeParse(req.body);
+      
+      if (!parsedData.success) {
+        return res.status(400).json({ 
+          message: "Invalid meeting request data",
+          errors: parsedData.error.errors 
+        });
+      }
+
+      const { 
+        attendeeType, 
+        attendeeName, 
+        attendeeEmail, 
+        preferredDateTime, 
+        timezone, 
+        duration,
+        meetingPurpose,
+        notes
+      } = parsedData.data;
+
+      // Find available slots (next 14 days from preferred date)
+      const startDate = new Date(preferredDateTime);
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + 14);
+
+      const availableSlots = await calendarService.findAvailableSlots(
+        attendeeType as AttendeeType,
+        startDate,
+        endDate,
+        timezone || 'America/Los_Angeles',
+        duration || 30,
+        5
+      );
+
+      if (availableSlots.length === 0) {
+        return res.status(409).json({
+          message: "No available slots found in the requested timeframe",
+          alternativeSlots: []
+        });
+      }
+
+      // Use the first available slot (closest to preferred time)
+      const selectedSlot = availableSlots[0];
+      
+      // Create Google Calendar event
+      const { eventId, eventLink } = await calendarService.createMeetingEvent({
+        attendeeType: attendeeType as AttendeeType,
+        summary: `Strategy Call with ${attendeeName}`,
+        description: `Meeting Purpose: ${meetingPurpose || 'Strategy Discussion'}\n\nNotes: ${notes || 'None provided'}\n\nScheduled via FusionDataCo.com`,
+        startTime: selectedSlot.start,
+        endTime: selectedSlot.end,
+        timezone: timezone || 'America/Los_Angeles',
+        attendeeEmail,
+        attendeeName
+      });
+
+      // Save meeting request to database with Google Calendar details
+      const meetingRequest = await storage.createMeetingRequest({
+        ...parsedData.data,
+        preferredDateTime: new Date(selectedSlot.start),
+        status: 'confirmed'
+      });
+      
+      // Update with Google Calendar event details
+      await storage.updateMeetingRequest(meetingRequest.id, {
+        googleEventId: eventId,
+        googleEventLink: eventLink
+      });
+
+      // Send confirmation email
+      mailjetService.sendFormNotification({
+        name: attendeeName,
+        email: attendeeEmail,
+        meetingTime: new Date(selectedSlot.start).toLocaleString('en-US', { 
+          timeZone: timezone,
+          dateStyle: 'full',
+          timeStyle: 'short'
+        }),
+        meetingType: attendeeType,
+        eventLink
+      }, 'Meeting Confirmation').catch(err => {
+        console.error('[CALENDAR] Failed to send meeting confirmation email:', err.message);
+      });
+
+      return res.status(201).json({
+        message: "Meeting scheduled successfully",
+        meeting: {
+          id: meetingRequest.id,
+          scheduledTime: selectedSlot.start,
+          duration: duration || 30,
+          eventLink,
+          timezone
+        },
+        alternativeSlots: availableSlots.slice(1) // Send other available slots
+      });
+    } catch (error) {
+      console.error("[CALENDAR] Error scheduling meeting:", error);
+      return res.status(500).json({ 
+        message: "Failed to schedule meeting. Please try again or contact support." 
+      });
+    }
+  });
+
+  // Get available time slots (for calendar widget)
+  app.get("/api/meetings/availability", async (req, res) => {
+    try {
+      const { attendeeType, startDate, timezone, duration } = req.query;
+
+      if (!attendeeType || !startDate || !timezone) {
+        return res.status(400).json({
+          message: "Missing required parameters: attendeeType, startDate, timezone"
+        });
+      }
+
+      const start = new Date(startDate as string);
+      const end = new Date(start);
+      end.setDate(end.getDate() + 14); // Next 14 days
+
+      const slots = await calendarService.findAvailableSlots(
+        attendeeType as AttendeeType,
+        start,
+        end,
+        timezone as string,
+        parseInt(duration as string) || 30,
+        20 // Return up to 20 slots
+      );
+
+      return res.json({
+        availableSlots: slots,
+        timezone
+      });
+    } catch (error) {
+      console.error("[CALENDAR] Error fetching availability:", error);
+      return res.status(500).json({ 
+        message: "Failed to fetch availability" 
+      });
     }
   });
 
