@@ -293,28 +293,30 @@ export default function Header() {
             </button>
           </nav>
           
-          {/* Enhanced Mobile Menu Button */}
+          {/* Enhanced Mobile Menu Button - Apple-level Touch Target */}
           <button 
             className={cn(
-              "lg:hidden relative p-2 rounded-lg text-foreground hover:text-primary transition-all duration-300",
-              "hover:bg-primary/10 hover:shadow-lg hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary/50",
+              "lg:hidden relative rounded-lg text-foreground hover:text-primary transition-all duration-300 touch-target",
+              "min-h-[44px] min-w-[44px] p-3",
+              "hover:bg-primary/10 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50",
               "active:scale-95 active:bg-primary/20",
-              isMenuOpen && "bg-primary/15 text-primary scale-110 shadow-lg"
+              isMenuOpen && "bg-primary/15 text-primary scale-105 shadow-lg"
             )}
             onClick={toggleMenu}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
+            data-testid="button-mobile-menu"
           >
-            <div className="relative">
-              {/* Animated hamburger/close icon */}
+            <div className="relative flex items-center justify-center">
+              {/* Animated hamburger/close icon - larger for better visibility */}
               <div className={cn(
                 "transition-all duration-300 ease-in-out",
                 isMenuOpen ? "rotate-90 scale-110" : "rotate-0 scale-100"
               )}>
                 {isMenuOpen ? (
-                  <X size={26} className="drop-shadow-sm" />
+                  <X size={28} className="drop-shadow-sm" strokeWidth={2.5} />
                 ) : (
-                  <MenuIcon size={26} className="drop-shadow-sm" />
+                  <MenuIcon size={28} className="drop-shadow-sm" strokeWidth={2.5} />
                 )}
               </div>
               
@@ -332,20 +334,21 @@ export default function Header() {
           </button>
         </div>
         
-        {/* Enhanced Mobile menu with swipe support */}
+        {/* Enhanced Mobile menu with swipe support - Apple-level Quality */}
         <div 
           className={cn(
-            "lg:hidden pt-6 pb-4 space-y-4 absolute left-0 right-0 bg-gradient-to-b from-card/98 via-card/95 to-card/92 backdrop-blur-xl border-b border-border/50 px-4 shadow-2xl",
+            "lg:hidden pt-6 pb-6 space-y-2 absolute left-0 right-0 bg-gradient-to-b from-card/98 via-card/95 to-card/92 backdrop-blur-xl border-b border-border/50 px-6 shadow-2xl",
             "transition-all duration-500 ease-out will-change-transform",
+            "max-h-[85vh] overflow-y-auto overscroll-behavior-contain",
             isMenuOpen ? "translate-y-0 opacity-100 scale-100" : "-translate-y-full opacity-0 scale-95 pointer-events-none"
           )}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Swipe indicator */}
-          <div className="flex justify-center mb-2">
-            <div className="w-12 h-1 bg-border/60 rounded-full"></div>
+          {/* Swipe indicator - iOS style */}
+          <div className="flex justify-center mb-4">
+            <div className="w-10 h-1 bg-border/60 rounded-full"></div>
           </div>
           {navLinks.map((link, idx) => (
             <div key={idx} className="transform transition-all duration-300" style={{ transitionDelay: `${idx * 50}ms` }}>
@@ -353,35 +356,41 @@ export default function Header() {
                 <div className="space-y-3">
                   <button 
                     className={cn(
-                      "flex items-center justify-between w-full py-4 px-3 rounded-lg text-muted-foreground transition-all duration-300",
+                      "flex items-center justify-between w-full rounded-lg text-muted-foreground transition-all duration-300 touch-target",
+                      "min-h-[48px] py-3 px-4",
                       "hover:bg-gradient-to-r hover:from-primary/10 hover:to-accent/5 hover:text-foreground hover:shadow-md",
                       "focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-primary/5",
+                      "active:scale-98",
                       location.startsWith(link.path) && "text-foreground bg-primary/10 shadow-sm"
                     )}
                     onClick={() => setDropdownOpen(dropdownOpen === link.name ? null : link.name)}
+                    data-testid={`button-mobile-dropdown-${link.name.toLowerCase()}`}
                   >
-                    <span className="font-medium">{link.name}</span>
+                    <span className="font-medium text-base">{link.name}</span>
                     <ChevronDown className={cn(
-                      "h-5 w-5 transition-all duration-300 text-primary",
+                      "h-5 w-5 transition-all duration-300 text-primary flex-shrink-0",
                       dropdownOpen === link.name && "transform rotate-180 scale-110"
                     )} />
                   </button>
                   
                   <div className={cn(
-                    "ml-6 pl-4 border-l-2 border-gradient-to-b from-primary/50 to-accent/30 space-y-2 overflow-hidden transition-all duration-300",
+                    "ml-6 pl-4 border-l-2 border-gradient-to-b from-primary/50 to-accent/30 space-y-1 overflow-hidden transition-all duration-300",
                     "mobile-dropdown-enhanced mobile-optimized",
-                    dropdownOpen === link.name ? "max-h-96 opacity-100 visible" : "max-h-0 opacity-0 invisible"
+                    dropdownOpen === link.name ? "max-h-96 opacity-100 visible mt-2" : "max-h-0 opacity-0 invisible"
                   )}>
                     {link.dropdownItems.map((item, i) => (
                       <Link key={i} href={item.path}>
                         <span 
                           className={cn(
-                            "block py-3 px-3 rounded-md text-muted-foreground hover:text-foreground transition-all duration-200 cursor-pointer",
+                            "block rounded-md text-muted-foreground hover:text-foreground transition-all duration-200 cursor-pointer touch-target",
+                            "min-h-[44px] py-3 px-4 text-base",
                             "hover:bg-gradient-to-r hover:from-secondary/10 hover:to-primary/5 hover:translate-x-1 hover:shadow-sm",
                             "focus:outline-none focus:ring-1 focus:ring-primary/30",
+                            "active:scale-98",
                             location === item.path && "text-primary bg-primary/5 translate-x-1 shadow-sm"
                           )}
                           onClick={() => setIsMenuOpen(false)}
+                          data-testid={`link-mobile-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
                         >
                           {item.name}
                         </span>
@@ -393,13 +402,15 @@ export default function Header() {
                 <Link href={link.path}>
                   <span 
                     className={cn(
-                      "block py-4 px-3 rounded-lg text-muted-foreground hover:text-foreground transition-all duration-300 cursor-pointer font-medium",
-                      "hover:bg-gradient-to-r hover:from-primary/10 hover:to-accent/5 hover:shadow-md hover:scale-105",
+                      "block rounded-lg text-muted-foreground hover:text-foreground transition-all duration-300 cursor-pointer font-medium touch-target",
+                      "min-h-[48px] py-3 px-4 text-base",
+                      "hover:bg-gradient-to-r hover:from-primary/10 hover:to-accent/5 hover:shadow-md",
                       "focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-primary/5 mobile-focus-enhanced",
-                      "active:scale-95 active:bg-primary/15 mobile-touch-target touch-feedback mobile-optimized",
-                      location === link.path && "text-foreground bg-primary/10 shadow-sm scale-105"
+                      "active:scale-98 active:bg-primary/15 mobile-touch-target touch-feedback mobile-optimized",
+                      location === link.path && "text-foreground bg-primary/10 shadow-sm"
                     )}
                     onClick={() => setIsMenuOpen(false)}
+                    data-testid={`link-mobile-${link.name.toLowerCase()}`}
                   >
                     {link.name}
                   </span>
@@ -408,18 +419,20 @@ export default function Header() {
             </div>
           ))}
           
-          {/* Enhanced Mobile CTA Buttons */}
-          <div className="pt-6 border-t border-gradient-to-r from-border/20 via-border/60 to-border/20 mt-4 space-y-4">
+          {/* Enhanced Mobile CTA Buttons - Apple-level Quality */}
+          <div className="pt-6 border-t border-gradient-to-r from-border/20 via-border/60 to-border/20 mt-4 space-y-3">
             <Link href="/small-business-upgrade">
               <span 
                 className={cn(
-                  "block py-4 px-6 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden group",
-                  "border border-blue-400/50 rounded-xl font-['Orbitron'] font-bold text-sm tracking-wider text-center cursor-pointer",
-                  "hover:border-blue-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] hover:scale-105 transition-all duration-500",
-                  "focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:scale-105 mobile-focus-enhanced",
-                  "active:scale-95 mobile-touch-target mobile-cta-shimmer mobile-optimized mobile-touch-enhanced"
+                  "block bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden group touch-target",
+                  "min-h-[52px] py-4 px-6",
+                  "border border-blue-400/50 rounded-xl font-['Orbitron'] font-bold text-base tracking-wider text-center cursor-pointer",
+                  "hover:border-blue-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.8)] transition-all duration-500",
+                  "focus:outline-none focus:ring-2 focus:ring-blue-400/50 mobile-focus-enhanced",
+                  "active:scale-98 mobile-touch-target mobile-cta-shimmer mobile-optimized mobile-touch-enhanced"
                 )}
                 onClick={() => setIsMenuOpen(false)}
+                data-testid="button-mobile-cta-business-upgrade"
               >
                 {/* Animated background shimmer */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-300/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
@@ -443,13 +456,15 @@ export default function Header() {
             <Link href="/login">
               <span 
                 className={cn(
-                  "block py-3 px-4 bg-gradient-to-br from-slate-800 via-blue-800 to-slate-700 relative overflow-hidden group",
-                  "border border-blue-400/50 rounded-lg font-['Orbitron'] font-bold text-xs tracking-wider text-center cursor-pointer",
-                  "hover:border-blue-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:scale-105 transition-all duration-300",
+                  "block bg-gradient-to-br from-slate-800 via-blue-800 to-slate-700 relative overflow-hidden group touch-target",
+                  "min-h-[48px] py-3 px-4",
+                  "border border-blue-400/50 rounded-lg font-['Orbitron'] font-bold text-sm tracking-wider text-center cursor-pointer",
+                  "hover:border-blue-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)] transition-all duration-300",
                   "focus:outline-none focus:ring-2 focus:ring-blue-400/50 mobile-focus-enhanced",
-                  "active:scale-95 mobile-touch-target mobile-cta-shimmer mobile-optimized mobile-touch-enhanced"
+                  "active:scale-98 mobile-touch-target mobile-cta-shimmer mobile-optimized mobile-touch-enhanced"
                 )}
                 onClick={() => setIsMenuOpen(false)}
+                data-testid="button-mobile-admin"
               >
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-300/15 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-800 ease-out"></div>
