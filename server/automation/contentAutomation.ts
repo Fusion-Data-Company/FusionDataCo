@@ -6,8 +6,10 @@ import {
   InsertBlogPost
 } from '../../shared/schema';
 
-// Initialize OpenAI for DALL-E image generation
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+// Initialize OpenAI for DALL-E image generation (optional - graceful degradation if not configured)
+const openai = process.env.OPENAI_API_KEY 
+  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  : null;
 
 export class ContentAutomationService {
   
@@ -225,6 +227,9 @@ export class ContentAutomationService {
     const fallbackStrategies = [
       // Strategy 1: Try DALL-E 3 generation (30% chance for variety)
       (async () => {
+        if (!openai) {
+          throw new Error('DALL-E unavailable: OPENAI_API_KEY not configured');
+        }
         if (Math.random() > 0.7) { // 30% chance
           const imagePrompt = `${category.prompt}. Professional cyber enterprise photography, futuristic corporate aesthetic, ultra HD quality, sleek modern design, no text or branding visible, suitable for enterprise blog header.`;
           console.log('[IMAGE] 🎨 Attempting DALL-E 3 generation for:', category.category);
