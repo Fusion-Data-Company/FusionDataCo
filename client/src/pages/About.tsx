@@ -4,15 +4,22 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ValueProposition from "@/components/ValueProposition";
 import MediaCard from "@/components/MediaCard";
+import VideoForm from "@/components/VideoForm";
+import ThumbnailButton from "@/components/ui/thumbnail-button-video-player";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, Award, Target, Shield, Users, Building, Globe, Rocket, Heart, Mic } from "lucide-react";
+import { ArrowRight, Award, Target, Shield, Users, Building, Globe, Rocket, Heart, Mic, Video } from "lucide-react";
 import type { MediaItem } from "@shared/schema";
 
 export default function About() {
   const { data: mediaItems = [] } = useQuery<MediaItem[]>({
     queryKey: ['/api/media'],
+  });
+
+  const { data: videos = [] } = useQuery<MediaItem[]>({
+    queryKey: ['/api/media', 'video'],
+    queryFn: () => fetch('/api/media?type=video').then(res => res.json()),
   });
 
   // Get 2 most recent media items
@@ -338,6 +345,48 @@ export default function About() {
                   </CardContent>
                 </Card>
               </div>
+            </div>
+          </section>
+
+          {/* Video Gallery Section */}
+          <section className="py-16 px-4 bg-gradient-to-b from-background to-card">
+            <div className="container mx-auto">
+              <div className="text-center mb-12">
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <Video className="h-8 w-8 text-primary" />
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    Video <span className="text-primary">Gallery</span>
+                  </h2>
+                </div>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                  Watch our latest videos and tutorials
+                </p>
+              </div>
+
+              <VideoForm />
+
+              {videos.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                  {videos.map((video) => {
+                    const youtubeMatch = video.embedUrl?.match(/youtube\.com\/embed\/([^?]+)/);
+                    const youtubeId = youtubeMatch ? youtubeMatch[1] : undefined;
+                    
+                    return (
+                      <ThumbnailButton
+                        key={video.id}
+                        youtubeId={youtubeId}
+                        videoUrl={!youtubeId ? video.embedUrl || undefined : undefined}
+                        thumbnailUrl={video.thumbnailUrl || undefined}
+                        title={video.title}
+                      />
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <p className="text-muted-foreground">No videos available yet. Add your first video above!</p>
+                </div>
+              )}
             </div>
           </section>
 
