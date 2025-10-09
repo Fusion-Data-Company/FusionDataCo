@@ -8,19 +8,23 @@ export class MailjetService {
   }
 
   private initializeMailjet(): void {
-    if (!process.env.MAILJET_API_KEY || !process.env.MAILJET_SECRET_KEY) {
-      console.log('[MAILJET] API keys not configured - service disabled');
-      return;
-    }
-
     try {
+      const apiKey = process.env.MAILJET_API_KEY?.trim();
+      const apiSecret = process.env.MAILJET_SECRET_KEY?.trim();
+
+      if (!apiKey || !apiSecret) {
+        console.log('[MAILJET] API keys not configured - service disabled');
+        return;
+      }
+
       this.mailjet = new Mailjet({
-        apiKey: process.env.MAILJET_API_KEY,
-        apiSecret: process.env.MAILJET_SECRET_KEY
+        apiKey,
+        apiSecret
       });
       console.log('[MAILJET] ✅ Service initialized successfully');
     } catch (error) {
-      console.error('[MAILJET] Failed to initialize:', error);
+      console.log('[MAILJET] Service not available - initialization skipped');
+      this.mailjet = null;
     }
   }
 
