@@ -19,7 +19,7 @@ The platform is built with a modern technology stack:
 -   **AI Integration**: OpenRouter for multi-model routing and OpenAI API for AI-powered features like blog generation and content automation. The MCP server includes tools for triggering blog and newsletter automation.
 -   **Real-time**: WebSockets for live updates.
 -   **Analytics**: Custom tracking system with GA-style events.
--   **Key Features**: Conversational AI (Voice + SMS), multi-model AI routing following a "Golf Bag Approach," CRM integration, marketing automation workflows, social media management, email campaigns, lead generation tools, and analytics dashboards, all structured around the Sandler funnel methodology.
+-   **Key Features**: Conversational AI (Voice + SMS), multi-model AI routing following a "Golf Bag Approach," CRM integration, marketing automation workflows, social media management, email campaigns, lead generation tools, analytics dashboards, and video gallery with admin upload capability (all structured around the Sandler funnel methodology).
 -   **Security & Compliance**: Designed for SOC2, GDPR, TCPA/CTIA, and HIPAA compliance with secure OAuth and session management.
 -   **Design Principles**: Emphasis on removing fake data and unverified claims, ensuring professional and credible content, and maintaining consistent UI/UX across the platform. Includes branded favicon and Open Graph images for social sharing.
 
