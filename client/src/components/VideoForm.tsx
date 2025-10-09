@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/useAuth';
 import { Video, Plus, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -27,7 +28,15 @@ type VideoFormData = z.infer<typeof videoFormSchema>;
 
 export default function VideoForm() {
   const { toast } = useToast();
+  const { user } = useAuth();
   const [isFormOpen, setIsFormOpen] = useState(false);
+
+  // Only show the form to admin users
+  const isAdmin = (user as any)?.role === 'admin';
+
+  if (!isAdmin) {
+    return null;
+  }
 
   const form = useForm<VideoFormData>({
     resolver: zodResolver(videoFormSchema),
