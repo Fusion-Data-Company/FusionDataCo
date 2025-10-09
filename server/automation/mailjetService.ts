@@ -8,10 +8,15 @@ export class MailjetService {
   }
 
   private initializeMailjet(): void {
+    if (!process.env.MAILJET_API_KEY || !process.env.MAILJET_SECRET_KEY) {
+      console.log('[MAILJET] API keys not configured - service disabled');
+      return;
+    }
+
     try {
       this.mailjet = new Mailjet({
-        apiKey: process.env.MAILJET_API_KEY!,
-        apiSecret: process.env.MAILJET_SECRET_KEY!
+        apiKey: process.env.MAILJET_API_KEY,
+        apiSecret: process.env.MAILJET_SECRET_KEY
       });
       console.log('[MAILJET] ✅ Service initialized successfully');
     } catch (error) {
