@@ -67,7 +67,7 @@ export default function VideoForm() {
         type: 'video',
         title: data.title,
         description: data.description,
-        publishDate: new Date(data.publishDate).toISOString(),
+        publishDate: data.publishDate,
         platform: data.platform,
         embedUrl,
         externalUrl: data.videoSource,
