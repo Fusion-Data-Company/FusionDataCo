@@ -941,8 +941,6 @@ export const mediaItems = pgTable("media_items", {
 export const insertMediaItemSchema = createInsertSchema(mediaItems).omit({
   id: true,
   createdAt: true,
-}).extend({
-  publishDate: z.string().transform((val) => new Date(val)),
 });
 
 export type MediaItem = typeof mediaItems.$inferSelect;
